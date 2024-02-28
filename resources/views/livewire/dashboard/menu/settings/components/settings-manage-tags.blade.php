@@ -107,6 +107,8 @@
                         {{-- tbody --}}
                         <tbody>
 
+
+
                            {{-- loop - tags --}}
                            @foreach ($tags as $tag)
                               <livewire:dashboard.menu.settings.components.settings-view-tag />

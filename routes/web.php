@@ -82,7 +82,7 @@ Route::get('dashboard/delivery', Delivery::class)->name('dashboard.delivery');
 
 
 // 4: Plans
-Route::get('dashboard/menu/plans', Plans::class)->name('dashboard.plans');
+Route::get('dashboard/menu/plans', Plans::class)->name('dashboard.menuPlans');
 
 
 
@@ -97,37 +97,37 @@ Route::get('dashboard/menu/plans', Plans::class)->name('dashboard.plans');
 
 
 // 5: Recipes
-Route::get('dashboard/menu/recipes', Recipes::class)->name('dashboard.recipes');
+Route::get('dashboard/menu/recipes', Recipes::class)->name('dashboard.menuRecipes');
 
 
 
 // 5.1: Sub-recipes
-Route::get('dashboard/menu/sub-recipes', SubRecipes::class)->name('dashboard.subRecipes');
+Route::get('dashboard/menu/sub-recipes', SubRecipes::class)->name('dashboard.menuSubRecipes');
 
 
 
 
 // 5.2: Snacks
-Route::get('dashboard/menu/snacks', Snacks::class)->name('dashboard.snacks');
+Route::get('dashboard/menu/snacks', Snacks::class)->name('dashboard.menuSnacks');
 
 
 
 
 // 5.3: Sides
-Route::get('dashboard/menu/sides', Sides::class)->name('dashboard.sides');
+Route::get('dashboard/menu/sides', Sides::class)->name('dashboard.menuSides');
 
 
 
 
 // 5.4: Sauces
-Route::get('dashboard/menu/sauces', Sauces::class)->name('dashboard.sauces');
+Route::get('dashboard/menu/sauces', Sauces::class)->name('dashboard.menuSauces');
 
 
 
 
 
 // 5.5: Drinks
-Route::get('dashboard/menu/drinks', Drinks::class)->name('dashboard.drinks');
+Route::get('dashboard/menu/drinks', Drinks::class)->name('dashboard.menuDrinks');
 
 
 
@@ -135,7 +135,7 @@ Route::get('dashboard/menu/drinks', Drinks::class)->name('dashboard.drinks');
 
 
 // 5.6: Settings
-Route::get('dashboard/menu/settings', Settings::class)->name('dashboard.settings');
+Route::get('dashboard/menu/settings', Settings::class)->name('dashboard.menuSettings');
 
 
 

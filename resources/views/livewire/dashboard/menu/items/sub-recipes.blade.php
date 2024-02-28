@@ -34,7 +34,7 @@
          <div class="col-2 text-start">
             <h3 class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
                data-bs-toggle="tooltip" data-bss-tooltip="" title="Number of Sub-recipes">
-               2
+               {{ $subRecipes->count() }}
             </h3>
          </div>
 
@@ -86,7 +86,7 @@
 
 
                {{-- loop - subRecipes --}}
-               @foreach ($subRecipes as $subRecipes)
+               @foreach ($subRecipes as $subRecipe)
                   <div class="col-4 col-xl-3 col-xxl-3">
                      <div class="overview--card client-version scale--self-05 mb-floating">
                         <div class="row">
@@ -95,7 +95,7 @@
                            {{-- image --}}
                            <div class="col-12 text-center position-relative">
                               <img class="client--card-logo"
-                                 src="{{ asset('storage/menu/sub-recipes/' . $subRecipes->imageFile) }}" />
+                                 src="{{ asset('storage/menu/sub-recipes/' . $subRecipe->imageFile) }}" />
                            </div>
 
 
@@ -135,180 +135,89 @@
 
                                  {{-- navTabs --}}
                                  <ul class="nav nav-tabs inner for-sizes" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                       <a class="nav-link active" data-bs-toggle="tab"
-                                          href="#tab-1-{{ $subRecipe->id }}" role="tab">SM</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                       <a class="nav-link" data-bs-toggle="tab" href="#tab-2-{{ $subRecipe->id }}"
-                                          role="tab">MD</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                       <a class="nav-link" data-bs-toggle="tab" href="#tab-3-{{ $subRecipe->id }}"
-                                          role="tab">ST</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                       <a class="nav-link" data-bs-toggle="tab" href="#tab-4-{{ $subRecipe->id }}"
-                                          role="tab">LG</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                       <a class="nav-link" data-bs-toggle="tab" href="#tab-5-{{ $subRecipe->id }}"
-                                          role="tab">XL</a>
-                                    </li>
+
+
+                                    {{-- loop - sizes --}}
+                                    @foreach ($subRecipe->sizes as $subRecipeSize)
+                                       <li class="nav-item" role="presentation">
+                                          <a class="nav-link " data-bs-toggle="tab" href="#tab-1-{{ $subRecipe->id }}"
+                                             role="tab">{{ $subRecipeSize->size->name }}</a>
+                                       </li>
+                                    @endforeach
+                                    {{-- end loop --}}
+
+
                                  </ul>
+                                 {{-- end navTabs --}}
 
 
 
 
 
 
-                                 {{-- ta --}}
+                                 {{-- tabContent --}}
                                  <div class="tab-content">
-                                    <div class="tab-pane active no--card py-0 px-3" id="tab-1" role="tabpanel">
-                                       <div class="row">
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">CA</h6>
-                                                <p class="fs-12">250</p>
+
+
+                                    {{-- loop - sizes --}}
+                                    @foreach ($subRecipe->sizes as $subRecipeSize)
+                                       <div class="tab-pane  no--card py-0 px-3" id="tab-1-{{ $subRecipe->id }}"
+                                          role="tabpanel">
+                                          <div class="row">
+                                             <div class="col-3 text-end px-2">
+                                                <div class="overview--box shrink--self macros-version sm">
+                                                   <h6 class="fs-12">CA</h6>
+                                                   <p class="fs-12">{{ $subRecipeSize->afterCookCalories }}</p>
+                                                </div>
                                              </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">P</h6>
-                                                <p class="fs-12">35</p>
+                                             <div class="col-3 text-end px-2">
+                                                <div class="overview--box shrink--self macros-version sm">
+                                                   <h6 class="fs-12">P</h6>
+                                                   <p class="fs-12">{{ $subRecipeSize->afterCookProteins }}</p>
+                                                </div>
                                              </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">C</h6>
-                                                <p class="fs-12">180</p>
+                                             <div class="col-3 text-end px-2">
+                                                <div class="overview--box shrink--self macros-version sm">
+                                                   <h6 class="fs-12">C</h6>
+                                                   <p class="fs-12">{{ $subRecipeSize->afterCookCarbs }}</p>
+                                                </div>
                                              </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">F</h6>
-                                                <p class="fs-12">12</p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="tab-pane no--card py-0 px-3" id="tab-2" role="tabpanel">
-                                       <div class="row">
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">CA</h6>
-                                                <p class="fs-12">250</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">P</h6>
-                                                <p class="fs-12">35</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">C</h6>
-                                                <p class="fs-12">180</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">F</h6>
-                                                <p class="fs-12">12</p>
+                                             <div class="col-3 text-end px-2">
+                                                <div class="overview--box shrink--self macros-version sm">
+                                                   <h6 class="fs-12">F</h6>
+                                                   <p class="fs-12">{{ $subRecipeSize->afterCookFats }}</p>
+                                                </div>
                                              </div>
                                           </div>
                                        </div>
-                                    </div>
-                                    <div class="tab-pane no--card py-0 px-3" id="tab-3" role="tabpanel">
-                                       <div class="row">
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">CA</h6>
-                                                <p class="fs-12">250</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">P</h6>
-                                                <p class="fs-12">35</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">C</h6>
-                                                <p class="fs-12">180</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">F</h6>
-                                                <p class="fs-12">12</p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="tab-pane no--card py-0 px-3" id="tab-4" role="tabpanel">
-                                       <div class="row">
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">CA</h6>
-                                                <p class="fs-12">250</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">P</h6>
-                                                <p class="fs-12">35</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">C</h6>
-                                                <p class="fs-12">180</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">F</h6>
-                                                <p class="fs-12">12</p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="tab-pane no--card py-0 px-3" id="tab-5" role="tabpanel">
-                                       <div class="row">
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">CA</h6>
-                                                <p class="fs-12">250</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">P</h6>
-                                                <p class="fs-12">35</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">C</h6>
-                                                <p class="fs-12">180</p>
-                                             </div>
-                                          </div>
-                                          <div class="col-3 text-end px-2">
-                                             <div class="overview--box shrink--self macros-version sm">
-                                                <h6 class="fs-12">F</h6>
-                                                <p class="fs-12">12</p>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
+                                    @endforeach
+                                    {{-- end loop --}}
+
                                  </div>
                               </div>
                            </div>
+                           {{-- endSizes --}}
+
+
+
+
+
+
+
+                           {{-- -------------------------------------- --}}
+                           {{-- -------------------------------------- --}}
+
+
+
+
+
+
+                           {{-- actions --}}
                            <div class="col-12">
                               <div class="d-flex align-items-center justify-content-center mb-1 mt-3">
+
+
+                                 {{-- 1: editButton  --}}
                                  <button class="btn btn--scheme btn--theme fs-12 px-2 mx-2 scale--self-05 h-32"
                                     type="button">
                                     <svg class="bi bi-pencil fs-5" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -316,8 +225,14 @@
                                        <path
                                           d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z">
                                        </path>
-                                    </svg></button><button
-                                    class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
+                                    </svg>
+                                 </button>
+
+
+
+
+                                 {{-- 2: ingredients tooltip  --}}
+                                 <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
                                     data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                     type="button" title="Baja Chicken / Baked Potatos / White Rice">
                                     <svg class="bi bi-info-circle fs-5" xmlns="http://www.w3.org/2000/svg"
@@ -327,8 +242,14 @@
                                        <path
                                           d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z">
                                        </path>
-                                    </svg></button><button
-                                    class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
+                                    </svg>
+                                 </button>
+
+
+
+
+                                 {{-- 3: print excel --}}
+                                 <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
                                     data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                     type="button" title="Print Recipe">
                                     <svg class="bi bi-printer fs-5" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -337,8 +258,13 @@
                                        <path
                                           d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z">
                                        </path>
-                                    </svg></button><button
-                                    class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
+                                    </svg>
+                                 </button>
+
+
+
+                                 {{-- 4: preview --}}
+                                 <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
                                     data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                     type="button" title="Preview">
                                     <svg class="bi bi-eye fs-5" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -353,6 +279,10 @@
                                  </button>
                               </div>
                            </div>
+                           {{-- end actionCol --}}
+
+
+
                         </div>
                      </div>
                   </div>
@@ -365,10 +295,6 @@
             </div>
          </div>
          {{-- endView --}}
-
-
-
-
 
 
       </div>

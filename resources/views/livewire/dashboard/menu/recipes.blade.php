@@ -49,7 +49,7 @@
             {{-- counter --}}
             <h3 class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
                data-bs-toggle="tooltip" data-bss-tooltip="" title="Number of Plans">
-               2
+               {{ $meals->count() }}
             </h3>
          </div>
       </div>
@@ -80,8 +80,8 @@
 
 
 
-               {{-- loop - recipes --}}
-               @foreach ($recipes as $recipe)
+               {{-- loop - meals --}}
+               @foreach ($meals as $meal)
                   <div class="col-4 col-xl-3 col-xxl-3">
                      <div class="overview--card client-version scale--self-05 mb-floating">
                         <div class="row">
@@ -105,7 +105,7 @@
 
                               {{-- mealType --}}
                               <p class="text-center mb-2">
-                                 @foreach ($recipe->types as $type)
+                                 @foreach ($meal->types as $type)
                                     <span class="fs-6 text-warning scale--3 recipe--card-tag sm">B</span>
                                  @endforeach
                               </p>
@@ -132,9 +132,9 @@
 
 
                                     {{-- loop - sizes --}}
-                                    @foreach ($recipe->sizes as $recipeSize)
+                                    @foreach ($meal->sizes as $mealSize)
                                        <li class="nav-item" role="presentation">
-                                          <a class="nav-link" data-bs-toggle="tab" href="#tab-1-{{ $recipe->id }}"
+                                          <a class="nav-link" data-bs-toggle="tab" href="#tab-1-{{ $meal->id }}"
                                              role="tab">SM</a>
                                        </li>
                                     @endforeach
@@ -161,8 +161,8 @@
 
 
                                     {{-- loop - sizesMacros --}}
-                                    @foreach ($recipe->sizes as $recipeSize)
-                                       <div class="tab-pane active no--card py-0 px-3" id="tab-1-{{ $recipe->id }}"
+                                    @foreach ($meal->sizes as $mealSize)
+                                       <div class="tab-pane active no--card py-0 px-3" id="tab-1-{{ $meal->id }}"
                                           role="tabpanel">
                                           <div class="row">
 
@@ -170,7 +170,7 @@
                                              <div class="col-3 text-end px-2">
                                                 <div class="overview--box shrink--self macros-version sm">
                                                    <h6 class="fs-12">CA</h6>
-                                                   <p class="fs-12">250</p>
+                                                   <p class="fs-12">{{ $meal->afterCookCalories }}</p>
                                                 </div>
                                              </div>
 
@@ -178,7 +178,7 @@
                                              <div class="col-3 text-end px-2">
                                                 <div class="overview--box shrink--self macros-version sm">
                                                    <h6 class="fs-12">P</h6>
-                                                   <p class="fs-12">35</p>
+                                                   <p class="fs-12">{{ $meal->afterCookProteins }}</p>
                                                 </div>
                                              </div>
 
@@ -187,7 +187,7 @@
                                              <div class="col-3 text-end px-2">
                                                 <div class="overview--box shrink--self macros-version sm">
                                                    <h6 class="fs-12">C</h6>
-                                                   <p class="fs-12">180</p>
+                                                   <p class="fs-12">{{ $meal->afterCookCarbs }}</p>
                                                 </div>
                                              </div>
 
@@ -197,7 +197,7 @@
                                              <div class="col-3 text-end px-2">
                                                 <div class="overview--box shrink--self macros-version sm">
                                                    <h6 class="fs-12">F</h6>
-                                                   <p class="fs-12">12</p>
+                                                   <p class="fs-12">{{ $meal->afterCookFats }}</p>
                                                 </div>
                                              </div>
                                           </div>

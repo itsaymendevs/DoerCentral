@@ -87,7 +87,7 @@
                {{-- menu --}}
                <a class="btn navbar--menu-button
                @if (Request::is('dashboard/menu', 'dashboard/menu/*')) active @endif"
-                  href="{{ route('dashboard.plans') }}" wire:navigate>Menu</a>
+                  href="{{ route('dashboard.menuPlans') }}" wire:navigate>Menu</a>
 
 
                {{-- delivery --}}

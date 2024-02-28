@@ -15,26 +15,41 @@ return new class extends Migration {
 
 
             // 1: general
+            $table->string('type', 100)->nullable();
             $table->text('name')->nullable();
-            $table->text('generalName')->nullable();
-            $table->text('desc')->nullable();
 
+
+
+            // 1.2: generalName - servingPrice - validity
+            $table->text('generalName')->nullable();
             $table->double('servingPrice', 15, 2)->nullable()->default(0);
             $table->integer('validity')->nullable()->default(0);
 
 
 
 
-
-
-            // 1.2: isVegetarian
+            // 1.3: isVegetarian / description
             $table->boolean('isVegetarian')->nullable();
+            $table->text('desc')->nullable();
 
 
 
 
 
-            // 1.3: container
+            // 1.4: imageFiles
+            $table->text('imageFile')->nullable();
+            $table->text('secondImageFile')->nullable();
+            $table->text('thirdImageFile')->nullable();
+            $table->text('fourthImageFile')->nullable();
+
+
+
+
+
+
+
+
+            // 1.4: container
             $table->bigInteger('containerId')->unsigned()->nullable();
             $table->foreign('containerId')->references('id')->on('containers')->onDelete('set null');
 
@@ -42,7 +57,7 @@ return new class extends Migration {
 
 
 
-            // 1.4: kitchenType - diet - cuisine
+            // 1.5: kitchenType - diet - cuisine
             $table->bigInteger('kitchenTypeId')->unsigned()->nullable();
             $table->foreign('kitchenTypeId')->references('id')->on('kitchen_types')->onDelete('set null');
 

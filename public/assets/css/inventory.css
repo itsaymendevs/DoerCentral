@@ -1,0 +1,36 @@
+.inventory--image-frame.sm {
+  aspect-ratio: 1/1;
+  height: 200px;
+  object-position: top center;
+}
+
+.inventory--image-frame {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  height: 250px;
+}
+
+/* macros wrap */
+
+.macro--wrap {
+  border-radius: var(--radius);
+  background-color: var(--color-scheme-2);
+  padding: 10px;
+}
+
+.macro--wrap label {
+  font-size: 13px;
+  text-align: center;
+  justify-content: center;
+}
+
+.macro--wrap input {
+  font-size: 13px;
+  text-align: center;
+  font-weight: bold;
+  height: 35px;
+  width: 90%;
+  margin: auto;
+}
+

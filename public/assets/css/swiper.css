@@ -1,0 +1,29 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 170px;
+}
+
+/* ------------------------------------------------------------------------ */
+
+.quick--cases-swiper .swiper-wrapper {
+  padding: 0px 30px 25px 30px;
+}
+
+.quick--cases-swiper .swiper-slide {
+  margin-bottom: 20px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #62987e;
+}
+

@@ -1,0 +1,49 @@
+.form--table-image {
+  object-fit: contain;
+  height: 75px;
+  width: 100%;
+}
+
+/* recipe-card */
+
+.recipe--card-tag {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold !important;
+  width: 40px;
+  aspect-ratio: 1/1.1;
+  background-color: var(--color-scheme-2);
+  border-radius: var(--radius);
+  margin: 0px 4px;
+}
+
+.recipe--card-tag.sm {
+  width: 32px;
+}
+
+/* tabs for sizes */
+
+.tabs--wrap .nav-tabs.for-sizes {
+  border-bottom: 1px solid var(--color-scheme-2);
+  border-radius: 0px;
+  padding-bottom: 3px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs--wrap .nav-tabs.for-sizes li {
+  margin-right: 0px;
+  width: 20%;
+  text-align: center;
+}
+
+.tabs--wrap .nav-tabs.for-sizes a {
+  padding: 6px 0px;
+  border: none;
+  border-radius: var(--radius) var(--radius) 0px 0px;
+  font-size: 12px;
+  width: 100%;
+}
+

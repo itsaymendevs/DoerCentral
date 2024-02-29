@@ -62,7 +62,7 @@
                      {{-- profileImage --}}
                      <div class="col-12 text-center position-relative">
                         <img class="client--card-logo smaller of-cover"
-                           src="{{ asset('storage/delivery/drivers/' . $driver->imageFile) }}">
+                           src="{{ asset('storage/delivery/drivers/profiles/' . $driver->imageFile) }}">
                      </div>
 
 
@@ -78,8 +78,8 @@
                         {{-- deliveryZones --}}
                         <p class="text-center fs-13 fw-bold text-danger">
                            <span class="fs-12 fw-semibold text-warning pointer" data-bs-toggle="tooltip"
-                              data-bss-tooltip="" data-bs-placement="right" title="#">Delivery Zones<svg
-                                 class="bi bi-eye-fill fs-6 ms-1" style="fill: var(--bs-warning);"
+                              data-bss-tooltip="" data-bs-html='true' data-bs-placement="right" title="#">Delivery
+                              Zones<svg class="bi bi-eye-fill fs-6 ms-1" style="fill: var(--bs-warning);"
                                  xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                  viewBox="0 0 16 16">
                                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>

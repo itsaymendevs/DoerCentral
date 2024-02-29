@@ -212,20 +212,40 @@ window.addEventListener("resetSelect", (event) => {
 window.addEventListener("setSelect", (event) => {
     $(document).ready(function () {
         selectId = event.detail.id;
-
         setupValue = event.detail.value;
+        setupDelay = event.detail.delay ? true : false;
+
         setupClear = $(selectId).attr("data-clear") ? true : false;
         setupModal = $(selectId).attr("data-modal");
         setupPlaceholder = $(selectId).attr("data-placeholder");
+        setupValueChild = null;
 
-        $(selectId)
-            .select2({
-                dropdownParent: setupModal,
-                allowClear: setupClear,
-                placeholder: setupPlaceholder ? setupPlaceholder : "",
-            })
-            .val(setupValue)
-            .trigger("change");
+        if (setupDelay) {
+            // ::clone
+            setupValueChild = setupValue;
+
+            setTimeout(() => {
+                $(selectId)
+                    .select2({
+                        dropdownParent: setupModal,
+                        allowClear: setupClear,
+                        placeholder: setupPlaceholder ? setupPlaceholder : "",
+                    })
+                    .val(null)
+                    .trigger("change")
+                    .val(setupValueChild)
+                    .trigger("change");
+            }, 300);
+        } else {
+            $(selectId)
+                .select2({
+                    dropdownParent: setupModal,
+                    allowClear: setupClear,
+                    placeholder: setupPlaceholder ? setupPlaceholder : "",
+                })
+                .val(setupValue)
+                .trigger("change");
+        } // end if
     });
 });
 

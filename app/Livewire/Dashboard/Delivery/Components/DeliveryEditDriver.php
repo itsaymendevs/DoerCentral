@@ -28,25 +28,33 @@ class DeliveryEditDriver extends Component
 
 
 
+
+
     #[On('editDriver')]
     public function remount($id)
     {
 
-        // 1: clone instance
+        // 1: clone instance / Files
         $driver = Driver::find($id);
 
         foreach ($driver->toArray() as $key => $value)
             $this->instance->{$key} = $value;
+
+        $this->instance->imageFileName = $this->instance->imageFile;
+        $this->instance->licenseFileName = $this->instance->licenseFile;
+
+
+
 
 
 
 
 
         // 1.2: setFilePreview
-        $preview = asset('storage/delivery/drivers/' . $this->instance->imageFile);
+        $preview = asset('storage/delivery/drivers/profiles/' . $this->instance->imageFile);
         $this->dispatch('setFilePreview', filePreview: 'driver--preview-3', defaultPreview: $preview);
 
-        $preview = asset('storage/delivery/drivers/' . $this->instance->licenseFile);
+        $preview = asset('storage/delivery/drivers/licenses/' . $this->instance->licenseFile);
         $this->dispatch('setFilePreview', filePreview: 'driver--preview-4', defaultPreview: $preview);
 
 
@@ -55,6 +63,7 @@ class DeliveryEditDriver extends Component
 
         // :: setSelect
         $this->dispatch('setSelect', id: '#shift-select-2', value: $driver->shiftTypeId);
+        $this->dispatch('setSelect', id: '#zone-select-2', value: $driver?->zones?->pluck('zoneId')->toArray());
 
 
 
@@ -75,28 +84,49 @@ class DeliveryEditDriver extends Component
     public function update()
     {
 
-        // 1: clone instance
+
+
+
+        // 1: uploadFileFiles
+        if ($this->instance->imageFile != $this->instance->imageFileName) {
+
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'delivery/drivers/profiles/');
+
+        } // end if
+
+
+        if ($this->instance->licenseFile != $this->instance->licenseFileName) {
+
+            $this->instance->licenseFileName = $this->uploadFile($this->instance->licenseFile, 'delivery/drivers/licenses');
+
+        } // end if
 
 
 
 
 
 
-        // :: refresh / closeModal
+
+
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/delivery/drivers/update', $this->instance);
+
+
+
+
+
+
+        // :: resetForm - resetFilePreview
         $this->instance->reset();
-        $this->dispatch('resetSelect');
-
         $this->dispatch('refreshViews');
+        $this->dispatch('resetSelect');
         $this->dispatch('closeModal', modal: '#edit-driver .btn--close');
         $this->dispatch('resetFile', file: 'driver--file-3', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'driver--file-4', defaultPreview: $this->getDefaultPreview());
 
 
 
-
-        // :: alert
-        $this->makeAlert('success', 'Driver has been updated');
-
+        $this->makeAlert('success', $response->message);
 
 
 
@@ -113,6 +143,9 @@ class DeliveryEditDriver extends Component
 
 
     // -----------------------------------------------------------
+
+
+
 
 
 

@@ -49,11 +49,16 @@ class DeliveryEditZone extends Component
     public function remount($id)
     {
 
-        // 1: clone instance
+        // 1: clone instance / Files
         $zone = Zone::find($id);
 
         foreach ($zone->toArray() as $key => $value)
             $this->instance->{$key} = $value;
+
+        $this->instance->imageFileName = $this->instance->imageFile;
+
+
+
 
 
 
@@ -68,7 +73,8 @@ class DeliveryEditZone extends Component
 
         // 1.3: setSelect
         $this->dispatch('setSelect', id: '#city-select-2', value: $zone->cityId);
-        $this->dispatch('setSelect', id: '#district-select-2', value: $zone->districts?->pluck('cityDistrictId')->toArray());
+        $this->dispatch('setSelect', id: '#district-select-2', value: $zone->districts?->pluck('cityDistrictId')->toArray(), delay: true);
+
 
 
     } // end function
@@ -88,9 +94,25 @@ class DeliveryEditZone extends Component
     public function update()
     {
 
-        // 1: clone instance
 
-        dd($this->instance);
+
+        // 1: uploadFile
+        if ($this->instance->imageFile != $this->instance->imageFileName)
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'delivery/zones');
+
+
+
+
+
+
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/delivery/zones/update', $this->instance);
+
+
+
+
+
+
 
 
         // :: refresh / closeModal
@@ -105,7 +127,7 @@ class DeliveryEditZone extends Component
 
 
         // :: alert
-        $this->makeAlert('success', 'Zone has been updated');
+        $this->makeAlert('success', $response->message);
 
 
 

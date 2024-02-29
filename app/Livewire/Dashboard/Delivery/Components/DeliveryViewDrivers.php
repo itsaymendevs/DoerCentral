@@ -17,13 +17,8 @@ class DeliveryViewDrivers extends Component
 
     // :: variables
     public $searchDriver = '';
-
-
-
-
-
-
     public $removeId;
+
 
 
 
@@ -61,7 +56,7 @@ class DeliveryViewDrivers extends Component
         // 1: params - confirmationBox
         $this->removeId = $id;
 
-        $this->makeAlert('remove');
+        $this->makeAlert('remove', null, 'confirmDriverRemove');
 
 
 
@@ -79,15 +74,22 @@ class DeliveryViewDrivers extends Component
 
 
 
-    #[On('confirmRemove')]
+    #[On('confirmDriverRemove')]
     public function confirmRemove()
     {
 
 
 
         // 1: remove
-        Driver::find($this->removeId)->delete();
-        $this->makeAlert('info', 'Driver has been removed');
+        if ($this->removeId) {
+
+            $response = $this->makeRequest('dashboard/delivery/drivers/remove', $this->removeId);
+            $this->makeAlert('info', $response->message);
+
+        } // end if
+
+
+
 
 
         // 1.2: renderView

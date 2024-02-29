@@ -99,10 +99,8 @@
                   <div class="col-12" wire:ignore>
                      <label class="form-label form--label">Delivery Zones</label>
                      <div class="select--single-wrapper mb-4">
-                        <select class="form-select form--modal-select" data-modal='#edit-driver'
+                        <select class="form-select form--modal-select" id='zone-select-2' data-modal='#edit-driver'
                            data-instance='instance.zones' multiple="">
-                           <option value=""></option>
-
                            @foreach ($zones as $zone)
                               <option value="{{ $zone->id }}">{{ $zone->name }}</option>
                            @endforeach
@@ -241,7 +239,7 @@
 
 
          // 1.1: getValue - instance
-         selectValue = event.target.value;
+         selectValue = $(this).select2('val');
          instance = $(this).attr('data-instance');
 
          console.log(selectValue)

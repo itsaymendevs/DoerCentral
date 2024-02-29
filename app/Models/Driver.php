@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Driver extends Model
 {
     use HasFactory;
-}
+
+
+    public function zones()
+    {
+
+        return $this->hasMany(DriverZone::class, 'driverId');
+
+    } // end function
+
+
+
+
+
+} // end model

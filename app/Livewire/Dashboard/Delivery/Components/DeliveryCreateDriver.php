@@ -27,7 +27,6 @@ class DeliveryCreateDriver extends Component
 
 
 
-
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'delivery/drivers/profiles/');
@@ -39,6 +38,10 @@ class DeliveryCreateDriver extends Component
 
 
 
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/delivery/drivers/store', $this->instance);
+
+
 
 
 
@@ -46,10 +49,14 @@ class DeliveryCreateDriver extends Component
         // :: resetForm - resetFilePreview
         $this->instance->reset();
         $this->dispatch('refreshViews');
+        $this->dispatch('resetSelect');
         $this->dispatch('closeModal', modal: '#new-driver .btn--close');
         $this->dispatch('resetFile', file: 'driver--file-1', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'driver--file-2', defaultPreview: $this->getDefaultPreview());
 
+
+
+        $this->makeAlert('success', $response->message);
 
 
 

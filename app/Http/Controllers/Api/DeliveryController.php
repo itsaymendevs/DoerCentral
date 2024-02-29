@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\CityDeliveryTime;
+use App\Models\Driver;
+use App\Models\DriverZone;
 use App\Models\Zone;
 use App\Models\ZoneDistrict;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DeliveryController extends Controller
 {
@@ -358,6 +361,243 @@ class DeliveryController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function storeDriver(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $driver = new Driver();
+
+        $driver->name = $request->name;
+        $driver->phone = $request->phone;
+        $driver->email = $request->email;
+        $driver->password = Hash::make($request->password);
+        $driver->license = $request->license;
+
+
+
+
+        // 1.2: imageFile - licenseFile
+        $driver->imageFile = $request->imageFileName;
+        $driver->licenseFile = $request->licenseFileName;
+
+
+
+
+        // 1.3: shiftType
+        $driver->shiftTypeId = $request->shiftTypeId;
+
+
+        $driver->save();
+
+
+
+
+
+
+
+
+        // 2: driverZones
+        foreach ($request->zones as $zone) {
+
+
+            // 2.1: general
+            $driverZone = new DriverZone();
+
+            $driverZone->driverId = $driver->id;
+            $driverZone->zoneId = $zone;
+
+            $driverZone->save();
+
+        } // end loop
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Driver has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function updateDriver(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $driver = Driver::find($request->id);
+
+        $driver->name = $request->name;
+        $driver->phone = $request->phone;
+        $driver->email = $request->email;
+        $driver->password = Hash::make($request->password);
+        $driver->license = $request->license;
+
+
+
+
+        // 1.2: imageFile - licenseFile
+        $driver->imageFile = $request->imageFileName;
+        $driver->licenseFile = $request->licenseFileName;
+
+
+
+
+        // 1.3: shiftType
+        $driver->shiftTypeId = $request->shiftTypeId;
+
+
+        $driver->save();
+
+
+
+
+
+
+
+
+        // 2: driverZones - update
+        DriverZone::where('driverId', $driver->id)->delete();
+
+
+        foreach ($request->zones as $zone) {
+
+            // 2.1: general
+            $driverZone = new DriverZone();
+
+            $driverZone->driverId = $driver->id;
+            $driverZone->zoneId = $zone;
+
+            $driverZone->save();
+
+        } // end loop
+
+
+
+
+
+
+        return response()->json(['message' => 'Driver has been updated'], 200);
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+    public function removeDriver(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        Driver::find($id)->delete();
+
+
+        return response()->json(['message' => 'Driver has been removed'], 200);
+
+
+
+    } // end function
+
+
 
 
 

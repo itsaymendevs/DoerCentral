@@ -47,6 +47,7 @@ class DeliveryCreateZone extends Component
     {
 
 
+
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'delivery/zones');
@@ -57,7 +58,7 @@ class DeliveryCreateZone extends Component
 
 
         // 1.2: makeRequest
-        $this->makeRequest('dashboard/delivery/zones/store', $this->instance);
+        $response = $this->makeRequest('dashboard/delivery/zones/store', $this->instance);
 
 
 
@@ -73,6 +74,7 @@ class DeliveryCreateZone extends Component
 
 
 
+        $this->makeAlert('success', $response->message);
 
 
     } // end function

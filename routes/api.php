@@ -76,13 +76,41 @@ Route::post('/dashboard/delivery/zones/remove', [DeliveryController::class, 'rem
 
 
 
+
+
 // ------------------------------------------------------------------------------------------
 
 
 
 
 
-// 3: store plan - update - toggleActive - remove
+// 3: store drivers - update - toggleActive - remove
+Route::post('/dashboard/delivery/drivers/store', [DeliveryController::class, 'storeDriver']);
+Route::post('/dashboard/delivery/drivers/update', [DeliveryController::class, 'updateDriver']);
+Route::post('/dashboard/delivery/drivers/toggle', [DeliveryController::class, 'toggleDriver']);
+
+Route::post('/dashboard/delivery/drivers/remove', [DeliveryController::class, 'removeDriver']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+// 4: store plan - update - toggleActive - remove
 Route::post('/dashboard/menu/plans/store', [PlanController::class, 'storePlan']);
 Route::post('/dashboard/menu/plans/update', [PlanController::class, 'updatePlan']);
 Route::post('/dashboard/menu/plans/toggle', [PlanController::class, 'togglePlan']);
@@ -97,7 +125,7 @@ Route::post('/dashboard/menu/plans/remove', [PlanController::class, 'removePlan'
 
 
 
-// 3: store planRanges - update - toggleActive - remove
+// 5: store planRanges - update - toggleActive - remove
 Route::post('/dashboard/menu/plans/ranges/store', [PlanController::class, 'storeRange']);
 Route::post('/dashboard/menu/plans/ranges/update', [PlanController::class, 'updateRange']);
 Route::post('/dashboard/menu/plans/ranges/toggle', [PlanController::class, 'toggleRange']);

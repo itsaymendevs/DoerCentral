@@ -108,8 +108,6 @@
                      <div class="select--single-wrapper mb-4">
                         <select class="form-select form--modal-select" data-modal='#new-driver'
                            data-instance='instance.zones' multiple="">
-                           <option value=""></option>
-
                            @foreach ($zones as $zone)
                               <option value="{{ $zone->id }}">{{ $zone->name }}</option>
                            @endforeach
@@ -249,10 +247,9 @@
 
 
          // 1.1: getValue - instance
-         selectValue = event.target.value;
+         selectValue = $(this).select2('val');
          instance = $(this).attr('data-instance');
 
-         console.log(selectValue)
 
          @this.set(instance, selectValue);
 

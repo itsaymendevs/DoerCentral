@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Dashboard\Delivery;
+use App\Livewire\Dashboard\Menu\Builder;
 use App\Livewire\Dashboard\Menu\Items\Drinks;
 use App\Livewire\Dashboard\Menu\Items\Sauces;
 use App\Livewire\Dashboard\Menu\Items\Sides;
@@ -134,7 +135,19 @@ Route::get('dashboard/menu/drinks', Drinks::class)->name('dashboard.menuDrinks')
 
 
 
-// 5.6: Settings
+
+
+
+// 5.6: builder
+Route::get('dashboard/menu/builder', Builder::class)->name('dashboard.menuBuilder');
+
+
+
+
+
+
+
+// 5.7: Settings
 Route::get('dashboard/menu/settings', Settings::class)->name('dashboard.menuSettings');
 
 

@@ -377,6 +377,13 @@ textarea:read-only {
     margin: auto;
 }
 
+.form--table-input-xxs {
+    max-width: 70px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
 .form--table-input-xs {
     max-width: 100px;
     width: 80%;
@@ -573,7 +580,7 @@ textarea:read-only {
 /* pointer */
 
 .pointer {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .swal2-icon-content {
@@ -605,8 +612,8 @@ textarea:read-only {
 /* pagination */
 
 .page-item-theme .page-link {
-    background-color: white;
-    border-color: var(--color-theme);
+    background-color: var(--color-card);
+    border-color: var(--input-border-color-hover);
     color: var(--color-theme);
     padding: 6px 20px;
 }
@@ -614,14 +621,14 @@ textarea:read-only {
 .page-item-theme.active .page-link,
 .page-item-theme:hover .page-link,
 .page-item-theme:focus .page-link {
-    background-color: var(--color-theme);
-    border-color: var(--color-theme);
+    background-color: var(--color-scheme-dark-2);
+    border-color: var(--input-border-color-hover);
     color: white;
 }
 
 .page-item-theme.disabled .page-link {
     pointer-events: none !important;
-    background-color: rgb(224, 224, 224);
+    background-color: var(--color-card);
 }
 
 /* switch */

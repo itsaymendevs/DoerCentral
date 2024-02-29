@@ -124,7 +124,7 @@
 
                         {{-- input --}}
                         <input class="form-control d-none file--input" id="driver--file-3"
-                           data-preview="driver--preview-3" type="file" wire:model='instance.imageFile' />
+                           data-preview="driver--preview-3" type="file" wire:model.live='instance.imageFile' />
 
 
                         {{-- preview --}}
@@ -172,7 +172,7 @@
 
                         {{-- input --}}
                         <input class="form-control d-none file--input" id="driver--file-4"
-                           data-preview="driver--preview-4" type="file" wire:model='instance.licenseFile' />
+                           data-preview="driver--preview-4" type="file" wire:model.live='instance.licenseFile' />
 
 
                         {{-- preview --}}
@@ -201,8 +201,8 @@
                   <div class="col-12 text-end mt-4">
                      <button
                         class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05"
-                        wire:loading.attr='disabled' wire:target='update, instance.imageFile, instance.licenseFile'>
-                        Save
+                       wire:target='update, instance.imageFile, instance.licenseFile'  wire:loading.attr='disabled'>
+                        Update
                      </button>
                   </div>
 

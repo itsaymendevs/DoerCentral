@@ -47,7 +47,7 @@
 
    {{-- cardView --}}
    <div class="col-12 mt-zone-cards">
-      <div class="row pt-2 row align-items-center mb-4">
+      <div class="row pt-4 row align-items-center mb-3">
 
 
          {{-- singleCard --}}
@@ -82,7 +82,8 @@
                         {{-- preview Cities / Areas --}}
                         <p class="text-center fs-13 fw-bold text-danger pointer">
                            <span class="fs-13 fw-semibold text-warning" data-bs-toggle="tooltip" data-bss-tooltip=""
-                              data-bs-placement="right" title="Dubai">Districts<svg
+                              data-bs-placement="right" data-bs-html='true'
+                              title="{{ $zone->districtsForTooltips() }}">Districts<svg
                                  class="bi bi-eye-fill fs-6 ms-1"style="fill: var(--bs-warning);"
                                  xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                  viewBox="0 0 16 16">
@@ -133,6 +134,18 @@
             </div>
          @endforeach
          {{-- end loop --}}
+
+
+
+
+
+
+         {{-- paginateLinks --}}
+         @if ($zones)
+            <div class="col-12">
+               {{ $zones->links() }}
+            </div>
+         @endif
 
 
 

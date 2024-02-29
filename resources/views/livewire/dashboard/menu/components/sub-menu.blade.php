@@ -42,7 +42,8 @@
 
 
          {{-- 3: recipeBuilder --}}
-         <a class="btn @if (Request::is('dashboard/menu/builder')) active @endif" href="#" wire:navigate>Recipe Builder</a>
+         <a class="btn @if (Request::is('dashboard/menu/builder')) active @endif" href="{{ route('dashboard.menuBuilder') }}"
+            wire:navigate>Builder</a>
 
 
 

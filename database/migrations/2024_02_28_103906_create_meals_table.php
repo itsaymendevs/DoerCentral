@@ -28,6 +28,12 @@ return new class extends Migration {
 
 
 
+            // :: onlyForItems (snack - sauce - drink)
+            $table->string('itemType', 255)->nullable();
+
+
+
+
             // 1.3: isVegetarian / description
             $table->boolean('isVegetarian')->nullable();
             $table->text('desc')->nullable();

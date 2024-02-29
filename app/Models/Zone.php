@@ -20,4 +20,47 @@ class Zone extends Model
 
 
 
+
+    public function districtsInArray()
+    {
+
+
+        // 1: getZones - loop
+        $districtsInArray = [];
+
+        $zoneDistricts = $this->districts()->get();
+
+        foreach ($zoneDistricts as $zoneDistrict) {
+            array_push($districtsInArray, $zoneDistrict->district->name);
+        }
+
+
+        return $districtsInArray ? $districtsInArray : ['Not Assigned'];
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    public function districtsForTooltips()
+    {
+
+
+        // 1: getZones - convertToString
+        $zoneDistricts = $this->districtsInArray();
+        $zoneDistricts = implode('<br />', $zoneDistricts);
+
+        return $zoneDistricts;
+
+
+    } // end function
+
+
+
+
 } // end model

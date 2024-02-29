@@ -7,11 +7,15 @@ use App\Models\Zone;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class DeliveryViewZones extends Component
 {
 
     use HelperTrait;
+    use WithPagination;
+
+
 
     // ::variables
     public $searchZone = '';
@@ -116,7 +120,8 @@ class DeliveryViewZones extends Component
 
 
         // 1: dependencies
-        $zones = Zone::where('name', 'LIKE', '%' . $this->searchZone . '%')->get();
+        $zones = Zone::where('name', 'LIKE', '%' . $this->searchZone . '%')
+            ->paginate(env('PAGINATE'), pageName: 'zones');
 
 
 

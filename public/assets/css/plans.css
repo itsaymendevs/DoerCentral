@@ -27,7 +27,7 @@
 .tabs--wrap .nav-tabs.for-sizes {
   border-bottom: 1px solid var(--color-scheme-2);
   border-radius: 0px;
-  padding-bottom: 3px;
+  padding-bottom: 1px;
   margin-bottom: 6px;
   display: flex;
   justify-content: space-between;
@@ -35,7 +35,7 @@
 
 .tabs--wrap .nav-tabs.for-sizes li {
   margin-right: 0px;
-  width: 20%;
+  width: 19%;
   text-align: center;
 }
 
@@ -44,6 +44,164 @@
   border: none;
   border-radius: var(--radius) var(--radius) 0px 0px;
   font-size: 12px;
+  transform: scale(1);
   width: 100%;
+}
+
+.tabs--wrap .nav-tabs.for-sizes a.active, .tabs--wrap .nav-tabs.for-sizes a:hover, .tabs--wrap .nav-tabs.for-sizes a:focus {
+  transform: scale(1);
+  background-color: #dba400;
+}
+
+/* mealType */
+
+.mealType--checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 0px;
+}
+
+.mealType--checkbox input {
+  margin: 0px !important;
+  font-size: 25px;
+  height: 14px;
+  background-color: var(--color-theme-heading) !important;
+}
+
+.mealType--checkbox input:checked {
+  background-color: var(--bg-golden-dark) !important;
+}
+
+.mealType--checkbox label {
+  margin-left: 15px;
+  font-size: 17px;
+  border-bottom: 1px solid var(--bg-golden);
+}
+
+/* submenu for builder */
+
+.submenu--group.for-builder .btn {
+  border: 1px solid var(--input-border-color) !important;
+}
+
+.submenu--group.for-builder .btn.active {
+  background-color: var(--color-theme-secondary);
+}
+
+/* ingredients color scheme */
+
+.item--scheme-1 {
+  background-color: var(--ingredient-color);
+  color: var(--color-scheme-2);
+}
+
+.item--scheme-1 svg {
+  fill: var(--color-scheme-2);
+}
+
+.item--scheme-1:hover svg, .item--scheme-1:focus svg {
+  fill: var(--color-theme);
+}
+
+/* scheme-2 */
+
+.item--scheme-2 {
+  background-color: var(--subrecipe-color);
+  color: var(--color-scheme-2);
+}
+
+.item--scheme-2 svg {
+  fill: var(--color-scheme-2);
+}
+
+.item--scheme-2:hover svg, .item--scheme-2:focus svg {
+  fill: var(--color-theme);
+}
+
+/* scheme-3 */
+
+.item--scheme-3 {
+  background-color: var(--sauce-color);
+  color: var(--color-scheme-2);
+}
+
+.item--scheme-3 svg {
+  fill: var(--color-scheme-2);
+}
+
+.item--scheme-3:hover svg, .item--scheme-3:focus svg {
+  fill: var(--color-theme);
+}
+
+/* scheme-4 */
+
+.item--scheme-4 {
+  background-color: var(--snack-color);
+  color: var(--color-scheme-2);
+}
+
+.item--scheme-4 svg {
+  fill: var(--color-scheme-2);
+}
+
+.item--scheme-4:hover svg, .item--scheme-4:focus svg {
+  fill: var(--color-theme);
+}
+
+/* scheme 5 */
+
+.item--scheme-5 {
+  background-color: var(--side-color);
+  color: var(--color-scheme-2);
+}
+
+.item--scheme-5 svg {
+  fill: var(--color-scheme-2);
+}
+
+.item--scheme-5:hover svg, .item--scheme-5:focus svg {
+  fill: var(--color-theme);
+}
+
+/* scheme 6 */
+
+.item--scheme-6 {
+  background-color: var(--drink-color);
+  color: var(--color-scheme-2);
+}
+
+.item--scheme-6 svg {
+  fill: var(--color-scheme-2);
+}
+
+.item--scheme-6:hover svg, .item--scheme-6:focus svg {
+  fill: var(--color-theme);
+}
+
+/* builder */
+
+.tr--ingredient {
+  background-color: var(--ingredient-color) !important;
+}
+
+.tr--subrecipe {
+  background-color: var(--subrecipe-color) !important;
+}
+
+.tr--snack {
+  background-color: var(--snack-color) !important;
+}
+
+.tr--side {
+  background-color: var(--side-color) !important;
+}
+
+.tr--sauce {
+  background-color: var(--sauce-color) !important;
+}
+
+.tr--drink {
+  background-color: var(--drink-color) !important;
 }
 

@@ -49,7 +49,7 @@
 
    {{-- driversCol --}}
    <div class="col-12 mt-zone-cards">
-      <div class="row pt-2 row align-items-center mb-4">
+      <div class="row pt-4 row align-items-center mb-3">
 
 
          {{-- loop - drivers --}}
@@ -78,7 +78,8 @@
                         {{-- deliveryZones --}}
                         <p class="text-center fs-13 fw-bold text-danger">
                            <span class="fs-12 fw-semibold text-warning pointer" data-bs-toggle="tooltip"
-                              data-bss-tooltip="" data-bs-html='true' data-bs-placement="right" title="#">Delivery
+                              data-bss-tooltip="" data-bs-html='true' data-bs-placement="right"
+                              title="{{ $driver->zonesForTooltips() }}">Delivery
                               Zones<svg class="bi bi-eye-fill fs-6 ms-1" style="fill: var(--bs-warning);"
                                  xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                  viewBox="0 0 16 16">
@@ -178,6 +179,21 @@
             </div>
          @endforeach
          {{-- end loop --}}
+
+
+
+
+
+
+
+
+         {{-- paginateLinks --}}
+         @if ($drivers)
+            <div class="col-12">
+               {{ $drivers->links() }}
+            </div>
+         @endif
+
 
 
       </div>

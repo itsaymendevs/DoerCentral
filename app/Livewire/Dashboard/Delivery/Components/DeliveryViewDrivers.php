@@ -7,12 +7,13 @@ use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class DeliveryViewDrivers extends Component
 {
 
     use HelperTrait;
-
+    use WithPagination;
 
 
     // :: variables
@@ -121,7 +122,9 @@ class DeliveryViewDrivers extends Component
 
 
         // 1: dependencies
-        $drivers = Driver::where('name', 'LIKE', '%' . $this->searchDriver . '%')->get();
+        $drivers = Driver::where('name', 'LIKE', '%' . $this->searchDriver . '%')
+            ->paginate(env('PAGINATE'), pageName: 'drivers');
+
 
 
 

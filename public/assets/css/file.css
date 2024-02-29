@@ -42,6 +42,12 @@
   border-right: none;
 }
 
+/* subheader */
+
+.subheader {
+  background-color: #00000022;
+}
+
 /* task checkbox */
 
 .task--checkbox {

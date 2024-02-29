@@ -5,6 +5,13 @@
   position: relative !important;
 }
 
+.select--single-wrapper.xxs {
+  width: 100%;
+  max-width: 135px;
+  position: relative !important;
+  margin: auto;
+}
+
 .select--single-wrapper .form--select2 {
   width: 100% !important;
   height: var(--input-height);

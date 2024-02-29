@@ -1,6 +1,5 @@
 {{-- sub-menu --}}
-<div class="btn-group submenu--group" data-aos="flip-up" data-aos-duration="600" data-aos-delay="800" data-aos-once="true"
-   role="group">
+<div class="btn-group submenu--group" role="group">
 
 
    {{-- 1: sub-recipes --}}

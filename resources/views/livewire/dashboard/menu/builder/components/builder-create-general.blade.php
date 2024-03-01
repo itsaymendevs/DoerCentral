@@ -56,7 +56,8 @@
          <div class="col-4" wire:ignore>
             <label class="form-label form--label">Category</label>
             <div class="select--single-wrapper mb-4">
-               <select class="form-select form--select" data-instance='instance.isVegetarian' data-clear='true'>
+               <select class="form-select form--select" data-instance='instance.isVegetarian' data-clear='true'
+                  required>
                   <option value=""></option>
                   <option value="1">Vegetarian</option>
                   <option value="0">Non-Vegetarian</option>
@@ -184,7 +185,8 @@
 
 
                {{-- preview --}}
-               <img class="inventory--image-frame" id="item--preview-1" src="assets/img/placeholder.png" />
+               <img class="inventory--image-frame" id="item--preview-1"
+                  src="{{ asset('assets/img/placeholder.png') }}" />
 
 
                {{-- icon --}}
@@ -218,7 +220,8 @@
 
 
                {{-- preview --}}
-               <img class="inventory--image-frame" id="item--preview-2" src="assets/img/placeholder.png" />
+               <img class="inventory--image-frame" id="item--preview-2"
+                  src="{{ asset('assets/img/placeholder.png') }}" />
 
 
                {{-- icon --}}
@@ -252,7 +255,8 @@
 
 
                {{-- preview --}}
-               <img class="inventory--image-frame" id="item--preview-3" src="assets/img/placeholder.png" />
+               <img class="inventory--image-frame" id="item--preview-3"
+                  src="{{ asset('assets/img/placeholder.png') }}" />
 
 
                {{-- icon --}}
@@ -285,7 +289,8 @@
 
 
                {{-- preview --}}
-               <img class="inventory--image-frame" id="item--preview-4" src="assets/img/placeholder.png" />
+               <img class="inventory--image-frame" id="item--preview-4"
+                  src="{{ asset('assets/img/placeholder.png') }}" />
 
 
                {{-- icon --}}

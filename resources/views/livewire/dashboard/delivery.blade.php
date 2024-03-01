@@ -164,140 +164,16 @@
 
                            {{-- 2.2: configurationsTab --}}
                            <div class="tab-pane no--card" id="tab-17" role="tabpanel">
-                              <form>
-                                 <div class="row row pt-2 align-items-center mb-4">
-                                    <div class="col-12 mt-4" data-view="table">
-                                       <div class="table-responsive memoir--table w-100">
-                                          <table class="table table-bordered" id="memoir--table">
-                                             <thead>
-                                                <tr>
-                                                   <th class="th--sm"></th>
-                                                   <th class="th--sm">Day-off?</th>
-                                                   <th class="th--lg">Day-off Message</th>
-                                                </tr>
-                                             </thead>
-                                             <tbody>
-                                                <tr>
-                                                   <td class="fs-6 fw-bold">Sunday</td>
-                                                   <td class="fw-bold">
-                                                      <div
-                                                         class="form-check form-switch form-check-inline input--switch">
-                                                         <input class="form-check-input" id="formCheck-1"
-                                                            type="checkbox"><label class="form-check-label d-none"
-                                                            for="formCheck-1">Label</label>
-                                                      </div>
-                                                   </td>
-                                                   <td class="fs-6 fw-bold text-theme">
-                                                      <div class="d-flex align-items-center justify-content-center">
-                                                      </div><input class="form-control form--input form--table-input"
-                                                         type="text">
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td class="fs-6 fw-bold">Monday</td>
-                                                   <td class="fw-bold">
-                                                      <div
-                                                         class="form-check form-switch form-check-inline input--switch">
-                                                         <input class="form-check-input" id="formCheck-6"
-                                                            type="checkbox" checked=""><label
-                                                            class="form-check-label d-none"
-                                                            for="formCheck-6">Label</label>
-                                                      </div>
-                                                   </td>
-                                                   <td class="fs-6 fw-bold text-theme">
-                                                      <div class="d-flex align-items-center justify-content-center">
-                                                      </div><input class="form-control form--input form--table-input"
-                                                         type="text"
-                                                         value="Meals will be delivered with Tuesday meals">
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td class="fs-6 fw-bold">Tuesday</td>
-                                                   <td class="fw-bold">
-                                                      <div
-                                                         class="form-check form-switch form-check-inline input--switch">
-                                                         <input class="form-check-input" id="formCheck-5"
-                                                            type="checkbox"><label class="form-check-label d-none"
-                                                            for="formCheck-5">Label</label>
-                                                      </div>
-                                                   </td>
-                                                   <td class="fs-6 fw-bold text-theme">
-                                                      <div class="d-flex align-items-center justify-content-center">
-                                                      </div><input class="form-control form--input form--table-input"
-                                                         type="text">
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td class="fs-6 fw-bold">Wednesday</td>
-                                                   <td class="fw-bold">
-                                                      <div
-                                                         class="form-check form-switch form-check-inline input--switch">
-                                                         <input class="form-check-input" id="formCheck-4"
-                                                            type="checkbox"><label class="form-check-label d-none"
-                                                            for="formCheck-4">Label</label>
-                                                      </div>
-                                                   </td>
-                                                   <td class="fs-6 fw-bold text-theme">
-                                                      <div class="d-flex align-items-center justify-content-center">
-                                                      </div><input class="form-control form--input form--table-input"
-                                                         type="text">
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td class="fs-6 fw-bold">Thursday</td>
-                                                   <td class="fw-bold">
-                                                      <div
-                                                         class="form-check form-switch form-check-inline input--switch">
-                                                         <input class="form-check-input" id="formCheck-3"
-                                                            type="checkbox"><label class="form-check-label d-none"
-                                                            for="formCheck-3">Label</label>
-                                                      </div>
-                                                   </td>
-                                                   <td class="fs-6 fw-bold text-theme">
-                                                      <div class="d-flex align-items-center justify-content-center">
-                                                      </div><input class="form-control form--input form--table-input"
-                                                         type="text">
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td class="fs-6 fw-bold">Friday</td>
-                                                   <td class="fw-bold">
-                                                      <div
-                                                         class="form-check form-switch form-check-inline input--switch">
-                                                         <input class="form-check-input" id="formCheck-2"
-                                                            type="checkbox"><label class="form-check-label d-none"
-                                                            for="formCheck-2">Label</label>
-                                                      </div>
-                                                   </td>
-                                                   <td class="fs-6 fw-bold text-theme">
-                                                      <div class="d-flex align-items-center justify-content-center">
-                                                      </div><input class="form-control form--input form--table-input"
-                                                         type="text">
-                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                   <td class="fs-6 fw-bold">Saturday</td>
-                                                   <td class="fw-bold">
-                                                      <div
-                                                         class="form-check form-switch form-check-inline input--switch">
-                                                         <input class="form-check-input" id="formCheck-7"
-                                                            type="checkbox"><label class="form-check-label d-none"
-                                                            for="formCheck-7">Label</label>
-                                                      </div>
-                                                   </td>
-                                                   <td class="fs-6 fw-bold text-theme">
-                                                      <div class="d-flex align-items-center justify-content-center">
-                                                      </div><input class="form-control form--input form--table-input"
-                                                         type="text">
-                                                   </td>
-                                                </tr>
-                                             </tbody>
-                                          </table>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </form>
+
+
+                              <livewire:dashboard.delivery.components.delivery-manage-holidays />
+
+
                            </div>
+                           {{-- endTab --}}
+
+
+
 
 
 

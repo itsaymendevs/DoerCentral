@@ -14,12 +14,12 @@ class Builder extends Component
 
 
 
+
     public function render()
     {
 
 
-
-        return view('livewire.dashboard.menu.builder', compact('types', 'cuisines', 'diets', 'tags'));
+        return view('livewire.dashboard.menu.builder');
 
 
     } // end function

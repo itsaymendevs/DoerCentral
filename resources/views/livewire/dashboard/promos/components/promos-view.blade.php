@@ -53,7 +53,7 @@
                <tr>
                   <th class="th--sm">Name</th>
                   <th class="th--md">Code</th>
-                  <th class="th--md">Value</th>
+                  <th class="th--md">Amount</th>
                   <th class="th--sm">Limit</th>
                   <th class="th--sm">Used</th>
                   <th class="th--md">Status</th>
@@ -61,6 +61,9 @@
                   <th class="th--md"></th>
                </tr>
             </thead>
+
+
+
 
 
 
@@ -74,14 +77,25 @@
 
 
 
-                     {{-- name / code / value / limit / used --}}
+                     {{-- name - code --}}
                      <td class="fw-bold">{{ $promoCode->name }}</td>
                      <td>{{ $promoCode->code }}</td>
 
-                     <td class="scale--3">
-                        {{ $promoCode->percentage ? $promoCode->percentage : $promoCode->cashAmount . '(AED)' }}
+
+
+                     {{-- amount --}}
+                     <td class="scale--3 ">
+                        @if ($promoCode->percentage)
+                           {{ $promoCode->percentage }}<small class="ms-1 fw-semibold text-gold fs-10">(%)</small>
+                        @else
+                           {{ $promoCode->cashAmount }}<small class="ms-1 fw-semibold text-gold fs-10">(AED)</small>
+                        @endif
                      </td>
 
+
+
+
+                     {{-- limit - used --}}
                      <td>{{ $promoCode->limit }}</td>
                      <td>{{ $promoCode->currentUsage }}</td>
 
@@ -158,6 +172,8 @@
             </tbody>
          </table>
          {{-- end table --}}
+
+
 
 
       </div>

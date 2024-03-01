@@ -9,7 +9,12 @@ class PromoCodeForm extends Form
 {
 
     // :: variables
-    public $id, $name, $code, $percentage, $cashAmount, $limit, $isActive, $isForWebsite;
+    #[Rule('required', as: 'instanceError')]
+    public $name, $code, $limit;
+
+
+    public $id, $percentage, $cashAmount, $isActive, $isForWebsite;
+
 
 
 } // end form

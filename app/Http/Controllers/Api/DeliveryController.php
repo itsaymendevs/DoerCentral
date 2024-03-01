@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\CityDeliveryTime;
 use App\Models\Driver;
 use App\Models\DriverZone;
+use App\Models\Holiday;
 use App\Models\Zone;
 use App\Models\ZoneDistrict;
 use Illuminate\Http\Request;
@@ -197,6 +198,118 @@ class DeliveryController extends Controller
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateHoliday(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $holiday = Holiday::find($request->id);
+
+        $holiday->message = $request->message;
+
+        $holiday->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Weekday has been updated'], 200);
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function toggleHoliday(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+
+
+        // 1: get instance
+        $instance = Holiday::find($id);
+
+        $instance->isActive = ! boolval($instance->isActive);
+
+        $instance->save();
+
+
+
+
+        return response()->json(['message' => 'Status has been changed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
 
 
 

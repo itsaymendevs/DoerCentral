@@ -45,15 +45,13 @@ class PromosView extends Component
     public function toggleForWebsite($id)
     {
 
-        // 1: dispatchId
-        $promoCode = PromoCode::find($id);
 
-        $promoCode->isForWebsite = ! boolval($promoCode->isForWebsite);
-        $promoCode->save();
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/promo/promoCodes/toggleForWebsite', $id);
 
 
-
-        $this->makeAlert('success', 'Status has been updated');
+        // :: makeAlert
+        $this->makeAlert('success', $response->message);
 
 
 
@@ -80,7 +78,7 @@ class PromosView extends Component
         // 1: params - confirmationBox
         $this->removeId = $id;
 
-        $this->makeAlert('remove');
+        $this->makeAlert('remove', null, 'confirmPromoCodeRemove');
 
 
 
@@ -98,19 +96,26 @@ class PromosView extends Component
 
 
 
-    #[On('confirmRemove')]
+    #[On('confirmPromoCodeRemove')]
     public function confirmRemove()
     {
 
 
 
         // 1: remove
-        PromoCode::find($this->removeId)->delete();
-        $this->makeAlert('info', 'PromoCode has been removed');
+        if ($this->removeId) {
+
+            $response = $this->makeRequest('dashboard/promo/promoCodes/remove', $this->removeId);
+            $this->makeAlert('info', $response->message);
+
+        } // end if
 
 
-        // 1.2: renderView
-        $this->render();
+
+
+        // 1.2: refreshViews
+        $this->dispatch('refreshViews');
+
 
 
     } // end function

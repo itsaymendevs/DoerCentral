@@ -56,12 +56,16 @@ class PromosEdit extends Component
     public function update()
     {
 
-        // 1: clone instance
-        $promoCode = PromoCode::find($this->instance->id);
+        // :: validate
+        $this->instance->validate();
 
 
-        $promoCode->name = $this->instance->name;
-        $promoCode->save();
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/promo/promoCodes/update', $this->instance);
+
+
+
 
 
 
@@ -69,6 +73,11 @@ class PromosEdit extends Component
         $this->instance->reset();
         $this->dispatch('refreshViews');
         $this->dispatch('closeModal', modal: '#edit-promo .btn--close');
+
+
+
+        // :: alert
+        $this->makeAlert('success', $response->message);
 
 
 

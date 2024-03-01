@@ -27,7 +27,7 @@ class SubRecipes extends Component
 
 
         // 1: dependencies
-        $subRecipes = Meal::where('type', 'SubRecipe')->get();
+        $subRecipes = Meal::where('type', 'Sub-recipe')->get();
 
 
 

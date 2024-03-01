@@ -22,9 +22,21 @@ class PromosCreate extends Component
 
 
 
+
+
+
     public function store()
     {
 
+
+
+        // :: validate
+        $this->instance->validate();
+
+
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/promo/promoCodes/store', $this->instance);
 
 
 
@@ -37,12 +49,20 @@ class PromosCreate extends Component
 
 
 
+        // :: alert
+        $this->makeAlert('success', $response->message);
+
+
+
     } // end function
 
 
 
 
+
+
     // --------------------------------------------------------------------
+
 
 
 

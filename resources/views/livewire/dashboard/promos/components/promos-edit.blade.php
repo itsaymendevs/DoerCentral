@@ -34,8 +34,7 @@
                   {{-- name --}}
                   <div class="col-4">
                      <label class="form-label form--label">Name</label>
-                     <input class="form-control form--input mb-4" type="text" wire:model.live='instance.name'
-                        required />
+                     <input class="form-control form--input mb-4" type="text" wire:model='instance.name' required />
                   </div>
 
 
@@ -46,30 +45,28 @@
                   {{-- code --}}
                   <div class="col-4">
                      <label class="form-label form--label">Code</label>
-                     <input class="form-control form--input mb-4" type="text" wire:model.live='instance.code'
-                        required />
+                     <input class="form-control form--input mb-4" type="text" wire:model='instance.code' required />
                   </div>
 
                   {{-- percentage --}}
                   <div class="col-4">
-                     <label class="form-label form--label">Percentage %</label>
-                     <input class="form-control form--input mb-4" type="number"
-                        wire:model.live='instance.percentage' />
+                     <label class="form-label form--label">Percentage<small
+                           class="ms-1 fw-semibold text-gold fs-11">(%)</small></label>
+                     <input class="form-control form--input mb-4" type="number" wire:model='instance.percentage' />
                   </div>
 
                   {{-- amount --}}
                   <div class="col-4">
-                     <label class="form-label form--label">Amount (AED)</label>
-                     <input class="form-control form--input mb-4" type="number"
-                        wire:model.live='instance.cashAmount' />
+                     <label class="form-label form--label">Amount<small
+                           class="ms-1 fw-semibold text-gold fs-10">(AED)</small></label>
+                     <input class="form-control form--input mb-4" type="number" wire:model='instance.cashAmount' />
                   </div>
 
 
                   {{-- limit --}}
                   <div class="col-4">
                      <label class="form-label form--label">Limit</label>
-                     <input class="form-control form--input mb-4" type="number" wire:model.live='instance.limit'
-                        required />
+                     <input class="form-control form--input mb-4" type="number" wire:model='instance.limit' required />
                   </div>
 
 

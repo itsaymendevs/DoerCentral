@@ -49,13 +49,15 @@
 
                   {{-- percentage --}}
                   <div class="col-4">
-                     <label class="form-label form--label">Percentage %</label>
+                     <label class="form-label form--label">Percentage<small
+                           class="ms-1 fw-semibold text-gold fs-11">(%)</small></label>
                      <input class="form-control form--input mb-4" type="number" wire:model='instance.percentage' />
                   </div>
 
                   {{-- amount --}}
                   <div class="col-4">
-                     <label class="form-label form--label">Amount (AED)</label>
+                     <label class="form-label form--label">Amount<small
+                           class="ms-1 fw-semibold text-gold fs-10">(AED)</small></label>
                      <input class="form-control form--input mb-4" type="number" wire:model='instance.cashAmount' />
                   </div>
 

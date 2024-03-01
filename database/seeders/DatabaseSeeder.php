@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             CityDistrictSeeder::class,
             ShiftTypeSeeder::class,
+            HolidaySeeder::class,
         ]);
 
     } //end function

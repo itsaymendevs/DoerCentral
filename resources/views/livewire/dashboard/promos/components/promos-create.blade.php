@@ -71,6 +71,24 @@
 
 
 
+                  {{-- Plans --}}
+                  <div class="col-12" wire:ignore>
+                     <label class="form-label form--label">Plans</label>
+                     <div class="select--single-wrapper mb-4">
+                        <select class="form-select form--modal-select" data-instance='instance.plans'
+                           data-modal='#new-promo' multiple="">
+
+                           @foreach ($plans as $plan)
+                              <option value="{{ $plan->id }}">{{ $plan->name }}</option>
+                           @endforeach
+
+                        </select>
+                     </div>
+                  </div>
+
+
+
+
 
                   {{-- save --}}
                   <div class="col-12 text-end mt-3">
@@ -93,5 +111,52 @@
          </div>
       </div>
    </div>
+   {{-- end modalBody --}}
+
+
+
+
+
+
+
+
+
+   {{-- -------------------------------------------------- --}}
+   {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+   {{-- select-handle --}}
+   <script>
+      $(".form--select, .form--modal-select").on("change", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+
+         @this.set(instance, selectValue);
+
+
+      }); //end function
+   </script>
+
+
+
+
+
+
+
+   {{-- -------------------------------------------------- --}}
+   {{-- -------------------------------------------------- --}}
+
+
+
 </div>
 {{-- endModal --}}

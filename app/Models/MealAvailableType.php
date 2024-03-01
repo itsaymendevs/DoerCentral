@@ -5,28 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MealSize extends Model
+class MealAvailableType extends Model
 {
     use HasFactory;
-
 
 
 
     public function meal()
     {
 
-        return $this->belongsTo(Meal::class, 'mealId');
+        return $this->hasMany(Meal::class, 'mealId');
 
     } // end function
 
 
 
-
-
-    public function size()
+    public function mealType()
     {
 
-        return $this->belongsTo(Size::class, 'sizeId');
+        return $this->belongsTo(MealType::class, 'mealTypeId');
 
     } // end function
 

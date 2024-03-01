@@ -16,5 +16,9 @@ class PromoCodeForm extends Form
     public $id, $percentage, $cashAmount, $isActive, $isForWebsite;
 
 
+    // :: relation
+    public $plans = [];
+
+
 
 } // end form

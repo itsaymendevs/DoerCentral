@@ -5,31 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MealSize extends Model
+class PromoCodePlan extends Model
 {
     use HasFactory;
 
 
 
-
-    public function meal()
+    public function promoCode()
     {
 
-        return $this->belongsTo(Meal::class, 'mealId');
+        return $this->belongsTo(PromoCode::class, 'promoCodeId');
 
     } // end function
 
 
 
 
-
-    public function size()
+    public function plan()
     {
 
-        return $this->belongsTo(Size::class, 'sizeId');
+        return $this->belongsTo(Plan::class, 'planId');
 
     } // end function
-
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Promos\Components;
 
 use App\Livewire\Forms\PromoCodeForm;
+use App\Models\Plan;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -30,6 +31,7 @@ class PromosCreate extends Component
 
 
 
+
         // :: validate
         $this->instance->validate();
 
@@ -44,6 +46,7 @@ class PromosCreate extends Component
         // :: refresh / closeModal
         $this->instance->reset();
         $this->dispatch('refreshViews');
+        $this->dispatch('resetSelect');
         $this->dispatch('closeModal', modal: '#new-promo .btn--close');
         $this->dispatch('initTooltips');
 
@@ -72,12 +75,17 @@ class PromosCreate extends Component
     {
 
 
+        // 1: dependencies
+        $plans = Plan::all();
+
+
+
 
         // :: initTooltips
         $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.promos.components.promos-create');
+        return view('livewire.dashboard.promos.components.promos-create', compact('plans'));
 
     } // end function
 

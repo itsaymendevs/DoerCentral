@@ -131,15 +131,15 @@
    {{-- :: scripts --}}
    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}" data-navigate-once></script>
    <script src="{{ asset('assets/js/aos.min.js') }}"></script>
-   <script src="{{ asset('assets/js/bs-init.js') }}"></script>
    <script src="{{ asset('assets/js/datatables.js') }}"></script>
    <script src="{{ asset('assets/js/init-datatables.js') }}"></script>
-   <script src="{{ asset('assets/js/init.js') }}"></script>
    <script src="{{ asset('assets/js/modal/animatedModal.js') }}"></script>
    <script src="{{ asset('assets/js/print.min.js') }}"></script>
+   <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+   <script src="{{ asset('assets/js/bs-init.js') }}"></script>
    <script src="{{ asset('assets/js/reports/expand.js') }}"></script>
    <script src="{{ asset('assets/js/reports/print.js') }}"></script>
-   <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+   <script src="{{ asset('assets/js/init.js') }}"></script>
    <script src="{{ asset('assets/js/switches.js') }}"></script>
    <script src="{{ asset('assets/js/file-preview.js') }}"></script>
 

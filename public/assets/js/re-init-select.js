@@ -224,18 +224,16 @@ window.addEventListener("setSelect", (event) => {
             // ::clone
             setupValueChild = setupValue;
 
-            setTimeout(() => {
-                $(selectId)
-                    .select2({
-                        dropdownParent: setupModal,
-                        allowClear: setupClear,
-                        placeholder: setupPlaceholder ? setupPlaceholder : "",
-                    })
-                    .val(null)
-                    .trigger("change")
-                    .val(setupValueChild)
-                    .trigger("change");
-            }, 300);
+            $(selectId)
+                .select2({
+                    dropdownParent: setupModal,
+                    allowClear: setupClear,
+                    placeholder: setupPlaceholder ? setupPlaceholder : "",
+                })
+                .val(null)
+                .trigger("change")
+                .val(setupValueChild)
+                .trigger("change");
         } else {
             $(selectId)
                 .select2({

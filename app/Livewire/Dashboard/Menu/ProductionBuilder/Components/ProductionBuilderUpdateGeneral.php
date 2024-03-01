@@ -164,6 +164,10 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
 
+        // :: refreshViews
+        $this->dispatch('refreshViews');
+
+
         // :: alert - redirect to productionBuilder
         $this->makeAlert('success', $response->message);
 
@@ -190,6 +194,8 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
 
+
+
     public function render()
     {
 
@@ -199,6 +205,13 @@ class ProductionBuilderUpdateGeneral extends Component
         $cuisines = Cuisine::all();
         $diets = Diet::all();
         $tags = Tag::all();
+
+
+
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
 
 
         return view('livewire.dashboard.menu.production-builder.components.production-builder-update-general', compact('types', 'cuisines', 'diets', 'tags'));

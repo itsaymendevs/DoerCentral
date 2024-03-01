@@ -180,15 +180,31 @@ Route::post('/dashboard/menu/plans/ranges/remove', [PlanController::class, 'remo
 
 
 
-// 9: store builder - update
+// 9: builder - store general
 Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 'storeBuilderGeneral']);
 
 
 
 
-// 9.2: general - update
+
+
+// 9.2: builder - general update
 Route::post('/dashboard/menu/builder/general/update', [BuilderController::class, 'updateBuilderGeneral']);
 
+
+
+
+
+
+
+// 9.3: builder - ingredients - itemTypes / mealTypes update
+Route::post('/dashboard/menu/builder/meal-types/update', [BuilderController::class, 'updateBuilderMealTypes']);
+
+
+
+
+// 9.4: builder - ingredients - storeSizes
+Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 'storeBuilderSize']);
 
 
 

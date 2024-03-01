@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\PromoCode;
+use App\Models\PromoCodePlan;
 use Illuminate\Http\Request;
 
 class PromoController extends Controller
@@ -36,19 +37,29 @@ class PromoController extends Controller
 
 
 
+        $promoCode->save();
 
 
 
 
 
         // 1.3: plans
+        foreach ($request->plans as $plan) {
+
+
+            // :: create
+            $promoCodePlan = new PromoCodePlan();
+
+            $promoCodePlan->promoCodeId = $promoCode->id;
+            $promoCodePlan->planId = $plan;
+
+            $promoCodePlan->save();
+
+
+        } // end loop
 
 
 
-
-
-
-        $promoCode->save();
 
 
 
@@ -108,17 +119,32 @@ class PromoController extends Controller
 
 
 
-
-
-
-        // 1.3: plans
-
-
-
-
-
-
         $promoCode->save();
+
+
+
+
+
+
+        // 1.3: plans - removePrevious
+        PromoCodePlan::where('promoCodeId', $promoCode->id)->delete();
+
+
+        foreach ($request->plans as $plan) {
+
+
+            // :: create
+            $promoCodePlan = new PromoCodePlan();
+
+            $promoCodePlan->promoCodeId = $promoCode->id;
+            $promoCodePlan->planId = $plan;
+
+            $promoCodePlan->save();
+
+
+        } // end loop
+
+
 
 
 

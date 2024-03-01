@@ -96,6 +96,13 @@ class BuilderCreateGeneral extends Component
         $tags = Tag::all();
 
 
+
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
+
         return view('livewire.dashboard.menu.builder.components.builder-create-general', compact('types', 'cuisines', 'diets', 'tags'));
 
 

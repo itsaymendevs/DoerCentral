@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Meal;
+use App\Models\MealAvailableType;
+use App\Models\MealSize;
 use App\Models\MealTag;
 use Illuminate\Http\Request;
 
@@ -80,13 +82,6 @@ class BuilderController extends Controller
 
 
 
-        $meal->save();
-
-
-
-
-
-
         return response()->json(['message' => 'Meal has been created', 'id' => $meal->id], 200);
 
 
@@ -122,7 +117,7 @@ class BuilderController extends Controller
 
 
 
-        // 1: create
+        // 1: get instance
         $meal = Meal::find($request->id);
 
         $meal->type = $request->type;
@@ -181,6 +176,106 @@ class BuilderController extends Controller
 
 
 
+
+        return response()->json(['message' => 'Meal has been updated', 'id' => $meal->id], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateBuilderMealTypes(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $meal = Meal::find($request->id);
+
+
+
+        // :: resetMealTypes - common
+        MealAvailableType::where('mealId', $meal->id)->delete();
+
+
+
+
+
+
+
+
+        // 1.2: meal
+        if ($meal->type == 'Meal') {
+
+
+
+            // :: reset itemTypes
+            $meal->itemType = null;
+
+
+
+
+            // :: loop - mealTypes
+            foreach ($request->mealTypes as $mealType) {
+
+
+                // 1.2.1: create
+                $type = new MealAvailableType();
+
+
+                $type->mealId = $meal->id;
+                $type->mealTypeId = $mealType;
+
+                $type->save();
+
+
+            } // end loop
+
+
+
+
+
+
+
+
+            // 1.2: item
+        } else {
+
+            $meal->itemType = $request->itemType;
+
+        } // end if
+
+
+
+
+
         $meal->save();
 
 
@@ -188,7 +283,62 @@ class BuilderController extends Controller
 
 
 
-        return response()->json(['message' => 'Meal has been updated', 'id' => $meal->id], 200);
+
+        return response()->json(['message' => 'Type has been updated', 'id' => $meal->id], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function storeBuilderSize(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: create
+        $mealSize = new MealSize();
+
+        $mealSize->mealId = $request->id;
+        $mealSize->sizeId = $request->size;
+
+
+        $mealSize->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Size has been created'], 200);
 
 
 

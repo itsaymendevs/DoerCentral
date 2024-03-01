@@ -32,4 +32,43 @@ class Meal extends Model
 
 
 
+
+    public function types()
+    {
+
+        return $this->hasMany(MealAvailableType::class, 'mealId');
+
+    } // end function
+
+
+
+
+
+
+    public function typesInArray()
+    {
+
+
+        // 1: getTypes - loop
+        $typesInArray = [];
+        $availableTypes = $this->types()->get();
+
+
+
+        foreach ($availableTypes as $availableType) {
+
+            array_push($typesInArray, $availableType->mealType->name);
+
+        } // end loop
+
+
+        return $typesInArray ? $typesInArray : ['Not Assigned'];
+
+
+    } // end function
+
+
+
+
+
 } // end model

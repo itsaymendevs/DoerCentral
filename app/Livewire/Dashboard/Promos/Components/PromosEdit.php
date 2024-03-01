@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Promos\Components;
 
 use App\Livewire\Forms\PromoCodeForm;
+use App\Models\Plan;
 use App\Models\PromoCode;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
@@ -35,6 +36,14 @@ class PromosEdit extends Component
 
         foreach ($promoCode->toArray() as $key => $value)
             $this->instance->{$key} = $value;
+
+
+
+
+
+        // :: setSelect
+        $this->dispatch('setSelect', id: '#plan-select-2', value: $promoCode?->plans?->pluck('planId')->toArray());
+
 
 
 
@@ -72,6 +81,7 @@ class PromosEdit extends Component
         // :: refresh / closeModal
         $this->instance->reset();
         $this->dispatch('refreshViews');
+        $this->dispatch('resetSelect');
         $this->dispatch('closeModal', modal: '#edit-promo .btn--close');
 
 
@@ -102,11 +112,16 @@ class PromosEdit extends Component
     {
 
 
+        // 1: dependencies
+        $plans = Plan::all();
+
+
 
         // :: initTooltips
         $this->dispatch('initTooltips');
 
-        return view('livewire.dashboard.promos.components.promos-edit');
+
+        return view('livewire.dashboard.promos.components.promos-edit', compact('plans'));
 
     } // end function
 

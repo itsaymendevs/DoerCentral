@@ -71,14 +71,16 @@
 
 
 
-                  {{-- submitButton --}}
-
+                  {{-- errorMessage --}}
                   <div class="col-6 mt-3">
                      @error('instanceError')
                         {{ $message }}
                      @enderror
                   </div>
 
+
+
+                  {{-- submitButton --}}
                   <div class="col-6 text-end mt-3">
                      <button
                         class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05"
@@ -90,6 +92,8 @@
                </div>
             </form>
             {{-- endForm --}}
+
+
 
 
 

@@ -11,7 +11,7 @@ class MealForm extends Form
 
 
     // :: variables
-    public $type, $name, $generalName, $servingPrice, $validity, $isVegetarian, $desc, $imageFile, $secondImageFile, $thirdImageFile, $fourthImageFile;
+    public $id, $type, $name, $generalName, $servingPrice, $validity, $isVegetarian, $desc, $imageFile, $secondImageFile, $thirdImageFile, $fourthImageFile;
 
     public $cuisineId, $dietId;
 
@@ -19,6 +19,8 @@ class MealForm extends Form
 
     // :: relations
     public $tags = [];
+    public $mealTypes = [];
+
 
 
 

@@ -13,7 +13,7 @@ class BuilderController extends Controller
 
 
 
-    public function storeBuilder(Request $request)
+    public function storeBuilderGeneral(Request $request)
     {
 
 
@@ -29,14 +29,14 @@ class BuilderController extends Controller
 
         $meal->type = $request->type;
         $meal->name = $request->name;
-        $meal->servingPrice = $request->servingPrice;
-        $meal->validity = $request->validity;
+        $meal->servingPrice = doubleval($request->servingPrice);
+        $meal->validity = intval($request->validity);
         $meal->desc = $request->desc;
 
 
 
         // 1.2: isVegetarian - diet - cuisine
-        $meal->isVegetarian = $request->isVegetarian == 1 ? true : false;
+        $meal->isVegetarian = $request->isVegetarian === '1' ? true : false;
         $meal->cuisineId = $request->cuisineId;
         $meal->dietId = $request->dietId;
 
@@ -54,6 +54,8 @@ class BuilderController extends Controller
 
 
         $meal->save();
+
+
 
 
 
@@ -85,13 +87,113 @@ class BuilderController extends Controller
 
 
 
-        return response()->json(['message' => 'Meal has been created'], 200);
+        return response()->json(['message' => 'Meal has been created', 'id' => $meal->id], 200);
 
 
 
 
     } // end function
 
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateBuilderGeneral(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $meal = Meal::find($request->id);
+
+        $meal->type = $request->type;
+        $meal->name = $request->name;
+        $meal->servingPrice = doubleval($request->servingPrice);
+        $meal->validity = intval($request->validity);
+        $meal->desc = $request->desc;
+
+
+
+        // 1.2: isVegetarian - diet - cuisine
+        $meal->isVegetarian = $request->isVegetarian === '1' ? true : false;
+        $meal->cuisineId = $request->cuisineId;
+        $meal->dietId = $request->dietId;
+
+
+
+
+        // 1.3: imageFiles
+        $meal->imageFile = $request->imageFileName;
+        $meal->secondImageFile = $request->secondImageFileName;
+        $meal->thirdImageFile = $request->thirdImageFileName ?? $request->thirdImageFileName;
+        $meal->fourthImageFile = $request->fourthImageFileName ?? $request->fourthImageFileName;
+
+
+
+
+
+        $meal->save();
+
+
+
+
+
+
+        // 2: tags - removePrevious
+        MealTag::where('mealId', $meal->id)->delete();
+
+
+        foreach ($request->tags as $tag) {
+
+
+            // 2.1: general
+            $mealTag = new MealTag();
+
+            $mealTag->mealId = $meal->id;
+            $mealTag->tagId = $tag;
+
+            $mealTag->save();
+
+        } // end loop
+
+
+
+
+
+
+
+        $meal->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Meal has been updated', 'id' => $meal->id], 200);
+
+
+
+
+    } // end function
 
 
 

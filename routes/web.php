@@ -8,6 +8,7 @@ use App\Livewire\Dashboard\Menu\Items\Sides;
 use App\Livewire\Dashboard\Menu\Items\Snacks;
 use App\Livewire\Dashboard\Menu\Items\SubRecipes;
 use App\Livewire\Dashboard\Menu\Plans;
+use App\Livewire\Dashboard\Menu\ProductionBuilder;
 use App\Livewire\Dashboard\Menu\Recipes;
 use App\Livewire\Dashboard\Menu\Settings;
 use App\Livewire\Dashboard\Promos;
@@ -138,8 +139,10 @@ Route::get('dashboard/menu/drinks', Drinks::class)->name('dashboard.menuDrinks')
 
 
 
-// 5.6: builder
+// 5.6: builder - productionBuilder
 Route::get('dashboard/menu/builder', Builder::class)->name('dashboard.menuBuilder');
+Route::get('dashboard/menu/production-builder/{id}', ProductionBuilder::class)->name('dashboard.menuProductionBuilder');
+
 
 
 

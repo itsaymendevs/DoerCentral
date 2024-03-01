@@ -32,6 +32,7 @@ class BuilderCreateGeneral extends Component
 
 
 
+
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/meals');
@@ -54,21 +55,14 @@ class BuilderCreateGeneral extends Component
 
 
         // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/menu/builder/store', $this->instance);
-
-
-        $this->makeAlert('success', $response->message);
+        $response = $this->makeRequest('dashboard/menu/builder/general/store', $this->instance);
 
 
 
-        // :: resetForm - resetFilePreview
-        // $this->instance->reset();
-        // $this->dispatch('refreshViews');
-        // $this->dispatch('resetFile', file: 'item--file-1', defaultPreview: $this->getDefaultPreview());
-        // $this->dispatch('resetFile', file: 'item--file-2', defaultPreview: $this->getDefaultPreview());
-        // $this->dispatch('resetFile', file: 'item--file-3', defaultPreview: $this->getDefaultPreview());
-        // $this->dispatch('resetFile', file: 'item--file-4', defaultPreview: $this->getDefaultPreview());
 
+
+        // :: alert - redirect to productionBuilder
+        $this->redirect(route('dashboard.menuProductionBuilder', $response->id), navigate: true);
 
 
 

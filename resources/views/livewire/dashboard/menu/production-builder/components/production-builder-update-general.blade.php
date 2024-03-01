@@ -1,5 +1,5 @@
 {{-- generalForm --}}
-<form class="row pt-2" wire:submit='store' wire:ignore>
+<form class="row pt-2" wire:submit='update' wire:ignore>
 
 
 
@@ -20,7 +20,7 @@
          <div class="col-4" wire:ignore>
             <label class="form-label form--label">Type</label>
             <div class="select--single-wrapper mb-4">
-               <select class="form-select form--select" data-instance='instance.type' required>
+               <select class="form-select form--select" id='type-select-2' data-instance='instance.type' required>
                   <option value=""></option>
 
                   @foreach ($types as $type)
@@ -39,7 +39,8 @@
          <div class="col-4" wire:ignore>
             <label class="form-label form--label">Cuisine</label>
             <div class="select--single-wrapper mb-4">
-               <select class="form-select form--select" data-instance='instance.cuisineId' required>
+               <select class="form-select form--select" id='cuisine-select-2' data-instance='instance.cuisineId'
+                  required>
                   <option value=""></option>
 
                   @foreach ($cuisines as $cuisine)
@@ -56,7 +57,8 @@
          <div class="col-4" wire:ignore>
             <label class="form-label form--label">Category</label>
             <div class="select--single-wrapper mb-4">
-               <select class="form-select form--select" data-instance='instance.isVegetarian' data-clear='true'>
+               <select class="form-select form--select" id='category-select-2' data-instance='instance.isVegetarian'
+                  data-clear='true' required>
                   <option value=""></option>
                   <option value="1">Vegetarian</option>
                   <option value="0">Non-Vegetarian</option>
@@ -70,7 +72,7 @@
          <div class="col-4" wire:ignore>
             <label class="form-label form--label">Diet Type</label>
             <div class="select--single-wrapper mb-4">
-               <select class="form-select form--select" data-instance='instance.dietId' required>
+               <select class="form-select form--select" id='diet-select-2' data-instance='instance.dietId' required>
                   <option value=""></option>
 
                   @foreach ($diets as $diet)
@@ -119,7 +121,7 @@
          <div class="col-12" wire:ignore>
             <label class="form-label form--label">Tags</label>
             <div class="select--single-wrapper mb-4">
-               <select class="form-select form--select" data-instance='instance.tags' multiple="">
+               <select class="form-select form--select" id='tags-select-2' data-instance='instance.tags' multiple="">
                   @foreach ($tags as $tag)
                      <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                   @endforeach
@@ -144,8 +146,8 @@
             <button
                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center"
                style="border: 1px dashed var(--color-scheme-3)" wire:loading.attr='disabled'
-               wire:target='store, instance.imageFile, instance.secondImageFile, instance.thirdImageFile, instance.fourthImageFile'>
-               Create
+               wire:target='update, instance.imageFile, instance.secondImageFile, instance.thirdImageFile, instance.fourthImageFile'>
+               Update
             </button>
          </div>
       </div>
@@ -180,7 +182,7 @@
 
                {{-- input --}}
                <input class="form-control d-none file--input" id="item--file-1" data-preview="item--preview-1"
-                  type="file" required accept="image/*" wire:model='instance.imageFile' />
+                  type="file" accept="image/*" wire:model='instance.imageFile' />
 
 
                {{-- preview --}}
@@ -215,7 +217,7 @@
 
                {{-- input --}}
                <input class="form-control d-none file--input" id="item--file-2" data-preview="item--preview-2"
-                  type="file" required wire:model='instance.secondImageFile' accept="image/*" />
+                  type="file" wire:model='instance.secondImageFile' accept="image/*" />
 
 
                {{-- preview --}}

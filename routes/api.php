@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BuilderController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PlanController;
@@ -180,8 +181,13 @@ Route::post('/dashboard/menu/plans/ranges/remove', [PlanController::class, 'remo
 
 
 // 9: store builder - update
-Route::post('/dashboard/menu/builder/store', [PlanController::class, 'storeBuilder']);
-Route::post('/dashboard/menu/builder/update', [PlanController::class, 'updateBuilder']);
+Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 'storeBuilderGeneral']);
+
+
+
+
+// 9.2: general - update
+Route::post('/dashboard/menu/builder/general/update', [BuilderController::class, 'updateBuilderGeneral']);
 
 
 

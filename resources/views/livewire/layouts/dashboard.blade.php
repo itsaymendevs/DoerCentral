@@ -155,6 +155,9 @@
 
 
 
+
+
+
    {{-- 1.2: reinitiate select extensions --}}
    <script src="{{ asset('assets/js/re-init-select.js') }}"></script>
 

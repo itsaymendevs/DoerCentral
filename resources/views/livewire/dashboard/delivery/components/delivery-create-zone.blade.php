@@ -115,7 +115,7 @@
                         <div class="col-12" wire:ignore>
                            <label class="form-label form--label">Districts</label>
                            <div class="select--single-wrapper mb-4">
-                              <select class="form-select child-modal-select" id='district-select-1'
+                              <select class="form-select form--modal-select" id='district-select-1'
                                  data-modal='#new-zone' data-instance='instance.cityDistricts' multiple='' required>
                               </select>
                            </div>

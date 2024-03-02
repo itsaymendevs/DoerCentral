@@ -25,24 +25,6 @@ class DeliveryCreateZone extends Component
 
 
 
-    public function mount()
-    {
-
-        $this->dispatch('initChildSelect');
-
-    } // end function
-
-
-
-
-    // ------------------------------------------------------------------
-
-
-
-
-
-
-
     public function store()
     {
 

@@ -201,7 +201,7 @@
                   <div class="col-12 text-end mt-4">
                      <button
                         class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05"
-                       wire:target='update, instance.imageFile, instance.licenseFile'  wire:loading.attr='disabled'>
+                        wire:target='update, instance.imageFile, instance.licenseFile' wire:loading.attr='disabled'>
                         Update
                      </button>
                   </div>

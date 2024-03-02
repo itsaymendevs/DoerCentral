@@ -25,11 +25,30 @@ class DeliveryEditZone extends Component
 
 
 
-    public function mount()
+    public function setChildSelect()
     {
-        $this->dispatch('initChildSelect');
+
+
+        // :: setDefaultValues if instance exists
+        if ($this->instance?->id) {
+
+
+
+            // 1: getZone
+            $zone = Zone::find($this->instance->id);
+
+
+
+            // 1.2: setDistricts
+            $this->dispatch('setSelect', id: '#district-select-2', value: $zone->districts?->pluck('cityDistrictId')->toArray());
+
+
+        } // end if
+
 
     } // end function
+
+
 
 
 
@@ -60,10 +79,6 @@ class DeliveryEditZone extends Component
 
 
 
-
-
-
-
         // 1.2: setFilePreview
         $preview = asset('storage/delivery/zones/' . $this->instance->imageFile);
         $this->dispatch('setFilePreview', filePreview: 'zone--preview-2', defaultPreview: $preview);
@@ -73,7 +88,7 @@ class DeliveryEditZone extends Component
 
         // 1.3: setSelect
         $this->dispatch('setSelect', id: '#city-select-2', value: $zone->cityId);
-        $this->dispatch('setSelect', id: '#district-select-2', value: $zone->districts?->pluck('cityDistrictId')->toArray(), delay: true);
+
 
 
 
@@ -154,7 +169,6 @@ class DeliveryEditZone extends Component
 
         // 1: dependencies
         $cities = City::all();
-        $cityDistricts = CityDistrict::all();
 
 
 
@@ -169,7 +183,7 @@ class DeliveryEditZone extends Component
 
 
 
-        return view('livewire.dashboard.delivery.components.delivery-edit-zone', compact('cities', 'cityDistricts'));
+        return view('livewire.dashboard.delivery.components.delivery-edit-zone', compact('cities'));
 
     } // end function
 

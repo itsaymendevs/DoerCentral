@@ -6,6 +6,7 @@ use App\Livewire\Forms\DriverForm;
 use App\Models\ShiftType;
 use App\Models\Zone;
 use App\Traits\HelperTrait;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -48,11 +49,11 @@ class DeliveryCreateDriver extends Component
 
         // :: resetForm - resetFilePreview
         $this->instance->reset();
-        $this->dispatch('refreshViews');
         $this->dispatch('resetSelect');
         $this->dispatch('closeModal', modal: '#new-driver .btn--close');
         $this->dispatch('resetFile', file: 'driver--file-1', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'driver--file-2', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('refreshViews');
 
 
 
@@ -75,6 +76,9 @@ class DeliveryCreateDriver extends Component
 
 
 
+
+
+    #[On('refreshViews')]
     public function render()
     {
 

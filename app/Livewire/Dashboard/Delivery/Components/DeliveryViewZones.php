@@ -93,8 +93,7 @@ class DeliveryViewZones extends Component
 
         // 1.2: renderView
         $this->makeAlert('info', 'Zone has been removed');
-        $this->render();
-
+        $this->dispatch('refreshViews');
 
     } // end function
 

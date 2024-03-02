@@ -418,7 +418,7 @@ class DeliveryController extends Controller
 
 
         // 1.2: imageFile
-        if ($request->imageFile)
+        if ($request->imageFileName)
             $zone->imageFile = $request->imageFileName;
 
 

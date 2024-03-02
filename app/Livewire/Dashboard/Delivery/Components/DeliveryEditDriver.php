@@ -118,11 +118,11 @@ class DeliveryEditDriver extends Component
 
         // :: resetForm - resetFilePreview
         $this->instance->reset();
-        $this->dispatch('refreshViews');
         $this->dispatch('resetSelect');
         $this->dispatch('closeModal', modal: '#edit-driver .btn--close');
         $this->dispatch('resetFile', file: 'driver--file-3', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'driver--file-4', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('refreshViews');
 
 
 
@@ -149,6 +149,8 @@ class DeliveryEditDriver extends Component
 
 
 
+
+    #[On('refreshViews')]
     public function render()
     {
 

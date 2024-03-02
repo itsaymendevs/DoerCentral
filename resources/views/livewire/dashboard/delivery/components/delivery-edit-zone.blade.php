@@ -118,11 +118,9 @@
                         <div class="col-12" wire:ignore>
                            <label class="form-label form--label">Districts</label>
                            <div class="select--single-wrapper mb-4">
-                              <select class="form-select child-modal-select" id='district-select-2'
+                              <select class="form-select form--modal-select" id='district-select-2'
                                  data-modal='#edit-zone' data-instance='instance.cityDistricts' multiple='' required>
-                                 @foreach ($cityDistricts as $cityDistricts)
-                                    <option value="{{ $cityDistricts->id }}">{{ $cityDistricts->name }}</option>
-                                 @endforeach
+
                               </select>
                            </div>
                         </div>
@@ -212,12 +210,12 @@
 
 
 
-         //  1.2: refreshChild to defaultValue
+         //  1.2: refreshChild to defaultValue - setChildDefault
          if ($(this).hasClass('parent-select')) {
 
             childSelect = $(this).attr('data-child');
             @this.refreshSelect(childSelect, 'city', 'district', selectValue);
-
+            @this.setChildSelect();
 
          } // end if
 

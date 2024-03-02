@@ -108,7 +108,7 @@
 
                            {{-- 1: edit --}}
                            <button class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                              data-bs-toggle='modal' data-bs-target='#edit-zone' type="button" disabled
+                              data-bs-toggle='modal' data-bs-target='#edit-zone' type="button"
                               wire:click='edit({{ $zone->id }})'>Edit</button>
 
 

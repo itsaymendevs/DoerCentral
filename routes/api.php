@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BuilderController;
 use App\Http\Controllers\Api\DeliveryController;
+use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\PromoController;
@@ -137,6 +138,100 @@ Route::post('/dashboard/promo/promoCodes/toggleForWebsite', [PromoController::cl
 
 
 Route::post('/dashboard/promo/promoCodes/remove', [PromoController::class, 'removePromoCode']);
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+// 3.5: inventory - configurations - storeCategory - update - remove
+Route::post('/dashboard/inventory/configurations/categories/store', [InventoryController::class, 'storeCategory']);
+Route::post('/dashboard/inventory/configurations/categories/update', [InventoryController::class, 'updateCategory']);
+
+
+Route::post('/dashboard/inventory/configurations/categories/remove', [InventoryController::class, 'removeCategory']);
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 3.6: inventory - configurations - storeGroup - update - remove
+Route::post('/dashboard/inventory/configurations/groups/store', [InventoryController::class, 'storeGroup']);
+Route::post('/dashboard/inventory/configurations/groups/update', [InventoryController::class, 'updateGroup']);
+
+
+Route::post('/dashboard/inventory/configurations/groups/remove', [InventoryController::class, 'removeGroup']);
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 3.7: inventory - configurations - storeExclude - update - remove
+Route::post('/dashboard/inventory/configurations/excludes/store', [InventoryController::class, 'storeExclude']);
+Route::post('/dashboard/inventory/configurations/excludes/update', [InventoryController::class, 'updateExclude']);
+
+
+Route::post('/dashboard/inventory/configurations/excludes/remove', [InventoryController::class, 'removeExclude']);
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 3.8: inventory - configurations - storeAllergy - update - remove
+Route::post('/dashboard/inventory/configurations/allergies/store', [InventoryController::class, 'storeAllergy']);
+Route::post('/dashboard/inventory/configurations/allergies/update', [InventoryController::class, 'updateAllergy']);
+
+
+Route::post('/dashboard/inventory/configurations/allergies/remove', [InventoryController::class, 'removeAllergy']);
+
+
+
+
 
 
 

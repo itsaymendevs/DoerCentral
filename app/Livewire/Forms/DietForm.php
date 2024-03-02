@@ -14,5 +14,10 @@ class DietForm extends Form
     public $name, $desc;
 
 
+    public $id;
+
+
+
+
 } // end form
 

@@ -4,8 +4,10 @@ namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Livewire\Forms\MealForm;
 use App\Models\Meal;
+use App\Models\MealSize;
 use App\Models\Size;
 use App\Traits\HelperTrait;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use stdClass;
 
@@ -62,16 +64,34 @@ class ProductionBuilderCreateSize extends Component
 
 
 
-        // :: sizeExists
+        // :: notEmpty
         if ($this->size) {
 
-            // 1: makeRequest
-            $response = $this->makeRequest('dashboard/menu/builder/sizes/store', $instance);
+
+            // :: sizeDoesNotExists
+            $exists = MealSize::find($this->size);
+
+            if (! $exists) {
+
+                // 1: makeRequest
+                $response = $this->makeRequest('dashboard/menu/builder/sizes/store', $instance);
 
 
-            // :: refresh - alert
-            $this->dispatch('refreshViews');
-            $this->makeAlert('success', $response->message);
+
+                // :: resetSelect - Values - refresh - alert
+                $this->dispatch('refreshSizeViews');
+                $this->makeAlert('success', $response->message);
+
+
+            } else {
+
+
+                // :: refreshViews toFix
+                $this->dispatch('refreshSizeViews');
+
+
+
+            } // end if
 
         } // end if
 
@@ -99,6 +119,8 @@ class ProductionBuilderCreateSize extends Component
 
 
 
+
+    #[On('refreshSizeViews')]
     public function render()
     {
 
@@ -112,6 +134,7 @@ class ProductionBuilderCreateSize extends Component
 
         // :: initTooltips
         $this->dispatch('initTooltips');
+        $this->dispatch('initSelect');
 
 
 

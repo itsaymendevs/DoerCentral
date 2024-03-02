@@ -54,6 +54,12 @@ Route::post('/dashboard/delivery/times/remove', [DeliveryController::class, 'rem
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
 
 
 // 1.2: update holidays - toggleActive
@@ -64,6 +70,9 @@ Route::post('/dashboard/delivery/holidays/toggle', [DeliveryController::class, '
 
 
 
+
+// ---------------------------------
+// ---------------------------------
 
 
 
@@ -83,6 +92,8 @@ Route::post('/dashboard/delivery/zones/remove', [DeliveryController::class, 'rem
 
 
 
+// ---------------------------------
+// ---------------------------------
 
 
 
@@ -152,6 +163,8 @@ Route::post('/dashboard/menu/plans/remove', [PlanController::class, 'removePlan'
 
 
 
+// ---------------------------------
+// ---------------------------------
 
 
 
@@ -188,10 +201,16 @@ Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 
 
 
 
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
 // 9.2: builder - general update
 Route::post('/dashboard/menu/builder/general/update', [BuilderController::class, 'updateBuilderGeneral']);
-
-
 
 
 
@@ -205,6 +224,19 @@ Route::post('/dashboard/menu/builder/meal-types/update', [BuilderController::cla
 
 // 9.4: builder - ingredients - storeSizes
 Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 'storeBuilderSize']);
+
+
+
+// 9.5: builder - ingredients - storeSizes
+Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 'storeBuilderSize']);
+
+
+
+
+// 9.6: builder - containers - storeSizes
+Route::post('/dashboard/menu/builder/containers/update', [BuilderController::class, 'updateBuilderContainer']);
+
+
 
 
 

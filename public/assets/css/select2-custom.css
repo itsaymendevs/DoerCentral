@@ -12,7 +12,33 @@
     margin: auto;
 }
 
+.form-select {
+    width: 100% !important;
+    height: var(--input-height);
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--input-radius);
+}
+
+.form-select:disabled {
+    background-color: initial !important;
+}
+
+.select2-container--default.select2-container--disabled
+    .select2-selection--single {
+    background-color: var(--input-bg) !important;
+    cursor: default;
+}
+
 .select--single-wrapper .form--select2 {
+    width: 100% !important;
+    height: var(--input-height);
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--input-radius);
+}
+
+.select--single-wrapper .form--select {
     width: 100% !important;
     height: var(--input-height);
     background-color: var(--input-bg);
@@ -109,6 +135,14 @@
 /* search version */
 
 .select--single-wrapper.search--version .form--select2 {
+    width: 100% !important;
+    height: 43px;
+    background-color: var(--result-bg);
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--card-radius);
+}
+
+.select--single-wrapper.search--version .form--select {
     width: 100% !important;
     height: 43px;
     background-color: var(--result-bg);

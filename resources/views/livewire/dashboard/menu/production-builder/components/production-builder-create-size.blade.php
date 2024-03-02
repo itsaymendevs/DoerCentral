@@ -10,7 +10,7 @@
 
       {{-- size --}}
       <div class="select--single-wrapper">
-         <select class="form-select form--select" data-instance='size' required>
+         <select class="form-select form--select" id='size-select-1' data-instance='size' required>
             <option value=""></option>
             @foreach ($sizes as $size)
                <option value="{{ $size->id }}">{{ $size->name }}</option>
@@ -82,14 +82,14 @@
 
       {{-- loop - sizeMacros From sizeMacros --}}
       @foreach ($meal->sizes as $mealSize)
-         <div class="row" data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}' style="display:none;">
+         <div class="row d-none" data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}'>
 
 
             {{-- 1: calories --}}
             <div class="col text-end">
                <div class="overview--box shrink--self macros-version">
                   <h6 class="fs-13">Calories</h6>
-                  <p class="truncate-text-1l">
+                  <p>
                      <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
                         value="{{ $mealSize->size->calories }}" readonly="" step="0.01" />
                   </p>
@@ -103,7 +103,7 @@
             <div class="col text-end">
                <div class="overview--box shrink--self macros-version">
                   <h6 class="fs-13">Proteins</h6>
-                  <p class="truncate-text-1l">
+                  <p>
                      <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
                         value="{{ $mealSize->size->proteins }}" readonly="" step="0.01" />
                   </p>
@@ -117,7 +117,7 @@
             <div class="col text-end">
                <div class="overview--box shrink--self macros-version">
                   <h6 class="fs-13">Carbs</h6>
-                  <p class="truncate-text-1l">
+                  <p>
                      <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
                         value="{{ $mealSize->size->carbs }}" readonly="" step="0.01" />
                   </p>
@@ -130,7 +130,7 @@
             <div class="col text-end">
                <div class="overview--box shrink--self macros-version">
                   <h6 class="fs-13">Fats</h6>
-                  <p class="truncate-text-1l">
+                  <p>
                      <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
                         value="{{ $mealSize->size->fats }}" readonly="" step="0.01" />
                   </p>
@@ -174,13 +174,12 @@
             selectValue = $(this).select2('val');
             instance = $(this).attr('data-instance');
 
+
             @this.set(instance, selectValue);
 
 
          }); //end function
       </script>
-
-
 
 
 

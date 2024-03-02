@@ -79,9 +79,9 @@
 
 
                {{-- inventory --}}
-               <button class="btn  navbar--menu-button
+               <a class="btn  navbar--menu-button
                @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
-                  type="button">Inventory</button>
+                  href='{{ route('dashboard.inventory') }}' wire:navigate>Inventory</a>
 
 
                {{-- menu --}}

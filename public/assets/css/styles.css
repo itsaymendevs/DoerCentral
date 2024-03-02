@@ -683,9 +683,9 @@ textarea:read-only {
 }
 
 select.form-select {
-    display: none !important;
+    /* display: none !important; */
 }
 
 select.form-select option {
-    display: none !important;
+    /* display: none !important; */
 }

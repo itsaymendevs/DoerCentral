@@ -339,7 +339,6 @@
          selectValue = $(this).select2('val');
          instance = $(this).attr('data-instance');
 
-         console.log(selectValue)
 
          @this.set(instance, selectValue);
 

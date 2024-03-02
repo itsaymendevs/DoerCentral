@@ -69,11 +69,7 @@ class ProductionBuilderUpdateTypes extends Component
 
 
 
-
-
-
-        // :: refresh - alert
-        $this->dispatch('refreshViews');
+        // :: alert
         $this->makeAlert('success', $response->message);
 
 

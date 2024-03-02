@@ -278,3 +278,28 @@ window.addEventListener("refreshSelect", (event) => {
             .trigger("change");
     });
 });
+
+// -------------------------------------------------------------
+// -------------------------------------------------------------
+
+// 6: refreshSelect with Dynamic Content - childSelect
+window.addEventListener("refreshRawSelect", (event) => {
+    $(document).ready(function () {
+        selectId = event.detail.id;
+
+        setupValue = $(selectId).select2("val");
+        setupClear = $(selectId).attr("data-clear") ? true : false;
+        setupModal = $(selectId).attr("data-modal");
+        setupPlaceholder = $(selectId).attr("data-placeholder");
+
+        // :: re-init
+        $(selectId)
+            .select2({
+                dropdownParent: setupModal,
+                allowClear: setupClear,
+                placeholder: setupPlaceholder ? setupPlaceholder : "",
+            })
+            .val(setupValue)
+            .trigger("change");
+    });
+});

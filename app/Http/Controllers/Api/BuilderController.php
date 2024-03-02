@@ -350,4 +350,55 @@ class BuilderController extends Controller
 
 
 
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateBuilderContainer(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: get instance
+        $meal = Meal::find($request->id);
+
+        $meal->containerId = $request->container;
+
+        $meal->save();
+
+
+
+
+
+        return response()->json(['message' => 'Container has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
 } // end controller

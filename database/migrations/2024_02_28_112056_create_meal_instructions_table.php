@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
 
             // 1: general
-            $table->text('instruction')->nullable();
+            $table->text('content')->nullable();
 
 
 

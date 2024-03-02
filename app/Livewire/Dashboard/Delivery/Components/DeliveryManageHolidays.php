@@ -24,7 +24,6 @@ class DeliveryManageHolidays extends Component
 
 
 
-
         // :: initTooltips
         $this->dispatch('initTooltips');
 

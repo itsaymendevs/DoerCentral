@@ -142,7 +142,7 @@
 
                            {{-- loop - sizes --}}
                            @foreach ($sizes as $size)
-                              <livewire:dashboard.menu.settings.components.settings-view-sizes />
+                              <livewire:dashboard.menu.settings.components.settings-view-size />
                            @endforeach
                            {{-- end loop --}}
 

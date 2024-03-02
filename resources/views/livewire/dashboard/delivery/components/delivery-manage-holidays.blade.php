@@ -29,7 +29,8 @@
 
                {{-- loop - holidays --}}
                @foreach ($holidays as $holiday)
-                  <livewire:dashboard.delivery.components.delivery-view-holiday :id='$holiday->id' />
+                  <livewire:dashboard.delivery.components.delivery-view-holiday key='{{ now() }}'
+                     :id='$holiday->id' />
                @endforeach
                {{-- end loop --}}
 

@@ -193,7 +193,7 @@ Route::post('/dashboard/menu/plans/ranges/remove', [PlanController::class, 'remo
 
 
 
-// 9: builder - store general
+// 9: builder - general - store
 Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 'storeBuilderGeneral']);
 
 
@@ -209,7 +209,7 @@ Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 
 
 
 
-// 9.2: builder - general update
+// 9.2: builder - general - update
 Route::post('/dashboard/menu/builder/general/update', [BuilderController::class, 'updateBuilderGeneral']);
 
 
@@ -227,14 +227,19 @@ Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 's
 
 
 
-// 9.5: builder - ingredients - storeSizes
-Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 'storeBuilderSize']);
 
 
 
-
-// 9.6: builder - containers - storeSizes
+// 9.5: builder - containers - updateContainer
 Route::post('/dashboard/menu/builder/containers/update', [BuilderController::class, 'updateBuilderContainer']);
+
+
+
+// 9.6: builder - instructions - storeInstruction - update - remove
+Route::post('/dashboard/menu/builder/instructions/store', [BuilderController::class, 'storeBuilderInstruction']);
+Route::post('/dashboard/menu/builder/instructions/update', [BuilderController::class, 'updateBuilderInstruction']);
+
+Route::post('/dashboard/menu/builder/instructions/remove', [BuilderController::class, 'removeBuilderInstruction']);
 
 
 

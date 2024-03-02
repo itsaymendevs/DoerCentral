@@ -64,6 +64,7 @@ class ProductionBuilderUpdateTypes extends Component
 
 
 
+
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/builder/meal-types/update', $this->instance);
 
@@ -87,7 +88,6 @@ class ProductionBuilderUpdateTypes extends Component
 
 
     // -----------------------------------------------------
-
 
 
 

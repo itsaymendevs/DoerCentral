@@ -45,9 +45,12 @@
                   {{-- caloriesRange --}}
                   <div class="col-4">
                      <label class="form-label form--label">Calories</label>
-                     <input class="form-control form--input mb-4" type="number" step=0.01
-                        wire:model='instance.caloriesRange' required />
+                     <input class="form-control form--input mb-4" type="text" wire:model='instance.caloriesRange'
+                        required />
                   </div>
+
+
+
 
 
 

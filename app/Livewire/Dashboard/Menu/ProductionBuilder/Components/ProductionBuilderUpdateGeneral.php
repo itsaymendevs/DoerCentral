@@ -8,6 +8,7 @@ use App\Models\Diet;
 use App\Models\Meal;
 use App\Models\Tag;
 use App\Traits\HelperTrait;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -30,6 +31,33 @@ class ProductionBuilderUpdateGeneral extends Component
 
     public function mount($id)
     {
+
+
+
+        // :: call prepMount
+        $this->prepMount($id);
+
+
+    } // end function
+
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+    public function prepMount($id)
+    {
+
+
 
         // 1: clone instance
         $meal = Meal::find($id);
@@ -163,17 +191,15 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
 
-
-        // :: refreshViews
-        $this->dispatch('refreshViews');
-
-
         // :: alert - redirect to productionBuilder
-        $this->makeAlert('success', $response->message);
+        $this->makeAlert('success', $response?->message);
 
 
 
 
+        // :: refreshViews - MainProductionBuilderWrap
+        $this->dispatch('refreshViews');
+        $this->render();
 
 
 
@@ -186,6 +212,8 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
     // ------------------------------------------------------------------
+
+
 
 
 
@@ -211,6 +239,7 @@ class ProductionBuilderUpdateGeneral extends Component
 
         // :: initTooltips
         $this->dispatch('initTooltips');
+        $this->dispatch('noBlur');
 
 
 

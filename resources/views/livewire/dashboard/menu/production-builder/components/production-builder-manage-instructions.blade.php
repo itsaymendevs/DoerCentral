@@ -20,21 +20,22 @@
 
 
    {{-- instructionsForm --}}
-   <form class="row align-items-center">
+   <form class="row align-items-center" wire:submit='store'>
 
 
 
       {{-- input --}}
       <div class="col-9">
          <label class="form-label form--label">Instruction</label>
-         <input class="form-control form--input mb-4" type="text" required />
+         <input class="form-control form--input mb-4" type="text" wire:model='instruction' required />
       </div>
 
 
 
       {{-- submitButton --}}
       <div class="col-3 text-center">
-         <button class="btn btn--scheme btn--scheme-2 px-4 scalemix--3 py-1 d-inline-flex align-items-center fs-13">
+         <button class="btn btn--scheme btn--scheme-2 px-4 scalemix--3 py-1 d-inline-flex align-items-center fs-13"
+            wire:loading.attr='disabled'>
             <svg class="bi bi-plus-circle-dotted fs-6 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
                height="1em" fill="currentColor" viewBox="0 0 16 16">
                <path
@@ -84,35 +85,9 @@
 
 
                   {{-- loop - instructions --}}
-                  @foreach ($meal->instructions as $item)
-                     <tr>
-
-
-                        {{-- input --}}
-                        <td class="fw-bold">01</td>
-                        <td class="fw-bold">
-                           <input class="form-control form--input form--table-input text-start" type="text"
-                              value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque ab in fuga" />
-                        </td>
-
-
-                        {{-- removeButton --}}
-                        <td>
-                           <div class="d-flex align-items-center justify-content-center">
-                              <button class="btn btn--raw-icon inline remove scale--3" type="button">
-                                 <svg class="bi bi-trash-fill" xmlns="http://www.w3.org/2000/svg" width="1em"
-                                    height="1em" fill="currentColor" viewBox="0 0 16 16">
-                                    <path
-                                       d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
-                                    </path>
-                                 </svg>
-                              </button>
-                           </div>
-                        </td>
-
-
-
-                     </tr>
+                  @foreach ($meal->instructions as $instruction)
+                     <livewire:dashboard.menu.production-builder.components.production-builder-view-instruction
+                        :id='$instruction->id' key="{{ now() }}" />
                   @endforeach
                   {{-- end loop --}}
 

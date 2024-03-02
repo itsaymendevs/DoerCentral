@@ -327,7 +327,7 @@ input:read-only {
 }
 
 textarea:read-only {
-    background-color: var(--result-bg-odd);
+    background-color: var(--input-bg) !important;
     cursor: not-allowed;
 }
 
@@ -687,5 +687,21 @@ select.form-select {
 }
 
 select.form-select option {
-    /* display: none !important; */
+    display: none !important;
 }
+
+/* blur effect */
+
+.blur-6 {
+    filter: blur(6px) !important;
+}
+
+/* .no-blur {
+    filter: blur(0px) !important;
+    visibility: visible;
+}
+
+img {
+    filter: blur(6px);
+    visibility: hidden;
+} */

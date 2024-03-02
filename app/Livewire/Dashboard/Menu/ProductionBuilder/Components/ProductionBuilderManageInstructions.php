@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Models\Meal;
 use App\Traits\HelperTrait;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use stdClass;
 
@@ -48,7 +49,7 @@ class ProductionBuilderManageInstructions extends Component
 
 
 
-    public function update()
+    public function store()
     {
 
 
@@ -69,11 +70,14 @@ class ProductionBuilderManageInstructions extends Component
 
 
 
-            // :: reset - render
+
+            // :: reset - render - alert
             $this->instruction = null;
 
-
+            $this->makeAlert('success', $response->message);
             $this->render();
+
+
 
         } // end if
 
@@ -102,6 +106,8 @@ class ProductionBuilderManageInstructions extends Component
 
 
 
+
+    #[On('refreshInstructions')]
     public function render()
     {
 

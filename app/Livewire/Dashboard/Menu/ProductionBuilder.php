@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu;
 
 use App\Models\Meal;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ProductionBuilder extends Component
@@ -38,8 +39,11 @@ class ProductionBuilder extends Component
 
 
 
+
+    #[On('refreshViews')]
     public function render()
     {
+
         return view('livewire.dashboard.menu.production-builder');
 
     } // end function

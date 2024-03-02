@@ -50,15 +50,9 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-    #[On('refreshViews')]
+    #[On('refreshIngredientViews')]
     public function render()
     {
-
-
-        // 1: dependencies
-        $sizes = Size::all();
-        $containers = Container::all();
-
 
 
 
@@ -68,7 +62,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-        return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-ingredients', compact('sizes', 'containers'));
+        return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-ingredients');
 
 
     } // end function

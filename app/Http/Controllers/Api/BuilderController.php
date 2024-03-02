@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Meal;
 use App\Models\MealAvailableType;
+use App\Models\MealInstruction;
 use App\Models\MealSize;
 use App\Models\MealTag;
 use Illuminate\Http\Request;
@@ -110,6 +111,8 @@ class BuilderController extends Controller
     {
 
 
+
+
         // :: root
         $request = json_decode(json_encode($request->all()));
         $request = $request->instance;
@@ -139,9 +142,8 @@ class BuilderController extends Controller
         // 1.3: imageFiles
         $meal->imageFile = $request->imageFileName;
         $meal->secondImageFile = $request->secondImageFileName;
-        $meal->thirdImageFile = $request->thirdImageFileName ?? $request->thirdImageFileName;
-        $meal->fourthImageFile = $request->fourthImageFileName ?? $request->fourthImageFileName;
-
+        $meal->thirdImageFile = $request->thirdImageFileName ? $request->thirdImageFileName : null;
+        $meal->fourthImageFile = $request->fourthImageFileName ? $request->fourthImageFileName : null;
 
 
 
@@ -152,32 +154,36 @@ class BuilderController extends Controller
 
 
 
-
         // 2: tags - removePrevious
-        MealTag::where('mealId', $meal->id)->delete();
+        $meal->tags->count() > 0 ? MealTag::where('mealId', $meal->id)?->delete() : null;
 
 
-        foreach ($request->tags as $tag) {
+        if ($request->tags) {
+
+            foreach ($request->tags as $tag) {
 
 
-            // 2.1: general
-            $mealTag = new MealTag();
+                // 2.1: general
+                $mealTag = new MealTag();
 
-            $mealTag->mealId = $meal->id;
-            $mealTag->tagId = $tag;
+                $mealTag->mealId = $meal->id;
+                $mealTag->tagId = $tag;
 
-            $mealTag->save();
+                $mealTag->save();
 
-        } // end loop
+            } // end loop
 
-
-
-
+        } // end if
 
 
 
 
-        return response()->json(['message' => 'Meal has been updated', 'id' => $meal->id], 200);
+
+
+        return response()->json(['message' => 'Meal has been updated'], 200);
+
+
+
 
 
 
@@ -391,6 +397,152 @@ class BuilderController extends Controller
 
         return response()->json(['message' => 'Container has been updated'], 200);
 
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function storeBuilderInstruction(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: create
+        $instruction = new MealInstruction();
+
+        $instruction->mealId = $request->id;
+        $instruction->content = $request->instruction;
+
+
+        $instruction->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Instruction has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateBuilderInstruction(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: create
+        $instruction = MealInstruction::find($request->id);
+
+        $instruction->content = $request->instruction;
+
+
+        $instruction->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Instruction has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+    public function removeBuilderInstruction(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        MealInstruction::find($id)->delete();
+
+
+        return response()->json(['message' => 'Instruction has been removed'], 200);
 
 
 

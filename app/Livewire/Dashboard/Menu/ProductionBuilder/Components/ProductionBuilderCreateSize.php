@@ -86,7 +86,7 @@ class ProductionBuilderCreateSize extends Component
             } else {
 
 
-                // :: refreshViews toFix
+                // :: refreshSizeViews toFix
                 $this->dispatch('refreshSizeViews');
 
 

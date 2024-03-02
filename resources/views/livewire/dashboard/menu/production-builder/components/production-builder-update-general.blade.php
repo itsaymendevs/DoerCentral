@@ -1,5 +1,5 @@
 {{-- generalForm --}}
-<form class="row pt-2" wire:submit='update' wire:ignore>
+<form class="row pt-2" wire:submit='update'>
 
 
 
@@ -58,7 +58,7 @@
             <label class="form-label form--label">Category</label>
             <div class="select--single-wrapper mb-4">
                <select class="form-select form--select" id='category-select-2' data-instance='instance.isVegetarian'
-                  data-clear='true' required>
+                  required>
                   <option value=""></option>
                   <option value="1">Vegetarian</option>
                   <option value="0">Non-Vegetarian</option>
@@ -171,7 +171,7 @@
 
    {{-- rightCol --}}
    <div class="col-5">
-      <div class="row">
+      <div class="row" wire:ignore>
 
 
          {{-- 1: imageFile --}}
@@ -341,7 +341,6 @@
          selectValue = $(this).select2('val');
          instance = $(this).attr('data-instance');
 
-         console.log(selectValue)
 
          @this.set(instance, selectValue);
 

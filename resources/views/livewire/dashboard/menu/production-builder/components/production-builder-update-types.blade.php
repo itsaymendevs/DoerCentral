@@ -64,8 +64,8 @@
 
                {{-- input --}}
                <input class="form-check-input" id="snackType-{{ $snackType }}" name="snackType" type="radio"
-                  @if ($instance->itemType == $snackType) checked @endif wire:model='instance.itemType'
-                  wire:change='update' />
+                  value='{{ $snackType }}' @if ($instance->itemType == $snackType) checked @endif
+                  wire:model='instance.itemType' wire:change='update' />
 
 
                {{-- label --}}
@@ -100,8 +100,8 @@
 
                {{-- input --}}
                <input class="form-check-input" id="sauceType-{{ $sauceType }}" name="sauceType" type="radio"
-                  @if ($instance->itemType == $sauceType) checked @endif wire:model='instance.itemType'
-                  wire:change='update' />
+                  value='{{ $sauceType }}' @if ($instance->itemType == $sauceType) checked @endif
+                  wire:model='instance.itemType' wire:change='update' />
 
 
                {{-- label --}}
@@ -136,8 +136,8 @@
 
                {{-- input --}}
                <input class="form-check-input" id="drinkType-{{ $drinkType }}" name="drinkType" type="radio"
-                  @if ($instance->itemType == $drinkType) checked @endif wire:model='instance.itemType'
-                  wire:change='update' />
+                  value='{{ $drinkType }}' @if ($instance->itemType == $drinkType) checked @endif
+                  wire:model='instance.itemType' wire:change='update' />
 
 
                {{-- label --}}

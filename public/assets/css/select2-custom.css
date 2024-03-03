@@ -20,6 +20,20 @@
     border-radius: var(--input-radius);
 }
 
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__clear {
+    margin-right: 24px !important;
+    height: 25.5px !important;
+}
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__clear
+    span {
+    color: var(--bg-golden) !important;
+    font-size: 12px;
+}
+
 .form-select:disabled {
     background-color: initial !important;
 }

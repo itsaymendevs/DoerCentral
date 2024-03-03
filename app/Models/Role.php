@@ -13,7 +13,8 @@ class Role extends Model
     public function permissions()
     {
         return $this->hasMany(RolePermission::class, 'roleId');
-    }
+
+    } // end function
 
 
 

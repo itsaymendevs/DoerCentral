@@ -21,7 +21,7 @@
 
 
 
-            <form class="px-4">
+            <form class="px-4" wire:submit='store'>
                <div class="row row pt-2 mb-4">
 
 
@@ -33,7 +33,8 @@
                      {{-- name --}}
                      <div>
                         <label class="form-label form--label">Name</label>
-                        <input class="form-control form--input mb-4" type="text" />
+                        <input class="form-control form--input mb-4" type="text" wire:model='instance.name'
+                           required />
                      </div>
 
 
@@ -47,12 +48,13 @@
 
                            {{-- input --}}
                            <input class="form-control d-none file--input" id="ingredient--file-1"
-                              data-preview="ingredient--preview-1" type="file" />
+                              data-preview="ingredient--preview-1" type="file" wire:model='instance.imageFile'
+                              required />
 
 
                            {{-- preview --}}
                            <img class="inventory--image-frame" id="ingredient--preview-1"
-                              src="../assets/img/placeholder.png" />
+                              src="{{ asset('assets/img/placeholder.png') }}" wire:ignore />
 
                            {{-- icon --}}
                            <svg class="bi bi-cloud-upload" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -82,27 +84,30 @@
                      {{-- reference --}}
                      <div>
                         <label class="form-label form--label">Reference ID</label>
-                        <input class="form-control form--input mb-4" type="text" />
+                        <input class="form-control form--input mb-4" type="text" wire:model='instance.referenceID' />
                      </div>
 
 
                      {{-- increment --}}
                      <div>
                         <label class="form-label form--label">Increment %</label>
-                        <input class="form-control form--input mb-4" type="number" step='0.01' />
+                        <input class="form-control form--input mb-4" type="number" step='0.01'
+                           wire:model='instance.increment' />
                      </div>
 
 
                      {{-- decrement --}}
                      <div>
                         <label class="form-label form--label">Decrement %</label>
-                        <input class="form-control form--input mb-4" type="number" step='0.01' />
+                        <input class="form-control form--input mb-4" type="number" step='0.01'
+                           wire:model='instance.decrement' />
                      </div>
 
                      {{-- wastage --}}
                      <div>
                         <label class="form-label form--label">Wastage %</label>
-                        <input class="form-control form--input mb-4" type="number" step='0.01' />
+                        <input class="form-control form--input mb-4" type="number" step='0.01'
+                           wire:model='instance.wastage' />
                      </div>
                   </div>
 
@@ -116,24 +121,34 @@
 
 
                      {{-- unit --}}
-                     <div>
+                     <div wire:ignore>
                         <label class="form-label form--label">Measuring Unit</label>
                         <div class="select--single-wrapper mb-4">
-                           <select class="form-select form--modal-select">
+                           <select class="form-select form--modal-select" data-modal='#new-ingredient'
+                              data-instance='instance.unitId' required>
                               <option value=""></option>
-                              <option value="1">FIrst Option</option>
+
+                              @foreach ($units as $unit)
+                                 <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                              @endforeach
+
                            </select>
                         </div>
                      </div>
 
 
                      {{-- category --}}
-                     <div>
+                     <div wire:ignore>
                         <label class="form-label form--label">Category</label>
                         <div class="select--single-wrapper mb-4">
-                           <select class="form-select form--modal-select">
+                           <select class="form-select form--modal-select" data-modal='#new-ingredient'
+                              data-instance='instance.categoryId' required>
                               <option value=""></option>
-                              <option value="1">FIrst Option</option>
+
+                              @foreach ($categories as $category)
+                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
+                              @endforeach
+
                            </select>
                         </div>
                      </div>
@@ -141,22 +156,28 @@
 
 
                      {{-- exclude --}}
-                     <div>
+                     <div wire:ignore>
                         <label class="form-label form--label">Exclude</label>
                         <div class="select--single-wrapper mb-4">
-                           <select class="form-select form--modal-select">
+                           <select class="form-select form--modal-select" data-modal='#new-ingredient'
+                              data-instance='instance.excludeId'>
                               <option value=""></option>
-                              <option value="1">FIrst Option</option>
+
+                              @foreach ($excludes as $exclude)
+                                 <option value="{{ $exclude->id }}">{{ $exclude->name }}</option>
+                              @endforeach
+
                            </select>
                         </div>
                      </div>
 
 
 
+
                      {{-- usage --}}
                      <div>
                         <label class="form-label form--label">Usage</label>
-                        <textarea class="form-control form--input form--textarea mb-4"></textarea>
+                        <textarea class="form-control form--input form--textarea mb-4" wire:model='instance.usage'></textarea>
                      </div>
                   </div>
                   {{-- endCol --}}
@@ -172,37 +193,54 @@
 
 
                      {{-- purchaseUnit --}}
-                     <div>
+                     <div wire:ignore>
                         <label class="form-label form--label">Purchase Unit</label>
                         <div class="select--single-wrapper mb-4">
-                           <select class="form-select form--modal-select">
+                           <select class="form-select form--modal-select" data-modal='#new-ingredient'
+                              data-instance='instance.purchaseUnitId' required>
                               <option value=""></option>
-                              <option value="1">FIrst Option</option>
+
+                              @foreach ($units as $unit)
+                                 <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                              @endforeach
+
                            </select>
                         </div>
                      </div>
 
 
                      {{-- group --}}
-                     <div>
+                     <div wire:ignore>
                         <label class="form-label form--label">Group</label>
                         <div class="select--single-wrapper mb-4">
-                           <select class="form-select form--modal-select">
+                           <select class="form-select form--modal-select" data-modal='#new-ingredient'
+                              data-instance='instance.groupId' required>
                               <option value=""></option>
-                              <option value="1">FIrst Option</option>
+
+                              @foreach ($groups as $group)
+                                 <option value="{{ $group->id }}">{{ $group->name }}</option>
+                              @endforeach
+
                            </select>
                         </div>
                      </div>
 
 
 
+
+
                      {{-- allergy --}}
-                     <div>
+                     <div wire:ignore>
                         <label class="form-label form--label">Alllergy</label>
                         <div class="select--single-wrapper mb-4">
-                           <select class="form-select form--modal-select">
+                           <select class="form-select form--modal-select" data-modal='#new-ingredient'
+                              data-instance='instance.allergyId'>
                               <option value=""></option>
-                              <option value="1">FIrst Option</option>
+
+                              @foreach ($allergies as $allergy)
+                                 <option value="{{ $allergy->id }}">{{ $allergy->name }}</option>
+                              @endforeach
+
                            </select>
                         </div>
                      </div>
@@ -211,7 +249,7 @@
                      {{-- breif - Desc --}}
                      <div>
                         <label class="form-label form--label">Breif</label>
-                        <textarea class="form-control form--input form--textarea mb-4"></textarea>
+                        <textarea class="form-control form--input form--textarea mb-4" wire:model='instance.desc'></textarea>
                      </div>
 
 
@@ -225,7 +263,8 @@
                   {{-- submitButton --}}
                   <div class="col-12 text-end mt-3">
                      <button
-                        class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
+                        class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05"
+                        wire:loading.attr='disabled' wire:target='instance.imageFile, store'>
                         Save
                      </button>
                   </div>

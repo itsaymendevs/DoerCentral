@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             HolidaySeeder::class,
             MealTypeSeeder::class,
             ContainerSeeder::class,
+            UnitSeeder::class,
+
         ]);
 
     } //end function

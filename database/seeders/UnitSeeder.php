@@ -2,22 +2,22 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+use App\Models\Unit;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RoleSeeder extends Seeder
+class UnitSeeder extends Seeder
 {
     public function run() : void
     {
 
 
         // ::root
-        $roles = ['Admin', 'Employee'];
+        $units = ['Gram', 'mL'];
 
-        for ($i = 0; $i < count($roles); $i++) {
-            Role::create([
-                'name' => $roles[$i],
+        for ($i = 0; $i < count($units); $i++) {
+            Unit::create([
+                'name' => $units[$i],
             ]);
         } // end loop
 
@@ -27,6 +27,3 @@ class RoleSeeder extends Seeder
 
 
 } // end seeder
-
-
-

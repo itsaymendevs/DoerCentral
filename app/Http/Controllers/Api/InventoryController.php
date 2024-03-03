@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Allergy;
 use App\Models\Exclude;
+use App\Models\Ingredient;
 use App\Models\IngredientCategory;
 use App\Models\IngredientGroup;
+use App\Models\Supplier;
+use App\Models\SupplierIngredient;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
@@ -556,6 +559,534 @@ class InventoryController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function storeIngredient(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $ingredient = new Ingredient();
+
+
+
+        // 1.2: basic
+        $ingredient->name = $request->name;
+        $ingredient->desc = $request->desc;
+        $ingredient->usage = $request->usage;
+        $ingredient->referenceID = $request->referenceID;
+
+        $ingredient->increment = $request->increment;
+        $ingredient->decrement = $request->decrement;
+        $ingredient->wastage = $request->wastage;
+
+
+
+
+        // 1.3: imageFile
+        $ingredient->imageFile = $request->imageFileName;
+
+
+
+        // 1.4: units
+        $ingredient->unitId = $request->unitId;
+        $ingredient->purchaseUnitId = $request->purchaseUnitId;
+
+
+
+
+        // 1.5: group - category - exclude - allergy
+        $ingredient->groupId = $request->groupId;
+        $ingredient->categoryId = $request->categoryId;
+
+        $ingredient->excludeId = $request->excludeId ?? $request->excludeId;
+        $ingredient->allergyId = $request->allergyId ?? $request->allergyId;
+
+
+
+        $ingredient->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Ingredient has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateIngredient(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $ingredient = Ingredient::find($request->id);
+
+
+
+
+        // 1.2: basic
+        $ingredient->name = $request->name;
+        $ingredient->desc = $request->desc;
+        $ingredient->usage = $request->usage;
+        $ingredient->referenceID = $request->referenceID;
+
+        $ingredient->increment = $request->increment;
+        $ingredient->decrement = $request->decrement;
+        $ingredient->wastage = $request->wastage;
+
+
+
+
+        // 1.3: imageFile
+        $ingredient->imageFile = $request->imageFileName ?? $request->imageFileName;
+
+
+
+        // 1.4: units
+        $ingredient->unitId = $request->unitId;
+        $ingredient->purchaseUnitId = $request->purchaseUnitId;
+
+
+
+
+        // 1.5: group - category - exclude - allergy
+        $ingredient->groupId = $request->groupId;
+        $ingredient->categoryId = $request->categoryId;
+
+        $ingredient->excludeId = $request->excludeId ?? $request->excludeId;
+        $ingredient->allergyId = $request->allergyId ?? $request->allergyId;
+
+
+
+        $ingredient->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Ingredient has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+    public function removeIngredient(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        Ingredient::find($id)->delete();
+
+
+        return response()->json(['message' => 'Ingredient has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function storeSupplier(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $supplier = new Supplier();
+
+
+
+        // 1.2: basic
+        $supplier->name = $request->name;
+        $supplier->phone = $request->phone;
+        $supplier->email = $request->email;
+        $supplier->address = $request->address;
+
+
+
+
+        $supplier->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Supplier has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateSupplier(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $supplier = Supplier::find($request->id);
+
+
+
+
+        // 1.2: basic
+        $supplier->name = $request->name;
+        $supplier->phone = $request->phone;
+        $supplier->email = $request->email;
+        $supplier->address = $request->address;
+
+
+
+
+        $supplier->save();
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Supplier has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+    public function removeSupplier(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        Supplier::find($id)->delete();
+
+
+        return response()->json(['message' => 'Supplier has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function storeSupplierIngredient(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $supplierIngredient = new SupplierIngredient();
+
+
+
+        // 1.2: basic
+        $supplierIngredient->ingredientId = $request->ingredientId;
+        $supplierIngredient->supplierId = $request->supplierId;
+        $supplierIngredient->unitId = $request->unitId;
+        $supplierIngredient->sellPrice = $request->sellPrice;
+
+
+
+
+        $supplierIngredient->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Ingredient has been appended'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateSupplierIngredient(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $supplierIngredient = SupplierIngredient::find($request->id);
+
+
+
+        // 1.2: basic
+        $supplierIngredient->ingredientId = $request->ingredientId;
+        $supplierIngredient->supplierId = $request->supplierId;
+        $supplierIngredient->unitId = $request->unitId;
+        $supplierIngredient->sellPrice = $request->sellPrice;
+
+
+
+        $supplierIngredient->save();
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Ingredient has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+    public function removeSupplierIngredient(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        SupplierIngredient::find($id)->delete();
+
+
+        return response()->json(['message' => 'Ingredient has been removed'], 200);
+
+
+
+    } // end function
 
 
 

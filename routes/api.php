@@ -44,7 +44,7 @@ Route::post('/checkUser', [LoginController::class, 'checkUser']);
 
 
 
-// 1: store deliveryTimes - update - toggleActive - remove
+// 1: delivery - storeDeliveryTimes - update - toggleActive - remove
 Route::post('/dashboard/delivery/times/store', [DeliveryController::class, 'storeDeliveryTime']);
 Route::post('/dashboard/delivery/times/update', [DeliveryController::class, 'updateDeliveryTime']);
 Route::post('/dashboard/delivery/times/toggle', [DeliveryController::class, 'toggleDeliveryTime']);
@@ -63,7 +63,7 @@ Route::post('/dashboard/delivery/times/remove', [DeliveryController::class, 'rem
 
 
 
-// 1.2: update holidays - toggleActive
+// 1.2: delivery - updateHolidays - toggleActive
 Route::post('/dashboard/delivery/holidays/update', [DeliveryController::class, 'updateHoliday']);
 Route::post('/dashboard/delivery/holidays/toggle', [DeliveryController::class, 'toggleHoliday']);
 
@@ -80,7 +80,7 @@ Route::post('/dashboard/delivery/holidays/toggle', [DeliveryController::class, '
 
 
 
-// 1.3: store zones - update - toggleActive - remove
+// 1.3: delivery - storeZones - update - toggleActive - remove
 Route::post('/dashboard/delivery/zones/store', [DeliveryController::class, 'storeZone']);
 Route::post('/dashboard/delivery/zones/update', [DeliveryController::class, 'updateZone']);
 Route::post('/dashboard/delivery/zones/toggle', [DeliveryController::class, 'toggleZone']);
@@ -101,7 +101,7 @@ Route::post('/dashboard/delivery/zones/remove', [DeliveryController::class, 'rem
 
 
 
-// 1.4: store drivers - update - toggleActive - remove
+// 1.4: delivery - storeDrivers - update - toggleActive - remove
 Route::post('/dashboard/delivery/drivers/store', [DeliveryController::class, 'storeDriver']);
 Route::post('/dashboard/delivery/drivers/update', [DeliveryController::class, 'updateDriver']);
 Route::post('/dashboard/delivery/drivers/toggle', [DeliveryController::class, 'toggleDriver']);
@@ -128,7 +128,7 @@ Route::post('/dashboard/delivery/drivers/remove', [DeliveryController::class, 'r
 
 
 
-// 2: store promoCodes - update - toggleActive - remove
+// 2: promo - storePromoCodes - update - toggleActive - remove
 Route::post('/dashboard/promo/promoCodes/store', [PromoController::class, 'storePromoCode']);
 Route::post('/dashboard/promo/promoCodes/update', [PromoController::class, 'updatePromoCode']);
 
@@ -147,6 +147,70 @@ Route::post('/dashboard/promo/promoCodes/remove', [PromoController::class, 'remo
 
 
 // ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 3: inventory - ingredients - storeIngredient - update - remove
+Route::post('/dashboard/inventory/ingredients/store', [InventoryController::class, 'storeIngredient']);
+Route::post('/dashboard/inventory/ingredients/update', [InventoryController::class, 'updateIngredient']);
+
+
+Route::post('/dashboard/inventory/ingredients/remove', [InventoryController::class, 'removeIngredient']);
+
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
+// 3.2: inventory - suppliers - storeSupplier - update - remove
+Route::post('/dashboard/inventory/suppliers/store', [InventoryController::class, 'storeSupplier']);
+Route::post('/dashboard/inventory/suppliers/update', [InventoryController::class, 'updateSupplier']);
+
+
+Route::post('/dashboard/inventory/suppliers/remove', [InventoryController::class, 'removeSupplier']);
+
+
+
+
+
+
+// 3.2.2: inventory - suppliers - storeIngredients - update - remove
+Route::post('/dashboard/inventory/suppliers/ingredients/store', [InventoryController::class, 'storeSupplierIngredient']);
+Route::post('/dashboard/inventory/suppliers/ingredients/update', [InventoryController::class, 'updateSupplierIngredient']);
+
+
+Route::post('/dashboard/inventory/suppliers/ingredients/remove', [InventoryController::class, 'removeSupplierIngredient']);
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
 
 
 
@@ -248,7 +312,7 @@ Route::post('/dashboard/inventory/configurations/allergies/remove', [InventoryCo
 
 
 
-// 5: store plan - update - toggleActive - remove
+// 5: menu - storePlan - update - toggleActive - remove
 Route::post('/dashboard/menu/plans/store', [PlanController::class, 'storePlan']);
 Route::post('/dashboard/menu/plans/update', [PlanController::class, 'updatePlan']);
 Route::post('/dashboard/menu/plans/toggle', [PlanController::class, 'togglePlan']);
@@ -265,7 +329,7 @@ Route::post('/dashboard/menu/plans/remove', [PlanController::class, 'removePlan'
 
 
 
-// 6: store planRanges - update - toggleActive - remove
+// 6: menu - storePlanRanges - update - toggleActive - remove
 Route::post('/dashboard/menu/plans/ranges/store', [PlanController::class, 'storeRange']);
 Route::post('/dashboard/menu/plans/ranges/update', [PlanController::class, 'updateRange']);
 Route::post('/dashboard/menu/plans/ranges/toggle', [PlanController::class, 'toggleRange']);
@@ -288,7 +352,7 @@ Route::post('/dashboard/menu/plans/ranges/remove', [PlanController::class, 'remo
 
 
 
-// 9: builder - general - store
+// 9: menu - builder - general - store
 Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 'storeBuilderGeneral']);
 
 
@@ -304,20 +368,20 @@ Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 
 
 
 
-// 9.2: builder - general - update
+// 9.2: menu - builder - general - update
 Route::post('/dashboard/menu/builder/general/update', [BuilderController::class, 'updateBuilderGeneral']);
 
 
 
 
 
-// 9.3: builder - ingredients - itemTypes / mealTypes update
+// 9.3: menu - builder - ingredients - itemTypes / mealTypes update
 Route::post('/dashboard/menu/builder/meal-types/update', [BuilderController::class, 'updateBuilderMealTypes']);
 
 
 
 
-// 9.4: builder - ingredients - storeSizes
+// 9.4: menu - builder - ingredients - storeSizes
 Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 'storeBuilderSize']);
 
 
@@ -325,12 +389,12 @@ Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 's
 
 
 
-// 9.5: builder - containers - updateContainer
+// 9.5: menu - builder - containers - updateContainer
 Route::post('/dashboard/menu/builder/containers/update', [BuilderController::class, 'updateBuilderContainer']);
 
 
 
-// 9.6: builder - instructions - storeInstruction - update - remove
+// 9.6: menu - builder - instructions - storeInstruction - update - remove
 Route::post('/dashboard/menu/builder/instructions/store', [BuilderController::class, 'storeBuilderInstruction']);
 Route::post('/dashboard/menu/builder/instructions/update', [BuilderController::class, 'updateBuilderInstruction']);
 

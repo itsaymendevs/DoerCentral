@@ -8,12 +8,18 @@ use App\Models\Exclude;
 use App\Models\Ingredient;
 use App\Models\IngredientCategory;
 use App\Models\IngredientGroup;
+use App\Models\StockPurchase;
 use App\Models\Supplier;
 use App\Models\SupplierIngredient;
+use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
 {
+
+
+    use HelperTrait;
+
 
 
 
@@ -1089,6 +1095,216 @@ class InventoryController extends Controller
     } // end function
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function storePurchase(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $purchase = new StockPurchase();
+
+
+
+        // 1.2: basic
+        $purchase->receivingDate = $request->receivingDate;
+        $purchase->purchaseID = $request->purchaseID;
+        $purchase->PONumber = $this->makeSerial('PO', StockPurchase::count() + 1);
+        $purchase->remarks = $request->remarks;
+
+        $purchase->supplierId = $request->supplierId;
+
+
+        $purchase->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Purchase has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updatePurchase(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $purchase = StockPurchase::find($request->id);
+
+
+
+        // 1.2: basic
+        $purchase->receivingDate = $request->receivingDate;
+        $purchase->purchaseID = $request->purchaseID;
+        $purchase->remarks = $request->remarks;
+
+
+
+        $purchase->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Purchase has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function confirmPurchase(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        $purchase = StockPurchase::find($id);
+
+        $purchase->isConfirmed = true;
+
+
+        $purchase->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Purchase has been confirmed'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+    public function removePurchase(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        StockPurchase::find($id)->delete();
+
+
+        return response()->json(['message' => 'Purchase has been removed'], 200);
+
+
+
+    } // end function
 
 
 

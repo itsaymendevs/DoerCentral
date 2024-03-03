@@ -206,6 +206,33 @@ Route::post('/dashboard/inventory/suppliers/ingredients/remove', [InventoryContr
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
+// 3.3: inventory - purchases - storePurchase - toggleConfirm - remove - storePurchaseIngredient
+Route::post('/dashboard/inventory/purchases/store', [InventoryController::class, 'storePurchase']);
+Route::post('/dashboard/inventory/purchases/update', [InventoryController::class, 'updatePurchase']);
+Route::post('/dashboard/inventory/purchases/confirm', [InventoryController::class, 'confirmPurchase']);
+
+Route::post('/dashboard/inventory/purchases/remove', [InventoryController::class, 'removePurchase']);
+
+Route::post('/dashboard/inventory/purchases/ingredients/store', [InventoryController::class, 'storePurchaseIngredient']);
+
+
+
+
+
+
+
+
+
+
 
 // ---------------------------------
 // ---------------------------------

@@ -423,6 +423,31 @@ class DeliveryController extends Controller
 
 
 
+
+
+
+        // 2: cityDistricts - removePrevious
+        ZoneDistrict::where('zoneId', $zone->id)->delete();
+
+
+        foreach ($request->cityDistricts as $cityDistrict) {
+
+
+            // 2.1: general
+            $zoneDistrict = new ZoneDistrict();
+
+            $zoneDistrict->zoneId = $zone->id;
+            $zoneDistrict->cityDistrictId = $cityDistrict;
+
+            $zoneDistrict->save();
+
+        } // end loop
+
+
+
+
+
+
         $zone->save();
 
 

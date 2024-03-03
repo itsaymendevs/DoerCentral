@@ -2,12 +2,85 @@
 
 namespace App\Livewire\Dashboard\Inventory\Components;
 
+use App\Livewire\Forms\StockPurchaseForm;
+use App\Models\StockPurchase;
+use App\Models\Supplier;
+use App\Traits\HelperTrait;
 use Livewire\Component;
 
 class InventoryCreatePurchase extends Component
 {
+
+
+    use HelperTrait;
+
+
+
+    // :: variable
+    public StockPurchaseForm $instance;
+
+
+
+
+
+
+    public function store()
+    {
+
+
+        // :: validate
+        $this->instance->validate();
+
+
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/inventory/purchases/store', $this->instance);
+
+
+
+
+
+
+        // :: refresh - closeModal
+        $this->instance->reset();
+        $this->dispatch('resetSelect');
+        $this->dispatch('refreshViews');
+        $this->dispatch('closeModal', modal: '#new-purchase .btn--close');
+
+
+        $this->makeAlert('success', $response?->message);
+
+
+
+
+    } // end function
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
     public function render()
     {
-        return view('livewire.dashboard.inventory.components.inventory-create-purchase');
-    }
-}
+
+
+        // 1: dependencies
+        $suppliers = Supplier::all();
+        $po = $this->makeSerial('PO', StockPurchase::count() + 1);
+
+
+
+        return view('livewire.dashboard.inventory.components.inventory-create-purchase', compact('suppliers', 'po'));
+
+    } // end function
+
+
+} // end class

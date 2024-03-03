@@ -144,16 +144,16 @@ trait HelperTrait
         } elseif ($type == 'question') {
 
 
-            $this->alert($type, $message, [
+            $this->alert('question', $message, [
                 'position' => 'top',
                 'timer' => '',
                 'toast' => true,
                 'width' => '400',
                 'showConfirmButton' => true,
                 'showCancelButton' => true,
-                'confirmButtonText' => 'Remove',
+                'confirmButtonText' => 'Confirm',
                 'cancelButtonText' => 'Cancel',
-                'confirmButtonColor' => '#dc3545',
+                'confirmButtonColor' => '#87b2a9',
                 'cancelButtonColor' => '#d3d3d3',
                 'onConfirmed' => $confirmMethod,
             ]);

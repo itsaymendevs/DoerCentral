@@ -83,7 +83,7 @@
 
                         {{-- loop - allergies --}}
                         @foreach ($allergies as $allergy)
-                        <livewire:dashboard.inventory.components.inventory-view-allergy key='$allergy->id'
+                        <livewire:dashboard.inventory.components.inventory-view-allergy key='{{ $allergy->id }}'
                             :id='$allergy->id' />
                         @endforeach
                         {{-- end loop --}}

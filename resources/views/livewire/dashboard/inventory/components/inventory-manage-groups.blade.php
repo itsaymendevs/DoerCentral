@@ -83,7 +83,7 @@
 
                         {{-- loop - groups --}}
                         @foreach ($groups as $group)
-                        <livewire:dashboard.inventory.components.inventory-view-group key='$group->id'
+                        <livewire:dashboard.inventory.components.inventory-view-group key='{{ $group->id }}'
                             :id='$group->id' />
                         @endforeach
                         {{-- end loop --}}

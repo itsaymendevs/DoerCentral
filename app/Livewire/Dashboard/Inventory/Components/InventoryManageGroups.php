@@ -44,8 +44,8 @@ class InventoryManageGroups extends Component
 
         // :: refresh / closeModal
         $this->instance->reset();
-        $this->dispatch('refreshViews');
         $this->dispatch('initTooltips');
+        $this->render();
 
 
 

@@ -83,7 +83,7 @@
 
                         {{-- loop - excludes --}}
                         @foreach ($excludes as $exclude)
-                        <livewire:dashboard.inventory.components.inventory-view-exclude key='$exclude->id'
+                        <livewire:dashboard.inventory.components.inventory-view-exclude key='{{ $exclude->id }}'
                             :id='$exclude->id' />
                         @endforeach
                         {{-- end loop --}}

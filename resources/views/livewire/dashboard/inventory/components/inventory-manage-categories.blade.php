@@ -83,7 +83,7 @@
 
                         {{-- loop - categories --}}
                         @foreach ($categories as $category)
-                        <livewire:dashboard.inventory.components.inventory-view-category key='$category->id'
+                        <livewire:dashboard.inventory.components.inventory-view-category key='{{ $category->id }}'
                             :id='$category->id' />
                         @endforeach
                         {{-- end loop --}}

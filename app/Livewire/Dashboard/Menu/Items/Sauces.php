@@ -12,6 +12,11 @@ class Sauces extends Component
     use HelperTrait;
 
 
+    // :: variables
+    public $searchSauce = '';
+
+
+
 
 
 
@@ -22,7 +27,9 @@ class Sauces extends Component
 
 
         // 1: dependencies
-        $sauces = Meal::where('type', 'Sauce')->get();
+        $sauces = Meal::where('type', 'Sauce')
+            ->where('name', 'LIKE', '%' . $this->searchSauce . '%')
+            ->get();
 
 
 

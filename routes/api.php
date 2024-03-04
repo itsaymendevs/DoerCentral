@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\BuilderController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\MenuSettingController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\PromoController;
 use Illuminate\Http\Request;
@@ -34,11 +35,19 @@ Route::post('/checkUser', [LoginController::class, 'checkUser']);
 
 
 // ----------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
 
 
 
 
 // Route::middleware(['auth:sanctum', 'auth.userApi'])->group(function () {
+
+
+
 
 
 
@@ -121,6 +130,12 @@ Route::post('/dashboard/delivery/drivers/remove', [DeliveryController::class, 'r
 
 
 // ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
 
 
 
@@ -146,7 +161,16 @@ Route::post('/dashboard/promo/promoCodes/remove', [PromoController::class, 'remo
 
 
 
+
+
 // ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
+
 
 
 
@@ -334,12 +358,20 @@ Route::post('/dashboard/inventory/configurations/allergies/remove', [InventoryCo
 
 
 // ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 
 
 
 
 
-// 5: menu - storePlan - update - toggleActive - remove
+
+
+
+
+
+// 5: menu - plans - storePlan - update - toggleActive - remove
 Route::post('/dashboard/menu/plans/store', [PlanController::class, 'storePlan']);
 Route::post('/dashboard/menu/plans/update', [PlanController::class, 'updatePlan']);
 Route::post('/dashboard/menu/plans/toggle', [PlanController::class, 'togglePlan']);
@@ -356,12 +388,45 @@ Route::post('/dashboard/menu/plans/remove', [PlanController::class, 'removePlan'
 
 
 
-// 6: menu - storePlanRanges - update - toggleActive - remove
+// 5.2: menu - plans - ranges - storePlanRanges - update - toggleActive - remove
 Route::post('/dashboard/menu/plans/ranges/store', [PlanController::class, 'storeRange']);
 Route::post('/dashboard/menu/plans/ranges/update', [PlanController::class, 'updateRange']);
 Route::post('/dashboard/menu/plans/ranges/toggle', [PlanController::class, 'toggleRange']);
 
 Route::post('/dashboard/menu/plans/ranges/remove', [PlanController::class, 'removeRange']);
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+// 8: menu - settings - storeDiet - update  - remove
+Route::post('/dashboard/menu/settings/diets/store', [MenuSettingController::class, 'storeDiet']);
+Route::post('/dashboard/menu/settings/diets/update', [MenuSettingController::class, 'updateDiet']);
+
+Route::post('/dashboard/menu/settings/diets/remove', [MenuSettingController::class, 'removeDiet']);
+
+
+
+
+// 8.2: menu - settings - storeSize - update - remove
+Route::post('/dashboard/menu/settings/sizes/store', [MenuSettingController::class, 'storeSize']);
+Route::post('/dashboard/menu/settings/sizes/update', [MenuSettingController::class, 'updateSize']);
+
+Route::post('/dashboard/menu/settings/sizes/remove', [MenuSettingController::class, 'removeSize']);
+
+
 
 
 
@@ -381,6 +446,8 @@ Route::post('/dashboard/menu/plans/ranges/remove', [PlanController::class, 'remo
 
 // 9: menu - builder - general - store
 Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 'storeBuilderGeneral']);
+
+
 
 
 
@@ -426,6 +493,12 @@ Route::post('/dashboard/menu/builder/instructions/store', [BuilderController::cl
 Route::post('/dashboard/menu/builder/instructions/update', [BuilderController::class, 'updateBuilderInstruction']);
 
 Route::post('/dashboard/menu/builder/instructions/remove', [BuilderController::class, 'removeBuilderInstruction']);
+
+
+
+
+
+
 
 
 

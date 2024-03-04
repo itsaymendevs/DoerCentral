@@ -40,7 +40,6 @@ class ProductionBuilder extends Component
 
 
 
-    #[On('refreshViews')]
     public function render()
     {
 

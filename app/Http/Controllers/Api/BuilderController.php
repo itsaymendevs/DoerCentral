@@ -49,8 +49,8 @@ class BuilderController extends Controller
         // 1.3: imageFiles
         $meal->imageFile = $request->imageFileName;
         $meal->secondImageFile = $request->secondImageFileName;
-        $meal->thirdImageFile = $request->thirdImageFileName ?? $request->thirdImageFileName;
-        $meal->fourthImageFile = $request->fourthImageFileName ?? $request->fourthImageFileName;
+        $meal->thirdImageFile = $request->thirdImageFileName ?? null;
+        $meal->fourthImageFile = $request->fourthImageFileName ?? null;
 
 
 
@@ -120,9 +120,23 @@ class BuilderController extends Controller
 
 
 
+
+
         // 1: get instance
         $meal = Meal::find($request->id);
 
+
+
+        // :: pre-saved
+        $previousType = $meal->type;
+
+
+
+
+
+
+
+        // 1.2: general
         $meal->type = $request->type;
         $meal->name = $request->name;
         $meal->servingPrice = doubleval($request->servingPrice);
@@ -142,8 +156,8 @@ class BuilderController extends Controller
         // 1.3: imageFiles
         $meal->imageFile = $request->imageFileName;
         $meal->secondImageFile = $request->secondImageFileName;
-        $meal->thirdImageFile = $request->thirdImageFileName ?? $request->thirdImageFileName;
-        $meal->fourthImageFile = $request->fourthImageFileName ?? $request->fourthImageFileName;
+        $meal->thirdImageFile = $request->thirdImageFileName ?? null;
+        $meal->fourthImageFile = $request->fourthImageFileName ?? null;
 
 
 
@@ -180,10 +194,30 @@ class BuilderController extends Controller
 
 
 
+
+
+
+
+
+        // 3: reset itemType / mealTypes if changed
+        if ($meal->type != $previousType)
+            $meal->itemType = null;
+
+
+        if ($meal->type != 'Meal')
+            MealAvailableType::where('mealId', $meal->id)?->delete();
+
+
+
+        $meal->save();
+
+
+
+
+
+
+
         return response()->json(['message' => 'Meal has been updated'], 200);
-
-
-
 
 
 

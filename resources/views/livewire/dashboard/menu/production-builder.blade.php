@@ -67,7 +67,7 @@
                         <div class="tab-pane active no--card" id="tab-1" role="tabpanel">
 
                             <livewire:dashboard.menu.production-builder.components.production-builder-update-general
-                                :id='$meal->id' />
+                                :id='$meal->id' key='{{ $meal->id }}' />
 
                         </div>
                         {{-- endTab --}}
@@ -94,8 +94,10 @@
                         <div class="tab-pane no--card" id="tab-2" role="tabpanel">
 
 
+
+                            {{-- :: now refreshItConstantly --}}
                             <livewire:dashboard.menu.production-builder.components.production-builder-manage-ingredients
-                                :id='$meal->id' />
+                                :id='$meal->id' key='{{ $meal->id }}' />
 
                         </div>
                         {{-- endTab --}}

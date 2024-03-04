@@ -197,9 +197,8 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
 
-        // :: refreshViews - MainProductionBuilderWrap
-        $this->dispatch('refreshViews');
-        $this->render();
+        // :: refreshTypeViews
+        $this->dispatch('refreshTypeViews', id: $this->instance->id);
 
 
 
@@ -239,7 +238,6 @@ class ProductionBuilderUpdateGeneral extends Component
 
         // :: initTooltips
         $this->dispatch('initTooltips');
-        $this->dispatch('noBlur');
 
 
 

@@ -12,6 +12,10 @@ class Sides extends Component
     use HelperTrait;
 
 
+    // :: variables
+    public $searchSide = '';
+
+
 
 
 
@@ -22,7 +26,9 @@ class Sides extends Component
 
 
         // 1: dependencies
-        $sides = Meal::where('type', 'Side')->get();
+        $sides = Meal::where('type', 'Side')
+            ->where('name', 'LIKE', '%' . $this->searchSide . '%')
+            ->get();
 
 
 

@@ -13,6 +13,8 @@ class Recipes extends Component
     use HelperTrait;
 
 
+    // :: variables
+    public $searchRecipe = '';
 
 
 
@@ -26,8 +28,9 @@ class Recipes extends Component
 
 
         // 1: dependencies
-        $meals = Meal::where('type', 'Meal')->get();
-
+        $meals = Meal::where('type', 'Meal')
+            ->where('name', 'LIKE', '%' . $this->searchRecipe . '%')
+            ->get();
 
 
 

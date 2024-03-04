@@ -29,19 +29,53 @@ class ProductionBuilderUpdateTypes extends Component
     {
 
         // 1: clone instance
+        $this->cloneInstance($id);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+
+    #[On('refreshTypeViews')]
+    public function cloneInstance($id)
+    {
+
+
+        // :: clone instance
         $this->meal = Meal::find($id);
+
 
         foreach ($this->meal->toArray() as $key => $value)
             $this->instance->{$key} = $value;
 
 
-
-        // 1.2: mealTypes
         $this->instance->mealTypes = $this->meal->type == 'Meal' && $this->meal?->types ? $this->meal?->types?->pluck('mealTypeId')->toArray() : [];
 
 
 
+
+        $this->render();
+
+
     } // end function
+
+
+
 
 
 
@@ -64,7 +98,6 @@ class ProductionBuilderUpdateTypes extends Component
 
 
 
-
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/builder/meal-types/update', $this->instance);
 
@@ -72,7 +105,6 @@ class ProductionBuilderUpdateTypes extends Component
 
         // :: alert
         $this->makeAlert('success', $response->message);
-
 
 
     } // end function
@@ -96,6 +128,7 @@ class ProductionBuilderUpdateTypes extends Component
 
 
 
+
     public function render()
     {
 
@@ -107,6 +140,7 @@ class ProductionBuilderUpdateTypes extends Component
         $snackTypes = ['Sweet', 'Savoury'];
         $drinkTypes = ['Hot Drink', 'Cold Drink'];
         $sauceTypes = ['On Side', 'Part of Meal'];
+
 
 
 

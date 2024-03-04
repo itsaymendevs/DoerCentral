@@ -638,8 +638,8 @@ class InventoryController extends Controller
         $ingredient->groupId = $request->groupId;
         $ingredient->categoryId = $request->categoryId;
 
-        $ingredient->excludeId = $request->excludeId ?? $request->excludeId;
-        $ingredient->allergyId = $request->allergyId ?? $request->allergyId;
+        $ingredient->excludeId = $request->excludeId ?? null;
+        $ingredient->allergyId = $request->allergyId ?? null;
 
 
 
@@ -702,7 +702,7 @@ class InventoryController extends Controller
 
 
         // 1.3: imageFile
-        $ingredient->imageFile = $request->imageFileName ?? $request->imageFileName;
+        $ingredient->imageFile = $request->imageFileName ?? null;
 
 
 
@@ -717,8 +717,8 @@ class InventoryController extends Controller
         $ingredient->groupId = $request->groupId;
         $ingredient->categoryId = $request->categoryId;
 
-        $ingredient->excludeId = $request->excludeId ?? $request->excludeId;
-        $ingredient->allergyId = $request->allergyId ?? $request->allergyId;
+        $ingredient->excludeId = $request->excludeId ?? null;
+        $ingredient->allergyId = $request->allergyId ?? null;
 
 
 

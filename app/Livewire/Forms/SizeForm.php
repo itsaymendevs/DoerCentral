@@ -13,4 +13,7 @@ class SizeForm extends Form
     public $name, $price, $calories, $proteins, $carbs, $fats;
 
 
+    public $id;
+
+
 } // end form

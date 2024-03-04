@@ -126,7 +126,7 @@
 
 
                                 {{-- sizes --}}
-                                <div class="col-12">
+                                <div class="col-12 d-none">
                                     <div class="tabs--wrap">
 
                                         {{-- tabLinks --}}

@@ -27,11 +27,11 @@ class InventoryViewPurchases extends Component
 
 
 
-    public function viewIngredients($id)
+    public function manageIngredients($id)
     {
 
         // :: dispatchId
-        $this->dispatch('viewPurchaseIngredients', $id);
+        $this->dispatch('managePurchaseIngredients', $id);
 
     } // end function
 

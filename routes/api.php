@@ -239,14 +239,31 @@ Route::post('/dashboard/inventory/suppliers/ingredients/remove', [InventoryContr
 
 
 
-// 3.3: inventory - purchases - storePurchase - toggleConfirm - remove - storePurchaseIngredient
+// 3.3: inventory - purchases - storePurchase - toggleConfirm - remove
 Route::post('/dashboard/inventory/purchases/store', [InventoryController::class, 'storePurchase']);
 Route::post('/dashboard/inventory/purchases/update', [InventoryController::class, 'updatePurchase']);
 Route::post('/dashboard/inventory/purchases/confirm', [InventoryController::class, 'confirmPurchase']);
 
 Route::post('/dashboard/inventory/purchases/remove', [InventoryController::class, 'removePurchase']);
 
+
+
+
+// 3.3.2: storePurchaseIngredient - update - remove
 Route::post('/dashboard/inventory/purchases/ingredients/store', [InventoryController::class, 'storePurchaseIngredient']);
+
+
+Route::post('/dashboard/inventory/purchases/ingredients/update', [InventoryController::class, 'updatePurchaseIngredient']);
+
+
+Route::post('/dashboard/inventory/purchases/ingredients/remove', [InventoryController::class, 'removePurchaseIngredient']);
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
 
 
 
@@ -420,11 +437,37 @@ Route::post('/dashboard/menu/settings/diets/remove', [MenuSettingController::cla
 
 
 
+
+
 // 8.2: menu - settings - storeSize - update - remove
 Route::post('/dashboard/menu/settings/sizes/store', [MenuSettingController::class, 'storeSize']);
 Route::post('/dashboard/menu/settings/sizes/update', [MenuSettingController::class, 'updateSize']);
 
 Route::post('/dashboard/menu/settings/sizes/remove', [MenuSettingController::class, 'removeSize']);
+
+
+
+
+
+
+// 8.3: menu - settings - storeTag - update - remove
+Route::post('/dashboard/menu/settings/tags/store', [MenuSettingController::class, 'storeTag']);
+Route::post('/dashboard/menu/settings/tags/update', [MenuSettingController::class, 'updateTag']);
+
+Route::post('/dashboard/menu/settings/tags/remove', [MenuSettingController::class, 'removeTag']);
+
+
+
+
+
+
+
+
+// 8.4: menu - settings - storeTag - update - remove
+Route::post('/dashboard/menu/settings/cuisines/store', [MenuSettingController::class, 'storeCuisine']);
+Route::post('/dashboard/menu/settings/cuisines/update', [MenuSettingController::class, 'updateCuisine']);
+
+Route::post('/dashboard/menu/settings/cuisines/remove', [MenuSettingController::class, 'removeCuisine']);
 
 
 
@@ -500,6 +543,21 @@ Route::post('/dashboard/menu/builder/instructions/remove', [BuilderController::c
 
 
 
+
+
+// 9.9: menu - builder - packings - storePacking - update - remove
+Route::post('/dashboard/menu/builder/packings/store', [BuilderController::class, 'storeBuilderPacking']);
+Route::post('/dashboard/menu/builder/packings/update', [BuilderController::class, 'updateBuilderPacking']);
+
+Route::post('/dashboard/menu/builder/packings/remove', [BuilderController::class, 'removeBuilderPacking']);
+
+
+
+
+
+
+// 9.10: menu - builder - servings - update
+Route::post('/dashboard/menu/builder/servings/update', [BuilderController::class, 'updateBuilderServing']);
 
 
 

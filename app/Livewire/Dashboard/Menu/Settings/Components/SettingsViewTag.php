@@ -2,12 +2,187 @@
 
 namespace App\Livewire\Dashboard\Menu\Settings\Components;
 
+use App\Livewire\Forms\TagForm;
+use App\Models\Tag;
+use App\Traits\HelperTrait;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class SettingsViewTag extends Component
 {
+    use HelperTrait;
+
+
+
+
+    // :: variables
+    public TagForm $instance;
+
+    public $removeId;
+
+
+
+
+
+    public function mount($id)
+    {
+
+        // 1: clone instance
+        $tag = Tag::find($id);
+
+        foreach ($tag->toArray() as $key => $value)
+            $this->instance->{$key} = $value;
+
+
+        $this->instance->imageFileName = $this->instance->imageFile;
+
+
+
+    } // end function
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function update()
+    {
+
+        // :: validate
+        $this->instance->validate();
+
+
+
+
+        // 1: uploadFile
+        if ($this->instance->imageFile != $this->instance->imageFileName)
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/tags');
+
+
+
+
+
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/menu/settings/tags/update', $this->instance);
+
+
+
+
+
+
+        // :: alert
+        $this->makeAlert('success', $response?->message);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function remove($id)
+    {
+
+
+        // 1: params - confirmationBox
+        $this->removeId = $id;
+
+        $this->makeAlert('remove', null, 'confirmTagRemove');
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+    #[On('confirmTagRemove')]
+    public function confirmRemove()
+    {
+
+
+
+        // 1: remove
+        if ($this->removeId) {
+
+
+            $response = $this->makeRequest('dashboard/menu/settings/tags/remove', $this->removeId);
+            $this->makeAlert('info', $response->message);
+
+
+
+            // 1.2: refreshViews / Settings
+            $this->dispatch('refreshViews');
+
+
+        } // end if
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
     public function render()
     {
+
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
         return view('livewire.dashboard.menu.settings.components.settings-view-tag');
-    }
-}
+
+    } // end function
+
+
+} // end class

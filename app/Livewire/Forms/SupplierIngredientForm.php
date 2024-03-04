@@ -16,4 +16,8 @@ class SupplierIngredientForm extends Form
 
 
 
+    // :: helpers
+    public $unitName;
+
+
 } // end form

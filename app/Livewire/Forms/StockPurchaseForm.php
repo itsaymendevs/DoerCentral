@@ -13,7 +13,7 @@ class StockPurchaseForm extends Form
     #[Rule('required', as: 'instanceError')]
     public $purchaseID, $receivingDate, $supplierId;
 
-    public $id, $PONumber, $remarks;
+    public $id, $PONumber, $remarks, $isConfirmed;
 
 
     // :: helpers

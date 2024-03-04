@@ -59,7 +59,6 @@
                     <select class="form-select form--select" data-instance='instance.isVegetarian' data-clear='true'>
                         <option value=""></option>
                         <option value="1">Vegetarian</option>
-                        <option value="0">Non-Vegetarian</option>
                     </select>
                 </div>
             </div>

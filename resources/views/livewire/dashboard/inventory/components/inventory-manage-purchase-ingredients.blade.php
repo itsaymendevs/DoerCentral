@@ -43,7 +43,7 @@
                         <div class="col-4">
                             <label class="form-label form--label">Supplier</label>
                             <input class="form-control form--input mb-4 readonly" type="text" readonly=""
-                                wire:model='instance.supplierName' />
+                                value='{{ $purchase?->supplier->name }}' />
                         </div>
 
 
@@ -59,7 +59,7 @@
                         <div class="col-4">
                             <label class="form-label form--label">P.O Number</label>
                             <input class="form-control form--input mb-4 readonly" type="text" readonly=""
-                                wire:model='instance.PONumber' />
+                                value='{{ $purchase?->PONumber }}' />
                         </div>
 
 
@@ -78,9 +78,16 @@
                                 <div class="col-4">
                                     <label class="form-label form--label">Ingredient</label>
                                     <div class="select--single-wrapper mb-4">
-                                        <select class="form-select form--select2">
+                                        <select class="form-select form--modal-select"
+                                            data-modal='#purchase-ingredients' id='purchase-ingredient-select-2'
+                                            data-instance='instance.ingredientId' required>
                                             <option value=""></option>
-                                            <option value="1">FIrst Option</option>
+
+                                            @foreach ($supplierIngredients as $supplierIngredients)
+                                            <option value="{{ $supplierIngredients->ingredient->id }}">{{
+                                                $supplierIngredients->ingredient->name }}</option>
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>
@@ -101,7 +108,7 @@
                                 {{-- quantity --}}
                                 <div class="col-2">
                                     <label class="form-label form--label">Quantity</label>
-                                    <input class="form-control form--input mb-4" type="text" required
+                                    <input class="form-control form--input mb-4" type="number" step='0.1' required
                                         wire:model='instance.quantity' />
                                 </div>
 
@@ -113,7 +120,7 @@
                                 <div class="col-3 text-center">
                                     <button
                                         class="btn btn--scheme btn--scheme-2 px-4 scalemix--3 py-1 d-inline-flex align-items-center fs-13"
-                                        wire:loading.attr='disabled'>
+                                        wire:loading.attr='disabled' @if ($purchase?->isConfirmed) disabled @endif>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                             fill="currentColor" viewBox="0 0 16 16"
                                             class="bi bi-plus-circle-dotted fs-6 me-2">
@@ -144,9 +151,14 @@
 
 
 
+
+                                {{-- view purchaseIngredients --}}
                                 <div class="col-12 mt-3">
                                     <div class="table-responsive memoir--table">
                                         <table class="table table-bordered" id="memoir--table">
+
+
+                                            {{-- head --}}
                                             <thead>
                                                 <tr>
                                                     <th>Ingredient</th>
@@ -156,65 +168,101 @@
                                                     <th></th>
                                                 </tr>
                                             </thead>
+
+
+
+                                            {{-- tbody --}}
                                             <tbody>
-                                                <tr>
-                                                    <td>Garlic Bread</td>
-                                                    <td>KG</td>
-                                                    <td>12</td>
-                                                    <td>100</td>
-                                                    <td>
-                                                        <button class="btn btn--raw-icon scale--3" type="button">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                                                                height="1em" fill="currentColor" viewBox="0 0 16 16"
-                                                                class="bi bi-trash fs-5"
-                                                                style="fill: var(--delete-color)">
-                                                                <path
-                                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
-                                                                </path>
-                                                                <path fill-rule="evenodd"
-                                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
-                                                                </path>
-                                                            </svg>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Cherry Tomatos</td>
-                                                    <td>Liter</td>
-                                                    <td>15</td>
-                                                    <td>230</td>
-                                                    <td>
-                                                        <button class="btn btn--raw-icon scale--3" type="button">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                                                                height="1em" fill="currentColor" viewBox="0 0 16 16"
-                                                                class="bi bi-trash fs-5"
-                                                                style="fill: var(--delete-color)">
-                                                                <path
-                                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
-                                                                </path>
-                                                                <path fill-rule="evenodd"
-                                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
-                                                                </path>
-                                                            </svg>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+
+
+                                                {{-- loop - purchaseIngredients --}}
+                                                @foreach ($purchaseIngredients as $purchaseIngredient)
+
+
+
+                                                {{-- :: view purchaseIngredient --}}
+                                                <livewire:dashboard.inventory.components.inventory-view-purchase-ingredient
+                                                    :id='$purchaseIngredient->id' key='{{ $purchaseIngredient->id }}' />
+
+
+                                                @endforeach
+                                                {{-- end loop --}}
+
+
                                             </tbody>
+                                            {{-- end tbody --}}
+
+
+
                                         </table>
                                     </div>
                                 </div>
-                                <div class="col-12 text-end mt-3">
-                                    <button
-                                        class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05"
-                                        type="button" data-bs-dismiss="modal">
-                                        Save
-                                    </button>
-                                </div>
+                                {{-- end viewCol --}}
+
+
                             </div>
                         </div>
                     </div>
                 </form>
+                {{-- endForm --}}
+
+
+
             </div>
         </div>
     </div>
+    {{-- end modalBody --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $(".form--select, .form--modal-select").on("change", function(event) {
+
+
+            // 1.1: getValue - instance
+            selectValue = $(this).select2('val');
+            instance = $(this).attr('data-instance');
+
+
+            @this.set(instance, selectValue);
+            @this.getUnit();
+
+       }); //end function
+    </script>
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
 </div>
+{{-- endModal --}}

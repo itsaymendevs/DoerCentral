@@ -41,9 +41,8 @@
                         <div class="col-4" wire:ignore>
                             <label class="form-label form--label">Supplier</label>
                             <div class="select--single-wrapper mb-4">
-                                <select class="form-select form--modal-select parent-select" data-modal='#new-purchase'
-                                    data-instance='instance.supplierId' data-child='#purchase-supplier-select-1'
-                                    required>
+                                <select class="form-select form--modal-select" data-modal='#new-purchase'
+                                    data-instance='instance.supplierId' required>
                                     <option value=""></option>
 
                                     @foreach ($suppliers as $supplier)

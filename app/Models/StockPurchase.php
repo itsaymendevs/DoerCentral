@@ -38,7 +38,7 @@ class StockPurchase extends Model
 
 
         // :: get ingredients - initTotalBuyPrice
-        $purchaseIngredients = $this->ingredients();
+        $purchaseIngredients = $this->ingredients()->get();
         $totalBuyPrice = 0;
 
 

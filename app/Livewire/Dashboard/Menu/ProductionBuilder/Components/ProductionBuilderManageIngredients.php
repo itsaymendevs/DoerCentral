@@ -50,7 +50,6 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-    #[On('refreshIngredientViews')]
     public function render()
     {
 

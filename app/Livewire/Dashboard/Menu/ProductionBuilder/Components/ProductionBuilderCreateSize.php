@@ -69,29 +69,33 @@ class ProductionBuilderCreateSize extends Component
 
 
             // :: sizeDoesNotExists
-            $exists = MealSize::find($this->size);
+            $exists = MealSize::where('mealId', $this->meal->id)
+                ->where('sizeId', $this->size)
+                ->first();
 
-            if (! $exists) {
 
-                // 1: makeRequest
+
+
+
+            // 1: makeRequest
+            if (empty($exists)) {
+
                 $response = $this->makeRequest('dashboard/menu/builder/sizes/store', $instance);
-
-
-
-                // :: resetSelect - Values - refresh - alert
-                $this->dispatch('refreshSizeViews');
                 $this->makeAlert('success', $response->message);
 
-
-            } else {
-
-
-                // :: refreshSizeViews toFix
-                $this->dispatch('refreshSizeViews');
-
-
-
             } // end if
+
+
+
+
+
+
+
+            // :: resetSize - resetSelect - refreshViews
+            $this->size = null;
+            $this->dispatch('setSelect', id: '#size-select-1', value: '');
+            $this->dispatch('refreshSizeViews');
+
 
         } // end if
 
@@ -134,7 +138,7 @@ class ProductionBuilderCreateSize extends Component
 
         // :: initTooltips
         $this->dispatch('initTooltips');
-        $this->dispatch('initSelect');
+        $this->dispatch('refreshRawSelect', id: '#size-select-1');
 
 
 

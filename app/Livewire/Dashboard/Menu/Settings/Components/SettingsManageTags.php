@@ -7,10 +7,12 @@ use App\Models\Tag;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class SettingsManageTags extends Component
 {
     use HelperTrait;
+    use WithFileUploads;
 
 
 
@@ -33,7 +35,17 @@ class SettingsManageTags extends Component
 
 
 
-        // 1: makeRequest
+
+        // 1: uploadFile
+        if ($this->instance->imageFile)
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/tags/');
+
+
+
+
+
+
+        // 1.2: makeRequest
         $response = $this->makeRequest('dashboard/menu/settings/tags/store', $this->instance);
 
 
@@ -45,7 +57,9 @@ class SettingsManageTags extends Component
 
         // :: resetForm - resetFilePreview
         $this->instance->reset();
+        $this->dispatch('resetFile', file: 'tag--file-1', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('refreshViews');
+
 
 
 

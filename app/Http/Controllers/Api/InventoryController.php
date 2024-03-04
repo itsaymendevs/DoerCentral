@@ -9,6 +9,7 @@ use App\Models\Ingredient;
 use App\Models\IngredientCategory;
 use App\Models\IngredientGroup;
 use App\Models\StockPurchase;
+use App\Models\StockPurchaseIngredient;
 use App\Models\Supplier;
 use App\Models\SupplierIngredient;
 use App\Traits\HelperTrait;
@@ -1197,15 +1198,37 @@ class InventoryController extends Controller
         $purchase = StockPurchase::find($request->id);
 
 
+        // :: savePrevious
+        $previousSupplier = $purchase->supplierId;
+
+
+
 
         // 1.2: basic
         $purchase->receivingDate = $request->receivingDate;
         $purchase->purchaseID = $request->purchaseID;
         $purchase->remarks = $request->remarks;
 
+        $purchase->supplierId = $request->supplierId;
 
 
         $purchase->save();
+
+
+
+
+
+
+
+
+
+        // ! 2: remove purchaseIngredients
+        if ($previousSupplier != $request->supplierId) {
+
+            StockPurchaseIngredient::where('stockPurchaseId', $purchase->id)->delete();
+
+        } // end if
+
 
 
 
@@ -1301,6 +1324,176 @@ class InventoryController extends Controller
 
 
         return response()->json(['message' => 'Purchase has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function storePurchaseIngredient(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+        // :: dependencies
+        $purchase = StockPurchase::find($request->stockPurchaseId);
+        $supplierIngredient = SupplierIngredient::where('supplierId', $purchase->supplierId)
+            ->where('ingredientId', $request->ingredientId)->first();
+
+
+
+
+
+
+
+
+        // 1: create
+        $purchaseIngredient = new StockPurchaseIngredient();
+
+
+
+
+        // 1.2: basic
+        $purchaseIngredient->ingredientId = $request->ingredientId;
+        $purchaseIngredient->quantity = doubleval($request->quantity);
+
+
+        // 1.3: stockPurchase - buyPrice - unit
+        $purchaseIngredient->stockPurchaseId = $purchase->id;
+        $purchaseIngredient->buyPrice = $supplierIngredient->sellPrice;
+        $purchaseIngredient->unitId = $supplierIngredient->unitId;
+
+
+
+        $purchaseIngredient->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Purchase Ingredient has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updatePurchaseIngredient(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $purchaseIngredient = StockPurchaseIngredient::find($request->id);
+
+
+
+        // 1.2: basic
+        $purchaseIngredient->quantity = doubleval($request->quantity);
+
+
+        $purchaseIngredient->save();
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Purchase Ingredient has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+    public function removePurchaseIngredient(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        StockPurchaseIngredient::find($id)->delete();
+
+
+        return response()->json(['message' => 'Purchase Ingredient has been removed'], 200);
 
 
 

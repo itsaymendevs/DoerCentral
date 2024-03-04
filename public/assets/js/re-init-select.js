@@ -5,6 +5,7 @@ $(document).ready(function () {
             setupValue = $(this).attr("value");
             setupClear = $(this).attr("data-clear") ? true : false;
             setupPlaceholder = $(this).attr("data-placeholder");
+            setupTrigger = $(this).attr("data-trigger") ? true : false;
 
             if (setupValue == undefined) {
                 $(this).select2({
@@ -17,9 +18,10 @@ $(document).ready(function () {
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
                     })
-                    .val(setupValue)
-                    .trigger("change");
+                    .val(setupValue);
             } // end else
+
+            if (setupTrigger) $(this).trigger("change");
         } // end if
     }); // end loop
 
@@ -29,6 +31,7 @@ $(document).ready(function () {
             setupClear = $(this).attr("data-clear") ? true : false;
             setupModal = $(this).attr("data-modal");
             setupPlaceholder = $(this).attr("data-placeholder");
+            setupTrigger = $(this).attr("data-trigger") ? true : false;
 
             if (setupValue == undefined) {
                 $(this).select2({
@@ -43,9 +46,10 @@ $(document).ready(function () {
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
                     })
-                    .val(setupValue)
-                    .trigger("change");
+                    .val(setupValue);
             } // end else
+
+            if (setupTrigger) $(this).trigger("change");
         } // end if
     }); // end loop
 }); // end function
@@ -61,6 +65,7 @@ document.addEventListener(
                 setupValue = $(this).attr("value");
                 setupClear = $(this).attr("data-clear") ? true : false;
                 setupPlaceholder = $(this).attr("data-placeholder");
+                setupTrigger = $(this).attr("data-trigger") ? true : false;
 
                 if (setupValue == undefined) {
                     $(this).select2({
@@ -75,9 +80,10 @@ document.addEventListener(
                                 ? setupPlaceholder
                                 : "",
                         })
-                        .val(setupValue)
-                        .trigger("change");
+                        .val(setupValue);
                 } // end else
+
+                if (setupTrigger) $(this).trigger("change");
             }); // end loop
 
             $(".form--modal-select").each(function () {
@@ -85,6 +91,7 @@ document.addEventListener(
                 setupClear = $(this).attr("data-clear") ? true : false;
                 setupModal = $(this).attr("data-modal");
                 setupPlaceholder = $(this).attr("data-placeholder");
+                setupTrigger = $(this).attr("data-trigger") ? true : false;
 
                 if (setupValue == undefined) {
                     $(this).select2({
@@ -101,9 +108,10 @@ document.addEventListener(
                                 ? setupPlaceholder
                                 : "",
                         })
-                        .val(setupValue)
-                        .trigger("change");
+                        .val(setupValue);
                 } // end else
+
+                if (setupTrigger) $(this).trigger("change");
             }); // end loop
         }); // end function
     },
@@ -299,7 +307,6 @@ window.addEventListener("refreshRawSelect", (event) => {
                 allowClear: setupClear,
                 placeholder: setupPlaceholder ? setupPlaceholder : "",
             })
-            .val(setupValue)
-            .trigger("change");
+            .val(setupValue);
     });
 });

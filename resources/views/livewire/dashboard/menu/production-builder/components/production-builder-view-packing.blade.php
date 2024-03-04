@@ -1,28 +1,26 @@
 {{-- singleRow --}}
 <tr>
 
-    {{-- imageFile --}}
-    <td class="fs-6 fw-bold">
-        <img class="form--table-image" src="{{ asset('storage/menu/tags/' . $instance->imageFileName) }}" />
-    </td>
-
 
     {{-- name --}}
-    <td class="fs-6">
-        <input class="form-control form--input form--table-input" type="text" wire:model='instance.name' required
-            wire:change='update' />
-    </td>
+    <td class="fw-bold">{{ $instance->id }}</td>
+    <td class="fw-bold">{{ $instance->name }}</td>
 
 
-    {{-- no. of meals --}}
-    <td class="fs-6">-</td>
+    {{-- amount --}}
+    <td>{{ $instance->amount }}</td>
+
+
+    {{-- remarks --}}
+    <td class="scale--3">{{ $instance->remarks }}</td>
+
 
 
     {{-- remove --}}
     <td>
         <div class="d-flex align-items-center justify-content-center">
             <button class="btn btn--raw-icon inline remove scale--3" type="button"
-                wire:click='remove({{ $instance->id }})' wire:loading.attr='disabled' wire:target='remove, update'>
+                wire:click='remove({{ $instance->id }})' wire:loading.attr='disabled'>
                 <svg class="bi bi-trash-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                     fill="currentColor" viewBox="0 0 16 16">
                     <path
@@ -35,4 +33,4 @@
 
 
 </tr>
-{{-- endSingleRow --}}
+{{-- end singleRow --}}

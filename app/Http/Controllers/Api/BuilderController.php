@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Meal;
 use App\Models\MealAvailableType;
 use App\Models\MealInstruction;
+use App\Models\MealPacking;
+use App\Models\MealServing;
 use App\Models\MealSize;
 use App\Models\MealTag;
 use Illuminate\Http\Request;
@@ -76,6 +78,27 @@ class BuilderController extends Controller
             $mealTag->save();
 
         } // end loop
+
+
+
+
+
+
+
+
+
+
+
+        // 3: create mealServing => empty
+        $serving = new MealServing();
+
+        $serving->mealId = $meal->id;
+
+        $serving->save();
+
+
+
+
 
 
 
@@ -237,6 +260,12 @@ class BuilderController extends Controller
 
 
     // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+
+
+
 
 
 
@@ -344,6 +373,10 @@ class BuilderController extends Controller
 
 
     // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+
 
 
 
@@ -398,6 +431,12 @@ class BuilderController extends Controller
 
 
     // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+
+
+
 
 
 
@@ -450,6 +489,13 @@ class BuilderController extends Controller
 
 
     // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+
+
+
+
 
 
 
@@ -522,7 +568,7 @@ class BuilderController extends Controller
 
 
 
-        // 1: create
+        // 1: get instance
         $instruction = MealInstruction::find($request->id);
 
         $instruction->content = $request->instruction;
@@ -551,12 +597,12 @@ class BuilderController extends Controller
 
 
 
+    // -------------------------------------------------------------
 
 
 
 
 
-    // --------------------------------------------------------------------------------------------
 
 
 
@@ -584,6 +630,226 @@ class BuilderController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function storeBuilderPacking(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: create
+        $packing = new MealPacking();
+
+        $packing->name = $request->name;
+        $packing->amount = $request->amount;
+        $packing->remarks = $request->remarks;
+
+
+        // 1.2: meal
+        $packing->mealId = $request->mealId;
+
+
+
+
+        $packing->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Packing has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateBuilderPacking(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: get instance
+        $packing = MealPacking::find($request->id);
+
+        $packing->name = $request->name;
+        $packing->amount = $request->amount;
+        $packing->remarks = $request->remarks;
+
+
+
+        $packing->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Packing has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function removeBuilderPacking(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        MealPacking::find($id)->delete();
+
+
+        return response()->json(['message' => 'Packing has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function updateBuilderServing(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: get instance
+        $serving = MealServing::find($request->id);
+
+        $serving->desc = $request->desc ?? null;
+
+        $serving->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Serving Details has been updated'], 200);
+
+
+
+
+    } // end function
 
 
 

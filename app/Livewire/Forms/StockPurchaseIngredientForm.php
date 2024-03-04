@@ -5,18 +5,20 @@ namespace App\Livewire\Forms;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
 
-class TagForm extends Form
+class StockPurchaseIngredientForm extends Form
 {
 
     // :: variables
     #[Rule('required', as: 'instanceError')]
-    public $name;
+    public $quantity, $ingredientId, $stockPurchaseId;
 
-    public $id, $imageFile;
+
+    public $id, $buyPrice, $unitId;
+
 
 
     // :: helpers
-    public $imageFileName;
+    public $unitName;
 
 
 

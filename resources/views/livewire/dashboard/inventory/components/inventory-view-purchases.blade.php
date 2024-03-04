@@ -81,7 +81,7 @@
 
                         {{-- loop - purchase --}}
                         @foreach ($purchases as $purchase)
-                        <tr>
+                        <tr key='{{ now() }}'>
 
 
 
@@ -96,8 +96,8 @@
                             <td class="scale--3">
                                 <div class="d-flex align-items-center justify-content-center">
                                     <button class="btn btn--raw-icon inline view scale--3"
-                                        wire:click='viewIngredients({{ $purchase->id }})'
-                                        data-bs-target="#view-purchase" data-bs-toggle="modal" type="button">
+                                        wire:click='manageIngredients({{ $purchase->id }})'
+                                        data-bs-target="#purchase-ingredients" data-bs-toggle="modal" type="button">
                                         <svg class="bi bi-eye-fill" xmlns="http://www.w3.org/2000/svg" width="1em"
                                             height="1em" fill="currentColor" viewBox="0 0 16 16">
                                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
@@ -157,7 +157,8 @@
 
                                     {{-- 1: edit --}}
                                     <button class="btn btn--raw-icon inline edit scale--3" type="button"
-                                        wire:click='edit({{ $purchase->id }})'>
+                                        wire:click='edit({{ $purchase->id }})' data-bs-toggle="modal"
+                                        data-bs-target="#edit-purchase" @if ($purchase->isConfirmed) disabled @endif>
                                         <svg class="bi bi-pencil-fill" xmlns="http://www.w3.org/2000/svg" width="1em"
                                             height="1em" fill="currentColor" viewBox="0 0 16 16">
                                             <path
@@ -172,7 +173,8 @@
 
                                     {{-- remove --}}
                                     <button class="btn btn--raw-icon inline remove scale--3" type="button"
-                                        wire:click='remove({{ $purchase->id }})' wire:loading.attr='disabled'>
+                                        wire:click='remove({{ $purchase->id }})' @if ($purchase->isConfirmed) disabled
+                                        @endif wire:loading.attr='disabled' >
                                         <svg class="bi bi-trash-fill" xmlns="http://www.w3.org/2000/svg" width="1em"
                                             height="1em" fill="currentColor" viewBox="0 0 16 16">
                                             <path

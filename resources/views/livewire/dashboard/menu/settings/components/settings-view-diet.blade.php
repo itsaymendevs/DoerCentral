@@ -25,7 +25,7 @@
     <td>
         <div class="d-flex align-items-center justify-content-center">
             <button class="btn btn--raw-icon inline remove scale--3" type="button"
-                wire:click='remove({{ $instance->id }})'>
+                wire:click='remove({{ $instance->id }})' wire:loading.attr='disabled' wire:target='remove, update'>
                 <svg class="bi bi-trash-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                     fill="currentColor" viewBox="0 0 16 16">
                     <path

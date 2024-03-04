@@ -39,7 +39,7 @@ class BuilderController extends Controller
 
 
         // 1.2: isVegetarian - diet - cuisine
-        $meal->isVegetarian = $request->isVegetarian === '1' ? true : false;
+        $meal->isVegetarian = $request->isVegetarian ? $request->isVegetarian === '1' ? true : false : null;
         $meal->cuisineId = $request->cuisineId;
         $meal->dietId = $request->dietId;
 
@@ -132,7 +132,7 @@ class BuilderController extends Controller
 
 
         // 1.2: isVegetarian - diet - cuisine
-        $meal->isVegetarian = $request->isVegetarian === '1' ? true : false;
+        $meal->isVegetarian = $request->isVegetarian ? $request->isVegetarian === '1' ? true : false : null;
         $meal->cuisineId = $request->cuisineId;
         $meal->dietId = $request->dietId;
 
@@ -142,8 +142,8 @@ class BuilderController extends Controller
         // 1.3: imageFiles
         $meal->imageFile = $request->imageFileName;
         $meal->secondImageFile = $request->secondImageFileName;
-        $meal->thirdImageFile = $request->thirdImageFileName ? $request->thirdImageFileName : null;
-        $meal->fourthImageFile = $request->fourthImageFileName ? $request->fourthImageFileName : null;
+        $meal->thirdImageFile = $request->thirdImageFileName ?? $request->thirdImageFileName;
+        $meal->fourthImageFile = $request->fourthImageFileName ?? $request->fourthImageFileName;
 
 
 
@@ -155,7 +155,7 @@ class BuilderController extends Controller
 
 
         // 2: tags - removePrevious
-        $meal->tags->count() > 0 ? MealTag::where('mealId', $meal->id)?->delete() : null;
+        MealTag::where('mealId', $meal->id)?->delete();
 
 
         if ($request->tags) {

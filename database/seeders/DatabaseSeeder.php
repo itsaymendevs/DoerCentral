@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
             ContainerSeeder::class,
             UnitSeeder::class,
 
+            DietSeeder::class,
+            CuisineSeeder::class,
+            TagSeeder::class,
+
         ]);
 
     } //end function

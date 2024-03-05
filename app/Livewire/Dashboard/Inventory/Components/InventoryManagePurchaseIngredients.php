@@ -60,7 +60,7 @@ class InventoryManagePurchaseIngredients extends Component
 
 
         // 1.2: get supplierIngredient - then Unit
-        if ($this->instance?->ingredientId) {
+        if ($this->instance?->ingredientId && $this->purchase?->supplierId) {
 
             $supplierIngredient = SupplierIngredient::where('supplierId', $this->purchase->supplierId)
                 ->where('ingredientId', $this->instance->ingredientId)

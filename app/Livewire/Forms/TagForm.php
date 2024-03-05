@@ -10,9 +10,9 @@ class TagForm extends Form
 
     // :: variables
     #[Rule('required', as: 'instanceError')]
-    public $name;
+    public $name, $imageFile;
 
-    public $id, $imageFile;
+    public $id;
 
 
     // :: helpers

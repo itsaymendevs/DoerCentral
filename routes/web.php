@@ -36,6 +36,20 @@ Route::get('/storage-link', function () {
 
 
 
+// ::LivewireServerDeployment in subRoute
+// Livewire::setUpdateRoute(function ($handle) {
+//     return Route::post('/doer-client/public/livewire/update', $handle);
+// });
+
+
+// Livewire::setScriptRoute(function ($handle) {
+//     return Route::get('/doer-client/public/livewire/livewire.js', $handle);
+// });
+
+
+
+
+
 
 
 // --------------------------------------------------------------------------

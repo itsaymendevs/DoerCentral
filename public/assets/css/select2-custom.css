@@ -23,15 +23,15 @@
 .select2-container--default
     .select2-selection--single
     .select2-selection__clear {
-    margin-right: 24px !important;
-    height: 25.5px !important;
+    margin-right: 10px !important;
+    height: 26px !important;
 }
 .select2-container--default
     .select2-selection--single
     .select2-selection__clear
     span {
     color: var(--bg-golden) !important;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .form-select:disabled {

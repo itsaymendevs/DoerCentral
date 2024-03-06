@@ -40,11 +40,14 @@
                 <div class="btn-group btn--swtich-group me-3" role="group" style="margin-bottom: 10px">
                     <button class="btn active btn--switch-view fw-bold" data-view="standard" data-target="plans-column"
                         data-instance="1" type="button">
-                        S</button><button class="btn btn--switch-view fw-bold" data-view="master"
-                        data-target="plans-column" data-instance="1" type="button">
+                        S</button>
+                    <button class="btn btn--switch-view fw-bold" disabled data-view="master" data-target="plans-column"
+                        data-instance="1" type="button">
                         M
                     </button>
                 </div>
+
+
 
 
                 {{-- counter --}}
@@ -126,7 +129,7 @@
 
 
                                 {{-- sizes --}}
-                                <div class="col-12 d-none">
+                                <div class="col-12">
                                     <div class="tabs--wrap">
 
                                         {{-- tabLinks --}}
@@ -136,8 +139,10 @@
                                             {{-- loop - sizes --}}
                                             @foreach ($meal->sizes as $mealSize)
                                             <li class="nav-item" role="presentation">
-                                                <a class="nav-link" data-bs-toggle="tab" href="#tab-1-{{ $meal->id }}"
-                                                    role="tab">{{ $mealSize->size->name }}</a>
+                                                <a class="nav-link @if ($meal->sizes->first()->id == $mealSize->id) active @endif"
+                                                    data-bs-toggle="tab" href="#tab-{{ $meal->id }}-{{ $mealSize->id }}"
+                                                    role="tab">{{
+                                                    $mealSize->size->name }}</a>
                                             </li>
                                             @endforeach
                                             {{-- end loop --}}
@@ -164,9 +169,10 @@
 
                                             {{-- loop - sizesMacros --}}
                                             @foreach ($meal->sizes as $mealSize)
-                                            <div class="tab-pane active no--card py-0 px-3" id="tab-1-{{ $meal->id }}"
-                                                role="tabpanel">
+                                            <div class="tab-pane no--card py-0 px-3 @if ($meal->sizes->first()->id == $mealSize->id) active @endif"
+                                                id="tab-{{ $meal->id }}-{{ $mealSize->id }}" role="tabpanel">
                                                 <div class="row">
+
 
                                                     {{-- calories --}}
                                                     <div class="col-3 text-end px-2">

@@ -81,8 +81,8 @@
 }
 
 .select2-dropdown {
-    background-color: white;
-    border: 1px solid #aaa;
+    background-color: transparent !important;
+    border: 1px solid var(--input-bg);
     border-radius: var(--input-radius);
     box-sizing: border-box;
     display: block;

@@ -54,8 +54,11 @@ class InventoryCreateIngredient extends Component
 
         // :: refresh - closeModal
         $this->instance->reset();
+        $this->dispatch('resetSelect');
         $this->dispatch('refreshViews');
+        $this->dispatch('resetFile', file: 'ingredient--file-1', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('closeModal', modal: '#new-ingredient .btn--close');
+
 
 
         $this->makeAlert('success', $response?->message);

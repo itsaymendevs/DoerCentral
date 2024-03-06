@@ -15,7 +15,7 @@ if (window.innerWidth < 768) {
 document.addEventListener(
     "DOMContentLoaded",
     function () {
-        AOS && AOS.init();
+        AOS && AOS.init({ once: true });
 
         var tooltipTriggerList = [].slice.call(
             document.querySelectorAll("[data-bss-tooltip]")
@@ -33,7 +33,7 @@ document.addEventListener(
     "livewire:navigated",
     function () {
         $(document).ready(function () {
-            AOS && AOS.init();
+            AOS && AOS.init({ once: true });
 
             var tooltipTriggerList = [].slice.call(
                 document.querySelectorAll("[data-bss-tooltip]")

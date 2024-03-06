@@ -17,12 +17,16 @@ return new class extends Migration {
             $table->bigInteger('subRecipeId')->unsigned()->nullable();
             $table->foreign('subRecipeId')->references('id')->on('meals')->onDelete('cascade');
 
-
+            $table->string('type', 100)->nullable();
             $table->double('amount', 15, 2)->nullable()->default(0);
             $table->string('remarks', 255)->nullable();
 
 
 
+
+            // 1.2: groupToken - isRemovable
+            $table->string('groupToken', 100)->nullable();
+            $table->boolean('isRemovable')->nullable()->default(0);
 
 
 

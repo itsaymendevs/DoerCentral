@@ -64,7 +64,7 @@
 
                     {{-- loop - mealSizes --}}
                     @foreach ($meal->sizes as $mealSize)
-                    <button class="btn fs-13 btn--switch-regular" data-instance='mealSizes'
+                    <button wire:ignore.self class="btn fs-13 btn--switch-regular" data-instance='mealSizes'
                         data-view='size-{{ $mealSize->size->id }}' type="button">{{ $mealSize->size->name }}</button>
                     @endforeach
                     {{-- end loop --}}
@@ -84,7 +84,7 @@
 
         {{-- loop - sizeMacros From sizeMacros --}}
         @foreach ($meal->sizes as $mealSize)
-        <div class="row d-none" data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}'>
+        <div class="row d-none" data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
 
 
             {{-- 1: calories --}}

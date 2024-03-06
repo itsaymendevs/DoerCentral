@@ -2,15 +2,24 @@
 
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
-use App\Livewire\Forms\MealForm;
-use App\Models\Container;
+use App\Livewire\Forms\MealSizeForm;
+use App\Models\Ingredient;
 use App\Models\Meal;
-use App\Models\Size;
+use App\Models\MealDrink;
+use App\Models\MealSauce;
+use App\Models\MealSide;
+use App\Models\MealSize;
+use App\Models\MealSnack;
+use App\Models\MealSubRecipe;
+use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class ProductionBuilderManageIngredients extends Component
 {
+
+    use HelperTrait;
 
 
 
@@ -27,12 +36,131 @@ class ProductionBuilderManageIngredients extends Component
     {
 
         // 1: get instance
+        $this->refreshInstance($id);
+
+
+    } // end function
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+    #[On('refreshMealSizeIngredients')]
+    public function refreshInstance($id)
+    {
+
+
         $this->meal = Meal::find($id);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+    public function append($type)
+    {
+
+
+
+        // :: create instance
+        $instance = new stdClass();
+        $instance->mealId = $this->meal?->id;
+        $instance->type = $type;
+
+
+
+
+
+        // :: notEmpty
+        if ($type) {
+
+
+            // 1: makeRequest
+            $response = $this->makeRequest('dashboard/menu/builder/ingredients/store', $instance);
+
+
+
+
+            // :: resetPage / openTab - redirectRoute - alert
+            return $this->redirect(route('dashboard.menuProductionBuilder', [$this->meal->id]) . '#tab-2', navigate: true);
+
+
+
+        } // end if
+
+
 
 
 
 
     } // end function
+
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+
+    public function updateAfterCookMacros($macroType, $value, $mealSizeId)
+    {
+
+
+
+
+
+        // :: create instance
+        $instance = new stdClass();
+        $instance->macroType = $macroType;
+        $instance->value = $value;
+        $instance->mealSizeId = $mealSizeId;
+
+
+
+
+
+        // :: notEmpty
+        if ($macroType && $value && $mealSizeId) {
+
+
+            // 1: makeRequest
+            $response = $this->makeRequest('dashboard/menu/builder/ingredients/macros/update', $instance);
+
+
+
+            // :: render - alert
+            $this->makeAlert('success', $response->message);
+
+
+
+        } // end if
+
+
+
+
+
+    } // end function
+
 
 
 
@@ -54,6 +182,9 @@ class ProductionBuilderManageIngredients extends Component
     {
 
 
+        // 1: dependencies
+        $mealSize = MealSize::where('mealId', $this->meal->id)->first();
+
 
 
         // :: initTooltips
@@ -61,10 +192,11 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-        return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-ingredients');
+        return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-ingredients', compact('mealSize'));
 
 
     } // end function
 
 
 } // end class
+

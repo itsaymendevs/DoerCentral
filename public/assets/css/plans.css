@@ -30,12 +30,13 @@
     padding-bottom: 1px;
     margin-bottom: 6px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .tabs--wrap .nav-tabs.for-sizes li {
-    margin-right: 0px;
-    width: 19%;
+    width: 17%;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
     text-align: center;
 }
 
@@ -43,7 +44,7 @@
     padding: 6px 0px;
     border: none;
     border-radius: var(--radius) var(--radius) 0px 0px;
-    font-size: 12px;
+    font-size: 14px;
     transform: scale(1);
     width: 100%;
 }
@@ -193,7 +194,7 @@
     background-color: var(--ingredient-color) !important;
 }
 
-.tr--subrecipe {
+.tr--sub-recipe {
     background-color: var(--subrecipe-color) !important;
 }
 

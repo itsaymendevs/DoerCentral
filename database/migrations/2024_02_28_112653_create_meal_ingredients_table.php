@@ -19,11 +19,16 @@ return new class extends Migration {
             $table->foreign('ingredientId')->references('id')->on('ingredients')->onDelete('cascade');
 
 
+            $table->string('type', 100)->nullable();
             $table->double('amount', 15, 2)->nullable()->default(0);
-            $table->string('remark', 255)->nullable();
+            $table->string('remarks', 255)->nullable();
 
 
 
+
+            // 1.2: groupToken - isRemovable
+            $table->string('groupToken', 100)->nullable();
+            $table->boolean('isRemovable')->nullable()->default(0);
 
 
 

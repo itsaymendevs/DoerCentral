@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Meal;
 use App\Models\MealAvailableType;
+use App\Models\MealDrink;
+use App\Models\MealIngredient;
 use App\Models\MealInstruction;
 use App\Models\MealPacking;
+use App\Models\MealSauce;
 use App\Models\MealServing;
+use App\Models\MealSide;
 use App\Models\MealSize;
+use App\Models\MealSnack;
+use App\Models\MealSubRecipe;
 use App\Models\MealTag;
 use Illuminate\Http\Request;
 
@@ -405,6 +411,41 @@ class BuilderController extends Controller
 
 
         $mealSize->save();
+
+
+
+
+
+
+
+        // ------------------------
+        // ------------------------
+
+
+
+
+
+        // 2: checkPreviousSizes
+        // $previousMealSize = MealSize::where('id', '!=', $mealSize->id)->first();
+
+        // if ($previousMealSize) {
+
+
+
+        //     // 2.1: ingredients
+        //     foreach ($previousMealSize->ingredients as $previousMealSizeIngredient) {
+
+
+        //         $mealSizeIngredient = new MealIngredient();
+
+        //         $mealSizeIngredient->mealId = $previousMealSizeIngredient->mealId;
+
+        //     } // end loop
+
+
+
+        // } // end if
+
 
 
 
@@ -850,6 +891,470 @@ class BuilderController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function storeBuilderIngredient(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+        // :: getMeal - mealSizes - groupToken
+        $meal = Meal::find($request->mealId);
+        $groupToken = date('dmYhisA');
+
+
+
+
+
+        // 1: loop - mealSizes
+        foreach ($meal->sizes as $mealSize) {
+
+
+
+            // 1.2: create
+            $item = null;
+
+
+
+
+
+            // 1.3: itemType - Ingredient / Sub-recipe / Snack / Sauce / Side / Drink
+            $request->type == 'Ingredient' ? $item = new MealIngredient() : null;
+            $request->type == 'Sub-recipe' ? $item = new MealSubRecipe() : null;
+            $request->type == 'Snack' ? $item = new MealSnack() : null;
+            $request->type == 'Sauce' ? $item = new MealSauce() : null;
+            $request->type == 'Side' ? $item = new MealSide() : null;
+            $request->type == 'Drink' ? $item = new MealDrink() : null;
+
+
+
+
+
+            // 1.4: meal - mealSize - groupToken
+            $item->mealId = $meal->id;
+            $item->mealSizeId = $mealSize->id;
+            $item->groupToken = $groupToken;
+
+
+            $item->save();
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+        return response()->json(['message' => $meal->type . ' ' . $request->type . ' has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function updateBuilderAfterCookMacros(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+        // 1: get instance
+        $mealSize = MealSize::find($request->mealSizeId);
+
+
+
+        $request->macroType == 'Calories' ? $mealSize->afterCookCalories = $request->value : null;
+        $request->macroType == 'Proteins' ? $mealSize->afterCookProteins = $request->value : null;
+        $request->macroType == 'Carbs' ? $mealSize->afterCookCarbs = $request->value : null;
+        $request->macroType == 'Fats' ? $mealSize->afterCookFats = $request->value : null;
+
+
+        $mealSize->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Macros has been created'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateBuilderIngredientDetails(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+        // 1: get instance
+        $item = [];
+
+
+
+
+        // 1.2: type - Ingredient / Sub-recipe / Snack / Sauce / Side / Drink
+        $request->type == 'Ingredient' ? $item = MealIngredient::find($request->id) : null;
+        $request->type == 'Sub-recipe' ? $item = MealSubRecipe::find($request->id) : null;
+        $request->type == 'Snack' ? $item = MealSnack::find($request->id) : null;
+        $request->type == 'Sauce' ? $item = MealSauce::find($request->id) : null;
+        $request->type == 'Side' ? $item = MealSide::find($request->id) : null;
+        $request->type == 'Drink' ? $item = MealDrink::find($request->id) : null;
+
+
+
+
+
+
+
+
+        // 1.3: amount - remarks
+        $item->amount = $request->amount ?? null;
+        $item->remarks = $request->remarks ?? null;
+        $item->isRemovable = $request->isRemovable === true ? true : false;
+        $item->type = $request->itemType ?? null;
+
+
+
+
+        $item->save();
+
+
+
+
+
+
+        return response()->json(['message' => $request->type . ' has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateBuilderIngredient(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+
+        // 1: type - Ingredient
+        if ($request->type == 'Ingredient') {
+
+
+            // :: previousIngredient
+            $groupToken = MealIngredient::find($request->id)->groupToken;
+
+
+            $items = MealIngredient::where('groupToken', $groupToken)->get();
+
+
+            foreach ($items as $item) {
+
+                $item->ingredientId = $request->itemId;
+                $item->type = $request->itemType ?? null;
+
+                $item->save();
+
+            } // end loop
+
+
+
+        } // end if
+
+
+
+
+
+
+        // 1.2: type - subRecipe
+        if ($request->type == 'Sub-recipe') {
+
+
+            // :: previousIngredient
+            $groupToken = MealSubRecipe::find($request->id)->groupToken;
+
+
+            $items = MealSubRecipe::where('groupToken', $groupToken)->get();
+
+            foreach ($items as $item) {
+
+                $item->subRecipeId = $request->itemId;
+                $item->type = $request->itemType ?? null;
+
+                $item->save();
+
+            } // end loop
+
+
+        } // end if
+
+
+
+
+
+
+
+        // 1.3: type - snack
+        if ($request->type == 'Snack') {
+
+
+            // :: previousIngredient
+            $groupToken = MealSnack::find($request->id)->groupToken;
+
+
+            $items = MealSnack::where('groupToken', $groupToken)->get();
+
+            foreach ($items as $item) {
+
+                $item->snackId = $request->itemId;
+                $item->type = $request->itemType ?? null;
+
+                $item->save();
+
+            } // end loop
+
+
+
+        } // end if
+
+
+
+
+
+
+
+        // 1.4: type - sauce
+        if ($request->type == 'Sauce') {
+
+            // :: previousIngredient
+            $groupToken = MealSauce::find($request->id)->groupToken;
+
+
+            $items = MealSauce::where('groupToken', $groupToken)->get();
+
+            foreach ($items as $item) {
+
+                $item->sauceId = $request->itemId;
+                $item->type = $request->itemType ?? null;
+
+                $item->save();
+
+            } // end loop
+
+
+
+        } // end if
+
+
+
+
+
+        // 1.5: type - side
+        if ($request->type == 'Side') {
+
+
+            // :: previousIngredient
+            $groupToken = MealSide::find($request->id)->groupToken;
+
+
+            $items = MealSide::where('groupToken', $groupToken)->get();
+
+            foreach ($items as $item) {
+
+                $item->sideId = $request->itemId;
+                $item->type = $request->itemType ?? null;
+
+
+                $item->save();
+
+            } // end loop
+
+
+        } // end if
+
+
+
+
+
+        // 1.6: type - drink
+        if ($request->type == 'Drink') {
+
+
+
+            // :: previousIngredient
+            $groupToken = MealDrink::find($request->id)->groupToken;
+
+
+            $items = MealDrink::where('groupToken', $groupToken)->get();
+
+            foreach ($items as $item) {
+
+                $item->drinkId = $request->itemId;
+                $item->type = $request->itemType ?? null;
+
+                $item->save();
+
+            } // end loop
+
+
+
+        } // end if
+
+
+
+
+
+
+
+
+        return response()->json(['message' => $request->type . ' has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

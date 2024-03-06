@@ -511,10 +511,19 @@ Route::post('/dashboard/menu/builder/general/update', [BuilderController::class,
 
 
 
+// ---------
+
+
+
 
 // 9.3: menu - builder - ingredients - itemTypes / mealTypes update
 Route::post('/dashboard/menu/builder/meal-types/update', [BuilderController::class, 'updateBuilderMealTypes']);
 
+
+
+
+
+// ---------
 
 
 
@@ -524,6 +533,8 @@ Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 's
 
 
 
+// ---------
+
 
 
 // 9.5: menu - builder - containers - updateContainer
@@ -531,7 +542,41 @@ Route::post('/dashboard/menu/builder/containers/update', [BuilderController::cla
 
 
 
-// 9.6: menu - builder - instructions - storeInstruction - update - remove
+
+// ---------
+
+
+
+// 9.6: menu - builder - ingredients - storeIngredient - update - remove
+Route::post('/dashboard/menu/builder/ingredients/store', [BuilderController::class, 'storeBuilderIngredient']);
+
+
+Route::post('/dashboard/menu/builder/ingredients/update', [BuilderController::class, 'updateBuilderIngredient']);
+
+
+
+Route::post('/dashboard/menu/builder/ingredients/details/update', [BuilderController::class, 'updateBuilderIngredientDetails']);
+
+
+
+
+
+
+// 9.6.2: afterCookMacros - update
+Route::post('/dashboard/menu/builder/ingredients/macros/update', [BuilderController::class, 'updateBuilderAfterCookMacros']);
+
+
+
+
+
+
+// ---------
+
+
+
+
+
+// 9.8: menu - builder - instructions - storeInstruction - update - remove
 Route::post('/dashboard/menu/builder/instructions/store', [BuilderController::class, 'storeBuilderInstruction']);
 Route::post('/dashboard/menu/builder/instructions/update', [BuilderController::class, 'updateBuilderInstruction']);
 
@@ -543,6 +588,10 @@ Route::post('/dashboard/menu/builder/instructions/remove', [BuilderController::c
 
 
 
+// ---------
+
+
+
 
 
 // 9.9: menu - builder - packings - storePacking - update - remove
@@ -551,6 +600,10 @@ Route::post('/dashboard/menu/builder/packings/update', [BuilderController::class
 
 Route::post('/dashboard/menu/builder/packings/remove', [BuilderController::class, 'removeBuilderPacking']);
 
+
+
+
+// ---------
 
 
 

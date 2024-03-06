@@ -90,13 +90,13 @@
 
 
 
-                        {{-- 2: ingredientsTab --}}
+                        {{-- 2: recipeTab / ingredientsTab --}}
                         <div class="tab-pane no--card" id="tab-2" role="tabpanel">
 
 
 
                             {{-- :: now refreshItConstantly --}}
-                            <livewire:dashboard.menu.production-builder.components.production-builder-manage-ingredients
+                            <livewire:dashboard.menu.production-builder.components.production-builder-manage-recipe
                                 :id='$meal->id' />
 
                         </div>

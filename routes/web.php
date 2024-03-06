@@ -66,6 +66,7 @@ Route::get('/storage-link', function () {
 
 
 // 1: Login
+Route::get('/', Login::class)->name('dashboard.login');
 Route::get('login', Login::class)->name('dashboard.login');
 
 

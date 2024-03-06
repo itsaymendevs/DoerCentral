@@ -91,10 +91,13 @@ class ProductionBuilderCreateSize extends Component
 
 
 
-            // :: resetSize - resetSelect - refreshViews
+            // :: resetSize - resetSelect - refreshViews - refreshMealSizeIngredients
             $this->size = null;
             $this->dispatch('setSelect', id: '#size-select-1', value: '');
+
             $this->dispatch('refreshSizeViews');
+            $this->dispatch('refreshMealSizeIngredients', id: $this->meal->id);
+
 
 
         } // end if

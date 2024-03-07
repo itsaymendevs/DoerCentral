@@ -197,7 +197,7 @@ trait HelperTrait
 
 
         // 1: makeFileName - upload
-        $fileName = date('h.iA') . $instanceFile->getClientOriginalName();
+        $fileName = date('h.iA') . rand(10, 10000) . $instanceFile->getClientOriginalName();
         $instanceFile->storeAs($path, $fileName, 'public');
 
 

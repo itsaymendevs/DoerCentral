@@ -16,7 +16,7 @@ return new class extends Migration {
 
             // 1: general
             $table->string('weekday', 100)->nullable();
-            $table->string('isActive', 100)->nullable()->default(1);
+            $table->string('isActive', 100)->nullable()->default(0);
 
             $table->text('message')->nullable();
 

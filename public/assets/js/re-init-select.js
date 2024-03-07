@@ -14,11 +14,11 @@ $(document).ready(function () {
                 });
             } else {
                 $(this)
+                    .val(setupValue)
                     .select2({
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
-                    })
-                    .val(setupValue);
+                    });
             } // end else
 
             if (setupTrigger) $(this).trigger("change");
@@ -41,12 +41,12 @@ $(document).ready(function () {
                 });
             } else {
                 $(this)
+                    .val(setupValue)
                     .select2({
                         dropdownParent: $(setupModal),
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
-                    })
-                    .val(setupValue);
+                    });
             } // end else
 
             if (setupTrigger) $(this).trigger("change");
@@ -74,13 +74,13 @@ document.addEventListener(
                     });
                 } else {
                     $(this)
+                        .val(setupValue)
                         .select2({
                             allowClear: setupClear,
                             placeholder: setupPlaceholder
                                 ? setupPlaceholder
                                 : "",
-                        })
-                        .val(setupValue);
+                        });
                 } // end else
 
                 if (setupTrigger) $(this).trigger("change");
@@ -101,14 +101,14 @@ document.addEventListener(
                     });
                 } else {
                     $(this)
+                        .val(setupValue)
                         .select2({
                             dropdownParent: $(setupModal),
                             allowClear: setupClear,
                             placeholder: setupPlaceholder
                                 ? setupPlaceholder
                                 : "",
-                        })
-                        .val(setupValue);
+                        });
                 } // end else
 
                 if (setupTrigger) $(this).trigger("change");
@@ -127,6 +127,7 @@ window.addEventListener("initSelect", (event) => {
             setupValue = $(this).attr("value");
             setupClear = $(this).attr("data-clear") ? true : false;
             setupPlaceholder = $(this).attr("data-placeholder");
+            setupTrigger = $(this).attr("data-trigger") ? true : false;
 
             if (setupValue == undefined) {
                 $(this).select2({
@@ -135,13 +136,14 @@ window.addEventListener("initSelect", (event) => {
                 });
             } else {
                 $(this)
+                    .val(setupValue)
                     .select2({
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
-                    })
-                    .val(setupValue)
-                    .trigger("change");
+                    });
             } // end else
+
+            if (setupTrigger) $(this).trigger("change");
         }); // end loop
 
         $(".form--modal-select").each(function () {
@@ -149,6 +151,7 @@ window.addEventListener("initSelect", (event) => {
             setupClear = $(this).attr("data-clear") ? true : false;
             setupModal = $(this).attr("data-modal");
             setupPlaceholder = $(this).attr("data-placeholder");
+            setupTrigger = $(this).attr("data-trigger") ? true : false;
 
             if (setupValue == undefined) {
                 $(this).select2({
@@ -158,14 +161,15 @@ window.addEventListener("initSelect", (event) => {
                 });
             } else {
                 $(this)
+                    .val(setupValue)
                     .select2({
                         dropdownParent: setupModal,
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
-                    })
-                    .val(setupValue)
-                    .trigger("change");
+                    });
             } // end else
+
+            if (setupTrigger) $(this).trigger("change");
         }); // end loop
     });
 });
@@ -179,6 +183,7 @@ window.addEventListener("initChildSelect", (event) => {
             if (!$(this).hasClass("select2-hidden-accessible")) {
                 setupClear = $(this).attr("data-clear") ? true : false;
                 setupPlaceholder = $(this).attr("data-placeholder");
+                setupTrigger = $(this).attr("data-trigger") ? true : false;
 
                 $(this).select2({
                     allowClear: setupClear,
@@ -192,6 +197,7 @@ window.addEventListener("initChildSelect", (event) => {
                 setupModal = $(this).attr("data-modal");
                 setupClear = $(this).attr("data-clear") ? true : false;
                 setupPlaceholder = $(this).attr("data-placeholder");
+                setupTrigger = $(this).attr("data-trigger") ? true : false;
 
                 $(this).select2({
                     dropdownParent: setupModal,
@@ -226,6 +232,7 @@ window.addEventListener("setSelect", (event) => {
         setupClear = $(selectId).attr("data-clear") ? true : false;
         setupModal = $(selectId).attr("data-modal");
         setupPlaceholder = $(selectId).attr("data-placeholder");
+        setupTrigger = $(selectId).attr("data-trigger") ? true : false;
         setupValueChild = null;
 
         if (setupDelay) {
@@ -233,25 +240,23 @@ window.addEventListener("setSelect", (event) => {
             setupValueChild = setupValue;
 
             $(selectId)
+                .val(setupValueChild)
                 .select2({
                     dropdownParent: setupModal,
                     allowClear: setupClear,
                     placeholder: setupPlaceholder ? setupPlaceholder : "",
-                })
-                .val(null)
-                .trigger("change")
-                .val(setupValueChild)
-                .trigger("change");
+                });
         } else {
             $(selectId)
+                .val(setupValue)
                 .select2({
                     dropdownParent: setupModal,
                     allowClear: setupClear,
                     placeholder: setupPlaceholder ? setupPlaceholder : "",
-                })
-                .val(setupValue)
-                .trigger("change");
+                });
         } // end if
+
+        if (setupTrigger) $(selectId).trigger("change");
     });
 });
 
@@ -268,6 +273,7 @@ window.addEventListener("refreshSelect", (event) => {
         setupClear = $(selectId).attr("data-clear") ? true : false;
         setupModal = $(selectId).attr("data-modal");
         setupPlaceholder = $(selectId).attr("data-placeholder");
+        setupTrigger = $(selectId).attr("data-trigger") ? true : false;
 
         // :: removePrevious
         if ($(selectId).hasClass("select2-hidden-accessible")) {
@@ -276,14 +282,15 @@ window.addEventListener("refreshSelect", (event) => {
 
         // :: initNew
         $(selectId)
+            .val(setupValue)
             .select2({
                 dropdownParent: setupModal,
                 allowClear: setupClear,
                 placeholder: setupPlaceholder ? setupPlaceholder : "",
                 data: data,
-            })
-            .val(setupValue)
-            .trigger("change");
+            });
+
+        if (setupTrigger) $(selectId).trigger("change");
     });
 });
 
@@ -299,15 +306,17 @@ window.addEventListener("refreshRawSelect", (event) => {
         setupClear = $(selectId).attr("data-clear") ? true : false;
         setupModal = $(selectId).attr("data-modal");
         setupPlaceholder = $(selectId).attr("data-placeholder");
+        setupTrigger = $(selectId).attr("data-trigger") ? true : false;
 
         // :: re-init
         $(selectId)
+            .val(setupValue)
             .select2({
                 dropdownParent: setupModal,
                 allowClear: setupClear,
                 placeholder: setupPlaceholder ? setupPlaceholder : "",
-            })
-            .val(setupValue);
+            });
+
+        if (setupTrigger) $(selectId).trigger("change");
     });
 });
-

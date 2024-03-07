@@ -80,7 +80,7 @@
                                     <div class="select--single-wrapper mb-4">
                                         <select class="form-select form--modal-select"
                                             data-modal='#purchase-ingredients' id='purchase-ingredient-select-2'
-                                            data-instance='instance.ingredientId' required>
+                                            data-instance='instance.ingredientId'  required>
                                             <option value=""></option>
 
                                             @foreach ($supplierIngredients as $supplierIngredients)

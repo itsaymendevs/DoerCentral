@@ -1168,7 +1168,7 @@ class BuilderController extends Controller
         if ($request->type == 'Ingredient') {
 
 
-            // :: previousIngredient
+            // :: groupToken otherSizeIngredients
             $groupToken = MealIngredient::find($request->id)->groupToken;
 
 
@@ -1197,7 +1197,7 @@ class BuilderController extends Controller
         if ($request->type == 'Sub-recipe') {
 
 
-            // :: previousIngredient
+            // :: groupToken otherSizeIngredients
             $groupToken = MealSubRecipe::find($request->id)->groupToken;
 
 
@@ -1225,7 +1225,7 @@ class BuilderController extends Controller
         if ($request->type == 'Snack') {
 
 
-            // :: previousIngredient
+            // :: groupToken otherSizeIngredients
             $groupToken = MealSnack::find($request->id)->groupToken;
 
 
@@ -1253,7 +1253,7 @@ class BuilderController extends Controller
         // 1.4: type - sauce
         if ($request->type == 'Sauce') {
 
-            // :: previousIngredient
+            // :: groupToken otherSizeIngredients
             $groupToken = MealSauce::find($request->id)->groupToken;
 
 
@@ -1280,7 +1280,7 @@ class BuilderController extends Controller
         if ($request->type == 'Side') {
 
 
-            // :: previousIngredient
+            // :: groupToken otherSizeIngredients
             $groupToken = MealSide::find($request->id)->groupToken;
 
 
@@ -1308,7 +1308,7 @@ class BuilderController extends Controller
 
 
 
-            // :: previousIngredient
+            // :: groupToken otherSizeIngredients
             $groupToken = MealDrink::find($request->id)->groupToken;
 
 
@@ -1346,6 +1346,164 @@ class BuilderController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function removeBuilderIngredient(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+
+        // 1: type - Ingredient
+        if ($request->type == 'Ingredient') {
+
+
+            // :: groupToken otherSizeIngredients
+            $groupToken = MealIngredient::find($request->id)->groupToken;
+
+
+            MealIngredient::where('groupToken', $groupToken)->delete();
+
+
+
+        } // end if
+
+
+
+
+
+
+        // 1.2: type - subRecipe
+        if ($request->type == 'Sub-recipe') {
+
+
+            // :: groupToken otherSizeIngredients
+            $groupToken = MealSubRecipe::find($request->id)->groupToken;
+
+            MealSubRecipe::where('groupToken', $groupToken)->delete();
+
+
+
+        } // end if
+
+
+
+
+
+
+
+        // 1.3: type - snack
+        if ($request->type == 'Snack') {
+
+
+            // :: groupToken otherSizeIngredients
+            $groupToken = MealSnack::find($request->id)->groupToken;
+
+            MealSnack::where('groupToken', $groupToken)->delete();
+
+
+
+        } // end if
+
+
+
+
+
+
+
+        // 1.4: type - sauce
+        if ($request->type == 'Sauce') {
+
+
+            // :: groupToken otherSizeIngredients
+            $groupToken = MealSauce::find($request->id)->groupToken;
+
+            MealSauce::where('groupToken', $groupToken)->delete();
+
+
+        } // end if
+
+
+
+
+
+        // 1.5: type - side
+        if ($request->type == 'Side') {
+
+
+            // :: groupToken otherSizeIngredients
+            $groupToken = MealSide::find($request->id)->groupToken;
+
+            MealSide::where('groupToken', $groupToken)->delete();
+
+
+
+        } // end if
+
+
+
+
+
+        // 1.6: type - drink
+        if ($request->type == 'Drink') {
+
+
+
+            // :: groupToken otherSizeIngredients
+            $groupToken = MealDrink::find($request->id)->groupToken;
+
+            MealDrink::where('groupToken', $groupToken)->delete();
+
+
+
+        } // end if
+
+
+
+
+
+
+
+
+        return response()->json(['message' => $request->type . ' has been remove'], 200);
+
+
+
+
+    } // end function
 
 
 

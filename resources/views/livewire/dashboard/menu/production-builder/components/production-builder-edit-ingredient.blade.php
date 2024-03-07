@@ -9,7 +9,7 @@
             style="width: 170px !important; max-width: 170px !important">
             <select class="form-select ingredient--select"
                 id='ingredient--select-{{ strtolower($instance->type) }}-{{ $instance->id }}'
-                data-instance='instance.itemId' required value='{{ $instance->itemId }}'>
+                data-instance='instance.itemId' required value='{{ $instance?->itemId }}'>
                 <option value=""></option>
 
                 @foreach ($items as $item)
@@ -30,7 +30,7 @@
         <div class="select--single-wrapper xxs" style="width: 85px !important; max-width: 85px !important">
             <select class="form-select ingredient--type-select"
                 id='ingredient--type-select-{{ strtolower($instance->type) }}-{{ $instance->id }}'
-                data-instance='instance.itemType' required value='{{ $instance?->itemType }}' data-table=''>
+                data-instance='instance.itemType' required value='{{ $instance?->itemType }}' >
                 <option value=""></option>
                 <option value="Main">Main</option>
                 <option value="Side">Side</option>
@@ -84,8 +84,6 @@
 
     {{-- select-handle --}}
     <script>
-        var instanceId = "{{ $instance->id }}";
-        var instanceType = "{{ strtolower($instance->type) }}";
 
         $(`#ingredient--type-select-${instanceType}-${instanceId}`).bind('change', function(event) {
 

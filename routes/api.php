@@ -549,14 +549,14 @@ Route::post('/dashboard/menu/builder/containers/update', [BuilderController::cla
 
 // 9.6: menu - builder - ingredients - storeIngredient - update - remove
 Route::post('/dashboard/menu/builder/ingredients/store', [BuilderController::class, 'storeBuilderIngredient']);
-
-
 Route::post('/dashboard/menu/builder/ingredients/update', [BuilderController::class, 'updateBuilderIngredient']);
 
+Route::post('/dashboard/menu/builder/ingredients/remove', [BuilderController::class, 'removeBuilderIngredient']);
 
 
+
+// :: updateDetails
 Route::post('/dashboard/menu/builder/ingredients/details/update', [BuilderController::class, 'updateBuilderIngredientDetails']);
-
 
 
 

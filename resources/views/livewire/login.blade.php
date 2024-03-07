@@ -9,7 +9,7 @@
 
 
          {{-- loginForm --}}
-         <div class="col-5 col-xxl-5">
+         <div class="col-6 col-xxl-6">
             <form class="login--form" data-aos="fade-right" data-aos-duration="600" data-aos-once="true"
                wire:submit='checkUser'>
 
@@ -63,9 +63,9 @@
 
 
          {{-- coverImage --}}
-         <div class="col-7">
+         <div class="col-6">
             <div class="d-block text-center" data-aos="zoom-in" data-aos-duration="600" data-aos-once="true">
-               <img class="w-100 of-cover vh-100" src="{{ asset('assets/img/Login/login-background.png') }}">
+               <img class="w-100 of-cover vh-100 login--logo" src="{{ asset('assets/img/Login/cover.jpg') }}">
             </div>
          </div>
 

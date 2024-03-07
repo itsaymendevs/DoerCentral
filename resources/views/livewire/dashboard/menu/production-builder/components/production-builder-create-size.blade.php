@@ -187,6 +187,31 @@
 
 
 
+
+
+        {{-- activateFirst --}}
+        <script>
+
+            $(document).ready(function() {
+
+                // 1: check if no-instance active
+                activeInstance = $(".btn--switch-regular.active[data-instance='mealSizes']").attr('data-view');
+
+
+                if (activeInstance === undefined) {
+
+                    setTimeout(() => {
+                        $(".btn--switch-regular[data-instance='mealSizes']").eq(0).trigger('click');
+                    }, 700);
+
+                } // end if
+
+            });
+
+        </script>
+
+
+
         {{-- -------------------------------------------------- --}}
         {{-- -------------------------------------------------- --}}
 

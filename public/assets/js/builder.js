@@ -15,11 +15,11 @@ window.addEventListener("initCertainSelect", (event) => {
                 });
             } else {
                 $(this)
+                    .val(setupValue)
                     .select2({
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
-                    })
-                    .val(setupValue);
+                    });
             } // end else
         }); // end loop
     });

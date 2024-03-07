@@ -15,6 +15,7 @@ use App\Models\MealSubRecipe;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class ProductionBuilderViewIngredient extends Component
 {
@@ -237,6 +238,32 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
+        // :: create instance
+        $instance = new stdClass();
+        $instance->id = $this->removeId;
+        $instance->type = $this->instance->type;
+
+
+
+        // 1: remove
+        if ($this->removeId) {
+
+
+            $response = $this->makeRequest('dashboard/menu/builder/ingredients/remove', $instance);
+            $this->makeAlert('info', $response->message);
+
+
+        } // end if
+
+
+
+
+
+        // 1.2: renderParent
+        $this->dispatch('refreshMealSizeIngredients', $this->instance->mealId);
+
+
+
 
 
 
@@ -311,8 +338,6 @@ class ProductionBuilderViewIngredient extends Component
 
         // 1: dependencies
         $this->reCalculateMacros();
-
-
 
 
 

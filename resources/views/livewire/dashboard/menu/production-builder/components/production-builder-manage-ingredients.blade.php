@@ -279,6 +279,16 @@
 
 
 
+    {{-- --------- --}}
+    @php
+
+    $initSizeId = $meal?->sizes?->first()?->sizeId ?? null;
+
+    @endphp
+    {{-- --------- --}}
+
+
+
 
 
 
@@ -291,7 +301,8 @@
 
 
     {{-- viewIngredients --}}
-    <div class="col-9 d-none" data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
+    <div class="col-9 @if ($initSizeId != $mealSize->size->id) d-none @endif" data-instance='mealSizes'
+        data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
         <div class="table-responsive memoir--table w-100">
             <table class="table table-bordered">
 
@@ -324,7 +335,7 @@
                     <tr>
 
                         {{-- empty --}}
-                        <td colspan="2"></td>
+                        <td colspan="2" style="height: 62px"></td>
 
 
                         {{-- calories --}}
@@ -378,7 +389,7 @@
                     <tr>
 
                         {{-- empty --}}
-                        <td colspan="2"></td>
+                        <td colspan="2" style="height: 62px"></td>
 
 
                         <td class="fw-bold" colspan="1">
@@ -548,6 +559,18 @@
 
     @endforeach
     {{-- end loop --}}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

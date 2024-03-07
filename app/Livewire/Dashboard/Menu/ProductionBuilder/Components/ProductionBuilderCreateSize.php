@@ -64,6 +64,7 @@ class ProductionBuilderCreateSize extends Component
 
 
 
+
         // :: notEmpty
         if ($this->size) {
 
@@ -81,6 +82,7 @@ class ProductionBuilderCreateSize extends Component
             if (empty($exists)) {
 
                 $response = $this->makeRequest('dashboard/menu/builder/sizes/store', $instance);
+
                 $this->makeAlert('success', $response->message);
 
             } // end if

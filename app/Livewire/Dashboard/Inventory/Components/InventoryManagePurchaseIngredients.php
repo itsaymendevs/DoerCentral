@@ -108,7 +108,7 @@ class InventoryManagePurchaseIngredients extends Component
         // :: resetForm - resetFilePreview
         $this->instance->reset('ingredientId', 'quantity', 'unitName');
         $this->dispatch('resetSelect');
-        $this->render();
+        $this->dispatch('refreshViews');
 
 
 

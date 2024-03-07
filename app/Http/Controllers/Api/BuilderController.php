@@ -425,26 +425,185 @@ class BuilderController extends Controller
 
 
 
+
+
         // 2: checkPreviousSizes
-        // $previousMealSize = MealSize::where('id', '!=', $mealSize->id)->first();
-
-        // if ($previousMealSize) {
-
-
-
-        //     // 2.1: ingredients
-        //     foreach ($previousMealSize->ingredients as $previousMealSizeIngredient) {
+        $previousMealSize = MealSize::where('id', '!=', $mealSize->id)
+            ->where('mealId', $mealSize->mealId)
+            ->first();
 
 
-        //         $mealSizeIngredient = new MealIngredient();
-
-        //         $mealSizeIngredient->mealId = $previousMealSizeIngredient->mealId;
-
-        //     } // end loop
+        // :: exists
+        if ($previousMealSize) {
 
 
 
-        // } // end if
+            // 2.1: ingredients
+            foreach ($previousMealSize->ingredients as $previousMealSizeIngredient) {
+
+
+                // :: create clone
+                $mealSizeIngredient = new MealIngredient();
+
+                foreach ($previousMealSizeIngredient->toArray() as $key => $value)
+                    $mealSizeIngredient->{$key} = $value;
+
+
+
+
+                // :: mealSizeId
+                $mealSizeIngredient->id = null;
+                $mealSizeIngredient->mealSizeId = $mealSize->id;
+                $mealSizeIngredient->save();
+
+
+
+            } // end loop
+
+
+
+
+
+
+
+            // 2.2: subRecipes
+            foreach ($previousMealSize->subRecipes as $previousMealSizeSubRecipe) {
+
+
+                // :: create clone
+                $mealSizeSubRecipe = new MealSubRecipe();
+
+                foreach ($previousMealSizeSubRecipe->toArray() as $key => $value)
+                    $mealSizeSubRecipe->{$key} = $value;
+
+
+
+
+                // :: mealSizeId
+                $mealSizeSubRecipe->id = null;
+                $mealSizeSubRecipe->mealSizeId = $mealSize->id;
+                $mealSizeSubRecipe->save();
+
+
+
+            } // end loop
+
+
+
+
+
+
+
+            // 2.3: sauces
+            foreach ($previousMealSize->sauces as $previousMealSauce) {
+
+
+                // :: create clone
+                $mealSizeSauce = new MealSauce();
+
+                foreach ($previousMealSauce->toArray() as $key => $value)
+                    $mealSizeSauce->{$key} = $value;
+
+
+
+
+                // :: mealSizeId
+                $mealSizeSauce->id = null;
+                $mealSizeSauce->mealSizeId = $mealSize->id;
+                $mealSizeSauce->save();
+
+
+
+            } // end loop
+
+
+
+
+
+
+
+            // 2.4: snacks
+            foreach ($previousMealSize->snacks as $previousMealSnack) {
+
+
+                // :: create clone
+                $mealSizeSnack = new MealSnack();
+
+                foreach ($previousMealSnack->toArray() as $key => $value)
+                    $mealSizeSnack->{$key} = $value;
+
+
+
+
+                // :: mealSizeId
+                $mealSizeSnack->id = null;
+                $mealSizeSnack->mealSizeId = $mealSize->id;
+                $mealSizeSnack->save();
+
+
+
+            } // end loop
+
+
+
+
+
+
+
+            // 2.5: sides
+            foreach ($previousMealSize->sides as $previousMealSide) {
+
+
+                // :: create clone
+                $mealSizeSide = new MealSide();
+
+                foreach ($previousMealSide->toArray() as $key => $value)
+                    $mealSizeSide->{$key} = $value;
+
+
+
+
+                // :: mealSizeId
+                $mealSizeSide->id = null;
+                $mealSizeSide->mealSizeId = $mealSize->id;
+                $mealSizeSide->save();
+
+
+
+            } // end loop
+
+
+
+
+
+
+
+            // 2.6: drinks
+            foreach ($previousMealSize->drinks as $previousMealDrink) {
+
+
+                // :: create clone
+                $mealSizeDrink = new MealDrink();
+
+                foreach ($previousMealDrink->toArray() as $key => $value)
+                    $mealSizeDrink->{$key} = $value;
+
+
+
+
+                // :: mealSizeId
+                $mealSizeDrink->id = null;
+                $mealSizeDrink->mealSizeId = $mealSize->id;
+                $mealSizeDrink->save();
+
+
+
+            } // end loop
+
+
+
+
+        } // end if
 
 
 

@@ -126,6 +126,19 @@
 
 
 
+                                {{-- --------- --}}
+                                @php
+
+                                $initSubRecipeSizeId = $subRecipe?->sizes?->first()?->id ?? null;
+
+                                @endphp
+                                {{-- --------- --}}
+
+
+
+
+
+
 
 
 
@@ -141,9 +154,11 @@
                                             {{-- loop - sizes --}}
                                             @foreach ($subRecipe->sizes as $subRecipeSize)
                                             <li class="nav-item" role="presentation">
-                                                <a class="nav-link " data-bs-toggle="tab"
-                                                    href="#tab-1-{{ $subRecipe->id }}" role="tab">{{
-                                                    $subRecipeSize->size->name }}</a>
+                                                <a class="nav-link @if ($initSubRecipeSizeId == $subRecipeSize->id) active @endif"
+                                                    data-bs-toggle="tab" href="#tab-1-{{ $subRecipeSize->id }}"
+                                                    role="tab">
+                                                    {{ $subRecipeSize->size->name }}
+                                                </a>
                                             </li>
                                             @endforeach
                                             {{-- end loop --}}
@@ -163,8 +178,10 @@
 
                                             {{-- loop - sizes --}}
                                             @foreach ($subRecipe->sizes as $subRecipeSize)
-                                            <div class="tab-pane  no--card py-0 px-3" id="tab-1-{{ $subRecipe->id }}"
-                                                role="tabpanel">
+                                            <div class="tab-pane no--card py-0 px-3 @if ($initSubRecipeSizeId == $subRecipeSize->id) active @endif"
+                                                id="tab-1-{{ $subRecipeSize->id }}" role="tabpanel">
+
+
                                                 <div class="row">
                                                     <div class="col-3 text-end px-2">
                                                         <div class="overview--box shrink--self macros-version sm">
@@ -237,8 +254,9 @@
                                         {{-- 2: ingredients tooltip --}}
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
-                                            data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
-                                            type="button" title="Baja Chicken / Baked Potatos / White Rice">
+                                            data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-html='true'
+                                            data-bs-placement="bottom" type="button"
+                                            title="{{ implode(' &#8226; ', $subRecipe->itemsInArray()) }}">
                                             <svg class="bi bi-info-circle fs-5" xmlns="http://www.w3.org/2000/svg"
                                                 width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                                                 <path

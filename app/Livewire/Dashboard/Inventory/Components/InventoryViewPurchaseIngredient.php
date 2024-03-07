@@ -79,6 +79,7 @@ class InventoryViewPurchaseIngredient extends Component
 
 
         // :: resetForm - resetFilePreview
+        $this->dispatch('refreshViews');
         $this->makeAlert('success', $response?->message);
 
 

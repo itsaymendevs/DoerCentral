@@ -30,7 +30,7 @@
         <div class="select--single-wrapper xxs" style="width: 85px !important; max-width: 85px !important">
             <select class="form-select ingredient--type-select"
                 id='ingredient--type-select-{{ strtolower($instance->type) }}-{{ $instance->id }}'
-                data-instance='instance.itemType' required value='{{ $instance?->itemType }}' >
+                data-instance='instance.itemType' required value='{{ $instance?->itemType }}'>
                 <option value=""></option>
                 <option value="Main">Main</option>
                 <option value="Side">Side</option>
@@ -62,6 +62,7 @@
         var instanceId = "{{ $instance->id }}";
         var instanceType = "{{ strtolower($instance->type) }}";
 
+
         $(`#ingredient--select-${instanceType}-${instanceId}`).bind('change', function(event) {
 
 
@@ -71,7 +72,7 @@
 
             @this.set(instance, selectValue);
             @this.update();
-        })
+        });
     </script>
 
 
@@ -84,7 +85,6 @@
 
     {{-- select-handle --}}
     <script>
-
         $(`#ingredient--type-select-${instanceType}-${instanceId}`).bind('change', function(event) {
 
             // 1.1: getValue - instance
@@ -93,7 +93,7 @@
 
             @this.set(instance, selectValue);
             @this.updateType();
-        })
+        });
     </script>
 
 

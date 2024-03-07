@@ -8,6 +8,8 @@ use App\Models\Exclude;
 use App\Models\Ingredient;
 use App\Models\IngredientCategory;
 use App\Models\IngredientGroup;
+use App\Models\IngredientMacro;
+use App\Models\Stock;
 use App\Models\StockPurchase;
 use App\Models\StockPurchaseIngredient;
 use App\Models\Supplier;
@@ -651,6 +653,36 @@ class InventoryController extends Controller
 
 
 
+
+
+
+        // -----------------------------------
+        // -----------------------------------
+
+
+
+
+
+
+
+
+        // 2: create Macro - Fresh
+        $ingredientMacro = new IngredientMacro();
+
+
+        // 1.2: general
+        $ingredientMacro->ingredientType = 'Fresh';
+        $ingredientMacro->ingredientId = $ingredient->id;
+
+
+
+
+        $ingredientMacro->save();
+
+
+
+
+
         return response()->json(['message' => 'Ingredient has been created'], 200);
 
 
@@ -1283,6 +1315,39 @@ class InventoryController extends Controller
 
 
         $purchase->save();
+
+
+
+
+
+
+        // --------------------
+        // --------------------
+
+
+
+
+        // 2: append toStock
+        foreach ($purchase->ingredients as $purchaseIngredient) {
+
+
+            // ** NOTE: QUANTITY IS IN GRAMS ONLY IN STOCK!
+            // ** THATS WHY NO UNIT MENTIONED
+
+
+            // :: create
+            $stock = new Stock();
+
+            $stock->buyPrice = $purchaseIngredient->buyPrice;
+            $stock->availableQuantity = $purchaseIngredient->quantity;
+
+            $stock->ingredientId = $purchaseIngredient->ingredientId;
+            $stock->stockPurchaseId = $purchaseIngredient->stockPurchaseId;
+
+            $stock->save();
+
+
+        } // end loop
 
 
 

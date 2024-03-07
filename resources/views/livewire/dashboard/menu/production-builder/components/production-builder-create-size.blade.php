@@ -51,6 +51,24 @@
 
 
 
+    {{-- --------- --}}
+    @php
+
+    $initSizeId = $meal?->sizes?->first()?->sizeId ?? null;
+
+    @endphp
+    {{-- --------- --}}
+
+
+
+
+
+
+
+
+
+
+
     {{-- js-switch - availableSizes --}}
     <div class="col-10 mt-5">
 
@@ -64,8 +82,11 @@
 
                     {{-- loop - mealSizes --}}
                     @foreach ($meal->sizes as $mealSize)
-                    <button wire:ignore.self class="btn fs-13 btn--switch-regular" data-instance='mealSizes'
-                        data-view='size-{{ $mealSize->size->id }}' type="button">{{ $mealSize->size->name }}</button>
+                    <button class="btn fs-13 btn--switch-regular @if ($initSizeId == $mealSize->size->id) active @endif"
+                        data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}' type="button"
+                        wire:ignore.self>
+                        {{ $mealSize->size->name }}
+                    </button>
                     @endforeach
                     {{-- end loop --}}
 
@@ -84,13 +105,14 @@
 
         {{-- loop - sizeMacros From sizeMacros --}}
         @foreach ($meal->sizes as $mealSize)
-        <div class="row d-none" data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
+        <div class="row @if ($initSizeId != $mealSize->size->id) d-none @endif" data-instance='mealSizes'
+            data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
 
 
             {{-- 1: calories --}}
-            <div class="col text-end">
+            <div class="col text-end px-1">
                 <div class="overview--box shrink--self macros-version">
-                    <h6 class="fs-13">Calories</h6>
+                    <h6 class="fs-12">Calories</h6>
                     <p>
                         <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
                             value="{{ $mealSize->size->calories }}" readonly="" step="0.01" />
@@ -102,9 +124,9 @@
 
 
             {{-- proteins --}}
-            <div class="col text-end">
+            <div class="col text-end px-1">
                 <div class="overview--box shrink--self macros-version">
-                    <h6 class="fs-13">Proteins</h6>
+                    <h6 class="fs-12">Proteins<small class="fw-semibold text-gold fs-10 ms-1">(%)</small></h6>
                     <p>
                         <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
                             value="{{ $mealSize->size->proteins }}" readonly="" step="0.01" />
@@ -116,9 +138,9 @@
 
 
             {{-- carbs --}}
-            <div class="col text-end">
+            <div class="col text-end px-1">
                 <div class="overview--box shrink--self macros-version">
-                    <h6 class="fs-13">Carbs</h6>
+                    <h6 class="fs-12">Carbs<small class="fw-semibold text-gold fs-10 ms-1">(%)</small></h6>
                     <p>
                         <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
                             value="{{ $mealSize->size->carbs }}" readonly="" step="0.01" />
@@ -129,9 +151,9 @@
 
 
             {{-- fats --}}
-            <div class="col text-end">
+            <div class="col text-end px-1">
                 <div class="overview--box shrink--self macros-version">
-                    <h6 class="fs-13">Fats</h6>
+                    <h6 class="fs-12">Fats<small class="fw-semibold text-gold fs-10 ms-1">(%)</small></h6>
                     <p>
                         <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
                             value="{{ $mealSize->size->fats }}" readonly="" step="0.01" />
@@ -168,47 +190,22 @@
 
         {{-- select-handle --}}
         <script>
-            $(".form--select, .form--modal-select").on("change", function(event) {
-
-
-
-            // 1.1: getValue - instance
-            selectValue = $(this).select2('val');
-            instance = $(this).attr('data-instance');
-
-
-            @this.set(instance, selectValue);
-
-
-         }); //end function
-        </script>
-
-
-
-
-
-
-
-        {{-- activateFirst --}}
-        <script>
-
             $(document).ready(function() {
+                $(".form--select, .form--modal-select").on("change", function(event) {
 
-                // 1: check if no-instance active
-                activeInstance = $(".btn--switch-regular.active[data-instance='mealSizes']").attr('data-view');
+                    // 1.1: getValue - instance
+                    selectValue = $(this).select2('val');
+                    instance = $(this).attr('data-instance');
 
 
-                if (activeInstance === undefined) {
+                    @this.set(instance, selectValue);
 
-                    setTimeout(() => {
-                        $(".btn--switch-regular[data-instance='mealSizes']").eq(0).trigger('click');
-                    }, 700);
-
-                } // end if
-
+                }); //end function
             });
-
         </script>
+
+
+
 
 
 

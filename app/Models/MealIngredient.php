@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use stdClass;
 
 class MealIngredient extends Model
 {
@@ -48,7 +49,7 @@ class MealIngredient extends Model
 
 
 
-    public function totalMacro($macroType)
+    public function totalMacro($currentAmount = 0)
     {
 
         // :: root
@@ -61,14 +62,14 @@ class MealIngredient extends Model
 
         // 1: ingredients
         $ingredient = $this->ingredient()->first();
-
+        $amount = $currentAmount; // currentAmount - upToDateAmount
 
 
         // 1.2: ingredientMacro
-        $totalCalories += $ingredient?->freshMacro()?->calories ?? 0;
-        $totalProteins += $ingredient?->freshMacro()?->proteins ?? 0;
-        $totalCarbs += $ingredient?->freshMacro()?->carbs ?? 0;
-        $totalFats += $ingredient?->freshMacro()?->fats ?? 0;
+        $totalCalories += ($ingredient?->freshMacro()?->calories ?? 0) * $amount;
+        $totalProteins += ($ingredient?->freshMacro()?->proteins ?? 0) * $amount;
+        $totalCarbs += ($ingredient?->freshMacro()?->carbs ?? 0) * $amount;
+        $totalFats += ($ingredient?->freshMacro()?->fats ?? 0) * $amount;
 
 
 
@@ -76,19 +77,20 @@ class MealIngredient extends Model
 
 
 
-        // :: return targetMacro
-        if ($macroType == 'Calories')
-            $targetMacro = $totalCalories;
-        elseif ($macroType == 'Proteins')
-            $targetMacro = $totalProteins;
-        elseif ($macroType == 'Carbs')
-            $targetMacro = $totalCarbs;
-        elseif ($macroType == 'Fats')
-            $targetMacro = $totalFats;
+        // :: create instance
+        $totalMacros = new stdClass();
+
+        $totalMacros->calories = round($totalCalories, 2);
+        $totalMacros->proteins = round($totalProteins, 2);
+        $totalMacros->carbs = round($totalCarbs, 2);
+        $totalMacros->fats = round($totalFats, 2);
 
 
 
-        return $targetMacro;
+        return $totalMacros;
+
+
+
 
     } // end function
 

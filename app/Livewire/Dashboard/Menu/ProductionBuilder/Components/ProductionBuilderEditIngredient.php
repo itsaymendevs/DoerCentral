@@ -158,6 +158,9 @@ class ProductionBuilderEditIngredient extends Component
 
 
 
+
+
+        // :: alert
         $this->makeAlert('success', $response->message);
 
 
@@ -225,8 +228,11 @@ class ProductionBuilderEditIngredient extends Component
 
 
         // 1: ingredient / meal
-        $items = $this->instance?->type != 'Ingredient' ? Meal::where('type', $this->instance->type)->get() : [];
-        $items = $this->instance?->type == 'Ingredient' ? Ingredient::all() : [];
+        $items = $this->instance?->type != 'Ingredient' ?
+            Meal::where('id', '!=', $this->instance->mealId)
+                ->where('type', $this->instance->type)->get() : Ingredient::all();
+
+
 
 
 

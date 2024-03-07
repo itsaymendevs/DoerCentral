@@ -161,6 +161,14 @@
 
 
 
+
+
+                    {{-- ---------------------------- end items --}}
+
+
+
+
+
                     {{-- loop - ingredients --}}
                     @if ($mealSize)
 
@@ -241,6 +249,12 @@
 
                     @endif
                     {{-- end if --}}
+
+
+
+                    {{-- ---------------------------- end items --}}
+
+
 
 
 
@@ -422,7 +436,11 @@
 
 
 
-                    {{-- 1: singleIngredientDetails --}}
+                    {{-- ------------------------- items --}}
+
+
+
+                    {{-- 1: ingredient --}}
                     @foreach ($mealSize->ingredients as $mealSizeIngredient)
 
 
@@ -434,6 +452,90 @@
                     {{-- end singleIngredientDetails --}}
 
 
+
+
+
+
+
+                    {{-- 2: subRecipe --}}
+                    @foreach ($mealSize->subRecipes as $mealSizeSubRecipe)
+
+
+                    <livewire:dashboard.menu.production-builder.components.production-builder-view-ingredient
+                        :id='$mealSizeSubRecipe->id' type='Sub-recipe'
+                        key='sub-recipe-details-{{ $mealSizeSubRecipe->id }}' />
+
+                    @endforeach
+                    {{-- end loop --}}
+
+
+
+
+
+
+
+                    {{-- 3: sauce --}}
+                    @foreach ($mealSize->sauces as $mealSizeSauce)
+
+
+                    <livewire:dashboard.menu.production-builder.components.production-builder-view-ingredient
+                        :id='$mealSizeSauce->id' type='Sauce' key='sauce-details-{{ $mealSizeSauce->id }}' />
+
+                    @endforeach
+                    {{-- end loop --}}
+
+
+
+
+
+
+                    {{-- 4: snack --}}
+                    @foreach ($mealSize->snacks as $mealSizeSnack)
+
+
+                    <livewire:dashboard.menu.production-builder.components.production-builder-view-ingredient
+                        :id='$mealSizeSnack->id' type='Snack' key='snack-details-{{ $mealSizeSnack->id }}' />
+
+                    @endforeach
+                    {{-- end loop --}}
+
+
+
+
+
+
+
+                    {{-- 5: side --}}
+                    @foreach ($mealSize->sides as $mealSizeSide)
+
+
+                    <livewire:dashboard.menu.production-builder.components.production-builder-view-ingredient
+                        :id='$mealSizeSide->id' type='Side' key='side-details-{{ $mealSizeSide->id }}' />
+
+                    @endforeach
+                    {{-- end loop --}}
+
+
+
+
+
+                    {{-- 6: drink --}}
+                    @foreach ($mealSize->drinks as $mealSizeDrink)
+
+
+                    <livewire:dashboard.menu.production-builder.components.production-builder-view-ingredient
+                        :id='$mealSizeDrink->id' type='Drink' key='drink-details-{{ $mealSizeDrink->id }}' />
+
+                    @endforeach
+                    {{-- end loop --}}
+
+
+
+
+
+
+
+                    {{-- ---------------------------- end items --}}
 
 
                 </tbody>

@@ -262,20 +262,21 @@ class ProductionBuilderViewIngredient extends Component
         if ($this->mealItem) {
 
 
-            // 1: ingredient - sub-recipe - sauce - snack - side - drink
-            $this->instance->calories = round($this->mealItem->totalMacro('Calories')
-                * ($this->instance->amount ?? 0), 2);
+            // 1: getTotalMacros
+            // $totalMacros = $this->mealItem->totalMacro($this->instance->amount ?? 0);
 
-            $this->instance->proteins = round($this->mealItem->totalMacro('Proteins')
-                * ($this->instance->amount ?? 0), 2);
 
-            $this->instance->carbs = round($this->mealItem->totalMacro('Carbs')
-                * ($this->instance->amount ?? 0), 2);
 
-            $this->instance->fats = round($this->mealItem->totalMacro('Fats')
-                * ($this->instance->amount ?? 0), 2);
+            // 1.2: ingredient - sub-recipe - sauce - snack - side - drink
+            // $this->instance->calories = $totalMacros->calories;
 
-            $this->instance->grams = $this->instance->amount ?? 0;
+            // $this->instance->proteins = $totalMacros->proteins;
+
+            // $this->instance->carbs = $totalMacros->carbs;
+
+            // $this->instance->fats = $totalMacros->fats;
+
+            // $this->instance->grams = $this->instance->amount ?? 0;
 
         } // end if
 

@@ -238,7 +238,131 @@ class BuilderController extends Controller
 
 
 
-        $meal->save();
+
+
+
+
+
+
+
+
+
+
+        // ---------------------------------
+        // ---------------------------------
+
+
+
+
+
+
+
+
+        // 4: migrateMeal if changed
+        if ($meal->type != $previousType) {
+
+
+
+            // 4.1: getPreviousMeals
+            $previousItems = null;
+
+            $previousType == 'Sub-recipe' ? $previousItems = MealSubRecipe::where('subRecipeId', $meal->id)->get() : null;
+            $previousType == 'Sauce' ? $previousItems = MealSauce::where('sauceId', $meal->id)->get() : null;
+            $previousType == 'Snack' ? $previousItems = MealSnack::where('snackId', $meal->id)->get() : null;
+            $previousType == 'Side' ? $previousItems = MealSide::where('sideId', $meal->id)->get() : null;
+            $previousType == 'Drink' ? $previousItems = MealDrink::where('drinkId', $meal->id)->get() : null;
+
+
+
+
+            // :: exists
+            if ($previousItems) {
+
+
+                // :: loop - previousItems
+                foreach ($previousItems as $previousItem) {
+
+
+
+
+                    // 4.2: create migrationItem
+                    $item = [];
+
+                    if ($meal->type == 'Sub-recipe') {
+
+                        $item = new MealSubRecipe();
+                        $item->subRecipeId = $meal->id;
+
+                    } // end if
+
+
+                    if ($meal->type == 'Sauce') {
+
+                        $item = new MealSauce();
+                        $item->sauceId = $meal->id;
+
+                    } // end if
+
+
+                    if ($meal->type == 'Snack') {
+
+                        $item = new MealSnack();
+                        $item->snackId = $meal->id;
+
+                    } // end if
+
+
+                    if ($meal->type == 'Side') {
+
+                        $item = new MealSide();
+                        $item->sideId = $meal->id;
+
+                    } // end if
+
+
+
+                    if ($meal->type == 'Drink') {
+
+                        $item = new MealDrink();
+                        $item->drinkId = $meal->id;
+
+                    } // end if
+
+
+
+
+
+
+
+                    // :: clone
+                    $item->type = $previousItem->type;
+                    $item->amount = $previousItem->amount;
+                    $item->remarks = $previousItem->remarks;
+                    $item->groupToken = $previousItem->groupToken;
+                    $item->isRemovable = $previousItem->isRemovable;
+
+                    $item->mealId = $previousItem->mealId;
+                    $item->mealSizeId = $previousItem->mealSizeId;
+
+                    $item->save();
+
+
+
+
+                    // :: removePreviousItem
+                    $previousItem->delete();
+
+
+
+
+                } // end loop
+
+
+            } // end if
+
+
+        } // end if
+
 
 
 

@@ -262,7 +262,7 @@
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
-                                            type="button" title="Baja Chicken / Baked Potatos / White Rice">
+                                            type="button" title="{{ implode(' &#8226; ', $meal->itemsInArray()) }}">
                                             <svg class="bi bi-info-circle fs-5" xmlns="http://www.w3.org/2000/svg"
                                                 width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                                                 <path

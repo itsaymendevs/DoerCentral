@@ -191,7 +191,8 @@ class Meal extends Model
         $mealIngredients = $this->ingredients()?->get();
 
         foreach ($mealIngredients?->unique('mealId') as $mealIngredient)
-            array_push($items, $mealIngredient?->ingredient?->name);
+            if ($mealIngredient?->ingredient)
+                array_push($items, $mealIngredient->ingredient->name);
 
 
 
@@ -202,8 +203,8 @@ class Meal extends Model
         $mealSubRecipes = $this->subRecipes()?->get();
 
         foreach ($mealSubRecipes?->unique('mealId') as $mealSubRecipe)
-            if ($mealSubRecipe->subRecipe)
-                array_push($items, $mealSubRecipe?->subRecipe?->name);
+            if ($mealSubRecipe?->subRecipe)
+                array_push($items, $mealSubRecipe->subRecipe->name);
 
 
 
@@ -213,10 +214,11 @@ class Meal extends Model
         // 3: sauces
         $mealSauces = $this->sauces()?->get();
 
-
         foreach ($mealSauces?->unique('mealId') as $mealSauce)
-            if ($mealSauce?->sauce?->name)
-                array_push($items, $mealSauce?->sauce?->name);
+            if ($mealSauce?->sauce)
+                array_push($items, $mealSauce->sauce->name);
+
+
 
 
 
@@ -225,7 +227,10 @@ class Meal extends Model
         $mealSnacks = $this->snacks()?->get();
 
         foreach ($mealSnacks?->unique('mealId') as $mealSnack)
-            array_push($items, $mealSnack?->snack?->name);
+            if ($mealSnack?->snack)
+                array_push($items, $mealSnack->snack->name);
+
+
 
 
 
@@ -235,7 +240,8 @@ class Meal extends Model
         $mealSides = $this->sides()?->get();
 
         foreach ($mealSides?->unique('mealId') as $mealSide)
-            array_push($items, $mealSide?->side?->name);
+            if ($mealSide?->side)
+                array_push($items, $mealSide->side->name);
 
 
 
@@ -245,7 +251,8 @@ class Meal extends Model
         $mealDrinks = $this->sides()?->get();
 
         foreach ($mealDrinks?->unique('mealId') as $mealDrink)
-            array_push($items, $mealDrink?->drink?->name);
+            if ($mealDrink?->drink)
+                array_push($items, $mealDrink->drink->name);
 
 
 

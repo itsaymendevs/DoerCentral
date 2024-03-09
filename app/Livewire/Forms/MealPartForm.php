@@ -5,14 +5,15 @@ namespace App\Livewire\Forms;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
 
-class MealItemForm extends Form
+class MealPartForm extends Form
 {
 
 
     // :: variables
     #[Rule('required', as: 'instanceError')]
-    public $id, $type, $itemId, $mealId;
+    public $id, $typeId, $partId, $mealId;
 
-    public $itemType;
+
+    public $partType;
 
 } // end form

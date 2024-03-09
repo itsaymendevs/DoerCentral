@@ -14,13 +14,17 @@ return new class extends Migration {
             $table->id();
 
 
-            // 1: general
-            $table->string('type', 100)->nullable();
+            // 1: general - type
+            $table->bigInteger('typeId')->unsigned()->nullable();
+            $table->foreign('typeId')->references('id')->on('types')->onDelete('cascade');
+
+
+
+
+
+            // 1.2: name - generalName - servingPrice - validity
             $table->text('name')->nullable();
 
-
-
-            // 1.2: generalName - servingPrice - validity
             $table->text('generalName')->nullable();
             $table->double('servingPrice', 15, 2)->nullable()->default(0);
             $table->integer('validity')->nullable()->default(0);
@@ -28,8 +32,9 @@ return new class extends Migration {
 
 
 
+
             // :: onlyForItems (snack - sauce - drink)
-            $table->string('itemType', 255)->nullable();
+            $table->string('partType', 255)->nullable();
 
 
 

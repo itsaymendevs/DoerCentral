@@ -1,5 +1,5 @@
 {{-- singleRow --}}
-<tr id='{{ strtolower($instance->type) }}-{{ $instance->id }}'>
+<tr id='{{ strtolower($instance->typeId) }}-{{ $instance->id }}'>
 
 
 
@@ -97,12 +97,12 @@
 
             <input class="form-check-input pointer" type="checkbox" @if ($this->instance->isRemovable)
             checked @endif
-            id="formCheck-{{ strtolower($instance->type) }}-{{ $instance->id }}" wire:model='instance.isRemovable'
+            id="formCheck-{{ strtolower($instance->typeId) }}-{{ $instance->id }}" wire:model='instance.isRemovable'
             wire:change='update' />
 
 
             <label class="form-check-label d-none"
-                for="formCheck-{{ strtolower($instance->type) }}-{{ $instance->id }}">placeholder</label>
+                for="formCheck-{{ strtolower($instance->typeId) }}-{{ $instance->id }}">placeholder</label>
         </div>
     </td>
 

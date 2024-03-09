@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu\Items;
 
 use App\Models\Meal;
+use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -28,7 +29,9 @@ class SubRecipes extends Component
 
 
         // 1: dependencies
-        $subRecipes = Meal::where('type', 'Sub-recipe')
+        $type = Type::where('name', 'Sub-recipe')->first();
+
+        $sauces = Meal::where('typeId', $type->id)
             ->where('name', 'LIKE', '%' . $this->searchSubRecipe . '%')
             ->get();
 

@@ -1,24 +1,33 @@
-{{-- singleRow - item --}}
-<tr id='{{ strtolower($instance->type) }}-{{ $instance->id }}'>
+{{-- singleRow - part --}}
+<tr id='{{ strtolower($instance->typeId) }}-{{ $instance->id }}'>
 
 
 
-    {{-- select --}}
-    <td class="fw-bold tr--{{ strtolower($instance->type) }}">
+
+
+    {{-- coloringTD --}}
+    <td class="fw-bold tr--{{ $instance->typeId == 'Ingredient'
+    ? 'ingredient' : strtolower($mealPart->type->name) }}">
+
+
         <div class="select--single-wrapper px-2 mx-auto" wire:ignore
             style="width: 170px !important; max-width: 170px !important">
             <select class="form-select ingredient--select"
-                id='ingredient--select-{{ strtolower($instance->type) }}-{{ $instance->id }}'
-                data-instance='instance.itemId' required value='{{ $instance?->itemId }}'>
+                id='ingredient--select-{{ strtolower($instance->typeId) }}-{{ $instance->id }}'
+                data-instance='instance.partId' required value='{{ $instance?->partId }}'>
                 <option value=""></option>
 
-                @foreach ($items as $item)
-                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @foreach ($parts as $part)
+                <option value="{{ $part->id }}">{{ $part->name }}</option>
                 @endforeach
 
             </select>
         </div>
+
+
     </td>
+    {{-- endTD --}}
+
 
 
 
@@ -29,8 +38,8 @@
     <td class="fw-bold" wire:ignore>
         <div class="select--single-wrapper xxs" style="width: 85px !important; max-width: 85px !important">
             <select class="form-select ingredient--type-select"
-                id='ingredient--type-select-{{ strtolower($instance->type) }}-{{ $instance->id }}'
-                data-instance='instance.itemType' required value='{{ $instance?->itemType }}'>
+                id='ingredient--type-select-{{ strtolower($instance->typeId) }}-{{ $instance->id }}'
+                data-instance='instance.partType' required value='{{ $instance?->partType }}'>
                 <option value=""></option>
                 <option value="Main">Main</option>
                 <option value="Side">Side</option>
@@ -60,10 +69,10 @@
     {{-- select-handle --}}
     <script>
         var instanceId = "{{ $instance->id }}";
-        var instanceType = "{{ strtolower($instance->type) }}";
+        var instanceTypeId = "{{ strtolower($instance->typeId) }}";
 
 
-        $(`#ingredient--select-${instanceType}-${instanceId}`).bind('change', function(event) {
+        $(`#ingredient--select-${instanceTypeId}-${instanceId}`).bind('change', function(event) {
 
 
             // 1.1: getValue - instance
@@ -85,7 +94,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(`#ingredient--type-select-${instanceType}-${instanceId}`).bind('change', function(event) {
+        $(`#ingredient--type-select-${instanceTypeId}-${instanceId}`).bind('change', function(event) {
 
             // 1.1: getValue - instance
             selectValue = $(this).select2('val');
@@ -109,4 +118,4 @@
 
 
 </tr>
-{{-- end singleRow - item --}}
+{{-- end singleRow - part --}}

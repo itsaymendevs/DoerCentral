@@ -7,6 +7,7 @@ use App\Models\Cuisine;
 use App\Models\Diet;
 use App\Models\Meal;
 use App\Models\Tag;
+use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -110,7 +111,7 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
         // :: setSelect
-        $this->dispatch('setSelect', id: '#type-select-2', value: $meal->type);
+        $this->dispatch('setSelect', id: '#type-select-2', value: $meal->typeId);
         $this->dispatch('setSelect', id: '#category-select-2', value: $meal->isVegetarian);
         $this->dispatch('setSelect', id: '#cuisine-select-2', value: $meal->cuisineId);
         $this->dispatch('setSelect', id: '#diet-select-2', value: $meal->dietId);
@@ -228,7 +229,7 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
         // 1: dependencies
-        $types = ['Meal', 'Sub-recipe', 'Snack', 'Side', 'Sauce', 'Drink'];
+        $types = Type::all();
         $cuisines = Cuisine::all();
         $diets = Diet::all();
         $tags = Tag::all();

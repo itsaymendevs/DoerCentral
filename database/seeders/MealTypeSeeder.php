@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\MealType;
+use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,10 +16,21 @@ class MealTypeSeeder extends Seeder
 
 
         // ::root
-        $mealTypes = ['Breakfast', 'Morning Snack', 'Morning Snack 2', 'Lunch', 'Lunch Side', 'Afternoon Snack', 'Dinner', 'Dinner Side'];
+        $types = ['Meal', 'Sub-recipe', 'Sauce', 'Snack', 'Side', 'Drink'];
 
-        $mealTypesCuts = ['B', 'MS', 'MS2', 'L', 'LS', 'AS', 'D', 'DS'];
-        $mealTypesFor = ['Meal', 'Snack', 'Snack', 'Meal', 'Side', 'Snack', 'Meal', 'Side'];
+
+
+        $typeId = [1, 4, 4, 1, 5, 4, 1, 5, 6];
+        $mealTypes = ['Breakfast', 'Morning Snack', 'Morning Snack 2', 'Lunch', 'Lunch Side', 'Afternoon Snack', 'Dinner', 'Dinner Side', 'Drink'];
+        $mealTypesCuts = ['B', 'MS', 'MS2', 'L', 'LS', 'AS', 'D', 'DS', 'DR'];
+
+
+
+        for ($i = 0; $i < count($types); $i++) {
+            Type::create([
+                'name' => $types[$i],
+            ]);
+        } // end loop
 
 
 
@@ -26,9 +38,11 @@ class MealTypeSeeder extends Seeder
             MealType::create([
                 'name' => $mealTypes[$i],
                 'shortName' => $mealTypesCuts[$i],
-                'isFor' => $mealTypesFor[$i],
+                'typeId' => $typeId[$i],
             ]);
         } // end loop
+
+
 
 
     } // end function

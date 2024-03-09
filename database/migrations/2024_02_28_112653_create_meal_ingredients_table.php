@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->foreign('ingredientId')->references('id')->on('ingredients')->onDelete('cascade');
 
 
-            $table->string('type', 100)->nullable();
+            $table->string('partType', 100)->nullable();
             $table->double('amount', 15, 2)->nullable()->default(0);
             $table->string('remarks', 255)->nullable();
 

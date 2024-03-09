@@ -19,7 +19,7 @@
 
 
     {{-- 1: mealTypes for Meal --}}
-    @if ($instance->type == 'Meal')
+    @if ($meal->type->name == 'Meal')
     <div class="mt-4 w-75 mx-auto" id="for-meal">
 
 
@@ -55,7 +55,7 @@
 
 
     {{-- 2: snackTypes for Snack --}}
-    @if ($instance->type == 'Snack')
+    @if ($meal->type->name == 'Snack')
     <div class="mt-4 w-75 mx-auto" id="for-snack">
 
 
@@ -64,8 +64,8 @@
 
             {{-- input --}}
             <input class="form-check-input" id="snackType-{{ $snackType }}" name="snackType" type="radio"
-                value='{{ $snackType }}' @if ($instance->itemType == $snackType) checked='checked' @endif
-            wire:model='instance.itemType' wire:change='update' />
+                value='{{ $snackType }}' @if ($instance->partType == $snackType) checked='checked' @endif
+            wire:model='instance.partType' wire:change='update' />
 
 
             {{-- label --}}
@@ -91,7 +91,7 @@
 
 
     {{-- 3: sauceTypes for Sauce --}}
-    @if ($instance->type == 'Sauce')
+    @if ($meal->type->name == 'Sauce')
     <div class="mt-4 w-75 mx-auto" id="for-sauce">
 
 
@@ -100,8 +100,8 @@
 
             {{-- input --}}
             <input class="form-check-input" id="sauceType-{{ $sauceType }}" name="sauceType" type="radio"
-                value='{{ $sauceType }}' @if ($instance->itemType == $sauceType) checked @endif
-            wire:model='instance.itemType' wire:change='update' />
+                value='{{ $sauceType }}' @if ($instance->partType == $sauceType) checked @endif
+            wire:model='instance.partType' wire:change='update' />
 
 
             {{-- label --}}
@@ -127,7 +127,7 @@
 
 
     {{-- 4: drinkTypes for Drink --}}
-    @if ($instance->type == 'Drink')
+    @if ($meal->type->name == 'Drink')
     <div class="mt-4 w-75 mx-auto" id="for-drink">
 
 
@@ -136,8 +136,8 @@
 
             {{-- input --}}
             <input class="form-check-input" id="drinkType-{{ $drinkType }}" name="drinkType" type="radio"
-                value='{{ $drinkType }}' @if ($instance->itemType == $drinkType) checked @endif
-            wire:model='instance.itemType' wire:change='update' />
+                value='{{ $drinkType }}' @if ($instance->partType == $drinkType) checked @endif
+            wire:model='instance.partType' wire:change='update' />
 
 
             {{-- label --}}

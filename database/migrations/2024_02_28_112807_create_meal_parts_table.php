@@ -10,16 +10,25 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('meal_snacks', function (Blueprint $table) {
+        Schema::create('meal_parts', function (Blueprint $table) {
             $table->id();
 
-            // 1: general
-            $table->bigInteger('snackId')->unsigned()->nullable();
-            $table->foreign('snackId')->references('id')->on('meals')->onDelete('cascade');
 
-            $table->string('type', 100)->nullable();
+
+            // 1: general
+            $table->bigInteger('partId')->unsigned()->nullable();
+            $table->foreign('partId')->references('id')->on('meals')->onDelete('cascade');
+
+            $table->bigInteger('typeId')->unsigned()->nullable();
+            $table->foreign('typeId')->references('id')->on('types')->onDelete('cascade');
+
+
+
+
+            $table->string('partType', 100)->nullable();
             $table->double('amount', 15, 2)->nullable()->default(0);
             $table->string('remarks', 255)->nullable();
+
 
 
 
@@ -40,6 +49,7 @@ return new class extends Migration {
 
 
 
+
             $table->timestamps();
         });
     }
@@ -49,6 +59,6 @@ return new class extends Migration {
      */
     public function down() : void
     {
-        Schema::dropIfExists('meal_snacks');
+        Schema::dropIfExists('meal_parts');
     }
 };

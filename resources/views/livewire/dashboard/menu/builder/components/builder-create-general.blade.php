@@ -20,11 +20,11 @@
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Type</label>
                 <div class="select--single-wrapper mb-4">
-                    <select class="form-select form--select" data-instance='instance.type' required>
+                    <select class="form-select form--select" data-instance='instance.typeId' required>
                         <option value=""></option>
 
                         @foreach ($types as $type)
-                        <option value="{{ $type }}">{{ $type }}</option>
+                        <option value="{{ $type->id }}">{{ $type->name }}</option>
                         @endforeach
                     </select>
                 </div>

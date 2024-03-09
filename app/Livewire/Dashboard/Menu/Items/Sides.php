@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu\Items;
 
 use App\Models\Meal;
+use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -26,10 +27,11 @@ class Sides extends Component
 
 
         // 1: dependencies
-        $sides = Meal::where('type', 'Side')
+        $type = Type::where('name', 'Side')->first();
+
+        $sauces = Meal::where('typeId', $type->id)
             ->where('name', 'LIKE', '%' . $this->searchSide . '%')
             ->get();
-
 
 
 

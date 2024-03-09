@@ -6,6 +6,7 @@ use App\Livewire\Forms\MealForm;
 use App\Models\Cuisine;
 use App\Models\Diet;
 use App\Models\Tag;
+use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -90,7 +91,7 @@ class BuilderCreateGeneral extends Component
 
 
         // 1: dependencies
-        $types = ['Meal', 'Sub-recipe', 'Snack', 'Side', 'Sauce', 'Drink'];
+        $types = Type::all();
         $cuisines = Cuisine::all();
         $diets = Diet::all();
         $tags = Tag::all();

@@ -9,6 +9,7 @@ use App\Models\MealDrink;
 use App\Models\MealIngredient;
 use App\Models\MealInstruction;
 use App\Models\MealPacking;
+use App\Models\MealPart;
 use App\Models\MealSauce;
 use App\Models\MealServing;
 use App\Models\MealSide;
@@ -38,7 +39,7 @@ class BuilderController extends Controller
         // 1: create
         $meal = new Meal();
 
-        $meal->type = $request->type;
+        $meal->typeId = $request->typeId;
         $meal->name = $request->name;
         $meal->servingPrice = doubleval($request->servingPrice);
         $meal->validity = intval($request->validity);
@@ -157,7 +158,7 @@ class BuilderController extends Controller
 
 
         // :: pre-saved
-        $previousType = $meal->type;
+        $previousTypeId = $meal->typeId;
 
 
 
@@ -166,7 +167,7 @@ class BuilderController extends Controller
 
 
         // 1.2: general
-        $meal->type = $request->type;
+        $meal->typeId = $request->typeId;
         $meal->name = $request->name;
         $meal->servingPrice = doubleval($request->servingPrice);
         $meal->validity = intval($request->validity);
@@ -226,145 +227,50 @@ class BuilderController extends Controller
 
 
 
+        // ------------------------------
+        // ------------------------------
 
 
-        // 3: reset itemType / mealTypes if changed
-        if ($meal->type != $previousType)
-            $meal->itemType = null;
 
 
-        if ($meal->type != 'Meal')
-            MealAvailableType::where('mealId', $meal->id)?->delete();
 
 
 
 
+        // 3: reset partType - sync otherParts
+        if ($meal->type->id != $previousTypeId) {
 
 
+            // :: reset
+            $meal->partType = null;
 
 
 
-
-
-
-
-        // ---------------------------------
-        // ---------------------------------
-
-
-
-
-
-
-
-
-        // 4: migrateMeal if changed
-        if ($meal->type != $previousType) {
-
-
-
-            // 4.1: getPreviousMeals
-            $previousItems = null;
-
-            $previousType == 'Sub-recipe' ? $previousItems = MealSubRecipe::where('subRecipeId', $meal->id)->get() : null;
-            $previousType == 'Sauce' ? $previousItems = MealSauce::where('sauceId', $meal->id)->get() : null;
-            $previousType == 'Snack' ? $previousItems = MealSnack::where('snackId', $meal->id)->get() : null;
-            $previousType == 'Side' ? $previousItems = MealSide::where('sideId', $meal->id)->get() : null;
-            $previousType == 'Drink' ? $previousItems = MealDrink::where('drinkId', $meal->id)->get() : null;
-
-
-
-
-            // :: exists
-            if ($previousItems) {
-
-
-                // :: loop - previousItems
-                foreach ($previousItems as $previousItem) {
-
-
-
-
-                    // 4.2: create migrationItem
-                    $item = [];
-
-                    if ($meal->type == 'Sub-recipe') {
-
-                        $item = new MealSubRecipe();
-                        $item->subRecipeId = $meal->id;
-
-                    } // end if
-
-
-                    if ($meal->type == 'Sauce') {
-
-                        $item = new MealSauce();
-                        $item->sauceId = $meal->id;
-
-                    } // end if
-
-
-                    if ($meal->type == 'Snack') {
-
-                        $item = new MealSnack();
-                        $item->snackId = $meal->id;
-
-                    } // end if
-
-
-                    if ($meal->type == 'Side') {
-
-                        $item = new MealSide();
-                        $item->sideId = $meal->id;
-
-                    } // end if
-
-
-
-                    if ($meal->type == 'Drink') {
-
-                        $item = new MealDrink();
-                        $item->drinkId = $meal->id;
-
-                    } // end if
-
-
-
-
-
-
-
-                    // :: clone
-                    $item->type = $previousItem->type;
-                    $item->amount = $previousItem->amount;
-                    $item->remarks = $previousItem->remarks;
-                    $item->groupToken = $previousItem->groupToken;
-                    $item->isRemovable = $previousItem->isRemovable;
-
-                    $item->mealId = $previousItem->mealId;
-                    $item->mealSizeId = $previousItem->mealSizeId;
-
-                    $item->save();
-
-
-
-
-                    // :: removePreviousItem
-                    $previousItem->delete();
-
-
-
-
-                } // end loop
-
-
-            } // end if
+            // :: sync
+            MealPart::where('partId', $meal->id)->update([
+                'typeId' => $meal->type->id
+            ]);
 
 
         } // end if
 
 
 
+
+
+
+
+
+
+
+        // 4: reset MealTypes
+        if ($meal->type->name != 'Meal')
+            MealAvailableType::where('mealId', $meal->id)?->delete();
+
+
+
+
+        $meal->Save();
 
 
 
@@ -431,12 +337,12 @@ class BuilderController extends Controller
 
 
         // 1.2: meal
-        if ($meal->type == 'Meal') {
+        if ($meal->type->name == 'Meal') {
 
 
 
-            // :: reset itemTypes
-            $meal->itemType = null;
+            // :: reset partTypes
+            $meal->partType = null;
 
 
 
@@ -464,10 +370,10 @@ class BuilderController extends Controller
 
 
 
-            // 1.2: item
+            // 1.2: part
         } else {
 
-            $meal->itemType = $request->itemType;
+            $meal->partType = $request->partType;
 
         } // end if
 
@@ -550,11 +456,11 @@ class BuilderController extends Controller
 
 
 
-
         // 2: checkPreviousSizes
         $previousMealSize = MealSize::where('id', '!=', $mealSize->id)
             ->where('mealId', $mealSize->mealId)
             ->first();
+
 
 
         // :: exists
@@ -590,135 +496,23 @@ class BuilderController extends Controller
 
 
 
-            // 2.2: subRecipes
-            foreach ($previousMealSize->subRecipes as $previousMealSizeSubRecipe) {
+            // 2.2: parts
+            foreach ($previousMealSize->parts as $previousMealSizePart) {
 
 
                 // :: create clone
-                $mealSizeSubRecipe = new MealSubRecipe();
+                $mealSizePart = new MealPart();
 
-                foreach ($previousMealSizeSubRecipe->toArray() as $key => $value)
-                    $mealSizeSubRecipe->{$key} = $value;
+                foreach ($previousMealSizePart->toArray() as $key => $value)
+                    $mealSizePart->{$key} = $value;
 
 
 
 
                 // :: mealSizeId
-                $mealSizeSubRecipe->id = null;
-                $mealSizeSubRecipe->mealSizeId = $mealSize->id;
-                $mealSizeSubRecipe->save();
-
-
-
-            } // end loop
-
-
-
-
-
-
-
-            // 2.3: sauces
-            foreach ($previousMealSize->sauces as $previousMealSauce) {
-
-
-                // :: create clone
-                $mealSizeSauce = new MealSauce();
-
-                foreach ($previousMealSauce->toArray() as $key => $value)
-                    $mealSizeSauce->{$key} = $value;
-
-
-
-
-                // :: mealSizeId
-                $mealSizeSauce->id = null;
-                $mealSizeSauce->mealSizeId = $mealSize->id;
-                $mealSizeSauce->save();
-
-
-
-            } // end loop
-
-
-
-
-
-
-
-            // 2.4: snacks
-            foreach ($previousMealSize->snacks as $previousMealSnack) {
-
-
-                // :: create clone
-                $mealSizeSnack = new MealSnack();
-
-                foreach ($previousMealSnack->toArray() as $key => $value)
-                    $mealSizeSnack->{$key} = $value;
-
-
-
-
-                // :: mealSizeId
-                $mealSizeSnack->id = null;
-                $mealSizeSnack->mealSizeId = $mealSize->id;
-                $mealSizeSnack->save();
-
-
-
-            } // end loop
-
-
-
-
-
-
-
-            // 2.5: sides
-            foreach ($previousMealSize->sides as $previousMealSide) {
-
-
-                // :: create clone
-                $mealSizeSide = new MealSide();
-
-                foreach ($previousMealSide->toArray() as $key => $value)
-                    $mealSizeSide->{$key} = $value;
-
-
-
-
-                // :: mealSizeId
-                $mealSizeSide->id = null;
-                $mealSizeSide->mealSizeId = $mealSize->id;
-                $mealSizeSide->save();
-
-
-
-            } // end loop
-
-
-
-
-
-
-
-            // 2.6: drinks
-            foreach ($previousMealSize->drinks as $previousMealDrink) {
-
-
-                // :: create clone
-                $mealSizeDrink = new MealDrink();
-
-                foreach ($previousMealDrink->toArray() as $key => $value)
-                    $mealSizeDrink->{$key} = $value;
-
-
-
-
-                // :: mealSizeId
-                $mealSizeDrink->id = null;
-                $mealSizeDrink->mealSizeId = $mealSize->id;
-                $mealSizeDrink->save();
+                $mealSizePart->id = null;
+                $mealSizePart->mealSizeId = $mealSize->id;
+                $mealSizePart->save();
 
 
 
@@ -1229,31 +1023,41 @@ class BuilderController extends Controller
 
 
             // 1.2: create
-            $item = null;
+            $part = null;
 
 
 
 
 
-            // 1.3: itemType - Ingredient / Sub-recipe / Snack / Sauce / Side / Drink
-            $request->type == 'Ingredient' ? $item = new MealIngredient() : null;
-            $request->type == 'Sub-recipe' ? $item = new MealSubRecipe() : null;
-            $request->type == 'Snack' ? $item = new MealSnack() : null;
-            $request->type == 'Sauce' ? $item = new MealSauce() : null;
-            $request->type == 'Side' ? $item = new MealSide() : null;
-            $request->type == 'Drink' ? $item = new MealDrink() : null;
+            // 1.3: typeId
+            if ($request->typeId == 'Ingredient') {
+
+
+                $part = new MealIngredient();
+
+
+            } else {
+
+                $part = new MealPart();
+                $part->typeId = $request->typeId;
+
+            } // end if
+
+
+
 
 
 
 
 
             // 1.4: meal - mealSize - groupToken
-            $item->mealId = $meal->id;
-            $item->mealSizeId = $mealSize->id;
-            $item->groupToken = $groupToken;
+            $part->mealId = $meal->id;
+            $part->mealSizeId = $mealSize->id;
+            $part->groupToken = $groupToken;
 
 
-            $item->save();
+            $part->save();
+
 
 
         } // end loop
@@ -1266,7 +1070,7 @@ class BuilderController extends Controller
 
 
 
-        return response()->json(['message' => $meal->type . ' ' . $request->type . ' has been created'], 200);
+        return response()->json(['message' => 'Part has been created'], 200);
 
 
 
@@ -1367,18 +1171,14 @@ class BuilderController extends Controller
 
 
         // 1: get instance
-        $item = [];
+        $part = [];
 
 
 
 
-        // 1.2: type - Ingredient / Sub-recipe / Snack / Sauce / Side / Drink
-        $request->type == 'Ingredient' ? $item = MealIngredient::find($request->id) : null;
-        $request->type == 'Sub-recipe' ? $item = MealSubRecipe::find($request->id) : null;
-        $request->type == 'Snack' ? $item = MealSnack::find($request->id) : null;
-        $request->type == 'Sauce' ? $item = MealSauce::find($request->id) : null;
-        $request->type == 'Side' ? $item = MealSide::find($request->id) : null;
-        $request->type == 'Drink' ? $item = MealDrink::find($request->id) : null;
+        // 1.2: Ingredient / Part
+        $part = $request->typeId == 'Ingredient' ?
+            MealIngredient::find($request->id) : MealPart::find($request->id);
 
 
 
@@ -1388,22 +1188,21 @@ class BuilderController extends Controller
 
 
         // 1.3: amount - remarks
-        $item->amount = $request->amount ?? null;
-        $item->remarks = $request->remarks ?? null;
-        $item->isRemovable = $request->isRemovable === true ? true : false;
-        $item->type = $request->itemType ?? null;
+        $part->amount = $request->amount ?? null;
+        $part->remarks = $request->remarks ?? null;
+        $part->isRemovable = $request->isRemovable === true ? true : false;
 
 
 
 
-        $item->save();
+        $part->save();
 
 
 
 
 
 
-        return response()->json(['message' => $request->type . ' has been updated'], 200);
+        return response()->json(['message' => 'Part has been updated'], 200);
 
 
 
@@ -1447,135 +1246,49 @@ class BuilderController extends Controller
 
 
 
-        // 1: type - Ingredient
-        if ($request->type == 'Ingredient') {
+        // 1: Ingredient / Part
+        if ($request->typeId == 'Ingredient') {
+
 
 
             // :: groupToken otherSizeIngredients
             $groupToken = MealIngredient::find($request->id)->groupToken;
 
 
-            $items = MealIngredient::where('groupToken', $groupToken)->get();
+            $parts = MealIngredient::where('groupToken', $groupToken)->get();
 
 
-            foreach ($items as $item) {
+            foreach ($parts as $part) {
 
-                $item->ingredientId = $request->itemId;
-                $item->type = $request->itemType ?? null;
+                $part->ingredientId = $request->partId;
+                $part->partType = $request->partType ?? null;
 
-                $item->save();
+                $part->save();
 
             } // end loop
 
 
 
-        } // end if
 
 
 
 
 
-
-        // 1.2: type - subRecipe
-        if ($request->type == 'Sub-recipe') {
+        } else {
 
 
             // :: groupToken otherSizeIngredients
-            $groupToken = MealSubRecipe::find($request->id)->groupToken;
+            $groupToken = MealPart::find($request->id)->groupToken;
 
 
-            $items = MealSubRecipe::where('groupToken', $groupToken)->get();
+            $parts = MealPart::where('groupToken', $groupToken)->get();
 
-            foreach ($items as $item) {
+            foreach ($parts as $part) {
 
-                $item->subRecipeId = $request->itemId;
-                $item->type = $request->itemType ?? null;
+                $part->partId = $request->partId;
+                $part->partType = $request->partType ?? null;
 
-                $item->save();
-
-            } // end loop
-
-
-        } // end if
-
-
-
-
-
-
-
-        // 1.3: type - snack
-        if ($request->type == 'Snack') {
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealSnack::find($request->id)->groupToken;
-
-
-            $items = MealSnack::where('groupToken', $groupToken)->get();
-
-            foreach ($items as $item) {
-
-                $item->snackId = $request->itemId;
-                $item->type = $request->itemType ?? null;
-
-                $item->save();
-
-            } // end loop
-
-
-
-        } // end if
-
-
-
-
-
-
-
-        // 1.4: type - sauce
-        if ($request->type == 'Sauce') {
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealSauce::find($request->id)->groupToken;
-
-
-            $items = MealSauce::where('groupToken', $groupToken)->get();
-
-            foreach ($items as $item) {
-
-                $item->sauceId = $request->itemId;
-                $item->type = $request->itemType ?? null;
-
-                $item->save();
-
-            } // end loop
-
-
-
-        } // end if
-
-
-
-
-
-        // 1.5: type - side
-        if ($request->type == 'Side') {
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealSide::find($request->id)->groupToken;
-
-
-            $items = MealSide::where('groupToken', $groupToken)->get();
-
-            foreach ($items as $item) {
-
-                $item->sideId = $request->itemId;
-                $item->type = $request->itemType ?? null;
-
-
-                $item->save();
+                $part->save();
 
             } // end loop
 
@@ -1586,38 +1299,12 @@ class BuilderController extends Controller
 
 
 
-        // 1.6: type - drink
-        if ($request->type == 'Drink') {
-
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealDrink::find($request->id)->groupToken;
-
-
-            $items = MealDrink::where('groupToken', $groupToken)->get();
-
-            foreach ($items as $item) {
-
-                $item->drinkId = $request->itemId;
-                $item->type = $request->itemType ?? null;
-
-                $item->save();
-
-            } // end loop
-
-
-
-        } // end if
 
 
 
 
 
-
-
-
-        return response()->json(['message' => $request->type . ' has been updated'], 200);
+        return response()->json(['message' => 'Part has been updated'], 200);
 
 
 
@@ -1670,8 +1357,8 @@ class BuilderController extends Controller
 
 
 
-        // 1: type - Ingredient
-        if ($request->type == 'Ingredient') {
+        // 1: Ingredient / Part
+        if ($request->typeId == 'Ingredient') {
 
 
             // :: groupToken otherSizeIngredients
@@ -1682,93 +1369,13 @@ class BuilderController extends Controller
 
 
 
-        } // end if
-
-
-
-
-
-
-        // 1.2: type - subRecipe
-        if ($request->type == 'Sub-recipe') {
+        } else {
 
 
             // :: groupToken otherSizeIngredients
-            $groupToken = MealSubRecipe::find($request->id)->groupToken;
+            $groupToken = MealPart::find($request->id)->groupToken;
 
-            MealSubRecipe::where('groupToken', $groupToken)->delete();
-
-
-
-        } // end if
-
-
-
-
-
-
-
-        // 1.3: type - snack
-        if ($request->type == 'Snack') {
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealSnack::find($request->id)->groupToken;
-
-            MealSnack::where('groupToken', $groupToken)->delete();
-
-
-
-        } // end if
-
-
-
-
-
-
-
-        // 1.4: type - sauce
-        if ($request->type == 'Sauce') {
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealSauce::find($request->id)->groupToken;
-
-            MealSauce::where('groupToken', $groupToken)->delete();
-
-
-        } // end if
-
-
-
-
-
-        // 1.5: type - side
-        if ($request->type == 'Side') {
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealSide::find($request->id)->groupToken;
-
-            MealSide::where('groupToken', $groupToken)->delete();
-
-
-
-        } // end if
-
-
-
-
-
-        // 1.6: type - drink
-        if ($request->type == 'Drink') {
-
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealDrink::find($request->id)->groupToken;
-
-            MealDrink::where('groupToken', $groupToken)->delete();
+            MealPart::where('groupToken', $groupToken)->delete();
 
 
 
@@ -1781,8 +1388,9 @@ class BuilderController extends Controller
 
 
 
-        return response()->json(['message' => $request->type . ' has been remove'], 200);
 
+
+        return response()->json(['message' => 'Part has been remove'], 200);
 
 
 

@@ -5,9 +5,8 @@ namespace App\Models;
 use App\Traits\MacroTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use stdClass;
 
-class MealDrink extends Model
+class MealPart extends Model
 {
     use HasFactory;
     use MacroTrait;
@@ -25,13 +24,23 @@ class MealDrink extends Model
 
 
 
-    public function drink()
+    public function part()
     {
 
-        return $this->belongsTo(Meal::class, 'drinkId');
+        return $this->belongsTo(Meal::class, 'partId');
 
     } // end function
 
+
+
+
+
+    public function type()
+    {
+
+        return $this->belongsTo(Type::class, 'typeId');
+
+    } // end function
 
 
 
@@ -98,7 +107,3 @@ class MealDrink extends Model
 
 
 } // end model
-
-
-
-

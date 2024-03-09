@@ -2,12 +2,13 @@
 
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
-use App\Livewire\Forms\MealItemDetailForm;
-use App\Livewire\Forms\MealItemForm;
+use App\Livewire\Forms\MealPartDetailForm;
+use App\Livewire\Forms\MealPartForm;
 use App\Models\Ingredient;
 use App\Models\Meal;
 use App\Models\MealDrink;
 use App\Models\MealIngredient;
+use App\Models\MealPart;
 use App\Models\MealSauce;
 use App\Models\MealSide;
 use App\Models\MealSnack;
@@ -27,23 +28,23 @@ class ProductionBuilderViewIngredient extends Component
 
 
     // :: variables
-    public MealItemDetailForm $instance;
-    public $mealItem;
+    public MealPartDetailForm $instance;
+    public $mealPart;
 
 
     // :: helpers
     public $removeId;
-    public $id, $type;
+    public $id, $typeId;
 
 
 
-    public function mount($id, $type)
+    public function mount($id, $typeId)
     {
 
         // 1: get instance
         $this->id = $id;
-        $this->type = $type;
-        $this->init($id, $type);
+        $this->typeId = $typeId;
+        $this->init($id, $typeId);
 
 
 
@@ -66,61 +67,23 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
-    #[On('refreshMealSizeIngredientsView-{id}-{type}')]
-    public function init($id, $type)
+    #[On('refreshMealSizeIngredientsView-{id}-{typeId}')]
+    public function init($id, $typeId)
     {
 
 
 
-        // :: determineType
-        if ($type == 'Ingredient') {
+        // :: ingredient / Part
+        if ($typeId == 'Ingredient') {
 
-            $this->mealItem = MealIngredient::find($id);
-            $this->instance->itemId = $this->mealItem->ingredientId;
+            $this->mealPart = MealIngredient::find($id);
+            $this->instance->partId = $this->mealPart->ingredientId;
 
-        } // end if
-
-
-        if ($type == 'Sub-recipe') {
-
-            $this->mealItem = MealSubRecipe::find($id);
-            $this->instance->itemId = $this->mealItem->subRecipeId;
-
-        } // end if
+        } else {
 
 
-
-        if ($type == 'Snack') {
-
-            $this->mealItem = MealSnack::find($id);
-            $this->instance->itemId = $this->mealItem->snackId;
-
-        } // end if
-
-
-
-        if ($type == 'Sauce') {
-
-            $this->mealItem = MealSauce::find($id);
-            $this->instance->itemId = $this->mealItem->sauceId;
-
-        } // end if
-
-
-
-        if ($type == 'Side') {
-
-            $this->mealItem = MealSide::find($id);
-            $this->instance->itemId = $this->mealItem->sideId;
-
-
-        } // end if
-
-
-        if ($type == 'Drink') {
-
-            $this->mealItem = MealDrink::find($id);
-            $this->instance->itemId = $this->mealItem->drinkId;
+            $this->mealPart = MealPart::find($id);
+            $this->instance->partId = $this->mealPart->partId;
 
         } // end if
 
@@ -128,16 +91,15 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
-
-        // 1: get id - meal - type - amount - remarks - isRemovable
+        // 1: get id - meal - typeId - partType - amount - remarks - isRemovable
         $this->instance->id = $id;
-        $this->instance->type = $type;
+        $this->instance->typeId = $typeId;
 
-        $this->instance->amount = $this->mealItem->amount;
-        $this->instance->remarks = $this->mealItem->remarks;
-        $this->instance->itemType = $this->mealItem->type;
-        $this->instance->isRemovable = $this->mealItem->isRemovable;
-        $this->instance->mealId = $this->mealItem->mealId;
+        $this->instance->amount = $this->mealPart->amount;
+        $this->instance->remarks = $this->mealPart->remarks;
+        $this->instance->partType = $this->mealPart->partType;
+        $this->instance->isRemovable = $this->mealPart->isRemovable;
+        $this->instance->mealId = $this->mealPart->mealId;
 
 
 
@@ -187,17 +149,9 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
-
-
-
-
-
-
-
-
-
-
     // -----------------------------------------------------
+
+
 
 
 
@@ -211,7 +165,7 @@ class ProductionBuilderViewIngredient extends Component
         // 1: params - confirmationBox
         $this->removeId = $id;
 
-        $this->makeAlert('remove', null, 'confirmMealItemRemove');
+        $this->makeAlert('remove', null, 'confirmMealPartRemove');
 
 
 
@@ -232,7 +186,7 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
-    #[On('confirmMealItemRemove')]
+    #[On('confirmMealPartRemove')]
     public function confirmRemove()
     {
 
@@ -241,7 +195,7 @@ class ProductionBuilderViewIngredient extends Component
         // :: create instance
         $instance = new stdClass();
         $instance->id = $this->removeId;
-        $instance->type = $this->instance->type;
+        $instance->typeId = $this->instance->typeId;
 
 
 
@@ -285,12 +239,12 @@ class ProductionBuilderViewIngredient extends Component
     {
 
 
-        // :: valid itemId
-        if ($this->mealItem) {
+        // :: valid partId
+        if ($this->mealPart) {
 
 
             // 1: getTotalMacros
-            // $totalMacros = $this->mealItem->totalMacro($this->instance->amount ?? 0);
+            // $totalMacros = $this->mealPart->totalMacro($this->instance->amount ?? 0);
 
 
 

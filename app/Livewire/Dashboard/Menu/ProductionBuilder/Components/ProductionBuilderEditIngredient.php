@@ -2,11 +2,12 @@
 
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
-use App\Livewire\Forms\MealItemForm;
+use App\Livewire\Forms\MealPartForm;
 use App\Models\Ingredient;
 use App\Models\Meal;
 use App\Models\MealDrink;
 use App\Models\MealIngredient;
+use App\Models\MealPart;
 use App\Models\MealSauce;
 use App\Models\MealSide;
 use App\Models\MealSize;
@@ -26,69 +27,30 @@ class ProductionBuilderEditIngredient extends Component
 
 
     // :: variables
-    public MealItemForm $instance;
-    public $mealItem;
+    public MealPartForm $instance;
+    public $mealPart;
 
 
 
 
 
 
-    public function mount($id, $type)
+    public function mount($id, $typeId)
     {
 
 
 
 
-        // :: determineType
-        if ($type == 'Ingredient') {
+        // :: determineTypeId
+        if ($typeId == 'Ingredient') {
 
-            $this->mealItem = MealIngredient::find($id);
-            $this->instance->itemId = $this->mealItem->ingredientId;
+            $this->mealPart = MealIngredient::find($id);
+            $this->instance->partId = $this->mealPart->ingredientId;
 
-        } // end if
+        } else {
 
-
-        if ($type == 'Sub-recipe') {
-
-            $this->mealItem = MealSubRecipe::find($id);
-            $this->instance->itemId = $this->mealItem->subRecipeId;
-
-        } // end if
-
-
-
-        if ($type == 'Snack') {
-
-            $this->mealItem = MealSnack::find($id);
-            $this->instance->itemId = $this->mealItem->snackId;
-
-        } // end if
-
-
-
-        if ($type == 'Sauce') {
-
-            $this->mealItem = MealSauce::find($id);
-            $this->instance->itemId = $this->mealItem->sauceId;
-
-        } // end if
-
-
-
-        if ($type == 'Side') {
-
-            $this->mealItem = MealSide::find($id);
-            $this->instance->itemId = $this->mealItem->sideId;
-
-
-        } // end if
-
-
-        if ($type == 'Drink') {
-
-            $this->mealItem = MealDrink::find($id);
-            $this->instance->itemId = $this->mealItem->drinkId;
+            $this->mealPart = MealPart::find($id);
+            $this->instance->partId = $this->mealPart->partId;
 
         } // end if
 
@@ -98,11 +60,11 @@ class ProductionBuilderEditIngredient extends Component
 
 
 
-        // 1: get id - meal - type
+        // 1: get details
         $this->instance->id = $id;
-        $this->instance->type = $type;
-        $this->instance->itemType = $this->mealItem->type;
-        $this->instance->mealId = $this->mealItem->mealId;
+        $this->instance->typeId = $typeId;
+        $this->instance->partType = $this->mealPart->partType; // * MIXED - MAIN - SIDE
+        $this->instance->mealId = $this->mealPart->mealId;
 
 
 
@@ -140,19 +102,30 @@ class ProductionBuilderEditIngredient extends Component
 
 
 
-        // 1: makeRequest
+
+        // 1: makeRequest - alert
         $response = $this->makeRequest('dashboard/menu/builder/ingredients/update', $this->instance);
 
+        $this->makeAlert('success', $response->message);
 
 
 
 
-        // 1.2: refresh ingredientDetails related
+
+        // --------------------------
+        // --------------------------
+
+
+
+
+
+
+        // 1.2: refresh ingredient-details
         $mealIngredients = MealIngredient::where('mealId', $this->instance->mealId)->get();
 
         foreach ($mealIngredients as $mealIngredient) {
 
-            $this->dispatch('refreshMealSizeIngredientsView-' . $mealIngredient->id . '-' . $this->instance->type, $mealIngredient->id, $this->instance->type);
+            $this->dispatch('refreshMealSizeIngredientsView-' . $mealIngredient->id . '-' . $this->instance->typeId, $mealIngredient->id, $this->instance->typeId);
 
         } // end loop
 
@@ -160,8 +133,19 @@ class ProductionBuilderEditIngredient extends Component
 
 
 
-        // :: alert
-        $this->makeAlert('success', $response->message);
+
+
+        // 1.3: refresh part-details
+        $mealParts = MealPart::where('mealId', $this->instance->mealId)->get();
+
+        foreach ($mealParts as $mealPart) {
+
+            $this->dispatch('refreshMealSizeIngredientsView-' . $mealPart->id . '-' . $this->instance->typeId, $mealPart->id, $this->instance->typeId);
+
+        } // end loop
+
+
+
 
 
 
@@ -189,6 +173,9 @@ class ProductionBuilderEditIngredient extends Component
 
     public function updateType()
     {
+
+
+
 
 
         // 1: makeRequest
@@ -222,15 +209,15 @@ class ProductionBuilderEditIngredient extends Component
 
 
 
-    #[On('refreshItems')]
+    #[On('refreshParts')]
     public function render()
     {
 
 
-        // 1: ingredient / meal
-        $items = $this->instance?->type != 'Ingredient' ?
+        // 1: ingredient / parts
+        $parts = $this->instance?->typeId != 'Ingredient' ?
             Meal::where('id', '!=', $this->instance->mealId)
-                ->where('type', $this->instance->type)->get() : Ingredient::all();
+                ->where('typeId', $this->instance->typeId)->get() : Ingredient::all();
 
 
 
@@ -248,7 +235,7 @@ class ProductionBuilderEditIngredient extends Component
 
 
 
-        return view('livewire.dashboard.menu.production-builder.components.production-builder-edit-ingredient', compact('items'));
+        return view('livewire.dashboard.menu.production-builder.components.production-builder-edit-ingredient', compact('parts'));
 
 
     } // end function

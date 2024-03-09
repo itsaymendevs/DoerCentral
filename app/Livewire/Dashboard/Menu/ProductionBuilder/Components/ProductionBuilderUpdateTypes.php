@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 use App\Livewire\Forms\MealForm;
 use App\Models\Meal;
 use App\Models\MealType;
+use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -64,7 +65,7 @@ class ProductionBuilderUpdateTypes extends Component
             $this->instance->{$key} = $value;
 
 
-        $this->instance->mealTypes = $this->meal->type == 'Meal' && $this->meal?->types ? $this->meal?->types?->pluck('mealTypeId')->toArray() : [];
+        $this->instance->mealTypes = $this->meal->type->name == 'Meal' && $this->meal?->types ? $this->meal?->types?->pluck('mealTypeId')->toArray() : [];
 
 
 
@@ -136,7 +137,10 @@ class ProductionBuilderUpdateTypes extends Component
 
 
         // 1: dependencies
-        $mealTypes = MealType::where('isFor', 'Meal')->get();
+        $type = Type::where('name', 'Meal')->first();
+        $mealTypes = MealType::where('typeId', $type->id)->get();
+
+
         $snackTypes = ['Sweet', 'Savoury'];
         $drinkTypes = ['Hot Drink', 'Cold Drink'];
         $sauceTypes = ['On Side', 'Part of Meal'];

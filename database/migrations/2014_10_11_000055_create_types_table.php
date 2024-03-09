@@ -10,21 +10,11 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('meal_types', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->id();
-
 
             // 1: general
             $table->string('name', 100)->nullable();
-            $table->string('shortName', 100)->nullable();
-
-
-
-            // 1.2: type
-            $table->bigInteger('typeId')->unsigned()->nullable();
-            $table->foreign('typeId')->references('id')->on('types')->onDelete('cascade');
-
-
 
 
             $table->timestamps();
@@ -36,6 +26,6 @@ return new class extends Migration {
      */
     public function down() : void
     {
-        Schema::dropIfExists('meal_types');
+        Schema::dropIfExists('types');
     }
 };

@@ -11,6 +11,7 @@ use App\Models\MealSide;
 use App\Models\MealSize;
 use App\Models\MealSnack;
 use App\Models\MealSubRecipe;
+use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -73,7 +74,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-    public function append($type)
+    public function append($typeId)
     {
 
 
@@ -81,14 +82,14 @@ class ProductionBuilderManageIngredients extends Component
         // :: create instance
         $instance = new stdClass();
         $instance->mealId = $this->meal?->id;
-        $instance->type = $type;
+        $instance->typeId = $typeId;
 
 
 
 
 
         // :: notEmpty
-        if ($type) {
+        if ($typeId) {
 
 
             // 1: makeRequest
@@ -183,6 +184,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
         // 1: dependencies
+        $types = Type::where('name', '!=', 'Meal')->get();
         $mealSize = MealSize::where('mealId', $this->meal->id)->first();
 
 
@@ -192,7 +194,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-        return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-ingredients', compact('mealSize'));
+        return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-ingredients', compact('mealSize', 'types'));
 
 
     } // end function

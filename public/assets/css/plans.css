@@ -1,242 +1,266 @@
+/* hr */
+
+hr {
+  border-color: var(--input-border-color-hover);
+}
+
+/* gold-underline */
+
+.underline-gold {
+  text-decoration: underline var(--bg-golden-dark);
+}
+
 .form--table-image {
-    object-fit: contain;
-    height: 75px;
-    width: 100%;
+  object-fit: contain;
+  height: 75px;
+  width: 100%;
 }
 
 /* recipe-card */
 
 .recipe--card-tag {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold !important;
-    width: 40px;
-    aspect-ratio: 1/1.1;
-    background-color: var(--color-scheme-2);
-    border-radius: var(--radius);
-    margin: 0px 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold !important;
+  width: 40px;
+  aspect-ratio: 1/1.1;
+  background-color: var(--color-scheme-2);
+  border-radius: var(--radius);
+  margin: 0px 4px;
 }
 
 .recipe--card-tag.sm {
-    width: 32px;
+  width: 32px;
 }
 
 /* tabs for sizes */
 
 .tabs--wrap .nav-tabs.for-sizes {
-    border-bottom: 1px solid var(--color-scheme-2);
-    border-radius: 0px;
-    padding-bottom: 1px;
-    margin-bottom: 6px;
-    display: flex;
-    justify-content: center;
+  border-bottom: 1px solid var(--color-scheme-2);
+  border-radius: 0px;
+  padding-bottom: 1px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: center;
 }
 
 .tabs--wrap .nav-tabs.for-sizes li {
-    width: 17%;
-    margin-right: 0.5%;
-    margin-left: 0.5%;
-    text-align: center;
+  width: 17%;
+  margin-right: 0.5%;
+  margin-left: 0.5%;
+  text-align: center;
 }
 
 .tabs--wrap .nav-tabs.for-sizes a {
-    padding: 6px 0px;
-    border: none;
-    border-radius: var(--radius) var(--radius) 0px 0px;
-    font-size: 14px;
-    transform: scale(1);
-    width: 100%;
+  padding: 6px 0px;
+  border: none;
+  border-radius: var(--radius) var(--radius) 0px 0px;
+  font-size: 14px;
+  transform: scale(1);
+  width: 100%;
 }
 
-.tabs--wrap .nav-tabs.for-sizes a.active,
-.tabs--wrap .nav-tabs.for-sizes a:hover,
-.tabs--wrap .nav-tabs.for-sizes a:focus {
-    transform: scale(1);
-    background-color: #dba400;
+.tabs--wrap .nav-tabs.for-sizes a.active, .tabs--wrap .nav-tabs.for-sizes a:hover, .tabs--wrap .nav-tabs.for-sizes a:focus {
+  transform: scale(1);
+  background-color: #dba400;
 }
 
 /* mealType */
 
 .mealType--checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 0px;
 }
 
 .mealType--checkbox input {
-    margin: 0px !important;
-    font-size: 25px;
-    height: 14px;
-    background-color: var(--color-theme-heading) !important;
+  margin: 0px !important;
+  font-size: 25px;
+  height: 14px;
+  background-color: var(--color-theme-heading) !important;
+}
+
+.mealType--checkbox input.sm {
+  width: 40px;
 }
 
 .mealType--checkbox input:checked {
-    background-color: var(--bg-golden-dark) !important;
+  background-color: var(--bg-golden-dark) !important;
 }
 
 .mealType--checkbox label {
-    margin-left: 15px;
-    font-size: 17px;
-    border-bottom: 1px solid var(--bg-golden);
+  margin-left: 15px;
+  font-size: 17px;
+  border-bottom: 1px solid var(--bg-golden);
 }
 
 /* submenu for builder */
 
 .submenu--group.for-builder .btn {
-    border: 1px solid var(--input-border-color) !important;
+  border: 1px solid var(--input-border-color) !important;
 }
 
 .submenu--group.for-builder .btn.active {
-    background-color: var(--color-theme-secondary);
+  background-color: var(--color-theme-secondary);
 }
 
 /* ingredients color scheme */
 
 .item--scheme-1 {
-    background-color: var(--ingredient-color);
-    color: var(--color-scheme-2);
+  background-color: var(--ingredient-color);
+  color: var(--color-scheme-2);
 }
 
 .item--scheme-1 svg {
-    fill: var(--color-scheme-2);
+  fill: var(--color-scheme-2);
 }
 
-.item--scheme-1:hover svg,
-.item--scheme-1:focus svg {
-    fill: var(--color-theme);
+.item--scheme-1:hover svg, .item--scheme-1:focus svg {
+  fill: var(--color-theme);
 }
 
 /* scheme-2 */
 
 .item--scheme-2 {
-    background-color: var(--subrecipe-color);
-    color: var(--color-scheme-2);
+  background-color: var(--subrecipe-color);
+  color: var(--color-scheme-2);
 }
 
 .item--scheme-2 svg {
-    fill: var(--color-scheme-2);
+  fill: var(--color-scheme-2);
 }
 
-.item--scheme-2:hover svg,
-.item--scheme-2:focus svg {
-    fill: var(--color-theme);
+.item--scheme-2:hover svg, .item--scheme-2:focus svg {
+  fill: var(--color-theme);
 }
 
 /* scheme-3 */
 
 .item--scheme-3 {
-    background-color: var(--sauce-color);
-    color: var(--color-scheme-2);
+  background-color: var(--sauce-color);
+  color: var(--color-scheme-2);
 }
 
 .item--scheme-3 svg {
-    fill: var(--color-scheme-2);
+  fill: var(--color-scheme-2);
 }
 
-.item--scheme-3:hover svg,
-.item--scheme-3:focus svg {
-    fill: var(--color-theme);
+.item--scheme-3:hover svg, .item--scheme-3:focus svg {
+  fill: var(--color-theme);
 }
 
 /* scheme-4 */
 
 .item--scheme-4 {
-    background-color: var(--snack-color);
-    color: var(--color-scheme-2);
+  background-color: var(--snack-color);
+  color: var(--color-scheme-2);
 }
 
 .item--scheme-4 svg {
-    fill: var(--color-scheme-2);
+  fill: var(--color-scheme-2);
 }
 
-.item--scheme-4:hover svg,
-.item--scheme-4:focus svg {
-    fill: var(--color-theme);
+.item--scheme-4:hover svg, .item--scheme-4:focus svg {
+  fill: var(--color-theme);
 }
 
 /* scheme 5 */
 
 .item--scheme-5 {
-    background-color: var(--side-color);
-    color: var(--color-scheme-2);
+  background-color: var(--side-color);
+  color: var(--color-scheme-2);
 }
 
 .item--scheme-5 svg {
-    fill: var(--color-scheme-2);
+  fill: var(--color-scheme-2);
 }
 
-.item--scheme-5:hover svg,
-.item--scheme-5:focus svg {
-    fill: var(--color-theme);
+.item--scheme-5:hover svg, .item--scheme-5:focus svg {
+  fill: var(--color-theme);
 }
 
 /* scheme 6 */
 
 .item--scheme-6 {
-    background-color: var(--drink-color);
-    color: var(--color-scheme-2);
+  background-color: var(--drink-color);
+  color: var(--color-scheme-2);
 }
 
 .item--scheme-6 svg {
-    fill: var(--color-scheme-2);
+  fill: var(--color-scheme-2);
 }
 
-.item--scheme-6:hover svg,
-.item--scheme-6:focus svg {
-    fill: var(--color-theme);
+.item--scheme-6:hover svg, .item--scheme-6:focus svg {
+  fill: var(--color-theme);
 }
 
 /* builder */
 
 .tr--ingredient {
-    background-color: var(--ingredient-color) !important;
+  background-color: var(--ingredient-color) !important;
+}
+
+.tr--meal {
+  background-color: var(--ingredient-color) !important;
 }
 
 .tr--sub-recipe {
-    background-color: var(--subrecipe-color) !important;
+  background-color: var(--subrecipe-color) !important;
 }
 
 .tr--snack {
-    background-color: var(--snack-color) !important;
+  background-color: var(--snack-color) !important;
 }
 
 .tr--side {
-    background-color: var(--side-color) !important;
+  background-color: var(--side-color) !important;
 }
 
 .tr--sauce {
-    background-color: var(--sauce-color) !important;
+  background-color: var(--sauce-color) !important;
 }
 
 .tr--drink {
-    background-color: var(--drink-color) !important;
+  background-color: var(--drink-color) !important;
 }
 
 /* item radio */
 
 .itemType--radio {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 0px;
 }
 
 .itemType--radio label {
-    margin-left: 15px;
-    font-size: 17px;
-    border-bottom: 1px solid var(--bg-golden);
+  margin-left: 15px;
+  font-size: 17px;
+  border-bottom: 1px solid var(--bg-golden);
 }
 
 .itemType--radio input {
-    margin: 0px !important;
-    font-size: 18px;
-    background-color: var(--color-theme-heading) !important;
+  margin: 0px !important;
+  font-size: 18px;
+  background-color: var(--color-theme-heading) !important;
 }
 
-.itemType--radio input:checked,
-.itemType--radio input[checked] {
-    background-color: var(--bg-golden-dark) !important;
-    border-color: var(--bg-golden-dark) !important;
+.itemType--radio input:checked, .itemType--radio input[checked] {
+  background-color: var(--bg-golden-dark) !important;
+  border-color: var(--bg-golden-dark) !important;
 }
+
+/* calendar */
+
+.calendar--table-meal {
+  padding: 4px 10px;
+  background-color: var(--color-scheme-dark-1);
+  color: black;
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  text-align: left;
+  font-weight: 600 !important;
+}
+

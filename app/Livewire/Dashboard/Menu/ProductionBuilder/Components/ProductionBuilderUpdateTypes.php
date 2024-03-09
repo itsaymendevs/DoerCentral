@@ -136,7 +136,7 @@ class ProductionBuilderUpdateTypes extends Component
 
 
         // 1: dependencies
-        $mealTypes = MealType::whereIn('name', ['Breakfast', 'Lunch', 'Dinner'])->get();
+        $mealTypes = MealType::where('isFor', 'Meal')->get();
         $snackTypes = ['Sweet', 'Savoury'];
         $drinkTypes = ['Hot Drink', 'Cold Drink'];
         $sauceTypes = ['On Side', 'Part of Meal'];

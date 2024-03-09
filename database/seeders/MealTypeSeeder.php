@@ -18,6 +18,7 @@ class MealTypeSeeder extends Seeder
         $mealTypes = ['Breakfast', 'Morning Snack', 'Morning Snack 2', 'Lunch', 'Lunch Side', 'Afternoon Snack', 'Dinner', 'Dinner Side'];
 
         $mealTypesCuts = ['B', 'MS', 'MS2', 'L', 'LS', 'AS', 'D', 'DS'];
+        $mealTypesFor = ['Meal', 'Snack', 'Snack', 'Meal', 'Side', 'Snack', 'Meal', 'Side'];
 
 
 
@@ -25,6 +26,7 @@ class MealTypeSeeder extends Seeder
             MealType::create([
                 'name' => $mealTypes[$i],
                 'shortName' => $mealTypesCuts[$i],
+                'isFor' => $mealTypesFor[$i],
             ]);
         } // end loop
 

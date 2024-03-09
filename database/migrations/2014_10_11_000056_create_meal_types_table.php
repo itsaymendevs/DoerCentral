@@ -13,9 +13,15 @@ return new class extends Migration {
         Schema::create('meal_types', function (Blueprint $table) {
             $table->id();
 
+
             // 1: general
             $table->string('name', 100)->nullable();
             $table->string('shortName', 100)->nullable();
+
+
+
+            // 1.2: isFor => Meal / Snack / Etc ..
+            $table->string('isFor', 100)->nullable();
 
 
 

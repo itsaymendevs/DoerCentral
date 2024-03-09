@@ -3,6 +3,8 @@
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\Menu\Builder;
+use App\Livewire\Dashboard\Menu\Calendars;
+use App\Livewire\Dashboard\Menu\Calendars\SingleCalendar;
 use App\Livewire\Dashboard\Menu\Items\Drinks;
 use App\Livewire\Dashboard\Menu\Items\Sauces;
 use App\Livewire\Dashboard\Menu\Items\Sides;
@@ -54,6 +56,7 @@ Route::get('/storage-link', function () {
 
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
+
 
 
 
@@ -129,8 +132,16 @@ Route::get('dashboard/menu/recipes', Recipes::class)->name('dashboard.menuRecipe
 
 
 
+// ---------
+
+
+
 // 6.1: Sub-recipes
 Route::get('dashboard/menu/sub-recipes', SubRecipes::class)->name('dashboard.menuSubRecipes');
+
+
+
+// ---------
 
 
 
@@ -141,8 +152,19 @@ Route::get('dashboard/menu/snacks', Snacks::class)->name('dashboard.menuSnacks')
 
 
 
+// ---------
+
+
+
+
 // 6.3: Sides
 Route::get('dashboard/menu/sides', Sides::class)->name('dashboard.menuSides');
+
+
+
+
+// ---------
+
 
 
 
@@ -153,11 +175,19 @@ Route::get('dashboard/menu/sauces', Sauces::class)->name('dashboard.menuSauces')
 
 
 
+// ---------
+
+
+
 
 // 6.5: Drinks
 Route::get('dashboard/menu/drinks', Drinks::class)->name('dashboard.menuDrinks');
 
 
+
+
+
+// ---------
 
 
 
@@ -173,12 +203,29 @@ Route::get('dashboard/menu/production-builder/{id}', ProductionBuilder::class)->
 
 
 
+// ---------
 
 
 
-// 6.7: Settings
+
+
+// 6.7: calendars
+Route::get('dashboard/menu/calendars', Calendars::class)->name('dashboard.menuCalendars');
+Route::get('dashboard/menu/calendars/{id}', SingleCalendar::class)->name('dashboard.menuSingleCalendar');
+
+
+
+
+
+// ---------
+
+
+
+
+
+
+// 6.8: Settings
 Route::get('dashboard/menu/settings', Settings::class)->name('dashboard.menuSettings');
-
 
 
 

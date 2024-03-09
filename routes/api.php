@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\BuilderController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\MenuCalendarController;
 use App\Http\Controllers\Api\MenuSettingController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\PromoController;
@@ -34,7 +35,7 @@ Route::post('/checkUser', [LoginController::class, 'checkUser']);
 
 
 
-// ----------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
@@ -611,6 +612,33 @@ Route::post('/dashboard/menu/builder/packings/remove', [BuilderController::class
 
 // 9.10: menu - builder - servings - update
 Route::post('/dashboard/menu/builder/servings/update', [BuilderController::class, 'updateBuilderServing']);
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+// 10: menu - calendar - storeCalendar - update  - remove
+Route::post('/dashboard/menu/calendars/store', [MenuCalendarController::class, 'storeCalendar']);
+Route::post('/dashboard/menu/calendars/update', [MenuCalendarController::class, 'updateCalendar']);
+
+Route::post('/dashboard/menu/calendars/remove', [MenuCalendarController::class, 'removeCalendar']);
+
 
 
 

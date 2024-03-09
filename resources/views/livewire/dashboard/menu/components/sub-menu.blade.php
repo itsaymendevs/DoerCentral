@@ -49,8 +49,8 @@
 
 
             {{-- 4: calendar --}}
-            <a class="btn @if (Request::is('dashboard/menu/calendar')) active @endif" href="#"
-                wire:navigate>Calendar</a>
+            <a class="btn @if (Request::is('dashboard/menu/calendars')) active @endif"
+                href="{{ route('dashboard.menuCalendars') }}" wire:navigate>Calendar</a>
 
 
 

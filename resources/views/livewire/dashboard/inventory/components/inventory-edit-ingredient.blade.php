@@ -127,7 +127,7 @@
                                 <label class="form-label form--label">Measuring Unit</label>
                                 <div class="select--single-wrapper mb-4">
                                     <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='unit-select-2' data-instance='instance.unitId' required>
+                                        id='unit-select-2' data-instance='instance.unitId' data-trigger='true' required>
                                         <option value=""></option>
 
                                         @foreach ($units as $unit)
@@ -144,7 +144,8 @@
                                 <label class="form-label form--label">Category</label>
                                 <div class="select--single-wrapper mb-4">
                                     <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='category-select-2' data-instance='instance.categoryId' required>
+                                        id='category-select-2' data-trigger='true' data-instance='instance.categoryId'
+                                        required>
                                         <option value=""></option>
 
                                         @foreach ($categories as $category)
@@ -162,7 +163,7 @@
                                 <label class="form-label form--label">Exclude</label>
                                 <div class="select--single-wrapper mb-4">
                                     <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='exclude-select-2' data-instance='instance.excludeId'>
+                                        id='exclude-select-2' data-trigger='true' data-instance='instance.excludeId'>
                                         <option value=""></option>
 
                                         @foreach ($excludes as $exclude)
@@ -200,7 +201,8 @@
                                 <label class="form-label form--label">Purchase Unit</label>
                                 <div class="select--single-wrapper mb-4">
                                     <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='purchaseUnit-select-2' data-instance='instance.purchaseUnitId' required>
+                                        id='purchaseUnit-select-2' data-trigger='true'
+                                        data-instance='instance.purchaseUnitId' required>
                                         <option value=""></option>
 
                                         @foreach ($units as $unit)
@@ -217,7 +219,8 @@
                                 <label class="form-label form--label">Group</label>
                                 <div class="select--single-wrapper mb-4">
                                     <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='group-select-2' data-instance='instance.groupId' required>
+                                        id='group-select-2' data-trigger='true' data-instance='instance.groupId'
+                                        required>
                                         <option value=""></option>
 
                                         @foreach ($groups as $group)
@@ -237,7 +240,7 @@
                                 <label class="form-label form--label">Alllergy</label>
                                 <div class="select--single-wrapper mb-4">
                                     <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='allergy-select-2' data-instance='instance.allergyId'>
+                                        id='allergy-select-2' data-trigger='true' data-instance='instance.allergyId'>
                                         <option value=""></option>
 
                                         @foreach ($allergies as $allergy)

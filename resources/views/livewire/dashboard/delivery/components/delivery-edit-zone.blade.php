@@ -121,7 +121,7 @@
                                     <div class="select--single-wrapper mb-4">
                                         <select class="form-select form--modal-select" id='district-select-2'
                                             data-modal='#edit-zone' data-instance='instance.cityDistricts' multiple=''
-                                            required>
+                                            data-trigger='true' required>
 
                                         </select>
                                     </div>

@@ -63,7 +63,6 @@ class PlansEdit extends Component
     public function update()
     {
 
-        // 1: clone instance
 
 
         // :: refresh / closeModal

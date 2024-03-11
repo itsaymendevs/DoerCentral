@@ -20,23 +20,10 @@ return new class extends Migration {
 
 
 
-            // 1.2: mealType - meal
-            $table->bigInteger('mealTypeId')->unsigned()->nullable();
-            $table->foreign('mealTypeId')->references('id')->on('meal_types')->onDelete('cascade');
 
-
-            $table->bigInteger('mealId')->unsigned()->nullable();
-            $table->foreign('mealId')->references('id')->on('meals')->onDelete('cascade');
-
-
-
-
-
-
-            // 1.3: calendar
+            // 1.2: calendar
             $table->bigInteger('menuCalendarId')->unsigned()->nullable();
             $table->foreign('menuCalendarId')->references('id')->on('menu_calendars')->onDelete('cascade');
-
 
 
 

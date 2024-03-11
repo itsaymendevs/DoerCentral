@@ -112,7 +112,7 @@
                                     <p class="text-center fs-13 fw-bold text-danger mb-0">
                                         <button
                                             class="btn btn--raw-icon fs-14 text-warning d-flex align-items-center justify-content-center fw-bold"
-                                            type="button">{{ $subRecipe->itemType ?? 'Not Specified' }}</button>
+                                            type="button">{{ $subRecipe->partType ?? 'Not Specified' }}</button>
                                     </p>
                                 </div>
 

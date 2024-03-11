@@ -15,13 +15,13 @@ return new class extends Migration {
 
 
 
-            // 1: calendar - diet
-            $table->bigInteger('menuCalendarId')->unsigned()->nullable();
-            $table->foreign('menuCalendarId')->references('id')->on('menu_calendars')->onDelete('cascade');
-
-
+            // 1: diet - calendar
             $table->bigInteger('dietId')->unsigned()->nullable();
             $table->foreign('dietId')->references('id')->on('diets')->onDelete('cascade');
+
+
+            $table->bigInteger('menuCalendarId')->unsigned()->nullable();
+            $table->foreign('menuCalendarId')->references('id')->on('menu_calendars')->onDelete('cascade');
 
 
 

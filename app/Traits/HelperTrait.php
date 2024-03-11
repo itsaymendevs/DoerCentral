@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use stdClass;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -17,7 +18,8 @@ trait HelperTrait
     use LivewireAlert;
 
 
-    // :: shareVariables
+
+
 
 
     protected function getDefaultPreview()
@@ -29,13 +31,49 @@ trait HelperTrait
 
         return $defaultPreview;
 
+
+
+    } // end function
+
+
+
+
+    // ------------------------------------------------------------
+
+
+
+
+
+
+    protected function getCurrentDate()
+    {
+
+
+        // 1: currentUAE
+        return $currentDate = date('Y-m-d', strtotime('+4 hours'));
+
+
     } // end function
 
 
 
 
 
+
+
+
+
+
+
+
     // ------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 
@@ -75,6 +113,10 @@ trait HelperTrait
 
 
 
+
+
+
+
     protected function makeRequest($requestURL, $instance)
     {
 
@@ -107,7 +149,15 @@ trait HelperTrait
 
 
 
+
+
+
+
+
     // ------------------------------------------------------------
+
+
+
 
 
 
@@ -188,7 +238,14 @@ trait HelperTrait
 
 
 
+
     // --------------------------------------------------------------
+
+
+
+
+
+
 
 
 
@@ -214,7 +271,11 @@ trait HelperTrait
 
 
 
+
     // --------------------------------------------------------------
+
+
+
 
 
 
@@ -239,7 +300,9 @@ trait HelperTrait
 
 
 
+
     // --------------------------------------------------------------
+
 
 
 
@@ -274,6 +337,8 @@ trait HelperTrait
         } // end if
 
 
+
+
     } // end function
 
 
@@ -282,7 +347,15 @@ trait HelperTrait
 
 
 
+
+
     // --------------------------------------------------------------
+
+
+
+
+
+
 
 
 
@@ -322,6 +395,8 @@ trait HelperTrait
 
 
     } // end function
+
+
 
 
 

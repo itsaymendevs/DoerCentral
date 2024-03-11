@@ -81,3 +81,14 @@ window.addEventListener("setFilePreview", (event) => {
         $(`#${filePreview}`).attr("src", defaultPreview);
     });
 });
+
+// -------------------------------------------------------------
+
+// 8: resetForm
+window.addEventListener("resetFormCheckboxes", (event) => {
+    // 1: getId
+    form = event.detail.form;
+
+    $(form + ' input[type="checkbox"]').prop("checked", false);
+    $(form + ' input[type="radio"]').prop("checked", false);
+});

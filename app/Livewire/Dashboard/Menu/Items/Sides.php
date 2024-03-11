@@ -29,7 +29,7 @@ class Sides extends Component
         // 1: dependencies
         $type = Type::where('name', 'Side')->first();
 
-        $sauces = Meal::where('typeId', $type->id)
+        $sides = Meal::where('typeId', $type->id)
             ->where('name', 'LIKE', '%' . $this->searchSide . '%')
             ->get();
 

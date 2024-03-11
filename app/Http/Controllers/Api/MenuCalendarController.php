@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\MenuCalendar;
 use App\Models\MenuCalendarDiet;
 use App\Models\MenuCalendarPlan;
+use App\Models\MenuCalendarSchedule;
+use App\Models\MenuCalendarScheduleMeal;
 use Illuminate\Http\Request;
 
 class MenuCalendarController extends Controller
@@ -56,18 +58,22 @@ class MenuCalendarController extends Controller
 
 
         // 2: diets
-        foreach ($request->diets as $diet) {
+        if ($request?->diets) {
+
+            foreach ($request->diets as $diet) {
 
 
-            // 2.1: general
-            $calendarDiet = new MenuCalendarDiet();
+                // 2.1: general
+                $calendarDiet = new MenuCalendarDiet();
 
-            $calendarDiet->menuCalendarId = $calendar->id;
-            $calendarDiet->dietId = $diet;
+                $calendarDiet->menuCalendarId = $calendar->id;
+                $calendarDiet->dietId = $diet;
 
-            $calendarDiet->save();
+                $calendarDiet->save();
 
-        } // end loop
+            } // end loop
+
+        } // end if
 
 
 
@@ -76,19 +82,22 @@ class MenuCalendarController extends Controller
 
 
         // 3: plans
-        foreach ($request->plans as $plan) {
+        if ($request?->plans) {
+
+            foreach ($request?->plans as $plan) {
 
 
-            // 3.1: general
-            $calendarPlan = new MenuCalendarPlan();
+                // 3.1: general
+                $calendarPlan = new MenuCalendarPlan();
 
-            $calendarPlan->menuCalendarId = $calendar->id;
-            $calendarPlan->planId = $plan;
+                $calendarPlan->menuCalendarId = $calendar->id;
+                $calendarPlan->planId = $plan;
 
-            $calendarPlan->save();
+                $calendarPlan->save();
 
-        } // end loop
+            } // end loop
 
+        } // end if
 
 
 
@@ -166,18 +175,24 @@ class MenuCalendarController extends Controller
         MenuCalendarDiet::where('menuCalendarId', $calendar->id)?->delete();
 
 
-        foreach ($request->diets as $diet) {
+        if ($request?->diets) {
+
+            foreach ($request->diets as $diet) {
 
 
-            // 2.1: general
-            $calendarDiet = new MenuCalendarDiet();
+                // 2.1: general
+                $calendarDiet = new MenuCalendarDiet();
 
-            $calendarDiet->menuCalendarId = $calendar->id;
-            $calendarDiet->dietId = $diet;
+                $calendarDiet->menuCalendarId = $calendar->id;
+                $calendarDiet->dietId = $diet;
 
-            $calendarDiet->save();
+                $calendarDiet->save();
 
-        } // end loop
+            } // end loop
+
+        } // end if
+
+
 
 
 
@@ -191,18 +206,22 @@ class MenuCalendarController extends Controller
         MenuCalendarPlan::where('menuCalendarId', $calendar->id)?->delete();
 
 
-        foreach ($request->plans as $plan) {
+        if ($request?->plans) {
+
+            foreach ($request?->plans as $plan) {
 
 
-            // 3.1: general
-            $calendarPlan = new MenuCalendarPlan();
+                // 3.1: general
+                $calendarPlan = new MenuCalendarPlan();
 
-            $calendarPlan->menuCalendarId = $calendar->id;
-            $calendarPlan->planId = $plan;
+                $calendarPlan->menuCalendarId = $calendar->id;
+                $calendarPlan->planId = $plan;
 
-            $calendarPlan->save();
+                $calendarPlan->save();
 
-        } // end loop
+            } // end loop
+
+        } // end if
 
 
 
@@ -226,16 +245,8 @@ class MenuCalendarController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
     // --------------------------------------------------------------------------------------------
+
 
 
 
@@ -280,6 +291,144 @@ class MenuCalendarController extends Controller
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
+    public function storeCalendarSchedule(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $schedule = new MenuCalendarSchedule();
+
+        $schedule->scheduleDate = $request->scheduleDate;
+        $schedule->menuCalendarId = $request->menuCalendarId;
+
+
+        $schedule->save();
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Schedule has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function updateCalendarScheduleMeal(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create - removePrevious
+        MenuCalendarScheduleMeal::where('menuCalendarScheduleId', $request->menuCalendarScheduleId)->delete();
+
+
+
+        // :: loop - scheduleMeals
+        if ($request?->scheduleMeals) {
+
+            foreach ($request?->scheduleMeals as $innerScheduleMeal) {
+
+
+                // 1.2: create
+                $scheduleMeal = new MenuCalendarScheduleMeal();
+
+
+
+                // :: general
+                $scheduleMeal->scheduleDate = $request->scheduleDate;
+                $scheduleMeal->isDefault = boolval($innerScheduleMeal->isDefault);
+
+
+                // :: meal - mealType - calendarSchedule
+                $scheduleMeal->mealId = $innerScheduleMeal->mealId;
+                $scheduleMeal->mealTypeId = $innerScheduleMeal->mealTypeId;
+                $scheduleMeal->menuCalendarId = $request->menuCalendarId;
+                $scheduleMeal->menuCalendarScheduleId = $innerScheduleMeal->menuCalendarScheduleId;
+
+                $scheduleMeal->save();
+
+            } // end loop
+
+        } // end if
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Calendar has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
 
 
 

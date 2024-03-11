@@ -10,10 +10,10 @@ class MenuCalendarScheduleForm extends Form
 
 
     // :: variables
-    public $id, $scheduleDate;
+    public $id, $scheduleDate, $menuCalendarId, $menuCalendarScheduleId;
 
 
-    public $mealTypeId, $mealId, $menuCalendarId = [];
+    public $scheduleMeals = [];
 
 
 

@@ -43,6 +43,18 @@ class Meal extends Model
 
 
 
+
+    public function diet()
+    {
+
+        return $this->belongsTo(Diet::class, 'dietId');
+
+    } // end function
+
+
+
+
+
     public function type()
     {
 

@@ -22,15 +22,13 @@ return new class extends Migration {
 
 
 
-            // 1.2: calendar - plan
-            $table->bigInteger('menuCalendarId')->unsigned()->nullable();
-            $table->foreign('menuCalendarId')->references('id')->on('menu_calendars')->onDelete('cascade');
-
-
+            // 1.2: plan - calendar
             $table->bigInteger('planId')->unsigned()->nullable();
             $table->foreign('planId')->references('id')->on('plans')->onDelete('cascade');
 
 
+            $table->bigInteger('menuCalendarId')->unsigned()->nullable();
+            $table->foreign('menuCalendarId')->references('id')->on('menu_calendars')->onDelete('cascade');
 
 
 

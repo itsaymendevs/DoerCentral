@@ -31,7 +31,7 @@ class Recipes extends Component
         // 1: dependencies
         $type = Type::where('name', 'Meal')->first();
 
-        $sauces = Meal::where('typeId', $type->id)
+        $meals = Meal::where('typeId', $type->id)
             ->where('name', 'LIKE', '%' . $this->searchRecipe . '%')
             ->get();
 

@@ -643,6 +643,30 @@ Route::post('/dashboard/menu/calendars/remove', [MenuCalendarController::class, 
 
 
 
+// ---------
+
+
+
+Route::post('/dashboard/menu/calendars/schedules/store', [MenuCalendarController::class, 'storeCalendarSchedule']);
+
+
+
+
+// ---------
+
+
+
+Route::post('/dashboard/menu/calendars/schedules/meals/update', [MenuCalendarController::class, 'updateCalendarScheduleMeal']);
+
+
+
+Route::post('/dashboard/menu/calendars/schedules/meals/toggle', [MenuCalendarController::class, 'toggleCalendarScheduleMeal']);
+
+
+
+
+
+
 
 
 // }); // end middleware

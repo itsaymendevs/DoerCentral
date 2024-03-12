@@ -20,7 +20,7 @@ return new class extends Migration {
 
 
             $table->string('partType', 100)->nullable();
-            $table->double('amount', 15, 2)->nullable()->default(0);
+            $table->double('amount', 15)->nullable()->default(0);
             $table->string('remarks', 255)->nullable();
 
 

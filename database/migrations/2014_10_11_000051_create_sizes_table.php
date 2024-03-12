@@ -15,13 +15,13 @@ return new class extends Migration {
 
             // 1: general
             $table->string('name', 255)->nullable();
-            $table->double('price', 15, 2)->nullable();
+            $table->double('price', 15)->nullable();
 
 
-            $table->double('calories', 15, 2)->nullable()->default(0);
-            $table->double('proteins', 15, 2)->nullable()->default(0);
-            $table->double('carbs', 15, 2)->nullable()->default(0);
-            $table->double('fats', 15, 2)->nullable()->default(0);
+            $table->double('calories', 15)->nullable()->default(0);
+            $table->double('proteins', 15)->nullable()->default(0);
+            $table->double('carbs', 15)->nullable()->default(0);
+            $table->double('fats', 15)->nullable()->default(0);
 
 
 

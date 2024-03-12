@@ -16,7 +16,7 @@ return new class extends Migration {
 
             // 1: general - macros
             $table->string('name', 255)->nullable();
-            $table->double('amount', 15, 2)->nullable()->default(0);
+            $table->double('amount', 15)->nullable()->default(0);
             $table->string('remarks', 255)->nullable();
 
 

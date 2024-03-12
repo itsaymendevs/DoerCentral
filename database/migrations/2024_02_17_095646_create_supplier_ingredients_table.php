@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
 
             // 1: general
-            $table->double('sellPrice', 15, 2)->nullable();
+            $table->double('sellPrice', 15)->nullable();
 
 
 

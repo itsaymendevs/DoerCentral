@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
 
             // 1: general
-            $table->double('days', 15, 2)->nullable()->default(0);
-            $table->double('discount', 15, 2)->nullable()->default(0);
+            $table->double('days', 15)->nullable()->default(0);
+            $table->double('discount', 15)->nullable()->default(0);
 
 
 

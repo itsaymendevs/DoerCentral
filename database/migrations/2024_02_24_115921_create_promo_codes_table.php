@@ -19,16 +19,16 @@ return new class extends Migration {
 
 
             // 1.2: percentage or amount
-            $table->double('percentage', 15, 2)->nullable();
-            $table->double('cashAmount', 15, 2)->nullable();
+            $table->double('percentage', 15)->nullable();
+            $table->double('cashAmount', 15)->nullable();
 
 
 
 
 
             // 1.3: limit - currentUsage
-            $table->double('limit', 15, 2)->nullable()->default(1);
-            $table->double('currentUsage', 15, 2)->nullable()->default(0);
+            $table->double('limit', 15)->nullable()->default(1);
+            $table->double('currentUsage', 15)->nullable()->default(0);
 
 
 

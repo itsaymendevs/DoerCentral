@@ -15,8 +15,8 @@ return new class extends Migration {
 
 
             // 1: general
-            $table->double('buyPrice', 15, 2)->nullable();
-            $table->double('quantity', 15, 2)->nullable();
+            $table->double('buyPrice', 15)->nullable();
+            $table->double('quantity', 15)->nullable();
 
 
 

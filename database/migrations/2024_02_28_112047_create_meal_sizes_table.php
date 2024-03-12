@@ -15,10 +15,10 @@ return new class extends Migration {
 
 
             // 1: general - macros
-            $table->double('afterCookCalories', 15, 2)->nullable()->default(0);
-            $table->double('afterCookProteins', 15, 2)->nullable()->default(0);
-            $table->double('afterCookCarbs', 15, 2)->nullable()->default(0);
-            $table->double('afterCookFats', 15, 2)->nullable()->default(0);
+            $table->double('afterCookCalories', 15)->nullable()->default(0);
+            $table->double('afterCookProteins', 15)->nullable()->default(0);
+            $table->double('afterCookCarbs', 15)->nullable()->default(0);
+            $table->double('afterCookFats', 15)->nullable()->default(0);
 
 
 

@@ -16,7 +16,7 @@ return new class extends Migration {
 
             // 1: general
             $table->string('name', 255)->nullable();
-            $table->double('startingPrice', 15, 2)->nullable()->default(0);
+            $table->double('startingPrice', 15)->nullable()->default(0);
 
             $table->text('desc')->nullable();
             $table->text('longDesc')->nullable();

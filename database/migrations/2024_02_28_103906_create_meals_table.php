@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->text('name')->nullable();
 
             $table->text('generalName')->nullable();
-            $table->double('servingPrice', 15, 2)->nullable()->default(0);
+            $table->double('servingPrice', 15)->nullable()->default(0);
             $table->integer('validity')->nullable()->default(0);
 
 

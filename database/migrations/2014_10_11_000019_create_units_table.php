@@ -18,8 +18,8 @@ return new class extends Migration {
 
 
             // 1.2: toGrams - toMl
-            $table->double('toGram', 8, 2)->nullable()->default(1);
-            $table->double('toML', 8, 2)->nullable()->default(1);
+            $table->double('toGram', 15)->nullable()->default(1);
+            $table->double('toML', 15)->nullable()->default(1);
 
 
             $table->timestamps();

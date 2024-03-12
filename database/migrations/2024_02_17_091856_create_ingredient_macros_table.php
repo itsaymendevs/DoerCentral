@@ -20,20 +20,20 @@ return new class extends Migration {
 
 
             // 1.2: macros
-            $table->double('calories', 15, 2)->nullable()->default(0);
-            $table->double('proteins', 15, 2)->nullable()->default(0);
-            $table->double('carbs', 15, 2)->nullable()->default(0);
-            $table->double('fats', 15, 2)->nullable()->default(0);
+            $table->double('calories', 15)->nullable()->default(0);
+            $table->double('proteins', 15)->nullable()->default(0);
+            $table->double('carbs', 15)->nullable()->default(0);
+            $table->double('fats', 15)->nullable()->default(0);
 
-            $table->double('cholesterol', 15, 2)->nullable()->default(0);
-            $table->double('sodium', 15, 2)->nullable()->default(0);
-            $table->double('fiber', 15, 2)->nullable()->default(0);
-            $table->double('sugar', 15, 2)->nullable()->default(0);
-            $table->double('calcium', 15, 2)->nullable()->default(0);
-            $table->double('iron', 15, 2)->nullable()->default(0);
+            $table->double('cholesterol', 15)->nullable()->default(0);
+            $table->double('sodium', 15)->nullable()->default(0);
+            $table->double('fiber', 15)->nullable()->default(0);
+            $table->double('sugar', 15)->nullable()->default(0);
+            $table->double('calcium', 15)->nullable()->default(0);
+            $table->double('iron', 15)->nullable()->default(0);
 
-            $table->double('vitaminA', 15, 2)->nullable()->default(0);
-            $table->double('vitaminC', 15, 2)->nullable()->default(0);
+            $table->double('vitaminA', 15)->nullable()->default(0);
+            $table->double('vitaminC', 15)->nullable()->default(0);
 
 
 

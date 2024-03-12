@@ -22,9 +22,9 @@ return new class extends Migration {
 
 
             // 1.2: percentages %
-            $table->double('increment', 15, 2)->nullable();
-            $table->double('decrement', 15, 2)->nullable();
-            $table->double('wastage', 15, 2)->nullable();
+            $table->double('increment', 15)->nullable();
+            $table->double('decrement', 15)->nullable();
+            $table->double('wastage', 15)->nullable();
 
 
 

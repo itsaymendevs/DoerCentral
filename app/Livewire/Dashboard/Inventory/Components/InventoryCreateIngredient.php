@@ -9,6 +9,7 @@ use App\Models\IngredientCategory;
 use App\Models\IngredientGroup;
 use App\Models\Unit;
 use App\Traits\HelperTrait;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -81,6 +82,7 @@ class InventoryCreateIngredient extends Component
 
 
 
+
     public function render()
     {
 
@@ -92,6 +94,8 @@ class InventoryCreateIngredient extends Component
         $excludes = Exclude::all();
         $allergies = Allergy::all();
         $units = Unit::all();
+
+
 
 
 

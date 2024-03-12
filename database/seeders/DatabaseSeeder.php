@@ -21,8 +21,10 @@ class DatabaseSeeder extends Seeder
             CuisineSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
-
-
+            IngredientCategorySeeder::class,
+            IngredientGroupSeeder::class,
+            ExcludeSeeder::class,
+            AllergySeeder::class,
         ]);
 
     } //end function

@@ -30,7 +30,7 @@
 
 
 
-    <a wire:navigate class="btn fs-13" href="#!" role="button">Meals</a>
+    {{-- <a wire:navigate class="btn fs-13" href="#!" role="button">Meals</a> --}}
 
 </div>
 {{-- end div --}}

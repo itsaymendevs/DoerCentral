@@ -74,8 +74,12 @@ class BundlesCreate extends Component
 
 
 
+
+
+
+
         // :: resetForm - resetFilePreview
-        $this->instance->reset();
+        $this->instance->reset('name', 'mealTypes', 'remarks', 'imageFile', 'imageFileName');
         $this->dispatch('closeModal', modal: '#new-bundle .btn--close');
         $this->dispatch('resetFile', file: 'bundle--file-1', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('refreshViews');

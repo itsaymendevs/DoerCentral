@@ -20,9 +20,9 @@ class MealTypeSeeder extends Seeder
 
 
 
-        $typeId = [1, 4, 4, 1, 5, 4, 1, 5, 6];
-        $mealTypes = ['Breakfast', 'Morning Snack', 'Morning Snack 2', 'Lunch', 'Lunch Side', 'Afternoon Snack', 'Dinner', 'Dinner Side', 'Drink'];
-        $mealTypesCuts = ['B', 'MS', 'MS2', 'L', 'LS', 'AS', 'D', 'DS', 'DR'];
+        $typeId = [1, 4, 4, 1, 5, 4, 1, 5];
+        $mealTypes = ['Breakfast', 'Morning Snack', 'Morning Snack 2', 'Lunch', 'Lunch Side', 'Afternoon Snack', 'Dinner', 'Dinner Side'];
+        $mealTypesCuts = ['B', 'MS', 'MS2', 'L', 'LS', 'AS', 'D', 'DS'];
 
 
 

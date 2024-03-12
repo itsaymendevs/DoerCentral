@@ -26,7 +26,7 @@
 
             {{-- 1: recipes --}}
             <a class="btn @if (Request::is('dashboard/menu/recipes')) active @endif"
-                href="{{ route('dashboard.menuRecipes') }}" wire:navigate>Recipes</a>
+                href="{{ route('dashboard.menuRecipes') }}" wire:navigate>Meals</a>
 
 
 

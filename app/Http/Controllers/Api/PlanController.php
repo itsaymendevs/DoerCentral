@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plan;
+use App\Models\PlanBundle;
+use App\Models\PlanBundleType;
 use App\Models\PlanRange;
 use Illuminate\Http\Request;
 
@@ -368,6 +370,8 @@ class PlanController extends Controller
 
 
 
+
+
     public function removeRange(Request $request)
     {
 
@@ -388,6 +392,294 @@ class PlanController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function storeBundle(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $bundle = new PlanBundle();
+
+        $bundle->name = $request->name;
+        $bundle->remarks = $request->remarks ?? null;
+        $bundle->imageFile = $request->imageFileName ?? null;
+
+
+
+
+        // 1.2: plan
+        $bundle->planId = $request->planId;
+
+
+        $bundle->save();
+
+
+
+
+        // -------------------------
+        // -------------------------
+
+
+
+
+
+
+        // 2: mealTypes
+        if ($request?->mealTypes) {
+
+            foreach ($request->mealTypes as $mealType) {
+
+
+                // 2.1: create
+                $bundleType = new PlanBundleType();
+
+                $bundleType->planBundleId = $bundle->id;
+                $bundleType->mealTypeId = $mealType;
+
+                $bundleType->save();
+
+            } // end loop
+
+        } // end if
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Bundle has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function updateBundle(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $bundle = PlanBundle::find($request->id);
+
+
+        $bundle->name = $request->name;
+        $bundle->remarks = $request->remarks ?? null;
+        $bundle->imageFile = $request->imageFileName ?? null;
+
+
+        $bundle->save();
+
+
+
+
+
+
+
+        // -------------------------
+        // -------------------------
+
+
+
+
+
+
+
+
+        // 2: mealTypes - removePrevious
+        PlanBundleType::where('planBundleId', $bundle->id)->delete();
+
+
+        if ($request?->mealTypes) {
+
+            foreach ($request->mealTypes as $mealType) {
+
+
+                // 2.1: create
+                $bundleType = new PlanBundleType();
+
+                $bundleType->planBundleId = $bundle->id;
+                $bundleType->mealTypeId = $mealType;
+
+                $bundleType->save();
+
+            } // end loop
+
+        } // end if
+
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Bundle has been updated'], 200);
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function toggleBundle(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+
+
+        // 1: get instance
+        $instance = PlanBundle::find($id);
+
+        $instance->isForWebsite = ! boolval($instance->isForWebsite);
+
+        $instance->save();
+
+
+
+
+        return response()->json(['message' => 'Status has been changed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function removeBundle(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        PlanBundle::find($id)->delete();
+
+
+        return response()->json(['message' => 'Bundle has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
 
 
 

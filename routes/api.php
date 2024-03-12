@@ -419,6 +419,32 @@ Route::post('/dashboard/menu/plans/ranges/remove', [PlanController::class, 'remo
 
 
 
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+// 5.2: menu - plans - bundles - storePlanBundle - update - toggleActive - remove
+Route::post('/dashboard/menu/plans/bundles/store', [PlanController::class, 'storeBundle']);
+Route::post('/dashboard/menu/plans/bundles/update', [PlanController::class, 'updateBundle']);
+Route::post('/dashboard/menu/plans/bundles/toggle', [PlanController::class, 'toggleBundle']);
+
+Route::post('/dashboard/menu/plans/bundles/remove', [PlanController::class, 'removeBundle']);
+
+
+
+
+
+
+
+
+
+
 // ------------------------------------------------------------------------------------------
 
 

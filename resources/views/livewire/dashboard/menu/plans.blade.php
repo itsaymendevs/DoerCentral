@@ -161,8 +161,9 @@
 
 
                                         {{-- 1: manage --}}
-                                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                                            type="button">Manage</button>
+                                        <a wire:navigate href="{{ route('dashboard.menuPlanBundles', [$plan->id]) }}"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                            type="button">Manage</a>
 
 
 
@@ -507,12 +508,12 @@
 
 
     @section('modals')
+
+
+
     {{-- 1: createPlan --}}
     <livewire:dashboard.menu.plans.components.plans-create />
 
-    {{-- 1.2: editPlan --}}
-    {{--
-    <livewire:dashboard.menu.plans.components.plans-edit /> --}}
 
 
 

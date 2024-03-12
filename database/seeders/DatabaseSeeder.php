@@ -19,8 +19,9 @@ class DatabaseSeeder extends Seeder
             ContainerSeeder::class,
             UnitSeeder::class,
             CuisineSeeder::class,
-            // TagSeeder::class,
-            // DietSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
+
 
         ]);
 

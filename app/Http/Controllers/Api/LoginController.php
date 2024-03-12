@@ -17,6 +17,8 @@ class LoginController extends Controller
 
         // :: root
         $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
 
 
 

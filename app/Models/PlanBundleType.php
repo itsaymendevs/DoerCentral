@@ -10,6 +10,16 @@ class PlanBundleType extends Model
     use HasFactory;
 
 
+
+    public function bundle()
+    {
+
+        return $this->belongsTo(PlanBundle::class, 'planBundleId');
+
+    } // end function
+
+
+
     public function mealType()
     {
 

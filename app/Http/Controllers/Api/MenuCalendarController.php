@@ -203,7 +203,14 @@ class MenuCalendarController extends Controller
 
 
         // 3: plans - removePrevious
-        MenuCalendarPlan::where('menuCalendarId', $calendar->id)?->delete();
+        $previousPlans = MenuCalendarPlan::where('menuCalendarId', $calendar->id)
+            ->get()->pluck('planId')->toArray() ?? [];
+
+
+        MenuCalendarPlan::where('menuCalendarId', $calendar->id)
+            ->whereNotIn('planId', $request?->plans ?? [])->delete();
+
+
 
 
         if ($request?->plans) {
@@ -211,15 +218,25 @@ class MenuCalendarController extends Controller
             foreach ($request?->plans as $plan) {
 
 
-                // 3.1: general
-                $calendarPlan = new MenuCalendarPlan();
+                // :: checkDuplication
+                if (! in_array($plan, $previousPlans)) {
 
-                $calendarPlan->menuCalendarId = $calendar->id;
-                $calendarPlan->planId = $plan;
 
-                $calendarPlan->save();
+                    // 3.1: general
+                    $calendarPlan = new MenuCalendarPlan();
+
+                    $calendarPlan->menuCalendarId = $calendar->id;
+                    $calendarPlan->planId = $plan;
+
+                    $calendarPlan->save();
+
+
+                } // end if
+
+
 
             } // end loop
+
 
         } // end if
 

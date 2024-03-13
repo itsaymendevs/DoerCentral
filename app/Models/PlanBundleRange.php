@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PlanBundleRangePrice extends Model
+class PlanBundleRange extends Model
 {
     use HasFactory;
 
@@ -30,3 +30,4 @@ class PlanBundleRangePrice extends Model
 
 
 } // end model
+

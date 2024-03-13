@@ -10,13 +10,14 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('plan_bundle_range_prices', function (Blueprint $table) {
+        Schema::create('plan_bundle_ranges', function (Blueprint $table) {
             $table->id();
 
 
 
-            // 1: general
-            $table->double('pricePerDay', 15)->nullable()->default(0);
+            // 1: isForWebsite
+            $table->boolean('isForWebsite')->nullable()->default(1);
+
 
 
 
@@ -31,6 +32,8 @@ return new class extends Migration {
 
 
 
+
+
             $table->timestamps();
         });
     }
@@ -40,6 +43,6 @@ return new class extends Migration {
      */
     public function down() : void
     {
-        Schema::dropIfExists('plan_bundle_range_prices');
+        Schema::dropIfExists('plan_bundle_ranges');
     }
 };

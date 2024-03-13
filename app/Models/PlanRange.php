@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PlanRange extends Model
 {
     use HasFactory;
-}
+
+    
+} // end model

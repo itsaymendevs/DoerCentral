@@ -63,6 +63,33 @@ class Bundles extends Component
 
 
 
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+    public function manage($id)
+    {
+
+
+        // 1: dispatchId
+        $this->dispatch('manageBundle', $id);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
 
 
 

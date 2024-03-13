@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\MenuCalendarPlan;
 use App\Models\Plan;
 use App\Models\PlanBundle;
+use App\Models\PlanBundleDay;
+use App\Models\PlanBundleRangePrice;
 use App\Models\PlanBundleType;
 use App\Models\PlanRange;
 use Illuminate\Http\Request;
@@ -255,6 +258,42 @@ class PlanController extends Controller
 
 
 
+        // --------------------------
+        // --------------------------
+
+
+
+
+        // 2: createBundleRange
+
+
+
+        // 2.1: getBundles
+        $bundles = PlanBundle::where('planId', $range->planId)->get();
+
+        foreach ($bundles as $bundle) {
+
+
+            // 1: create BundleRange
+            $bundleRange = new PlanBundleRangePrice();
+
+
+            $bundleRange->pricePerDay = 0;
+            $bundleRange->planRangeId = $range->id;
+            $bundleRange->planBundleId = $bundle->id;
+
+
+            $bundleRange->save();
+
+
+
+        } // end loop
+
+
+
+
+
+
         return response()->json(['message' => 'Range has been created'], 200);
 
 
@@ -490,6 +529,49 @@ class PlanController extends Controller
 
 
 
+
+
+
+
+        // --------------------------
+        // --------------------------
+
+
+
+
+        // 3: create bundleRanges
+
+
+
+        // 2.1: getRanges
+        $ranges = PlanRange::where('planId', $bundle->planId)->get();
+
+        foreach ($ranges as $range) {
+
+
+            // 1: create BundleRange
+            $bundleRange = new PlanBundleRangePrice();
+
+
+            $bundleRange->pricePerDay = 0;
+            $bundleRange->planRangeId = $range->id;
+            $bundleRange->planBundleId = $bundle->id;
+
+
+            $bundleRange->save();
+
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
         return response()->json(['message' => 'Bundle has been created'], 200);
 
 
@@ -688,10 +770,278 @@ class PlanController extends Controller
 
 
 
+
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateBundleRange(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $bundleRange = PlanBundleRangePrice::find($request->id);
+
+        $bundleRange->pricePerDay = $request->pricePerDay;
+
+        $bundleRange->save();
+
+
+
+
+
+        return response()->json(['message' => 'Range has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function storeBundleDay(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $bundleDay = new PlanBundleDay();
+
+        $bundleDay->days = $request->days;
+        $bundleDay->discount = $request->discount;
+
+
+
+        // 1.2: planBundle
+        $bundleDay->planBundleId = $request->planBundleId;
+
+
+        $bundleDay->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Day has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function updateBundleDay(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $bundleDay = PlanBundleDay::find($request->id);
+
+
+        $bundleDay->days = $request->days;
+        $bundleDay->discount = $request->discount;
+
+
+        $bundleDay->save();
+
+
+
+
+        return response()->json(['message' => 'Day has been updated'], 200);
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function removeBundleDay(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        PlanBundleDay::find($id)->delete();
+
+
+        return response()->json(['message' => 'Day has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function toggleCalendarDefault(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+
+
+        // 1: get instance
+        $instance = MenuCalendarPlan::find($id);
+
+        $instance->isDefault = ! boolval($instance->isDefault);
+
+        $instance->save();
+
+
+
+
+        return response()->json(['message' => 'Status has been changed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
 
 
 

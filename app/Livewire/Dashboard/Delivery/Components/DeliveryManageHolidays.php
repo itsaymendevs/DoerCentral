@@ -2,12 +2,39 @@
 
 namespace App\Livewire\Dashboard\Delivery\Components;
 
+use App\Models\CityHoliday;
 use App\Models\Holiday;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class DeliveryManageHolidays extends Component
 {
+
+
+
+
+    // :: variables
+    public $cityId;
+
+
+
+
+    public function mount($cityId)
+    {
+
+        // :: params
+        $this->cityId = $cityId;
+
+
+    } // end function
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+
 
 
 
@@ -19,7 +46,7 @@ class DeliveryManageHolidays extends Component
 
 
         // 1: dependencies
-        $holidays = Holiday::all();
+        $holidays = CityHoliday::where('cityId', $this->cityId)->get();
 
 
 

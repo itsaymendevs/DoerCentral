@@ -73,7 +73,15 @@ Route::post('/dashboard/delivery/times/remove', [DeliveryController::class, 'rem
 
 
 
-// 1.2: delivery - updateHolidays - toggleActive
+Route::post('/dashboard/delivery/holidays/update', [DeliveryController::class, 'updateHoliday']);
+Route::post('/dashboard/delivery/holidays/toggle', [DeliveryController::class, 'toggleHoliday']);
+
+
+
+
+// 1.2: delivery - updateCharge - updateHolidays - toggleActive
+Route::post('/dashboard/delivery/charges/update', [DeliveryController::class, 'updateCharge']);
+
 Route::post('/dashboard/delivery/holidays/update', [DeliveryController::class, 'updateHoliday']);
 Route::post('/dashboard/delivery/holidays/toggle', [DeliveryController::class, 'toggleHoliday']);
 

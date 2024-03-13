@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Delivery\Components;
 
 use App\Livewire\Forms\HolidayForm;
+use App\Models\CityHoliday;
 use App\Models\Holiday;
 use App\Traits\HelperTrait;
 use Livewire\Component;
@@ -27,7 +28,7 @@ class DeliveryViewHoliday extends Component
 
 
         // 1: clone instance
-        $holiday = Holiday::find($id);
+        $holiday = CityHoliday::find($id);
 
         foreach ($holiday->toArray() as $key => $value)
             $this->instance->{$key} = $value;

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\CityDeliveryTime;
+use App\Models\CityHoliday;
 use App\Models\Driver;
 use App\Models\DriverZone;
-use App\Models\Holiday;
 use App\Models\Zone;
 use App\Models\ZoneDistrict;
 use Illuminate\Http\Request;
@@ -207,6 +207,56 @@ class DeliveryController extends Controller
 
 
 
+    public function updateCharge(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $city = City::find($request->id);
+
+        $city->deliveryCharge = $request->deliveryCharge;
+
+        $city->save();
+
+
+
+
+
+        return response()->json(['message' => 'Charge has been updated'], 200);
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
@@ -224,7 +274,7 @@ class DeliveryController extends Controller
 
 
         // 1: get instance
-        $holiday = Holiday::find($request->id);
+        $holiday = CityHoliday::find($request->id);
 
         $holiday->message = $request->message;
 
@@ -274,7 +324,7 @@ class DeliveryController extends Controller
 
 
         // 1: get instance
-        $instance = Holiday::find($id);
+        $instance = CityHoliday::find($id);
 
         $instance->isActive = ! boolval($instance->isActive);
 

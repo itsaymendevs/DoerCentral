@@ -9,15 +9,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>DOER.</title>
 
+        <meta name="description" content="Meal Plans Solution">
+        <meta name="keywords" content="Meal Plans, Meal Plans in Dubai, DOER, DOER SOLUTION">
+        <meta name="author" content="TRUTH. SOLUTIONS">
+
+
 
         {{-- icons --}}
-        <link href="{{ asset('apple-touch-icon.png') }}" rel="apple-touch-icon" sizes="180x180">
-        <link type="image/png" href="{{ asset('favicon-32x32.png') }}" rel="icon" sizes="32x32">
-        <link type="image/png" href="{{ asset('favicon-16x16.png') }}" rel="icon" sizes="16x16">
-        <link href="{{ asset('site.webmanifest') }}" rel="manifest">
-        <link href="{{ asset('safari-pinned-tab.svg') }}" rel="mask-icon" color="#96d0c4">
-        <meta name="msapplication-TileColor" content="#96d0c4">
-        <meta name="theme-color" content="#ffffff">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon-16x16.png')}}">
+        <link rel="manifest" href="{{asset('site.webmanifest')}}">
+        <link rel="mask-icon" href="{{asset('safari-pinned-tab.svg')}}" color="#000000">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="theme-color" content="#000000">
 
 
 

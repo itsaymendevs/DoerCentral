@@ -34,7 +34,7 @@
 
             {{-- intakeSizes --}}
             <a wire:navigate
-                class="btn @if (Request::is('dashboard/menu/plans/' . $id . '/intake-sizes')) active @endif"
+                class="btn disabled @if (Request::is('dashboard/menu/plans/' . $id . '/intake-sizes')) active @endif"
                 role="button" href="{{ route('dashboard.menuPlanIntakeSizes', [$id]) }}">Intake Sizes</a>
 
 

@@ -13,7 +13,7 @@ $(document).ready(function () {
 
         setTimeout(() => {
             $(`.${target}[data-view=${view}]`).fadeIn();
-        }, 200);
+        }, 400);
     });
 }); // end documentReady
 

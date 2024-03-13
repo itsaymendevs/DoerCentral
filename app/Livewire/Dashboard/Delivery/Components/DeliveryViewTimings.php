@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Dashboard\Delivery\Components;
 
+use App\Models\City;
 use App\Models\CityDeliveryTime;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class DeliveryViewTimings extends Component
 {
@@ -14,7 +16,7 @@ class DeliveryViewTimings extends Component
 
 
     // :: variable
-    public $cityId;
+    public $city;
     public $searchTiming = '';
     public $removeId;
 
@@ -26,7 +28,7 @@ class DeliveryViewTimings extends Component
     {
 
         // :: params
-        $this->cityId = $id;
+        $this->city = City::find($id);
 
 
     } // end function
@@ -47,7 +49,7 @@ class DeliveryViewTimings extends Component
     {
 
         // :: dispatchEvent
-        $this->dispatch('provideCityId', $this->cityId);
+        $this->dispatch('provideCityId', $this->city->id);
 
     } // end function
 
@@ -72,6 +74,51 @@ class DeliveryViewTimings extends Component
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateCharge($deliveryCharge)
+    {
+
+
+        // :: create instance
+        $instance = new stdClass();
+
+        $instance->id = $this->city->id;
+        $instance->deliveryCharge = $deliveryCharge;
+
+
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/delivery/charges/update', $instance);
+
+
+
+
+        // :: makeAlert
+        $this->makeAlert('success', $response->message);
+
+
+
+
+    } // end function
+
+
 
 
 
@@ -149,7 +196,7 @@ class DeliveryViewTimings extends Component
 
 
         // 1: dependencies
-        $deliveryTimes = CityDeliveryTime::where('cityId', $this->cityId)
+        $deliveryTimes = CityDeliveryTime::where('cityId', $this->city->id)
             ->where('title', 'LIKE', '%' . $this->searchTiming . '%')
             ->get();
 
@@ -165,6 +212,9 @@ class DeliveryViewTimings extends Component
 
 
     } // end function
+
+
+
 
 
 } // end class

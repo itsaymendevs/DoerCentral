@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('holidays', function (Blueprint $table) {
+        Schema::create('city_holidays', function (Blueprint $table) {
             $table->id();
 
 
@@ -19,6 +19,16 @@ return new class extends Migration {
             $table->string('isActive', 100)->nullable()->default(0);
 
             $table->text('message')->nullable();
+
+
+
+
+            // 1.2: city
+            $table->bigInteger('cityId')->unsigned()->nullable();
+            $table->foreign('cityId')->references('id')->on('cities')->onDelete('cascade');
+
+
+
 
 
 
@@ -31,6 +41,6 @@ return new class extends Migration {
      */
     public function down() : void
     {
-        Schema::dropIfExists('holidays');
+        Schema::dropIfExists('city_holidays');
     }
 };

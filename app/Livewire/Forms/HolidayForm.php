@@ -10,7 +10,7 @@ class HolidayForm extends Form
 
 
     // :: variables
-    public $id, $weekday, $isActive, $message;
+    public $id, $weekday, $isActive, $message, $cityId;
 
 
 } // end form

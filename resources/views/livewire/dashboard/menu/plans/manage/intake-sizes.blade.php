@@ -38,7 +38,7 @@
 
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" role="tab" data-bs-toggle="tab"
-                                href="#tab-bundle-{{ $bundle->id }}">{{ $bundle->name
+                                href="#tab-bundles-{{ $bundle->id }}">{{ $bundle->name
                                 }}</a>
                         </li>
 
@@ -69,18 +69,50 @@
 
                     {{-- tabContent --}}
                     <div class="tab-content">
-                        <div class="tab-pane fade show active no--card" role="tabpanel" id="tab-1">
+
+
+
+                        {{-- loop - bundles --}}
+                        @foreach ($bundles as $bundle)
+
+
+
+
+                        {{-- rangesTab --}}
+                        <div class="tab-pane fade show active no--card" role="tabpanel"
+                            id="tab-bundles-{{ $bundle->id }}">
                             <div>
+
+
+                                {{-- navLinks --}}
                                 <ul class="nav nav-tabs inner" role="tablist">
+
+                                    {{-- loop - bundleRanges --}}
+                                    @foreach ($bundle->ranges as $bundleRange)
+
                                     <li class="nav-item" role="presentation"><a class="nav-link" role="tab"
                                             data-bs-toggle="tab" href="#tab-10">800 - 1000</a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" role="tab"
-                                            data-bs-toggle="tab" href="#tab-11">1000 - 1200</a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" role="tab"
-                                            data-bs-toggle="tab" href="#tab-12">1200 - 1400</a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab"
-                                            data-bs-toggle="tab" href="#tab-13">1400 - 1600</a></li>
+
+                                    @endforeach
+                                    {{-- end loop --}}
+
                                 </ul>
+                                {{-- end navLinks --}}
+
+
+
+
+
+
+                                {{-- ---------------------------------- --}}
+                                {{-- ---------------------------------- --}}
+
+
+
+
+
+
+
                                 <div class="tab-content">
                                     <div class="tab-pane no--card" role="tabpanel" id="tab-10">
                                         <div class="row row pt-2 align-items-center mb-4">
@@ -1053,9 +1085,22 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+                        @endforeach
+                        {{-- end loop --}}
+
                     </div>
+                    {{-- end tabContent --}}
+
                 </div>
             </div>
         </div>
     </div>
+    {{-- endContainer --}}
+
+
+
 </section>
+{{-- endSection --}}

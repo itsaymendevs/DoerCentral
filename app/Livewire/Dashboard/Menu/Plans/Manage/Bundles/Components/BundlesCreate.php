@@ -31,6 +31,16 @@ class BundlesCreate extends Component
         $this->instance->planId = $id;
 
 
+        // :: loop - init mealTypes
+        $mealTypes = MealType::all();
+
+        foreach ($mealTypes as $mealType)
+            $this->instance->mealTypes[$mealType->id] = 0;
+
+
+
+
+
     } // end function
 
 
@@ -49,7 +59,6 @@ class BundlesCreate extends Component
 
     public function store()
     {
-
 
 
         // :: validation

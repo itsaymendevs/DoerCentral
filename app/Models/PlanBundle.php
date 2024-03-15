@@ -21,10 +21,19 @@ class PlanBundle extends Model
 
 
 
-    public function ranges()
+    public function rangesByPrice()
     {
 
         return $this->hasMany(PlanBundleRangePrice::class, 'planBundleId');
+
+    } // end function
+
+
+
+    public function ranges()
+    {
+
+        return $this->hasMany(PlanBundleRange::class, 'planBundleId');
 
     } // end function
 

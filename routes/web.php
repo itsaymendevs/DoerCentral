@@ -12,21 +12,31 @@ use App\Livewire\Dashboard\Menu\Items\Snacks;
 use App\Livewire\Dashboard\Menu\Items\SubRecipes;
 use App\Livewire\Dashboard\Menu\Plans;
 use App\Livewire\Dashboard\Menu\Plans\Manage\Bundles;
-use App\Livewire\Dashboard\Menu\Plans\Manage\IntakeSizes;
+use App\Livewire\Dashboard\Menu\Plans\Manage\RangeSizes;
 use App\Livewire\Dashboard\Menu\Plans\Manage\Calendars as PlanCalendars;
 use App\Livewire\Dashboard\Menu\ProductionBuilder;
 use App\Livewire\Dashboard\Menu\Recipes;
 use App\Livewire\Dashboard\Menu\Settings;
 use App\Livewire\Dashboard\Promos;
 use App\Livewire\Login;
+use App\Livewire\Subscription\Customers;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
 
 
+
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** ----------------------------- GENERAL ---------------------------------
+
+
+
+
 
 
 
@@ -56,12 +66,13 @@ Route::get('/storage-link', function () {
 
 
 
+
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
-
-
-
-
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** ----------------------------- ADMIN -----------------------------------
 
 
 
@@ -78,6 +89,8 @@ Route::get('login', Login::class)->name('dashboard.login');
 
 
 
+
+
 // ----------------------------------------------------------------------------
 
 
@@ -86,7 +99,7 @@ Route::get('login', Login::class)->name('dashboard.login');
 
 
 
-// ::Authenticated
+// :: Authenticated
 Route::middleware(['auth.user'])->group(function () {
 
 
@@ -162,8 +175,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-    // 5.2: planIntakeSizes
-    Route::get('dashboard/menu/plans/{id}/intake-sizes', IntakeSizes::class)->name('dashboard.menuPlanIntakeSizes');
+    // 5.2: planRangeSizes
+    Route::get('dashboard/menu/plans/{id}/range-sizes', RangeSizes::class)->name('dashboard.menuPlanRangeSizes');
 
 
 
@@ -299,3 +312,37 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 }); // end Authentication
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** --------------------------- CUSTOMER ----------------------------------
+
+
+
+
+
+
+
+
+
+// 1: Customers - StepOne
+Route::get('subscription/customers', Customers::class)->name('subscriptions.customersStepOne');
+
+
+

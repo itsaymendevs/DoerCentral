@@ -36,12 +36,26 @@
 
                 {{-- form --}}
                 <form class="px-4" wire:submit='update'>
-                    <div class="row align-items-center row pt-2 mb-4">
+                    <div class="row align-items-start  pt-2 mb-4">
 
 
 
                         {{-- imageFile --}}
                         <div class="col-4">
+
+
+
+                            {{-- name --}}
+                            <label class="form-label form--label">Name</label>
+                            <input class="form-control form--input mb-4" type="text" required
+                                wire:model='instance.name'>
+
+
+
+
+
+
+                            {{-- imageFile --}}
                             <div>
 
 
@@ -71,6 +85,8 @@
                                 </label>
 
                             </div>
+
+
                         </div>
                         {{-- endCol --}}
 
@@ -87,14 +103,6 @@
                             <div class="row">
 
 
-                                {{-- name --}}
-                                <div class="col-6">
-                                    <label class="form-label form--label">Name</label>
-                                    <input class="form-control form--input mb-4" type="text" required
-                                        wire:model='instance.name'>
-                                </div>
-
-
                                 {{-- remarks --}}
                                 <div class="col-6">
                                     <label class="form-label form--label">Remarks</label>
@@ -103,12 +111,50 @@
                                 </div>
 
 
+
+
+
+
+                                {{-- overview --}}
+                                <div class="col-6 text-center align-self-center">
+                                    <h4 data-bs-toggle="tooltip" data-bss-tooltip=""
+                                        class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1 me-1"
+                                        title="Meals">
+                                        0
+                                    </h4>
+                                    <h4 data-bs-toggle="tooltip" data-bss-tooltip=""
+                                        class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1 me-1"
+                                        title="Sides">
+                                        0
+                                    </h4>
+                                    <h4 data-bs-toggle="tooltip" data-bss-tooltip=""
+                                        class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1 me-1"
+                                        title="Snacks">
+                                        0
+                                    </h4>
+                                    <h4 data-bs-toggle="tooltip" data-bss-tooltip=""
+                                        class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1 me-1"
+                                        title="Drinks">
+                                        0
+                                    </h4>
+                                </div>
+                                {{-- end overview --}}
+
+
+
+
+
+
+
                                 {{-- hr --}}
                                 <div class="col-12">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <hr class="w-75 mx-auto mt-2 mb-4">
+                                        <hr class="w-75 mx-auto mt-2 mb-2">
                                     </div>
                                 </div>
+
+
+
 
 
 
@@ -116,28 +162,69 @@
                                 {{-- mealTypes --}}
                                 @foreach ($mealTypes as $mealType)
 
-                                <div class="col-6">
-
-                                    <div class="form-check form-switch mb-3 mealType--checkbox">
-
-                                        {{-- checkbox --}}
-                                        <input @if (in_array($mealType->id, $instance->mealTypes)) checked @endif
-                                        class="form-check-input pointer sm" type="checkbox"
-                                        id="mealType-checkbox-edit-{{ $mealType->id }}" value='{{ $mealType->id }}'
-                                        wire:model='instance.mealTypes'>
 
 
-                                        {{-- label --}}
-                                        <label class="form-check-label fs-14"
-                                            for="mealType-checkbox-edit-{{ $mealType->id }}">
-                                            {{$mealType->name}}
-                                        </label>
+                                <div class="col-4">
 
+
+
+                                    {{-- name --}}
+                                    <label class="form-label form--label justify-content-center fs-12">{{
+                                        $mealType->name }}</label>
+
+
+
+                                    {{-- rangeWrapper --}}
+                                    <div class="range--input-wrapper mb-4">
+
+
+                                        {{-- minus --}}
+                                        <button class="btn btn--scheme px-2 range--button minus" type="button"
+                                            data-type="minus" data-target="{{ $mealType->id }}-range-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                fill="currentColor" viewBox="0 0 16 16" class="bi bi-dash-circle">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z">
+                                                </path>
+                                                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z">
+                                                </path>
+                                            </svg>
+                                        </button>
+
+
+
+
+                                        {{-- input --}}
+                                        <input class="form-control form--input range--input" type="number" step="1"
+                                            min="0" data-input="{{ $mealType->id }}-range-2"
+                                            wire:model='instance.mealTypes.{{ $mealType->id }}'
+                                            data-instance='instance.mealTypes.{{ $mealType->id }}' required />
+
+
+
+
+                                        {{-- plus --}}
+                                        <button class="btn btn--scheme px-2 range--button plus" type="button"
+                                            data-type="plus" data-target="{{ $mealType->id }}-range-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-circle">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z">
+                                                </path>
+                                                <path
+                                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
+                                                </path>
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
 
+
+
                                 @endforeach
                                 {{-- end loop --}}
+
+
 
 
 
@@ -163,5 +250,58 @@
             </div>
         </div>
     </div>
+    {{-- end modalBody --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- rangeHandle --}}
+    <script>
+        $(".range--input").on("change", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         rangeValue = $(this).val();
+         instance = $(this).attr('data-instance');
+
+
+         @this.set(instance, rangeValue);
+
+
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
 </div>
 {{-- endModal --}}

@@ -1,0 +1,40 @@
+.range--input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.range--input-wrapper input {
+    text-align: center;
+}
+
+.range--input-wrapper .range--button {
+    position: absolute;
+    height: 100%;
+    font-size: 16px;
+    top: -1px;
+}
+
+.range--input-wrapper .range--button svg {
+    fill: var(--input-border-color-hover);
+    transition: 0s all ease-in-out !important;
+}
+
+.range--input-wrapper .range--button:hover svg,
+.range--input-wrapper .range--button:focus svg {
+    fill: var(--bg-golden-dark);
+}
+
+.range--input-wrapper .range--button.minus {
+    left: 0px;
+}
+
+.range--input-wrapper .range--button.plus {
+    right: 0px;
+}
+
+.range--button:focus,
+.range--button:hover {
+    background-color: transparent;
+    border-color: transparent !important;
+}

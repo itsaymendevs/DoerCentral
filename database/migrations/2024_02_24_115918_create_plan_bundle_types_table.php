@@ -14,6 +14,10 @@ return new class extends Migration {
             $table->id();
 
 
+            $table->integer('quantity', 15)->nullable()->default(0);
+
+
+
             // 1:  mealType - bundle
             $table->bigInteger('mealTypeId')->unsigned()->nullable();
             $table->foreign('mealTypeId')->references('id')->on('meal_types')->onDelete('cascade');

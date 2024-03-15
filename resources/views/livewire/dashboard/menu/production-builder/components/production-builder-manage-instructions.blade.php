@@ -7,7 +7,7 @@
     {{-- prepTitleRow --}}
     <div class="row align-items-center mt-5">
         <div class="col-12">
-            <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="d-flex align-items-center justify-content-between mb-3 hr--title">
                 <hr class="w-75" />
                 <label class="form-label form--label px-3 w-25 justify-content-center mb-0">Preparation
                     instructions</label>

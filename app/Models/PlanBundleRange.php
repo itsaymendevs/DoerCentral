@@ -29,5 +29,19 @@ class PlanBundleRange extends Model
 
 
 
+
+
+
+    public function types()
+    {
+
+        return $this->hasMany(PlanBundleRangeType::class, 'planBundleRangeId', 'id');
+
+    } // end function
+
+
+
+
+
 } // end model
 

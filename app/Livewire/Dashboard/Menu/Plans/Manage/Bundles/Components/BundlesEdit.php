@@ -55,7 +55,8 @@ class BundlesEdit extends Component
 
 
         // 1.3: setMealTypes
-        $this->instance->mealTypes = $bundle->types->pluck('mealTypeId')->toArray();
+        foreach ($bundle->types as $type)
+            $this->instance->mealTypes[$type->mealTypeId] = $type->quantity;
 
 
 

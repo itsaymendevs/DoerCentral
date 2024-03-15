@@ -64,6 +64,7 @@
         <link href="{{ asset('assets/css/select2.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/uploader.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/plans.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/bundles.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
 
 
@@ -156,6 +157,7 @@
         <script src="{{ asset('assets/js/reports/print.js') }}"></script>
         <script src="{{ asset('assets/js/init.js') }}"></script>
         <script src="{{ asset('assets/js/switches.js') }}"></script>
+        <script src="{{ asset('assets/js/range-input.js') }}"></script>
         <script src="{{ asset('assets/js/file-preview.js') }}"></script>
 
 
@@ -167,6 +169,8 @@
         {{-- 1.1: sweetAlert 2 --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <x-livewire-alert::scripts />
+
+
 
 
 

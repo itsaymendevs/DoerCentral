@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('plan_bundle_range_meals', function (Blueprint $table) {
+        Schema::create('plan_bundle_range_types', function (Blueprint $table) {
             $table->id();
 
 
@@ -45,6 +45,6 @@ return new class extends Migration {
      */
     public function down() : void
     {
-        Schema::dropIfExists('plan_bundle_range_meals');
+        Schema::dropIfExists('plan_bundle_range_types');
     }
 };

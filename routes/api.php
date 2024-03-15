@@ -446,8 +446,8 @@ Route::post('/dashboard/menu/plans/bundles/remove', [PlanController::class, 'rem
 
 
 
-// 5.3.2: menu - plans - bundles - updateBundleRanges
-Route::post('/dashboard/menu/plans/bundles/ranges/update', [PlanController::class, 'updateBundleRange']);
+// 5.3.2: menu - plans - bundles - updateBundleRangePrices
+Route::post('/dashboard/menu/plans/bundles/ranges/prices/update', [PlanController::class, 'updateBundleRangePrice']);
 
 
 
@@ -461,6 +461,18 @@ Route::post('/dashboard/menu/plans/bundles/days/remove', [PlanController::class,
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 5.3.2: menu - plans - bundles - updateBundleRanges
+Route::post('/dashboard/menu/plans/bundles/ranges/update', [PlanController::class, 'updateBundleRange']);
+Route::post('/dashboard/menu/plans/bundles/ranges/toggle', [PlanController::class, 'toggleBundleRange']);
+
 
 
 
@@ -472,7 +484,10 @@ Route::post('/dashboard/menu/plans/bundles/days/remove', [PlanController::class,
 
 
 
-// 5.4: menu - plans - calendars - toggleDefault
+
+
+
+// 5.5: menu - plans - calendars - toggleDefault
 Route::post('/dashboard/menu/plans/calendars/toggle-default', [PlanController::class, 'toggleCalendarDefault']);
 
 

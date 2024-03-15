@@ -4,7 +4,7 @@
 
     {{-- filter --}}
     <div class="col-4 mb-5">
-        <div class="d-flex align-items-center justify-content-between mb-1">
+        <div class="d-flex align-items-center justify-content-between mb-1 hr--title">
             <hr style="width: 65%" />
             <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Week Filter</label>
         </div>

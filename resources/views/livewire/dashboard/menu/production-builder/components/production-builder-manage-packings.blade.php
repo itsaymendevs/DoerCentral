@@ -32,7 +32,7 @@
 
         {{-- title --}}
         <div class="col-11">
-            <div class="d-flex align-items-center justify-content-between mb-2">
+            <div class="d-flex align-items-center justify-content-between mb-2 hr--title">
                 <hr class="w-75" />
                 <label class="form-label form--label px-3 w-25 justify-content-center mb-0">Packing Items</label>
             </div>

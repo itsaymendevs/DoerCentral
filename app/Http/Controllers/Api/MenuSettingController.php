@@ -31,6 +31,10 @@ class MenuSettingController extends Controller
         $diet->name = $request->name;
         $diet->desc = $request->desc;
 
+        $diet->proteins = $request->proteins;
+        $diet->carbs = $request->carbs;
+        $diet->fats = $request->fats;
+
 
         $diet->save();
 
@@ -78,6 +82,11 @@ class MenuSettingController extends Controller
 
         $diet->name = $request->name;
         $diet->desc = $request->desc;
+
+
+        $diet->proteins = $request->proteins;
+        $diet->carbs = $request->carbs;
+        $diet->fats = $request->fats;
 
 
         $diet->save();
@@ -179,10 +188,6 @@ class MenuSettingController extends Controller
         $diet->price = $request->price;
 
         $diet->calories = $request->calories;
-        $diet->proteins = $request->proteins;
-        $diet->carbs = $request->carbs;
-        $diet->fats = $request->fats;
-
 
         $diet->save();
 
@@ -232,10 +237,6 @@ class MenuSettingController extends Controller
         $diet->price = $request->price;
 
         $diet->calories = $request->calories;
-        $diet->proteins = $request->proteins;
-        $diet->carbs = $request->carbs;
-        $diet->fats = $request->fats;
-
 
         $diet->save();
 

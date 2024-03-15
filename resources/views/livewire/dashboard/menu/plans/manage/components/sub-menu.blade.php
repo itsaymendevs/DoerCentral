@@ -32,10 +32,10 @@
                 role="button" href="{{ route('dashboard.menuPlanBundles', [$id]) }}">Bundles</a>
 
 
-            {{-- intakeSizes --}}
+            {{-- rangeSizes --}}
             <a wire:navigate
-                class="btn disabled @if (Request::is('dashboard/menu/plans/' . $id . '/intake-sizes')) active @endif"
-                role="button" href="{{ route('dashboard.menuPlanIntakeSizes', [$id]) }}">Intake Sizes</a>
+                class="btn  @if (Request::is('dashboard/menu/plans/' . $id . '/range-sizes')) active @endif"
+                role="button" href="{{ route('dashboard.menuPlanRangeSizes', [$id]) }}">Range Sizes</a>
 
 
             {{-- bundleCalendars --}}

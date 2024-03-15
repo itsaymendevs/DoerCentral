@@ -18,6 +18,10 @@ return new class extends Migration {
             $table->string('name', 255)->nullable();
             $table->text('desc')->nullable();
 
+            $table->double('proteins', 15)->nullable()->default(0);
+            $table->double('carbs', 15)->nullable()->default(0);
+            $table->double('fats', 15)->nullable()->default(0);
+
 
             $table->timestamps();
         });

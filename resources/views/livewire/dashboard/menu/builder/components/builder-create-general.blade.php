@@ -105,7 +105,7 @@
 
             {{-- HR --}}
             <div class="col-12">
-                <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center justify-content-between hr--title">
                     <hr class="w-100" />
                     <label class="form-label form--label px-3 mb-0">Additional</label>
                 </div>

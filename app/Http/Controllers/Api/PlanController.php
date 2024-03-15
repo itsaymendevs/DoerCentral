@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\MealType;
 use App\Models\MenuCalendarPlan;
 use App\Models\Plan;
 use App\Models\PlanBundle;
 use App\Models\PlanBundleDay;
+use App\Models\PlanBundleRange;
 use App\Models\PlanBundleRangePrice;
+use App\Models\PlanBundleRangeType;
 use App\Models\PlanBundleType;
 use App\Models\PlanRange;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -264,7 +268,8 @@ class PlanController extends Controller
 
 
 
-        // 2: createBundleRange
+        // 2: createBundleRangePrice
+
 
 
 
@@ -274,7 +279,7 @@ class PlanController extends Controller
         foreach ($bundles as $bundle) {
 
 
-            // 1: create BundleRange
+            // 1: create BundleRangePrice
             $bundleRange = new PlanBundleRangePrice();
 
 
@@ -288,6 +293,68 @@ class PlanController extends Controller
 
 
         } // end loop
+
+
+
+
+
+
+
+
+
+        // --------------------------
+        // --------------------------
+
+
+
+
+        // 3: createBundleRange - RangeTypes
+
+
+
+
+
+        // 3.1: getBundles
+        $mealTypes = MealType::all();
+
+
+        foreach ($bundles as $bundle) {
+
+
+            // 1: create BundleRange
+            $bundleRange = new PlanBundleRange();
+
+            $bundleRange->planRangeId = $range->id;
+            $bundleRange->planBundleId = $bundle->id;
+
+
+            $bundleRange->save();
+
+
+
+            // :: loop - mealTypes
+            foreach ($mealTypes as $mealType) {
+
+
+
+                // 2: create RangeType
+                $rangeType = new PlanBundleRangeType();
+
+
+                $rangeType->mealTypeId = $mealType->id;
+                $rangeType->planBundleRangeId = $bundleRange->id;
+
+                $rangeType->save();
+
+
+
+            } // end loop
+
+
+        } // end loop
+
+
+
 
 
 
@@ -425,7 +492,6 @@ class PlanController extends Controller
         // 1: get instance
         PlanRange::find($id)->delete();
 
-
         return response()->json(['message' => 'Range has been removed'], 200);
 
 
@@ -507,14 +573,17 @@ class PlanController extends Controller
         // 2: mealTypes
         if ($request?->mealTypes) {
 
-            foreach ($request->mealTypes as $mealType) {
+            foreach ($request->mealTypes as $mealType => $quantity) {
 
 
                 // 2.1: create
                 $bundleType = new PlanBundleType();
 
-                $bundleType->planBundleId = $bundle->id;
+                $bundleType->quantity = intval($quantity);
                 $bundleType->mealTypeId = $mealType;
+
+                $bundleType->planBundleId = $bundle->id;
+
 
                 $bundleType->save();
 
@@ -535,6 +604,8 @@ class PlanController extends Controller
 
         // --------------------------
         // --------------------------
+
+
 
 
 
@@ -564,6 +635,67 @@ class PlanController extends Controller
 
         } // end loop
 
+
+
+
+
+
+
+
+
+
+
+        // --------------------------
+        // --------------------------
+
+
+
+
+
+
+        // 4: createBundleRange - RangeTypes
+
+
+
+
+        // 4.1: getRanges
+        $mealTypes = MealType::all();
+
+
+        foreach ($ranges as $range) {
+
+
+            // 1: create BundleRange
+            $bundleRange = new PlanBundleRange();
+
+            $bundleRange->planRangeId = $range->id;
+            $bundleRange->planBundleId = $bundle->id;
+
+
+            $bundleRange->save();
+
+
+
+            // :: loop - mealTypes
+            foreach ($mealTypes as $mealType) {
+
+
+
+                // 2: create RangeType
+                $rangeType = new PlanBundleRangeType();
+
+
+                $rangeType->mealTypeId = $mealType->id;
+                $rangeType->planBundleRangeId = $bundleRange->id;
+
+                $rangeType->save();
+
+
+
+            } // end loop
+
+
+        } // end loop
 
 
 
@@ -640,22 +772,23 @@ class PlanController extends Controller
 
         if ($request?->mealTypes) {
 
-            foreach ($request->mealTypes as $mealType) {
+            foreach ($request->mealTypes as $mealType => $quantity) {
 
 
                 // 2.1: create
                 $bundleType = new PlanBundleType();
 
-                $bundleType->planBundleId = $bundle->id;
+                $bundleType->quantity = intval($quantity);
                 $bundleType->mealTypeId = $mealType;
+
+                $bundleType->planBundleId = $bundle->id;
+
 
                 $bundleType->save();
 
             } // end loop
 
         } // end if
-
-
 
 
 
@@ -788,7 +921,7 @@ class PlanController extends Controller
 
 
 
-    public function updateBundleRange(Request $request)
+    public function updateBundleRangePrice(Request $request)
     {
 
 
@@ -1041,7 +1174,112 @@ class PlanController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
     // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateBundleRange(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+        // 1: get instance
+        $bundleRangeType = PlanBundleRangeType::find($request->id);
+
+        $bundleRangeType->price = $request->price;
+        $bundleRangeType->calories = $request->calories;
+
+        $bundleRangeType->sizeId = $request->sizeId ?? null;
+
+
+        $bundleRangeType->save();
+
+
+
+
+        return response()->json(['message' => 'Range Information has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function toggleBundleRange(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+
+        // 1: get instance
+        $instance = PlanBundleRange::find($request->id);
+
+        $instance->isForWebsite = ! boolval($instance->isForWebsite);
+
+        $instance->save();
+
+
+
+
+        return response()->json(['message' => 'Status has been changed'], 200);
+
+
+
+    } // end function
 
 
 

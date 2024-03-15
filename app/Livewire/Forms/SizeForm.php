@@ -10,7 +10,7 @@ class SizeForm extends Form
 
     // :: variables
     #[Rule('required', as: 'instanceError')]
-    public $name, $price, $calories, $proteins, $carbs, $fats;
+    public $name, $price, $calories;
 
 
     public $id;

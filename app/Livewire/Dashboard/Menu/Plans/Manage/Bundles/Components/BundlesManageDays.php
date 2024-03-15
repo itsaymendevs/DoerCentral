@@ -73,7 +73,7 @@ class BundlesManageDays extends Component
 
 
         // 1: makeRequest
-        $response = $this->makeRequest('dashboard/menu/plans/bundles/ranges/update', $instance);
+        $response = $this->makeRequest('dashboard/menu/plans/bundles/ranges/prices/update', $instance);
 
 
 

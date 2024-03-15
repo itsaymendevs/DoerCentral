@@ -11,7 +11,7 @@ class DietForm extends Form
 
     // :: variables
     #[Rule('required', as: 'instanceError')]
-    public $name, $desc;
+    public $name, $desc, $proteins, $carbs, $fats;
 
 
     public $id;

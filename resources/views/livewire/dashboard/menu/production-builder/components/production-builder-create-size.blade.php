@@ -129,7 +129,7 @@
                     <h6 class="fs-12">Proteins<small class="fw-semibold text-gold fs-10 ms-1">(%)</small></h6>
                     <p>
                         <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
-                            value="{{ $mealSize->size->proteins }}" readonly="" step="0.01" />
+                            value="{{ $mealSize->meal->diet->proteins }}" readonly="" step="0.01" />
                     </p>
                 </div>
             </div>
@@ -143,7 +143,7 @@
                     <h6 class="fs-12">Carbs<small class="fw-semibold text-gold fs-10 ms-1">(%)</small></h6>
                     <p>
                         <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
-                            value="{{ $mealSize->size->carbs }}" readonly="" step="0.01" />
+                            value="{{ $mealSize->meal->diet->carbs }}" readonly="" step="0.01" />
                     </p>
                 </div>
             </div>
@@ -156,7 +156,7 @@
                     <h6 class="fs-12">Fats<small class="fw-semibold text-gold fs-10 ms-1">(%)</small></h6>
                     <p>
                         <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
-                            value="{{ $mealSize->size->fats }}" readonly="" step="0.01" />
+                            value="{{ $mealSize->meal->diet->fats }}" readonly="" step="0.01" />
                     </p>
                 </div>
             </div>

@@ -92,13 +92,14 @@
                     <tr>
 
                         {{-- size --}}
-                        <th class="th--lg" s="">Size</th>
+                        <th class="th--lg">Size</th>
 
 
-                        {{-- calories --}}
-                        <th class="th--sm">Calories
-                            <small class="fw-semibold text-theme-secondary fs-10">(%)</small>
-                        </th>
+                        {{-- calories - price --}}
+                        <th class="th--sm">Price</th>
+
+                        <th class="th--sm">Calories</th>
+
 
                         {{-- empty --}}
                         <th class="th--xs"></th>

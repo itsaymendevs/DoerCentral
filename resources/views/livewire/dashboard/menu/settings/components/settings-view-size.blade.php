@@ -7,29 +7,22 @@
             wire:change='update' required />
     </td>
 
+
+    {{-- price --}}
+    <td class="fs-6">
+        <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
+            wire:model='instance.price' wire:change='update' required />
+    </td>
+
+
+
     {{-- calories --}}
     <td class="fs-6">
         <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
             wire:model='instance.calories' wire:change='update' required />
     </td>
 
-    {{-- proteins --}}
-    <td class="fs-6">
-        <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
-            wire:model='instance.proteins' wire:change='update' required />
-    </td>
 
-    {{-- carbs --}}
-    <td class="fs-6">
-        <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
-            wire:model='instance.carbs' wire:change='update' required />
-    </td>
-
-    {{-- fats --}}
-    <td class="fs-6">
-        <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
-            wire:model='instance.fats' wire:change='update' required />
-    </td>
 
 
     {{-- remove --}}

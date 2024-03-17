@@ -19,7 +19,8 @@ use App\Livewire\Dashboard\Menu\Recipes;
 use App\Livewire\Dashboard\Menu\Settings;
 use App\Livewire\Dashboard\Promos;
 use App\Livewire\Login;
-use App\Livewire\Subscription\Customers;
+use App\Livewire\Subscription\Customer\CustomerSubscriptionStepOne;
+use App\Livewire\Subscription\Customer\CustomerSubscriptionStepTwo;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -341,8 +342,13 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-// 1: Customers - StepOne
-Route::get('subscription/customers', Customers::class)->name('subscriptions.customersStepOne');
+// 1: Subscription - customer - StepOne
+Route::get('subscription/customer', CustomerSubscriptionStepOne::class)->name('subscription.customerStepOne');
 
+
+
+
+// 1.2: Subscription - customer - stepTwo
+Route::get('subscription/customer/{id}', CustomerSubscriptionStepTwo::class)->name('subscription.customerStepTwo');
 
 

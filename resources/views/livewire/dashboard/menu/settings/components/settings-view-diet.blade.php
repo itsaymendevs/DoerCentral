@@ -13,12 +13,37 @@
     </td>
 
 
+
+
+
+
+    {{-- proteins --}}
+    <td class="fs-6">
+        <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
+            wire:model='instance.proteins' wire:change='update' required />
+    </td>
+
+    {{-- carbs --}}
+    <td class="fs-6">
+        <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
+            wire:model='instance.carbs' wire:change='update' required />
+    </td>
+
+    {{-- fats --}}
+    <td class="fs-6">
+        <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
+            wire:model='instance.fats' wire:change='update' required />
+    </td>
+
+
+
+
+
     {{-- desc --}}
     <td>
         <textarea class="form-control form--input form--textarea form--table-textarea" wire:model.live='instance.desc'
             wire:change='update' required></textarea>
     </td>
-
 
 
     {{-- remove --}}

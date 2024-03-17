@@ -143,9 +143,7 @@
 
 
         {{-- :: scripts --}}
-
-        <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}" data-navigate-once>
-        </script>
+        <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}" data-navigate-once></script>
         <script src="{{ asset('assets/js/aos.min.js') }}"></script>
         <script src="{{ asset('assets/js/datatables.js') }}"></script>
         <script src="{{ asset('assets/js/init-datatables.js') }}"></script>

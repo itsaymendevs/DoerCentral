@@ -57,7 +57,8 @@
 
         {{-- amount --}}
         <div class="col-2">
-            <label class="form-label form--label">Amount</label>
+            <label class="form-label form--label">Amount<small
+                class="ms-1 fw-semibold text-gold fs-10">(Grams)</small></label>
             <input class="form-control form--input mb-4" type="number" step='0.01' wire:model='instance.amount'
                 required />
         </div>

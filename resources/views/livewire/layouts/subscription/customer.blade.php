@@ -8,7 +8,7 @@
         {{-- meta --}}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>DOER.</title>
+        <title>Meal Plans - DOER.</title>
 
         <meta name="description" content="Meal Plans Solution">
         <meta name="keywords" content="Meal Plans, Meal Plans in Dubai, DOER, DOER SOLUTION">
@@ -64,7 +64,10 @@
         <link href="{{ asset('assets/css/select2.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/uploader.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/plans.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/bundles.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/customer-subscription.css') }}" rel="stylesheet">
+
 
 
 
@@ -75,8 +78,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous" referrerpolicy="no-referrer" data-navigate-once></script>
-
-
 
     </head>
     {{-- end head --}}
@@ -102,6 +103,14 @@
 
 
 
+
+            {{-- navbar --}}
+            <livewire:components.subscription.customers.navbar />
+
+
+
+
+
             {{-- content --}}
             {{ $slot }}
 
@@ -111,6 +120,8 @@
 
         </div>
         {{-- end animated-wrapper --}}
+
+
 
 
 
@@ -132,14 +143,8 @@
 
 
 
-
-
-
-
         {{-- :: scripts --}}
-
-        <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}" data-navigate-once>
-        </script>
+        <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}" data-navigate-once></script>
         <script src="{{ asset('assets/js/aos.min.js') }}"></script>
         <script src="{{ asset('assets/js/datatables.js') }}"></script>
         <script src="{{ asset('assets/js/init-datatables.js') }}"></script>
@@ -151,6 +156,7 @@
         <script src="{{ asset('assets/js/reports/print.js') }}"></script>
         <script src="{{ asset('assets/js/init.js') }}"></script>
         <script src="{{ asset('assets/js/switches.js') }}"></script>
+        <script src="{{ asset('assets/js/range-input.js') }}"></script>
         <script src="{{ asset('assets/js/file-preview.js') }}"></script>
 
 
@@ -162,6 +168,8 @@
         {{-- 1.1: sweetAlert 2 --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <x-livewire-alert::scripts />
+
+
 
 
 
@@ -184,12 +192,9 @@
 
 
 
-        {{-- 1.5: builder extensions --}}
-        <script src="{{ asset('assets/js/builder.js') }}"></script>
-
-
         {{-- 1.6: otherScripts --}}
         @yield('scripts')
+
 
 
 

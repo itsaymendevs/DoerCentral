@@ -129,6 +129,11 @@
                                 <small class="fw-semibold text-theme-secondary fs-10">(%)</small>
                             </th>
 
+
+                            {{-- description --}}
+                            <th class="th--md">Description</th>
+
+
                             {{-- empty --}}
                             <th class="th--xs"></th>
                         </tr>

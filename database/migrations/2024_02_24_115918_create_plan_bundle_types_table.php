@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
 
 
-            $table->integer('quantity', 15)->nullable()->default(0);
+            $table->integer('quantity')->nullable()->default(0);
 
 
 

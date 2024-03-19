@@ -20,14 +20,17 @@ return new class extends Migration {
 
 
 
-            // 1.2: mealType - size
+            // 1.2: size - mealType - type
             $table->bigInteger('sizeId')->unsigned()->nullable();
             $table->foreign('sizeId')->references('id')->on('sizes')->onDelete('cascade');
+
 
             $table->bigInteger('mealTypeId')->unsigned()->nullable();
             $table->foreign('mealTypeId')->references('id')->on('meal_types')->onDelete('cascade');
 
 
+            $table->bigInteger('typeId')->unsigned()->nullable();
+            $table->foreign('typeId')->references('id')->on('types')->onDelete('cascade');
 
 
             // 1: bundleRangeId

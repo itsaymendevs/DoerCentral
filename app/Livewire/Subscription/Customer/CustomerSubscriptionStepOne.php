@@ -3,6 +3,7 @@
 namespace App\Livewire\Subscription\Customer;
 
 use App\Models\Plan;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -11,6 +12,27 @@ use Livewire\Component;
 #[Layout('livewire.layouts.subscription.customer')]
 class CustomerSubscriptionStepOne extends Component
 {
+
+
+
+
+
+    public function mount()
+    {
+
+
+        // :: forgetSession
+        Session::forget('customer');
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------
+
+
 
 
 
@@ -39,7 +61,7 @@ class CustomerSubscriptionStepOne extends Component
     {
 
         // 1: dependencies
-        $plans = Plan::all();
+        $plans = Plan::whereHas('ranges')->get();
 
 
 

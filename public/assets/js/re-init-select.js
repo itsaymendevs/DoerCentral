@@ -261,9 +261,34 @@ window.addEventListener("setSelect", (event) => {
 });
 
 // -------------------------------------------------------------
+
+// 6.5: mirrorSelect
+window.addEventListener("mirrorSelect", (event) => {
+    $(document).ready(function () {
+        selectClass = event.detail.class;
+        setupValue = event.detail.value;
+
+        $(selectClass).each(function () {
+            setupClear = $(this).attr("data-clear") ? true : false;
+            setupPlaceholder = $(this).attr("data-placeholder");
+            setupTrigger = $(this).attr("data-trigger") ? true : false;
+
+            $(this)
+                .val(setupValue)
+                .select2({
+                    allowClear: setupClear,
+                    placeholder: setupPlaceholder ? setupPlaceholder : "",
+                });
+
+            if (setupTrigger) $(this).trigger("change");
+        }); // end loop
+    });
+});
+
+// -------------------------------------------------------------
 // -------------------------------------------------------------
 
-// 6: refreshSelect with Dynamic Content - childSelect
+// 7: refreshSelect with Dynamic Content - childSelect
 window.addEventListener("refreshSelect", (event) => {
     $(document).ready(function () {
         selectId = event.detail.id;

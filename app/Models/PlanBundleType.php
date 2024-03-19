@@ -29,4 +29,14 @@ class PlanBundleType extends Model
 
 
 
+
+    public function type()
+    {
+
+        return $this->belongsTo(Type::class, 'typeId');
+
+    } // end function
+
+
+
 } // end model

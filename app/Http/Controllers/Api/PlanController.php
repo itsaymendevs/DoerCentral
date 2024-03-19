@@ -14,6 +14,7 @@ use App\Models\PlanBundleRangeType;
 use App\Models\PlanBundleType;
 use App\Models\PlanRange;
 use App\Models\Size;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -336,15 +337,17 @@ class PlanController extends Controller
             foreach ($mealTypes as $mealType) {
 
 
-
                 // 2: create RangeType
                 $rangeType = new PlanBundleRangeType();
 
 
                 $rangeType->mealTypeId = $mealType->id;
+                $rangeType->type = $mealType->type->id;
+
                 $rangeType->planBundleRangeId = $bundleRange->id;
 
                 $rangeType->save();
+
 
 
 
@@ -576,11 +579,18 @@ class PlanController extends Controller
             foreach ($request->mealTypes as $mealType => $quantity) {
 
 
+                // :: getMealType
+                $mealType = MealType::find($mealType);
+
+
+
                 // 2.1: create
                 $bundleType = new PlanBundleType();
 
                 $bundleType->quantity = intval($quantity);
-                $bundleType->mealTypeId = $mealType;
+
+                $bundleType->mealTypeId = $mealType->id;
+                $bundleType->typeId = $mealType->type->id;
 
                 $bundleType->planBundleId = $bundle->id;
 
@@ -686,6 +696,8 @@ class PlanController extends Controller
 
 
                 $rangeType->mealTypeId = $mealType->id;
+                $rangeType->typeId = $mealType->type->id;
+
                 $rangeType->planBundleRangeId = $bundleRange->id;
 
                 $rangeType->save();
@@ -775,11 +787,19 @@ class PlanController extends Controller
             foreach ($request->mealTypes as $mealType => $quantity) {
 
 
+                // :: getMealType
+                $mealType = MealType::find($mealType);
+
+
+                
+
                 // 2.1: create
                 $bundleType = new PlanBundleType();
 
                 $bundleType->quantity = intval($quantity);
-                $bundleType->mealTypeId = $mealType;
+
+                $bundleType->mealTypeId = $mealType->id;
+                $bundleType->typeId = $mealType->type->id;
 
                 $bundleType->planBundleId = $bundle->id;
 

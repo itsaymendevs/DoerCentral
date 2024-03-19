@@ -97,7 +97,7 @@
 
 
     {{-- body --}}
-    <body class="animated-bg">
+    <body>
         <div data-aos="fade" data-aos-duration="1000">
 
 

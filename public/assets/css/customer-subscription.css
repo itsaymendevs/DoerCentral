@@ -22,3 +22,33 @@
     background-color: transparent;
     border-radius: 0px var(--radius) var(--radius) 0px;
 }
+
+/* button checkboxes */
+
+.button--checkbox {
+    height: var(--input-height);
+    display: inline-flex;
+    align-items: center;
+    width: 18%;
+    padding: 0px;
+    margin: 0px 7px 8px 0px;
+    justify-content: center;
+}
+
+@media (min-width: 1px) and (max-width: 575px) {
+    .button--checkbox {
+        width: 47%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .button--checkbox {
+        width: 30%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .button--checkbox {
+        width: 13%;
+    }
+}

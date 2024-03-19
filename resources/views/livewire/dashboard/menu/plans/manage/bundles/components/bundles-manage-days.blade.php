@@ -41,7 +41,7 @@
                             <div class="d-flex align-items-center justify-content-between mb-3 hr--title">
                                 <hr class="w-75">
                                 <label class="form-label form--label px-3 w-25
-								justify-content-center mb-0">Range Prices</label>
+								justify-content-center mb-0">Range Prices / Day</label>
                             </div>
                         </div>
 

@@ -46,7 +46,7 @@ class CustomerSubscriptionStepOneExistingCustomer extends Component
 
 
 
-        // ** TODO: checkCustomer **
+        // ** TODO: checkCustomer ** //
 
 
 

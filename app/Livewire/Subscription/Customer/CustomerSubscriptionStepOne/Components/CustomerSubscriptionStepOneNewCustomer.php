@@ -67,21 +67,21 @@ class CustomerSubscriptionStepOneNewCustomer extends Component
     {
 
         // :: validation
-        $this->instance->validate();
+        if ($this->instance->gender) {
+
+
+
+            // 1: makeSession
+            Session::put('customer', $this->instance);
 
 
 
 
-        // 1: makeSession
-        Session::put('customer', $this->instance);
+            // :: redirectStepTwo
+            return $this->redirect(route('subscription.customerStepTwo', [$this->instance->planId]), navigate: true);
 
 
-
-
-
-        // :: redirectStepTwo
-        return $this->redirect(route('subscription.customerStepTwo', [$this->instance->planId]), navigate: true);
-
+        } // end if
 
 
     } // end function

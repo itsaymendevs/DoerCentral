@@ -8,11 +8,33 @@ use Livewire\Form;
 class CustomerSubscriptionForm extends Form
 {
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $phone, $email, $name, $whatsapp, $gender, $planId;
+    // :: STEP 1
+    public $phone, $email, $name, $whatsapp, $gender, $planId, $password;
 
-    public $id, $password;
+    public $id;
+
+
+
+
+    // --------------------------------------------------
+
+
+
+
+
+    // :: STEP 2
+    public $planBundleId, $bundleRangeId, $planDays, $startDate;
+
+
+    public $bundleTypes = [];
+
+
+    // :: helpers
+    public $bundleRangePricePerDay, $totalBundleRangeCalories, $totalBundleRangePrice;
+
+    public $bundleTypesInArray;
+
+
 
 
 } // end form

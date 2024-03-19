@@ -86,7 +86,7 @@
 
     {{-- body --}}
 
-    <body class="animated-bg">
+    <body>
 
 
 

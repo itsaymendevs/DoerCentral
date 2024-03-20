@@ -89,6 +89,7 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
+
     } // end function
 
 
@@ -161,7 +162,8 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-
+            // :: alert
+            $this->makeAlert('success', 'Coupon Applied Successfully');
 
 
 
@@ -201,6 +203,27 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+    public function convertExpiry()
+    {
+
+
+        // 1: getMonth - Year
+        $this->payment->cardExpiryYear = date('Y', strtotime($this->payment->cardExpiry));
+        $this->payment->cardExpiryMonth = date('m', strtotime($this->payment->cardExpiry));
+
+
+
+    } // end function
+
+
 
 
 
@@ -219,6 +242,8 @@ class CustomerSubscriptionStepFive extends Component
 
     public function continue()
     {
+
+
 
 
         // 1: makeSession

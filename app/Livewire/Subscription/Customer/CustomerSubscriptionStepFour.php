@@ -6,6 +6,7 @@ use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Models\Allergy;
 use App\Models\City;
 use App\Models\CityDistrict;
+use App\Models\CustomerSubscriptionSetting;
 use App\Models\Plan;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
@@ -28,7 +29,7 @@ class CustomerSubscriptionStepFour extends Component
     // :: variables
     public CustomerSubscriptionForm $instance;
     public $plan;
-
+    public $minimumDeliveryDays;
 
 
 
@@ -59,6 +60,15 @@ class CustomerSubscriptionStepFour extends Component
 
         foreach ($weekDays as $weekDay)
             $this->instance->deliveryDays[$weekDay] = false;
+
+
+
+
+        // 3: minimumDeliveryDays
+        $this->minimumDeliveryDays = CustomerSubscriptionSetting::first()->minimumDeliveryDays;
+
+
+
 
 
     } // end function
@@ -100,9 +110,9 @@ class CustomerSubscriptionStepFour extends Component
 
 
         // 1.2: checkDeliveryDaysLimit
-        if ($counter < 3) {
+        if ($counter < $this->minimumDeliveryDays) {
 
-            $this->makeAlert('info', 'Please select at least 3 delivery days');
+            $this->makeAlert('info', "Please select at least {$this->minimumDeliveryDays} delivery days");
             return false;
 
         } // end if

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             ExcludeSeeder::class,
             AllergySeeder::class,
             BagSeeder::class,
-
+            PaymentMethodSeeder::class,
+            CustomerSubscriptionSettingSeeder::class
         ]);
 
     } //end function

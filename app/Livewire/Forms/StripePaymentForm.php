@@ -11,7 +11,7 @@ class StripePaymentForm extends Form
 
     // :: STEP 5 - PAYMENT STRIPE
     #[Rule('required', as: 'instanceError')]
-    public $cardNumber, $cardCVV, $cardExpiryMonth, $cardExpiryYear, $cardHolder;
+    public $cardNumber, $cardCVV, $cardExpiry, $cardExpiryMonth, $cardExpiryYear, $cardHolder;
 
     public $paymentStatus, $paymentIntentId;
 

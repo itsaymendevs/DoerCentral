@@ -70,23 +70,14 @@
 
 
 
-                    {{-- expiryMonth --}}
+                    {{-- cardExpiry --}}
                     <div class="col-12 col-sm-4 col-lg-3">
                         <label class="form-label form--label">Expiry Month</label>
-                        <input class="form--input mb-4" type="month" wire:model='payment.cardExpiryMonth' required>
+                        <input class="form--input mb-4" type="month" wire:model='payment.cardExpiry'
+                            wire:change='convertExpiry' required>
                     </div>
 
 
-
-
-                    {{-- expiryYear --}}
-                    <div class="col-12 col-sm-4 col-lg-3">
-                        <label class="form-label form--label">Expiry Year</label>
-                        <div class="select--single-wrapper mb-4"><select class="form--select2">
-                                <option value=""></option>
-                                <option value="1">FIrst Option</option>
-                            </select></div>
-                    </div>
 
 
 

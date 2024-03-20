@@ -79,6 +79,13 @@
 
 
 
+                    {{-- customers --}}
+                    <a class="btn  navbar--menu-button
+                    @if (Request::is('dashboard/customers', 'dashboard/customers/*')) active @endif"
+                        href="{{ route('dashboard.customers') }}" wire:navigate>Customers</a>
+
+
+
                     {{-- inventory --}}
                     <a class="btn  navbar--menu-button
                     @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"

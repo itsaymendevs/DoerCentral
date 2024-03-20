@@ -4,6 +4,7 @@ namespace App\Livewire\Subscription\Customer;
 
 use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Livewire\Forms\StripePaymentForm;
+use App\Models\CustomerSubscriptionSetting;
 use App\Models\Plan;
 use App\Models\PromoCode;
 use App\Models\PromoCodePlan;
@@ -26,8 +27,7 @@ class CustomerSubscriptionStepFive extends Component
     public CustomerSubscriptionForm $instance;
     public StripePaymentForm $payment;
 
-    public $plan;
-    public $promoCodes;
+    public $plan, $paymentMethod, $promoCodes;
     public $isCouponApplied = false;
 
 
@@ -79,8 +79,17 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
+        // 2.1: getPaymentMethod
+        $this->paymentMethod = CustomerSubscriptionSetting::all()->first()?->paymentMethod ?? null;
 
-        // 2.2: calculateTotalPrice
+
+
+
+
+
+
+
+        // 3: calculateTotalPrice
         $this->instance->totalPrice = $this->instance->totalBundleRangePrice + $this->instance->bagPrice;
         $this->instance->totalCheckoutPrice = $this->instance->totalBundleRangePrice + $this->instance->bagPrice;
 
@@ -245,6 +254,8 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
+
+        dd('CHECKOUT ...');
 
         // 1: makeSession
         Session::put('customer', $this->instance);

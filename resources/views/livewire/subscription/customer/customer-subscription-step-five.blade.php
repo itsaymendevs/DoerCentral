@@ -36,6 +36,10 @@
 
 
 
+                    {{-- 1: STRIPE PAYMENT --}}
+                    @if ($paymentMethod && $paymentMethod->name == 'STRIPE')
+
+
 
 
                     {{-- subHeading --}}
@@ -93,12 +97,36 @@
 
 
 
+
+
+                    @endif
+                    {{-- endIF --}}
+
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------- --}}
+                    {{-- ---------------------------- --}}
+
+
+
+
+
+
+
                     {{-- submitButton --}}
-                    <div class="col-12 col-lg-3 align-self-end">
+                    <div class="col-12 col-sm-4 col-lg-4 align-self-end offset-lg-4">
                         <button
                             class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-4 w-100 fw-semibold justify-content-center shrink--self"
                             style="border: 1px dashed var(--color-scheme-3);">Checkout</button>
                     </div>
+
+
                 </form>
             </div>
             {{-- endColumn --}}

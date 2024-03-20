@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Dashboard\Customers;
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\Menu\Builder;
@@ -307,6 +308,28 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+
+    // 7: Customers
+    Route::get('dashboard/customers', Customers::class)->name('dashboard.customers');
 
 
 

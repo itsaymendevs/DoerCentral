@@ -37,4 +37,74 @@ class CustomerSubscriptionForm extends Form
 
 
 
+
+
+
+    // --------------------------------------------------
+
+
+
+
+
+
+    // :: STEP 3
+    public $bag, $bagPrice;
+
+
+    public $allergyLists, $excludeLists = [];
+
+
+
+    // :: helpers
+    public $bagImageFile;
+
+
+
+
+    // --------------------------------------------------
+
+
+
+
+
+
+    // :: STEP 4
+    public $cityId, $cityDistrictId, $cityDeliveryTimeId, $locationAddress, $apartment, $floor;
+
+
+    public $deliveryDays = [];
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------
+
+
+
+
+
+
+    // :: STEP 5
+    public $promoCode, $promoCodeDiscountPrice;
+
+    public $totalPrice;
+    public $totalCheckoutPrice;
+
+
+
+
+
+
+
+
+
+
+
+
 } // end form

@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\CityDeliveryTime;
 use App\Models\CityDistrict;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -78,7 +79,7 @@ trait HelperTrait
 
 
 
-    public function refreshSelect($childSelectId, $parentModel, $childModel, $parentValue)
+    public function refreshSelect($childSelectId, $parentModel, $childModel, $parentValue, $isEmpty = false)
     {
 
 
@@ -91,10 +92,44 @@ trait HelperTrait
                     ->get(['id', 'name as text'])->toArray() : [];
 
 
+
+            // :: makeEmpty
+            $isEmpty ? array_unshift($cityDistricts, ['id' => '', 'text' => '']) : null;
+
+
             $this->dispatch('refreshSelect', id: $childSelectId, data: $cityDistricts);
 
 
         } // end if
+
+
+
+
+
+
+
+        // 2: city - deliveryTime
+        if ($parentModel == 'city' && $childModel == 'deliveryTime') {
+
+            $cityDeliveryTimes = $parentValue ?
+                CityDeliveryTime::where('cityId', $parentValue)
+                    ->get(['id', 'title as text'])->toArray() : [];
+
+
+
+            // :: makeEmpty
+            $isEmpty ? array_unshift($cityDeliveryTimes, ['id' => '', 'text' => '']) : null;
+
+
+
+
+            $this->dispatch('refreshSelect', id: $childSelectId, data: $cityDeliveryTimes);
+
+
+        } // end if
+
+
+
 
 
     } // end function

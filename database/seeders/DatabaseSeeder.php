@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             IngredientGroupSeeder::class,
             ExcludeSeeder::class,
             AllergySeeder::class,
+            BagSeeder::class,
+
         ]);
 
     } //end function

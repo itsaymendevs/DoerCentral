@@ -35,6 +35,11 @@
     justify-content: center;
 }
 
+.button--checkbox.active {
+    background-color: var(--color-theme-secondary);
+    transform: scale(0.93);
+}
+
 @media (min-width: 1px) and (max-width: 575px) {
     .button--checkbox {
         width: 47%;
@@ -51,4 +56,36 @@
     .button--checkbox {
         width: 13%;
     }
+}
+
+/* phone input */
+
+.form--phone-input {
+    position: relative;
+}
+
+.form--phone-input span {
+    position: absolute;
+    font-size: 13px;
+    left: initial;
+    background-color: var(--input-border-color);
+    top: 0px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: var(--input-radius) 0px 0px var(--input-radius);
+    width: 27%;
+    justify-content: center;
+    color: var(--color-scheme-dark-1);
+    letter-spacing: 0.9px;
+}
+
+.form--phone-input input {
+    padding-left: 33%;
+    letter-spacing: 0.9px;
+}
+
+/* coupon */
+.coupon--input.active {
+    border-color: var(--bs-warning);
 }

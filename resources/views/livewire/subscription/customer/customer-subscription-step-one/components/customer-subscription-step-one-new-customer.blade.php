@@ -96,8 +96,11 @@
                         {{-- phone --}}
                         <div class="col-6">
                             <label class="form-label form--label">Phone</label>
-                            <input class="form-control form--input mb-4" type="text" required
-                                wire:model='instance.phone' />
+                            <div class="form--phone-input">
+                                <input class="form-control form--input mb-4" type="text" required
+                                    wire:model='instance.phone' />
+                                <span>+971</span>
+                            </div>
                         </div>
 
 
@@ -107,8 +110,11 @@
                         {{-- whatsapp --}}
                         <div class="col-6">
                             <label class="form-label form--label">Whatsapp</label>
-                            <input class="form-control form--input mb-4" type="text" required
-                                wire:model='instance.whatsapp' />
+                            <div class="form--phone-input">
+                                <input class="form-control form--input mb-4" type="text" required
+                                    wire:model='instance.whatsapp' />
+                                <span>+971</span>
+                            </div>
                         </div>
 
 

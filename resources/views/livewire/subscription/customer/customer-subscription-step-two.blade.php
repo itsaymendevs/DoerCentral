@@ -534,11 +534,11 @@
 
 
             {{-- rightCol --}}
-            <div class="col-12 col-sm-10 col-md-6 col-lg-3 col-xl-3 text-center mt-zone-cards plans-column"
-                data-aos="fade-left" data-aos-duration="600" data-aos-delay="800" data-aos-once="true" wire:ignore.self>
+            <div class="col-12 col-sm-10 col-md-7 col-xl-3 text-center mt-zone-cards plans-column" data-aos="fade-left"
+                data-aos-duration="600" data-aos-delay="800" data-aos-once="true" wire:ignore.self>
 
                 {{-- planRow --}}
-                <div class="overview--card client-version scale--self-05 mb-5">
+                <div class="overview--card client-version scale--self-05 mb-4">
                     <div class="row">
 
 
@@ -551,7 +551,7 @@
 
                         {{-- content --}}
                         <div class="col-12">
-                            <h5 class="text-center fw-bold mt-3 mb-2 truncate-text-1l">{{ $plan->name }}</h5>
+                            <h5 class="text-center fw-bold mt-3 mb-2">{{ $plan->name }}</h5>
                             <p class="text-center fs-12 fw-semibold text-gold mb-2">
                                 Starting From {{ $plan->startingPrice }}<small
                                     class="ms-1 fw-semibold text-gold fs-10">(AED)</small>/ Day
@@ -580,7 +580,9 @@
                 <div class="text-start overview--card client-version mb-5 w-100 flex-row subscription--side-invoice">
                     <div class="row w-100">
                         <div class="col-12">
-                            <h6 class="fw-bold mb-3 text-gold">Summary</h6>
+
+                            {{-- heading --}}
+                            <h6 class="fw-semibold mb-3 text-gold text-center">Summary</h6>
 
 
                             {{-- 1: averageCaloriesPerDay --}}
@@ -623,10 +625,16 @@
 
 
 
-                            {{-- 5: totalPrice --}}
+
+                            {{-- --------------------------- --}}
+                            {{-- --------------------------- --}}
+
+
+
+                            {{-- 5: planPrice --}}
                             <div class="d-flex align-items-center justify-content-between pt-3"
                                 style="border-top: 1px dashed var(--bg-golden-dark)">
-                                <p class="fs-12 w-50 pe-3 mb-0">Total Price</p>
+                                <p class="fs-12 w-50 pe-3 mb-0">Plan Price</p>
                                 <p class="mb-0 w-50 text-end fw-bold">{{ $instance->totalBundleRangePrice?? ''}}
                                     <small class="fw-semibold text-gold fs-10 ms-1">(AED)</small>
                                 </p>

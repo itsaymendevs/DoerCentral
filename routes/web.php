@@ -19,7 +19,10 @@ use App\Livewire\Dashboard\Menu\Recipes;
 use App\Livewire\Dashboard\Menu\Settings;
 use App\Livewire\Dashboard\Promos;
 use App\Livewire\Login;
+use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFive;
+use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFour;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepOne;
+use App\Livewire\Subscription\Customer\CustomerSubscriptionStepThree;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepTwo;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -350,5 +353,30 @@ Route::get('subscription/customer', CustomerSubscriptionStepOne::class)->name('s
 
 // 1.2: Subscription - customer - stepTwo
 Route::get('subscription/customer/{id}', CustomerSubscriptionStepTwo::class)->name('subscription.customerStepTwo');
+
+
+
+
+
+// 1.3: Subscription - customer - stepThree (preferences)
+Route::get('subscription/customer/{id}/preferences', CustomerSubscriptionStepThree::class)->name('subscription.customerStepThree');
+
+
+
+
+
+
+// 1.4: Subscription - customer - stepFour (delivery-information)
+Route::get('subscription/customer/{id}/delivery-information', CustomerSubscriptionStepFour::class)->name('subscription.customerStepFour');
+
+
+
+
+
+
+
+// 1.4: Subscription - customer - stepFive (checkout-information)
+Route::get('subscription/customer/{id}/checkout-information', CustomerSubscriptionStepFive::class)->name('subscription.customerStepFive');
+
 
 

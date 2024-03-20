@@ -184,15 +184,9 @@
 
 
 
-
+    {{-- handleSelect --}}
     <script>
-        var skipReset = 0;
-
-
-
-      // 1: handleSelect
-      $(".form--select, .form--modal-select").on("change", function(event) {
-
+        $(".form--select, .form--modal-select").on("change", function(event) {
 
 
          // 1.1: getValue - instance
@@ -219,35 +213,9 @@
 
 
 
-
-
-         // 1.3 incReset
-         skipReset++;
-
-
       }); //end function
 
 
-
-
-
-
-
-
-      // 2: handle ChildSelect
-      $(".child-modal-select").on("change", function(event) {
-
-
-
-         // 1.1: getValue - instance
-         selectValue = $(this).select2('val');
-         instance = $(this).attr('data-instance');
-
-         @this.set(instance, selectValue);
-
-
-
-      }); //end function
     </script>
 
 

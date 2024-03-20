@@ -158,6 +158,7 @@
         <script src="{{ asset('assets/js/switches.js') }}"></script>
         <script src="{{ asset('assets/js/range-input.js') }}"></script>
         <script src="{{ asset('assets/js/file-preview.js') }}"></script>
+        <script src="{{ asset('assets/js/button-checkbox.js') }}"></script>
 
 
 

@@ -22,8 +22,6 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
-
-
     // :: variables
     public CustomerSubscriptionForm $instance;
     public $requiredTypes = [];

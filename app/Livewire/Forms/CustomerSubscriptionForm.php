@@ -51,7 +51,7 @@ class CustomerSubscriptionForm extends Form
     public $bag, $bagPrice;
 
 
-    public $allergyLists, $excludeLists = [];
+    public $allergyLists = [], $excludeLists = [];
 
 
 
@@ -96,7 +96,7 @@ class CustomerSubscriptionForm extends Form
     public $totalPrice;
     public $totalCheckoutPrice;
 
-    public $isPaymentDone = false;
+    public $paymentMethodId, $isPaymentDone = false;
 
 
 

@@ -23,7 +23,7 @@ class MenuCalendarForm extends Form
 
 
     // :: relations
-    public $diets, $plans = [];
+    public $diets = [], $plans = [];
 
 
 

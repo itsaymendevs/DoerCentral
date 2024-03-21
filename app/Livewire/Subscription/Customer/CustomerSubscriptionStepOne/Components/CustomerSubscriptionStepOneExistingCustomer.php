@@ -53,13 +53,13 @@ class CustomerSubscriptionStepOneExistingCustomer extends Component
 
 
         // 1: makeSession
-        Session::put('customer', $this->instance);
+        // Session::put('customer', $this->instance);
 
 
 
 
         // :: redirectStepTwo
-        return $this->redirect(route('subscription.customerStepTwo', [$this->instance->planId]), navigate: true);
+        // return $this->redirect(route('subscription.customerStepTwo', [$this->instance->planId]), navigate: true);
 
 
 

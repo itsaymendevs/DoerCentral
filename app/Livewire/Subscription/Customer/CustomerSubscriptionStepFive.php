@@ -274,6 +274,8 @@ class CustomerSubscriptionStepFive extends Component
 
 
         // :: makePayment
+        $this->instance->paymentMethodId = $this->paymentMethod->id ?? null;
+
 
 
 
@@ -283,6 +285,8 @@ class CustomerSubscriptionStepFive extends Component
             $this->instance->isPaymentDone = $this->makeStripePayment($this->payment);
 
         } // end if
+
+
 
 
 
@@ -301,7 +305,6 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-        dd($this->instance);
 
 
 
@@ -332,10 +335,8 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-
-
-        // :: redirectStepFive
-        $this->makeAlert('success', 'Thanks for subscribing to our plan, enjoy!');
+        // :: redirectToCheckout
+        return $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
 

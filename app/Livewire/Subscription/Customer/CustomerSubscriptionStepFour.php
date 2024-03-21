@@ -54,12 +54,14 @@ class CustomerSubscriptionStepFour extends Component
 
 
 
-
         // 2: deliveryDays - defaultValues
         $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         foreach ($weekDays as $weekDay)
             $this->instance->deliveryDays[$weekDay] = false;
+
+
+
 
 
 

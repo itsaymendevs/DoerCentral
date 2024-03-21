@@ -55,7 +55,7 @@
 
 
                                     {{-- brief --}}
-                                    <p class="text-center fs-12 mb-2 truncate-text-6l h-6l">{{ $plan->desc }}</p>
+                                    <p class="text-center fs-12 mb-2 truncate-text-4l h-4l">{{ $plan->desc }}</p>
 
                                 </div>
                                 {{-- end midCol --}}

@@ -42,7 +42,7 @@
 
 
                         {{-- name --}}
-                        <div class="col-6">
+                        <div class="col-12 col-sm-6">
                             <label class="form-label form--label">Name</label>
                             <input class="form-control form--input mb-4" type="text" required
                                 wire:model='instance.name' />
@@ -52,12 +52,12 @@
 
 
                         {{-- gender --}}
-                        <div class="col-6">
+                        <div class="col-12 col-sm-6">
                             <div class="mx-auto text-center">
 
 
                                 {{-- male --}}
-                                <div class="form-check itemType--radio d-inline-flex me-4">
+                                <div class="form-check itemType--radio d-inline-flex me-4 me-sm-4">
 
                                     <input class="form-check-input" type="radio" id="formCheck-1" name="gender"
                                         style="width: 16px; height: 16px" value='Male' wire:model='instance.gender' />
@@ -94,7 +94,7 @@
 
 
                         {{-- phone --}}
-                        <div class="col-6">
+                        <div class="col-12 col-sm-6">
                             <label class="form-label form--label">Phone</label>
                             <div class="form--phone-input">
                                 <input class="form-control form--input mb-4" type="text" required
@@ -108,7 +108,7 @@
 
 
                         {{-- whatsapp --}}
-                        <div class="col-6">
+                        <div class="col-12 col-sm-6">
                             <label class="form-label form--label">Whatsapp</label>
                             <div class="form--phone-input">
                                 <input class="form-control form--input mb-4" type="text" required
@@ -135,8 +135,13 @@
 
 
 
+
+                        {{-- empty --}}
+                        <div class="col-12"></div>
+
+
                         {{-- submit --}}
-                        <div class="col-sm-6 offset-3 text-center">
+                        <div class="col-6 offset-3 text-center">
                             <button
                                 class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-0 w-100 fw-semibold justify-content-center"
                                 type="submit">

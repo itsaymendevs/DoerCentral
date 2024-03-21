@@ -157,6 +157,10 @@
     height: 61px;
 }
 
+.h-4l {
+    height: 78px !important;
+}
+
 .h-6l {
     height: 108px !important;
 }

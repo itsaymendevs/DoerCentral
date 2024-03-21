@@ -278,12 +278,11 @@ class CustomerSubscriptionStepFive extends Component
 
 
         // 1: Stripe
-        if ($this->paymentMethod == 'Stripe') {
+        if ($this->paymentMethod->name == 'Stripe') {
 
             $this->instance->isPaymentDone = $this->makeStripePayment($this->payment);
 
         } // end if
-
 
 
 
@@ -302,7 +301,7 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-
+        dd($this->instance);
 
 
 

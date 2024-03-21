@@ -36,8 +36,10 @@
 
 
 
-                    {{-- 1: STRIPE PAYMENT --}}
-                    @if ($paymentMethod && $paymentMethod->name == 'STRIPE')
+
+
+                    {{-- 1: Stripe PAYMENT --}}
+                    @if ($paymentMethod && $paymentMethod->name == 'Stripe')
 
 
 
@@ -101,6 +103,8 @@
 
                     @endif
                     {{-- endIF --}}
+
+
 
 
 

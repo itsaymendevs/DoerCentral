@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BuilderController;
+use App\Http\Controllers\Api\CustomerSubscriptionController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\LoginController;
@@ -753,3 +754,22 @@ Route::post('/dashboard/menu/calendars/schedules/meals/toggle', [MenuCalendarCon
 // }); // end middleware
 
 
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+Route::post('/subscription/customer/store', [CustomerSubscriptionController::class, 'storeCustomer']);

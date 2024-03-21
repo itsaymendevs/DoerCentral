@@ -14,11 +14,6 @@ trait StripeTrait
     protected function makeStripePayment($instance)
     {
 
-        // :: root
-
-
-
-
         return true;
 
     } // end function

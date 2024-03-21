@@ -21,6 +21,9 @@ class PaymentMethodSeeder extends Seeder
         for ($i = 0; $i < count($paymentMethods); $i++) {
             PaymentMethod::create([
                 'name' => $paymentMethods[$i]['name'],
+                'envKey' => $paymentMethods[$i]['envKey'] ?? null,
+                'envSecondKey' => $paymentMethods[$i]['envSecondKey'] ?? null,
+                'envThirdKey' => $paymentMethods[$i]['envThirdKey'] ?? null,
             ]);
         } // end loop
 

@@ -9,6 +9,7 @@ use App\Models\Plan;
 use App\Models\PromoCode;
 use App\Models\PromoCodePlan;
 use App\Traits\HelperTrait;
+use App\Traits\StripeTrait;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -19,6 +20,7 @@ class CustomerSubscriptionStepFive extends Component
 {
 
     use HelperTrait;
+    use StripeTrait;
 
 
 
@@ -29,6 +31,9 @@ class CustomerSubscriptionStepFive extends Component
 
     public $plan, $paymentMethod, $promoCodes;
     public $isCouponApplied = false;
+
+
+
 
 
 
@@ -106,7 +111,13 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
+
+
+
     // --------------------------------------------------------------
+
+
+
 
 
 
@@ -212,7 +223,13 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
+
+
     // --------------------------------------------------------------
+
+
+
+
 
 
 
@@ -239,6 +256,7 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
+
     // --------------------------------------------------------------
 
 
@@ -255,17 +273,71 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-        dd('CHECKOUT ...');
+        // :: makePayment
 
-        // 1: makeSession
+
+
+        // 1: Stripe
+        if ($this->paymentMethod == 'Stripe') {
+
+            $this->instance->isPaymentDone = $this->makeStripePayment($this->payment);
+
+        } // end if
+
+
+
+
+
+
+
+        // :: checkPaymentDone
+        if (! $this->instance->isPaymentDone) {
+
+            $this->makeAlert('info', 'Payment Failed');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
+
+
+
+
+
+        // :: continue
+
+
+
+
+        // 2: makeSession
         Session::put('customer', $this->instance);
 
 
 
 
 
+        // 2.1: makeRequest
+        $response = $this->makeRequest('subscription/customer/store', $this->instance);
+
+
+
+
+
+
         // :: redirectStepFive
-        return $this->redirect(route('subscription.customerStepFive', [$this->instance->planId]), navigate: true);
+        $this->makeAlert('success', 'Thanks for subscribing to our plan, enjoy!');
+
 
 
 

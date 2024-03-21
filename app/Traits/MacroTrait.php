@@ -3,14 +3,7 @@
 namespace App\Traits;
 
 use App\Models\Meal;
-use App\Models\MealDrink;
-use App\Models\MealIngredient;
-use App\Models\MealSauce;
-use App\Models\MealSide;
-use App\Models\MealSnack;
-use App\Models\MealSubRecipe;
 use stdClass;
-
 
 trait MacroTrait
 {

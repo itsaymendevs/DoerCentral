@@ -96,6 +96,9 @@ class CustomerSubscriptionForm extends Form
     public $totalPrice;
     public $totalCheckoutPrice;
 
+    public $isPaymentDone = false;
+
+
 
 
 

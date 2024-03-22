@@ -10,6 +10,9 @@ use App\Models\CustomerAllergy;
 use App\Models\CustomerDeliveryDay;
 use App\Models\CustomerExclude;
 use App\Models\CustomerSubscription;
+use App\Models\CustomerSubscriptionDelivery;
+use App\Models\CustomerSubscriptionType;
+use App\Models\MealType;
 use App\Models\PromoCode;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
@@ -71,7 +74,16 @@ class CustomerSubscriptionController extends Controller
 
 
         // 4: phase - storeSubscription
-        $this->storeSubscription($customer, $request);
+        $subscription = $this->storeSubscription($customer, $request);
+
+
+
+
+
+
+        // 5: phase - storeTypes - mealTypes
+        $this->storeTypes($subscription, $customer, $request);
+
 
 
 
@@ -447,23 +459,6 @@ class CustomerSubscriptionController extends Controller
 
 
 
-        // 1.8: deliveryInformation
-
-
-
-
-
-
-
-        // -------------------------------------
-        // -------------------------------------
-
-
-
-
-
-
-
 
 
         // 1.7 : paymentInformation
@@ -475,14 +470,37 @@ class CustomerSubscriptionController extends Controller
 
 
 
-
-
-
-        // 1.9: customer
+        // 1.8: customer
         $subscription->customerId = $customer->id;
 
 
         $subscription->save();
+
+
+
+
+
+
+
+
+
+
+        // -------------------------------------
+        // -------------------------------------
+
+
+
+
+
+
+
+        // 1.9: deliveryInformation
+
+
+
+        // :: side-phase - storeDelivery
+        $this->storeDelivery($subscription, $customer, $request);
+
 
 
 
@@ -511,6 +529,198 @@ class CustomerSubscriptionController extends Controller
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+    public function storeDelivery($subscription, $customer, $request)
+    {
+
+
+
+        // :: root
+        $dateCounter = 0;
+        $deliveryCounter = 0;
+        $deliveryTotalCounter = intval($request->planDays);
+        $deliveryWeekDays = CustomerDeliveryDay::where('customerId', $customer->id)
+            ->get()->pluck('weekDay')->toArray();
+
+
+
+
+
+
+
+        // :: loop
+        while (true) {
+
+
+
+
+            // 1: getDeliveryDate - deliveryAsWeekDay
+            $deliveryDate = date('Y-m-d', strtotime($subscription->startDate . "+{$dateCounter} days"));
+
+            $deliveryAsWeekDay = date('l', strtotime($deliveryDate));
+
+
+
+
+
+
+            // :: ifExists
+            if (in_array($deliveryAsWeekDay, $deliveryWeekDays)) {
+
+
+
+
+                // 1.2: create
+                $subscriptionDelivery = new CustomerSubscriptionDelivery();
+
+
+
+                // 1.2.1: general
+                $subscriptionDelivery->deliveryDate = $deliveryDate;
+                $subscriptionDelivery->status = 'Pending';
+
+
+                // 1.2.2: customer - customerSubscription
+                $subscriptionDelivery->customerSubscriptionId = $subscription->id;
+                $subscriptionDelivery->customerId = $customer->id;
+
+
+
+
+                // 1.2.3: Save + increaseCounter - checkIfDone
+                $deliveryCounter++;
+                $subscriptionDelivery->save();
+
+
+
+
+
+                // :: checkIfDone - save untilDate
+                if ($deliveryCounter == $deliveryTotalCounter) {
+
+
+                    $subscription->untilDate = $deliveryDate;
+                    $subscription->save();
+
+                    break;
+
+                } // end if
+
+
+
+            } // end if
+
+
+
+
+
+
+
+            // :: increaseCounter
+            $dateCounter++;
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function storeTypes($subscription, $customer, $request)
+    {
+
+
+
+        // :: loop - bundleTypes - mealTypes
+        foreach ($request->bundleTypes ?? [] as $mealTypeId => $quantity) {
+
+
+
+            // :: checkQuantity
+            if ($quantity > 0) {
+
+
+
+                // :: getMealType
+                $mealType = MealType::find($mealTypeId);
+
+
+
+
+
+                // 1: create
+                $subscriptionType = new CustomerSubscriptionType();
+
+
+
+                // 1.2: general
+                $subscriptionType->quantity = $quantity;
+                $subscriptionType->mealTypeId = $mealType->id;
+                $subscriptionType->typeId = $mealType->type->id;
+
+
+
+
+                // 1.3: customer - customerSubscription
+                $subscriptionType->customerId = $customer->id;
+                $subscriptionType->customerSubscriptionId = $subscription->id;
+
+
+
+                $subscriptionType->save();
+
+
+
+
+            } // end if
+
+
+
+        } // end loop
+
+
+
+
+
+    } // end function
 
 
 

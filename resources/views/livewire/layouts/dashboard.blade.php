@@ -66,6 +66,7 @@
         <link href="{{ asset('assets/css/uploader.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/plans.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/bundles.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/customers.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
 
 

@@ -65,7 +65,7 @@ class ProductionBuilderUpdateTypes extends Component
             $this->instance->{$key} = $value;
 
 
-        $this->instance->mealTypes = $this->meal->type->name == 'Meal' && $this->meal?->types ? $this->meal?->types?->pluck('mealTypeId')->toArray() : [];
+        $this->instance->mealTypes = $this->meal->type->name == 'Recipe' && $this->meal?->types ? $this->meal?->types?->pluck('mealTypeId')->toArray() : [];
 
 
 
@@ -137,7 +137,7 @@ class ProductionBuilderUpdateTypes extends Component
 
 
         // 1: dependencies
-        $type = Type::where('name', 'Meal')->first();
+        $type = Type::where('name', 'Recipe')->first();
         $mealTypes = MealType::where('typeId', $type->id)->get();
 
 

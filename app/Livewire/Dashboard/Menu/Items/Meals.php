@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Menu;
+namespace App\Livewire\Dashboard\Menu\Items;
 
 use App\Models\Meal;
 use App\Models\Type;
@@ -8,14 +8,17 @@ use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class Recipes extends Component
+class Meals extends Component
 {
+
 
     use HelperTrait;
 
 
+
     // :: variables
-    public $searchRecipe = '';
+    public $searchMeal = '';
+
 
 
 
@@ -29,12 +32,11 @@ class Recipes extends Component
 
 
         // 1: dependencies
-        $type = Type::where('name', 'Recipe')->first();
+        $type = Type::where('name', 'Meal')->first();
 
         $meals = Meal::where('typeId', $type->id)
-            ->where('name', 'LIKE', '%' . $this->searchRecipe . '%')
+            ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
             ->get();
-
 
 
 
@@ -44,9 +46,14 @@ class Recipes extends Component
 
 
 
-        return view('livewire.dashboard.menu.recipes', compact('meals'));
+        return view('livewire.dashboard.menu.items.meals', compact('meals'));
+
 
     } // end function
+
+
+
+
 
 
 

@@ -1,12 +1,14 @@
 <?php
 
 use App\Livewire\Dashboard\Customers;
+use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\Menu\Builder;
 use App\Livewire\Dashboard\Menu\Calendars;
 use App\Livewire\Dashboard\Menu\Calendars\SingleCalendar;
 use App\Livewire\Dashboard\Menu\Items\Drinks;
+use App\Livewire\Dashboard\Menu\Items\Meals;
 use App\Livewire\Dashboard\Menu\Items\Sauces;
 use App\Livewire\Dashboard\Menu\Items\Sides;
 use App\Livewire\Dashboard\Menu\Items\Snacks;
@@ -266,6 +268,20 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
+    // ---------
+
+
+
+
+    // 6.6: Meals
+    Route::get('dashboard/menu/meals', Meals::class)->name('dashboard.menuMeals');
+
+
+
+
+
     // ---------
 
 
@@ -331,6 +347,16 @@ Route::middleware(['auth.user'])->group(function () {
     // 7: Customers
     Route::get('dashboard/customers', Customers::class)->name('dashboard.customers');
 
+
+
+
+    // ---------
+
+
+
+
+    // 7.1: customers - singleCustomer - general
+    Route::get('dashboard/customers/{id}', SingleCustomer::class)->name('dashboard.singleCustomer');
 
 
 

@@ -18,9 +18,9 @@
 
 
 
-    {{-- 1: mealTypes for Meal --}}
-    @if ($meal->type->name == 'Meal')
-    <div class="mt-4 w-75 mx-auto" id="for-meal">
+    {{-- 1: mealTypes for Recipe --}}
+    @if ($meal->type->name == 'Recipe')
+    <div class="mt-4 w-75 mx-auto" id="for-recipe">
 
 
         @foreach ($mealTypes as $mealType)

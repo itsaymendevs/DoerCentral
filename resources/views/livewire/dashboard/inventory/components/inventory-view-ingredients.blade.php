@@ -319,6 +319,22 @@
                 @endforeach
                 {{-- end loop --}}
 
+
+
+
+
+
+
+                {{-- pagination --}}
+                <div class="col-12">
+                    {{ $ingredients->links() }}
+                </div>
+
+
+
+
+
+
             </div>
         </div>
         {{-- endCol - cardView --}}

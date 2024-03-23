@@ -184,7 +184,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
         // 1: dependencies
-        $types = Type::where('name', '!=', 'Meal')->get();
+        $types = Type::where('name', '!=', 'Recipe')->get();
         $mealSize = MealSize::where('mealId', $this->meal->id)->first();
 
 

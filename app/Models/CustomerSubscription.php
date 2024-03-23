@@ -15,9 +15,42 @@ class CustomerSubscription extends Model
     public function plan()
     {
 
-
         return $this->belongsTo(Plan::class, 'planId');
 
+    } // end function
+
+
+
+
+
+
+    public function bundle()
+    {
+
+        return $this->belongsTo(PlanBundle::class, 'planBundleId');
+
+    } // end function
+
+
+
+
+
+    public function range()
+    {
+
+        return $this->belongsTo(PlanRange::class, 'planRangeId');
+
+    } // end function
+
+
+
+
+
+
+    public function bag()
+    {
+
+        return $this->belongsTo(Bag::class, 'bagId');
 
     } // end function
 

@@ -10,12 +10,17 @@ use App\Models\IngredientGroup;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
+
 
 class InventoryViewIngredients extends Component
 {
 
 
     use HelperTrait;
+    use WithPagination;
+
+
 
 
     // :: variable
@@ -143,10 +148,21 @@ class InventoryViewIngredients extends Component
         $allergies = Allergy::all();
 
 
+
+
+
+
+        // --------------------------------
+        // --------------------------------
+
+
+
+
+
+
+
         // 1.2: ingredients - makeFilter
         $ingredientsRaw = Ingredient::where('name', 'LIKE', '%' . $this->searchIngredient . '%')->get();
-
-
 
 
         $ingredients = $ingredientsRaw->filter(function ($item) {
@@ -168,6 +184,19 @@ class InventoryViewIngredients extends Component
             return $toReturn;
 
         });
+
+
+
+
+
+        // 1.2.2: applyPagination
+        $ingredients = Ingredient::whereIn('id', $ingredients?->pluck('id')?->toArray() ?? [])
+            ->paginate(24, pageName: 'ingredients');
+
+
+
+
+
 
 
 

@@ -19,8 +19,10 @@ return new class extends Migration {
 
 
 
-            // 1.2: cutlery
+            // 1.2: cutlery - removeLid - heat - enjoy
             $table->boolean('useCutlery')->nullable()->default(1);
+
+
 
 
 

@@ -79,11 +79,15 @@ class ProductionBuilderCreateSize extends Component
 
 
             // 1: makeRequest
-            if (empty($exists)) {
+            if (empty ($exists)) {
 
                 $response = $this->makeRequest('dashboard/menu/builder/sizes/store', $instance);
 
-                $this->makeAlert('success', $response->message);
+
+                // :: resetPage / openTab - redirectRoute - alert
+                return $this->redirect(route('dashboard.menuProductionBuilder', [$this->meal->id]) . '#tab-2', navigate: true);
+
+
 
             } // end if
 

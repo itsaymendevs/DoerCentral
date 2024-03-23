@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BuilderController;
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\CustomerSubscriptionController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\InventoryController;
@@ -492,6 +493,32 @@ Route::post('/dashboard/menu/plans/bundles/ranges/toggle', [PlanController::clas
 Route::post('/dashboard/menu/plans/calendars/toggle-default', [PlanController::class, 'toggleCalendarDefault']);
 
 
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+// 6: customers - update
+Route::post('/dashboard/customers/update', [CustomerController::class, 'updateCustomer']);
+
+
+
+
+// ---------
+
+
+
+Route::post('/dashboard/customers/wallet/deposits/store', [CustomerController::class, 'storeWalletDeposit']);
 
 
 

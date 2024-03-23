@@ -38,6 +38,14 @@ class SingleCalendar extends Component
     public function render()
     {
 
+
+
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
+
         return view('livewire.dashboard.menu.calendars.single-calendar');
 
     } // end function

@@ -33,7 +33,7 @@ class PromoController extends Controller
 
         // 1.2: percentage / cashAmount
         $promoCode->percentage = $request->percentage ? $request->percentage : null;
-        $promoCode->cashAmount = ($request->cashAmount && empty($request->percentage)) ? $request->cashAmount : null;
+        $promoCode->cashAmount = ($request->cashAmount && empty ($request->percentage)) ? $request->cashAmount : null;
 
 
 
@@ -113,7 +113,7 @@ class PromoController extends Controller
 
         // 1.2: percentage / cashAmount
         $promoCode->percentage = $request->percentage ? $request->percentage : null;
-        $promoCode->cashAmount = ($request->cashAmount && empty($request->percentage)) ? $request->cashAmount : null;
+        $promoCode->cashAmount = ($request->cashAmount && empty ($request->percentage)) ? $request->cashAmount : null;
 
 
 

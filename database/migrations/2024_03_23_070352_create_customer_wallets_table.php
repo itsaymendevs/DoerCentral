@@ -10,12 +10,20 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('types', function (Blueprint $table) {
+        Schema::create('customer_wallets', function (Blueprint $table) {
             $table->id();
 
+
+
             // 1: general
-            $table->string('name', 100)->nullable();
-            $table->text('imageFile')->nullable();
+            $table->double('balance', 15)->nullable()->default(0);
+            $table->boolean('isActive')->nullable()->default(1);
+
+
+
+            // 1.2: customer
+            $table->bigInteger('customerId')->unsigned()->nullable();
+            $table->foreign('customerId')->references('id')->on('customers')->onDelete('cascade');
 
 
 
@@ -28,6 +36,6 @@ return new class extends Migration {
      */
     public function down() : void
     {
-        Schema::dropIfExists('types');
+        Schema::dropIfExists('customer_wallets');
     }
 };

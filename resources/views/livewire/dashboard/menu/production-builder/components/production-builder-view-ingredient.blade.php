@@ -90,8 +90,8 @@
 
 
 
-    {{-- removableFromMeal --}}
-    <td class="fw-bold" data-bs-toggle="tooltip" data-bss-tooltip="" title="Removable From Meal">
+    {{-- removableFromItem --}}
+    <td class="fw-bold" data-bs-toggle="tooltip" data-bss-tooltip="" title="Removable From Item">
         <div class="form-check form-switch mealType--checkbox justify-content-center">
 
 

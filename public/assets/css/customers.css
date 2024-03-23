@@ -1,0 +1,55 @@
+.customers--meal-types {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.customers--meal-types-wrapper img {
+    border-bottom: 2px dashed var(--input-border-color);
+    margin-bottom: 10px;
+}
+
+.customers--meal-types:last-of-type {
+    margin-bottom: 0px;
+}
+
+.customers--meal-types span {
+    display: inline-block;
+    background-color: var(--input-border-color);
+    width: 40%;
+    text-align: center;
+    padding: 5px 0px;
+    border-radius: 0px var(--radius) 0px var(--radius);
+}
+
+.customers--meal-types strong {
+    display: inline-block;
+    width: 58%;
+    text-align: center;
+    padding: 5px 0px;
+    border-radius: 0px var(--radius);
+}
+
+/* input with label */
+
+.input--with-label {
+    display: flex;
+    align-items: center;
+}
+
+.input--with-label label {
+    width: 35%;
+    justify-content: center;
+    background-color: var(--color-scheme-2);
+    height: var(--input-height);
+    border-radius: var(--input-radius) 0px 0px var(--input-radius);
+    font-size: 12px;
+    border: 1px solid var(--input-border-color);
+}
+
+.input--with-label input {
+    width: 65%;
+    border-radius: 0px var(--input-radius) var(--input-radius) 0px;
+    text-align: center;
+}

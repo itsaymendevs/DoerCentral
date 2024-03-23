@@ -264,7 +264,7 @@ class BuilderController extends Controller
 
 
         // 4: reset MealTypes
-        if ($meal->type->name != 'Meal')
+        if ($meal->type->name != 'Recipe')
             MealAvailableType::where('mealId', $meal->id)?->delete();
 
 
@@ -336,8 +336,8 @@ class BuilderController extends Controller
 
 
 
-        // 1.2: meal
-        if ($meal->type->name == 'Meal') {
+        // 1.2: recipe
+        if ($meal->type->name == 'Recipe') {
 
 
 

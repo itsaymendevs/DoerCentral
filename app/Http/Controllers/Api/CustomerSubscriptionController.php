@@ -12,6 +12,7 @@ use App\Models\CustomerExclude;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionType;
+use App\Models\CustomerWallet;
 use App\Models\MealType;
 use App\Models\PromoCode;
 use App\Traits\HelperTrait;
@@ -92,6 +93,10 @@ class CustomerSubscriptionController extends Controller
 
 
 
+
+
+
+
         return response()->json(['message' => 'Thanks for your subscription, enjoy your meals!'], 200);
 
 
@@ -140,6 +145,31 @@ class CustomerSubscriptionController extends Controller
 
 
         $customer->save();
+
+
+
+
+
+
+        // ------------------------
+        // ------------------------
+
+
+
+
+
+
+
+        // 2: createWallet
+        $customerWallet = new CustomerWallet();
+
+        $customerWallet->balance = 0;
+        $customerWallet->customerId = $customer->id;
+
+
+        $customerWallet->save();
+
+
 
 
 

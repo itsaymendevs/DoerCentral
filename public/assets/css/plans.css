@@ -110,24 +110,22 @@ hr {
 
 /* ingredients color scheme */
 
-.item--scheme-1 {
+.item--scheme-0 {
     background-color: var(--ingredient-color);
     color: var(--color-scheme-2);
 }
 
-.item--scheme-1 svg {
+.item--scheme-0 svg {
     fill: var(--color-scheme-2);
 }
 
-.item--scheme-1:hover svg,
-.item--scheme-1:focus svg {
+.item--scheme-0:hover svg,
+.item--scheme-0:focus svg {
     fill: var(--color-theme);
 }
 
-/* scheme-2 */
-
 .item--scheme-2 {
-    background-color: var(--subrecipe-color);
+    background-color: var(--meal-color);
     color: var(--color-scheme-2);
 }
 
@@ -140,10 +138,10 @@ hr {
     fill: var(--color-theme);
 }
 
-/* scheme-3 */
+/* scheme-2 */
 
 .item--scheme-3 {
-    background-color: var(--sauce-color);
+    background-color: var(--subrecipe-color);
     color: var(--color-scheme-2);
 }
 
@@ -156,10 +154,10 @@ hr {
     fill: var(--color-theme);
 }
 
-/* scheme-4 */
+/* scheme-3 */
 
 .item--scheme-4 {
-    background-color: var(--snack-color);
+    background-color: var(--sauce-color);
     color: var(--color-scheme-2);
 }
 
@@ -172,10 +170,10 @@ hr {
     fill: var(--color-theme);
 }
 
-/* scheme 5 */
+/* scheme-4 */
 
 .item--scheme-5 {
-    background-color: var(--side-color);
+    background-color: var(--snack-color);
     color: var(--color-scheme-2);
 }
 
@@ -188,10 +186,10 @@ hr {
     fill: var(--color-theme);
 }
 
-/* scheme 6 */
+/* scheme 5 */
 
 .item--scheme-6 {
-    background-color: var(--drink-color);
+    background-color: var(--side-color);
     color: var(--color-scheme-2);
 }
 
@@ -204,6 +202,22 @@ hr {
     fill: var(--color-theme);
 }
 
+/* scheme 6 */
+
+.item--scheme-7 {
+    background-color: var(--drink-color);
+    color: var(--color-scheme-2);
+}
+
+.item--scheme-7 svg {
+    fill: var(--color-scheme-2);
+}
+
+.item--scheme-7:hover svg,
+.item--scheme-7:focus svg {
+    fill: var(--color-theme);
+}
+
 /* builder */
 
 .tr--ingredient {
@@ -211,7 +225,7 @@ hr {
 }
 
 .tr--meal {
-    background-color: var(--ingredient-color) !important;
+    background-color: var(--meal-color) !important;
 }
 
 .tr--sub-recipe {
@@ -267,7 +281,7 @@ hr {
     padding: 4px 10px;
     background-color: var(--color-scheme-dark-1);
     color: black;
-    border: 3px dashed var(--color-scheme-dark-1);
+    border: 3px solid var(--meal-color);
     border-radius: var(--radius);
     margin-bottom: 8px;
     text-align: left;

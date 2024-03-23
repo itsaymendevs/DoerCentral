@@ -13,7 +13,8 @@ class UnitSeeder extends Seeder
 
 
         // ::root
-        $units = ['Gram', 'mL'];
+        $units = ['Gram', 'mL', 'Piece'];
+
 
         for ($i = 0; $i < count($units); $i++) {
             Unit::create([

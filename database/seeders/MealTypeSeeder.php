@@ -16,11 +16,12 @@ class MealTypeSeeder extends Seeder
 
 
         // ::root
-        $types = ['Meal', 'Sub-recipe', 'Sauce', 'Snack', 'Side', 'Drink'];
+        $types = ['Recipe', 'Meal', 'Sub-recipe', 'Sauce', 'Snack', 'Side', 'Drink'];
+        $typesImageFiles = ['Recipe.png', 'Meal.png', 'Sub-recipe.png', 'Sauce.png', 'Snack.png', 'Side.png', 'Drink.png'];
 
 
 
-        $typeId = [1, 4, 4, 1, 5, 4, 1, 5, 6];
+        $typeId = [1, 5, 5, 1, 6, 5, 1, 6, 7];
         $mealTypes = ['Breakfast', 'AM Snack', 'Snack', 'Lunch', 'Lunch Side', 'PM Snack', 'Dinner', 'Dinner Side', 'Drink'];
         $mealTypesCuts = ['B', 'AMS', 'S', 'L', 'LS', 'PMS', 'D', 'DS', 'DRK'];
 
@@ -29,6 +30,7 @@ class MealTypeSeeder extends Seeder
         for ($i = 0; $i < count($types); $i++) {
             Type::create([
                 'name' => $types[$i],
+                'imageFile' => $typesImageFiles[$i],
             ]);
         } // end loop
 

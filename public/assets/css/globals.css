@@ -70,6 +70,7 @@
     --slow-transition: 0.8s all ease-in-out;
     --mid-transition: 0.5s all ease-in-out;
     --ingredient-color: #88b3aa;
+    --meal-color: #ff7065;
     --subrecipe-color: var(--color-theme);
     --sauce-color: #e8bdfff2;
     --snack-color: #ffcacd;

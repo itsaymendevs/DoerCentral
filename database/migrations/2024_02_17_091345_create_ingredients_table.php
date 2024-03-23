@@ -14,10 +14,10 @@ return new class extends Migration {
             $table->id();
 
             // 1: general
-            $table->string('name', 255)->nullable();
-            $table->string('desc', 255)->nullable();
-            $table->string('usage', 255)->nullable();
-            $table->string('referenceID', 255)->nullable();
+            $table->text('name')->nullable();
+            $table->text('desc')->nullable();
+            $table->text('usage')->nullable();
+            $table->text('referenceID')->nullable();
 
 
 

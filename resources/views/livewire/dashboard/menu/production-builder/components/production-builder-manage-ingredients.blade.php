@@ -4,7 +4,7 @@
 
 
         {{-- newIngredient --}}
-        <button class="btn btn--scheme btn--scheme-2 px-2 me-1 scalemix--3 py-2 d-inline-flex align-items-center fs-14 mb-2 w-100 fw-semibold item--scheme-1
+        <button class="btn btn--scheme btn--scheme-2 px-2 me-1 scalemix--3 py-2 d-inline-flex align-items-center fs-14 mb-2 w-100 fw-semibold item--scheme-0
         @if ($meal->sizes->count() == 0) disabled @endif" type="button" wire:loading.attr='disabled'
             wire:click="append('Ingredient')">
             <svg class="bi bi-plus-circle-dotted fs-6 me-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"

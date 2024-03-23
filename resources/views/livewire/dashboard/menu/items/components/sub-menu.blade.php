@@ -30,7 +30,10 @@
 
 
 
-    {{-- <a wire:navigate class="btn fs-13" href="#!" role="button">Meals</a> --}}
+    {{-- 6: meals --}}
+    <a wire:navigate class="btn fs-13 @if (Request::is('dashboard/menu/meals')) active @endif"
+        href="{{ route('dashboard.menuMeals') }}" role="button">Meals</a>
+
 
 </div>
 {{-- end div --}}

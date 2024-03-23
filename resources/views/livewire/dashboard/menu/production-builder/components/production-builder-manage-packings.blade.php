@@ -4,11 +4,47 @@
 
     {{-- 1: sevingDescription --}}
     <div class="row align-items-center">
-        <div class="col-11">
+        <div class="col-7">
             <label class="form-label form--label">Serving Description</label>
             <textarea wire:model='instanceServing.desc' class="form-control form--input form--textarea mb-4"
                 wire:change='updateServing'></textarea>
         </div>
+
+
+
+
+
+
+        {{-- servingTags --}}
+        <div class="col-4">
+            <div class="w-100 mx-auto ms-2">
+
+
+                {{-- 1: heat --}}
+                <div class="form-check form-switch mb-2 mealType--checkbox justify-content-start">
+                    <input class="form-check-input pointer" type="checkbox" id="serving-tag-1" />
+                    <label class="form-check-label fs-14" for="serving-tag-1">Heat</label>
+                </div>
+
+
+                {{-- 2: enjoy --}}
+                <div class="form-check form-switch mb-2 mealType--checkbox justify-content-start">
+                    <input class="form-check-input pointer" type="checkbox" id="serving-tag-2" />
+                    <label class="form-check-label fs-14" for="serving-tag-2">Enjoy</label>
+                </div>
+
+
+
+                {{-- 3: removeLid --}}
+                <div class="form-check form-switch mealType--checkbox justify-content-start">
+                    <input class="form-check-input pointer" type="checkbox" id="serving-tag-3" />
+                    <label class="form-check-label fs-14" for="serving-tag-3">Remove Lid</label>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 
 
@@ -58,7 +94,7 @@
         {{-- amount --}}
         <div class="col-2">
             <label class="form-label form--label">Amount<small
-                class="ms-1 fw-semibold text-gold fs-10">(Grams)</small></label>
+                    class="ms-1 fw-semibold text-gold fs-10">(Grams)</small></label>
             <input class="form-control form--input mb-4" type="number" step='0.01' wire:model='instance.amount'
                 required />
         </div>

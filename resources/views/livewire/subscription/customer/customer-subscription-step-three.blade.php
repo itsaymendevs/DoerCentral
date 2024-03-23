@@ -73,7 +73,7 @@
                     <div class="col-12 col-lg-6">
 
                         {{-- imageFile --}}
-                        <img class="w-100 of-contain" src="{{ asset('assets/img/Bags/' . $instance->bagImageFile) }}"
+                        <img class="w-100 of-contain" src="{{ asset('storage/bags/' . $instance->bagImageFile) }}"
                             style="height: 150px;" width="332" height="160">
 
 

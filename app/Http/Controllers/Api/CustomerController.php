@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\CustomerAddress;
 use App\Models\CustomerAllergy;
 use App\Models\CustomerExclude;
 use App\Models\CustomerWallet;
@@ -242,7 +243,6 @@ class CustomerController extends Controller
 
 
 
-    // --------------------------------------------------------------------------------------------
 
 
 
@@ -257,6 +257,77 @@ class CustomerController extends Controller
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function updateCustomerAddress(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $customerAddress = CustomerAddress::find($request->id);
+
+
+        // 1.2: general
+        $customerAddress->name = $request->name;
+        $customerAddress->locationAddress = $request->locationAddress ?? null;
+        $customerAddress->apartment = $request->apartment ?? null;
+        $customerAddress->floor = $request->floor ?? null;
+
+
+
+
+
+        // 1.3: city - district - deliveryTime
+        $customerAddress->cityId = $request->cityId;
+        $customerAddress->cityDistrictId = $request->cityDistrictId ?? null;
+        $customerAddress->deliveryTimeId = $request->deliveryTimeId ?? null;
+
+
+
+
+        $customerAddress->save();
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Address has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

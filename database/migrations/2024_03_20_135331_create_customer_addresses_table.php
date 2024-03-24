@@ -16,6 +16,7 @@ return new class extends Migration {
 
 
             // 1: general
+            $table->text('name')->nullable();
             $table->text('locationAddress')->nullable();
 
             $table->string('floor', 255)->nullable();
@@ -34,14 +35,6 @@ return new class extends Migration {
 
             $table->bigInteger('deliveryTimeId')->unsigned()->nullable();
             $table->foreign('deliveryTimeId')->references('id')->on('city_delivery_times')->onDelete('set null');
-
-
-
-
-
-
-            // 1.3: isActive
-            $table->boolean('isActive')->nullable()->default(1);
 
 
 

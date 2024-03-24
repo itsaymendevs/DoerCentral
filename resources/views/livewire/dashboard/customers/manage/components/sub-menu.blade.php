@@ -35,7 +35,7 @@
 
             {{-- 1: general --}}
             <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id)) active @endif " role="button"
-                href="javascript:void(0);">General</a>
+                href="{{ route('dashboard.singleCustomer', [$id]) }}" wire:navigate>General</a>
 
 
 
@@ -62,8 +62,8 @@
 
 
             {{-- 6: address --}}
-            <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/address')) active @endif"
-                role="button" href="javascript:void(0);">Address</a>
+            <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/addresses')) active @endif"
+                role="button" href="{{ route('dashboard.singleCustomerAddresses', [$id]) }}" wire:navigate>Address</a>
         </div>
     </div>
     {{-- end otherLinks --}}

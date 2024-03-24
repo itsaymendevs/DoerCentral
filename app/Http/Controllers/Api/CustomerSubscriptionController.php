@@ -292,6 +292,7 @@ class CustomerSubscriptionController extends Controller
 
 
         // :: general
+        $customerAddress->name = 'Home';
         $customerAddress->locationAddress = $request->locationAddress;
         $customerAddress->apartment = $request->apartment ?? null;
         $customerAddress->floor = $request->floor ?? null;

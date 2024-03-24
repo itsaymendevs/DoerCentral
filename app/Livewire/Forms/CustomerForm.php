@@ -19,16 +19,7 @@ class CustomerForm extends Form
 
 
 
-    // --------------------------------------------------
 
-
-
-
-    // :: address
-    public $cityId, $cityDistrictId, $cityDeliveryTimeId, $locationAddress, $apartment, $floor;
-
-
-    public $deliveryDays = [];
 
 
 

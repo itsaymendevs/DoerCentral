@@ -518,7 +518,29 @@ Route::post('/dashboard/customers/update', [CustomerController::class, 'updateCu
 
 
 
+// 6.0.1: customers - wallet - deposits - store
 Route::post('/dashboard/customers/wallet/deposits/store', [CustomerController::class, 'storeWalletDeposit']);
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
+// 6.1: customers - addresses - update
+Route::post('/dashboard/customers/addresses/update', [CustomerController::class, 'updateCustomerAddress']);
+
+
+
+
 
 
 

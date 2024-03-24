@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Manage\Bundles\Components;
 use App\Livewire\Forms\PlanBundleForm;
 use App\Models\MealType;
 use App\Models\PlanBundle;
+use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -139,6 +140,45 @@ class BundlesEdit extends Component
 
         // 1: dependencies
         $mealTypes = MealType::all();
+        $types = Type::whereIn('name', ['Recipe', 'Side', 'Snack', 'Drink'])->get();
+
+
+
+
+
+
+
+        // -----------------------------
+        // -----------------------------
+
+
+
+
+
+
+        // 1.2: getMealTypesCounter by Type
+        $mealTypesCounter = [];
+
+
+        // :: loop - types
+        foreach ($types as $type) {
+
+
+            // :: loop - mealTypes
+            foreach ($type->mealTypes as $mealType) {
+
+                $mealTypesCounter[$type->id] = ($mealTypesCounter[$type->id] ?? 0)
+                    + ($this->instance->mealTypes[$mealType->id] ?? 0);
+
+
+            } // end loop
+
+        } // end loop
+
+
+
+
+
 
 
 
@@ -147,7 +187,7 @@ class BundlesEdit extends Component
 
 
 
-        return view('livewire.dashboard.menu.plans.manage.bundles.components.bundles-edit', compact('mealTypes'));
+        return view('livewire.dashboard.menu.plans.manage.bundles.components.bundles-edit', compact('mealTypes', 'types', 'mealTypesCounter'));
 
     } // end function
 

@@ -19,4 +19,61 @@ class PlanBundleDay extends Model
     } // end function
 
 
+
+
+
+
+
+
+
+
+    // ---------------------------------------------
+    // ---------------------------------------------
+
+
+
+
+
+
+
+    public function rangesByDiscount()
+    {
+
+
+        // :: root
+        $rangesByDiscount = [];
+
+
+
+        // 1: getBundle
+        $bundle = $this->bundle()->first();
+
+
+        // loop - rangesByPrice
+        foreach ($bundle->rangesByPrice as $bundleRange) {
+
+
+
+            // 1.2: getDiscount - appendDiscount
+            $discountPrice = ($bundleRange->pricePerDay * $this->days) * (($this->discount ?? 0) / 100);
+
+            array_push($rangesByDiscount, "&#8226; {$bundleRange->range->name} / {$discountPrice} AED");
+
+
+        } // end loop
+
+
+
+
+
+
+
+        return $rangesByDiscount ?? ['No Ranges Found!'];
+
+
+    } // end function
+
+
+
+
 } // end model

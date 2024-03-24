@@ -18,7 +18,7 @@ class BundlesViewDay extends Component
 
     // :: variables
     public PlanBundleDayForm $instance;
-    public $removeId;
+    public $removeId, $id;
 
 
 
@@ -29,6 +29,7 @@ class BundlesViewDay extends Component
 
 
         // 1: clone instance
+        $this->id = $id;
         $bundleDay = PlanBundleDay::find($id);
 
         foreach ($bundleDay->toArray() as $key => $value)
@@ -163,7 +164,25 @@ class BundlesViewDay extends Component
     public function render()
     {
 
-        return view('livewire.dashboard.menu.plans.manage.bundles.components.bundles-view-day');
+
+
+        // 1: dependencies
+        $bundleDay = PlanBundleDay::find($this->id);
+
+
+
+
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
+
+
+
+        return view('livewire.dashboard.menu.plans.manage.bundles.components.bundles-view-day', compact('bundleDay'));
+
+
 
     } // end function
 

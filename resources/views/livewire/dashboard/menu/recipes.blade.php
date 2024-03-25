@@ -142,7 +142,7 @@
                                                 <a class="nav-link @if ($meal->sizes->first()->id == $mealSize->id) active @endif"
                                                     data-bs-toggle="tab" href="#tab-{{ $meal->id }}-{{ $mealSize->id }}"
                                                     role="tab">{{
-                                                    $mealSize->size->name }}</a>
+                                                    $mealSize->size->shortName }}</a>
                                             </li>
                                             @endforeach
                                             {{-- end loop --}}

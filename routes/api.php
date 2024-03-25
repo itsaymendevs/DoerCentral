@@ -510,6 +510,7 @@ Route::post('/dashboard/menu/plans/calendars/toggle-default', [PlanController::c
 
 // 6: customers - update
 Route::post('/dashboard/customers/update', [CustomerController::class, 'updateCustomer']);
+Route::post('/dashboard/customers/remove', [CustomerController::class, 'removeCustomer']);
 
 
 
@@ -535,8 +536,10 @@ Route::post('/dashboard/customers/wallet/deposits/store', [CustomerController::c
 
 
 
-// 6.1: customers - addresses - update
+// 6.1: customers - addresses - store - update
+Route::post('/dashboard/customers/addresses/store', [CustomerController::class, 'storeCustomerAddress']);
 Route::post('/dashboard/customers/addresses/update', [CustomerController::class, 'updateCustomerAddress']);
+Route::post('/dashboard/customers/addresses/remove', [CustomerController::class, 'removeCustomerAddress']);
 
 
 

@@ -5,12 +5,13 @@
 
 
 
+
     {{-- coloringTD --}}
     <td class="fw-bold tr--{{ $instance->typeId == 'Ingredient'
     ? 'ingredient' : strtolower($mealPart->type->name) }}">
 
 
-        <div class="select--single-wrapper px-2 mx-auto" wire:ignore
+        <div class="select--single-wrapper builder px-2 mx-auto" wire:ignore
             style="width: 170px !important; max-width: 170px !important">
             <select class="form-select ingredient--select"
                 id='ingredient--select-{{ strtolower($instance->typeId) }}-{{ $instance->id }}'
@@ -94,7 +95,9 @@
 
     {{-- select-handle --}}
     <script>
-        $(`#ingredient--type-select-${instanceTypeId}-${instanceId}`).bind('change', function(event) {
+        $(`#ingredient--type-select-${instanceTypeId}-${instanceId}`).on('change', function(event) {
+
+
 
             // 1.1: getValue - instance
             selectValue = $(this).select2('val');

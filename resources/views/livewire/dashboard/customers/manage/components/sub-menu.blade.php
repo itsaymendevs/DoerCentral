@@ -45,8 +45,8 @@
 
 
 
-            <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/delivery')) active @endif"
-                role="button" href="javascript:void(0);">Delivery</a>
+            <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/deliveries')) active @endif"
+                role="button" href="{{ route('dashboard.singleCustomerDeliveries', [$id]) }}" wire:navigate>Delivery</a>
 
 
             {{-- 4: history --}}
@@ -63,7 +63,7 @@
 
             {{-- 6: address --}}
             <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/addresses')) active @endif"
-                role="button" href="{{ route('dashboard.singleCustomerAddresses', [$id]) }}" wire:navigate>Address</a>
+                role="button" href="{{ route('dashboard.singleCustomerAddresses', [$id]) }}">Address</a>
         </div>
     </div>
     {{-- end otherLinks --}}

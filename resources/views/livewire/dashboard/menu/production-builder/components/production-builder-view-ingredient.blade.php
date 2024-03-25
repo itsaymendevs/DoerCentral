@@ -15,16 +15,11 @@
 
 
 
-    {{-- ------- macros + grams --}}
+    {{-- ------- macros --}}
 
 
 
 
-    {{-- grams --}}
-    <td class="fw-bold">
-        <input class="form-control form--input form--table-input-xxs px-1" type="number" step='0.01' readonly=""
-            wire:model='instance.grams' />
-    </td>
 
 
 
@@ -91,7 +86,7 @@
 
 
     {{-- removableFromItem --}}
-    <td class="fw-bold" data-bs-toggle="tooltip" data-bss-tooltip="" title="Removable From Item">
+    <td class="fw-bold">
         <div class="form-check form-switch mealType--checkbox justify-content-center">
 
 
@@ -106,6 +101,28 @@
         </div>
     </td>
 
+
+
+
+
+
+
+    {{-- isReplacement --}}
+    <td class="fw-bold">
+        <div class="form-check form-switch mealType--checkbox justify-content-center">
+
+
+            <input class="form-check-input pointer" type="checkbox" @if ($this->instance->isReplacement)
+            checked @endif
+            id="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}"
+            wire:model='instance.isReplacement'
+            wire:change='update' />
+
+
+            <label class="form-check-label d-none"
+                for="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}">placeholder</label>
+        </div>
+    </td>
 
 
 

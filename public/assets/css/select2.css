@@ -432,8 +432,9 @@
 }
 
 .select2-container--default .select2-results > .select2-results__options {
-    max-height: 200px;
+    max-height: 140px;
     overflow-y: auto;
+    border: 1px solid var(--input-border-color);
 }
 
 .select2-container--default .select2-results__option .select2-results__option {

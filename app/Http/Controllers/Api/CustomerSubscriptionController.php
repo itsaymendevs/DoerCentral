@@ -621,8 +621,9 @@ class CustomerSubscriptionController extends Controller
 
 
                 // 1.2.2: customer - customerSubscription
-                $subscriptionDelivery->customerSubscriptionId = $subscription->id;
                 $subscriptionDelivery->customerId = $customer->id;
+                $subscriptionDelivery->planId = $subscription->planId;
+                $subscriptionDelivery->customerSubscriptionId = $subscription->id;
 
 
 

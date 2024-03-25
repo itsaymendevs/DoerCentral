@@ -18,4 +18,17 @@ class City extends Model
     } // end function
 
 
+
+
+    public function districts()
+    {
+
+        return $this->hasMany(CityDistrict::class, 'cityId');
+
+    } // end function
+
+
+
+
+
 } // end model

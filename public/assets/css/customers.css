@@ -53,3 +53,21 @@
     border-radius: 0px var(--input-radius) var(--input-radius) 0px;
     text-align: center;
 }
+
+/* button checkboxes */
+
+.button--checkbox {
+    height: var(--input-height);
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--input-bg) !important;
+    width: 18%;
+    padding: 0px;
+    margin: 0px 7px 8px 0px;
+    justify-content: center;
+}
+
+.button--checkbox.active {
+    background-color: #73968f !important;
+    transform: scale(0.93);
+}

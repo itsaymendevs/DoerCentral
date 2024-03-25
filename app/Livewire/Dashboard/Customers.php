@@ -18,6 +18,93 @@ class Customers extends Component
     // :: variable
     public $searchCustomer = '';
     public $searchPlan, $searchStatus;
+    public $removeId;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function remove($id)
+    {
+
+
+        // 1: params - confirmationBox
+        $this->removeId = $id;
+
+        $this->makeAlert('remove', null, 'confirmCustomerRemove');
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    #[On('confirmCustomerRemove')]
+    public function confirmRemove()
+    {
+
+
+
+        // 1: remove
+        if ($this->removeId) {
+
+
+            $response = $this->makeRequest('dashboard/customers/remove', $this->removeId);
+            $this->makeAlert('info', $response->message);
+
+
+
+            // 1.2: renderView
+            $this->render();
+
+
+
+        } // end if
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
 
 
 

@@ -41,10 +41,8 @@ class SingleCustomerAddresses extends Component
 
 
 
-
-
-
     // -----------------------------------------------------------
+
 
 
 
@@ -61,7 +59,9 @@ class SingleCustomerAddresses extends Component
 
 
         // 1: dependencies
-        $addresses = CustomerAddress::all();
+        $addresses = CustomerAddress::where('customerId', $this->customer->id)->get();
+
+
 
 
 
@@ -69,11 +69,15 @@ class SingleCustomerAddresses extends Component
         $this->dispatch('initTooltips');
 
 
-
         return view('livewire.dashboard.customers.manage.single-customer-addresses', compact('addresses'));
 
 
+
     } // end function
+
+
+
+
 
 
 

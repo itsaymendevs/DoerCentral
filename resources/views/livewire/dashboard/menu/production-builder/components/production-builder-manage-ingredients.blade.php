@@ -223,13 +223,13 @@
                 {{-- thead --}}
                 <thead>
                     <tr>
-                        <th class="th--sm" colspan="2"></th>
+                        <th class="th--sm" colspan="1"></th>
                         <th class="th--sm" colspan="1">Calories</th>
                         <th class="th--sm" colspan="1">Protein</th>
                         <th class="th--sm" colspan="1">Carb</th>
                         <th class="th--sm" colspan="1">Fat</th>
                         <th class="th--lg" colspan="1">Remarks</th>
-                        <th class="th--xs" colspan="2"></th>
+                        <th class="th--xs" colspan="3"></th>
 
                     </tr>
                 </thead>
@@ -248,7 +248,7 @@
                     <tr>
 
                         {{-- empty --}}
-                        <td colspan="2" style="height: 62px"></td>
+                        <td colspan="1" style="height: 62px"></td>
 
 
                         {{-- calories --}}
@@ -288,7 +288,7 @@
 
                         {{-- empty --}}
                         <td class="scale--3" colspan="1"></td>
-                        <td class="scale--3" colspan="2"></td>
+                        <td class="scale--3" colspan="3"></td>
                     </tr>
 
 
@@ -302,7 +302,7 @@
                     <tr>
 
                         {{-- empty --}}
-                        <td colspan="2" style="height: 62px"></td>
+                        <td colspan="1" style="height: 62px"></td>
 
 
                         <td class="fw-bold" colspan="1">
@@ -324,7 +324,7 @@
 
                         {{-- empty --}}
                         <td class="scale--3" colspan="1"></td>
-                        <td class="scale--3" colspan="2"></td>
+                        <td class="scale--3" colspan="3"></td>
 
                     </tr>
 
@@ -344,14 +344,14 @@
 
                     {{-- ingredientsHeaders --}}
                     <tr class="subheader">
-                        <td class="fw-bold">Amount</td>
                         <td class="fw-bold">Grams</td>
                         <td class="fw-bold">CA</td>
                         <td class="fw-bold">P</td>
                         <td class="fw-bold">C</td>
                         <td class="fw-bold">F</td>
                         <td class="fw-bold"></td>
-                        <td class="fw-bold"></td>
+                        <td class="fw-bold">Removable</td>
+                        <td class="fw-bold">Replacement</td>
                         <td class="fw-bold"></td>
 
                     </tr>

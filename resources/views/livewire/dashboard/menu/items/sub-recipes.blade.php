@@ -157,7 +157,7 @@
                                                 <a class="nav-link @if ($initSubRecipeSizeId == $subRecipeSize->id) active @endif"
                                                     data-bs-toggle="tab" href="#tab-1-{{ $subRecipeSize->id }}"
                                                     role="tab">
-                                                    {{ $subRecipeSize->size->name }}
+                                                    {{ $subRecipeSize->size->shortName }}
                                                 </a>
                                             </li>
                                             @endforeach

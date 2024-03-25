@@ -28,7 +28,7 @@
             {{-- newButton --}}
             <div class="col-3">
                 <button class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
-                    type="button" data-bs-target="#new-purchase" data-bs-toggle="modal">
+                    type="button" data-bs-target="#new-address" data-bs-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-plus-circle-dotted fs-5 me-2">
                         <path
@@ -45,9 +45,9 @@
 
             {{-- customer --}}
             <div class="col-6">
-                <h5 class="fw-semibold d-flex align-items-center justify-content-center mb-0">
+                <h4 class="fw-semibold d-flex align-items-center justify-content-center mb-0">
                     {{ $customer->name }}
-                </h5>
+                </h4>
             </div>
 
 
@@ -101,9 +101,13 @@
                         {{-- loop - addresses --}}
                         @foreach ($addresses as $address)
 
+
+
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link @if ($addresses->first()->id == $address->id) active @endif" role="tab"
-                                data-bs-toggle="tab" href="#tab-{{ $address->id }}">{{ $address->name }}</a>
+                            <a href="#tab-{{ $address->id }}" class="nav-link
+                                @if ($addresses->first()->id == $address->id) active @endif" role="tab"
+                                data-bs-toggle="tab" key="tab-{{ $address->id }}">{{
+                                $address->name }}</a>
                         </li>
 
                         @endforeach
@@ -143,16 +147,16 @@
 
 
                         {{-- tabPane --}}
-                        <div class="tab-pane fade show
-                        @if ($addresses->first()->id == $address->id) active @endif no--card px-1" id="tab-1"
-                            role="tabpanel" key='{{ $address->id }}'>
+                        <div key="address-{{ $address->id }}" class="tab-pane fade
+                        @if ($addresses->first()->id == $address->id) show active @endif no--card px-1"
+                            id="tab-{{ $address->id }}" role="tabpanel">
 
 
 
 
                             {{-- :: viewAddress --}}
                             <livewire:dashboard.customers.manage.single-customer-addresses.components.single-customer-addresses-view
-                                id='{{ $address->id }}' />
+                                key="address-view-{{ $address->id }}" id='{{ $address->id }}' />
 
 
                         </div>
@@ -178,5 +182,61 @@
 
 
     </div>
+    {{-- endContainer --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+    @section('modals')
+
+
+    {{-- 1: createAddress --}}
+    <livewire:dashboard.customers.manage.single-customer-addresses.components.single-customer-addresses-create
+        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+
+
+
+
+
+    @endsection
+    {{-- endSection --}}
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
 </section>
 {{-- endSection --}}

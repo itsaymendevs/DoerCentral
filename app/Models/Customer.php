@@ -146,6 +146,10 @@ class Customer extends Model
 
 
 
+
+
+    // --------------------------------------------------------
+    // --------------------------------------------------------
     // --------------------------------------------------------
     // --------------------------------------------------------
 
@@ -178,6 +182,44 @@ class Customer extends Model
 
 
 
+
+
+
+
+
+
+
+    // --------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function addressByDay($date)
+    {
+
+
+        // 1: getWeekDay
+        $currentWeekDay = date('l', strtotime($date));
+
+
+
+        // 1.2: loop - deliveryDays
+        $deliveryDay = $this->deliveryDays()->where('weekDay', $currentWeekDay)?->first() ?? null;
+
+
+
+
+
+        // :: return customerAddress
+        return $deliveryDay ? $deliveryDay->customerAddress : null;
+
+
+
+    } // end function
 
 
 

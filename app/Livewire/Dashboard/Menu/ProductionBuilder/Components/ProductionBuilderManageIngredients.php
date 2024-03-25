@@ -55,9 +55,7 @@ class ProductionBuilderManageIngredients extends Component
     public function refreshInstance($id)
     {
 
-
         $this->meal = Meal::find($id);
-
 
     } // end function
 
@@ -98,6 +96,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
+            // :: REFRESH METHOD
             // :: resetPage / openTab - redirectRoute - alert
             return $this->redirect(route('dashboard.menuProductionBuilder', [$this->meal->id]) . '#tab-2', navigate: true);
 
@@ -170,6 +169,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
     // -----------------------------------------------------
+
 
 
 

@@ -16,13 +16,39 @@
 
             {{-- leftCol --}}
             <div class="col-8 text-end">
-                <label class="form-label form--label">Name</label>
-                <input wire:model='instance.name' class="form-control form--input mb-4" type="text" required />
+
+
+                {{-- row --}}
+                <div class="row">
+
+
+                    {{-- name --}}
+                    <div class="col-6 text-end">
+                        <label class="form-label form--label">Name</label>
+                        <input wire:model='instance.name' class="form-control form--input mb-4" type="text" required />
+                    </div>
+
+
+
+                    {{-- shortName --}}
+                    <div class="col-6 text-end">
+                        <label class="form-label form--label">Abbreviation</label>
+                        <input wire:model='instance.shortName' class="form-control form--input mb-4" type="text"
+                            required />
+                    </div>
+
+                </div>
+
+
+
+
 
 
 
                 {{-- row --}}
                 <div class="row">
+
+
                     {{-- Price --}}
                     <div class="col-6 text-end">
                         <label class="form-label form--label">Price
@@ -93,6 +119,8 @@
 
                         {{-- size --}}
                         <th class="th--lg">Size</th>
+
+                        <th class="th--sm">Abbreviation</th>
 
 
                         {{-- calories - price --}}

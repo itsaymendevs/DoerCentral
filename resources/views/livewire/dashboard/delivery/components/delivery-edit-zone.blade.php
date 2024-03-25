@@ -98,8 +98,8 @@
                                 <div class="col-6" wire:ignore>
                                     <label class="form-label form--label">City</label>
                                     <div class="select--single-wrapper mb-4">
-                                        <select class="form-select form--modal-select parent-select" id='city-select-2'
-                                            data-modal='#edit-zone' data-instance='instance.cityId'
+                                        <select class="form-select form--modal-select parent-select parent-select-2"
+                                            id='city-select-2' data-modal='#edit-zone' data-instance='instance.cityId'
                                             data-child='#district-select-2' data-trigger='true' required>
                                             <option value=""></option>
 
@@ -213,7 +213,7 @@
 
 
          //  1.2: refreshChild to defaultValue - setChildDefault
-         if ($(this).hasClass('parent-select')) {
+         if ($(this).hasClass('parent-select-2')) {
 
             childSelect = $(this).attr('data-child');
             @this.refreshSelect(childSelect, 'city', 'district', selectValue);

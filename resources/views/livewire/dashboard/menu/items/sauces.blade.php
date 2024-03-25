@@ -154,7 +154,7 @@
                                             <li class="nav-item" role="presentation">
                                                 <a class="nav-link @if ($initSauceSizeId == $sauceSize->id) active @endif"
                                                     data-bs-toggle="tab" href="#tab-1-{{ $sauceSize->id }}" role="tab">
-                                                    {{ $sauceSize->size->name }}
+                                                    {{ $sauceSize->size->shortName }}
                                                 </a>
                                             </li>
                                             @endforeach

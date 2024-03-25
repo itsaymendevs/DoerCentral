@@ -1191,6 +1191,7 @@ class BuilderController extends Controller
         $part->amount = $request->amount ?? null;
         $part->remarks = $request->remarks ?? null;
         $part->isRemovable = $request->isRemovable === true ? true : false;
+        $part->isReplacement = $request->isReplacement === true ? true : false;
 
 
 

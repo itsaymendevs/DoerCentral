@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\CustomerAddress;
 use App\Models\CustomerAllergy;
+use App\Models\CustomerDeliveryDay;
 use App\Models\CustomerExclude;
 use App\Models\CustomerWallet;
 use App\Models\CustomerWalletDeposit;
@@ -161,6 +162,47 @@ class CustomerController extends Controller
 
 
 
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+    public function removeCustomer(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        Customer::find($id)->delete();
+
+
+        return response()->json(['message' => 'Customer has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
     // --------------------------------------------------------------------------------------------
 
 
@@ -268,6 +310,130 @@ class CustomerController extends Controller
 
 
 
+
+    public function storeCustomerAddress(Request $request)
+    {
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $customerAddress = new CustomerAddress();
+
+
+
+
+        // 1.2: general
+        $customerAddress->name = $request->name;
+        $customerAddress->locationAddress = $request->locationAddress ?? null;
+        $customerAddress->apartment = $request->apartment ?? null;
+        $customerAddress->floor = $request->floor ?? null;
+
+
+
+
+
+        // 1.3: customer - city - district - deliveryTime
+        $customerAddress->customerId = $request->customerId;
+        $customerAddress->cityId = $request->cityId;
+        $customerAddress->cityDistrictId = $request->cityDistrictId ?? null;
+        $customerAddress->deliveryTimeId = $request->deliveryTimeId ?? null;
+
+
+
+
+        $customerAddress->save();
+
+
+
+
+
+
+
+        // ----------------------------
+        // ----------------------------
+
+
+
+
+
+
+
+
+        // 2: deliveryDays
+        foreach ($request->deliveryDays ?? [] as $weekDay => $isChecked) {
+
+
+            // :: isChecked
+            if (boolval($isChecked)) {
+
+
+
+                // 2.1: create
+                $customerDeliveryDay = new CustomerDeliveryDay();
+
+
+                $customerDeliveryDay->weekDay = $weekDay;
+                $customerDeliveryDay->customerAddressId = $customerAddress->id;
+                $customerDeliveryDay->customerId = $customerAddress->customer->id;
+
+
+                $customerDeliveryDay->save();
+
+
+            } // end if
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Address has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
     public function updateCustomerAddress(Request $request)
     {
 
@@ -309,6 +475,51 @@ class CustomerController extends Controller
 
 
 
+        // ----------------------------
+        // ----------------------------
+
+
+
+
+
+
+        // 2: deliveryDays - removePrevious
+        CustomerDeliveryDay::where('customerAddressId', $customerAddress->id)->delete();
+
+
+        foreach ($request->deliveryDays ?? [] as $weekDay => $isChecked) {
+
+
+            // :: isChecked
+            if (boolval($isChecked)) {
+
+
+
+                // 2.1: create
+                $customerDeliveryDay = new CustomerDeliveryDay();
+
+
+                $customerDeliveryDay->weekDay = $weekDay;
+                $customerDeliveryDay->customerAddressId = $customerAddress->id;
+                $customerDeliveryDay->customerId = $customerAddress->customer->id;
+
+
+                $customerDeliveryDay->save();
+
+
+            } // end if
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
         return response()->json(['message' => 'Address has been updated'], 200);
 
 
@@ -325,6 +536,38 @@ class CustomerController extends Controller
 
 
 
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+    public function removeCustomerAddress(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        CustomerAddress::find($id)->delete();
+
+
+        return response()->json(['message' => 'Address has been removed'], 200);
+
+
+
+    } // end function
 
 
 

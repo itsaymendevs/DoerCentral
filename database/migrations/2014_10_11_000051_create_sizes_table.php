@@ -15,6 +15,8 @@ return new class extends Migration {
 
             // 1: general
             $table->string('name', 255)->nullable();
+            $table->string('shortName', 100)->nullable();
+
             $table->double('price', 15)->nullable();
             $table->double('calories', 15)->nullable()->default(0);
 

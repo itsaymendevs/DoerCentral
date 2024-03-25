@@ -85,7 +85,7 @@
                     <button class="btn fs-13 btn--switch-regular @if ($initSizeId == $mealSize->size->id) active @endif"
                         data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}' type="button"
                         wire:ignore.self>
-                        {{ $mealSize->size->name }}
+                        {{ $mealSize->size->shortName }}
                     </button>
                     @endforeach
                     {{-- end loop --}}

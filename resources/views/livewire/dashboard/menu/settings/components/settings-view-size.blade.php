@@ -8,6 +8,15 @@
     </td>
 
 
+
+    {{-- name --}}
+    <td class="fs-6 fw-bold">
+        <input class="form-control form--input form--table-input" type="text" wire:model='instance.shortName'
+            wire:change='update' required />
+    </td>
+
+
+
     {{-- price --}}
     <td class="fs-6">
         <input class="form-control form--input form--table-input-sm" type="number" step='0.01'

@@ -19,7 +19,10 @@ class SingleCustomerAddressesView extends Component
 
     // :: variables
     public CustomerAddressForm $instance;
-    public $address;
+    public $address, $removeId;
+
+
+
 
 
 
@@ -30,7 +33,7 @@ class SingleCustomerAddressesView extends Component
     {
 
 
-        // :: getCustomerAddress
+        // 1: getCustomerAddress
         $this->address = CustomerAddress::find($id);
 
 
@@ -39,6 +42,26 @@ class SingleCustomerAddressesView extends Component
         // :: initiate
         foreach ($this->address->toArray() as $key => $value)
             $this->instance->{$key} = $value;
+
+
+
+
+
+
+        // ------------------------------
+        // ------------------------------
+
+
+
+
+
+
+
+        // 1.2: deliveryDays - defaultValues
+        $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+        foreach ($weekDays as $weekDay)
+            $this->instance->deliveryDays[$weekDay] = in_array($weekDay, $this->address->deliveryDaysInArray()) ? true : false;
 
 
 
@@ -71,18 +94,19 @@ class SingleCustomerAddressesView extends Component
     {
 
 
-
         // :: setChildSelect
+
+
 
         // 1: district
         if (str_contains($id, 'district'))
-            $this->dispatch('setSelect', id: $id, value: $this->instance->cityDistrictId ?? null);
+            $this->dispatch('refreshRawSelect', id: $id);
 
 
 
         // 2: deliveryTime
         if (str_contains($id, 'deliveryTime'))
-            $this->dispatch('setSelect', id: $id, value: $this->instance->deliveryTimeId ?? null);
+            $this->dispatch('refreshRawSelect', id: $id);
 
 
 
@@ -112,8 +136,6 @@ class SingleCustomerAddressesView extends Component
 
 
 
-
-
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/customers/addresses/update', $this->instance);
 
@@ -124,6 +146,89 @@ class SingleCustomerAddressesView extends Component
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function remove($id)
+    {
+
+
+        // 1: params - confirmationBox
+        $this->removeId = $id;
+
+        $this->makeAlert('remove', null, 'confirmAddressRemove');
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    #[On('confirmAddressRemove')]
+    public function confirmRemove()
+    {
+
+
+
+        // 1: remove
+        if ($this->removeId) {
+
+
+
+            $response = $this->makeRequest('dashboard/customers/addresses/remove', $this->removeId);
+
+
+
+            // :: refreshPage
+            return $this->redirect(route('dashboard.singleCustomerAddresses', [$this->instance->customerId]), navigate: false);
+
+
+
+
+
+        } // end if
+
+
+
+
+
+    } // end function
+
+
+
+
 
 
 
@@ -144,12 +249,14 @@ class SingleCustomerAddressesView extends Component
 
 
 
+
     public function render()
     {
 
 
         // 1: dependencies
         $cities = City::all();
+        $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 
 
@@ -158,7 +265,8 @@ class SingleCustomerAddressesView extends Component
 
 
 
-        return view('livewire.dashboard.customers.manage.single-customer-addresses.components.single-customer-addresses-view', compact('cities'));
+
+        return view('livewire.dashboard.customers.manage.single-customer-addresses.components.single-customer-addresses-view', compact('cities', 'weekDays'));
 
 
     } // end function

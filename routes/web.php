@@ -3,6 +3,7 @@
 use App\Livewire\Dashboard\Customers;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerAddresses;
+use App\Livewire\Dashboard\Customers\Manage\SingleCustomerDeliveries;
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\Menu\Builder;
@@ -372,6 +373,20 @@ Route::middleware(['auth.user'])->group(function () {
 
     // 7.2: customers - singleCustomer - addresses
     Route::get('dashboard/customers/{id}/addresses', SingleCustomerAddresses::class)->name('dashboard.singleCustomerAddresses');
+
+
+
+
+
+
+
+    // ---------
+
+
+
+
+    // 7.3: customers - singleCustomer - deliveries
+    Route::get('dashboard/customers/{id}/deliveries', SingleCustomerDeliveries::class)->name('dashboard.singleCustomerDeliveries');
 
 
 

@@ -50,6 +50,7 @@
         <link href="{{ asset('assets/css/clients.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/file.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/globals.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/home.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/inventory.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
@@ -67,9 +68,10 @@
         <link href="{{ asset('assets/css/plans.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/bundles.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/customers.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
 
 
+
+        @yield('styles')
 
 
 
@@ -79,6 +81,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous" referrerpolicy="no-referrer" data-navigate-once></script>
+
+
+
+
 
     </head>
     {{-- end head --}}
@@ -200,7 +206,6 @@
 
         {{-- 1.6: otherScripts --}}
         @yield('scripts')
-
 
 
 

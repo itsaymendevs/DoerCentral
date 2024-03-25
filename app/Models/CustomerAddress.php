@@ -8,4 +8,186 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerAddress extends Model
 {
     use HasFactory;
-}
+
+
+
+
+    public function deliveryDays()
+    {
+
+        return $this->hasMany(CustomerDeliveryDay::class, 'customerAddressId');
+
+    } // end function
+
+
+
+
+
+
+
+    public function city()
+    {
+
+        return $this->belongsTo(City::class, 'cityId');
+
+    } // end function
+
+
+
+
+
+
+
+    public function customer()
+    {
+
+        return $this->belongsTo(Customer::class, 'customerId');
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    public function district()
+    {
+
+        return $this->belongsTo(CityDistrict::class, 'cityDistrictId');
+
+    } // end function
+
+
+
+
+
+
+
+    public function deliveryTime()
+    {
+
+        return $this->belongsTo(CityDeliveryTime::class, 'deliveryTimeId');
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------
+    // ----------------------------------------------------
+    // ----------------------------------------------------
+    // ----------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function halfAddress()
+    {
+
+
+        // 1: format (City - District \n locationAddress)
+        $halfAddress = "{$this?->city?->name} - {$this?->district?->name} \n {$this?->locationAddress}";
+
+
+
+
+        // :: return
+        return $halfAddress;
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------
+
+
+
+
+
+
+
+
+    public function apartmentAndFloor()
+    {
+
+
+        // 1: format (Apartment - Floor)
+        $apartmentAndFloor = $this?->apartment . ($this?->floor ? ' - ' . $this->floor : '');
+
+
+
+
+        // :: return
+        return $apartmentAndFloor;
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------
+
+
+
+
+
+
+
+
+    public function deliveryDaysInArray()
+    {
+
+
+        // 1: getDeliveryDays
+        $deliveryDaysInArray = $this->deliveryDays()->get()?->pluck('weekDay')->toArray() ?? [];
+
+
+
+
+        // :: return
+        return $deliveryDaysInArray;
+
+
+    } // end function
+
+
+
+
+
+
+
+} // end model

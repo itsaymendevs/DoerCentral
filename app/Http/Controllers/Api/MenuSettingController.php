@@ -185,6 +185,8 @@ class MenuSettingController extends Controller
         $diet = new Size();
 
         $diet->name = $request->name;
+        $diet->shortName = $request->shortName;
+
         $diet->price = $request->price;
 
         $diet->calories = $request->calories;
@@ -234,6 +236,8 @@ class MenuSettingController extends Controller
         $diet = Size::find($request->id);
 
         $diet->name = $request->name;
+        $diet->shortName = $request->shortName;
+
         $diet->price = $request->price;
 
         $diet->calories = $request->calories;

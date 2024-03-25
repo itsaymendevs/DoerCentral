@@ -12,10 +12,10 @@ class CustomerAddressForm extends Form
 
     // :: variables
     #[Rule('required', as: 'instanceError')]
-    public $id, $name, $cityId, $cityDistrictId, $deliveryTimeId, $locationAddress;
+    public $name, $cityId, $cityDistrictId, $deliveryTimeId, $locationAddress, $customerId;
 
 
-    public $apartment, $floor;
+    public $id, $apartment, $floor;
 
     public $deliveryDays = [];
 

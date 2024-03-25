@@ -27,7 +27,7 @@
 
             {{-- :: SAO --}}
             <a class="btn @if (Request::is('dashboard/customers/SAO')) active @endif" role="button"
-                href="javascript:void(0);">SAO</a>
+                href="javascript:void(0);">SOA</a>
 
 
             {{-- :: Details --}}

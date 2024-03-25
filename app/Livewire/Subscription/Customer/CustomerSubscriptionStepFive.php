@@ -336,7 +336,7 @@ class CustomerSubscriptionStepFive extends Component
 
 
         // :: redirectToCheckout
-        return $this->redirect(route('subscription.customerStepOne'), navigate: true);
+        return $this->redirect(route('subscription.customerStepSix', [$this->plan->id]), navigate: true);
 
 
 

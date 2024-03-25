@@ -105,7 +105,7 @@
                     <div class="col-6 mb-3">
                         <button
                             class="btn btn--scheme btn--remove w-100 align-items-center d-flex px-2 fs-12 justify-content-center scalemix--3"
-                            type="button">
+                            type="button" data-bs-toggle="modal" data-bs-target="#shorten-subscription">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-dash-lg fs-6 me-2">
                                 <path fill-rule="evenodd"
@@ -121,7 +121,7 @@
                     <div class="col-6 mb-3">
                         <button
                             class="btn btn--scheme btn--scheme-1 w-100 align-items-center d-flex px-2 fs-12 justify-content-center scalemix--3"
-                            type="button">
+                            type="button" data-bs-toggle="modal" data-bs-target="#extend-subscription">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-plus-lg fs-6 me-2">
                                 <path fill-rule="evenodd"
@@ -468,23 +468,28 @@
 
 
                     {{-- 1: pause --}}
-                    <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
-                        data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause / Freeze">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                            viewBox="0 0 16 16" class="bi bi-stop-circle fs-5">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-                            <path
-                                d="M5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3z">
-                            </path>
-                        </svg>
-                    </button>
+                    <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause / Freeze">
+
+                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
+                            data-bs-toggle="modal" data-bs-target="#pause-subscription" type='button'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                viewBox="0 0 16 16" class="bi bi-stop-circle fs-5">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                <path
+                                    d="M5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3z">
+                                </path>
+                            </svg>
+                        </button>
+
+                    </div>
 
 
 
 
                     {{-- 2: resume --}}
                     <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
-                        data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Resume">
+                        data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Resume"
+                        style="border:1px dashed var(--color-theme-secondary)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             class="bi bi-play-circle fs-5" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -933,7 +938,45 @@
 
     {{-- 1: manageWallet --}}
     <livewire:dashboard.customers.manage.single-customer.components.single-customer-manage-wallet
-        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+        id='{{ $customer->id }}' key='wallet-{{ $customer->id }}' />
+
+
+
+
+
+
+    {{-- ------------------------- --}}
+
+
+
+    {{-- 2: extendSubscription --}}
+    <livewire:dashboard.customers.manage.single-customer.components.single-customer-extend-subscription
+        id='{{ $customer->id }}' key='extend-{{ $customer->id }}' />
+
+
+
+
+
+    {{-- 3: shortenSubscription --}}
+    <livewire:dashboard.customers.manage.single-customer.components.single-customer-shorten-subscription
+        id='{{ $customer->id }}' key='shorten-{{ $customer->id }}' />
+
+
+
+
+
+
+
+
+
+    {{-- ------------------------- --}}
+
+
+
+    {{-- 4: pauseSubscription --}}
+    <livewire:dashboard.customers.manage.single-customer.components.single-customer-pause-subscription
+        id='{{ $customer->id }}' key='extend-{{ $customer->id }}' />
+
 
 
 

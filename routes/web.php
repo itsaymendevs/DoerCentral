@@ -27,6 +27,7 @@ use App\Livewire\Login;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFive;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFour;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepOne;
+use App\Livewire\Subscription\Customer\CustomerSubscriptionStepSix;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepThree;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepTwo;
 use Illuminate\Support\Facades\Artisan;
@@ -457,10 +458,21 @@ Route::get('subscription/customer/{id}/delivery-information', CustomerSubscripti
 
 
 
-
-
-// 1.4: Subscription - customer - stepFive (checkout-information)
+// 1.5: Subscription - customer - stepFive (checkout-information)
 Route::get('subscription/customer/{id}/checkout-information', CustomerSubscriptionStepFive::class)->name('subscription.customerStepFive');
+
+
+
+
+
+
+
+// 1.6: Subscription - customer - stepSix (Invoice)
+Route::get('subscription/customer/{id}/invoice', CustomerSubscriptionStepSix::class)->name('subscription.customerStepSix');
+
+
+
+
 
 
 

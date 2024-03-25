@@ -34,7 +34,8 @@
 
 
                     {{-- mealPlans --}}
-                    <button class="btn navbar--menu-button active" type="button">Meal Plans</button>
+                    <a href="{{ route('subscription.customerStepOne') }}" class="btn navbar--menu-button active"
+                        type="button" wire:navigate>Meal Plans</a>
 
 
 

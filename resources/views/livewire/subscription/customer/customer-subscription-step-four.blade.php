@@ -8,9 +8,22 @@
 
                 {{-- heading --}}
                 <h4 data-aos="fade" data-aos-duration="600" data-aos-delay="800" data-aos-once="true"
-                    class="mb-4 fw-bold text-center" wire:ignore.self>
+                    class="mb-4 fw-bold text-center position-relative" wire:ignore.self>
                     Delivery Information
+
+                    {{-- :: backButton --}}
+                    <a class="btn submenu--group btn--scheme-2 d-flex align-items-center subscription--back-button py-1 d-none d-md-block"
+                        role="button" href="{{ route('subscription.customerStepThree', [$plan->id]) }}"><svg
+                            class="bi bi-arrow-up-left me-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                            fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M2 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H3.707l10.147 10.146a.5.5 0 0 1-.708.708L3 3.707V8.5a.5.5 0 0 1-1 0v-6z">
+                            </path>
+                        </svg>Go Back</a>
+
+
                 </h4>
+                {{-- endHeading --}}
 
 
 
@@ -183,7 +196,24 @@
 
 
                 {{-- planRow --}}
-                <div class="overview--card client-version scale--self-05 mb-4">
+                <div class="overview--card client-version scale--self-05 mb-4 position-relative">
+
+
+                    {{-- :: backButton --}}
+                    <a class="btn submenu--group btn--scheme-2 d-flex align-items-center subscription--back-button py-1 d-md-none"
+                        role="button" href="{{ route('subscription.customerStepThree', [$plan->id]) }}"><svg
+                            class="bi bi-arrow-up-left me-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                            fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M2 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H3.707l10.147 10.146a.5.5 0 0 1-.708.708L3 3.707V8.5a.5.5 0 0 1-1 0v-6z">
+                            </path>
+                        </svg>Back</a>
+
+
+
+
+
+                    {{-- mainRow --}}
                     <div class="row">
 
 

@@ -6,9 +6,10 @@
         {{-- title --}}
         <div class="row">
             <div class="col-12 text-center" wire:ignore>
-                <h4 class="mb-4 fw-bold" data-aos="fade-down" data-aos-duration="800" data-aos-once="true">Pick Your
-                    Meal
-                    Plan</h4>
+                <h4 class="mb-4 fw-bold position-relative" data-aos="fade-down" data-aos-duration="800"
+                    data-aos-once="true">
+                    Pick Your Meal Plan
+                </h4>
             </div>
         </div>
 

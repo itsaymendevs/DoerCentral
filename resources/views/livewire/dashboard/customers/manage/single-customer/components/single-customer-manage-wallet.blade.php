@@ -1,3 +1,4 @@
+{{-- walletModal --}}
 <div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="wallet-deposit" wire:ignore.self>
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">

@@ -89,3 +89,24 @@
 .coupon--input.active {
     border-color: var(--bs-warning);
 }
+
+/* back button */
+
+.subscription--back-button {
+    position: absolute;
+    top: 20px;
+    font-size: 13px;
+    left: 15px;
+    z-index: 1;
+    border: 1px solid var(--bg-golden);
+}
+
+@media (min-width: 768px) {
+    .subscription--back-button {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-size: 13px;
+        border: 1px solid var(--bg-golden);
+    }
+}

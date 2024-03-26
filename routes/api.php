@@ -448,15 +448,29 @@ Route::post('/dashboard/menu/plans/bundles/remove', [PlanController::class, 'rem
 
 
 
-// 5.3.2: menu - plans - bundles - updateBundleRangePrices
+
+// 5.3.2: menu - plans - bundles - migrate
+Route::post('/dashboard/menu/plans/bundles/migrate', [PlanController::class, 'migrateBundle']);
+
+
+
+
+
+
+// 5.3.3: menu - plans - bundles - updateBundleRangePrices
 Route::post('/dashboard/menu/plans/bundles/ranges/prices/update', [PlanController::class, 'updateBundleRangePrice']);
 
 
 
-// 5.3.3: menu - plans - bundles - storeBundleDays - update
+// 5.3.4: menu - plans - bundles - storeBundleDays - update
 Route::post('/dashboard/menu/plans/bundles/days/store', [PlanController::class, 'storeBundleDay']);
 Route::post('/dashboard/menu/plans/bundles/days/update', [PlanController::class, 'updateBundleDay']);
 Route::post('/dashboard/menu/plans/bundles/days/remove', [PlanController::class, 'removeBundleDay']);
+
+
+
+
+
 
 
 

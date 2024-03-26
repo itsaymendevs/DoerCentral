@@ -1,89 +1,90 @@
 .navbar--section {
-  width: 100%;
-  margin-top: 15px;
-  margin-bottom: 70px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 70px;
 }
 
 .navbar--notify {
-  font-size: 35px !important;
+    font-size: 35px !important;
 }
 
 .navbar--notify svg {
-  fill: var(--color-theme);
+    fill: var(--color-theme);
 }
 
 /* menu */
 
 .navbar--menu {
-  /*box-shadow: var(--theme-shadow);*/
-  background-color: var(--color-card);
-  height: 70px;
-  padding: 0px 20px;
-  border-radius: var(--menu-radius);
+    /*box-shadow: var(--theme-shadow);*/
+    background-color: var(--color-card);
+    height: 70px;
+    padding: 0px 20px;
+    border-radius: var(--menu-radius);
 }
 
 .navbar--menu-button {
-  border-radius: 0px;
-  border-bottom: 2px solid transparent;
+    border-radius: 0px;
+    border-bottom: 2px solid transparent;
 }
 
-.navbar--menu-button:hover, .navbar--menu-button:focus {
-  border-bottom: 2px solid var(--bg-theme-secondary);
+.navbar--menu-button:hover,
+.navbar--menu-button:focus {
+    border-bottom: 2px solid var(--bg-theme-secondary);
 }
 
 .navbar--menu-button.active {
-  border: none;
-  background-color: var(--bg-theme-secondary) !important;
-  border-radius: var(--navbar-radius);
-  color: white !important;
+    border: none;
+    background-color: var(--bg-theme-secondary) !important;
+    border-radius: var(--navbar-radius);
+    color: white !important;
 }
 
 /* search */
 
 .navbar--menu-search {
-  width: 150px !important;
-  height: 38px !important;
-  display: inline-block;
-  font-size: 12px !important;
-  border-color: var(--color-theme-light);
+    width: 150px !important;
+    height: 38px !important;
+    display: inline-block;
+    font-size: 12px !important;
+    border-color: var(--color-theme-light);
 }
 
 /* profile */
 
 .navbar--profile-menu {
-  background-color: var(--color-card);
-  padding: 0px;
+    background-color: var(--color-card);
+    padding: 0px;
 }
 
 .navbar--profile-menu a {
-  padding: 12px 0px;
-  color: white;
+    padding: 12px 0px;
+    color: white;
 }
 
-.navbar--profile-menu a:hover, .navbar--profile-menu a:focus {
-  background-color: var(--color-scheme-2);
-  color: white;
-  border-radius: inherit;
+.navbar--profile-menu a:hover,
+.navbar--profile-menu a:focus {
+    background-color: var(--color-scheme-2);
+    color: white;
+    border-radius: inherit;
 }
 
-.navbar--profile-menu a:hover svg, .navbar--profile-menu a:focus svg {
-  fill: white;
+.navbar--profile-menu a:hover svg,
+.navbar--profile-menu a:focus svg {
+    fill: white;
 }
 
 .navbar--profile-button {
-  padding: 0px;
-  width: 80%;
-  max-width: 75px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
+    padding: 0px;
+    width: 80%;
+    max-width: 75px;
+    aspect-ratio: 1 / 1;
+    border: none;
 }
 
 .navbar--profile-button img {
-  width: 100%;
-  height: 100%;
-  /*border: 3px solid var(--bg-theme) !important;*/
-  /*background-color: var(--bg-theme) !important;*/
-  object-fit: contain;
-  border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    /*border: 3px solid var(--bg-theme) !important;*/
+    /*background-color: var(--bg-theme) !important;*/
+    object-fit: contain;
 }
-

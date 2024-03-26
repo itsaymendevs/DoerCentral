@@ -63,6 +63,34 @@ class Bundles extends Component
 
 
 
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+    public function migrate($id)
+    {
+
+
+        // 1: dispatchId
+        $this->dispatch('migrateBundle', $id);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
     // -----------------------------------------------------------------
 
 

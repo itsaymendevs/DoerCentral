@@ -15,6 +15,100 @@ class Sauces extends Component
 
     // :: variables
     public $searchSauce = '';
+    public $removeId;
+
+
+
+
+
+
+
+    public function remove($id)
+    {
+
+
+        // 1: params - confirmationBox
+        $this->removeId = $id;
+
+        $this->makeAlert('remove', null, 'confirmSauceRemove');
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    #[On('confirmSauceRemove')]
+    public function confirmRemove()
+    {
+
+
+
+        // 1: remove
+        if ($this->removeId) {
+
+
+
+            // :: get instance - removeFile
+            $sauce = Meal::find($this->removeId);
+            $this->removeFile($sauce->imageFile, 'menu/meals');
+            $this->removeFile($sauce->secondImageFile, 'menu/meals');
+
+            $sauce->thirdImageFile ? $this->removeFile($sauce->thirdImageFile, 'menu/meals') : null;
+            $sauce->fourthImageFile ? $this->removeFile($sauce->fourthImageFile, 'menu/meals') : null;
+
+
+
+
+            // 1.2: makeRequest
+            $response = $this->makeRequest('dashboard/menu/meals/remove', $this->removeId);
+
+            $this->makeAlert('info', $response->message);
+
+
+        } // end if
+
+
+
+
+
+
+        // 1.2: renderView
+        $this->render();
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // ---------------------------------------------------------------
+
+
+
+
+
 
 
 

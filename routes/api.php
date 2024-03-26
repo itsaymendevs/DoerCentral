@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\MenuCalendarController;
+use App\Http\Controllers\Api\MenuMealController;
 use App\Http\Controllers\Api\MenuSettingController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\PromoController;
@@ -633,9 +634,11 @@ Route::post('/dashboard/menu/settings/cuisines/remove', [MenuSettingController::
 
 
 
+
+
+
 // 9: menu - builder - general - store
 Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 'storeBuilderGeneral']);
-
 
 
 
@@ -768,6 +771,12 @@ Route::post('/dashboard/menu/builder/servings/update', [BuilderController::class
 
 
 
+
+
+
+
+
+
 // ------------------------------------------------------------------------------------------
 
 
@@ -809,6 +818,35 @@ Route::post('/dashboard/menu/calendars/schedules/meals/update', [MenuCalendarCon
 
 
 Route::post('/dashboard/menu/calendars/schedules/meals/toggle', [MenuCalendarController::class, 'toggleCalendarScheduleMeal']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+// 9.10: menu - meals (Recipes - Snacks etc.)
+Route::post('/dashboard/menu/meals/remove', [MenuMealController::class, 'removeMeal']);
+
+
+
+
 
 
 

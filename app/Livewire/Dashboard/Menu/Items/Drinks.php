@@ -15,6 +15,101 @@ class Drinks extends Component
 
     // :: variables
     public $searchDrink = '';
+    public $removeId;
+
+
+
+
+
+
+
+    public function remove($id)
+    {
+
+
+        // 1: params - confirmationBox
+        $this->removeId = $id;
+
+        $this->makeAlert('remove', null, 'confirmDrinkRemove');
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    #[On('confirmDrinkRemove')]
+    public function confirmRemove()
+    {
+
+
+
+        // 1: remove
+        if ($this->removeId) {
+
+
+
+            // :: get instance - removeFile
+            $drink = Meal::find($this->removeId);
+            $this->removeFile($drink->imageFile, 'menu/meals');
+            $this->removeFile($drink->secondImageFile, 'menu/meals');
+
+            $drink->thirdImageFile ? $this->removeFile($drink->thirdImageFile, 'menu/meals') : null;
+            $drink->fourthImageFile ? $this->removeFile($drink->fourthImageFile, 'menu/meals') : null;
+
+
+
+
+            // 1.2: makeRequest
+            $response = $this->makeRequest('dashboard/menu/meals/remove', $this->removeId);
+
+            $this->makeAlert('info', $response->message);
+
+
+        } // end if
+
+
+
+
+
+
+        // 1.2: renderView
+        $this->render();
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // ---------------------------------------------------------------
+
+
+
+
+
+
 
 
 

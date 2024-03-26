@@ -50,8 +50,7 @@
 
                         {{-- rightCol --}}
                         <div class="col-8">
-                            <div class="row">
-
+                            <div class="row mt-2">
 
 
                                 {{-- loop - plans --}}
@@ -66,14 +65,21 @@
                                             id="migrate-plan-{{ $plan->id }}"
                                             wire:model='selectedPlans.{{ $plan->id }}' />
 
+
                                         {{-- label --}}
-                                        <label class="form-check-label fs-14" for="migrate-plan-{{ $plan->id }}">{{
-                                            $plan->name }}</label>
+                                        <label class="form-check-label fs-14" for="migrate-plan-{{ $plan->id }}">
+                                            {{ $plan->name }}
+                                        </label>
+
+
                                     </div>
                                 </div>
 
                                 @endforeach
                                 {{-- end loop --}}
+
+
+
 
                             </div>
                         </div>
@@ -91,10 +97,10 @@
                                 Migrate
                             </button>
                         </div>
+
                     </div>
                 </form>
                 {{-- endForm --}}
-
 
 
             </div>

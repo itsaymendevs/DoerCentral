@@ -12,7 +12,7 @@
                 {{-- heading --}}
                 <h3 data-aos="fade" data-aos-duration="600" data-aos-delay="800" data-aos-once="true"
                     class="mb-5 fw-semibold pb-lg-4" wire:ignore>
-                    Thanks for choosing Real Meal<br />Enjoy your meals!
+                    Thanks for choosing Doer<br />Enjoy your meals!
 
                     {{-- icon --}}
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"

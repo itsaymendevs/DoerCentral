@@ -81,13 +81,21 @@ class BundlesMigrate extends Component
 
 
             // :: resetForm - resetFilePreview
-            $this->instance->reset();
-            $this->reset('selectedPlans', 'bundle');
+            $this->bundle = null;
+            $this->reset('selectedPlans');
             $this->dispatch('closeModal', modal: '#migrate-bundle .btn--close');
 
 
             $this->makeAlert('success', $response->message);
 
+
+        } else {
+
+
+
+
+            // :: requireAlert
+            $this->makeAlert('info', 'Please select at least one plan');
 
         } // end if
 

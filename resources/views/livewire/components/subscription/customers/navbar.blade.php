@@ -8,8 +8,7 @@
             {{-- logoCol --}}
 
             <div class="col-3 col-sm-2 col-lg-1" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
-                <img class="of-contain w-100 h-100 scale--self-05"
-                    src="{{ asset('assets/img/Logo/realmeal-white.png') }}" />
+                <img class="of-contain w-100 h-100 scale--self-05" src="{{ asset('assets/img/Logo/client.png') }}" />
             </div>
             {{-- endCol --}}
 

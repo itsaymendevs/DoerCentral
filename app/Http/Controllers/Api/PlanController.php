@@ -791,7 +791,7 @@ class PlanController extends Controller
                 $mealType = MealType::find($mealType);
 
 
-                
+
 
                 // 2.1: create
                 $bundleType = new PlanBundleType();
@@ -914,6 +914,72 @@ class PlanController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function migrateBundle(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $bundle = PlanBundle::find($request->id);
+
+
+
+
+
+
+
+
+
+        // -------------------------
+        // -------------------------
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Bundle has been migrated'], 200);
+
+
+
+
+
+
+    } // end function
 
 
 

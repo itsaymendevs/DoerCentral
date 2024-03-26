@@ -161,7 +161,7 @@
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
-                                            type="button" title="Hide Plan"
+                                            type="button" title="Hide Bundle"
                                             wire:click='toggleForWebsite({{ $bundle->id }})'
                                             wire:loading.attr='disabled' wire:target='toggleForWebsite, remove'>
                                             <svg class="bi bi-eye fs-5" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -183,7 +183,7 @@
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
-                                            type="button" title="Show Plan"
+                                            type="button" title="Show Bundle"
                                             wire:click='toggleForWebsite({{ $bundle->id }})'
                                             wire:loading.attr='disabled' wire:target='toggleForWebsite, remove'>
                                             <svg class="bi bi-eye-slash fs-5" xmlns="http://www.w3.org/2000/svg"

@@ -61,7 +61,10 @@ class CustomerSubscriptionStepOne extends Component
     {
 
         // 1: dependencies
-        $plans = Plan::whereHas('ranges')->get();
+        $plans = Plan::whereHas('ranges')
+            ->whereHas('bundles')
+            ->where('isForWebsite', true)
+            ->get();
 
 
 

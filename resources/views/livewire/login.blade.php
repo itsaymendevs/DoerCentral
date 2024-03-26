@@ -17,8 +17,9 @@
                     <div class="text-end"></div>
 
                     {{-- title --}}
-                    <h1 class="display-4 text-center fw-bold mb-4 pb-1 mt-2" data-aos="flip-up" data-aos-delay="600"
-                        data-aos-once="true">DOer.</h1>
+                    <img data-aos="fade-down" data-aos-duration="800" data-aos-delay="600" data-aos-once="true"
+                        class="w-100 of-contain pb-1 mt-2" src="{{ asset('assets/img/Logo/doer.png') }}"
+                        style="height: 80px" />
 
 
                     {{-- email / password --}}
@@ -36,7 +37,8 @@
                     <div class="form-check d-flex align-items-center ms-1 pt-2 mb-4" data-aos="flip-up"
                         data-aos-delay="600" data-aos-once="true">
 
-                        <input class="form-check-input mt-0 checkbox--rounded" id="formCheck-1" type="checkbox">
+                        <input class="form-check-input mt-0 checkbox--rounded" id="formCheck-1" type="checkbox"
+                            style="border-color: var(--input-border-color-hover)">
                         <label class="form-check-label fs-14 ms-3 checkbox--login" for="formCheck-1">Keep me
                             logged-In</label>
                     </div>

@@ -48,8 +48,8 @@
                                 data-aos-delay="800" data-aos-once="true" wire:ignore.self>
 
 
-                                {{-- loop - bundles --}}
-                                @foreach ($plan->bundles as $bundle)
+                                {{-- loop - bundles (active) --}}
+                                @foreach ($plan->bundles->where('isForWebsite', true) as $bundle)
 
                                 <li class="nav-item" role="presentation" wire:ignore>
                                     <a class="nav-link" role="tab" data-bs-toggle="tab"
@@ -82,8 +82,11 @@
 
 
 
-                                {{-- loop - bundles --}}
-                                @foreach ($plan->bundles as $bundle)
+
+                                {{-- loop - bundles (active) --}}
+                                @foreach ($plan->bundles->where('isForWebsite', true) as $bundle)
+
+
 
 
                                 {{-- 1: bundleTabContent --}}
@@ -171,8 +174,14 @@
                                         <ul class="nav nav-tabs inner" role="tablist">
 
 
-                                            {{-- loop - bundleRanges --}}
+                                            {{-- loop - bundleRanges (active) --}}
                                             @foreach ($bundle->ranges as $bundleRange)
+
+
+
+                                            {{-- checkRange --}}
+                                            @if ($bundleRange->range->isForWebsite == true)
+
 
                                             <li class="nav-item" role="presentation" wire:ignore>
                                                 <a class="nav-link" role="tab" data-bs-toggle="tab"
@@ -181,6 +190,12 @@
                                                     {{ $bundleRange->range->name }}
                                                 </a>
                                             </li>
+
+
+                                            @endif
+                                            {{-- end if --}}
+
+
 
                                             @endforeach
                                             {{-- end loop --}}
@@ -205,8 +220,17 @@
 
 
 
-                                            {{-- loop - bundleRanges --}}
+                                            {{-- loop - bundleRanges (active) --}}
                                             @foreach ($bundle->ranges as $bundleRange)
+
+
+
+                                            {{-- checkRange --}}
+                                            @if ($bundleRange->range->isForWebsite == true)
+
+
+
+
 
                                             <div class="tab-pane no--card px-2" role="tabpanel"
                                                 id="bundle-tab-{{ $bundle->id }}-{{ $bundleRange->range->id }}"
@@ -489,6 +513,17 @@
 
                                             </div>
                                             {{-- endTab --}}
+
+
+
+
+
+                                            @endif
+                                            {{-- end if --}}
+
+
+
+
 
                                             @endforeach
                                             {{-- end loop - bundleRanges --}}

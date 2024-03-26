@@ -102,6 +102,17 @@ class BundlesCreate extends Component
 
 
 
+
+
+        // :: reset mealTypes
+        $mealTypes = MealType::all();
+
+        foreach ($mealTypes as $mealType)
+            $this->instance->mealTypes[$mealType->id] = 0;
+
+
+
+
     } // end function
 
 

@@ -56,8 +56,10 @@ class PlanBundleDay extends Model
 
             // 1.2: getDiscount - appendDiscount
             $discountPrice = ($bundleRange->pricePerDay * $this->days) * (($this->discount ?? 0) / 100);
+            $priceByDiscount = ($bundleRange->pricePerDay * $this->days) - $discountPrice;
 
-            array_push($rangesByDiscount, "&#8226; {$bundleRange->range->name} / {$discountPrice} AED");
+
+            array_push($rangesByDiscount, "&#8226; {$bundleRange->range->name} / {$priceByDiscount} AED");
 
 
         } // end loop

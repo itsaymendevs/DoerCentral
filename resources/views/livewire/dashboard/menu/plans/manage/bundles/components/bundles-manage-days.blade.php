@@ -51,7 +51,7 @@
                         {{-- loop - ranges --}}
                         @foreach ($bundleRanges as $bundleRange)
 
-                        <div class="col-3">
+                        <div class="col-3" key='{{ $bundleRange->id }}'>
                             <label class="form-label form--label">{{ $bundleRange->range->name }}</label>
                             <input class="form-control form--input mb-4" type="number" step='0.01' required
                                 value='{{ $bundleRange->pricePerDay }}'

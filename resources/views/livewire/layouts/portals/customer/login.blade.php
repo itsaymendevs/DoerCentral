@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta name="viewport"
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
-        <title>DOER.</title>
+        <title>Customer Portal - DOER.</title>
 
         <meta name="description" content="Meal Plans Solution">
         <meta name="keywords" content="Meal Plans, Meal Plans in Dubai, DOER, DOER SOLUTION">
@@ -94,16 +94,6 @@
 
 
 
-        {{-- --------------------------------------------------------- --}}
-        {{-- --------------------------------------------------------- --}}
-
-
-
-
-
-
-
-        {{-- scripts --}}
         {{-- --------------------------------------------------------- --}}
         {{-- --------------------------------------------------------- --}}
 

@@ -328,7 +328,29 @@ window.addEventListener("refreshRawSelect", (event) => {
     $(document).ready(function () {
         selectId = event.detail.id;
 
-        // setupValue = $(selectId).select2("val");
+        setupValue = $(selectId).select2("val");
+        setupClear = $(selectId).attr("data-clear") ? true : false;
+        setupModal = $(selectId).attr("data-modal");
+        setupPlaceholder = $(selectId).attr("data-placeholder");
+        setupTrigger = $(selectId).attr("data-trigger") ? true : false;
+
+        // :: re-init
+        $(selectId)
+            .val(setupValue)
+            .select2({
+                dropdownParent: setupModal,
+                allowClear: setupClear,
+                placeholder: setupPlaceholder ? setupPlaceholder : "",
+            });
+
+        if (setupTrigger) $(selectId).trigger("change");
+    });
+});
+
+window.addEventListener("refreshRawSelectUsingValue", (event) => {
+    $(document).ready(function () {
+        selectId = event.detail.id;
+
         setupValue = $(selectId).attr("value");
         setupClear = $(selectId).attr("data-clear") ? true : false;
         setupModal = $(selectId).attr("data-modal");

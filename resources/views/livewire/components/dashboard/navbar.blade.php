@@ -82,13 +82,6 @@
 
 
 
-                    {{-- promos --}}
-                    {{-- <a class="btn navbar--menu-button
-                     " href="" wire:navigate>Promo &amp; Rewards</a> --}}
-
-
-
-
 
                     {{-- dashboard --}}
                     <button class="btn navbar--menu-button" type="button">Dashboard</button>
@@ -118,7 +111,8 @@
 
 
                     {{-- kitchen --}}
-                    <button class="btn navbar--menu-button" type="button">Kitchen</button>
+                    <a wire:navigate href="{{ route('dashboard.kitchenTodayProduction') }}"
+                        class="btn navbar--menu-button" type="button">Kitchen</a>
 
 
 

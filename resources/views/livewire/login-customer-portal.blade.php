@@ -9,7 +9,7 @@
 
 
             {{-- loginForm --}}
-            <div class="col-6 col-xxl-6">
+            <div class="col-12 col-lg-6 col-xl-5">
                 <form class="login--form" data-aos="fade-right" data-aos-duration="600" data-aos-once="true"
                     wire:submit='checkUser'>
 
@@ -46,9 +46,9 @@
 
 
                     {{-- submit --}}
-                    <button class="btn w-100 btn--theme mb-1 scale--self-05" data-aos="flip-up" data-aos-delay="600"
-                        data-aos-once="true" wire:loading.attr='disabled'>Sign
-                        In</button>
+                    <a class="btn w-100 btn--theme mb-1 scale--self-05" data-aos="flip-up" data-aos-delay="600"
+                        data-aos-once="true" href="{{ route('portals.customer.general') }}"
+                        wire:loading.attr='disabled'>Sign In</a>
 
 
 
@@ -65,7 +65,7 @@
 
 
             {{-- coverImage --}}
-            <div class="col-6">
+            <div class="col-12 col-lg-6 col-xl-7 d-none d-lg-block">
                 <div class="d-block text-center" data-aos="zoom-in" data-aos-duration="600" data-aos-once="true">
                     <img class="w-100 of-cover vh-100 login--logo" src="{{ asset('assets/img/Login/cover.jpg') }}">
                 </div>

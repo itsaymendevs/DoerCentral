@@ -1,0 +1,18 @@
+@media (min-width: 1px) and (max-width: 767px) {
+    .submenu--group.mobile {
+        display: block;
+    }
+}
+
+@media (min-width: 1px) and (max-width: 767px) {
+    .submenu--group.mobile a {
+        margin-bottom: 10px;
+        width: 30%;
+        border-radius: 0px;
+    }
+}
+
+input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+}

@@ -35,6 +35,7 @@ class ProductionBuilderCreateSize extends Component
 
 
 
+
     } // end function
 
 
@@ -79,7 +80,7 @@ class ProductionBuilderCreateSize extends Component
 
 
             // 1: makeRequest
-            if (empty ($exists)) {
+            if (empty($exists)) {
 
                 $response = $this->makeRequest('dashboard/menu/builder/sizes/store', $instance);
 
@@ -103,6 +104,7 @@ class ProductionBuilderCreateSize extends Component
 
             $this->dispatch('refreshSizeViews');
             $this->dispatch('refreshMealSizeIngredients', id: $this->meal->id);
+            $this->dispatch('refreshRawSelect', id: '#size-select-1');
 
 
 
@@ -147,7 +149,6 @@ class ProductionBuilderCreateSize extends Component
 
         // :: initTooltips
         $this->dispatch('initTooltips');
-        $this->dispatch('refreshRawSelect', id: '#size-select-1');
 
 
 
@@ -156,6 +157,9 @@ class ProductionBuilderCreateSize extends Component
 
 
     } // end function
+
+
+
 
 
 } // end class

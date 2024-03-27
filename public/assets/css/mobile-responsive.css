@@ -1,0 +1,11 @@
+@media (min-width: 1px) and (max-width: 575px) {
+    .fs-xs-12 {
+        font-size: 12px !important;
+    }
+}
+
+@media (min-width: 1px) and (max-width: 575px) {
+    .fs-xs-13 {
+        font-size: 13px !important;
+    }
+}

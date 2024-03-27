@@ -1,11 +1,15 @@
 <?php
 
+use App\Livewire\CustomerPortal\CustomerAddresses;
+use App\Livewire\CustomerPortal\CustomerGeneral;
 use App\Livewire\Dashboard\Customers;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerAddresses;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerDeliveries;
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Inventory;
+use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayPacking;
+use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayProduction;
 use App\Livewire\Dashboard\Menu\Builder;
 use App\Livewire\Dashboard\Menu\Calendars;
 use App\Livewire\Dashboard\Menu\Calendars\SingleCalendar;
@@ -24,6 +28,7 @@ use App\Livewire\Dashboard\Menu\Recipes;
 use App\Livewire\Dashboard\Menu\Settings;
 use App\Livewire\Dashboard\Promos;
 use App\Livewire\Login;
+use App\Livewire\LoginCustomerPortal;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFive;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFour;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepOne;
@@ -395,6 +400,45 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    // 7.1: kitchen - kitchenToday - production
+    Route::get('dashboard/kitchen/today/production', KitchenTodayProduction::class)->name('dashboard.kitchenTodayProduction');
+
+
+
+
+
+    // ---------
+
+
+
+
+
+    // 7.1: kitchen - kitchenToday - packing
+    Route::get('dashboard/kitchen/today/packing', KitchenTodayPacking::class)->name('dashboard.kitchenTodayPacking');
+
+
+
+
+
+
+
+
 }); // end Authentication
 
 
@@ -420,7 +464,8 @@ Route::middleware(['auth.user'])->group(function () {
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
-// ** --------------------------- CUSTOMER ----------------------------------
+// --------------------------------------------------------------------------
+// ** -------------------- SUBSCRIPTION - CUSTOMER ------------------------ **
 
 
 
@@ -469,6 +514,77 @@ Route::get('subscription/customer/{id}/checkout-information', CustomerSubscripti
 
 // 1.6: Subscription - customer - stepSix (Invoice)
 Route::get('subscription/customer/{id}/invoice', CustomerSubscriptionStepSix::class)->name('subscription.customerStepSix');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** ---------------------- PORTALS - CUSTOMER -------------------------- **
+
+
+
+
+
+
+
+
+
+// 1: portal - customer - login
+Route::get('portals/customer', LoginCustomerPortal::class);
+Route::get('portals/customer/login', LoginCustomerPortal::class)->name('portals.customer.login');
+
+
+
+
+
+
+// ----------------------------------------------------------------------------
+
+
+
+
+
+// 2: portal - customer - general
+Route::get('portals/customer/general', CustomerGeneral::class)->name('portals.customer.general');
+
+
+
+
+
+
+
+// ----------------------------------------------------------------------------
+
+
+
+
+
+// 2: portal - customer - addresses
+Route::get('portals/customer/addresses', CustomerAddresses::class)->name('portals.customer.addresses');
 
 
 

@@ -1,3 +1,9 @@
+/* table */
+
+.kitchen--table tr td {
+    vertical-align: initial;
+}
+
 .kitchen--size-box {
     border: 1px dashed var(--color-theme);
     border-radius: var(--radius);
@@ -5,4 +11,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 0px 5px;
+}
+
+/* remarks */
+
+.kitchen--table-remarks {
+    border: 1px dashed var(--input-border-color-hover);
+    border-radius: var(--radius);
+    padding: 4px 5px;
 }

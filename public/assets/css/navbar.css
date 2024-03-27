@@ -94,8 +94,7 @@
 }
 
 .navbar--split .dropdown-toggle-split.active {
-    background-color: var(--color-theme-secondary);
-    border: 1px solid var(--color-theme-secondary);
+    border: 1px dashed var(--color-theme-secondary);
 }
 
 .navbar--split .dropdown-menu {

@@ -100,13 +100,13 @@ class SingleCustomerAddressesView extends Component
 
         // 1: district
         if (str_contains($id, 'district'))
-            $this->dispatch('refreshRawSelect', id: $id);
+            $this->dispatch('refreshRawSelectUsingValue', id: $id);
 
 
 
         // 2: deliveryTime
         if (str_contains($id, 'deliveryTime'))
-            $this->dispatch('refreshRawSelect', id: $id);
+            $this->dispatch('refreshRawSelectUsingValue', id: $id);
 
 
 

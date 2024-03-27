@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserApiMiddleware
+class PortalCustomerMiddleware
 {
 
 
@@ -14,19 +14,19 @@ class UserApiMiddleware
     {
 
 
-        // :: checkToken
-        if (auth()->user()->tokenCan('role:user')) {
-
+        // 1: continue
+        if (! empty(session('customerPortalToken')))
             return $next($request);
 
-        } // end if
 
 
-        return response()->json(['error' => 'Un-Authorized Access'], 401);
+        // 2: returnLogin
+        return redirect()->route('portals.customer.login');
 
     } // end function
 
 
 
 
-} // end middleware
+
+} // end customerMiddleware

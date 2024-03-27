@@ -40,7 +40,7 @@
 
 
                         {{-- name --}}
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-4">
                             <label class="form-label form--label">Name</label>
                             <input class="form-control form--input mb-4" type="text" wire:model='instance.name'
                                 required>
@@ -50,7 +50,7 @@
 
 
                         {{-- city --}}
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-4">
                             <label class="form-label form--label">City</label>
 
                             {{-- select --}}
@@ -79,7 +79,7 @@
 
 
                         {{-- district --}}
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-4">
                             <label class="form-label form--label">District</label>
 
                             {{-- select --}}
@@ -100,7 +100,7 @@
 
 
                         {{-- deliveryTime --}}
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-4">
                             <label class="form-label form--label">Timing</label>
 
                             {{-- select --}}
@@ -122,7 +122,7 @@
 
 
                         {{-- locationAddress --}}
-                        <div class="col-12 col-lg-8">
+                        <div class="col-8">
                             <label class="form-label form--label">Address</label>
                             <input class="form-control form--input mb-4" type="text" required
                                 wire:model='instance.locationAddress'>
@@ -132,7 +132,7 @@
 
 
                         {{-- apartment --}}
-                        <div class="col-6 col-sm-6 col-lg-4">
+                        <div class="col-4">
                             <label class="form-label form--label">Apartment</label>
                             <input class="form-control form--input mb-4" type="text" wire:model='instance.apartment'>
                         </div>
@@ -140,7 +140,7 @@
 
 
                         {{-- floor --}}
-                        <div class="col-6 col-sm-6 col-lg-4">
+                        <div class="col-4">
                             <label class="form-label form--label">Floor</label>
                             <input class="form-control form--input mb-4" type="text" wire:model='instance.floor'>
                         </div>
@@ -171,9 +171,8 @@
                             {{-- title --}}
                             <div class="d-flex align-items-center justify-content-between mb-2 hr--title">
                                 <hr class="w-100" />
-                                <label
-                                    class="form-label text-center text-sm-start form--label px-3 mb-0 w-50 justify-content-center fs-13">Delivery
-                                    Days</label>
+                                <label class="form-label form--label px-3 mb-0
+                                    w-50 justify-content-center fs-13">Delivery Days</label>
                             </div>
 
 
@@ -182,7 +181,7 @@
 
 
                             {{-- wrapper --}}
-                            <div class="text-sm-start mb-4 flex submenu--group text-start" wire:ignore.self>
+                            <div class="submenu--group text-start " wire:ignore.self>
 
 
 

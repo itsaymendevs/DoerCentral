@@ -23,7 +23,7 @@ class LoginCustomerPortal extends Component
 
 
 
-    public function checkUser()
+    public function checkCustomer()
     {
 
 
@@ -39,7 +39,7 @@ class LoginCustomerPortal extends Component
 
 
         // 1: makeRequest
-        $response = $this->makeRequest('checkUser', $instance);
+        $response = $this->makeRequest('portals/customer/checkCustomer', $instance);
 
 
 
@@ -48,10 +48,15 @@ class LoginCustomerPortal extends Component
         if (! empty($response?->token)) {
 
 
-            // 1.2: makeSessions
-            Session::put('token', $response->token);
 
-            return $this->redirect(route('dashboard.menuPlans'), navigate: false);
+
+            // 1.2: makeSessions
+            Session::put('customerPortalToken', $response->token);
+            Session::put('customerId', $response->customerId);
+            Session::put('customerName', $response->customerName);
+
+
+            return $this->redirect(route('portals.customer.general'), navigate: false);
 
 
         } // end if
@@ -87,7 +92,7 @@ class LoginCustomerPortal extends Component
 
 
         // :: removeSessions
-        Session::forget('token');
+        Session::forget(['customerPortalToken', 'customerId', 'customerName']);
 
         return view('livewire.login-customer-portal');
 

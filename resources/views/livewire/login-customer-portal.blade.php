@@ -11,7 +11,7 @@
             {{-- loginForm --}}
             <div class="col-12 col-lg-6 col-xl-5">
                 <form class="login--form" data-aos="fade-right" data-aos-duration="600" data-aos-once="true"
-                    wire:submit='checkUser'>
+                    wire:submit='checkCustomer'>
 
 
                     <div class="text-end"></div>
@@ -46,9 +46,9 @@
 
 
                     {{-- submit --}}
-                    <a class="btn w-100 btn--theme mb-1 scale--self-05" data-aos="flip-up" data-aos-delay="600"
-                        data-aos-once="true" href="{{ route('portals.customer.general') }}"
-                        wire:loading.attr='disabled'>Sign In</a>
+                    <button class="btn w-100 btn--theme mb-1 scale--self-05" data-aos="flip-up" data-aos-delay="600"
+                        data-aos-once="true" wire:loading.attr='disabled'>Sign
+                        In</button>
 
 
 

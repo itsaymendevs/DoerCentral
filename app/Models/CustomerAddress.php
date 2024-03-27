@@ -103,7 +103,7 @@ class CustomerAddress extends Model
 
 
         // 1: format (City - District \n locationAddress)
-        $halfAddress = "{$this?->city?->name} - {$this?->district?->name} \n {$this?->locationAddress}";
+        $halfAddress = "{$this?->city?->name}<br />{$this?->district?->name}<br />{$this?->locationAddress}";
 
 
 
@@ -138,7 +138,7 @@ class CustomerAddress extends Model
 
 
         // 1: format (Apartment - Floor)
-        $apartmentAndFloor = $this?->apartment . ($this?->floor ? ' - ' . $this->floor : '');
+        $apartmentAndFloor = $this?->apartment . ($this?->floor ? ' - ' . $this->floor . ' Floor' : '');
 
 
 

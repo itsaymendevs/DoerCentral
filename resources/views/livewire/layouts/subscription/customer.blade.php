@@ -71,6 +71,7 @@
 
 
 
+        @yield('styles')
 
 
 
@@ -192,6 +193,10 @@
 
 
 
+
+
+        {{-- 1.5: builder extensions --}}
+        <script src="{{ asset('assets/js/builder.js') }}"></script>
 
 
         {{-- 1.6: otherScripts --}}

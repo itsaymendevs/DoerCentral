@@ -181,10 +181,8 @@
 
                                         {{-- locationAddress (byCustomerAddress) --}}
                                         <td class="scale--3">
-                                            {{
-                                            $delivery->customer->addressByDay($delivery->deliveryDate)?->halfAddress()
-                                            ?? ''
-                                            }}
+                                            {!! $delivery->customer
+                                            ->addressByDay($delivery->deliveryDate)?->halfAddress() ?? '' !!}
                                         </td>
 
                                         <td class="scale--3">

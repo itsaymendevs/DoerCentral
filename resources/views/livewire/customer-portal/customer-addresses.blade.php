@@ -1,20 +1,32 @@
 <section id="content--section" class="content--section">
     <div class="container">
-        <div class="row align-items-end mb-submenu">
-            <div class="col-12 text-center">
-                <div class="btn-group submenu--group mobile" role="group" data-aos="fade-down" data-aos-duration="600"
-                    data-aos-delay="800" data-aos-once="true">
-                    <a class="btn fs-13 px-3" role="button" href="javascript:void(0);">Overview</a><a wire:navigate
-                        class="btn fs-13 px-3" role="button"
-                        href="{{ route('portals.customer.general') }}">General</a><a class="btn fs-13 px-3"
-                        role="button" href="javascript:void(0);">Plans</a><a class="btn fs-13 px-3" role="button"
-                        href="javascript:void(0);">Delivery</a><a class="btn fs-13 px-3" role="button"
-                        href="javascript:void(0);">History</a><a class="btn fs-13 px-3 active" role="button"
-                        href="javascript:void(0);">Address</a>
-                </div>
-            </div>
-        </div>
+
+
+
+
+        {{-- :: SubMenu --}}
+        <livewire:customer-portal.components.sub-menu id='{{ $customer->id }}' />
+
+
+
+
+        {{-- ----------------------------------------- --}}
+        {{-- ----------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+        {{-- topRow --}}
         <div class="row align-items-center pt-3 mb-3">
+
+
+
+            {{-- newButton --}}
             <div class="col-8">
                 <button
                     class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center fs-xs-13"
@@ -27,157 +39,209 @@
                     </svg>New Address
                 </button>
             </div>
+
+
+
+
+
+            {{-- counter --}}
             <div class="col-4 text-end">
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
                     title="Number of Addresses">
-                    2
+                    {{ $addresses->count() }}
                 </h3>
             </div>
         </div>
+        {{-- end topRow --}}
+
+
+
+
+
+
+
+
+
+
+
+
+        {{-- ------------------------------------------- --}}
+        {{-- ------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+
+        {{-- midRow --}}
         <div class="row align-items-start mb-4">
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <div class="tabs--wrap">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">Home</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active no--card px-1" role="tabpanel" id="tab-1">
-                                    <form>
-                                        <div class="row align-items-center">
-                                            <div class="col-12 col-sm-4">
-                                                <div class="d-flex align-items-center justify-content-between mb-1">
-                                                    <hr style="width: 65%" />
-                                                    <label
-                                                        class="form-label form--label px-3 w-50 justify-content-center mb-0">City</label>
-                                                </div>
-                                                <div class="select--single-wrapper mb-4">
-                                                    <select class="form-select form--select2">
-                                                        <option value=""></option>
-                                                        <option value="1">FIrst Option</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-4 col-xl-4">
-                                                <div class="d-flex align-items-center justify-content-between mb-1">
-                                                    <hr style="width: 65%" />
-                                                    <label
-                                                        class="form-label form--label px-3 w-50 justify-content-center mb-0">District</label>
-                                                </div>
-                                                <div class="select--single-wrapper mb-4">
-                                                    <select class="form-select form--select2">
-                                                        <option value=""></option>
-                                                        <option value="1">FIrst Option</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-sm-4">
-                                                <div class="d-flex align-items-center justify-content-between mb-1">
-                                                    <hr style="width: 65%" />
-                                                    <label
-                                                        class="form-label form--label px-3 w-50 justify-content-center mb-0">Timing</label>
-                                                </div>
-                                                <div class="select--single-wrapper mb-4">
-                                                    <select class="form-select form--select2">
-                                                        <option value=""></option>
-                                                        <option value="1">FIrst Option</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="input--with-label mb-4">
-                                                    <label class="form-label form--label mb-0"
-                                                        style="/*width: 20%;*/">Address</label><input
-                                                        class="form-control form--input" type="text" step="1"
-                                                        value="Churchill Tower" style="/*width: 80%;*/" />
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <div class="input--with-label mb-4">
-                                                    <label class="form-label form--label mb-0">Title</label><input
-                                                        class="form-control form--input" type="text" step="1"
-                                                        value="Home" />
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <div class="input--with-label mb-4">
-                                                    <label class="form-label form--label mb-0">Apartment</label><input
-                                                        class="form-control form--input" type="text" step="1"
-                                                        value="4" />
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <div class="input--with-label mb-4">
-                                                    <label class="form-label form--label mb-0">Villa</label><input
-                                                        class="form-control form--input" type="text" step="1"
-                                                        value="4" />
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mt-3 mt-lg-0">
-                                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                                    <hr class="w-100" />
-                                                    <label
-                                                        class="form-label form--label px-3 mb-0 w-75 justify-content-center fs-14">Delivery
-                                                        Days</label>
-                                                </div>
-                                                <div
-                                                    class="mb-4 flex submenu--group text-center text-sm-start d-lg-flex align-items-center justify-content-between">
-                                                    <div class="form-check button--checkbox btn fs-14 darker">
-                                                        <input class="form-check-input d-none" type="checkbox"
-                                                            id="formCheck-1" /><label class="form-check-label"
-                                                            for="formCheck-1">Sunday</label>
-                                                    </div>
-                                                    <div class="form-check button--checkbox btn fs-14">
-                                                        <input class="form-check-input d-none" type="checkbox"
-                                                            id="formCheck-8" /><label class="form-check-label"
-                                                            for="formCheck-8">Monday</label>
-                                                    </div>
-                                                    <div class="form-check button--checkbox btn fs-14">
-                                                        <input class="form-check-input d-none" type="checkbox"
-                                                            id="formCheck-3" /><label class="form-check-label"
-                                                            for="formCheck-3">Tuesday</label>
-                                                    </div>
-                                                    <div class="form-check button--checkbox btn fs-14">
-                                                        <input class="form-check-input d-none" type="checkbox"
-                                                            id="formCheck-4" /><label class="form-check-label"
-                                                            for="formCheck-4">Wednesday</label>
-                                                    </div>
-                                                    <div class="form-check button--checkbox btn fs-14">
-                                                        <input class="form-check-input d-none" type="checkbox"
-                                                            id="formCheck-5" /><label class="form-check-label"
-                                                            for="formCheck-5">Thursday</label>
-                                                    </div>
-                                                    <div class="form-check button--checkbox btn fs-14">
-                                                        <input class="form-check-input d-none" type="checkbox"
-                                                            id="formCheck-6" /><label class="form-check-label"
-                                                            for="formCheck-6">Friday</label>
-                                                    </div>
-                                                    <div class="form-check button--checkbox btn fs-14">
-                                                        <input class="form-check-input d-none" type="checkbox"
-                                                            id="formCheck-7" /><label class="form-check-label"
-                                                            for="formCheck-7">Saturday</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 text-center">
-                                                <button
-                                                    class="btn btn--scheme btn--scheme-2 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center"
-                                                    type="button" style="border: 1px dashed var(--color-scheme-3)">
-                                                    Save Changes
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+            <div class="col-12">
+
+
+
+                {{-- tabsWrap --}}
+                <div class="tabs--wrap">
+
+
+
+
+
+                    {{-- navLinks --}}
+                    <ul class="nav nav-tabs" role="tablist">
+
+
+                        {{-- loop - addresses --}}
+                        @foreach ($addresses as $address)
+
+
+
+                        <li class="nav-item" role="presentation">
+                            <a href="#tab-{{ $address->id }}" class="nav-link
+                                @if ($addresses->first()->id == $address->id) active @endif" role="tab"
+                                data-bs-toggle="tab" key="tab-{{ $address->id }}">{{
+                                $address->name }}</a>
+                        </li>
+
+                        @endforeach
+                        {{-- end loop --}}
+
+
+                    </ul>
+                    {{-- end navLinks --}}
+
+
+
+
+
+
+
+
+                    {{-- --------------------------- --}}
+                    {{-- --------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- tabContent --}}
+                    <div class="tab-content">
+
+
+
+
+                        {{-- loop - addresses --}}
+                        @foreach ($addresses as $address)
+
+
+
+                        {{-- tabPane --}}
+                        <div key="address-{{ $address->id }}" class="tab-pane fade
+                        @if ($addresses->first()->id == $address->id) show active @endif no--card px-1"
+                            id="tab-{{ $address->id }}" role="tabpanel">
+
+
+
+
+                            {{-- :: viewAddress --}}
+                            <livewire:customer-portal.customer-addresses.components.customer-addresses-view
+                                key="address-view-{{ $address->id }}" id="{{ $address->id }}" />
+
+
                         </div>
+                        {{-- endTabPane --}}
+
+
+
+
+
+
+
+
+                        @endforeach
+                        {{-- end loop --}}
+
+
                     </div>
+                    {{-- end tabContent --}}
+
+
+
+
+
+
                 </div>
             </div>
         </div>
+        {{-- end midRow --}}
+
+
+
     </div>
+    {{-- endContainer --}}
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+    @section('modals')
+
+
+
+
+    {{-- 1: createAddress --}}
+    <livewire:customer-portal.customer-addresses.components.customer-addresses-create key='{{ $customer->id }}'
+        id='{{ $customer->id }}' />
+
+
+
+
+
+    @endsection
+    {{-- endSection --}}
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
 </section>
+{{-- endSection --}}

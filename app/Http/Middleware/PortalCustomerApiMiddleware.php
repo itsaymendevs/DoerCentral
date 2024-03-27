@@ -6,16 +6,15 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserApiMiddleware
+class PortalCustomerApiMiddleware
 {
-
 
     public function handle(Request $request, Closure $next) : Response
     {
 
 
         // :: checkToken
-        if (auth()->user()->tokenCan('role:user')) {
+        if (auth()->user()->tokenCan('role:customer')) {
 
             return $next($request);
 

@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth.user' => \App\Http\Middleware\UserMiddleware::class,
         'auth.userApi' => \App\Http\Middleware\UserApiMiddleware::class,
+        'auth.portals.customer' => \App\Http\Middleware\PortalCustomerMiddleware::class,
         'preventBack' => \App\Http\Middleware\PreventBackButtonMiddleware::class,
     ];
 }

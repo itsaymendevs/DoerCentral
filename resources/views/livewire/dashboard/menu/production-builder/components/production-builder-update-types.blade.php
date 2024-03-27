@@ -29,11 +29,13 @@
             {{-- input --}}
             <input class="form-check-input pointer" id="mealType-{{ $mealType->id }}" type="checkbox"
                 value='{{ $mealType->id }}' @if (in_array($mealType->id, $instance->mealTypes)) checked @endif
-            wire:model='instance.mealTypes' wire:change='update' wire:loading.attr='disabled' />
+            wire:model='instance.mealTypes' wire:change='update' wire:loading.attr='disabled' wire:target='update' />
 
 
             {{-- label --}}
-            <label class="form-check-label" for="mealType-{{ $mealType->id }}">{{ $mealType->name }}</label>
+            <label class="form-check-label" wire:loading.attr='disabled' wire:target='update'
+                for="mealType-{{ $mealType->id }}">{{
+                $mealType->name }}</label>
 
         </div>
         @endforeach
@@ -65,11 +67,12 @@
             {{-- input --}}
             <input class="form-check-input" id="snackType-{{ $snackType }}" name="snackType" type="radio"
                 value='{{ $snackType }}' @if ($instance->partType == $snackType) checked='checked' @endif
-            wire:model='instance.partType' wire:change='update' />
+            wire:model='instance.partType' wire:change='update' wire:loading.attr='disabled' wire:target='update' />
 
 
             {{-- label --}}
-            <label class="form-check-label" for="snackType-{{ $snackType }}">{{ $snackType }}</label>
+            <label class="form-check-label" wire:loading.attr='disabled' wire:target='update'
+                for="snackType-{{ $snackType }}">{{ $snackType }}</label>
 
         </div>
         @endforeach
@@ -101,11 +104,12 @@
             {{-- input --}}
             <input class="form-check-input" id="sauceType-{{ $sauceType }}" name="sauceType" type="radio"
                 value='{{ $sauceType }}' @if ($instance->partType == $sauceType) checked @endif
-            wire:model='instance.partType' wire:change='update' />
+            wire:model='instance.partType' wire:change='update' wire:loading.attr='disabled' wire:target='update' />
 
 
             {{-- label --}}
-            <label class="form-check-label" for="sauceType-{{ $sauceType }}">{{ $sauceType }}</label>
+            <label class="form-check-label" wire:loading.attr='disabled' wire:target='update'
+                for="sauceType-{{ $sauceType }}">{{ $sauceType }}</label>
 
         </div>
         @endforeach
@@ -137,11 +141,12 @@
             {{-- input --}}
             <input class="form-check-input" id="drinkType-{{ $drinkType }}" name="drinkType" type="radio"
                 value='{{ $drinkType }}' @if ($instance->partType == $drinkType) checked @endif
-            wire:model='instance.partType' wire:change='update' />
+            wire:model='instance.partType' wire:change='update' wire:loading.attr='disabled' wire:target='update' />
 
 
             {{-- label --}}
-            <label class="form-check-label" for="drinkType-{{ $drinkType }}">{{ $drinkType }}</label>
+            <label class="form-check-label" wire:loading.attr='disabled' wire:target='update'
+                for="drinkType-{{ $drinkType }}">{{ $drinkType }}</label>
 
         </div>
         @endforeach

@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\CustomerPortal\CustomerAddresses;
+use App\Livewire\CustomerPortal\CustomerDeliveries;
 use App\Livewire\CustomerPortal\CustomerGeneral;
 use App\Livewire\Dashboard\Customers;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
@@ -465,7 +466,7 @@ Route::middleware(['auth.user'])->group(function () {
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
-// ** -------------------- SUBSCRIPTION - CUSTOMER ------------------------ **
+// ** -------------------- SUBSCRIPTION - CUSTOMER ----------------------- **
 
 
 
@@ -548,11 +549,6 @@ Route::get('subscription/customer/{id}/invoice', CustomerSubscriptionStepSix::cl
 
 
 
-
-
-
-
-
 // 1: portal - customer - login
 Route::get('portals/customer', LoginCustomerPortal::class);
 Route::get('portals/customer/login', LoginCustomerPortal::class)->name('portals.customer.login');
@@ -562,33 +558,59 @@ Route::get('portals/customer/login', LoginCustomerPortal::class)->name('portals.
 
 
 
-// ----------------------------------------------------------------------------
-
-
-
-
-
-// 2: portal - customer - general
-Route::get('portals/customer/general', CustomerGeneral::class)->name('portals.customer.general');
+// :: Authenticated
+Route::middleware(['auth.portals.customer'])->group(function () {
 
 
 
 
 
 
-
-// ----------------------------------------------------------------------------
-
-
-
-
-
-// 2: portal - customer - addresses
-Route::get('portals/customer/addresses', CustomerAddresses::class)->name('portals.customer.addresses');
+    // ----------------------------------------------------------------------------
 
 
 
 
 
+    // 2: portal - customer - general
+    Route::get('portals/customer/general', CustomerGeneral::class)->name('portals.customer.general');
 
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+    // 3: portal - customer - address
+    Route::get('portals/customer/address', CustomerAddresses::class)->name('portals.customer.address');
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+    // 3: portal - customer - delivery
+    Route::get('portals/customer/delivery', CustomerDeliveries::class)->name('portals.customer.delivery');
+
+
+
+
+
+
+
+}); // end Authentication
 

@@ -237,8 +237,7 @@
 
 
                                         {{-- 1: editButton --}}
-                                        <a wire:navigate
-                                            href="{{ route('dashboard.menuProductionBuilder', [$subRecipe->id]) }}"
+                                        <a href="{{ route('dashboard.menuProductionBuilder', [$subRecipe->id]) }}"
                                             class="btn btn--scheme btn--theme fs-12 px-2 mx-1 scale--self-05 h-32">
                                             <svg class="bi bi-pencil fs-5" xmlns="http://www.w3.org/2000/svg"
                                                 width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">

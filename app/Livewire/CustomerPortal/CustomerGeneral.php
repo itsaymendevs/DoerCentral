@@ -35,6 +35,8 @@ class CustomerGeneral extends Component
 
 
 
+
+
     public function mount()
     {
 
@@ -77,6 +79,12 @@ class CustomerGeneral extends Component
 
 
     } // end function
+
+
+
+
+
+
 
 
 
@@ -131,7 +139,7 @@ class CustomerGeneral extends Component
 
 
 
-    #[On('refreshWalletViews')]
+    #[On('refreshWalletViews', 'refreshViews')]
     public function render()
     {
 

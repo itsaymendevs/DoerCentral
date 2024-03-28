@@ -6,7 +6,7 @@
     {{-- customersButton --}}
     <div class="col-4">
         <div class="btn-group submenu--group" role="group" data-aos="flip-up" data-aos-duration="600"
-            data-aos-delay="800" data-aos-once="true">
+            data-aos-delay="800" data-aos-once="true" wire:ignore.self>
 
 
             <a class="btn @if (Request::is('dashboard/customers')) active @endif submenu--group btn--scheme-2 d-flex align-items-center"
@@ -22,12 +22,14 @@
     {{-- SAO - Details --}}
     <div class="col-8 text-end">
         <div class="btn-group submenu--group" role="group" data-aos="flip-up" data-aos-duration="600"
-            data-aos-delay="800" data-aos-once="true">
+            data-aos-delay="800" data-aos-once="true" wire:ignore.self>
 
 
             {{-- :: SAO --}}
-            <a class="btn @if (Request::is('dashboard/customers/SAO')) active @endif" role="button"
-                href="javascript:void(0);">SOA</a>
+            <a wire:navigate class="btn @if (Request::is('dashboard/customers-SOA')) active @endif" role="button"
+                href="{{ route('dashboard.customersSOA') }}">SOA</a>
+
+
 
 
             {{-- :: Details --}}

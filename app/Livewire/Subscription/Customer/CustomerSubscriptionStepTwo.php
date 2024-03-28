@@ -231,7 +231,7 @@ class CustomerSubscriptionStepTwo extends Component
 
 
             // :: typeExists
-            if (! empty ($this->requiredTypes[$type->id])) {
+            if (! empty($this->requiredTypes[$type->id])) {
 
 
 

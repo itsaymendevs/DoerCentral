@@ -401,20 +401,24 @@
 
 
                     {{-- 1: pause --}}
-                    <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause / Freeze">
+                    <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause">
 
-                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
-                            data-bs-toggle="modal" data-bs-target="#pause-subscription" type='button'>
+                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32" type='button'
+                            data-bs-toggle="modal" data-bs-target="#pause-subscription">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                viewBox="0 0 16 16" class="bi bi-stop-circle fs-5">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                class="bi bi-stopwatch fs-5" viewBox="0 0 16 16">
+                                <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
                                 <path
-                                    d="M5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3z">
-                                </path>
+                                    d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
                             </svg>
                         </button>
 
                     </div>
+
+
+
+
+
 
 
 
@@ -543,7 +547,7 @@
                                 {{-- :: editBundle --}}
                                 <button
                                     class="btn btn--raw-icon fs-15 text-warning d-inline-flex align-items-center justify-content-end scale--3 w-auto"
-                                    type="button" data-bs-target="#plan-ranges" data-bs-toggle="modal">
+                                    type="button" data-bs-target="#edit-bundle" data-bs-toggle="modal">
                                     Edit Bundle<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                         fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil fs-6 ms-2"
                                         style="fill: var(--bs-warning)">
@@ -865,17 +869,9 @@
 
 
 
-    {{-- ------------------------- --}}
-
-
-
-
-
-
-
-    {{-- 4: pauseSubscription --}}
-
-
+    {{-- 1: editBundle --}}
+    <livewire:customer-portal.customer-general.components.customer-general-edit-bundle
+        id='{{ $latestSubscription->id }}' key='edit-bundle-{{ $latestSubscription->id }}' />
 
 
 

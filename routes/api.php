@@ -545,8 +545,31 @@ Route::post('/dashboard/customers/remove', [CustomerController::class, 'removeCu
 
 
 
+
+
+
 // 6.0.1: customers - wallet - deposits - store
 Route::post('/dashboard/customers/wallet/deposits/store', [CustomerController::class, 'storeWalletDeposit']);
+
+
+
+
+
+
+// 6.0.2: customers - bundle - types - edit
+Route::post('/dashboard/customers/bundle/types/update', [CustomerController::class, 'updateCustomerBundleTypes']);
+
+
+
+
+
+
+
+// 6.0.3: customers - subscription - pause
+Route::post('/dashboard/customers/subscription/pause', [CustomerController::class, 'pauseCustomerSubscription']);
+
+
+
 
 
 

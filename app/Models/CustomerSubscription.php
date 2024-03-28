@@ -12,6 +12,44 @@ class CustomerSubscription extends Model
 
 
 
+    public function types()
+    {
+
+        return $this->hasMany(CustomerSubscriptionType::class, 'customerSubscriptionId');
+
+    } // end function
+
+
+
+
+
+
+
+    public function deliveries()
+    {
+
+        return $this->hasMany(CustomerSubscriptionDelivery::class, 'customerSubscriptionId');
+
+    } // end function
+
+
+
+
+
+
+
+
+    public function customer()
+    {
+
+        return $this->belongsTo(Customer::class, 'customerId');
+
+    } // end function
+
+
+
+
+
     public function plan()
     {
 
@@ -53,6 +91,101 @@ class CustomerSubscription extends Model
         return $this->belongsTo(Bag::class, 'bagId');
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function upcomingDeliveries()
+    {
+
+
+        // 1: getDeliveries
+        $upcomingDeliveries = $this->deliveries()?->where('deliveryDate', '>=', date('d-m-Y'))?->get() ?? [];
+
+
+
+        return $upcomingDeliveries;
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function completedDeliveries()
+    {
+
+
+        // 1: getDeliveries
+        $completedDeliveries = $this->deliveries()?->where('status', 'Completed')?->get() ?? [];
+
+
+        return $completedDeliveries;
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    public function incompleteDeliveries()
+    {
+
+
+        // 1: getDeliveries
+        $pendingDeliveries = $this->deliveries()?->where('status', '!=', 'Completed')?->get() ?? [];
+
+
+
+        return $pendingDeliveries;
+
+
+    } // end function
+
+
 
 
 

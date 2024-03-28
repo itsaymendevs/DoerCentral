@@ -8,9 +8,14 @@ use App\Models\CustomerAddress;
 use App\Models\CustomerAllergy;
 use App\Models\CustomerDeliveryDay;
 use App\Models\CustomerExclude;
+use App\Models\CustomerSubscription;
+use App\Models\CustomerSubscriptionPause;
+use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
 use App\Models\CustomerWalletDeposit;
+use App\Models\MealType;
 use App\Traits\HelperTrait;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -164,7 +169,7 @@ class CustomerController extends Controller
 
 
 
-    // --------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------
 
 
 
@@ -203,7 +208,15 @@ class CustomerController extends Controller
 
 
 
-    // --------------------------------------------------------------------------------------------
+
+
+
+
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+
+
 
 
 
@@ -286,6 +299,7 @@ class CustomerController extends Controller
 
 
 
+    // ------------------------------------------------------------------
 
 
 
@@ -296,9 +310,262 @@ class CustomerController extends Controller
 
 
 
-    // --------------------------------------------------------------------------------------------
-    // --------------------------------------------------------------------------------------------
-    // --------------------------------------------------------------------------------------------
+
+
+
+    public function updateCustomerBundleTypes(Request $request)
+    {
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // :: getSubscription
+        $subscription = CustomerSubscription::find($request->latestSubscriptionId);
+
+
+
+
+
+
+
+        // :: loop - bundleTypes - mealTypes
+        foreach ($request->bundleTypes ?? [] as $mealTypeId => $quantity) {
+
+
+
+
+            // 1: getSubscriptionType
+            $subscriptionType = CustomerSubscriptionType::where('mealTypeId', $mealTypeId)
+                ->where('customerSubscriptionId', $subscription->id)
+                ->first();
+
+
+
+            // 1.2: updateQuantity
+            $subscriptionType->quantity = $quantity;
+            $subscriptionType->save();
+
+
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Bundle has been updated'], 200);
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function pauseCustomerSubscription(Request $request)
+    {
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+        // :: getSubscription
+        $subscription = CustomerSubscription::find($request->customerSubscriptionId);
+
+
+
+
+
+
+
+        // :: create instance
+        $pause = new CustomerSubscriptionPause();
+
+
+
+
+        // 1: general
+        $pause->type = $request->type;
+        $pause->fromDate = $request->fromDate;
+        $pause->untilDate = $request->untilDate;
+        $pause->remarks = $request->remarks ?? null;
+
+
+
+
+
+
+
+        // -------------------------------
+        // -------------------------------
+
+
+
+
+
+
+        // 1.2: pauseDays - pricePerDay - totalPrice
+
+
+        // 1.2.1: pauseDays
+        $fromDate = new DateTime($request->fromDate);
+        $untilDate = new DateTime($request->untilDate);
+        $pause->pauseDays = $fromDate->diff($untilDate)->days;
+
+
+
+
+
+
+        // 1.2.2: pricePerDay - totalPrice
+        $pause->pricePerDay = $subscription->planPrice / $subscription->planDays;
+        $pause->totalPrice = $pause->pricePerDay * $pause->pauseDays;
+
+
+
+
+
+
+
+        // 1.3: customer - subscription
+        $pause->customerId = $request->customerId;
+        $pause->customerSubscriptionId = $request->customerSubscriptionId;
+
+
+
+        $pause->save();
+
+
+
+
+
+
+
+        // ------------------------------------
+        // ------------------------------------
+
+
+
+
+
+
+        // 2: checkPauseType
+
+
+
+
+        // 2.1: refundWallet
+        if ($pause->type == 'Refund Wallet') {
+
+
+
+
+
+            // 2.1.2: createDeposit
+            $walletDeposit = new CustomerWalletDeposit();
+
+
+            // :: general
+            $walletDeposit->depositDate = date('Y-m-d', strtotime('+4 hours'));
+            $walletDeposit->remarks = 'Pause Refund';
+            $walletDeposit->amount = $pause->totalPrice;
+
+
+
+            // :: customer - wallet
+            $walletDeposit->walletId = $subscription->customer->wallet->id;
+            $walletDeposit->customerId = $subscription->customer->id;
+
+
+
+
+            $walletDeposit->save();
+
+
+        } // end if
+
+
+
+
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Subscription has been paused'], 200);
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
 
 
 
@@ -422,7 +689,7 @@ class CustomerController extends Controller
 
 
 
-    // --------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------
 
 
 
@@ -540,7 +807,7 @@ class CustomerController extends Controller
 
 
 
-    // --------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------
 
 
 

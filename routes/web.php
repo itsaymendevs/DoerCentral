@@ -7,6 +7,7 @@ use App\Livewire\Dashboard\Customers;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerAddresses;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerDeliveries;
+use App\Livewire\Dashboard\CustomersStateOfAccount;
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayPacking;
@@ -406,6 +407,31 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+
+    // 8: Customers - SOA
+    Route::get('dashboard/customers-SOA', CustomersStateOfAccount::class)->name('dashboard.customersSOA');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // ----------------------------------------------------------------------------
 
 
@@ -417,7 +443,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-    // 7.1: kitchen - kitchenToday - production
+    // 10: kitchen - kitchenToday - production
     Route::get('dashboard/kitchen/today/production', KitchenTodayProduction::class)->name('dashboard.kitchenTodayProduction');
 
 
@@ -430,7 +456,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-    // 7.1: kitchen - kitchenToday - packing
+    // 10.1: kitchen - kitchenToday - packing
     Route::get('dashboard/kitchen/today/packing', KitchenTodayPacking::class)->name('dashboard.kitchenTodayPacking');
 
 
@@ -460,6 +486,11 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
+
+
+
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
@@ -467,6 +498,9 @@ Route::middleware(['auth.user'])->group(function () {
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // ** -------------------- SUBSCRIPTION - CUSTOMER ----------------------- **
+
+
+
 
 
 
@@ -538,6 +572,12 @@ Route::get('subscription/customer/{id}/invoice', CustomerSubscriptionStepSix::cl
 
 
 
+
+
+
+
+
+
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
@@ -545,6 +585,9 @@ Route::get('subscription/customer/{id}/invoice', CustomerSubscriptionStepSix::cl
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // ** ---------------------- PORTALS - CUSTOMER -------------------------- **
+
+
+
 
 
 
@@ -558,15 +601,16 @@ Route::get('portals/customer/login', LoginCustomerPortal::class)->name('portals.
 
 
 
+
+
+
+
+
 // :: Authenticated
 Route::middleware(['auth.portals.customer'])->group(function () {
 
 
 
-
-
-
-    // ----------------------------------------------------------------------------
 
 
 

@@ -342,7 +342,7 @@ class PlanController extends Controller
 
 
                 $rangeType->mealTypeId = $mealType->id;
-                $rangeType->type = $mealType->type->id;
+                $rangeType->typeId = $mealType->type->id;
 
                 $rangeType->planBundleRangeId = $bundleRange->id;
 

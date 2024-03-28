@@ -13,11 +13,11 @@ class UserSeeder extends Seeder
     {
 
         // ::root
-        $user = ['Admin', 'admin@doer.ae', '9715590100', 1];
+        $user = ['Admin', 'admin@doer.ae1', '9715590100', 1];
 
         User::create([
             'name' => $user[0],
-            'password' => Hash::make('123456'),
+            'password' => Hash::make('doer@123'),
             'email' => $user[1],
             'phone' => $user[2],
             'roleId' => $user[3],

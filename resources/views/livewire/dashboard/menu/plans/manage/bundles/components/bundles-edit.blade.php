@@ -177,7 +177,7 @@
 
                                         {{-- minus --}}
                                         <button class="btn btn--scheme px-2 range--button minus" type="button"
-                                            data-type="minus" data-target="{{ $mealType->id }}-range-1">
+                                            data-type="minus" data-target="{{ $mealType->id }}-range-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-dash-circle">
                                                 <path

@@ -1,6 +1,6 @@
 {{-- pauseModal --}}
 <div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="pause-subscription" wire:ignore.self>
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body py-0 px-0">
 
@@ -40,18 +40,75 @@
                     <div class="row align-items-center row pt-2 mb-4">
 
 
-                        {{-- form --}}
-                        <div class="col-6">
-                            <label class="form-label form--label">From</label>
-                            <input class="form-control form--input mb-4" type="date" />
+
+                        {{-- types --}}
+                        <div class="col-12" wire:ignore>
+                            <label class="form-label form--label">Process</label>
+                            <div class="select--single-wrapper mb-4">
+                                <select class="form-select form--modal-select" data-instance='instance.type'
+                                    data-modal='#pause-subscription' required>
+                                    <option value=""></option>
+
+                                    @foreach ($types as $type)
+                                    <option value="{{ $type }}">{{ $type }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
                         </div>
+
+
+
+
+
+
+
+
+                        {{-- from --}}
+                        <div class="col-12 col-sm-6">
+
+
+                            {{-- label --}}
+                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                <hr style="width: 65%;" />
+                                <label class="form-label form--label px-3 w-50 justify-content-center mb-0">From</label>
+                            </div>
+
+                            {{-- input --}}
+                            <input class="form-control form--input mb-4" type="date" required
+                                wire:model.live='instance.fromDate'
+                                min="{{ date('Y-m-d', strtotime('+1 day +4 hours')) }}" />
+
+                        </div>
+
+
+
+
+
 
 
                         {{-- until --}}
-                        <div class="col-6">
-                            <label class="form-label form--label">Until</label>
-                            <input class="form-control form--input mb-4" type="date" />
+                        <div class=" col-12 col-sm-6">
+
+
+                            {{-- label --}}
+                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                <hr style="width: 65%;" />
+                                <label
+                                    class="form-label form--label px-3 w-50 justify-content-center mb-0">Until</label>
+                            </div>
+
+                            {{-- input --}}
+                            <input class="form-control form--input mb-4" type="date" required
+                                wire:model='instance.untilDate'
+                                min="{{ $instance->fromDate ?? date('Y-m-d', strtotime('+1 day +4 hours')) }}" />
+
                         </div>
+
+
+
+
+
 
 
 
@@ -59,7 +116,8 @@
                         {{-- remarks --}}
                         <div class="col-12">
                             <label class="form-label form--label">Remarks</label>
-                            <textarea class="form-control form--input form--textarea mb-4"></textarea>
+                            <textarea class="form-control form--input form--textarea mb-4"
+                                wire:model='instance.remarks'></textarea>
                         </div>
 
 
@@ -67,7 +125,7 @@
 
                         {{-- submitButton --}}
                         <div class="col-12 text-center">
-                            <button
+                            <button wire:loading.attr='disabled'
                                 class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
                                 Confirm
                             </button>
@@ -81,5 +139,58 @@
             </div>
         </div>
     </div>
+    {{-- endContainer --}}
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $(".form--modal-select").on("change", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+
+         @this.set(instance, selectValue);
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
 </div>
 {{-- endModal --}}

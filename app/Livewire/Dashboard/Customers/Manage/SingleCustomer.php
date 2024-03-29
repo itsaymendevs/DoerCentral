@@ -122,7 +122,7 @@ class SingleCustomer extends Component
 
 
 
-    #[On('refreshWalletViews')]
+    #[On('refreshWalletViews', 'refreshViews')]
     public function render()
     {
 

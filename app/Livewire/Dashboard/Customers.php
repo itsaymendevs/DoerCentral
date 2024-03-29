@@ -31,8 +31,6 @@ class Customers extends Component
 
 
 
-
-
     public function remove($id)
     {
 
@@ -134,14 +132,12 @@ class Customers extends Component
 
 
             // 1: plan
-            $this->searchPlan ? $item->latestPlan()->id != $this->searchPlan ? $toReturn = false : null : null;
+            $this->searchPlan ? $item->latestSubscription()->planId != $this->searchPlan ? $toReturn = false : null : null;
 
 
             return $toReturn;
 
         });
-
-
 
 
 

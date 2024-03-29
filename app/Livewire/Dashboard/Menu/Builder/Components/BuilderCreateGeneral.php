@@ -95,6 +95,7 @@ class BuilderCreateGeneral extends Component
         $cuisines = Cuisine::all();
         $diets = Diet::all();
         $tags = Tag::all();
+        $categories = ['Vegetarian', 'Non-Vegetarian'];
 
 
 
@@ -104,7 +105,7 @@ class BuilderCreateGeneral extends Component
 
 
 
-        return view('livewire.dashboard.menu.builder.components.builder-create-general', compact('types', 'cuisines', 'diets', 'tags'));
+        return view('livewire.dashboard.menu.builder.components.builder-create-general', compact('types', 'cuisines', 'diets', 'tags', 'categories'));
 
 
     } // end function

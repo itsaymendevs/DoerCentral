@@ -73,7 +73,6 @@ class SingleCustomerManageWallet extends Component
 
 
 
-
     } // end function
 
 

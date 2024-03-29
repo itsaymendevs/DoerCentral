@@ -47,8 +47,8 @@ class BuilderController extends Controller
 
 
 
-        // 1.2: isVegetarian - diet - cuisine
-        $meal->isVegetarian = $request->isVegetarian ? $request->isVegetarian === '1' ? true : false : null;
+        // 1.2: category - diet - cuisine
+        $meal->category = $request->category ?? null;
         $meal->cuisineId = $request->cuisineId;
         $meal->dietId = $request->dietId;
 
@@ -175,8 +175,8 @@ class BuilderController extends Controller
 
 
 
-        // 1.2: isVegetarian - diet - cuisine
-        $meal->isVegetarian = $request->isVegetarian ? $request->isVegetarian === '1' ? true : false : null;
+        // 1.2: category - diet - cuisine
+        $meal->category = $request->category ?? null;
         $meal->cuisineId = $request->cuisineId;
         $meal->dietId = $request->dietId;
 

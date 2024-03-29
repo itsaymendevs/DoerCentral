@@ -38,6 +38,20 @@ class CustomerSubscription extends Model
 
 
 
+    public function pauses()
+    {
+
+        return $this->hasMany(CustomerSubscriptionPause::class, 'customerSubscriptionId');
+
+    } // end function
+
+
+
+
+
+
+
+
 
     public function customer()
     {
@@ -185,6 +199,21 @@ class CustomerSubscription extends Model
 
     } // end function
 
+
+
+
+
+
+
+
+
+
+    public function canceledPauses()
+    {
+
+        return $this->pauses()?->where('isCanceled', true)->get() ?? [];
+
+    } // end function
 
 
 

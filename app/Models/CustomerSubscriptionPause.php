@@ -8,4 +8,36 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerSubscriptionPause extends Model
 {
     use HasFactory;
-}
+
+
+
+
+    public function walletDeposit()
+    {
+
+        return $this->hasOne(CustomerWalletDeposit::class, 'subscriptionPauseId');
+
+    } // end function
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+} // end model

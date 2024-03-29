@@ -23,14 +23,30 @@ return new class extends Migration {
 
 
 
+            // 1.2: subscriptionPauseId - isCanceled (optional)
+            $table->bigInteger('subscriptionPauseId')->unsigned()->nullable();
+            $table->foreign('subscriptionPauseId')->references('id')->on('customer_subscription_pauses')->onDelete('cascade');
 
-            // 1.2: wallet - customer
+
+
+
+
+
+
+
+
+
+            // 1.3: wallet - customer
             $table->bigInteger('walletId')->unsigned()->nullable();
             $table->foreign('walletId')->references('id')->on('customer_wallets')->onDelete('cascade');
 
 
             $table->bigInteger('customerId')->unsigned()->nullable();
             $table->foreign('customerId')->references('id')->on('customers')->onDelete('cascade');
+
+
+
+
 
 
 

@@ -59,7 +59,7 @@ trait HelperTrait
     {
 
 
-        // 1: currentUAE
+        // 1: getDate
         return $currentDate = date('Y-m-d', strtotime('+4 hours'));
 
 
@@ -69,6 +69,79 @@ trait HelperTrait
 
 
 
+
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+    protected function getTmwDate()
+    {
+
+
+        // 1: getDate
+        return $tmwDate = date('Y-m-d', strtotime('+1 day +4 hours'));
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+    protected function getPauseDate()
+    {
+
+
+        // 1: getDate
+        return $pauseDate = date('Y-m-d', strtotime('+1 day +4 hours'));
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+    protected function getUnPauseDate()
+    {
+
+
+        // 1: getDate
+        return $unPauseDate = date('Y-m-d', strtotime('+1 day +4 hours'));
+
+
+    } // end function
 
 
 

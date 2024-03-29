@@ -9,6 +9,7 @@ use App\Models\CustomerAllergy;
 use App\Models\CustomerDeliveryDay;
 use App\Models\CustomerExclude;
 use App\Models\CustomerSubscription;
+use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionPause;
 use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
@@ -423,7 +424,6 @@ class CustomerController extends Controller
 
 
 
-
         // :: create instance
         $pause = new CustomerSubscriptionPause();
 
@@ -450,20 +450,39 @@ class CustomerController extends Controller
 
 
 
-        // 1.2: pauseDays - pricePerDay - totalPrice
+        // 1.2: pauseDays - changeDeliveryStatus - pricePerDay - totalPrice
+
+
+
 
 
         // 1.2.1: pauseDays
-        $fromDate = new DateTime($request->fromDate);
-        $untilDate = new DateTime($request->untilDate);
-        $pause->pauseDays = $fromDate->diff($untilDate)->days;
+        $pause->pauseDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+            ->where('deliveryDate', '>=', $request->fromDate)
+            ->where('deliveryDate', '<=', $request->untilDate)
+            ->where('status', 'Pending')
+            ->count();
+
+
+
+
+
+        // 1.2.2: changeDeliveryStatus
+        CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+            ->where('deliveryDate', '>=', $request->fromDate)
+            ->where('deliveryDate', '<=', $request->untilDate)
+            ->update([
+                "status" => "Paused"
+            ]);
 
 
 
 
 
 
-        // 1.2.2: pricePerDay - totalPrice
+
+
+        // 1.2.3: pricePerDay - totalPrice
         $pause->pricePerDay = $subscription->planPrice / $subscription->planDays;
         $pause->totalPrice = $pause->pricePerDay * $pause->pauseDays;
 
@@ -512,23 +531,43 @@ class CustomerController extends Controller
 
 
             // :: general
-            $walletDeposit->depositDate = date('Y-m-d', strtotime('+4 hours'));
+            $walletDeposit->depositDate = $this->getCurrentDate();
             $walletDeposit->remarks = 'Pause Refund';
             $walletDeposit->amount = $pause->totalPrice;
 
 
 
-            // :: customer - wallet
+            // :: pause -  customer - wallet
             $walletDeposit->walletId = $subscription->customer->wallet->id;
             $walletDeposit->customerId = $subscription->customer->id;
-
-
+            $walletDeposit->subscriptionPauseId = $pause->id;
 
 
             $walletDeposit->save();
 
 
+
+
+            // ---------------------------
+            // ---------------------------
+
+
+
+
+
+            // 2.1.2: updateBalance
+            $wallet = CustomerWallet::find($subscription->customer->wallet->id);
+
+
+            $wallet->balance += $pause->totalPrice;
+            $wallet->save();
+
+
+
+
         } // end if
+
+
 
 
 
@@ -551,6 +590,170 @@ class CustomerController extends Controller
     } // end function
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function unPauseCustomerSubscription(Request $request)
+    {
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+        // :: getSubscription
+        $subscription = CustomerSubscription::find($request->customerSubscriptionId);
+
+
+
+
+
+
+        // :: get instance
+        $pause = CustomerSubscriptionPause::find($request->id);
+
+
+
+
+        // 1: general
+        $pause->isCanceled = true;
+        $pause->cancellationDate = $this->getCurrentDate();
+
+        $pause->save();
+
+
+
+
+
+
+
+
+
+
+        // -------------------------------
+        // -------------------------------
+
+
+
+
+
+
+        // 1.2: pauseDays - changeDeliveryStatus - pricePerDay - totalPrice
+
+
+
+
+
+        // 1.2.1: pausedDays
+        $pausedDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+            ->where('deliveryDate', '>=', $this->getUnPauseDate())
+            ->where('deliveryDate', '<=', $pause->untilDate)
+            ->where('status', 'Paused')
+            ->count();
+
+
+
+
+
+
+        // 1.2.2: changeDeliveryStatus
+        CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+            ->where('deliveryDate', '>=', $this->getUnPauseDate())
+            ->where('deliveryDate', '<=', $pause->untilDate)
+            ->update([
+                "status" => "Pending"
+            ]);
+
+
+
+
+
+        // 1.2.3: pricePerDay - totalPrice :: ONLY LEFTOVER PAUSE DAYS
+        $pricePerDay = $subscription->planPrice / $subscription->planDays;
+        $totalPrice = $pause->pricePerDay * $pausedDays;
+
+
+
+
+        // ------------------------------------
+        // ------------------------------------
+
+
+
+
+
+
+        // 2: checkPauseType
+
+
+
+
+        // 2.1: restoreRefundWallet
+        if ($pause->type == 'Refund Wallet') {
+
+
+
+
+            // 2.1.2: refundWalletDeposit
+            $wallet = CustomerWallet::find($subscription->customer->wallet->id);
+
+
+            $wallet->balance -= $totalPrice;
+            $wallet->save();
+
+
+
+
+        } // end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Subscription has been un-paused'], 200);
+
+
+
+
+
+
+    } // end function
 
 
 

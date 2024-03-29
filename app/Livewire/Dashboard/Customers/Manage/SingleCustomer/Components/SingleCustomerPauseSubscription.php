@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Customers\Manage\SingleCustomer\Components;
 use App\Livewire\Forms\CustomerSubscriptionPauseForm;
 use App\Models\Customer;
 use App\Models\CustomerSubscription;
+use App\Models\CustomerSubscriptionDelivery;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 
@@ -17,6 +18,8 @@ class SingleCustomerPauseSubscription extends Component
 
     // :: variables
     public CustomerSubscriptionPauseForm $instance;
+    public $subscription;
+
 
 
 
@@ -28,11 +31,11 @@ class SingleCustomerPauseSubscription extends Component
 
 
         // :: getSubscription - customer
-        $subscription = CustomerSubscription::find($id);
+        $this->subscription = CustomerSubscription::find($id);
 
 
-        $this->instance->customerId = $subscription->customerId;
-        $this->instance->customerSubscriptionId = $subscription->id;
+        $this->instance->customerId = $this->subscription->customerId;
+        $this->instance->customerSubscriptionId = $this->subscription->id;
 
 
 
@@ -63,22 +66,53 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-        // 1: makeRequest
-        $response = $this->makeRequest('dashboard/customers/subscription/pause', $this->instance);
+
+        // 1: checkPauseDays
+        $pauseDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $this->subscription->id)
+            ->where('deliveryDate', '>=', $this->instance->fromDate)
+            ->where('deliveryDate', '<=', $this->instance->untilDate)
+            ->where('status', 'Pending')
+            ->count();
+
+
+
+
+        // :: valid
+        if ($pauseDays > 0) {
+
+
+
+            // 2: makeRequest
+            $response = $this->makeRequest('dashboard/customers/subscription/pause', $this->instance);
+
+
+
+            // :: resetForm
+            $this->instance->reset('type', 'fromDate', 'untilDate', 'remarks');
+            $this->dispatch('resetSelect');
+            $this->dispatch('closeModal', modal: '#pause-subscription .btn--close');
+            $this->dispatch('refreshWalletViews');
+            $this->dispatch('refreshPauseViews');
+
+
+            $this->makeAlert('success', $response->message);
 
 
 
 
 
-        // :: resetForm
-        $this->instance->reset('type', 'fromDate', 'untilDate', 'remarks');
-        $this->dispatch('closeModal', modal: '#pause-subscription .btn--close');
-        $this->dispatch('refreshViews');
 
 
-        $this->makeAlert('success', $response->message);
+            // :: invalid - noPendingDeliveries
+        } else {
 
 
+
+
+            $this->makeAlert('info', 'No pending deliveries to pause, please review the schedule');
+
+
+        } // end if
 
 
 
@@ -107,7 +141,9 @@ class SingleCustomerPauseSubscription extends Component
 
 
         // 1: dependencies
-        $types = ['Refund Wallet', 'Extend Subscription'];
+        $types = ['Refund Wallet'];
+        // $types = ['Refund Wallet', 'Extend Subscription'];
+
 
 
 

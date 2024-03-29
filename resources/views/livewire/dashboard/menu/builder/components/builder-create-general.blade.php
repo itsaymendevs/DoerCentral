@@ -56,9 +56,13 @@
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Category</label>
                 <div class="select--single-wrapper mb-4">
-                    <select class="form-select form--select" data-instance='instance.isVegetarian' data-clear='true'>
+                    <select class="form-select form--select" data-instance='instance.category' data-clear='true'>
                         <option value=""></option>
-                        <option value="1">Vegetarian</option>
+
+                        @foreach ($categories as $category)
+                        <option value="{{ $category }}">{{ $category }}</option>
+                        @endforeach
+
                     </select>
                 </div>
             </div>

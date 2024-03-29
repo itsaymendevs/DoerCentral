@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             CustomerSubscriptionSettingSeeder::class,
             DietSeeder::class,
             IngredientSeeder::class,
+            TagSeeder::class,
         ]);
 
     } //end function

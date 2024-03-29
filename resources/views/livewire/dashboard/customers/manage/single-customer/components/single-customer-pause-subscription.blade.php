@@ -76,8 +76,8 @@
 
                             {{-- input --}}
                             <input class="form-control form--input mb-4" type="date" required
-                                wire:model.live='instance.fromDate'
-                                min="{{ date('Y-m-d', strtotime('+1 day +4 hours')) }}" />
+                                wire:model.live='instance.fromDate' min="{{ $globalPauseDate }}"
+                                max='{{ $subscription->untilDate }}' />
 
                         </div>
 
@@ -100,8 +100,9 @@
 
                             {{-- input --}}
                             <input class="form-control form--input mb-4" type="date" required
-                                wire:model='instance.untilDate'
-                                min="{{ $instance->fromDate ?? date('Y-m-d', strtotime('+1 day +4 hours')) }}" />
+                                wire:model='instance.untilDate' min="{{ $instance->fromDate ?? $globalPauseDate }}"
+                                max='{{ $subscription->untilDate }}' wire:loading.attr='readonly'
+                                wire:target='instance.fromDate, pause' />
 
                         </div>
 
@@ -125,7 +126,7 @@
 
                         {{-- submitButton --}}
                         <div class="col-12 text-center">
-                            <button wire:loading.attr='disabled'
+                            <button wire:loading.attr='disabled' wire:target='instance.fromDate, pause'
                                 class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
                                 Confirm
                             </button>

@@ -112,7 +112,7 @@ class ProductionBuilderUpdateGeneral extends Component
 
         // :: setSelect
         $this->dispatch('setSelect', id: '#type-select-2', value: $meal->typeId);
-        $this->dispatch('setSelect', id: '#category-select-2', value: $meal->isVegetarian);
+        $this->dispatch('setSelect', id: '#category-select-2', value: $meal->category);
         $this->dispatch('setSelect', id: '#cuisine-select-2', value: $meal->cuisineId);
         $this->dispatch('setSelect', id: '#diet-select-2', value: $meal->dietId);
 
@@ -233,6 +233,7 @@ class ProductionBuilderUpdateGeneral extends Component
         $cuisines = Cuisine::all();
         $diets = Diet::all();
         $tags = Tag::all();
+        $categories = ['Vegetarian', 'Non-Vegetarian'];
 
 
 
@@ -242,7 +243,7 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
 
-        return view('livewire.dashboard.menu.production-builder.components.production-builder-update-general', compact('types', 'cuisines', 'diets', 'tags'));
+        return view('livewire.dashboard.menu.production-builder.components.production-builder-update-general', compact('types', 'cuisines', 'diets', 'tags', 'categories'));
 
 
     } // end function

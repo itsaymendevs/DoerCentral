@@ -20,14 +20,15 @@ return new class extends Migration {
 
             $table->date('fromDate')->nullable();
             $table->date('untilDate')->nullable();
-            $table->date('manualUnPauseDate')->nullable();
-
-
-
-
-            // 1.2: remarks - isActive
             $table->text('remarks')->nullable();
-            $table->boolean('isActive')->nullable()->default(1);
+
+
+
+
+
+            // 1.2: cancellation
+            $table->date('cancellationDate')->nullable();
+            $table->boolean('isCanceled')->nullable()->default(0);
 
 
 

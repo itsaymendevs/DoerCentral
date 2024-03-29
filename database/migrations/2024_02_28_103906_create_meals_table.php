@@ -39,9 +39,9 @@ return new class extends Migration {
 
 
 
-            // 1.3: isVegetarian / description
-            $table->boolean('isVegetarian')->nullable();
+            // 1.3: category / description
             $table->text('desc')->nullable();
+            $table->string('category', 100)->nullable();
 
 
 

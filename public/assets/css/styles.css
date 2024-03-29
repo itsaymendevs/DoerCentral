@@ -537,6 +537,11 @@ textarea:read-only {
     background-color: var(--color-theme-secondary);
 }
 
+.badge--secondary {
+    background-color: var(--bs-gray-400);
+    color: #000;
+}
+
 /* modal bg */
 
 .modal--shadow {

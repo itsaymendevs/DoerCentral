@@ -159,5 +159,50 @@
 
 
 
+
+
+
+
+
+
+
+    {{-- --------------------------------------------- --}}
+
+
+
+
+
+
+    {{-- 4: subRecipeTypes for Drink --}}
+    @if ($meal->type->name == 'Sub-recipe')
+    <div class="mt-4 w-75 mx-auto" id="for-drink">
+
+
+        @foreach ($subRecipeTypes as $subRecipeType)
+        <div class="form-check mb-3 itemType--radio">
+
+            {{-- input --}}
+            <input class="form-check-input" id="subRecipeType-{{ $subRecipeType }}" name="subRecipeType" type="radio"
+                value='{{ $subRecipeType }}' @if ($instance->partType == $subRecipeType) checked @endif
+            wire:model='instance.partType' wire:change='update' wire:loading.attr='disabled' wire:target='update' />
+
+
+            {{-- label --}}
+            <label class="form-check-label" wire:loading.attr='disabled' wire:target='update'
+                for="subRecipeType-{{ $subRecipeType }}">{{ $subRecipeType }}</label>
+
+        </div>
+        @endforeach
+
+    </div>
+    @endif
+    {{-- end if --}}
+
+
+
+
+
+
+
 </div>
 {{-- endWrapper --}}

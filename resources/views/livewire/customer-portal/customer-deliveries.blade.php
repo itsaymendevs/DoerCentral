@@ -170,6 +170,8 @@
                                             <span class="badge fs-11 scale--self-05
                                                 @if ($delivery->status == 'Pending')
                                                 badge--warning
+                                                @elseif ($delivery->status == 'Paused')
+                                                badge--secondary
                                                 @else
                                                 badge--theme-secondary
                                                 @endif">{{ $delivery->status }}</span>

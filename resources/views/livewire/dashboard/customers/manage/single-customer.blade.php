@@ -109,7 +109,8 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-dash-lg fs-6 me-2">
                                 <path fill-rule="evenodd"
-                                    d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"></path>
+                                    d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z">
+                                </path>
                             </svg>Shorten Subscription
                         </button>
                     </div>
@@ -470,7 +471,9 @@
                     {{-- 1: pause --}}
                     <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause">
 
-                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
+
+                        <button
+                            class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32 @if ($latestSubscription->untilDate < date('Y-m-d', strtotime('+1 days +4 hours')) ) disabled @endif"
                             data-bs-toggle="modal" data-bs-target="#pause-subscription" type='button'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 class="bi bi-stopwatch fs-5" viewBox="0 0 16 16">
@@ -479,23 +482,33 @@
                                     d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
                             </svg>
                         </button>
-
                     </div>
 
 
 
 
-                    {{-- 2: resume --}}
-                    <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
-                        data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Resume"
-                        style="border:1px dashed var(--color-theme-secondary)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                            class="bi bi-play-circle fs-5" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                            <path
-                                d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445" />
-                        </svg>
-                    </button>
+
+
+
+
+
+                    {{-- 2: resume / unpause --}}
+                    <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Un-pause">
+
+
+                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32" type="button"
+                            style="border:1px dashed var(--color-theme-secondary)" data-bs-toggle="modal"
+                            data-bs-target="#unpause-subscription">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                class="bi bi-play-circle fs-5" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                <path
+                                    d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445" />
+                            </svg>
+                        </button>
+
+
+                    </div>
 
 
 
@@ -506,7 +519,8 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise fs-5">
                             <path fill-rule="evenodd"
-                                d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"></path>
+                                d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z">
+                            </path>
                             <path
                                 d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z">
                             </path>
@@ -988,6 +1002,11 @@
 
 
 
+
+
+    {{-- 4: un-pauseSubscription --}}
+    <livewire:dashboard.customers.manage.single-customer.components.single-customer-resume-subscription
+        id='{{ $latestSubscription->id }}' key='un-pause-{{ $latestSubscription->id }}' />
 
 
 

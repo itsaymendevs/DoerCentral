@@ -144,6 +144,7 @@ class ProductionBuilderUpdateTypes extends Component
         $snackTypes = ['Sweet', 'Savoury'];
         $drinkTypes = ['Hot Drink', 'Cold Drink'];
         $sauceTypes = ['On Side', 'Part of Meal'];
+        $subRecipeTypes = ['Protein', 'Carbs', 'Veg'];
 
 
 
@@ -156,7 +157,7 @@ class ProductionBuilderUpdateTypes extends Component
 
 
 
-        return view('livewire.dashboard.menu.production-builder.components.production-builder-update-types', compact('mealTypes', 'snackTypes', 'drinkTypes', 'sauceTypes'));
+        return view('livewire.dashboard.menu.production-builder.components.production-builder-update-types', compact('mealTypes', 'snackTypes', 'drinkTypes', 'sauceTypes', 'subRecipeTypes'));
 
 
     } // end function

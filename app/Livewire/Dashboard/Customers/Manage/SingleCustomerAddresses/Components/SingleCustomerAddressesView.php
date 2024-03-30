@@ -6,6 +6,7 @@ use App\Livewire\Forms\CustomerAddressForm;
 use App\Livewire\Forms\CustomerForm;
 use App\Models\City;
 use App\Models\CustomerAddress;
+use App\Models\CustomerDeliveryDay;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -141,8 +142,10 @@ class SingleCustomerAddressesView extends Component
 
 
 
-        // 1.2: alert
-        $this->makeAlert('success', $response?->message);
+        // 1.2: refreshByRedirect
+        return $this->redirect(route('dashboard.singleCustomerAddresses',
+            [$this->instance->customerId]) . "#tab-{$this->instance->id}", navigate: false);
+
 
 
     } // end function
@@ -212,7 +215,8 @@ class SingleCustomerAddressesView extends Component
 
 
             // :: refreshPage
-            return $this->redirect(route('dashboard.singleCustomerAddresses', [$this->instance->customerId]), navigate: false);
+            return $this->redirect(route('dashboard.singleCustomerAddresses',
+                [$this->instance->customerId]), navigate: false);
 
 
 
@@ -257,6 +261,11 @@ class SingleCustomerAddressesView extends Component
         // 1: dependencies
         $cities = City::all();
         $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        $reservedWeekDays = CustomerDeliveryDay::where('customerId', $this->instance->customerId)
+                ?->where('customerAddressId', '!=', $this->address->id)
+                ?->pluck('weekDay')->toArray() ?? [];
+
+
 
 
 
@@ -266,7 +275,7 @@ class SingleCustomerAddressesView extends Component
 
 
 
-        return view('livewire.dashboard.customers.manage.single-customer-addresses.components.single-customer-addresses-view', compact('cities', 'weekDays'));
+        return view('livewire.dashboard.customers.manage.single-customer-addresses.components.single-customer-addresses-view', compact('cities', 'weekDays', 'reservedWeekDays'));
 
 
     } // end function

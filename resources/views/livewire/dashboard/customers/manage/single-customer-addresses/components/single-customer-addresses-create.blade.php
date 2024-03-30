@@ -193,6 +193,9 @@
 
 
 
+                                {{-- :: notReserved --}}
+                                @if (!in_array($weekDay, $reservedWeekDays))
+
 
                                 {{-- label --}}
                                 <label class="form-check button--checkbox btn fs-14 p-0 "
@@ -205,6 +208,10 @@
                                 <input class="form-check-input d-none" value='{{ $weekDay }}' type="checkbox"
                                     id="formCheck-modal-{{ $key }}" wire:model='instance.deliveryDays.{{ $weekDay }}' />
 
+
+
+                                @endif
+                                {{-- end if --}}
 
 
                                 @endforeach

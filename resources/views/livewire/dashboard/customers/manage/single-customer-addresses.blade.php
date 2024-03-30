@@ -103,7 +103,7 @@
 
 
 
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item" role="presentation" key='address-tab-{{ $address->id }}'>
                             <a href="#tab-{{ $address->id }}" class="nav-link
                                 @if ($addresses->first()->id == $address->id) active @endif" role="tab"
                                 data-bs-toggle="tab" key="tab-{{ $address->id }}">{{
@@ -147,7 +147,7 @@
 
 
                         {{-- tabPane --}}
-                        <div key="address-{{ $address->id }}" class="tab-pane fade
+                        <div key="address-content-{{ $address->id }}" class="tab-pane fade
                         @if ($addresses->first()->id == $address->id) show active @endif no--card px-1"
                             id="tab-{{ $address->id }}" role="tabpanel">
 

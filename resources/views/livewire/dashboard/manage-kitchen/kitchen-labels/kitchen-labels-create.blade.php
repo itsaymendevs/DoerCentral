@@ -23,12 +23,90 @@
 
 
         {{-- mainRow --}}
-        <div class="row align-items-center pt-2 mb-5">
+        <div class="row align-items-end pt-2 mb-5">
 
 
 
             {{-- labelCol --}}
-            <div class="col-7"></div>
+            <div class="col-7">
+                <div class="row justify-content-center">
+
+
+                    {{-- backgroundContainer --}}
+                    <div class="col-12">
+                        <div class="sticker--label-layout sticky--div mb-4"
+                            style="background-image: url({{ asset('storage/kitchen/containers/' . $containers?->first()?->imageFile) }});">
+
+
+                            {{-- sticker - label --}}
+                            <div class="sticker--label mx-auto"></div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- width --}}
+                    <div class="col-5">
+                        <label class="form-label form--label">Width
+                            <small class="ms-1 fw-semibold text-gold fs-9">(CM)</small>
+                        </label>
+                        <input type="text" class="form--input mb-4" />
+                    </div>
+
+
+
+
+                    {{-- height --}}
+                    <div class="col-5">
+                        <label class="form-label form--label">Height
+                            <small class="ms-1 fw-semibold text-gold fs-9">(CM)</small>
+                        </label>
+                        <input type="text" class="form--input mb-4" />
+                    </div>
+
+
+
+
+
+
+                    {{-- colors --}}
+                    <div class="col-10">
+
+
+                        {{-- 1: background --}}
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 45%">Background</label>
+                            <input type="color" class="form--input py-1 pointer" />
+                        </div>
+
+
+                        {{-- labelBackground --}}
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 45%">Label Background</label>
+                            <input type="color" class="form--input py-1 pointer" />
+                        </div>
+
+
+                        {{-- fontColor --}}
+                        <div class="input--with-label">
+                            <label class="form-label form--label mb-0" style="width: 45%">Font Color</label>
+                            <input type="color" class="form--input py-1 pointer" />
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+            {{-- endRightCol --}}
+
+
 
 
 
@@ -60,7 +138,7 @@
                     <div class="col-12" wire:ignore>
                         <label class="form-label form--label">Containers</label>
                         <div class="select--single-wrapper mb-4">
-                            <select class="form-select form--select" multiple="">
+                            <select class="form-select form--select" multiple="" required>
                                 @foreach ($containers as $container)
                                 <option value="{{ $container->id }}">{{ $container->name }}</option>
                                 @endforeach
@@ -259,7 +337,7 @@
 
 
                         {{-- remarks --}}
-                        <div class="item--box mt-3 mb-3">
+                        <div class="item--box mt-3">
                             <h5 class="fw-semibold d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                     viewBox="0 0 16 16" class="bi bi-chevron-compact-right me-2 fs-13"
@@ -280,71 +358,13 @@
 
 
 
-
-
-
-
-
-                    {{-- width --}}
-                    <div class="col-6">
-                        <label class="form-label form--label">Width
-                            <small class="ms-1 fw-semibold text-gold fs-9">(CM)</small>
-                        </label>
-
-                        <input type="text" class="form--input mb-4" />
-                    </div>
-
-
-
-
-                    {{-- height --}}
-                    <div class="col-6">
-                        <label class="form-label form--label">Height
-                            <small class="ms-1 fw-semibold text-gold fs-9">(CM)</small>
-                        </label>
-                        <input type="text" class="form--input mb-4" />
-                    </div>
-
-
-
-
-
-
-
-
-                    {{-- colors --}}
-                    <div class="col-12">
-
-
-                        {{-- background --}}
-                        <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 45%">Background</label>
-                            <input type="color" class="form--input py-1" step="1" />
-                        </div>
-
-
-
-
-                        {{-- labelBackground --}}
-                        <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 45%">Label Background</label>
-                            <input type="color" class="form--input py-1" step="1" />
-                        </div>
-
-
-
-                        {{-- fontColor --}}
-                        <div class="input--with-label mb-4">
-                            <label class="form-label form--label mb-0" style="width: 45%">Font Color</label>
-                            <input type="color" class="form--input py-1" step="1" />
-                        </div>
-                    </div>
-                    {{-- endColors --}}
-
-
-
                 </div>
             </div>
+            {{-- end rightCol --}}
+
+
+
+
         </div>
     </div>
     {{-- endContainer --}}

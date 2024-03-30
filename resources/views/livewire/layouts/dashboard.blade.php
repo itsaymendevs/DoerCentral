@@ -69,6 +69,7 @@
         <link href="{{ asset('assets/css/bundles.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/customers.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/kitchen.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/stickers.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/simple-animate.css') }}" rel="stylesheet">
 
 

@@ -124,7 +124,7 @@
 
 
 
-                                    <tr>
+                                    <tr key='{{ $delivery->id }}'>
 
 
 

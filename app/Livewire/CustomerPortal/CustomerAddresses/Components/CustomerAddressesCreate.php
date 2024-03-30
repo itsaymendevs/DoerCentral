@@ -4,6 +4,7 @@ namespace App\Livewire\CustomerPortal\CustomerAddresses\Components;
 
 use App\Livewire\Forms\CustomerAddressForm;
 use App\Models\City;
+use App\Models\CustomerDeliveryDay;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 
@@ -137,7 +138,8 @@ class CustomerAddressesCreate extends Component
         // 1: dependencies
         $cities = City::all();
         $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
+        $reservedWeekDays = CustomerDeliveryDay::where('customerId', $this->instance->customerId)
+                ?->pluck('weekDay')->toArray() ?? [];
 
 
         // :: initTooltips
@@ -146,7 +148,7 @@ class CustomerAddressesCreate extends Component
 
 
 
-        return view('livewire.customer-portal.customer-addresses.components.customer-addresses-create', compact('cities', 'weekDays'));
+        return view('livewire.customer-portal.customer-addresses.components.customer-addresses-create', compact('cities', 'weekDays', 'reservedWeekDays'));
 
 
     } // end function

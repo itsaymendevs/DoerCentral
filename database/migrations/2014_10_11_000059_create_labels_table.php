@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('name', 255)->nullable();
             $table->double('width', 15)->nullable();
             $table->double('height', 15)->nullable();
+            $table->double('radius', 15)->nullable()->default(0);
 
 
 
@@ -36,7 +37,6 @@ return new class extends Migration {
             $table->boolean('showCustomerName')->nullable()->default(1);
             $table->boolean('showProductionDate')->nullable()->default(1);
             $table->boolean('showServingInstructions')->nullable()->default(1);
-
 
 
 

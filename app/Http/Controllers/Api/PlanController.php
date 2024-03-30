@@ -16,6 +16,7 @@ use App\Models\PlanRange;
 use App\Models\Size;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PlanController extends Controller
 {
@@ -952,8 +953,8 @@ class PlanController extends Controller
 
 
 
-        // 1: get instance
-        $bundle = PlanBundle::find($request->id);
+        // :: get migrationBundle
+        $migrationBundle = PlanBundle::find($request->id);
 
 
 
@@ -965,6 +966,277 @@ class PlanController extends Controller
 
         // -------------------------
         // -------------------------
+
+
+
+
+        // :: getOtherPlans
+        $plans = Plan::where('id', '!=', $migrationBundle->planId)->get();
+
+
+
+
+
+        // :: loop - plans
+        foreach ($plans ?? [] as $plan) {
+
+
+
+
+
+
+            // 1: create
+            $bundle = new PlanBundle();
+
+            $bundle->name = $migrationBundle->name;
+            $bundle->remarks = $migrationBundle->remarks ?? null;
+            $bundle->imageFile = 'migrated-' . $migrationBundle->imageFile;
+            $bundle->isForWebsite = $migrationBundle->isForWebsite;
+
+
+
+
+            // 1.2: copyFile (source - destination)
+            Storage::copy("public/menu/plans/bundles/{$migrationBundle->imageFile}",
+                "public/menu/plans/bundles/{$bundle->imageFile}");
+
+
+
+
+
+
+
+
+            // 1.3: plan
+            $bundle->planId = $plan->id;
+
+
+            $bundle->save();
+
+
+
+
+
+
+
+
+
+
+
+
+            // -------------------------
+            // -------------------------
+
+
+
+
+
+
+            // 2: bundleTypes
+            foreach ($migrationBundle?->types ?? [] as $migrationBundleType) {
+
+
+
+                // 2.1: create
+                $bundleType = new PlanBundleType();
+
+
+                // 2.2: general (cloned)
+                $bundleType->quantity = $migrationBundleType->quantity;
+                $bundleType->mealTypeId = $migrationBundleType->mealTypeId;
+                $bundleType->typeId = $migrationBundleType->typeId;
+
+
+                // 2.3: bundle
+                $bundleType->planBundleId = $bundle->id;
+
+
+                $bundleType->save();
+
+
+            } // end loop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // -------------------------
+            // -------------------------
+
+
+
+
+
+
+            // 3: bundleDays
+            foreach ($migrationBundle?->days ?? [] as $migrationBundleDay) {
+
+
+
+                // 3.1: create
+                $bundleDay = new PlanBundleDay();
+
+
+
+                $bundleDay->days = $migrationBundleDay->days;
+                $bundleDay->discount = $migrationBundleDay->discount;
+
+
+
+                // 1.2: planBundle
+                $bundleDay->planBundleId = $bundle->id;
+
+
+                $bundleDay->save();
+
+
+
+            } // end loop
+
+
+
+
+
+
+
+
+
+            // --------------------------
+            // --------------------------
+
+
+
+
+
+
+            // ** MIGRATION DOESN'T COPY ANYTHING FROM THE MIGRATE-BUNDLE **
+            // ** BELOW TABLES / MODELS WILL TAKE DEFAULT VALUES AS ADDING NEW BUNDLE **
+
+
+
+
+
+
+
+
+            // 4: create bundleRanges
+
+
+
+            // 4.1: getRanges
+            $ranges = PlanRange::where('planId', $bundle->planId)->get();
+
+            foreach ($ranges ?? [] as $range) {
+
+
+                // 4.2: create BundleRange
+                $bundleRange = new PlanBundleRangePrice();
+
+
+                $bundleRange->pricePerDay = 0;
+                $bundleRange->planRangeId = $range->id;
+                $bundleRange->planBundleId = $bundle->id;
+
+
+                $bundleRange->save();
+
+
+
+            } // end loop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // --------------------------
+            // --------------------------
+
+
+
+
+
+
+            // 5: createBundleRange - RangeTypes
+
+
+
+
+            // 5.1: getRanges
+            $mealTypes = MealType::all();
+
+
+            foreach ($ranges as $range) {
+
+
+                // 5.2: create BundleRange
+                $bundleRange = new PlanBundleRange();
+
+                $bundleRange->planRangeId = $range->id;
+                $bundleRange->planBundleId = $bundle->id;
+
+
+                $bundleRange->save();
+
+
+
+                // :: loop - mealTypes
+                foreach ($mealTypes as $mealType) {
+
+
+
+                    // 5.3: create RangeType
+                    $rangeType = new PlanBundleRangeType();
+
+
+                    $rangeType->mealTypeId = $mealType->id;
+                    $rangeType->typeId = $mealType->type->id;
+
+                    $rangeType->planBundleRangeId = $bundleRange->id;
+
+                    $rangeType->save();
+
+
+
+                } // end loop
+
+
+            } // end loop
+
+
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+
+
 
 
 

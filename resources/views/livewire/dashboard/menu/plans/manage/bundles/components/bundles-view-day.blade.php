@@ -22,7 +22,7 @@
         <button
             class="btn btn--raw-icon fs-15 text-warning d-inline-flex align-items-center justify-content-center scale--3 w-auto"
             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-html='true' type="button"
-            title="{{ implode('<br />', $bundleDay->rangesByDiscount()) }}">
+            title="{{ implode('<br />', $bundleDay?->rangesByDiscount() ?? []) }}">
             Range Prices
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
                 class="bi bi-list-nested fs-6 ms-2" style="fill: var(--bs-warning);">

@@ -258,7 +258,7 @@
 
 
             {{-- wrapper --}}
-            <div class="flex submenu--group text-start d-flex align-items-center justify-content-between" wire:ignore>
+            <div class="flex submenu--group text-start d-flex align-items-center justify-content-start" wire:ignore>
 
 
 
@@ -269,10 +269,17 @@
 
 
 
+                {{-- :: notReserved --}}
+                @if (!in_array($weekDay, $reservedWeekDays))
+
+
+
+
 
                 {{-- label --}}
-                <label class="form-check button--checkbox btn fs-14 p-0 @if (in_array($weekDay,
-                $address->deliveryDaysInArray())) active @endif" for="formCheck-{{ $key }}-{{ $address->id }}">
+                <label
+                    class="form-check button--checkbox btn fs-14 p-0 @if (in_array($weekDay,$address->deliveryDaysInArray())) active @endif"
+                    for="formCheck-{{ $key }}-{{ $address->id }}">
                     {{ $weekDay }}
                 </label>
 
@@ -281,6 +288,14 @@
                 <input class="form-check-input d-none" type="checkbox" value='{{ $weekDay }}'
                     wire:model='instance.deliveryDays.{{ $weekDay }}' @if (in_array($weekDay,
                     $address->deliveryDaysInArray())) checked @endif id="formCheck-{{ $key }}-{{ $address->id }}" />
+
+
+
+
+
+                @endif
+                {{-- end if --}}
+
 
 
 

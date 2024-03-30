@@ -8,7 +8,7 @@
 
 
         {{-- city --}}
-        <div class="col-12 col-sm-4">
+        <div class="col-12 col-lg-3">
 
 
             {{-- hr --}}
@@ -43,7 +43,7 @@
 
 
         {{-- district --}}
-        <div class="col-12 col-sm-4">
+        <div class="col-12 col-lg-3">
 
 
             {{-- hr --}}
@@ -70,7 +70,7 @@
 
 
         {{-- deliveryTime --}}
-        <div class="col-12 col-sm-4">
+        <div class="col-12 col-lg-3">
 
 
             {{-- hr --}}
@@ -110,7 +110,7 @@
 
 
         {{-- locationAddress --}}
-        <div class="col-12">
+        <div class="col-12 col-lg-9">
             <div class="input--with-label mb-4">
                 <label class="form-label form--label mb-0">Address</label>
                 <input class="form-control form--input text-start" type="text" required
@@ -122,13 +122,19 @@
 
 
 
+        {{-- empty --}}
+        <div class="col-12"></div>
+
+
+
+
 
 
 
 
 
         {{-- title / name --}}
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-lg-3">
             <div class="input--with-label mb-4">
                 <label class="form-label form--label mb-0">Name</label>
                 <input class="form-control form--input text-start" type="text" required wire:model='instance.name' />
@@ -145,9 +151,9 @@
 
 
         {{-- apartment --}}
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-lg-3">
             <div class="input--with-label mb-4">
-                <label class="form-label form--label mb-0">Apartment</label>
+                <label class="form-label form--label mb-0">Apart</label>
                 <input class="form-control form--input text-start" type="text" wire:model='instance.apartment' />
             </div>
         </div>
@@ -157,7 +163,7 @@
 
 
         {{-- floor --}}
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-lg-3">
             <div class="input--with-label mb-4">
                 <label class="form-label form--label mb-0">Floor</label>
                 <input class="form-control form--input text-start" type="text" wire:model='instance.floor' />
@@ -205,7 +211,7 @@
 
 
             {{-- wrapper --}}
-            <div class="mb-4 submenu--group text-center text-sm-start d-block d-lg-flex align-items-center justify-content-between"
+            <div class="mb-4 submenu--group text-center text-sm-start d-block d-lg-flex align-items-center justify-content-start"
                 wire:ignore>
 
 
@@ -215,6 +221,10 @@
                 {{-- loop - deliveryDays --}}
                 @foreach ($weekDays as $key => $weekDay)
 
+
+
+                {{-- :: notReserved --}}
+                @if (!in_array($weekDay, $reservedWeekDays))
 
 
 
@@ -230,6 +240,10 @@
                     wire:model='instance.deliveryDays.{{ $weekDay }}' @if (in_array($weekDay,
                     $address->deliveryDaysInArray())) checked @endif id="formCheck-{{ $key }}-{{ $address->id }}" />
 
+
+
+                @endif
+                {{-- end if --}}
 
 
                 @endforeach

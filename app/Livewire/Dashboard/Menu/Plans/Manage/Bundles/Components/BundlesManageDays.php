@@ -79,7 +79,8 @@ class BundlesManageDays extends Component
 
 
 
-        // :: alert
+        // :: refreshBundleSingleDayView - alert
+        $this->dispatch('refreshBundleSingleDayView');
         $this->makeAlert('success', $response->message);
 
 

@@ -51,7 +51,7 @@
                         {{-- loop - ranges --}}
                         @foreach ($bundleRanges as $bundleRange)
 
-                        <div class="col-3" key='{{ $bundleRange->id }}'>
+                        <div class="col-3" key='bundle-range-price-{{ $bundleRange->id }}'>
                             <label class="form-label form--label">{{ $bundleRange->range->name }}</label>
                             <input class="form-control form--input mb-4" type="number" step='0.01' required
                                 value='{{ $bundleRange->pricePerDay }}'
@@ -190,7 +190,7 @@
                                         @foreach ($bundleDays as $bundleDay)
 
                                         <livewire:dashboard.menu.plans.manage.bundles.components.bundles-view-day
-                                            key='{{ $bundleDay->id }}' :id='$bundleDay->id' />
+                                            key='bundle-day-price{{ $bundleDay->id }}' :id='$bundleDay->id' />
 
                                         @endforeach
                                         {{-- end loop --}}

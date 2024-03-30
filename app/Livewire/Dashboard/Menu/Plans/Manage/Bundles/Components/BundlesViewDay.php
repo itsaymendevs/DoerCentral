@@ -161,6 +161,8 @@ class BundlesViewDay extends Component
 
 
 
+
+    #[On('refreshBundleSingleDayView')]
     public function render()
     {
 

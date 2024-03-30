@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\CustomerSubscriptionController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\InventoryController;
+use App\Http\Controllers\Api\KitchenController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\MenuCalendarController;
 use App\Http\Controllers\Api\MenuMealController;
@@ -526,7 +527,14 @@ Route::post('/dashboard/menu/plans/calendars/toggle-default', [PlanController::c
 
 
 
+
+
+
 // ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
 
 
 
@@ -541,7 +549,8 @@ Route::post('/dashboard/customers/remove', [CustomerController::class, 'removeCu
 
 
 
-// ---------
+// ---------------------------------
+// ---------------------------------
 
 
 
@@ -600,9 +609,11 @@ Route::post('/dashboard/customers/addresses/remove', [CustomerController::class,
 
 
 
+
 // ------------------------------------------------------------------------------------------
-
-
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 
 
 
@@ -664,6 +675,10 @@ Route::post('/dashboard/menu/settings/cuisines/remove', [MenuSettingController::
 
 
 // ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
 
 
 
@@ -689,13 +704,12 @@ Route::post('/dashboard/menu/builder/general/store', [BuilderController::class, 
 
 
 
+
 // 9.2: menu - builder - general - update
 Route::post('/dashboard/menu/builder/general/update', [BuilderController::class, 'updateBuilderGeneral']);
 
 
 
-
-// ---------
 
 
 
@@ -707,7 +721,6 @@ Route::post('/dashboard/menu/builder/meal-types/update', [BuilderController::cla
 
 
 
-// ---------
 
 
 
@@ -717,7 +730,7 @@ Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 's
 
 
 
-// ---------
+
 
 
 
@@ -727,7 +740,8 @@ Route::post('/dashboard/menu/builder/containers/update', [BuilderController::cla
 
 
 
-// ---------
+
+
 
 
 
@@ -736,6 +750,8 @@ Route::post('/dashboard/menu/builder/ingredients/store', [BuilderController::cla
 Route::post('/dashboard/menu/builder/ingredients/update', [BuilderController::class, 'updateBuilderIngredient']);
 
 Route::post('/dashboard/menu/builder/ingredients/remove', [BuilderController::class, 'removeBuilderIngredient']);
+
+
 
 
 
@@ -754,7 +770,11 @@ Route::post('/dashboard/menu/builder/ingredients/macros/update', [BuilderControl
 
 
 
-// ---------
+
+// ---------------------------------
+// ---------------------------------
+
+
 
 
 
@@ -772,7 +792,11 @@ Route::post('/dashboard/menu/builder/instructions/remove', [BuilderController::c
 
 
 
-// ---------
+
+
+// ---------------------------------
+// ---------------------------------
+
 
 
 
@@ -787,7 +811,10 @@ Route::post('/dashboard/menu/builder/packings/remove', [BuilderController::class
 
 
 
-// ---------
+
+
+// ---------------------------------
+// ---------------------------------
 
 
 
@@ -813,8 +840,9 @@ Route::post('/dashboard/menu/builder/servings/update', [BuilderController::class
 
 
 // ------------------------------------------------------------------------------------------
-
-
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 
 
 
@@ -832,27 +860,103 @@ Route::post('/dashboard/menu/calendars/remove', [MenuCalendarController::class, 
 
 
 
-// ---------
+
+// ---------------------------------
+// ---------------------------------
 
 
 
 
+
+// 10.1: menu - calendars - schedules - store
 Route::post('/dashboard/menu/calendars/schedules/store', [MenuCalendarController::class, 'storeCalendarSchedule']);
 
 
 
 
 
-// ---------
+
+
+// ---------------------------------
+// ---------------------------------
 
 
 
 
+
+// 10.2: menu - calendars - schedules - meals - update - toggleDefault
 Route::post('/dashboard/menu/calendars/schedules/meals/update', [MenuCalendarController::class, 'updateCalendarScheduleMeal']);
 
-
-
 Route::post('/dashboard/menu/calendars/schedules/meals/toggle', [MenuCalendarController::class, 'toggleCalendarScheduleMeal']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 11: menu - meals - remove
+Route::post('/dashboard/menu/meals/remove', [MenuMealController::class, 'removeMeal']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 12: kitchen - containers
+Route::post('/dashboard/kitchen/containers/store', [KitchenController::class, 'storeContainer']);
+Route::post('/dashboard/kitchen/containers/update', [KitchenController::class, 'updateContainer']);
+
+Route::post('/dashboard/kitchen/containers/remove', [KitchenController::class, 'removeContainer']);
+
+
+
+
+
+
+
+// 12.1: kitchen -containers - updateCharge
+Route::post('/dashboard/kitchen/containers/charge/update', [KitchenController::class, 'updateContainerCharge']);
+
+
+
 
 
 
@@ -869,6 +973,9 @@ Route::post('/dashboard/menu/calendars/schedules/meals/toggle', [MenuCalendarCon
 
 
 // ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 
 
 
@@ -876,8 +983,14 @@ Route::post('/dashboard/menu/calendars/schedules/meals/toggle', [MenuCalendarCon
 
 
 
-// 9.10: menu - meals (Recipes - Snacks etc.)
-Route::post('/dashboard/menu/meals/remove', [MenuMealController::class, 'removeMeal']);
+
+// 13: kitchen - labels
+Route::post('/dashboard/kitchen/labels/store', [KitchenController::class, 'storeLabel']);
+Route::post('/dashboard/kitchen/labels/update', [KitchenController::class, 'updateLabel']);
+
+Route::post('/dashboard/kitchen/labels/remove', [KitchenController::class, 'removeLabel']);
+
+
 
 
 
@@ -891,6 +1004,10 @@ Route::post('/dashboard/menu/meals/remove', [MenuMealController::class, 'removeM
 
 
 // }); // end middleware
+
+
+
+
 
 
 

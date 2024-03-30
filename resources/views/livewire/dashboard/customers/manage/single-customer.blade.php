@@ -70,8 +70,8 @@
                     <div class="col-6 mb-3">
                         <div class="overview--box shrink--self active" style="border: none">
                             <h6 class="fs-13 fw-normal">Subscription Start</h6>
-                            <p class="truncate-text-1l">{{ date('d / m / Y', strtotime($latestSubscription->startDate))
-                                }}</p>
+                            <p class="truncate-text-1l">{{ date('d / m / Y',
+                                strtotime($latestSubscription->startDate)) }}</p>
                         </div>
                     </div>
 
@@ -82,8 +82,8 @@
                     <div class="col-6 mb-3">
                         <div class="overview--box shrink--self active" style="border: none">
                             <h6 class="fs-13 fw-normal">Subscription End</h6>
-                            <p class="truncate-text-1l">{{ date('d / m / Y', strtotime($latestSubscription->untilDate))
-                                }}</p>
+                            <p class="truncate-text-1l">{{ date('d / m / Y',
+                                strtotime($latestSubscription->untilDate)) }}</p>
                         </div>
                     </div>
 
@@ -472,8 +472,8 @@
                     <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause">
 
 
-                        <button
-                            class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32 @if ($latestSubscription->untilDate < date('Y-m-d', strtotime('+1 days +4 hours')) ) disabled @endif"
+                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32
+                            @if ($latestSubscription->untilDate < $globalPauseDate) disabled @endif"
                             data-bs-toggle="modal" data-bs-target="#pause-subscription" type='button'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 class="bi bi-stopwatch fs-5" viewBox="0 0 16 16">

@@ -182,6 +182,10 @@
                     for="item--file-1" title="Click To Upload">
 
 
+                    {{-- caption --}}
+                    <span class="upload--caption badge">Regular Plate</span>
+
+
                     {{-- input --}}
                     <input class="form-control d-none file--input" id="item--file-1" data-preview="item--preview-1"
                         type="file" required accept="image/*" wire:model='instance.imageFile' />
@@ -215,6 +219,12 @@
             <div class="col-6">
                 <label class="col-form-label upload--wrap mb-2" data-bs-toggle="tooltip" data-bss-tooltip=""
                     for="item--file-2" title="Click To Upload">
+
+
+                    {{-- caption --}}
+                    <span class="upload--caption badge">Food Container</span>
+
+
 
 
                     {{-- input --}}

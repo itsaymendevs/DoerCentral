@@ -30,6 +30,30 @@ class Customers extends Component
 
 
 
+    public function pause($id)
+    {
+
+        // 1: dispatchId
+        $this->dispatch('pauseSubscription', $id);
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+
+
 
     public function remove($id)
     {

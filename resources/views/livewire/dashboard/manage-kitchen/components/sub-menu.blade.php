@@ -16,26 +16,43 @@
 
 
             {{-- labels --}}
-            <a class="btn" role="button" href="javascript:void(0);">Labels</a>
+            <a wire:navigate href="{{ route('dashboard.kitchenLabels') }}" class="btn
+                @if (Request::is('dashboard/kitchen/labels', 'dashboard/kitchen/labels/*')) active @endif"
+                role="button">Labels</a>
 
 
             {{-- containers --}}
-            <a class="btn" role="button" href="javascript:void(0);">Containers</a>
+            <a wire:navigate class="btn
+                @if (Request::is('dashboard/kitchen/containers')) active @endif" role="button"
+                href="{{ route('dashboard.kitchenContainers') }}">Containers</a>
+
+
 
 
             {{-- kitchen --}}
-            <a class="btn active" role="button" href="javascript:void(0);">Kitchen</a>
+            <a wire:navigate class="btn
+            @if (Request::is('dashboard/kitchen/today/*')) active @endif" role="button"
+                href="{{ route('dashboard.kitchenTodayProduction') }}">Kitchen</a>
+
+
 
 
             {{-- label --}}
-            <a class="btn" role="button" href="javascript:void(0);">Label</a>
+            <a class="btn" role="button" href="javascript:void(0);">Today Labels</a>
+
+
 
 
             {{-- sync --}}
             <a class="btn" role="button" href="javascript:void(0);">Sync Customers</a>
 
+
+
             {{-- settings --}}
             <a class="btn" role="button" href="javascript:void(0);">Setting</a>
+
+
         </div>
     </div>
 </div>
+{{-- endRow --}}

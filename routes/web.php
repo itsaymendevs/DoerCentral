@@ -10,6 +10,10 @@ use App\Livewire\Dashboard\Customers\Manage\SingleCustomerDeliveries;
 use App\Livewire\Dashboard\CustomersStateOfAccount;
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Inventory;
+use App\Livewire\Dashboard\ManageKitchen\KitchenContainers;
+use App\Livewire\Dashboard\ManageKitchen\KitchenLabels;
+use App\Livewire\Dashboard\ManageKitchen\KitchenLabels\KitchenLabelsCreate;
+use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayDelivery;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayPacking;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayProduction;
 use App\Livewire\Dashboard\Menu\Builder;
@@ -460,6 +464,66 @@ Route::middleware(['auth.user'])->group(function () {
     Route::get('dashboard/kitchen/today/packing', KitchenTodayPacking::class)->name('dashboard.kitchenTodayPacking');
 
 
+
+
+
+
+
+
+
+    // ---------
+
+
+
+
+
+    // 10.2: kitchen - kitchenToday - delivery
+    Route::get('dashboard/kitchen/today/delivery', KitchenTodayDelivery::class)->name('dashboard.kitchenTodayDelivery');
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    // 11: kitchen - containers
+    Route::get('dashboard/kitchen/containers', KitchenContainers::class)->name('dashboard.kitchenContainers');
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+    // 12: kitchen - labels
+    Route::get('dashboard/kitchen/labels', KitchenLabels::class)->name('dashboard.kitchenLabels');
+
+
+
+    // 12: kitchen - labels - create
+    Route::get('dashboard/kitchen/labels/create', KitchenLabelsCreate::class)->name('dashboard.kitchenLabelsCreate');
 
 
 

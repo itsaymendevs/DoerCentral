@@ -27,3 +27,19 @@
     transform: scale(1.4);
     fill: var(--bs-yellow);
 }
+
+.upload--wrap .upload--caption {
+    position: absolute;
+    bottom: 10px;
+    right: 0px;
+    left: 0px;
+    max-width: 120px;
+    margin: auto;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600 !important;
+    color: var(--color-solid-black);
+    background-color: var(--color-scheme-1);
+}

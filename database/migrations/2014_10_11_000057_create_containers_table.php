@@ -16,6 +16,8 @@ return new class extends Migration {
 
             // 1: general
             $table->string('name', 255)->nullable();
+            $table->double('charge', 15)->nullable()->default(0);
+
             $table->text('imageFile')->nullable();
 
 

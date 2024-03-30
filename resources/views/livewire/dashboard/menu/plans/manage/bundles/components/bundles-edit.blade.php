@@ -53,6 +53,12 @@
 
 
 
+                            <label class="form-label form--label">Remarks</label>
+                            <input class="form-control form--input mb-4" type="text" wire:model='instance.remarks'>
+
+
+
+
 
 
                             {{-- imageFile --}}
@@ -103,20 +109,10 @@
                             <div class="row">
 
 
-                                {{-- remarks --}}
-                                <div class="col-6">
-                                    <label class="form-label form--label">Remarks</label>
-                                    <input class="form-control form--input mb-4" type="text"
-                                        wire:model='instance.remarks'>
-                                </div>
-
-
-
-
 
 
                                 {{-- overview --}}
-                                <div class="col-6 text-center align-self-center">
+                                <div class="col-12 text-center align-self-center mt-3 mb-2">
 
 
                                     {{-- loop - mealTypesCounter by Type --}}
@@ -146,7 +142,7 @@
                                 {{-- hr --}}
                                 <div class="col-12">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <hr class="w-75 mx-auto mt-2 mb-2">
+                                        <hr class="w-75 mx-auto mt-2 mb-3">
                                     </div>
                                 </div>
 
@@ -235,7 +231,7 @@
                         {{-- submitButton --}}
                         <div class="col-12 text-end mt-3">
                             <button wire:loading.attr='disabled' wire:target='store, instance.imageFile'
-                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">Save</button>
+                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">Update</button>
                         </div>
 
                     </div>

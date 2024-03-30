@@ -155,7 +155,7 @@
                                     {{-- loop - activeSubscriptions --}}
                                     @foreach ($subscriptions as $subscription)
 
-                                    <tr>
+                                    <tr key='{{ $subscription->id }}'>
 
 
                                         {{-- 1: id - name - plan --}}

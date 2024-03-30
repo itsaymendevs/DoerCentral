@@ -53,6 +53,16 @@
 
 
 
+                            {{-- remarks --}}
+                            <label class="form-label form--label">Remarks</label>
+                            <input class="form-control form--input mb-4" type="text" wire:model='instance.remarks'>
+
+
+
+
+
+
+
 
                             {{-- imageFile --}}
                             <div>
@@ -103,17 +113,11 @@
 
 
 
-                                {{-- remarks --}}
-                                <div class="col-6">
-                                    <label class="form-label form--label">Remarks</label>
-                                    <input class="form-control form--input mb-4" type="text"
-                                        wire:model='instance.remarks'>
-                                </div>
 
 
 
                                 {{-- overview --}}
-                                <div class="col-6 text-center align-self-center">
+                                <div class="col-12 text-center align-self-center mt-3 mb-2">
 
 
                                     {{-- loop - mealTypesCounter by Type --}}
@@ -143,7 +147,7 @@
                                 {{-- hr --}}
                                 <div class="col-12">
                                     <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <hr class="w-75 mx-auto mt-2 mb-2">
+                                        <hr class="w-75 mx-auto mt-2 mb-3">
                                     </div>
                                 </div>
 

@@ -132,7 +132,7 @@
             <div class="col-4 text-end">
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
-                    title="Number of Recipes">
+                    title="Number of Deliveries">
                     1
                 </h3>
             </div>
@@ -170,15 +170,12 @@
                         <thead>
                             <tr>
                                 <th class="th--xs"></th>
-                                <th class="th--xs">Customer</th>
-                                <th class="th--sm">Breakfast</th>
-                                <th class="th--sm">Lunch</th>
-                                <th class="th--sm">Dinner</th>
-                                <th class="th--sm">Lunch Side</th>
-                                <th class="th--sm">Dinner Side</th>
-                                <th class="th--sm">Morning<br />Snack</th>
-                                <th class="th--sm">Morning<br />Snack II</th>
-                                <th class="th--sm">Afternoon<br />Snack</th>
+                                <th class="th--md">Customer</th>
+                                <th class="th--sm">Company</th>
+                                <th class="th--sm">Timing</th>
+                                <th class="th--lg">Address</th>
+                                <th class="th--sm">Date</th>
+                                <th class="th--sm"></th>
                             </tr>
                         </thead>
                         {{-- endHeaders --}}
@@ -191,8 +188,10 @@
                         <tbody>
 
 
-                            {{-- singleRow --}}
+                            {{-- loop - deliveries --}}
                             <tr>
+
+
 
 
                                 {{-- SN --}}
@@ -201,9 +200,8 @@
                                 </td>
 
 
-
                                 {{-- customer - plan --}}
-                                <td class="fw-bold text-start">
+                                <td class="text-center fw-bold text-start">
                                     <span class="d-block fs-14">Sadaf Maqbool
                                         <small class="fw-semibold text-gold fs-14 d-block">Welness</small>
                                     </span>
@@ -211,36 +209,45 @@
 
 
 
+                                {{-- company - timing --}}
+                                <td class="text-start">
+                                    <span class="text-center d-block fs-14 mb-4 fw-normal">Company</span>
+                                </td>
+                                <td class="text-start">
+                                    <span class="text-center d-block fs-14 fw-normal">Before 8 AM</span>
+                                </td>
 
 
-                                {{-- loop - todayMealsByMealType --}}
+
+
+
+                                {{-- address --}}
                                 <td class="text-start">
-                                    <span class="d-block fs-14 mb-4 fw-normal">Mango Chia Pudding<small
-                                            class="fw-semibold text-gold fs-13 d-block">Medium</small></span><span
-                                        class="d-block fs-14 kitchen--table-remarks"><small
-                                            class="fw-semibold text-theme-secondary fs-11 d-block">Remarks</small><span
-                                            class="d-block fs-13 fw-normal">note about the breakfast</span></span>
+                                    <span class="text-center d-block fs-14 fw-normal">Dubai<br />Business
+                                        Bay<br />Churchill Tower<br />12B -
+                                        5 Floor</span>
                                 </td>
-                                <td class="text-start"></td>
+
+
+
+                                {{-- deliveryDate --}}
                                 <td class="text-start">
-                                    <span class="d-block fs-14 mb-4 fw-normal">Mango Chia Pudding<small
-                                            class="fw-semibold text-gold fs-13 d-block">Large</small></span>
+                                    <span class="text-center d-block fs-14 fw-normal">30 / 03 / 2024</span>
                                 </td>
-                                <td class="text-start"></td>
-                                <td class="text-start"></td>
+
+
+
+                                {{-- status --}}
                                 <td class="text-start">
-                                    <span class="d-block fs-14 mb-4 fw-normal">Fruit Salad<small
-                                            class="fw-semibold text-gold fs-13 d-block">Small</small></span>
-                                </td>
-                                <td class="text-start"></td>
-                                <td class="text-start">
-                                    <span class="d-block fs-14 mb-4 fw-normal">Green Juice<small
-                                            class="fw-semibold text-gold fs-13 d-block">Medium</small></span><span
-                                        class="d-block fs-14 kitchen--table-remarks"><small
-                                            class="fw-semibold text-theme-secondary fs-11 d-block">Remarks</small><span
-                                            class="d-block fs-13 fw-normal">note about the breakfast</span></span>
+                                    <span class="text-center d-block fs-14 fw-normal">
+                                        <span class="badge fs-13 badge--warning scale--self-05 w-75">Pending</span>
+                                    </span>
                                 </td>
                             </tr>
+                            {{-- end loop --}}
+
+
+
                         </tbody>
                     </table>
                     {{-- endTable --}}

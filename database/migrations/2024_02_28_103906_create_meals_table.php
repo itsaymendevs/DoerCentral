@@ -60,9 +60,16 @@ return new class extends Migration {
 
 
 
-            // 1.4: container
+            // 1.4: container - label
             $table->bigInteger('containerId')->unsigned()->nullable();
             $table->foreign('containerId')->references('id')->on('containers')->onDelete('set null');
+
+
+            $table->bigInteger('labelId')->unsigned()->nullable();
+            $table->foreign('labelId')->references('id')->on('labels')->onDelete('set null');
+
+
+
 
 
 

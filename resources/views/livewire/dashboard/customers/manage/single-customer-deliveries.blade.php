@@ -194,8 +194,14 @@
 
 
 
+
+
+
+                                        {{-- deliveryDate --}}
                                         <td class="fw-bold text-theme">{{ date('d / m / Y',
                                             strtotime($delivery->deliveryDate)) }}</td>
+
+
 
 
 
@@ -210,7 +216,8 @@
                                                 badge--secondary
                                                 @else
                                                 badge--theme-secondary
-                                                @endif">{{ $delivery->status }}</span>
+                                                @endif">{{ $delivery->status }}
+                                            </span>
                                         </td>
 
 

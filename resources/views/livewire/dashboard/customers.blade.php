@@ -209,7 +209,7 @@
 
 
 
-                    <div class="col-4 col-xl-3 col-xxl-3">
+                    <div class="col-4 col-xl-3 col-xxl-3" key='{{ $customer->id }}'>
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">
 
@@ -289,28 +289,7 @@
 
 
 
-                                        {{-- 3: pause / freeze --}}
-                                        <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
-                                            data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
-                                            type="button" title="Pause / Freeze"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
-                                                class="bi bi-stop-circle fs-5">
-                                                <path
-                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z">
-                                                </path>
-                                                <path
-                                                    d="M5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3z">
-                                                </path>
-                                            </svg>
-                                        </button>
-
-
-
-
-
-
-                                        {{-- 4: re-new --}}
+                                        {{-- 2: re-new --}}
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
@@ -331,7 +310,43 @@
 
 
 
-                                        {{-- 5: remove --}}
+
+
+
+                                        {{-- 3: pause --}}
+                                        <div data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
+                                            title="Pause">
+
+
+                                            <button
+                                                class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32
+                                                @if ($customer->latestSubscription()->untilDate < $globalPauseDate) disabled @endif"
+                                                type="button" data-bs-toggle="modal"
+                                                data-bs-target='#pause-subscription'
+                                                wire:click='pause({{ $customer->latestSubscription()->id }})'>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                    fill="currentColor" class="bi bi-stopwatch fs-5"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                                                    <path
+                                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                                                </svg>
+                                            </button>
+
+
+                                        </div>
+                                        {{-- endPause --}}
+
+
+
+
+
+
+
+
+
+                                        {{-- 4: remove --}}
                                         <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
                                             type="button" wire:click='remove({{ $customer->id }})'
                                             wire:loading.attr='disabled' wire:target='remove'>
@@ -394,7 +409,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--select").on("change", function(event) {
+        $(".form--select").on("change", function(event) {
 
 
 
@@ -415,8 +430,46 @@
 
 
 
+
+
+
+
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+    @section('modals')
+
+
+
+
+    {{-- 1: pauseSubscription --}}
+    <livewire:dashboard.customers.components.customers-pause-subscription />
+
+
+
+
+
+
+    @endsection
+    {{-- endSection --}}
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
 
 
 

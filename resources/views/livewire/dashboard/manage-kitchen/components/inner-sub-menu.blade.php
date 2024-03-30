@@ -19,9 +19,9 @@
 
 
         {{-- delivery --}}
-        <a class="btn fs-13
+        <a wire:navigate class="btn fs-13
         @if (Request::is('dashboard/kitchen/today/delivery', 'dashboard/kitchen/today/delivery/*')) active @endif"
-            role="button" href="javascript:void(0);">Delivery</a>
+            role="button" href="{{ route('dashboard.kitchenTodayDelivery') }}">Delivery</a>
 
 
     </div>

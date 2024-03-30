@@ -23,7 +23,7 @@
 
 
         {{-- form --}}
-        <form wire:submit='store' class="row align-items-end pt-2 mb-5">
+        <form wire:submit='update' class="row align-items-end pt-2 mb-5">
 
 
 
@@ -114,7 +114,7 @@
                         <div class="text-center">
                             <button
                                 class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05"
-                                wire:loading.attr='disabled' wire:target='store, instance.imageFile'>Save</button>
+                                wire:loading.attr='disabled' wire:target='update, instance.imageFile'>Update</button>
                         </div>
 
 
@@ -155,8 +155,6 @@
 
 
 
-
-
                     {{-- charge --}}
                     <div class="col-5">
                         <label class="form-label form--label">Charge
@@ -170,11 +168,14 @@
 
 
 
+
+
                     {{-- containers --}}
                     <div class="col-12" wire:ignore>
                         <label class="form-label form--label">Containers</label>
                         <div class="select--single-wrapper mb-4">
-                            <select class="form-select form--select" multiple="" data-instance='instance.containers'>
+                            <select class="form-select form--select" id='container-select-2' multiple=""
+                                data-instance='instance.containers' data-trigger='true'>
                                 @foreach ($containers as $container)
                                 <option value="{{ $container->id }}">{{ $container->name }}</option>
                                 @endforeach
@@ -238,7 +239,7 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-1"
-                                        wire:model='instance.showQRCode' />
+                                        wire:model='instance.showQRCode' @if ($instance->showQRCode) checked @endif />
                                     <label class="form-check-label fs-14" for="formCheck-1">QR Code</label>
                                 </div>
                             </div>
@@ -250,7 +251,7 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-2"
-                                        wire:model='instance.showPrice' />
+                                        wire:model='instance.showPrice' @if ($instance->showPrice) checked @endif />
                                     <label class="form-check-label fs-14" for="formCheck-2">Price</label>
                                 </div>
                             </div>
@@ -264,7 +265,8 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-3"
-                                        wire:model='instance.showProductionDate' />
+                                        wire:model='instance.showProductionDate' @if($instance->showProductionDate)
+                                    checked @endif />
                                     <label class="form-check-label fs-14" for="formCheck-3">Production Date</label>
                                 </div>
                             </div>
@@ -277,7 +279,8 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-4"
-                                        wire:model='instance.showCustomerName' />
+                                        wire:model='instance.showCustomerName' @if($instance->showCustomerName)
+                                    checked @endif />
                                     <label class="form-check-label fs-14" for="formCheck-4">Customer Name</label>
                                 </div>
                             </div>
@@ -290,7 +293,8 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-5"
-                                        wire:model='instance.showAllergy' />
+                                        wire:model='instance.showAllergy' @if($instance->showAllergy)
+                                    checked @endif />
                                     <label class="form-check-label fs-14" for="formCheck-5">Allergy & Exclude</label>
                                 </div>
                             </div>
@@ -302,7 +306,8 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-6"
-                                        wire:model='instance.showServingInstructions' />
+                                        wire:model='instance.showServingInstructions'
+                                        @if($instance->showServingInstructions) checked @endif />
                                     <label class="form-check-label fs-14" for="formCheck-6">Serving Instructions</label>
                                 </div>
                             </div>
@@ -315,7 +320,8 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-7"
-                                        wire:model='instance.showMealRemarks' />
+                                        wire:model='instance.showMealRemarks' @if($instance->showMealRemarks)
+                                    checked @endif />
                                     <label class="form-check-label fs-14" for="formCheck-7">Meal Remarks</label>
                                 </div>
                             </div>
@@ -349,16 +355,16 @@
 
                             {{-- label --}}
                             <label class="form-label upload--wrap" data-bs-toggle="tooltip" data-bss-tooltip=""
-                                title="Click To Upload" for="label--file-1">
+                                title="Click To Upload" for="label--file-2">
 
 
                                 {{-- input --}}
-                                <input type="file" id="label--file-1" class="d-none file--input"
-                                    data-preview="label--preview-1" required wire:model='instance.imageFile' />
+                                <input type="file" id="label--file-2" class="d-none file--input"
+                                    data-preview="label--preview-2" wire:model='instance.imageFile' />
 
 
                                 {{-- preview --}}
-                                <img id="label--preview-1" class="inventory--image-frame"
+                                <img id="label--preview-2" class="inventory--image-frame"
                                     src="{{ asset('assets/img/placeholder.png') }}" style="height: 180px" wire:ignore />
 
 

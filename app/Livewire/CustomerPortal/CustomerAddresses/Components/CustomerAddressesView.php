@@ -257,9 +257,7 @@ class CustomerAddressesView extends Component
         // 1: dependencies
         $cities = City::all();
         $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        $reservedWeekDays = CustomerDeliveryDay::where('customerId', $this->instance->customerId)
-                ?->where('customerAddressId', '!=', $this->address->id)
-                ?->pluck('weekDay')->toArray() ?? [];
+
 
 
 
@@ -271,7 +269,7 @@ class CustomerAddressesView extends Component
 
 
 
-        return view('livewire.customer-portal.customer-addresses.components.customer-addresses-view', compact('cities', 'weekDays', 'reservedWeekDays'));
+        return view('livewire.customer-portal.customer-addresses.components.customer-addresses-view', compact('cities', 'weekDays'));
 
 
     } // end function

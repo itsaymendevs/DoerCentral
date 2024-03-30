@@ -745,6 +745,9 @@ Route::post('/dashboard/menu/builder/containers/update', [BuilderController::cla
 
 
 
+
+
+
 // 9.6: menu - builder - ingredients - storeIngredient - update - remove
 Route::post('/dashboard/menu/builder/ingredients/store', [BuilderController::class, 'storeBuilderIngredient']);
 Route::post('/dashboard/menu/builder/ingredients/update', [BuilderController::class, 'updateBuilderIngredient']);
@@ -822,6 +825,44 @@ Route::post('/dashboard/menu/builder/packings/remove', [BuilderController::class
 
 // 9.10: menu - builder - servings - update
 Route::post('/dashboard/menu/builder/servings/update', [BuilderController::class, 'updateBuilderServing']);
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 9.11: menu - builder - labels - update
+Route::post('/dashboard/menu/builder/labels/update', [BuilderController::class, 'updateBuilderLabel']);
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 9.12: menu - builder - cutlery - toggle
+Route::post('/dashboard/menu/builder/cutlery/toggle', [BuilderController::class, 'toggleBuilderCutlery']);
 
 
 

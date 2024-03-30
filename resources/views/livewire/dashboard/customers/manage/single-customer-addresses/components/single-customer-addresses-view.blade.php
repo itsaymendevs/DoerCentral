@@ -179,12 +179,8 @@
 
 
 
-
-
         {{-- ------------------------ --}}
         {{-- ------------------------ --}}
-
-
 
 
 
@@ -206,7 +202,7 @@
 
             {{-- 3: remove --}}
             <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 mb-4 scale--self-05 h-32" type="button"
-                wire:click='remove({{ $address->id }})' wire:loading.attr='disabled' wire:target='remove, store'>
+                wire:click='remove({{ $address->id }})' wire:loading.attr='disabled' wire:target='remove, update'>
                 <svg class="bi bi-trash fs-5" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                     fill="currentColor" viewBox="0 0 16 16">
                     <path
@@ -258,7 +254,7 @@
 
 
             {{-- wrapper --}}
-            <div class="flex submenu--group text-start d-flex align-items-center justify-content-start" wire:ignore>
+            <div class="flex submenu--group text-start d-flex align-items-center justify-content-between" wire:ignore>
 
 
 
@@ -266,11 +262,6 @@
 
                 {{-- loop - deliveryDays --}}
                 @foreach ($weekDays as $key => $weekDay)
-
-
-
-                {{-- :: notReserved --}}
-                @if (!in_array($weekDay, $reservedWeekDays))
 
 
 
@@ -290,11 +281,6 @@
                     $address->deliveryDaysInArray())) checked @endif id="formCheck-{{ $key }}-{{ $address->id }}" />
 
 
-
-
-
-                @endif
-                {{-- end if --}}
 
 
 

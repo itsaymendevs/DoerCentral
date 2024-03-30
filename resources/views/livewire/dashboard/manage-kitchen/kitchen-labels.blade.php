@@ -93,7 +93,7 @@
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo rounded-0"
-                                        src="{{ asset('storage/kitchen/labels' . $label->imageFile) }}" />
+                                        src="{{ asset('storage/kitchen/labels/' . $label->imageFile) }}" />
                                 </div>
 
 
@@ -113,8 +113,10 @@
 
 
                                         {{-- maange --}}
-                                        <a class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                                            href='#'>Manage</a>
+                                        <a wire:navigate
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                            href="{{ route('dashboard.kitchenLabelsEdit', [$label->id]) }}">Manage</a>
+
 
 
                                         {{-- remove --}}

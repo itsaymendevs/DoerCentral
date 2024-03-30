@@ -24,7 +24,17 @@ return new class extends Migration {
 
 
 
-            // 1.2: city - district - deliveryTime
+            // 1.2: latitude - longitude - mapLocation
+            $table->text('latitude')->nullable();
+            $table->text('longitude')->nullable();
+            $table->text('mapLocation')->nullable();
+
+
+
+
+
+
+            // 1.3: city - district - deliveryTime
             $table->bigInteger('cityId')->unsigned()->nullable();
             $table->foreign('cityId')->references('id')->on('cities')->onDelete('set null');
 

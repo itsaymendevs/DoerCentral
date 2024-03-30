@@ -191,9 +191,6 @@
                                 @foreach ($weekDays as $key => $weekDay)
 
 
-                                {{-- :: notReserved --}}
-                                @if (!in_array($weekDay, $reservedWeekDays))
-
 
 
                                 {{-- label --}}
@@ -209,9 +206,6 @@
 
 
 
-
-                                @endif
-                                {{-- end if --}}
 
 
                                 @endforeach

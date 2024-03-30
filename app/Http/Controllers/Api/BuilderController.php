@@ -978,6 +978,110 @@ class BuilderController extends Controller
 
 
 
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateBuilderLabel(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: get instance
+        $meal = Meal::find($request->id);
+
+        $meal->labelId = $request->label;
+
+        $meal->save();
+
+
+
+
+
+        return response()->json(['message' => 'Label has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function toggleBuilderCutlery(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: get instance
+        $serving = MealServing::find($request->id);
+
+        $serving->useCutlery = boolval($request->useCutlery);
+
+        $serving->save();
+
+
+
+
+
+        return response()->json(['message' => 'Serving Details has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
 
 
 
@@ -1396,6 +1500,11 @@ class BuilderController extends Controller
 
 
     } // end function
+
+
+
+
+
 
 
 

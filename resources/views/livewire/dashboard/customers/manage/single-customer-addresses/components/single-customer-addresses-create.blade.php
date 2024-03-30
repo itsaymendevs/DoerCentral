@@ -182,7 +182,7 @@
 
 
                             {{-- wrapper --}}
-                            <div class="text-sm-start mb-4 flex submenu--group text-start" wire:ignore.self>
+                            <div class="text-sm-start mb-3 flex submenu--group text-start " wire:ignore.self>
 
 
 
@@ -192,9 +192,6 @@
                                 @foreach ($weekDays as $key => $weekDay)
 
 
-
-                                {{-- :: notReserved --}}
-                                @if (!in_array($weekDay, $reservedWeekDays))
 
 
                                 {{-- label --}}
@@ -209,9 +206,6 @@
                                     id="formCheck-modal-{{ $key }}" wire:model='instance.deliveryDays.{{ $weekDay }}' />
 
 
-
-                                @endif
-                                {{-- end if --}}
 
 
                                 @endforeach

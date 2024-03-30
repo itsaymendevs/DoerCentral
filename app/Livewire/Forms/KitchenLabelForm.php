@@ -10,11 +10,11 @@ class KitchenLabelForm extends Form
 
     // :: variables
     #[Rule('required', as: 'instanceError')]
-    public $name, $width, $height, $radius, $backgroundColor, $fontColor, $labelBackgroundColor, $imageFile;
+    public $name, $charge, $width, $height, $backgroundColor, $fontColor, $labelBackgroundColor, $imageFile;
 
 
 
-    public $showQRCode, $showPrice, $showAllergy, $showMealRemarks, $showCustomerName, $showProductionDate, $showServingInstructions, $desc;
+    public $id, $desc, $radius, $showQRCode, $showPrice, $showAllergy, $showMealRemarks, $showCustomerName, $showProductionDate, $showServingInstructions;
 
 
 
@@ -24,6 +24,7 @@ class KitchenLabelForm extends Form
 
 
 
-
+    // relations
+    public $containers = [];
 
 } // end form

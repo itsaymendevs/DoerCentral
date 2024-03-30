@@ -24,6 +24,37 @@ class KitchenLabelsCreate extends Component
 
 
 
+
+
+
+    public function mount()
+    {
+
+
+        // 1: defaultColorValues
+        $this->instance->backgroundColor = '#ffffff';
+        $this->instance->labelBackgroundColor = '#000000';
+        $this->instance->fontColor = '#000000';
+
+
+
+    } // end function
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
     public function store()
     {
 
@@ -35,7 +66,6 @@ class KitchenLabelsCreate extends Component
 
 
 
-        dd($this->instance);
 
 
         // 1: uploadFile
@@ -58,7 +88,7 @@ class KitchenLabelsCreate extends Component
 
 
         // :: redirectToLabels
-        return $this->redirect(route('dashboard.kitchenLabels'), navigate: false);
+        return $this->redirect(route('dashboard.kitchenLabels'), navigate: true);
 
 
 

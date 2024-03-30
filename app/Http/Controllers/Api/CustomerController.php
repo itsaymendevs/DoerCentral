@@ -845,7 +845,17 @@ class CustomerController extends Controller
 
 
 
-                // 2.1: create
+
+                // 2.1: removeSimilar
+                CustomerDeliveryDay::where('customerId', $customerAddress->customer->id)
+                    ->where('weekDay', $weekDay)->delete();
+
+
+
+
+
+
+                // 2.2: create
                 $customerDeliveryDay = new CustomerDeliveryDay();
 
 
@@ -965,7 +975,15 @@ class CustomerController extends Controller
 
 
 
-                // 2.1: create
+                // 2.1: removeSimilar
+                CustomerDeliveryDay::where('customerId', $customerAddress->customer->id)
+                    ->where('weekDay', $weekDay)->delete();
+
+
+
+
+
+                // 2.2: create
                 $customerDeliveryDay = new CustomerDeliveryDay();
 
 

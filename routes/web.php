@@ -13,6 +13,7 @@ use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\ManageKitchen\KitchenContainers;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels\KitchenLabelsCreate;
+use App\Livewire\Dashboard\ManageKitchen\KitchenLabels\KitchenLabelsEdit;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayDelivery;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayPacking;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayProduction;
@@ -525,6 +526,7 @@ Route::middleware(['auth.user'])->group(function () {
     // 12: kitchen - labels - create
     Route::get('dashboard/kitchen/labels/create', KitchenLabelsCreate::class)->name('dashboard.kitchenLabelsCreate');
 
+    Route::get('dashboard/kitchen/labels/{id}/edit', KitchenLabelsEdit::class)->name('dashboard.kitchenLabelsEdit');
 
 
 

@@ -61,7 +61,7 @@ trait MacroTrait
 
 
             // :: MacroHelper - recursion
-            $partMacro = $this->getMacro($mealPart->part, $mealPart->amount, true);
+            $partMacro = $this->getMacro($mealPart->part, $currentAmount, true);
 
 
 

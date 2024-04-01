@@ -38,6 +38,10 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
+
+
+
+
     public function mount($id, $typeId)
     {
 
@@ -55,6 +59,10 @@ class ProductionBuilderViewIngredient extends Component
 
 
     } // end function
+
+
+
+
 
 
 
@@ -100,12 +108,14 @@ class ProductionBuilderViewIngredient extends Component
         $this->instance->partType = $this->mealPart->partType;
         $this->instance->isRemovable = $this->mealPart->isRemovable;
         $this->instance->isReplacement = $this->mealPart->isReplacement;
+        $this->instance->groupToken = $this->mealPart->groupToken;
         $this->instance->mealId = $this->mealPart->mealId;
 
 
 
 
     } // end function
+
 
 
 
@@ -124,17 +134,16 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
+
+
     public function update()
     {
 
 
+
+
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/builder/ingredients/details/update', $this->instance);
-
-
-
-        // :: alert
-        // $this->makeAlert('success', $response->message);
 
 
 
@@ -242,7 +251,6 @@ class ProductionBuilderViewIngredient extends Component
 
         // :: valid partId
         if ($this->mealPart) {
-
 
 
 

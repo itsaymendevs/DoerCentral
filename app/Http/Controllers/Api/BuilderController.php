@@ -1289,18 +1289,37 @@ class BuilderController extends Controller
 
 
 
-
-
         // 1.3: amount - remarks
         $part->amount = $request->amount ?? null;
         $part->remarks = $request->remarks ?? null;
-        $part->isRemovable = $request->isRemovable === true ? true : false;
-        $part->isReplacement = $request->isReplacement === true ? true : false;
-
-
 
 
         $part->save();
+
+
+
+
+
+
+
+        // ---------------------------------------------
+        // ---------------------------------------------
+
+
+
+
+
+        // 2: updateRemovable - Replacement in allSizes
+        $request->typeId == 'Ingredient' ?
+            MealIngredient::where('groupToken', $part->groupToken)->update([
+                'isRemovable' => boolval($request->isRemovable) === true ? true : false,
+                'isReplacement' => boolval($request->isReplacement) === true ? true : false
+            ]) : MealPart::where('groupToken', $part->groupToken)->update([
+                        'isRemovable' => boolval($request->isRemovable) === true ? true : false,
+                        'isReplacement' => boolval($request->isReplacement) === true ? true : false
+                    ]);
+
+
 
 
 

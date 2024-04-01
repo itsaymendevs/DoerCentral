@@ -7,7 +7,7 @@
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-xxs px-1" type="number" step='0.01' required
             wire:model='instance.amount' wire:change='update' wire:loading.attr='readonly'
-            wire:target='remove, update' />
+            wire:target='remove, update, init' />
     </td>
 
 
@@ -77,7 +77,7 @@
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-sm px-2" style="max-width: 100%;" type="text"
             wire:model='instance.remarks' wire:change='update' wire:loading.attr='readonly'
-            wire:target='remove, update' />
+            wire:target='remove, update, init' />
     </td>
 
 
@@ -92,10 +92,10 @@
         <div class="form-check form-switch mealType--checkbox justify-content-center">
 
 
-            <input class="form-check-input pointer" type="checkbox" @if ($this->instance->isRemovable)
-            checked @endif
+            <input class="form-check-input pointer removable--checkbox" type="checkbox"
+                data-group='{{ $instance->groupToken }}' @if($this->instance->isRemovable) checked @endif
             id="formCheck-{{ strtolower($instance->typeId) }}-{{ $instance->id }}" wire:model='instance.isRemovable'
-            wire:change='update' wire:loading.attr='disabled' wire:target='update, remove' />
+            wire:change='update' wire:loading.attr='disabled' wire:target='update, remove, init' />
 
 
             <label class="form-check-label d-none"
@@ -114,11 +114,11 @@
         <div class="form-check form-switch mealType--checkbox justify-content-center">
 
 
-            <input class="form-check-input pointer" type="checkbox" @if ($this->instance->isReplacement)
-            checked @endif
+            <input class="form-check-input pointer replacement--checkbox" data-group='{{ $instance->groupToken }}'
+                type="checkbox" @if($this->instance->isReplacement) checked @endif
             id="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}"
             wire:model='instance.isReplacement'
-            wire:change='update' wire:loading.attr='disabled' wire:target='update, remove' />
+            wire:change='update' wire:loading.attr='disabled' wire:target='update, remove, init' />
 
 
             <label class="form-check-label d-none"
@@ -137,8 +137,8 @@
     {{-- remove Ingredient --}}
     <td class="fw-bold">
         <div class="d-flex align-items-center justify-content-center">
-            <button class="btn btn--raw-icon inline remove scale--3 px-0" type="button" wire:loading.attr='disabled'
-                wire:target='remove, update' wire:click='remove({{ $instance->id }})'>
+            <button class="btn btn--raw-icon inline remove scale--3 px-0 " type="button" wire:loading.attr='disabled'
+                wire:target='remove, update, init' wire:click='remove({{ $instance->id }})'>
                 <svg class="bi bi-trash-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                     fill="currentColor" viewBox="0 0 16 16">
                     <path

@@ -378,13 +378,31 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-        // 1: makeRequest
+        // 1.2: makeRequest
         $response = $this->makeRequest('dashboard/menu/builder/ingredients/update', $instance);
 
 
 
-        // :: alert
-        // $this->makeAlert('success', $response->message);
+
+
+
+
+
+
+
+
+        // --------------------------
+        // --------------------------
+
+
+
+
+
+
+        // 1.2: refresh ingredient / part
+        $this->dispatch('refreshMealSizeIngredientsView-' . $instance->id . '-' . $instance->typeId, $instance->id, $instance->typeId);
+
+
 
 
     } // end function
@@ -498,6 +516,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
         // 1: dependencies
+        $ingredients = Ingredient::all();
         $types = Type::where('name', '!=', 'Recipe')->get();
         $mealSize = MealSize::where('mealId', $this->meal->id)->first();
 
@@ -505,9 +524,15 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-        // 1.2: ingredients - meals
-        $ingredients = Ingredient::all();
-        $mealOptions = Meal::all();
+        // 1.2: mealOptions (withoutCurrent or inParts)
+        $inPartsOfMeal = MealPart::where('partId', $this->meal->id)->get()
+                ?->pluck('mealId')?->toArray() ?? [];
+
+
+        $mealOptions = Meal::where('id', '!=', $this->meal->id)
+            ->whereNotIn('id', $inPartsOfMeal)->get();
+
+
 
 
 

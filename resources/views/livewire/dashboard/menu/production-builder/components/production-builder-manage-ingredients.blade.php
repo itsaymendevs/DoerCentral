@@ -278,8 +278,8 @@
 
 
                                     {{-- :: without CurrentMeal - with SameType --}}
-                                    @foreach ($mealOptions?->where('id', '!=', $mealSizePart->mealId)
-                                    ?->where('typeId', $mealSizePart->typeId) ?? [] as $mealOption)
+                                    @foreach ($mealOptions?->where('typeId',
+                                    $mealSizePart->typeId) ?? [] as $mealOption)
                                     <option value="{{ $mealOption->id }}">{{ $mealOption->name }}</option>
                                     @endforeach
 
@@ -482,6 +482,9 @@
 
 
 
+
+
+
                     {{-- 1.2: automaticAfterCook For Size --}}
                     <tr>
 
@@ -589,9 +592,9 @@
 
 
 
-
-
                     {{-- ---------------------------- end items --}}
+
+
 
 
                 </tbody>
@@ -604,6 +607,11 @@
 
     @endforeach
     {{-- end loop --}}
+
+
+
+
+
 
 
 
@@ -746,6 +754,79 @@
 
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+    {{-- sync removable - replacement in UI --}}
+    <script>
+        $('tbody').on('change', '.replacement--checkbox', function () {
+
+            // 1: getGroup
+            groupToken = $(this).attr('data-group');
+
+
+            // 1.2: check
+            if ($(this).prop('checked'))
+                $(`.replacement--checkbox[data-group=${groupToken}]`).prop('checked', true);
+
+
+
+            // :: unCheck
+            else
+                $(`.replacement--checkbox[data-group=${groupToken}]`).prop('checked', false);
+
+        });
+
+
+
+
+
+
+        // -------------------------------------------------
+        // -------------------------------------------------
+
+
+
+
+
+
+
+
+        $('tbody').on('change', '.removable--checkbox', function () {
+
+            // 1: getGroup
+            groupToken = $(this).attr('data-group');
+
+
+            // 1.2: check
+            if ($(this).prop('checked'))
+                $(`.removable--checkbox[data-group=${groupToken}]`).prop('checked', true);
+
+
+
+            // :: unCheck
+            else
+                $(`.removable--checkbox[data-group=${groupToken}]`).prop('checked', false);
+
+        });
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
 
 
 

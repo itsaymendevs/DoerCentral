@@ -49,8 +49,14 @@ class MealIngredient extends Model
 
 
 
+
+
+
+
+
     public function totalMacro($currentAmount = 0)
     {
+
 
         // :: root
         $totalCalories = $totalProteins = $totalCarbs = $totalFats = 0;
@@ -62,14 +68,15 @@ class MealIngredient extends Model
 
         // 1: ingredients
         $ingredient = $this->ingredient()->first();
-        $amount = $currentAmount; // currentAmount - upToDateAmount
+
+
 
 
         // 1.2: ingredientMacro
-        $totalCalories += ($ingredient?->freshMacro()?->calories ?? 0) * $amount;
-        $totalProteins += ($ingredient?->freshMacro()?->proteins ?? 0) * $amount;
-        $totalCarbs += ($ingredient?->freshMacro()?->carbs ?? 0) * $amount;
-        $totalFats += ($ingredient?->freshMacro()?->fats ?? 0) * $amount;
+        $totalCalories += ($ingredient?->freshMacro()?->calories ?? 0) * $currentAmount;
+        $totalProteins += ($ingredient?->freshMacro()?->proteins ?? 0) * $currentAmount;
+        $totalCarbs += ($ingredient?->freshMacro()?->carbs ?? 0) * $currentAmount;
+        $totalFats += ($ingredient?->freshMacro()?->fats ?? 0) * $currentAmount;
 
 
 

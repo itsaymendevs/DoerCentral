@@ -121,6 +121,8 @@ class Meal extends Model
 
 
 
+
+
     public function ingredients()
     {
 
@@ -150,11 +152,11 @@ class Meal extends Model
 
 
 
+    // ------------------------------------------
+    // ------------------------------------------
+    // ------------------------------------------
 
 
-    // ------------------------------------------
-    // ------------------------------------------
-    // ------------------------------------------
 
 
 
@@ -196,6 +198,47 @@ class Meal extends Model
 
         return count($parts) > 0 ? $parts : ['List is empty'];
 
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function totalGrams()
+    {
+
+
+        // :: root
+        $totalGrams = 0;
+
+
+
+        // 1: getTotalPartGrams
+        $totalGrams += $this?->ingredients?->sum('amount') ?? 0;
+        $totalGrams += $this?->parts?->sum('amount') ?? 0;
+
+
+
+        return $totalGrams;
 
 
     } // end function

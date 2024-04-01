@@ -88,6 +88,9 @@
                 <tbody>
 
 
+
+
+
                     {{-- subtitle --}}
                     <tr>
                         <td class="fw-bold" style="height: 62px" colspan="2">
@@ -117,7 +120,19 @@
 
 
 
-                    {{-- ---------------------------- end items --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -129,13 +144,71 @@
 
 
                     {{-- 1: ingredients --}}
-                    @foreach ($mealSize?->ingredients as $mealSizeIngredient)
+                    @foreach ($mealSize?->ingredients ?? [] as $mealSizeIngredient)
 
 
 
-                    <livewire:dashboard.menu.production-builder.components.production-builder-edit-ingredient
-                        :id='$mealSizeIngredient->id' typeId='Ingredient'
-                        key='ingredient-{{ $mealSizeIngredient->id }}' />
+
+
+                    {{-- singleRow - part --}}
+                    <tr key='ingredient-{{ $mealSizeIngredient->id }}'>
+
+
+
+
+                        {{-- coloringTD --}}
+                        <td class="fw-bold tr--ingredient" wire:ignore>
+
+
+                            <div class="select--single-wrapper builder px-2 mx-auto"
+                                style="width: 170px !important; max-width: 170px !important">
+                                <select class="form-select ingredient--select"
+                                    id='ingredient--select-{{ $mealSizeIngredient->id }}'
+                                    data-instance='instance.partId.{{ $mealSizeIngredient->id }}'
+                                    data-instanceId='{{ $mealSizeIngredient->id }}' required
+                                    value='{{ $mealSizeIngredient?->ingredientId }}'>
+                                    <option value=""></option>
+
+                                    @foreach ($ingredients as $ingredient)
+                                    <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+
+
+                        </td>
+                        {{-- endTD --}}
+
+
+
+
+
+
+
+                        {{-- type --}}
+                        <td class="fw-bold" wire:ignore>
+                            <div class="select--single-wrapper xxs"
+                                style="width: 85px !important; max-width: 85px !important">
+                                <select class="form-select ingredient--type-select "
+                                    id='ingredient--type-select-{{ $mealSizeIngredient->id }}'
+                                    data-instance='instance.partType.{{ $mealSizeIngredient->id }}'
+                                    data-instanceId='{{ $mealSizeIngredient->id }}' data-instanceType='Ingredient'
+                                    required value='{{ $mealSizeIngredient?->partType }}'>
+                                    <option value=""></option>
+                                    <option value="Main">Main</option>
+                                    <option value="Side">Side</option>
+                                    <option value="Mixed">Mixed</option>
+                                </select>
+                            </div>
+                        </td>
+
+
+                    </tr>
+                    {{-- end loop --}}
+
+
+
 
 
                     @endforeach
@@ -145,13 +218,109 @@
 
 
 
+
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     {{-- 2: parts --}}
-                    @foreach ($mealSize?->parts as $mealSizePart)
+                    @foreach ($mealSize?->parts ?? [] as $mealSizePart)
 
 
-                    <livewire:dashboard.menu.production-builder.components.production-builder-edit-ingredient
-                        :id='$mealSizePart->id' typeId='{{ $mealSizePart->typeId }}'
-                        key='part-{{ $mealSizePart->id }}' />
+
+
+
+
+                    {{-- singleRow - part --}}
+                    <tr key='part-{{ $mealSizePart->id }}'>
+
+
+
+
+                        {{-- coloringTD --}}
+                        <td class="fw-bold tr--{{ strtolower($mealSizePart->type->name) }}" wire:ignore>
+
+
+
+                            <div class="select--single-wrapper builder px-2 mx-auto"
+                                style="width: 170px !important; max-width: 170px !important">
+                                <select class="form-select part--select" id='part--select-{{ $mealSizePart->id }}'
+                                    data-instance='instanceParts.partId.{{ $mealSizePart->id }}'
+                                    data-instanceId='{{ $mealSizePart->id }}'
+                                    data-instanceType='{{ $mealSizePart->type->id }}' required
+                                    value='{{ $mealSizePart?->partId }}'>
+                                    <option value=""></option>
+
+
+
+                                    {{-- :: without CurrentMeal - with SameType --}}
+                                    @foreach ($mealOptions?->where('id', '!=', $mealSizePart->mealId)
+                                    ?->where('typeId', $mealSizePart->typeId) ?? [] as $mealOption)
+                                    <option value="{{ $mealOption->id }}">{{ $mealOption->name }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+
+
+                        </td>
+                        {{-- endTD --}}
+
+
+
+
+
+
+
+                        {{-- type --}}
+                        <td class="fw-bold" wire:ignore>
+                            <div class="select--single-wrapper xxs"
+                                style="width: 85px !important; max-width: 85px !important">
+                                <select class="form-select part--type-select "
+                                    id='part--type-select-{{ $mealSizePart->id }}'
+                                    data-instance='instanceParts.partType.{{ $mealSizePart->id }}'
+                                    data-instanceId='{{ $mealSizePart->id }}'
+                                    data-instanceType='{{ $mealSizePart->type->id }}' required
+                                    value='{{ $mealSizePart?->partType }}'>
+                                    <option value=""></option>
+                                    <option value="Main">Main</option>
+                                    <option value="Side">Side</option>
+                                    <option value="Mixed">Mixed</option>
+                                </select>
+                            </div>
+                        </td>
+
+
+                    </tr>
+                    {{-- end loop --}}
+
+
+
+
 
                     @endforeach
                     {{-- end loop --}}
@@ -165,7 +334,22 @@
 
 
 
-                    {{-- ---------------------------- end items --}}
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
 
 
 
@@ -189,9 +373,6 @@
 
     {{-- ------------------------------------------------------------ --}}
     {{-- ------------------------------------------------------------ --}}
-
-
-
 
 
 
@@ -259,7 +440,7 @@
                             <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
                                 value="{{ $mealSize->afterCookCalories }}"
                                 wire:change="updateAfterCookMacros('Calories', $event.target.value, {{ $mealSize->id }})"
-                                required />
+                                wire:loading.attr='readonly' wire:target='updateAfterCookMacros' required />
                         </td>
 
                         {{-- proteins --}}
@@ -267,7 +448,7 @@
                             <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
                                 value="{{ $mealSize->afterCookProteins }}"
                                 wire:change="updateAfterCookMacros('Proteins', $event.target.value, {{ $mealSize->id }})"
-                                required />
+                                wire:loading.attr='readonly' wire:target='updateAfterCookMacros' required />
                         </td>
 
 
@@ -276,7 +457,7 @@
                             <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
                                 value="{{ $mealSize->afterCookCarbs }}"
                                 wire:change="updateAfterCookMacros('Carbs', $event.target.value, {{ $mealSize->id }})"
-                                required />
+                                wire:loading.attr='readonly' wire:target='updateAfterCookMacros' required />
                         </td>
 
 
@@ -285,7 +466,7 @@
                             <input class="form-control form--input form--table-input-sm" type="number" step='0.01'
                                 value="{{ $mealSize->afterCookFats }}"
                                 wire:change="updateAfterCookMacros('Fats', $event.target.value, {{ $mealSize->id }})"
-                                required />
+                                wire:loading.attr='readonly' wire:target='updateAfterCookMacros' required />
                         </td>
 
 
@@ -364,6 +545,7 @@
 
 
 
+
                     {{-- ------------------------- items --}}
 
 
@@ -435,6 +617,135 @@
 
 
 
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $('tbody').on('change', `.ingredient--select`, function(event) {
+
+
+            // 1.1: getValue - instance
+            selectValue = $(this).select2('val');
+            instance = $(this).attr('data-instance');
+            instanceId = $(this).attr('data-instanceId');
+
+            @this.set(instance, selectValue);
+            @this.update(instanceId, 'Ingredient');
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $('tbody').on('change', `.ingredient--type-select`, function(event) {
+
+
+
+            // 1.1: getValue - instance
+            selectValue = $(this).select2('val');
+            instance = $(this).attr('data-instance');
+            instanceId = $(this).attr('data-instanceId');
+            console.log('first');
+
+            @this.set(instance, selectValue);
+            @this.updateType(instanceId, 'Ingredient');
+        });
+
+    </script>
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $('tbody').on('change', `.part--select`, function(event) {
+
+
+            // 1.1: getValue - instance
+            selectValue = $(this).select2('val');
+            instance = $(this).attr('data-instance');
+            instanceId = $(this).attr('data-instanceId');
+            instanceType = $(this).attr('data-instanceType');
+
+            @this.set(instance, selectValue);
+            @this.update(instanceId, instanceType);
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $('tbody').on('change', `.part--type-select`, function(event) {
+
+
+
+            // 1.1: getValue - instance
+            selectValue = $(this).select2('val');
+            instance = $(this).attr('data-instance');
+            instanceId = $(this).attr('data-instanceId');
+            instanceType = $(this).attr('data-instanceType');
+
+
+            @this.set(instance, selectValue);
+            @this.updateType(instanceId, instanceType);
+        });
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
 
 
 

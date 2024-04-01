@@ -98,7 +98,7 @@
 
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
-                                    <img class="client--card-logo of-cover"
+                                    <img class="client--card-logo "
                                         src="{{ asset('storage/menu/plans/bundles/' . $bundle->imageFile) }}">
                                 </div>
 

@@ -72,17 +72,20 @@
         var instanceId = "{{ $instance->id }}";
         var instanceTypeId = "{{ strtolower($instance->typeId) }}";
 
+        window.addEventListener("selectChange", (event) => {
+            $(`#ingredient--select-${instanceTypeId}-${instanceId}`).bind('change', function(event) {
 
-        $(`#ingredient--select-${instanceTypeId}-${instanceId}`).bind('change', function(event) {
 
+                // 1.1: getValue - instance
+                selectValue = $(this).select2('val');
+                instance = $(this).attr('data-instance');
 
-            // 1.1: getValue - instance
-            selectValue = $(this).select2('val');
-            instance = $(this).attr('data-instance');
+                @this.set(instance, selectValue);
+                @this.update();
+            });
 
-            @this.set(instance, selectValue);
-            @this.update();
         });
+
     </script>
 
 

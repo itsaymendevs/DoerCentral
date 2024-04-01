@@ -155,7 +155,7 @@
                             {{-- :: loop - scheduleMeals by weekDate --}}
                             @foreach ($scheduleMealsByMealType->where('scheduleDate', $weekDate) as $scheduleMeal)
 
-                            <p class="calendar--table-meal @if ($scheduleMeal->isDefault) tr--meal @endif"
+                            <p class="calendar--table-meal @if ($scheduleMeal->isDefault) tr--ingredient @endif"
                                 @if($scheduleMeal->isDefault) data-bs-toggle="tooltip" data-bss-tooltip=""
                                 title="Default" @endif>
                                 {{ $scheduleMeal->meal->name }}

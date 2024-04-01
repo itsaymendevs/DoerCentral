@@ -1,49 +1,49 @@
 /* circle icon */
 
 .icon--circle {
-  border-radius: 50%;
-  object-fit: contain;
-  min-width: 22px;
-  min-height: 22px;
-  font-size: 12px;
-  text-align: center;
-  border: 2px solid var(--color-scheme-dark-4);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    border-radius: 50%;
+    object-fit: contain;
+    min-width: 22px;
+    min-height: 22px;
+    font-size: 12px;
+    text-align: center;
+    border: 2px solid var(--color-scheme-dark-4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* client card */
 
 .overview--card.client-version {
-  padding: 20px 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* overview numbers */
 
 .client--card-logo.smaller {
-  height: 125px;
+    height: 125px;
 }
 
 .client--card-logo {
-  padding: 5px;
-  max-width: 100%;
-  width: auto;
-  aspect-ratio: 1/1;
-  height: 150px;
-  object-fit: contain;
-  margin-top: -35%;
-  border-radius: var(--card-logo-radius);
-  /*box-shadow: var(--client-logo-shadow);*/
+    padding: 5px;
+    max-width: 100%;
+    width: auto;
+    aspect-ratio: 1/1;
+    height: 200px;
+    object-fit: contain;
+    margin-top: -35%;
+    /* border-radius: var(--card-logo-radius); */
+    /*box-shadow: var(--client-logo-shadow);*/
 }
 
 /* for floating card */
 
 .mb-floating {
-  margin-bottom: 115px;
+    margin-bottom: 115px;
 }
 
 /* tabs */
@@ -52,94 +52,98 @@
 }
 
 .tabs--wrap .nav-tabs {
-  display: flex;
-  background-color: var(--bg-tabs);
-  padding: 8px 12px;
-  border-radius: var(--card-radius);
-  border-color: transparent;
+    display: flex;
+    background-color: var(--bg-tabs);
+    padding: 8px 12px;
+    border-radius: var(--card-radius);
+    border-color: transparent;
 }
 
 .tabs--wrap .nav-tabs li {
-  margin-right: 15px;
+    margin-right: 15px;
 }
 
 .tabs--wrap .nav-tabs a {
-  padding: 10px 20px;
-  font-size: 14px;
-  color: var(--color-theme);
-  display: inline-block;
-  font-weight: 600 !important;
-  border-radius: var(--btn-radius);
-  transition: var(--mid-transition);
+    padding: 10px 20px;
+    font-size: 14px;
+    color: var(--color-theme);
+    display: inline-block;
+    font-weight: 600 !important;
+    border-radius: var(--btn-radius);
+    transition: var(--mid-transition);
 }
 
-.tabs--wrap .nav-tabs a.active, .tabs--wrap .nav-tabs a:hover, .tabs--wrap .nav-tabs a:focus {
-  color: white;
-  transform: scale(1.1);
-  transition: var(--mid-transition);
-  background-color: var(--bg-theme-secondary);
-  border-color: var(--bg-theme-secondary);
+.tabs--wrap .nav-tabs a.active,
+.tabs--wrap .nav-tabs a:hover,
+.tabs--wrap .nav-tabs a:focus {
+    color: white;
+    transform: scale(1.1);
+    transition: var(--mid-transition);
+    background-color: var(--bg-theme-secondary);
+    border-color: var(--bg-theme-secondary);
 }
 
-.tabs--wrap .nav-tabs.inner a.active, .tabs--wrap .nav-tabs.inner a:hover, .tabs--wrap .nav-tabs.inner a:focus {
-  color: white;
-  background-color: var(--color-scheme-2);
-  border-color: var(--bg-theme-secondary);
+.tabs--wrap .nav-tabs.inner a.active,
+.tabs--wrap .nav-tabs.inner a:hover,
+.tabs--wrap .nav-tabs.inner a:focus {
+    color: white;
+    background-color: var(--color-scheme-2);
+    border-color: var(--bg-theme-secondary);
 }
 
 /* tab content */
 
 .tabs--wrap .tab-content .tab-pane {
-  border-radius: var(--card-radius);
-  box-shadow: var(--tab-content-shadow);
-  background-color: white;
-  padding: 20px 20px;
+    border-radius: var(--card-radius);
+    box-shadow: var(--tab-content-shadow);
+    background-color: white;
+    padding: 20px 20px;
 }
 
 .tab-pane-like {
-  border-radius: var(--card-radius);
-  box-shadow: var(--tab-content-shadow);
-  background-color: var(--color-card);
-  padding: 15px 20px;
+    border-radius: var(--card-radius);
+    box-shadow: var(--tab-content-shadow);
+    background-color: var(--color-card);
+    padding: 15px 20px;
 }
 
 /* document */
 
 .document--holder {
-  width: 75%;
-  margin: auto;
-  padding: 15px 0px;
-  border: 2px dashed var(--doc-border-color);
-  border-radius: var(--card-radius);
+    width: 75%;
+    margin: auto;
+    padding: 15px 0px;
+    border: 2px dashed var(--doc-border-color);
+    border-radius: var(--card-radius);
 }
 
 .document--holder.expired {
-  border: 2px dashed var(--delete-color);
+    border: 2px dashed var(--delete-color);
 }
 
 .document--placeholder {
-  border: 2px dashed var(--doc-border-color);
+    border: 2px dashed var(--doc-border-color);
 }
 
 .document--holder img {
-  width: 100%;
-  height: 80px;
-  object-fit: contain;
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
 }
 
 .document--desc-wrap {
-  padding: 20px 0px 10px;
-  background-color: var(--color-scheme-4);
-  border-radius: var(--card-radius) var(--card-radius);
+    padding: 20px 0px 10px;
+    background-color: var(--color-scheme-4);
+    border-radius: var(--card-radius) var(--card-radius);
 }
 
-.document--desc-wrap:hover, .document--desc-wrap:focus {
-  border-radius: 0px 0px var(--card-radius) var(--card-radius);
+.document--desc-wrap:hover,
+.document--desc-wrap:focus {
+    border-radius: 0px 0px var(--card-radius) var(--card-radius);
 }
 
 /* expired */
 
 .document--desc-wrap.expired {
-  border: 2px dashed var(--delete-color) !important;
+    border: 2px dashed var(--delete-color) !important;
 }
-

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\MacroTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use stdClass;
 
 class MealPart extends Model
 {
@@ -59,38 +60,55 @@ class MealPart extends Model
 
 
 
+
+
+
+
+
+
+
+    // ------------------------------------------
+
+
+
+
+
+
+
+
+
     public function totalMacro($currentAmount = 0)
     {
 
         // :: root
-        $totalCalories = $totalProteins = $totalCarbs = $totalFats = 0;
+        $totalGrams = $totalCalories = $totalProteins = $totalCarbs = $totalFats = 0;
 
 
 
 
 
-        // 1: drink (Meal)
-        $drink = $this->drink()->first();
-        $amount = $currentAmount; // currentAmount - upToDateAmount
+        // 1: getPart
+        $part = $this->part()->first();
 
 
 
-        // 1.2: MacroHelper - getMacro - RECURSION
-        $drinkMacros = $drink ? $this->getMacro($drink->id, $drink->type, $amount, $totalCalories, $totalProteins, $totalCarbs, $totalFats) : [];
+        // 1.2: MacroHelper
+        $partMacro = $part ? $this->getMacro($part, $currentAmount) : [];
 
 
 
 
 
 
-        // :: create instance - amountUsedOutside because its not applied in getMacros initial
+
+
+        // :: create instance
         $totalMacros = new stdClass();
 
-
-        $totalMacros->calories = round($drinkMacros[0], 2) ?? 0;
-        $totalMacros->proteins = round($drinkMacros[1], 2) ?? 0;
-        $totalMacros->carbs = round($drinkMacros[2], 2) ?? 0;
-        $totalMacros->fats = round($drinkMacros[3], 2) ?? 0;
+        $totalMacros->calories = round($partMacro[1] ?? 0, 2);
+        $totalMacros->proteins = round($partMacro[2] ?? 0, 2);
+        $totalMacros->carbs = round($partMacro[3] ?? 0, 2);
+        $totalMacros->fats = round($partMacro[4] ?? 0, 2);
 
 
 

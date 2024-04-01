@@ -200,6 +200,7 @@ class ProductionBuilderUpdateGeneral extends Component
 
         // :: refreshTypeViews
         $this->dispatch('refreshTypeViews', id: $this->instance->id);
+        $this->dispatch('refreshSizeViews', id: $this->instance->id);
 
 
 

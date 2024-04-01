@@ -105,7 +105,7 @@ class ProductionBuilderUpdateTypes extends Component
 
 
         // :: alert
-        $this->makeAlert('success', $response->message);
+        // $this->makeAlert('success', $response->message);
 
 
     } // end function

@@ -281,7 +281,6 @@ hr {
     padding: 4px 10px;
     background-color: var(--color-scheme-dark-1);
     color: black;
-    border: 3px solid var(--meal-color);
     border-radius: var(--radius);
     margin-bottom: 8px;
     text-align: left;

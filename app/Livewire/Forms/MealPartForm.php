@@ -11,9 +11,9 @@ class MealPartForm extends Form
 
     // :: variables
     #[Rule('required', as: 'instanceError')]
-    public $id, $typeId, $partId, $mealId;
+    public $id = [], $typeId = [], $partId = [], $mealId = [];
 
 
-    public $partType;
+    public $partType = [];
 
 } // end form

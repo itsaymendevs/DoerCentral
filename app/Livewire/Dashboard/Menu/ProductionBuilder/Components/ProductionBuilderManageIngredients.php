@@ -2,10 +2,13 @@
 
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
+use App\Livewire\Forms\MealPartForm;
 use App\Livewire\Forms\MealSizeForm;
 use App\Models\Ingredient;
 use App\Models\Meal;
 use App\Models\MealDrink;
+use App\Models\MealIngredient;
+use App\Models\MealPart;
 use App\Models\MealSauce;
 use App\Models\MealSide;
 use App\Models\MealSize;
@@ -27,7 +30,8 @@ class ProductionBuilderManageIngredients extends Component
 
     // :: variables
     public $meal;
-
+    public MealPartForm $instance;
+    public MealPartForm $instanceParts;
 
 
 
@@ -36,8 +40,25 @@ class ProductionBuilderManageIngredients extends Component
     public function mount($id)
     {
 
-        // 1: get instance
-        $this->refreshInstance($id);
+
+        // 1: getMeal - refreshMeal
+        $this->refreshMeal($id);
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+        // 2: refreshInstance
+        $this->refreshInstance();
+
+
+
+
+
 
 
     } // end function
@@ -46,16 +67,32 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
+
+
+
     // -----------------------------------------------------
+
+
+
 
 
 
 
     #[On('refreshMealSizeIngredients')]
-    public function refreshInstance($id)
+    public function refreshMeal($id)
     {
 
         $this->meal = Meal::find($id);
+
+
+        // :: initSelect
+        $this->dispatch('initCertainSelect', class: '.ingredient--select');
+        $this->dispatch('initCertainSelect', class: '.ingredient--type-select');
+
+        $this->dispatch('initCertainSelect', class: '.part--select');
+        $this->dispatch('initCertainSelect', class: '.part--type-select');
+
+
 
     } // end function
 
@@ -67,7 +104,92 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
+
+    // ----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function refreshInstance()
+    {
+
+
+
+
+        // 1: prep SizeIngredients / Parts
+        $mealSize = MealSize::where('mealId', $this->meal->id)->first();
+
+
+
+
+
+
+        // 1.2: ingredients
+        foreach ($mealSize->ingredients ?? [] as $mealIngredient) {
+
+
+
+            // 1: get details
+            $this->instance->partId[$mealIngredient->id] = $mealIngredient->ingredientId;
+
+            $this->instance->id[$mealIngredient->id] = $mealIngredient->id;
+            $this->instance->typeId[$mealIngredient->id] = 'Ingredient';
+            $this->instance->partType[$mealIngredient->id] = $mealIngredient->partType; // * MIXED - MAIN - SIDE *
+            $this->instance->mealId[$mealIngredient->id] = $mealIngredient->mealId;
+
+
+
+        } // end loop
+
+
+
+
+
+
+        // 1.2: parts
+        foreach ($mealSize->parts ?? [] as $mealPart) {
+
+
+
+            // 1: get details
+            $this->instanceParts->partId[$mealPart->id] = $mealPart->partId;
+
+            $this->instanceParts->id[$mealPart->id] = $mealPart->id;
+            $this->instanceParts->typeId[$mealPart->id] = $mealPart->type->id;
+            $this->instanceParts->partType[$mealPart->id] = $mealPart->partType; // * MIXED - MAIN - SIDE *
+            $this->instanceParts->mealId[$mealPart->id] = $mealPart->mealId;
+
+
+
+        } // end loop
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
     // -----------------------------------------------------
+
+
+
+
 
 
 
@@ -96,9 +218,21 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-            // :: REFRESH METHOD
+            // 1.2: refresh-instance
+            $this->refreshInstance();
+
+
+
+
+            // 1.3: refresh-meal
+            $this->dispatch('refreshMealSizeIngredients', $this->meal->id);
+
+
+
+
+
             // :: resetPage / openTab - redirectRoute - alert
-            return $this->redirect(route('dashboard.menuProductionBuilder', [$this->meal->id]) . '#tab-2', navigate: true);
+            // return $this->redirect(route('dashboard.menuProductionBuilder', [$this->meal->id]) . '#tab-2', navigate: true);
 
 
 
@@ -116,7 +250,14 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
+
+
+
     // -----------------------------------------------------
+
+
+
+
 
 
 
@@ -149,7 +290,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
             // :: render - alert
-            $this->makeAlert('success', $response->message);
+            // $this->makeAlert('success', $response->message);
 
 
 
@@ -168,6 +309,179 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function update($instanceId, $instanceType)
+    {
+
+
+        // :: create instance - clone
+        $instance = new stdClass();
+
+
+
+
+
+        // 1: Ingredient
+        if ($instanceType == 'Ingredient') {
+
+
+
+            // :: get details
+            $instance->partId = $this->instance->partId[$instanceId];
+
+            $instance->id = $this->instance->id[$instanceId];
+            $instance->typeId = $this->instance->typeId[$instanceId];
+            $instance->partType = $this->instance->partType[$instanceId];
+            $instance->mealId = $this->instance->mealId[$instanceId];
+
+
+
+            // 2: Part
+        } else {
+
+
+
+            // :: get details
+            $instance->partId = $this->instanceParts->partId[$instanceId];
+
+            $instance->id = $this->instanceParts->id[$instanceId];
+            $instance->typeId = $this->instanceParts->typeId[$instanceId];
+            $instance->partType = $this->instanceParts->partType[$instanceId];
+            $instance->mealId = $this->instanceParts->mealId[$instanceId];
+
+
+
+        } // end if
+
+
+
+
+
+
+
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/menu/builder/ingredients/update', $instance);
+
+
+
+        // :: alert
+        // $this->makeAlert('success', $response->message);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function updateType($instanceId, $instanceType)
+    {
+
+
+
+        // :: create instance - clone
+        $instance = new stdClass();
+
+
+
+
+
+        // 1: Ingredient
+        if ($instanceType == 'Ingredient') {
+
+
+
+            // :: get details
+            $instance->partId = $this->instance->partId[$instanceId];
+
+            $instance->id = $this->instance->id[$instanceId];
+            $instance->typeId = $this->instance->typeId[$instanceId];
+            $instance->partType = $this->instance->partType[$instanceId];
+            $instance->mealId = $this->instance->mealId[$instanceId];
+
+
+
+            // 2: Part
+        } else {
+
+
+
+            // :: get details
+            $instance->partId = $this->instanceParts->partId[$instanceId];
+
+            $instance->id = $this->instanceParts->id[$instanceId];
+            $instance->typeId = $this->instanceParts->typeId[$instanceId];
+            $instance->partType = $this->instanceParts->partType[$instanceId];
+            $instance->mealId = $this->instanceParts->mealId[$instanceId];
+
+
+
+        } // end if
+
+
+
+
+
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/menu/builder/ingredients/update', $instance);
+
+
+
+        // :: alert
+        // $this->makeAlert('success', $response->message);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
     // -----------------------------------------------------
 
 
@@ -189,12 +503,25 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
+
+
+        // 1.2: ingredients - meals
+        $ingredients = Ingredient::all();
+        $mealOptions = Meal::all();
+
+
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 
 
 
-        return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-ingredients', compact('mealSize', 'types'));
+
+
+        return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-ingredients', compact('mealSize', 'types', 'ingredients', 'mealOptions'));
+
+
 
 
     } // end function

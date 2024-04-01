@@ -6,7 +6,8 @@
     {{-- amount --}}
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-xxs px-1" type="number" step='0.01' required
-            wire:model='instance.amount' wire:change='update' />
+            wire:model='instance.amount' wire:change='update' wire:loading.attr='readonly'
+            wire:target='remove, update' />
     </td>
 
 
@@ -27,14 +28,14 @@
     {{-- calories --}}
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-xxs px-1 readonly" type="number" step='0.01'
-            readonly="" wire:model='instance.calories' />
+            readonly="" wire:model='instance.calories' wire:loading.attr='readonly' />
     </td>
 
 
     {{-- proteins --}}
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-xxs px-1 readonly" type="number" step='0.01'
-            readonly="" wire:model='instance.proteins' />
+            readonly="" wire:model='instance.proteins' wire:loading.attr='readonly' />
     </td>
 
 
@@ -42,7 +43,7 @@
     {{-- carbs --}}
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-xxs px-1 readonly" type="number" step='0.01'
-            readonly="" wire:model='instance.carbs' />
+            readonly="" wire:model='instance.carbs' wire:loading.attr='readonly' />
     </td>
 
 
@@ -52,7 +53,7 @@
     {{-- fats --}}
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-xxs px-1 readonly" type="number" step='0.01'
-            readonly="" wire:model='instance.fats' />
+            readonly="" wire:model='instance.fats' wire:loading.attr='readonly' />
     </td>
 
 
@@ -75,7 +76,8 @@
     {{-- remarks --}}
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-sm px-2" style="max-width: 100%;" type="text"
-            wire:model='instance.remarks' wire:change='update' />
+            wire:model='instance.remarks' wire:change='update' wire:loading.attr='readonly'
+            wire:target='remove, update' />
     </td>
 
 
@@ -93,7 +95,7 @@
             <input class="form-check-input pointer" type="checkbox" @if ($this->instance->isRemovable)
             checked @endif
             id="formCheck-{{ strtolower($instance->typeId) }}-{{ $instance->id }}" wire:model='instance.isRemovable'
-            wire:change='update' />
+            wire:change='update' wire:loading.attr='disabled' wire:target='update, remove' />
 
 
             <label class="form-check-label d-none"
@@ -116,7 +118,7 @@
             checked @endif
             id="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}"
             wire:model='instance.isReplacement'
-            wire:change='update' />
+            wire:change='update' wire:loading.attr='disabled' wire:target='update, remove' />
 
 
             <label class="form-check-label d-none"
@@ -136,7 +138,7 @@
     <td class="fw-bold">
         <div class="d-flex align-items-center justify-content-center">
             <button class="btn btn--raw-icon inline remove scale--3 px-0" type="button" wire:loading.attr='disabled'
-                wire:click='remove({{ $instance->id }})'>
+                wire:target='remove, update' wire:click='remove({{ $instance->id }})'>
                 <svg class="bi bi-trash-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                     fill="currentColor" viewBox="0 0 16 16">
                     <path

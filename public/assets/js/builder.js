@@ -4,23 +4,30 @@ window.addEventListener("initCertainSelect", (event) => {
         selectClass = event.detail.class;
 
         $(selectClass).each(function () {
-            setupValue = $(this).attr("value");
-            setupClear = $(this).attr("data-clear") ? true : false;
-            setupPlaceholder = $(this).attr("data-placeholder");
+            if (!$(this).hasClass("select2-hidden-accessible")) {
+                setupValue = $(this).attr("value");
+                setupClear = $(this).attr("data-clear") ? true : false;
+                setupPlaceholder = $(this).attr("data-placeholder");
+                setupTrigger = $(this).attr("data-trigger") ? true : false;
 
-            if (setupValue == undefined) {
-                $(this).select2({
-                    allowClear: setupClear,
-                    placeholder: setupPlaceholder ? setupPlaceholder : "",
-                });
-            } else {
-                $(this)
-                    .val(setupValue)
-                    .select2({
+                if (setupValue == undefined) {
+                    $(this).select2({
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
                     });
-            } // end else
+                } else {
+                    $(this)
+                        .val(setupValue)
+                        .select2({
+                            allowClear: setupClear,
+                            placeholder: setupPlaceholder
+                                ? setupPlaceholder
+                                : "",
+                        });
+                } // end else
+
+                if (setupTrigger) $(this).trigger("change");
+            }
         }); // end loop
     });
 });

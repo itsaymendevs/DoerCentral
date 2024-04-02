@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class CustomerAddressForm extends Form
@@ -10,14 +10,14 @@ class CustomerAddressForm extends Form
 
 
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $name, $cityId, $cityDistrictId, $deliveryTimeId, $locationAddress, $customerId;
+   // :: variables
+   #[Validate('required')]
+   public $name, $cityId, $cityDistrictId, $deliveryTimeId, $locationAddress, $customerId;
 
 
-    public $id, $apartment, $floor;
+   public $id, $apartment, $floor;
 
-    public $deliveryDays = [];
+   public $deliveryDays = [];
 
 
 } // end form

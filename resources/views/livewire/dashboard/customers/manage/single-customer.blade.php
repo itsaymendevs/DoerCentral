@@ -122,13 +122,14 @@
                     <div class="col-6 mb-3">
                         <button
                             class="btn btn--scheme btn--scheme-1 w-100 align-items-center d-flex px-2 fs-12 justify-content-center scalemix--3"
-                            type="button" data-bs-toggle="modal" data-bs-target="#extend-subscription">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                viewBox="0 0 16 16" class="bi bi-plus-lg fs-6 me-2">
-                                <path fill-rule="evenodd"
-                                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z">
-                                </path>
-                            </svg>Extend Subscription
+                            @if ($latestSubscription->untilDate < $globalTodayDate) disabled @endif type="button"
+                                data-bs-toggle="modal" data-bs-target="#extend-subscription">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                    viewBox="0 0 16 16" class="bi bi-plus-lg fs-6 me-2">
+                                    <path fill-rule="evenodd"
+                                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z">
+                                    </path>
+                                </svg>Extend Subscription
                         </button>
                     </div>
 

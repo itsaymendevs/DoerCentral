@@ -2,28 +2,28 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class MenuCalendarForm extends Form
 {
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $name, $desc;
+   // :: variables
+   #[Validate('required')]
+   public $name, $desc;
 
-    public $id, $imageFile;
-
-
-
-
-    // :: helpers
-    public $imageFileName;
+   public $id, $imageFile;
 
 
 
-    // :: relations
-    public $diets = [], $plans = [];
+
+   // :: helpers
+   public $imageFileName;
+
+
+
+   // :: relations
+   public $diets = [], $plans = [];
 
 
 

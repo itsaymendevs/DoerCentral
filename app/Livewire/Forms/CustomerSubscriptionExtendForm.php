@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Forms;
 
-use Illuminate\Validation\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class CustomerSubscriptionExtendForm extends Form
@@ -10,7 +10,7 @@ class CustomerSubscriptionExtendForm extends Form
 
 
     // :: variables
-    #[Rule('required', as: 'instanceError')]
+    #[Validate('required')]
     public $fromDate, $untilDate, $reason, $customerId, $customerSubscriptionId;
 
 

@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class AllergyForm extends Form
 {
 
     // :: variables
-    #[Rule('required', as: 'instanceError')]
+    #[Validate('required')]
     public $name, $desc;
 
     public $id;

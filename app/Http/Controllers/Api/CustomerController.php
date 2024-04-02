@@ -10,6 +10,7 @@ use App\Models\CustomerDeliveryDay;
 use App\Models\CustomerExclude;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
+use App\Models\CustomerSubscriptionExtend;
 use App\Models\CustomerSubscriptionPause;
 use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
@@ -795,6 +796,29 @@ class CustomerController extends Controller
 
         // :: getSubscription
         $subscription = CustomerSubscription::find($request->customerSubscriptionId);
+        $customer = Customer::find($request->customerId);
+
+
+
+
+
+        // 1: getDependencies
+        $deliveryDays = explode('_', $subscription->planDeliveryDays);
+
+
+
+
+
+
+
+
+
+
+
+        // ------------------------------------------
+        // ------------------------------------------
+
+
 
 
 
@@ -802,18 +826,38 @@ class CustomerController extends Controller
 
 
         // :: create instance
-        $pause = new CustomerSubscriptionPause();
+        $extend = new CustomerSubscriptionExtend();
 
 
 
 
         // 1: general
-        $pause->type = $request->type;
-        $pause->fromDate = $request->fromDate;
-        $pause->untilDate = $request->untilDate;
-        $pause->remarks = $request->remarks ?? null;
+        $extend->fromDate = $request->fromDate;
+        $extend->untilDate = $request->untilDate;
+        $extend->reason = $request->reason;
+        $extend->remarks = $request->remarks ?? null;
 
 
+
+
+        // 1.2: imageFile - pricePerDay
+        $extend->imageFile = $request->imageFileName ?? null;
+        $extend->pricePerDay = $subscription->planPrice / $subscription->planDays;
+
+
+
+
+
+
+        // 1.3: customer - subscription
+        $extend->customerId = $request->customerId;
+        $extend->customerSubscriptionId = $request->customerSubscriptionId;
+
+
+
+
+
+        $extend->save();
 
 
 
@@ -821,6 +865,18 @@ class CustomerController extends Controller
 
         // -------------------------------
         // -------------------------------
+
+
+
+
+
+        // 1.4: deliveryInformation
+
+
+
+        // :: storeDelivery
+        $this->storeDelivery($subscription, $customer, $extend);
+
 
 
 
@@ -831,6 +887,140 @@ class CustomerController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function extendStoreDelivery($subscription, $customer, $request)
+    {
+
+
+
+        // :: root
+        $dateCounter = 0;
+        $deliveryCounter = 0;
+        $deliveryTotalCounter = intval($request->planDays);
+        $deliveryWeekDays = CustomerDeliveryDay::where('customerId', $customer->id)
+            ->get()->pluck('weekDay')->toArray();
+
+
+
+
+
+
+
+        // :: loop
+        while (true) {
+
+
+
+
+            // 1: getDeliveryDate - deliveryAsWeekDay
+            $deliveryDate = date('Y-m-d', strtotime($subscription->startDate . "+{$dateCounter} days"));
+
+            $deliveryAsWeekDay = date('l', strtotime($deliveryDate));
+
+
+
+
+
+
+            // :: ifExists
+            if (in_array($deliveryAsWeekDay, $deliveryWeekDays)) {
+
+
+
+
+                // 1.2: create
+                $subscriptionDelivery = new CustomerSubscriptionDelivery();
+
+
+
+                // 1.2.1: general
+                $subscriptionDelivery->deliveryDate = $deliveryDate;
+                $subscriptionDelivery->status = 'Pending';
+
+
+                // 1.2.2: customer - customerSubscription
+                $subscriptionDelivery->customerId = $customer->id;
+                $subscriptionDelivery->planId = $subscription->planId;
+                $subscriptionDelivery->customerSubscriptionId = $subscription->id;
+
+
+
+
+                // 1.2.3: Save + increaseCounter - checkIfDone
+                $deliveryCounter++;
+                $subscriptionDelivery->save();
+
+
+
+
+
+                // :: checkIfDone - save untilDate
+                if ($deliveryCounter == $deliveryTotalCounter) {
+
+
+                    $subscription->untilDate = $deliveryDate;
+                    $subscription->save();
+
+                    break;
+
+                } // end if
+
+
+
+            } // end if
+
+
+
+
+
+
+
+            // :: increaseCounter
+            $dateCounter++;
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+    } // end function
+
+
 
 
 

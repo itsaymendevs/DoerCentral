@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class CustomerWalletDepositForm extends Form
@@ -10,9 +10,9 @@ class CustomerWalletDepositForm extends Form
 
 
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $customerId, $walletId, $amount, $remarks, $depositDate;
+   // :: variables
+   #[Validate('required')]
+   public $customerId, $walletId, $amount, $remarks, $depositDate;
 
 
 

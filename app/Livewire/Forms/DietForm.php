@@ -2,19 +2,19 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class DietForm extends Form
 {
 
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $name, $desc, $proteins, $carbs, $fats;
+   // :: variables
+   #[Validate('required')]
+   public $name, $desc, $proteins, $carbs, $fats;
 
 
-    public $id;
+   public $id;
 
 
 

@@ -2,16 +2,16 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class MealServingForm extends Form
 {
 
-    // :: variables
-    public $desc, $useCutlery, $mealId;
+   // :: variables
+   public $desc, $useCutlery, $mealId;
 
-    public $id;
+   public $id;
 
 
 

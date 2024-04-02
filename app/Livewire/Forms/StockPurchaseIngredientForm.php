@@ -2,23 +2,23 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class StockPurchaseIngredientForm extends Form
 {
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $quantity, $ingredientId, $stockPurchaseId;
+   // :: variables
+   #[Validate('required')]
+   public $quantity, $ingredientId, $stockPurchaseId;
 
 
-    public $id, $buyPrice, $unitId;
+   public $id, $buyPrice, $unitId;
 
 
 
-    // :: helpers
-    public $unitName;
+   // :: helpers
+   public $unitName;
 
 
 

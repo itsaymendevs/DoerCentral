@@ -106,7 +106,7 @@
                                 <div class="col-5">
                                     <label class="form-label form--label">Extend Until</label>
                                     <input class="form-control form--input mb-4" type="date" required
-                                        wire:model='instance.untilDate' />
+                                        wire:model='instance.untilDate' min='{{ $instance->fromDate }}' />
                                 </div>
 
 
@@ -183,7 +183,7 @@
 
                         {{-- submitButton --}}
                         <div class="col-12 text-end mt-3">
-                            <button wire:loading.attr='disabled, instance.imageFile' wire:target='store'
+                            <button wire:loading.attr='disabled' wire:target='store, instance.imageFile'
                                 class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
                                 Confirm
                             </button>

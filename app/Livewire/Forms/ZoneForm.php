@@ -2,22 +2,22 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class ZoneForm extends Form
 {
-    // :: variables
-    public $id, $name, $desc, $cityId, $imageFile;
+   // :: variables
+   public $id, $name, $desc, $cityId, $imageFile;
 
 
 
-    // :: helper
-    public $imageFileName;
+   // :: helper
+   public $imageFileName;
 
 
-    // :: relation
-    public $cityDistricts = [];
+   // :: relation
+   public $cityDistricts = [];
 
 
 } // end form

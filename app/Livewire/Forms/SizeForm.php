@@ -2,18 +2,18 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class SizeForm extends Form
 {
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $name, $shortName, $price, $calories;
+   // :: variables
+   #[Validate('required')]
+   public $name, $shortName, $price, $calories;
 
 
-    public $id;
+   public $id;
 
 
 } // end form

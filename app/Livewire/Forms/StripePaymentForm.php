@@ -2,18 +2,18 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class StripePaymentForm extends Form
 {
 
 
-    // :: STEP 5 - PAYMENT STRIPE
-    #[Rule('required', as: 'instanceError')]
-    public $cardNumber, $cardCVV, $cardExpiry, $cardExpiryMonth, $cardExpiryYear, $cardHolder;
+   // :: STEP 5 - PAYMENT STRIPE
+   #[Validate('required')]
+   public $cardNumber, $cardCVV, $cardExpiry, $cardExpiryMonth, $cardExpiryYear, $cardHolder;
 
-    public $paymentStatus, $paymentIntentId;
+   public $paymentStatus, $paymentIntentId;
 
 
 

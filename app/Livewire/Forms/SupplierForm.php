@@ -2,17 +2,17 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class SupplierForm extends Form
 {
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $name, $phone, $email, $address;
+   // :: variables
+   #[Validate('required')]
+   public $name, $phone, $email, $address;
 
-    public $id;
+   public $id;
 
 
 

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class KitchenContainerForm extends Form
@@ -10,11 +10,11 @@ class KitchenContainerForm extends Form
 
 
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $name, $charge;
+   // :: variables
+   #[Validate('required')]
+   public $name, $charge;
 
-    public $imageFile, $imageFileName;
+   public $imageFile, $imageFileName;
 
 
 

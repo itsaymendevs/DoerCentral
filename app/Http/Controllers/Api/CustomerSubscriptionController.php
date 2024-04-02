@@ -413,6 +413,30 @@ class CustomerSubscriptionController extends Controller
 
 
 
+        // 1.2.2: planDeliveryDays
+        foreach ($request->deliveryDays ?? [] as $weekDay => $isChecked) {
+
+            boolval($isChecked) ?
+                $subscription->planDeliveryDays = ($subscription->planDeliveryDays ?? '') . $weekDay . '_'
+                : null;
+
+        } // end loop
+
+
+
+
+        // :: removeLastComma
+        $subscription->planDeliveryDays = rtrim($subscription->planDeliveryDays, '_');
+
+
+
+
+
+
+
+
+
+
 
         // 1.3: planInformation
         $subscription->planId = $request->planId;

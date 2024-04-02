@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->date('untilDate')->nullable();
 
             $table->integer('planDays')->nullable();
+            $table->text('planDeliveryDays')->nullable();
+
 
 
 
@@ -55,6 +57,9 @@ return new class extends Migration {
 
             // ----------------------------------------
             // ----------------------------------------
+
+
+
 
 
 

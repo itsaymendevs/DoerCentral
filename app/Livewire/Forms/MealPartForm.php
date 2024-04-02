@@ -2,18 +2,18 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class MealPartForm extends Form
 {
 
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $id = [], $typeId = [], $partId = [], $mealId = [];
+   // :: variables
+   #[Validate('required')]
+   public $id = [], $typeId = [], $partId = [], $mealId = [];
 
 
-    public $partType = [];
+   public $partType = [];
 
 } // end form

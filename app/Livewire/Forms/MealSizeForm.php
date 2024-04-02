@@ -2,15 +2,15 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class MealSizeForm extends Form
 {
-    // :: variables
-    public $id, $mealId, $sizeId;
+   // :: variables
+   public $id, $mealId, $sizeId;
 
-    public $afterCookCalories, $afterCookProteins, $afterCookCarbs, $afterCookFats;
+   public $afterCookCalories, $afterCookProteins, $afterCookCarbs, $afterCookFats;
 
 
 

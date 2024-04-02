@@ -2,22 +2,22 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class PromoCodeForm extends Form
 {
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $name, $code, $limit;
+   // :: variables
+   #[Validate('required')]
+   public $name, $code, $limit;
 
 
-    public $id, $percentage, $cashAmount, $isActive, $isForWebsite;
+   public $id, $percentage, $cashAmount, $isActive, $isForWebsite;
 
 
-    // :: relation
-    public $plans = [];
+   // :: relation
+   public $plans = [];
 
 
 

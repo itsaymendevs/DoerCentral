@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class PlanForm extends Form
@@ -10,17 +10,17 @@ class PlanForm extends Form
 
 
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $name, $startingPrice, $desc, $longDesc;
+   // :: variables
+   #[Validate('required')]
+   public $name, $startingPrice, $desc, $longDesc;
 
-    public $id, $imageFile;
-
-
+   public $id, $imageFile;
 
 
-    // :: helpers
-    public $imageFileName;
+
+
+   // :: helpers
+   public $imageFileName;
 
 
 } // end form

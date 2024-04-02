@@ -2,18 +2,18 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class PlanBundleRangePriceForm extends Form
 {
 
-    // :: variables
-    #[Rule('required', as: 'instanceError')]
-    public $id, $pricePerDay;
+   // :: variables
+   #[Validate('required')]
+   public $id, $pricePerDay;
 
 
-    public $planRangeId, $planBundleId;
+   public $planRangeId, $planBundleId;
 
 
 

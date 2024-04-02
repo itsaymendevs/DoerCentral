@@ -54,7 +54,7 @@
 
                                     {{-- input --}}
                                     <input class="form-control d-none file--input" type="file" id="shorten--file-1"
-                                        data-preview="shorten--preview-1" />
+                                        data-preview="shorten--preview-1" wire:model='instance.imageFile' />
 
 
 
@@ -102,10 +102,12 @@
 
 
 
-                                {{-- extendDate --}}
+                                {{-- shortenDate --}}
                                 <div class="col-5">
-                                    <label class="form-label form--label">Shorten To</label>
-                                    <input class="form-control form--input mb-4" type="date" required />
+                                    <label class="form-label form--label">Shorten Until</label>
+                                    <input class="form-control form--input mb-4" type="date" required
+                                        wire:model='instance.untilDate' min='{{ $globalTodayDate }}'
+                                        max='{{ $instance->fromDate }}' />
                                 </div>
 
 
@@ -113,7 +115,8 @@
                                 {{-- remarks --}}
                                 <div class="col-7">
                                     <label class="form-label form--label">Remarks</label>
-                                    <input class="form-control form--input mb-4" type="text" />
+                                    <input class="form-control form--input mb-4" type="text"
+                                        wire:model='instance.remarks' />
                                 </div>
 
 
@@ -151,11 +154,13 @@
 
                                             {{-- input --}}
                                             <input class="form-check-input" type="radio" name="shortenReason"
-                                                id="shorten-reason-{{ $key }}" />
+                                                id="shorten-reason-option-{{ $key }}" value='{{ $reason }}'
+                                                wire:model='instance.reason' />
 
 
                                             {{-- label --}}
-                                            <label class="form-check-label fs-13 ms-2" for="shorten-reason-{{ $key }}">
+                                            <label class="form-check-label fs-13 ms-2"
+                                                for="shorten-reason-option-{{ $key }}">
                                                 {{ $reason }}
                                             </label>
 
@@ -180,8 +185,8 @@
 
                         {{-- submitButton --}}
                         <div class="col-12 text-end mt-3">
-                            <button wire:loading.attr='disabled' wire:target='store'
-                                class="btn btn--scheme btn--remove  px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
+                            <button wire:loading.attr='disabled' wire:target='store, instance.imageFile'
+                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
                                 Confirm
                             </button>
                         </div>

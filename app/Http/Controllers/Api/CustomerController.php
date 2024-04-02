@@ -12,6 +12,7 @@ use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionExtend;
 use App\Models\CustomerSubscriptionPause;
+use App\Models\CustomerSubscriptionShorten;
 use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
 use App\Models\CustomerWalletDeposit;
@@ -794,16 +795,9 @@ class CustomerController extends Controller
 
 
 
-        // :: getSubscription
+        // :: getSubscription - customer - deliveryDays
         $subscription = CustomerSubscription::find($request->customerSubscriptionId);
         $customer = Customer::find($request->customerId);
-
-
-
-
-
-        // 1: getDependencies
-        $deliveryDays = explode('_', $subscription->planDeliveryDays);
 
 
 
@@ -836,6 +830,9 @@ class CustomerController extends Controller
         $extend->untilDate = $request->untilDate;
         $extend->reason = $request->reason;
         $extend->remarks = $request->remarks ?? null;
+
+
+
 
 
 
@@ -875,12 +872,15 @@ class CustomerController extends Controller
 
 
         // :: storeDelivery
-        $this->storeDelivery($subscription, $customer, $extend);
+        $this->storeExtendDelivery($subscription, $customer, $extend);
 
 
 
 
 
+
+
+        return response()->json(['message' => 'Subscription has been extended'], 200);
 
 
 
@@ -903,8 +903,7 @@ class CustomerController extends Controller
 
 
 
-    // --------------------------------------------------------------------------------------------
-    // --------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------
 
 
 
@@ -918,7 +917,7 @@ class CustomerController extends Controller
 
 
 
-    public function extendStoreDelivery($subscription, $customer, $request)
+    public function storeExtendDelivery($subscription, $customer, $extend)
     {
 
 
@@ -926,10 +925,7 @@ class CustomerController extends Controller
         // :: root
         $dateCounter = 0;
         $deliveryCounter = 0;
-        $deliveryTotalCounter = intval($request->planDays);
-        $deliveryWeekDays = CustomerDeliveryDay::where('customerId', $customer->id)
-            ->get()->pluck('weekDay')->toArray();
-
+        $deliveryWeekDays = explode('_', $subscription->planDeliveryDays);
 
 
 
@@ -943,8 +939,7 @@ class CustomerController extends Controller
 
 
             // 1: getDeliveryDate - deliveryAsWeekDay
-            $deliveryDate = date('Y-m-d', strtotime($subscription->startDate . "+{$dateCounter} days"));
-
+            $deliveryDate = date('Y-m-d', strtotime($extend->fromDate . "+{$dateCounter} days"));
             $deliveryAsWeekDay = date('l', strtotime($deliveryDate));
 
 
@@ -984,16 +979,16 @@ class CustomerController extends Controller
 
 
 
-                // :: checkIfDone - save untilDate
-                if ($deliveryCounter == $deliveryTotalCounter) {
+                // ----------------------------
+                // ----------------------------
 
 
-                    $subscription->untilDate = $deliveryDate;
-                    $subscription->save();
 
-                    break;
 
-                } // end if
+                // 1.2.4: updateSubscription - UntilDate
+                $subscription->untilDate = $deliveryDate;
+                $subscription->save();
+
 
 
 
@@ -1005,7 +1000,37 @@ class CustomerController extends Controller
 
 
 
-            // :: increaseCounter
+
+            // ----------------------------
+            // ----------------------------
+
+
+
+
+
+            // :: beyondUntilDate
+            if ($deliveryDate >= $extend->untilDate) {
+
+
+                // :: save extendDays
+                $extend->extendDays = $deliveryCounter;
+                $extend->totalPrice = $extend->pricePerDay * $extend->extendDays;
+
+                $extend->save();
+
+
+                break;
+
+            } // end if
+
+
+
+
+
+
+
+
+            // :: nextDate
             $dateCounter++;
 
 
@@ -1013,6 +1038,175 @@ class CustomerController extends Controller
 
 
 
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function shortenCustomerSubscription(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+        // :: getSubscription - customer
+        $subscription = CustomerSubscription::find($request->customerSubscriptionId);
+        $customer = Customer::find($request->customerId);
+
+
+
+
+
+
+
+
+
+
+
+        // ------------------------------------------
+        // ------------------------------------------
+
+
+
+
+
+
+
+
+        // :: create instance
+        $shorten = new CustomerSubscriptionShorten();
+
+
+
+
+        // 1: general
+        $shorten->fromDate = $request->fromDate;
+        $shorten->untilDate = $request->untilDate;
+        $shorten->reason = $request->reason;
+        $shorten->remarks = $request->remarks ?? null;
+
+
+
+
+
+
+
+        // 1.2: imageFile - pricePerDay
+        $shorten->imageFile = $request->imageFileName ?? null;
+        $shorten->pricePerDay = $subscription->planPrice / $subscription->planDays;
+
+
+
+
+
+
+        // 1.3: customer - subscription
+        $shorten->customerId = $request->customerId;
+        $shorten->customerSubscriptionId = $request->customerSubscriptionId;
+
+
+
+
+
+        $shorten->save();
+
+
+
+
+
+        // -------------------------------
+        // -------------------------------
+
+
+
+
+
+
+
+        // 2: shortenDays - changeDeliveryStatus
+        $shorten->shortenDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+            ->where('deliveryDate', '>=', $shorten->untilDate)
+            ->where('deliveryDate', '<=', $shorten->fromDate)
+            ->where('status', 'Pending')
+            ->count();
+
+
+        CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+            ->where('deliveryDate', '>=', $shorten->untilDate)
+            ->where('deliveryDate', '<=', $shorten->fromDate)
+            ->where('status', 'Pending')
+            ->update([
+                "status" => "Canceled"
+            ]);
+
+
+
+
+
+
+
+
+        // 2.1: getTotalPrice
+        $shorten->totalPrice = $shorten->pricePerDay * $shorten->shortenDays;
+
+        $shorten->save();
+
+
+
+
+
+
+        // 2.2: updateSubscription
+        $subscription->untilDate = $shorten->untilDate;
+
+        $subscription->save();
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Subscription has been shortened'], 200);
 
 
 

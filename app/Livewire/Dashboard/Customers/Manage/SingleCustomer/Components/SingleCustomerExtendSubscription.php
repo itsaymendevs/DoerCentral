@@ -30,6 +30,8 @@ class SingleCustomerExtendSubscription extends Component
 
 
 
+
+
     public function mount($id)
     {
 
@@ -77,7 +79,7 @@ class SingleCustomerExtendSubscription extends Component
 
 
 
-        // 1.5: startDate => nearestDeliveryDay available
+        // 1.5: fromDate => nearestDeliveryDay available
         $counter = 1;
 
 
@@ -142,6 +144,7 @@ class SingleCustomerExtendSubscription extends Component
 
 
 
+
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'customers/subscriptions/extends/');
@@ -160,7 +163,9 @@ class SingleCustomerExtendSubscription extends Component
 
 
 
-        // :: refreshPage
+        // :: alert - refreshPage
+        $this->makeAlert('success', $response?->message);
+
         return $this->redirect(route('dashboard.singleCustomer', [$this->instance->customerId]), navigate: true);
 
 

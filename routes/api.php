@@ -590,12 +590,12 @@ Route::post('/dashboard/customers/subscription/un-pause', [CustomerController::c
 
 
 
-// 6.0.4: customers - subscription - extend
+// 6.0.4: customers - subscription - extend - shorten
 Route::post('/dashboard/customers/subscription/extend', [CustomerController::class, 'extendCustomerSubscription']);
 
 
 
-
+Route::post('/dashboard/customers/subscription/shorten', [CustomerController::class, 'shortenCustomerSubscription']);
 
 
 

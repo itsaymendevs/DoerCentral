@@ -9,17 +9,18 @@ use Livewire\Form;
 class CustomerSubscriptionShortenForm extends Form
 {
 
-   // :: variables
-   #[Validate('required')]
-   public $fromDate, $untilDate, $reason, $customerId, $customerSubscriptionId;
+    // :: variables
+    #[Validate('required')]
+    public $fromDate, $untilDate, $reason, $customerId, $customerSubscriptionId;
 
 
 
-   public $remarks, $pricePerDay, $totalPrice, $shortenDays, $imageFile;
+    public $remarks, $pricePerDay, $totalPrice, $shortenDays, $imageFile;
 
 
-   // :: helper
-   public $imageFileName;
+    // :: helper
+    public $imageFileName;
+
 
 
 

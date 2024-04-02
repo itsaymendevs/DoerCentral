@@ -2,19 +2,27 @@
 
 namespace App\Livewire\Dashboard\Customers\Manage\SingleCustomer\Components;
 
+use App\Livewire\Forms\CustomerSubscriptionShortenForm;
 use App\Models\Customer;
+use App\Models\CustomerSubscription;
 use App\Traits\HelperTrait;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class SingleCustomerShortenSubscription extends Component
 {
 
 
     use HelperTrait;
+    use WithFileUploads;
+
+
 
 
     // :: variables
-    public $id;
+    public CustomerSubscriptionShortenForm $instance;
+    public $subscription;
+
 
 
 
@@ -25,13 +33,39 @@ class SingleCustomerShortenSubscription extends Component
     {
 
 
-        // :: getCustomer
-        $customer = Customer::find($id);
+        // 1: getLatestSubscription
+        $this->subscription = CustomerSubscription::find($id);
+
+
+
+
+
+        // 1.2: clone instance
+        $this->instance->customerId = $this->subscription->customerId;
+        $this->instance->customerSubscriptionId = $this->subscription->id;
+
+
+
+
+
+        // -------------------------------------
+        // -------------------------------------
+
+
+
+
+        // :: 1.3: getFromDate
+        $this->instance->fromDate = $this->subscription->untilDate;
+
+
+
 
 
 
 
     } // end function
+
+
 
 
 
@@ -47,20 +81,56 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
+
+
+
     public function store()
     {
 
 
 
 
-        // 1: makeRequest
-        // $response = $this->makeRequest('dashboard/customers/subscriptions/extend', $this->instance);
+        // :: validation
+        $this->instance->validate();
 
+
+
+
+        // 1: uploadFile
+        if ($this->instance->imageFile)
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'customers/subscriptions/shortens/');
+
+
+
+
+
+
+
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/customers/subscription/shorten', $this->instance);
+
+
+
+
+
+
+        // :: alert - refreshPage
+        $this->makeAlert('success', $response?->message);
+
+        return $this->redirect(route('dashboard.singleCustomer', [$this->instance->customerId]), navigate: true);
 
 
 
 
     } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
 
 
 

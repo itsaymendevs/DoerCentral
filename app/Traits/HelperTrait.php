@@ -538,4 +538,42 @@ trait HelperTrait
 
 
 
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+    function differentInDays($fromDate, $untilDate)
+    {
+
+
+
+        // 1: convertToMilliseconds
+        $fromDate = strtotime($fromDate);
+        $untilDate = strtotime($untilDate);
+
+
+
+
+        // 1.2: sub - round
+        $difference = $untilDate - $fromDate;
+
+        return round($difference / (60 * 60 * 24));
+
+
+
+
+
+    } // end function
+
+
+
+
+
 } // end trait

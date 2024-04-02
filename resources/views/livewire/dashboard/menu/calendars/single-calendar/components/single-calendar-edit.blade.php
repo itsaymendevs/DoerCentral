@@ -88,7 +88,7 @@
                                 <a class="nav-link @if ($mealTypes->first()->id == $mealType->id) active @endif"
                                     role="tab" data-bs-toggle="tab" href="#tab-type-{{ $mealType->id }}"
                                     wire:ignore.self>{{
-                                    $mealType->shortName }}</a>
+                                    $mealType->name }}</a>
                             </li>
 
                             @endforeach
@@ -166,6 +166,14 @@
 
 
 
+                                    {{-- A: otherTypes --}}
+                                    @if ($meal->type->name != 'Recipe')
+
+
+
+
+
+                                    {{-- singelCard --}}
                                     <div class="col-4 col-xl-3 col-xxl-3" key='{{ now() }}'>
                                         <div class="overview--card client-version scale--self-05 mb-floating">
                                             <div class="row">
@@ -264,8 +272,145 @@
 
 
 
+
+
+                                    {{-- B: onlyRecipe --}}
+                                    @else
+
+
+
+
+
+                                    {{-- singelCard --}}
+                                    <div class="col-4 col-xl-3 col-xxl-3" key='{{ now() }}'>
+                                        <div class="overview--card client-version scale--self-05 mb-floating">
+                                            <div class="row">
+
+
+
+                                                {{-- imageFile --}}
+                                                <div class="col-12 text-center position-relative">
+                                                    <img class="client--card-logo"
+                                                        src="{{ asset('storage/menu/meals/' . $meal->imageFile) }}" />
+                                                </div>
+
+
+
+
+                                                {{-- name - diet --}}
+                                                <div class="col-12">
+                                                    <h6 class="text-center fw-bold mt-3
+                                                    mb-2 truncate-text-2l height-2l">{{ $meal->name }}</h6>
+
+
+                                                    <p class="text-center fs-13 fw-bold text-danger mb-3">
+                                                        <button
+                                                            class="btn btn--raw-icon fs-14 text-warning d-flex align-items-center justify-content-center fw-bold no-events"
+                                                            type="button">
+                                                            {{ $meal->diet->name }}
+                                                        </button>
+                                                    </p>
+                                                </div>
+
+
+
+
+
+                                                {{-- :: includeButton --}}
+                                                <div class="col-12">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="form-check form-switch mealType--checkbox justify-content-center flex-column-reverse mb-4 w-50">
+
+                                                            {{-- :: checked --}}
+                                                            <input class="form-check-input pointer w-100"
+                                                                id="formCheck-{{ $mealType->id }}-{{ $meal->id }}"
+                                                                type="checkbox" @if ($scheduleMeal) checked @endif
+                                                                wire:change='include({{ $mealType->id }}, {{ $meal->id }})'
+                                                                wire:loading.attr='disabled'
+                                                                wire:target='changeScheduleDate, include, update' />
+
+
+
+                                                            {{-- label --}}
+                                                            <label class="form-check-label fs-14 mx-0 mb-2 pointer"
+                                                                for="formCheck-{{ $mealType->id }}-{{ $meal->id }}">Include</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
+
+                                                {{-- :: default - 3 times --}}
+                                                @foreach([1 => '1st', 2 => '2nd', 3 => '3rd'] as $index => $slogan)
+
+
+
+                                                <div class="col-4">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="form-check itemType--radio justify-content-center flex-column w-100">
+
+
+                                                            {{-- input --}}
+                                                            <input class="form-check-input pointer" type="radio"
+                                                                id="formRadio-{{ $mealType->id }}-{{ $meal->id }}-{{ $index }}"
+                                                                name="{{ $mealType->shortName }}-default-{{ $index }}"
+                                                                wire:loading.attr='disabled'
+                                                                wire:target='changeScheduleDate, toggle, update'
+                                                                wire:change='toggle({{ $mealType->id }}, {{ $meal->id }})'
+                                                                @if($scheduleMeal?->isDefault) checked @endif
+                                                            />
+
+
+                                                            {{-- label --}}
+                                                            <label
+                                                                class="form-check-label fs-12 mx-0 mt-2 pointer text-center"
+                                                                for="formRadio-{{ $mealType->id }}-{{ $meal->id }}-{{ $index }}">{{
+                                                                $slogan }}<br />Default</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- endCol --}}
+
+
+
+
+                                                @endforeach
+                                                {{-- end loop --}}
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- endCard --}}
+
+
+
+
+
+
                                     @endif
-                                    {{-- end if --}}
+                                    {{-- end if - checkRecipe --}}
+
+
+
+
+
+
+
+
+
+                                    @endif
+                                    {{-- end if - notMeal --}}
+
+
+
 
 
 

@@ -214,6 +214,8 @@
                                                 badge--warning
                                                 @elseif ($delivery->status == 'Paused')
                                                 badge--secondary
+                                                @elseif ($delivery->status == 'Canceled')
+                                                badge--remove
                                                 @else
                                                 badge--theme-secondary
                                                 @endif">{{ $delivery->status }}

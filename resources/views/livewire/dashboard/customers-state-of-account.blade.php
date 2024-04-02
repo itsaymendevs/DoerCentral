@@ -186,12 +186,12 @@
 
                                         {{-- 4: balanceDays - balancePrice - --}}
                                         <td class="scale--3 fs-14">
-                                            {{ -1 * ($subscription->incompleteDeliveries()?->count() ?? 0) }}
+                                            {{ '+ ' . ($subscription->incompleteDeliveries()?->count() ?? 0) }}
                                         </td>
 
 
                                         <td class="scale--3 fs-14">
-                                            {{ -1 * ($subscription->incompleteDeliveries()?->count() ?? 0) *
+                                            {{ '+ ' . ($subscription->incompleteDeliveries()?->count() ?? 0) *
                                             ($subscription->planPrice / $subscription->planDays) }}
                                         </td>
 

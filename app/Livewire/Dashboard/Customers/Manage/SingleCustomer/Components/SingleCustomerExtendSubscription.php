@@ -2,20 +2,28 @@
 
 namespace App\Livewire\Dashboard\Customers\Manage\SingleCustomer\Components;
 
+use App\Livewire\Forms\CustomerSubscriptionExtendForm;
 use App\Models\Customer;
+use App\Models\CustomerSubscription;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class SingleCustomerExtendSubscription extends Component
 {
 
 
     use HelperTrait;
+    use WithFileUploads;
+
+
 
 
     // :: variables
-    public $id;
+    public CustomerSubscriptionExtendForm $instance;
+    public $subscription;
+
 
 
 
@@ -26,9 +34,8 @@ class SingleCustomerExtendSubscription extends Component
     {
 
 
-        // :: getCustomer
-        $customer = Customer::find($id);
-
+        // :: getLatestSubscription
+        $this->subscription = CustomerSubscription::find($id);
 
 
 
@@ -53,11 +60,8 @@ class SingleCustomerExtendSubscription extends Component
 
 
 
-
         // 1: makeRequest
-        // $response = $this->makeRequest('dashboard/customers/subscriptions/extend', $this->instance);
-
-
+        $response = $this->makeRequest('dashboard/customers/subscription/extend', $this->instance);
 
 
 

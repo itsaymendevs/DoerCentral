@@ -54,7 +54,7 @@
 
                                     {{-- input --}}
                                     <input class="form-control d-none file--input" type="file" id="extend--file-1"
-                                        data-preview="extend--preview-1" />
+                                        data-preview="extend--preview-1" wire:model='instance.imageFile' />
 
 
 
@@ -105,7 +105,8 @@
                                 {{-- extendDate --}}
                                 <div class="col-5">
                                     <label class="form-label form--label">Extend Until</label>
-                                    <input class="form-control form--input mb-4" type="date" required />
+                                    <input class="form-control form--input mb-4" type="date" required
+                                        wire:model='instance.untilDate' />
                                 </div>
 
 
@@ -113,7 +114,8 @@
                                 {{-- remarks --}}
                                 <div class="col-7">
                                     <label class="form-label form--label">Remarks</label>
-                                    <input class="form-control form--input mb-4" type="text" />
+                                    <input class="form-control form--input mb-4" type="text"
+                                        wire:model='instance.remarks' />
                                 </div>
 
 
@@ -151,7 +153,8 @@
 
                                             {{-- input --}}
                                             <input class="form-check-input" type="radio" name="extendReason"
-                                                id="reason-option-{{ $key }}" />
+                                                id="reason-option-{{ $key }}" value='{{ $reason }}'
+                                                wire:model='instance.reason' />
 
 
                                             {{-- label --}}
@@ -180,7 +183,7 @@
 
                         {{-- submitButton --}}
                         <div class="col-12 text-end mt-3">
-                            <button wire:loading.attr='disabled' wire:target='store'
+                            <button wire:loading.attr='disabled, instance.imageFile' wire:target='store'
                                 class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
                                 Confirm
                             </button>

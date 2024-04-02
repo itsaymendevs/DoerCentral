@@ -3,17 +3,10 @@
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Livewire\Forms\MealPartForm;
-use App\Livewire\Forms\MealSizeForm;
 use App\Models\Ingredient;
 use App\Models\Meal;
-use App\Models\MealDrink;
-use App\Models\MealIngredient;
 use App\Models\MealPart;
-use App\Models\MealSauce;
-use App\Models\MealSide;
 use App\Models\MealSize;
-use App\Models\MealSnack;
-use App\Models\MealSubRecipe;
 use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
@@ -529,9 +522,16 @@ class ProductionBuilderManageIngredients extends Component
         $inPartsOfMeal = MealPart::where('partId', $this->meal->id)->get()
                 ?->pluck('mealId')?->toArray() ?? [];
 
+        $relationInPartsOfMeal = MealPart::whereIn('partId', $inPartsOfMeal)->get()
+                ?->pluck('mealId')?->toArray() ?? [];
+
+
+
 
         $mealOptions = Meal::where('id', '!=', $this->meal->id)
-            ->whereNotIn('id', $inPartsOfMeal)->get();
+            ->whereNotIn('id', $inPartsOfMeal)
+            ->whereNotIn('id', $relationInPartsOfMeal)
+            ->get();
 
 
 

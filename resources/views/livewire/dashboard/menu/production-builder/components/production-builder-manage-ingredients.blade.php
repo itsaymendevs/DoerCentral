@@ -407,7 +407,7 @@
                 {{-- thead --}}
                 <thead>
                     <tr>
-                        <th class="th--sm" colspan="1"></th>
+                        <th class="th--sm" colspan="2"></th>
                         <th class="th--sm" colspan="1">Calories</th>
                         <th class="th--sm" colspan="1">Protein</th>
                         <th class="th--sm" colspan="1">Carb</th>
@@ -432,7 +432,7 @@
                     <tr>
 
                         {{-- empty --}}
-                        <td colspan="1" style="height: 62px"></td>
+                        <td colspan="2" style="height: 62px"></td>
 
 
                         {{-- calories --}}
@@ -489,7 +489,7 @@
                     <tr>
 
                         {{-- empty --}}
-                        <td colspan="1" style="height: 62px"></td>
+                        <td colspan="2" style="height: 62px"></td>
 
 
                         {{-- CA --}}
@@ -546,15 +546,15 @@
                     {{-- ingredientsHeaders --}}
                     <tr class="subheader">
                         <td class="fw-bold">Grams</td>
+                        <td class="fw-bold">%</td>
                         <td class="fw-bold">CA</td>
                         <td class="fw-bold">P</td>
                         <td class="fw-bold">C</td>
                         <td class="fw-bold">F</td>
                         <td class="fw-bold"></td>
-                        <td class="fw-bold">Removable</td>
-                        <td class="fw-bold">Replacement</td>
+                        <td class="fw-bold fs-10">Removable</td>
+                        <td class="fw-bold fs-10">Replacement</td>
                         <td class="fw-bold"></td>
-
                     </tr>
 
 

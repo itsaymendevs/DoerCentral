@@ -766,6 +766,80 @@ class CustomerController extends Controller
 
 
 
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function extendCustomerSubscription(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+        // :: getSubscription
+        $subscription = CustomerSubscription::find($request->customerSubscriptionId);
+
+
+
+
+
+
+        // :: create instance
+        $pause = new CustomerSubscriptionPause();
+
+
+
+
+        // 1: general
+        $pause->type = $request->type;
+        $pause->fromDate = $request->fromDate;
+        $pause->untilDate = $request->untilDate;
+        $pause->remarks = $request->remarks ?? null;
+
+
+
+
+
+
+
+        // -------------------------------
+        // -------------------------------
+
+
+
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
     // ------------------------------------------------------------------
     // ------------------------------------------------------------------
     // ------------------------------------------------------------------

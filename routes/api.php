@@ -574,9 +574,25 @@ Route::post('/dashboard/customers/bundle/types/update', [CustomerController::cla
 
 
 
+
+
 // 6.0.3: customers - subscription - pause
 Route::post('/dashboard/customers/subscription/pause', [CustomerController::class, 'pauseCustomerSubscription']);
 Route::post('/dashboard/customers/subscription/un-pause', [CustomerController::class, 'unPauseCustomerSubscription']);
+
+
+
+
+
+
+
+
+
+
+
+// 6.0.4: customers - subscription - extend
+Route::post('/dashboard/customers/subscription/extend', [CustomerController::class, 'extendCustomerSubscription']);
+
 
 
 

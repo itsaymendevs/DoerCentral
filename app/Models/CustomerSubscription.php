@@ -49,6 +49,25 @@ class CustomerSubscription extends Model
 
 
 
+    public function extends()
+    {
+
+        return $this->hasMany(CustomerSubscriptionExtend::class, 'customerSubscriptionId');
+
+    } // end function
+
+
+
+
+
+    public function shortens()
+    {
+
+        return $this->hasMany(CustomerSubscriptionShorten::class, 'customerSubscriptionId');
+
+    } // end function
+
+
 
 
 

@@ -13,6 +13,14 @@
 
 
 
+    {{-- percentage --}}
+    <td class="fw-bold">
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--percentage-input"
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly="" />
+    </td>
+
+
+
 
 
 

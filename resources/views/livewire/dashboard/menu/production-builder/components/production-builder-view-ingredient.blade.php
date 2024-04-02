@@ -5,9 +5,9 @@
 
     {{-- amount --}}
     <td class="fw-bold">
-        <input class="form-control form--input form--table-input-xxs px-1" type="number" step='0.01' required
-            wire:model='instance.amount' wire:change='update' wire:loading.attr='readonly'
-            wire:target='remove, update, init' />
+        <input class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input"
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' required wire:model='instance.amount'
+            wire:change='update' wire:loading.attr='readonly' wire:target='remove, update, init' />
     </td>
 
 
@@ -27,23 +27,26 @@
 
     {{-- calories --}}
     <td class="fw-bold">
-        <input class="form-control form--input form--table-input-xxs px-1 readonly" type="number" step='0.01'
-            readonly="" wire:model='instance.calories' wire:loading.attr='readonly' />
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--calories-input"
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly="" wire:model='instance.calories'
+            wire:loading.attr='readonly' />
     </td>
 
 
     {{-- proteins --}}
     <td class="fw-bold">
-        <input class="form-control form--input form--table-input-xxs px-1 readonly" type="number" step='0.01'
-            readonly="" wire:model='instance.proteins' wire:loading.attr='readonly' />
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--proteins-input"
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly="" wire:model='instance.proteins'
+            wire:loading.attr='readonly' />
     </td>
 
 
 
     {{-- carbs --}}
     <td class="fw-bold">
-        <input class="form-control form--input form--table-input-xxs px-1 readonly" type="number" step='0.01'
-            readonly="" wire:model='instance.carbs' wire:loading.attr='readonly' />
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--carbs-input"
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly="" wire:model='instance.carbs'
+            wire:loading.attr='readonly' />
     </td>
 
 
@@ -52,8 +55,9 @@
 
     {{-- fats --}}
     <td class="fw-bold">
-        <input class="form-control form--input form--table-input-xxs px-1 readonly" type="number" step='0.01'
-            readonly="" wire:model='instance.fats' wire:loading.attr='readonly' />
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--fats-input" type="number"
+            data-size='{{ $instance->mealSizeId }}' step='0.01' readonly="" wire:model='instance.fats'
+            wire:loading.attr='readonly' />
     </td>
 
 

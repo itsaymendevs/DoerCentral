@@ -401,6 +401,7 @@ class ProductionBuilderManageIngredients extends Component
 
         // 1.2: refresh ingredient / part
         $this->dispatch('refreshMealSizeIngredientsView-' . $instance->id . '-' . $instance->typeId, $instance->id, $instance->typeId);
+        $this->dispatch('recalculateMacros');
 
 
 

@@ -492,21 +492,35 @@
                         <td colspan="1" style="height: 62px"></td>
 
 
+                        {{-- CA --}}
                         <td class="fw-bold" colspan="1">
-                            <input class="form-control form--input form--table-input-sm readonly" type="number"
-                                value="0" readonly="" step='0.01' />
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--calories-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
                         </td>
+
+                        {{-- P --}}
                         <td colspan="1">
-                            <input class="form-control form--input form--table-input-sm readonly" type="number"
-                                value="0" readonly="" step='0.01' />
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--proteins-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
                         </td>
+
+
+                        {{-- C --}}
                         <td class="scale--3" colspan="1">
-                            <input class="form-control form--input form--table-input-sm readonly" type="number"
-                                value="0" readonly="" step='0.01' />
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--carbs-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
                         </td>
+
+
+
+                        {{-- F --}}
                         <td class="scale--3" colspan="1">
-                            <input class="form-control form--input form--table-input-sm readonly" type="number"
-                                value="0" readonly="" step='0.01' />
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--fats-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
                         </td>
 
                         {{-- empty --}}
@@ -668,7 +682,6 @@
             selectValue = $(this).select2('val');
             instance = $(this).attr('data-instance');
             instanceId = $(this).attr('data-instanceId');
-            console.log('first');
 
             @this.set(instance, selectValue);
             @this.updateType(instanceId, 'Ingredient');

@@ -11,6 +11,7 @@ use App\Models\MealIngredient;
 use App\Models\MealPart;
 use App\Models\MealSauce;
 use App\Models\MealSide;
+use App\Models\MealSize;
 use App\Models\MealSnack;
 use App\Models\MealSubRecipe;
 use App\Traits\HelperTrait;
@@ -110,7 +111,7 @@ class ProductionBuilderViewIngredient extends Component
         $this->instance->isReplacement = $this->mealPart->isReplacement;
         $this->instance->groupToken = $this->mealPart->groupToken;
         $this->instance->mealId = $this->mealPart->mealId;
-
+        $this->instance->mealSizeId = $this->mealPart->mealSizeId;
 
 
 
@@ -273,6 +274,9 @@ class ProductionBuilderViewIngredient extends Component
             $this->instance->grams = $this->instance->amount ?? 0;
 
         } // end if
+
+
+
 
 
 

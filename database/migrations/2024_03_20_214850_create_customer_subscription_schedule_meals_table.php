@@ -48,7 +48,25 @@ return new class extends Migration {
 
 
 
-            // 1.4: plan - subscription - customer
+
+            // 1.4: sizeId - planBundleRangeId
+            $table->bigInteger('sizeId')->unsigned()->nullable();
+            $table->foreign('sizeId')->references('id')->on('sizes')->onDelete('set null');
+
+
+
+            $table->bigInteger('planBundleRangeId')->unsigned()->nullable();
+            $table->foreign('planBundleRangeId')->references('id')->on('plan_bundle_ranges')->onDelete('cascade');
+
+
+
+
+
+
+
+
+
+            // 1.5: plan - subscription - customer
             $table->bigInteger('planId')->unsigned()->nullable();
             $table->foreign('planId')->references('id')->on('plans')->onDelete('cascade');
 

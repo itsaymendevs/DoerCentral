@@ -12,6 +12,8 @@ use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionExtend;
 use App\Models\CustomerSubscriptionPause;
+use App\Models\CustomerSubscriptionSchedule;
+use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\CustomerSubscriptionShorten;
 use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
@@ -479,12 +481,23 @@ class CustomerController extends Controller
 
 
 
+        // 1.2.3: changeScheduleStatus
+        CustomerSubscriptionSchedule::where('customerSubscriptionId', $subscription->id)
+            ->where('scheduleDate', '>=', $request->fromDate)
+            ->where('scheduleDate', '<=', $request->untilDate)
+            ->update([
+                "status" => "Paused"
+            ]);
 
 
 
 
 
-        // 1.2.3: pricePerDay - totalPrice
+
+
+
+
+        // 1.2.4: pricePerDay - totalPrice
         $pause->pricePerDay = $subscription->planPrice / $subscription->planDays;
         $pause->totalPrice = $pause->pricePerDay * $pause->pauseDays;
 
@@ -696,8 +709,23 @@ class CustomerController extends Controller
 
 
 
+        // 1.2.3: changeScheduleStatus
+        CustomerSubscriptionSchedule::where('customerSubscriptionId', $subscription->id)
+            ->where('scheduleDate', '>=', $this->getUnPauseDate())
+            ->where('scheduleDate', '<=', $pause->untilDate)
+            ->update([
+                "status" => "Pending"
+            ]);
 
-        // 1.2.3: pricePerDay - totalPrice :: ONLY LEFTOVER PAUSE DAYS
+
+
+
+
+
+
+
+
+        // 1.2.4: pricePerDay - totalPrice :: ONLY LEFTOVER PAUSE DAYS
         $pricePerDay = $subscription->planPrice / $subscription->planDays;
         $totalPrice = $pause->pricePerDay * $pausedDays;
 
@@ -955,6 +983,7 @@ class CustomerController extends Controller
 
                 // :: checkDelivery
                 $existingDelivery = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+                    ->where('deliveryDate', $deliveryDate)
                     ->where('status', 'Canceled')
                     ->first();
 
@@ -1013,8 +1042,41 @@ class CustomerController extends Controller
 
 
 
-                // ----------------------------
-                // ----------------------------
+
+
+
+
+
+
+
+                // ---------------------------------------------
+                // ---------------------------------------------
+
+
+
+
+
+
+
+                // 1.4.5: scheduleInformation
+
+
+
+                // :: side-phase - storeSchedule - Meals
+                $this->storeSchedule($subscription, $customer, $extend, $deliveryDate);
+
+
+
+
+
+
+
+
+
+                // ---------------------------------------------
+                // ---------------------------------------------
+
+
 
 
 
@@ -1073,13 +1135,11 @@ class CustomerController extends Controller
 
 
 
-
             // :: nextDate
             $dateCounter++;
 
 
         } // end loop
-
 
 
 
@@ -1094,6 +1154,170 @@ class CustomerController extends Controller
 
 
 
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function storeSchedule($subscription, $customer, $extend, $deliveryDate)
+    {
+
+
+
+        // :: getCalendarSchedule
+        $calendarSchedule = $subscription?->calendar?->scheduleByDate($deliveryDate) ?? null;
+
+
+
+
+
+
+
+
+        // 1: checkSchedule
+        $existingSchedule = CustomerSubscriptionSchedule::where('customerSubscriptionId', $subscription->id)
+            ->where('scheduleDate', $deliveryDate)
+            ->where('status', 'Canceled')
+            ->first();
+
+
+
+
+
+
+        // 1.2: exists
+        if ($existingSchedule) {
+
+
+
+            // 1.3: updateStatus - calendarSchedule
+            $existingSchedule->status = 'Pending';
+            $existingSchedule->menuCalendarScheduleId = $calendarSchedule?->id ?? null;
+
+
+            $existingSchedule->save();
+
+
+
+
+
+            // 1.2: create
+        } else {
+
+
+
+
+            // :: create
+            $schedule = new CustomerSubscriptionSchedule();
+
+
+
+
+            // 1.2: general
+            $schedule->status = 'Pending';
+            $schedule->scheduleDate = $deliveryDate;
+
+
+
+
+
+            // 1.3: calendarSchedule
+            $schedule->menuCalendarScheduleId = $calendarSchedule?->id ?? null;
+
+
+
+            // 1.3: customer - customerSubscription
+            $schedule->customerId = $customer->id;
+            $schedule->planId = $subscription->planId;
+            $schedule->customerSubscriptionId = $subscription->id;
+
+
+
+            $schedule->save();
+
+
+
+
+
+            // ---------------------------------------------
+            // ---------------------------------------------
+
+
+
+
+
+
+
+
+
+            // :: loop - mealTypes - checkQuantity
+            foreach ($subscription->types ?? [] as $subscriptionType) {
+
+                if ($subscriptionType->quantity > 0) {
+
+
+
+
+                    // 2: create
+                    $scheduleMeal = new CustomerSubscriptionScheduleMeal();
+
+
+                    // 2.2: general
+                    $scheduleMeal->cookStatus = 'Pending';
+                    $scheduleMeal->mealTypeId = $subscriptionType->mealTypeId;
+
+
+
+
+
+                    // 2.3: subscriptionSchedule - customer - customerSubscription
+                    $scheduleMeal->subscriptionScheduleId = $schedule?->id ?? null;
+
+                    $scheduleMeal->customerId = $customer->id;
+                    $scheduleMeal->planId = $subscription->planId;
+                    $scheduleMeal->customerSubscriptionId = $subscription->id;
+
+
+
+
+
+                    // 2.4:  getMeal - CalendarSchedule (HELPER IN MenuCalendarTrait)
+                    $scheduleMeal->mealId = $calendarSchedule ? $this->getScheduleMeal($subscription, $calendarSchedule, $subscriptionType->mealTypeId) ?? null : null;
+
+
+
+
+                    $scheduleMeal->save();
+
+
+
+
+
+                } // end if - quantity
+
+            } // end loop
+
+
+        } // end if
+
+
+
+
+    } // end function
 
 
 
@@ -1205,7 +1429,7 @@ class CustomerController extends Controller
 
 
 
-        // 2: shortenDays - changeDeliveryStatus
+        // 2: shortenDays - changeDeliveryStatus - changeScheduleStatus
         $shorten->shortenDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
             ->where('deliveryDate', '>=', $shorten->untilDate)
             ->where('deliveryDate', '<=', $shorten->fromDate)
@@ -1216,6 +1440,17 @@ class CustomerController extends Controller
         CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
             ->where('deliveryDate', '>=', $shorten->untilDate)
             ->where('deliveryDate', '<=', $shorten->fromDate)
+            ->where('status', 'Pending')
+            ->update([
+                "status" => "Canceled"
+            ]);
+
+
+
+
+        CustomerSubscriptionSchedule::where('customerSubscriptionId', $subscription->id)
+            ->where('scheduleDate', '>=', $shorten->untilDate)
+            ->where('scheduleDate', '<=', $shorten->fromDate)
             ->where('status', 'Pending')
             ->update([
                 "status" => "Canceled"

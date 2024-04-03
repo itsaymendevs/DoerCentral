@@ -687,7 +687,7 @@ class CustomerSubscriptionController extends Controller
 
 
 
-                // 1.9.5: deliveryInformation
+                // 1.9.5: scheduleInformation
 
 
 

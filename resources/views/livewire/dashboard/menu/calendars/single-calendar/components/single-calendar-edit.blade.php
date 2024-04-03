@@ -167,15 +167,15 @@
 
 
                                     {{-- A: otherTypes --}}
-                                    @if ($meal->type->name != 'Recipe')
+                                    @if ($meal->type->name != 'Recipe' && $meal->type->name != 'Drink')
 
 
 
 
 
-                                    {{-- singelCard --}}
                                     <div class="col-4 col-xl-3 col-xxl-3" key='{{ now() }}'>
-                                        <div class="overview--card client-version scale--self-05 mb-floating">
+                                        <div class="overview--card client-version scale--self-05 mb-floating"
+                                            id='item-{{ $mealType->id }}-{{ $meal->id }}'>
                                             <div class="row">
 
 
@@ -244,12 +244,13 @@
 
 
                                                             {{-- input --}}
-                                                            <input class="form-check-input pointer" type="radio"
+                                                            <input class="form-check-input pointer default--radio"
+                                                                type="radio"
                                                                 id="formRadio-{{ $mealType->id }}-{{ $meal->id }}"
                                                                 name="{{ $mealType->shortName }}-default"
                                                                 wire:loading.attr='disabled'
                                                                 wire:target='changeScheduleDate, toggle, update'
-                                                                wire:change='toggle({{ $mealType->id }}, {{ $meal->id }})'
+                                                                wire:change="toggle({{ $mealType->id }}, {{ $meal->id }}, 'isDefault')"
                                                                 @if($scheduleMeal?->isDefault) checked @endif
 
                                                             />
@@ -274,6 +275,21 @@
 
 
 
+
+
+
+
+                                    {{-- -------------------------- --}}
+                                    {{-- -------------------------- --}}
+
+
+
+
+
+
+
+
+
                                     {{-- B: onlyRecipe --}}
                                     @else
 
@@ -281,9 +297,9 @@
 
 
 
-                                    {{-- singelCard --}}
                                     <div class="col-4 col-xl-3 col-xxl-3" key='{{ now() }}'>
-                                        <div class="overview--card client-version scale--self-05 mb-floating">
+                                        <div class="overview--card client-version scale--self-05 mb-floating"
+                                            id='item-{{ $mealType->id }}-{{ $meal->id }}'>
                                             <div class="row">
 
 
@@ -347,7 +363,27 @@
 
 
                                                 {{-- :: default - 3 times --}}
-                                                @foreach([1 => '1st', 2 => '2nd', 3 => '3rd'] as $index => $slogan)
+                                                @foreach([1 => "isDefault", 2 => "isDefaultSecond", 3 =>
+                                                "isDefaultThird"] as $index => $isDefaultGroup)
+
+
+
+
+                                                {{-- --------------------------- --}}
+                                                @php
+
+
+                                                // :: determine indexSlogan
+                                                if ($index == 1) $slogan = '1st';
+                                                elseif ($index == 2) $slogan = '2nd';
+                                                elseif ($index == 3) $slogan = '3rd';
+
+
+                                                @endphp
+                                                {{-- --------------------------- --}}
+
+
+
 
 
 
@@ -358,13 +394,15 @@
 
 
                                                             {{-- input --}}
-                                                            <input class="form-check-input pointer" type="radio"
+                                                            <input class="form-check-input pointer default--radio"
+                                                                type="radio"
                                                                 id="formRadio-{{ $mealType->id }}-{{ $meal->id }}-{{ $index }}"
                                                                 name="{{ $mealType->shortName }}-default-{{ $index }}"
                                                                 wire:loading.attr='disabled'
                                                                 wire:target='changeScheduleDate, toggle, update'
-                                                                wire:change='toggle({{ $mealType->id }}, {{ $meal->id }})'
-                                                                @if($scheduleMeal?->isDefault) checked @endif
+                                                                wire:change='toggle({{ $mealType->id }}, {{ $meal->id }}, {{ json_encode($isDefaultGroup) }})'
+                                                                @if($scheduleMeal?->isDefault
+                                                            && $scheduleMeal?->group == $index) checked @endif
                                                             />
 
 
@@ -442,6 +480,45 @@
             </div>
         </div>
     </div>
+    {{-- endContainer --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+    @section('scripts')
+
+    <script src="{{ asset('assets/js/menu-calendar.js') }}"></script>
+
+    @endsection
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
 
 
 

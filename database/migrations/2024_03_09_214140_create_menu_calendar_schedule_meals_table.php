@@ -15,9 +15,15 @@ return new class extends Migration {
 
 
 
-            // 1: scheduleDate - isDefault
+            // 1: scheduleDate - isDefault x3
             $table->date('scheduleDate')->nullable();
+
             $table->boolean('isDefault')->nullable()->default(0);
+            $table->boolean('isDefaultSecond')->nullable()->default(0);
+            $table->boolean('isDefaultThird')->nullable()->default(0);
+
+
+
 
 
             // 1.2: mealType - meal
@@ -27,6 +33,8 @@ return new class extends Migration {
 
             $table->bigInteger('mealId')->unsigned()->nullable();
             $table->foreign('mealId')->references('id')->on('meals')->onDelete('cascade');
+
+
 
 
 

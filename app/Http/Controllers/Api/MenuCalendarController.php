@@ -403,9 +403,12 @@ class MenuCalendarController extends Controller
 
 
 
-                // :: general
+                // :: general - group
                 $scheduleMeal->scheduleDate = $request->scheduleDate;
                 $scheduleMeal->isDefault = boolval($innerScheduleMeal->isDefault);
+                $scheduleMeal->isDefaultSecond = boolval($innerScheduleMeal->isDefaultSecond);
+                $scheduleMeal->isDefaultThird = boolval($innerScheduleMeal->isDefaultThird);
+
 
 
                 // :: meal - mealType - calendarSchedule

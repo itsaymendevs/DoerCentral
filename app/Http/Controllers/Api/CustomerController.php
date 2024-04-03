@@ -953,34 +953,78 @@ class CustomerController extends Controller
 
 
 
-                // 1.2: create
-                $subscriptionDelivery = new CustomerSubscriptionDelivery();
-
-
-
-                // 1.2.1: general
-                $subscriptionDelivery->deliveryDate = $deliveryDate;
-                $subscriptionDelivery->status = 'Pending';
-
-
-                // 1.2.2: customer - customerSubscription
-                $subscriptionDelivery->customerId = $customer->id;
-                $subscriptionDelivery->planId = $subscription->planId;
-                $subscriptionDelivery->customerSubscriptionId = $subscription->id;
+                // :: checkDelivery
+                $existingDelivery = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+                    ->where('status', 'Canceled')
+                    ->first();
 
 
 
 
-                // 1.2.3: Save + increaseCounter - checkIfDone
+
+
+
+                // 1.2: exists
+                if ($existingDelivery) {
+
+
+
+                    // :: updateStatus
+                    $existingDelivery->status = 'Pending';
+
+                    $existingDelivery->save();
+
+
+
+
+
+                    // 1.2: create
+                } else {
+
+
+
+
+                    // :: create
+                    $subscriptionDelivery = new CustomerSubscriptionDelivery();
+
+
+
+                    // 1.2.1: general
+                    $subscriptionDelivery->deliveryDate = $deliveryDate;
+                    $subscriptionDelivery->status = 'Pending';
+
+
+                    // 1.2.2: customer - customerSubscription
+                    $subscriptionDelivery->customerId = $customer->id;
+                    $subscriptionDelivery->planId = $subscription->planId;
+                    $subscriptionDelivery->customerSubscriptionId = $subscription->id;
+
+
+
+                    $subscriptionDelivery->save();
+
+
+
+
+                } // end if
+
+
+
+
+
+
+                // ----------------------------
+                // ----------------------------
+
+
+
+
+
+
+
+                // 1.2.3: increaseCounter
                 $deliveryCounter++;
-                $subscriptionDelivery->save();
 
-
-
-
-
-                // ----------------------------
-                // ----------------------------
 
 
 

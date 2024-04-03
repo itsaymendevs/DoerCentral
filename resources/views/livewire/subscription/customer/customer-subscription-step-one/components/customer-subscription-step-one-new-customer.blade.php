@@ -97,8 +97,8 @@
                         <div class="col-12 col-sm-6">
                             <label class="form-label form--label">Phone</label>
                             <div class="form--phone-input">
-                                <input class="form-control form--input mb-4" minlength='9' type="text" required
-                                    wire:model='instance.phone' />
+                                <input class="form-control form--input mb-4" minlength='9' maxlength='9' type="text"
+                                    required wire:model='instance.phone' />
                                 <span>+971</span>
                             </div>
                         </div>
@@ -111,8 +111,8 @@
                         <div class="col-12 col-sm-6">
                             <label class="form-label form--label">Whatsapp</label>
                             <div class="form--phone-input">
-                                <input class="form-control form--input mb-4" minlength='9' type="text" required
-                                    wire:model='instance.whatsapp' />
+                                <input class="form-control form--input mb-4" minlength='9' maxlength='9' type="text"
+                                    required wire:model='instance.whatsapp' />
                                 <span>+971</span>
                             </div>
                         </div>

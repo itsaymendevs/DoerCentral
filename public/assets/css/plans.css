@@ -269,8 +269,7 @@ hr {
     background-color: var(--color-theme-heading) !important;
 }
 
-.itemType--radio input:checked,
-.itemType--radio input[checked] {
+.itemType--radio input:checked {
     background-color: var(--bg-golden-dark) !important;
     border-color: var(--bg-golden-dark) !important;
 }

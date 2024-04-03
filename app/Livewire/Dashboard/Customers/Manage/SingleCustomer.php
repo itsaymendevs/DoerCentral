@@ -92,6 +92,7 @@ class SingleCustomer extends Component
 
 
 
+
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/customers/update', $this->instance);
 

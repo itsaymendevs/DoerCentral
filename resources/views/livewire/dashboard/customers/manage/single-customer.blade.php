@@ -219,7 +219,8 @@
                                             </path>
                                         </svg>
                                     </label>
-                                    <input type="text" class="form--input" required wire:model='instance.phone' />
+                                    <input type="text" class="form--input" required wire:model='instance.phone'
+                                        minlength='9' maxlength='9' />
                                 </div>
                             </div>
 
@@ -239,7 +240,8 @@
                                             </path>
                                         </svg>
                                     </label>
-                                    <input type="text" class="form--input" required wire:model='instance.whatsapp' />
+                                    <input type="text" class="form--input" required wire:model='instance.whatsapp'
+                                        minlength='9' maxlength='9' />
                                 </div>
                             </div>
 

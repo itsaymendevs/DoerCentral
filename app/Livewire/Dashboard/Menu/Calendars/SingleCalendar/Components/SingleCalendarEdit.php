@@ -7,6 +7,7 @@ use App\Models\Meal;
 use App\Models\MealType;
 use App\Models\MenuCalendarSchedule;
 use App\Models\MenuCalendarScheduleMeal;
+use App\Models\Type;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
@@ -120,6 +121,8 @@ class SingleCalendarEdit extends Component
                 $instance->mealId = $meal->mealId;
                 $instance->mealTypeId = $meal->mealTypeId;
                 $instance->isDefault = $meal->isDefault;
+                $instance->isDefaultSecond = $meal->isDefaultSecond;
+                $instance->isDefaultThird = $meal->isDefaultThird;
                 $instance->menuCalendarScheduleId = $meal->menuCalendarScheduleId;
 
 
@@ -186,6 +189,7 @@ class SingleCalendarEdit extends Component
     {
 
 
+
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/calendars/schedules/meals/update', $this->instance);
 
@@ -216,8 +220,10 @@ class SingleCalendarEdit extends Component
 
 
 
-    public function include($mealTypeId, $mealId, )
+    public function include($mealTypeId, $mealId)
     {
+
+
 
 
         // :: check if exists
@@ -233,6 +239,13 @@ class SingleCalendarEdit extends Component
                 $isFound = true;
                 unset($this->instance->scheduleMeals[$key]);
 
+
+                // 1.2: unCheckDefault
+                $this->dispatch('unCheckDefault', card: "#item-{$scheduleMeal->mealTypeId}-{$scheduleMeal->mealId}");
+
+
+
+
             } // end if
 
         } // end loop
@@ -243,8 +256,12 @@ class SingleCalendarEdit extends Component
 
 
 
+
         // ------------------------------
         // ------------------------------
+
+
+
 
 
 
@@ -254,12 +271,15 @@ class SingleCalendarEdit extends Component
         if (! $isFound) {
 
 
+
             // :: create instance
             $instance = new stdClass();
 
             $instance->mealId = $mealId;
             $instance->mealTypeId = $mealTypeId;
             $instance->isDefault = false;
+            $instance->isDefaultSecond = false;
+            $instance->isDefaultThird = false;
             $instance->menuCalendarScheduleId = $this->instance->menuCalendarScheduleId;
 
 
@@ -267,7 +287,20 @@ class SingleCalendarEdit extends Component
 
 
 
+
+
+            // 2.2: unCheckDefault
+            $this->dispatch('unCheckDefault', card: "#item-{$instance->mealTypeId}-{$instance->mealId}");
+
+
         } // end if
+
+
+
+
+
+
+
 
 
 
@@ -293,7 +326,7 @@ class SingleCalendarEdit extends Component
 
 
 
-    public function toggle($mealTypeId, $mealId)
+    public function toggle($mealTypeId, $mealId, $isDefaultGroup)
     {
 
 
@@ -304,10 +337,10 @@ class SingleCalendarEdit extends Component
 
 
 
-            // 1.2: makeNotDefault - others
+            // 1.2: removeDefaultFromAll
             if ($scheduleMeal->mealTypeId == $mealTypeId) {
 
-                $this->instance->scheduleMeals[$key]->isDefault = false;
+                $this->instance->scheduleMeals[$key]->{$isDefaultGroup} = false;
 
             } //end if
 
@@ -315,10 +348,10 @@ class SingleCalendarEdit extends Component
 
 
 
-            // 1.3:  makeDefault
+            // 1.3:  makeTargetDefault
             if ($scheduleMeal->mealId == $mealId && $scheduleMeal->mealTypeId == $mealTypeId) {
 
-                $this->instance->scheduleMeals[$key]->isDefault = true;
+                $this->instance->scheduleMeals[$key]->{$isDefaultGroup} = true;
 
             } //end if
 

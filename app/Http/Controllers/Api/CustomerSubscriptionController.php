@@ -11,11 +11,15 @@ use App\Models\CustomerDeliveryDay;
 use App\Models\CustomerExclude;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
+use App\Models\CustomerSubscriptionSchedule;
+use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
 use App\Models\MealType;
+use App\Models\Plan;
 use App\Models\PromoCode;
 use App\Traits\HelperTrait;
+use App\Traits\MenuCalendarTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,6 +28,7 @@ class CustomerSubscriptionController extends Controller
 
 
     use HelperTrait;
+    use MenuCalendarTrait;
 
 
 
@@ -447,12 +452,22 @@ class CustomerSubscriptionController extends Controller
 
 
 
+        // 1.3.5: planCalendar
+        $subscription->menuCalendarId = Plan::find($request->planId)->defaultCalendar()?->menuCalendarId ?? null;
+
+
+
+
+
+
+
 
         // 1.4: bagInformation
         $bag = Bag::where('name', $request->bag)->first();
 
         $subscription->bagId = $bag->id;
         $subscription->bagPrice = $bag->price;
+
 
 
 
@@ -640,8 +655,8 @@ class CustomerSubscriptionController extends Controller
 
 
                 // 1.2.1: general
-                $subscriptionDelivery->deliveryDate = $deliveryDate;
                 $subscriptionDelivery->status = 'Pending';
+                $subscriptionDelivery->deliveryDate = $deliveryDate;
 
 
                 // 1.2.2: customer - customerSubscription
@@ -660,6 +675,40 @@ class CustomerSubscriptionController extends Controller
 
 
 
+
+
+
+                // ---------------------------------------------
+                // ---------------------------------------------
+
+
+
+
+
+
+
+                // 1.9.5: deliveryInformation
+
+
+
+                // :: side-phase - storeSchedule - Meals
+                $this->storeSchedule($subscription, $customer, $request, $deliveryDate);
+
+
+
+
+
+
+
+
+
+                // ---------------------------------------------
+                // ---------------------------------------------
+
+
+
+
+
                 // :: checkIfDone - save untilDate
                 if ($deliveryCounter == $deliveryTotalCounter) {
 
@@ -670,6 +719,7 @@ class CustomerSubscriptionController extends Controller
                     break;
 
                 } // end if
+
 
 
 
@@ -685,6 +735,7 @@ class CustomerSubscriptionController extends Controller
             $dateCounter++;
 
 
+
         } // end loop
 
 
@@ -692,9 +743,159 @@ class CustomerSubscriptionController extends Controller
 
 
 
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function storeSchedule($subscription, $customer, $request, $deliveryDate)
+    {
+
+
+
+        // :: getCalendarSchedule
+        $calendarSchedule = $subscription?->calendar?->scheduleByDate($deliveryDate) ?? null;
+
+
+
+
+
+
+
+
+        // 1: create schedule
+        $schedule = new CustomerSubscriptionSchedule();
+
+
+
+
+        // 1.2: general
+        $schedule->status = 'Pending';
+        $schedule->scheduleDate = $deliveryDate;
+
+
+
+
+
+        // 1.3: calendarSchedule
+        $schedule->menuCalendarScheduleId = $calendarSchedule?->id ?? null;
+
+
+
+        // 1.3: customer - customerSubscription
+        $schedule->customerId = $customer->id;
+        $schedule->planId = $subscription->planId;
+        $schedule->customerSubscriptionId = $subscription->id;
+
+
+
+        $schedule->save();
+
+
+
+
+
+
+
+
+
+
+        // ---------------------------------------------
+        // ---------------------------------------------
+
+
+
+
+
+
+
+        // :: loop - mealTypes - checkQuantity
+        foreach ($request->bundleTypes ?? [] as $mealTypeId => $quantity) {
+
+            if ($quantity > 0) {
+
+
+
+
+                // 2: create
+                $scheduleMeal = new CustomerSubscriptionScheduleMeal();
+
+
+                // 2.2: general
+                $scheduleMeal->cookStatus = 'Pending';
+                $scheduleMeal->mealTypeId = $mealTypeId;
+
+
+
+
+
+                // 2.3: subscriptionSchedule - customer - customerSubscription
+                $scheduleMeal->subscriptionScheduleId = $schedule?->id ?? null;
+
+                $scheduleMeal->customerId = $customer->id;
+                $scheduleMeal->planId = $subscription->planId;
+                $scheduleMeal->customerSubscriptionId = $subscription->id;
+
+
+
+
+
+                // 2.4:  getMeal - CalendarSchedule (HELPER IN MenuCalendarTrait)
+                $scheduleMeal->mealId = $calendarSchedule ? $this->getScheduleMeal($subscription, $calendarSchedule, $mealTypeId) ?? null : null;
+
+
+
+
+
+                $scheduleMeal->save();
+
+
+
+
+
+            } // end if
+
+        } // end loop
+
+
+
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
 
 
 

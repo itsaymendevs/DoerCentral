@@ -321,7 +321,6 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-
         // 2: makeSession
         Session::put('customer', $this->instance);
 
@@ -334,6 +333,7 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
+        
 
         // :: redirectToCheckout
         return $this->redirect(route('subscription.customerStepSix', [$this->plan->id]), navigate: true);

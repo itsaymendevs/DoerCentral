@@ -63,22 +63,9 @@ class MealPart extends Model
 
 
 
-
-
-
-
-    // ------------------------------------------
-
-
-
-
-
-
-
-
-
     public function totalMacro($currentAmount = 0)
     {
+
 
         // :: root
         $totalGrams = $totalCalories = $totalProteins = $totalCarbs = $totalFats = 0;

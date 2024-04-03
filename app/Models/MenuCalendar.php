@@ -11,12 +11,15 @@ class MenuCalendar extends Model
 
 
 
+
     public function plans()
     {
 
         return $this->hasMany(MenuCalendarPlan::class, 'menuCalendarId');
 
     } // end function
+
+
 
 
 
@@ -33,9 +36,27 @@ class MenuCalendar extends Model
 
 
 
+    public function schedules()
+    {
+
+        return $this->hasMany(MenuCalendarSchedule::class, 'menuCalendarId');
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
     // ------------------------------------------
     // ------------------------------------------
     // ------------------------------------------
+
+
 
 
 
@@ -68,6 +89,14 @@ class MenuCalendar extends Model
 
 
 
+    // ------------------------------------------
+
+
+
+
+
+
+
     public function plansInArray()
     {
 
@@ -86,6 +115,30 @@ class MenuCalendar extends Model
 
 
     } // end function
+
+
+
+
+
+
+
+    // ------------------------------------------
+
+
+
+
+
+
+
+    public function scheduleByDate($date)
+    {
+
+        return $this->schedules()?->where('scheduleDate', $date)?->first();
+
+    } // end function
+
+
+
 
 
 

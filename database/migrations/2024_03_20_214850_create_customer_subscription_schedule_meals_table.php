@@ -36,7 +36,19 @@ return new class extends Migration {
 
 
 
-            // 1.3: plan - subscription - customer
+
+            // 1.3: schedule
+            $table->bigInteger('subscriptionScheduleId')->unsigned()->nullable();
+            $table->foreign('subscriptionScheduleId', 'customer_subscription_schedule_meals_schedule_foreign')->references('id')->on('customer_subscription_schedules')->onDelete('cascade');
+
+
+
+
+
+
+
+
+            // 1.4: plan - subscription - customer
             $table->bigInteger('planId')->unsigned()->nullable();
             $table->foreign('planId')->references('id')->on('plans')->onDelete('cascade');
 

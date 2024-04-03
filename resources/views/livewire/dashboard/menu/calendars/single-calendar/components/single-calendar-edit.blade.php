@@ -290,7 +290,7 @@
 
 
 
-                                    {{-- B: onlyRecipe --}}
+                                    {{-- B: onlyRecipe / Drink --}}
                                     @else
 
 
@@ -401,8 +401,8 @@
                                                                 wire:loading.attr='disabled'
                                                                 wire:target='changeScheduleDate, toggle, update'
                                                                 wire:change='toggle({{ $mealType->id }}, {{ $meal->id }}, {{ json_encode($isDefaultGroup) }})'
-                                                                @if($scheduleMeal?->isDefault
-                                                            && $scheduleMeal?->group == $index) checked @endif
+                                                                @if($scheduleMeal?->{$isDefaultGroup}) checked
+                                                            @endif
                                                             />
 
 

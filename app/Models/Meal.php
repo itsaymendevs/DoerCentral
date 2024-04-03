@@ -66,12 +66,14 @@ class Meal extends Model
 
 
 
+
     public function types()
     {
 
         return $this->hasMany(MealAvailableType::class, 'mealId');
 
     } // end function
+
 
 
 
@@ -133,6 +135,9 @@ class Meal extends Model
 
 
 
+
+
+
     public function parts()
     {
 
@@ -163,41 +168,23 @@ class Meal extends Model
 
 
 
-    public function partsInArray()
+
+    public function totalGrams()
     {
 
 
-        // :: parts
-        $parts = [];
+        // :: root
+        $totalGrams = 0;
 
 
 
-        // 1: ingredients
-        $mealIngredients = $this->ingredients()?->get();
-
-        foreach ($mealIngredients?->unique('mealId') as $mealIngredient)
-            if ($mealIngredient?->ingredient)
-                array_push($parts, $mealIngredient->ingredient->name);
+        // 1: getTotalPartGrams
+        $totalGrams += $this?->ingredients?->sum('amount') ?? 0;
+        $totalGrams += $this?->parts?->sum('amount') ?? 0;
 
 
 
-
-
-
-        // 2: parts
-        $mealParts = $this->parts()?->get();
-
-        foreach ($mealParts?->unique('mealId') as $mealPart)
-            if ($mealPart?->part)
-                array_push($parts, $mealPart->part->name);
-
-
-
-
-
-
-        return count($parts) > 0 ? $parts : ['List is empty'];
-
+        return $totalGrams;
 
 
     } // end function
@@ -223,25 +210,141 @@ class Meal extends Model
 
 
 
-    public function totalGrams()
+
+    public function partsInArray()
     {
 
 
-        // :: root
-        $totalGrams = 0;
+        // :: parts
+        $parts = [];
 
 
 
-        // 1: getTotalPartGrams
-        $totalGrams += $this?->ingredients?->sum('amount') ?? 0;
-        $totalGrams += $this?->parts?->sum('amount') ?? 0;
+        // 1: ingredients
+        $mealIngredients = $this->ingredients()?->get();
+
+        foreach ($mealIngredients?->unique('mealId') as $mealIngredient)
+            $mealIngredient?->ingredient ? array_push($parts, $mealIngredient->ingredient->name) : null;
 
 
 
-        return $totalGrams;
+
+
+
+        // 2: parts
+        $mealParts = $this->parts()?->get();
+
+        foreach ($mealParts?->unique('mealId') as $mealPart)
+            $mealPart?->part ? array_push($parts, $mealPart->part->name) : null;
+
+
+
+
+
+
+        return count($parts) > 0 ? $parts : ['List is empty'];
+
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function allergiesAndExcludesInArray($allergies = [], $excludes = [])
+    {
+
+
+
+
+        // 1: ingredients
+        $mealIngredients = $this->ingredients()?->get() ?? [];
+
+
+
+        foreach ($mealIngredients as $mealIngredient) {
+
+            if ($mealIngredient->ingredient && $mealIngredient->ingredient->excludeId)
+                array_push($excludes, $mealIngredient->ingredient->excludeId);
+
+
+            if ($mealIngredient->ingredient && $mealIngredient->ingredient->allergyId)
+                array_push($allergies, $mealIngredient->ingredient->allergyId);
+
+        }  // end loop
+
+
+
+
+
+
+
+        // -----------------------------------------
+        // -----------------------------------------
+
+
+
+
+
+
+
+        // 2: parts
+        $mealParts = $this->parts()?->get() ?? [];
+
+
+        foreach ($mealParts as $mealPart) {
+
+
+            // :: recursion
+            $combinedArray = $mealPart->part->allergiesAndExcludesInArray($allergies, $excludes);
+
+
+
+            // :: merge
+            $excludes = array_merge($excludes, $combinedArray['excludes']);
+            $allergies = array_merge($allergies, $combinedArray['allergies']);
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+
+
+        return ['allergies' => array_unique($allergies ?? []),
+            'excludes' => array_unique($excludes ?? [])];
+
+
+
+
+    } // end function
+
 
 
 

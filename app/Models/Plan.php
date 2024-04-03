@@ -30,4 +30,48 @@ class Plan extends Model
 
 
 
+
+
+    public function calendars()
+    {
+
+        return $this->hasMany(MenuCalendarPlan::class, 'planId');
+
+    } // end function
+
+
+
+
+
+    public function defaultCalendarRelation()
+    {
+
+        return $this->calendars()->where('isDefault', true);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    public function defaultCalendar()
+    {
+
+        return $this->calendars()->where('isDefault', true)?->first();
+
+
+    } // end function
+
+
+
+
+
+
+
 } // end model

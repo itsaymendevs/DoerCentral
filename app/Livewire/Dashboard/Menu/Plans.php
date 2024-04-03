@@ -182,6 +182,7 @@ class Plans extends Component
 
 
 
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 

@@ -118,6 +118,18 @@ class CustomerSubscription extends Model
 
 
 
+    public function calendar()
+    {
+
+        return $this->belongsTo(MenuCalendar::class, 'menuCalendarId');
+
+    } // end function
+
+
+
+
+
+
     public function bag()
     {
 

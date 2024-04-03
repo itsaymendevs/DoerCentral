@@ -230,7 +230,24 @@
 
                                     {{-- status --}}
                                     <p class="text-center mb-0 fs-13 mt-1">
+
+
+                                        {{-- 1: active --}}
+                                        @if ($customer->latestSubscription()->untilDate >= $globalTodayDate)
+
                                         <span class="fw-bold badge badge--scheme-3 text-dark fs-12 py-1">Active</span>
+
+
+
+                                        {{-- 2: expired --}}
+                                        @else
+
+
+                                        <span class="fw-bold badge badge--remove fs-12 py-1">Expired</span>
+
+                                        @endif
+                                        {{-- end if --}}
+
                                     </p>
 
 

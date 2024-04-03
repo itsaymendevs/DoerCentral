@@ -53,6 +53,20 @@ return new class extends Migration {
 
 
 
+            // ----------------------------------------
+            // ----------------------------------------
+
+
+
+
+
+
+            // 2.5: menuCalendar
+            $table->bigInteger('menuCalendarId')->unsigned()->nullable();
+            $table->foreign('menuCalendarId')->references('id')->on('menu_calendars')->onDelete('set null');
+
+
+
 
 
             // ----------------------------------------

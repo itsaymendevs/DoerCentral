@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomerSubscriptionSchedule;
+use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\MealType;
 use App\Models\MenuCalendarPlan;
 use App\Models\Plan;
@@ -1580,6 +1582,44 @@ class PlanController extends Controller
 
 
         $bundleRangeType->save();
+
+
+
+
+
+
+
+
+        // ------------------------------
+        // ------------------------------
+
+
+
+
+
+        // 2: updateCustomer - scheduleMeals
+
+
+
+        // 2.1: getSubscriptionSchedules
+        $subscriptionSchedules = CustomerSubscriptionSchedule::where('scheduleDate', '>=', date('Y-m-d', strtotime('+4 hours')))->get()?->pluck('id')?->toArray() ?? [];
+
+
+
+
+
+        // 2.2: updateScheduleMeals
+        CustomerSubscriptionScheduleMeal::where('bundleRangeTypeId', $bundleRangeType->id)
+            ->whereIn('subscriptionScheduleId', $subscriptionSchedules)
+                ?->update([
+                'sizeId' => $bundleRangeType->sizeId,
+                'sizePrice' => $bundleRangeType->price,
+                'sizeCalories' => $bundleRangeType->calories,
+            ]);
+
+
+
+
 
 
 

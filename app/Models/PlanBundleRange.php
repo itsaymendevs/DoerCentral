@@ -43,5 +43,20 @@ class PlanBundleRange extends Model
 
 
 
+
+
+    public function typeByMealType($id)
+    {
+
+        return $this->types()?->where('mealTypeId', $id)?->first() ?? null;
+
+
+    } // end function
+
+
+
+
+
+
 } // end model
 

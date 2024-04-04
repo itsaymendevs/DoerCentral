@@ -333,7 +333,8 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-        
+        dd($response->message);
+
 
         // :: redirectToCheckout
         return $this->redirect(route('subscription.customerStepSix', [$this->plan->id]), navigate: true);

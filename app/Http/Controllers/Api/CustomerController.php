@@ -19,6 +19,7 @@ use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
 use App\Models\CustomerWalletDeposit;
 use App\Models\MealType;
+use App\Models\PlanBundleRange;
 use App\Traits\HelperTrait;
 use DateTime;
 use Illuminate\Http\Request;
@@ -982,7 +983,7 @@ class CustomerController extends Controller
 
 
                 // :: checkDelivery
-                $existingDelivery = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+                $subscriptionDelivery = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
                     ->where('deliveryDate', $deliveryDate)
                     ->where('status', 'Canceled')
                     ->first();
@@ -994,14 +995,13 @@ class CustomerController extends Controller
 
 
                 // 1.2: exists
-                if ($existingDelivery) {
+                if ($subscriptionDelivery) {
 
 
 
                     // :: updateStatus
-                    $existingDelivery->status = 'Pending';
-
-                    $existingDelivery->save();
+                    $subscriptionDelivery->status = 'Pending';
+                    $subscriptionDelivery->save();
 
 
 
@@ -1063,7 +1063,7 @@ class CustomerController extends Controller
 
 
                 // :: side-phase - storeSchedule - Meals
-                $this->storeSchedule($subscription, $customer, $extend, $deliveryDate);
+                $this->storeExtendSchedule($subscription, $customer, $extend, $subscriptionDelivery);
 
 
 
@@ -1173,13 +1173,13 @@ class CustomerController extends Controller
 
 
 
-    public function storeSchedule($subscription, $customer, $extend, $deliveryDate)
+    public function storeExtendSchedule($subscription, $customer, $extend, $subscriptionDelivery)
     {
 
 
 
         // :: getCalendarSchedule
-        $calendarSchedule = $subscription?->calendar?->scheduleByDate($deliveryDate) ?? null;
+        $calendarSchedule = $subscription?->calendar?->scheduleByDate($subscriptionDelivery->deliveryDate) ?? null;
 
 
 
@@ -1190,7 +1190,7 @@ class CustomerController extends Controller
 
         // 1: checkSchedule
         $existingSchedule = CustomerSubscriptionSchedule::where('customerSubscriptionId', $subscription->id)
-            ->where('scheduleDate', $deliveryDate)
+            ->where('scheduleDate', $subscriptionDelivery->deliveryDate)
             ->where('status', 'Canceled')
             ->first();
 
@@ -1229,14 +1229,15 @@ class CustomerController extends Controller
 
             // 1.2: general
             $schedule->status = 'Pending';
-            $schedule->scheduleDate = $deliveryDate;
+            $schedule->scheduleDate = $subscriptionDelivery->deliveryDate;
 
 
 
 
 
-            // 1.3: calendarSchedule
+            // 1.3: calendarSchedule - subscriptionDelivery
             $schedule->menuCalendarScheduleId = $calendarSchedule?->id ?? null;
+            $schedule->customerSubscriptionDeliveryId = $subscriptionDelivery->id;
 
 
 
@@ -1297,6 +1298,51 @@ class CustomerController extends Controller
 
                     // 2.4:  getMeal - CalendarSchedule (HELPER IN MenuCalendarTrait)
                     $scheduleMeal->mealId = $calendarSchedule ? $this->getScheduleMeal($subscription, $calendarSchedule, $subscriptionType->mealTypeId) ?? null : null;
+
+
+
+
+
+
+
+
+
+
+
+                    // ---------------------------------------
+                    // ---------------------------------------
+
+
+
+
+
+
+
+                    // 2.5: bundleRangeType - price - size
+                    $planBundleRange = PlanBundleRange::where('planBundleId', $subscription?->planBundleId)
+                        ->where('planRangeId', $subscription?->planRangeId)
+                        ->where('isForWebsite', true)
+                        ->first();
+
+
+
+
+
+                    // 2.5.1: getBundleRangeType
+                    $bundleRangeType = $planBundleRange?->typeByMealType($subscriptionType->mealTypeId) ?? null;
+
+
+
+
+                    // 2.5.2: bundleRangeType - price - size
+                    $scheduleMeal->sizeId = $bundleRangeType?->sizeId ?? null;
+                    $scheduleMeal->sizePrice = $bundleRangeType?->price ?? null;
+                    $scheduleMeal->sizeCalories = $bundleRangeType?->calories ?? null;
+
+                    $scheduleMeal->bundleRangeTypeId = $bundleRangeType?->id ?? null;
+
+
+
 
 
 

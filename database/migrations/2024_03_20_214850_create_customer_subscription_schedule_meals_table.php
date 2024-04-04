@@ -48,16 +48,17 @@ return new class extends Migration {
 
 
 
+            // 1.4: price - calories - sizeId - planBundleRangeTypeId
+            $table->double('sizePrice', 15)->nullable();
+            $table->double('sizeCalories', 15)->nullable();
 
-            // 1.4: sizeId - planBundleRangeId
             $table->bigInteger('sizeId')->unsigned()->nullable();
             $table->foreign('sizeId')->references('id')->on('sizes')->onDelete('set null');
 
 
 
-            $table->bigInteger('planBundleRangeId')->unsigned()->nullable();
-            $table->foreign('planBundleRangeId')->references('id')->on('plan_bundle_ranges')->onDelete('cascade');
-
+            $table->bigInteger('bundleRangeTypeId')->unsigned()->nullable();
+            $table->foreign('bundleRangeTypeId')->references('id')->on('plan_bundle_range_types')->onDelete('set null');
 
 
 

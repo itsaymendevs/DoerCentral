@@ -134,6 +134,8 @@ class Calendars extends Component
 
 
 
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 

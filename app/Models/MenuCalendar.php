@@ -23,6 +23,20 @@ class MenuCalendar extends Model
 
 
 
+    public function defaultPlans()
+    {
+
+        return $this->plans()?->where('isDefault', true);
+
+
+    } // end function
+
+
+
+
+
+
+
     public function diets()
     {
 

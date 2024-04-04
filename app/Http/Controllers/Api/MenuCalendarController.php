@@ -8,10 +8,15 @@ use App\Models\MenuCalendarDiet;
 use App\Models\MenuCalendarPlan;
 use App\Models\MenuCalendarSchedule;
 use App\Models\MenuCalendarScheduleMeal;
+use App\Traits\MenuCalendarTrait;
 use Illuminate\Http\Request;
 
 class MenuCalendarController extends Controller
 {
+
+
+    use MenuCalendarTrait;
+
 
 
 
@@ -405,9 +410,9 @@ class MenuCalendarController extends Controller
 
                 // :: general - group
                 $scheduleMeal->scheduleDate = $request->scheduleDate;
-                $scheduleMeal->isDefault = boolval($innerScheduleMeal->isDefault);
-                $scheduleMeal->isDefaultSecond = boolval($innerScheduleMeal->isDefaultSecond);
-                $scheduleMeal->isDefaultThird = boolval($innerScheduleMeal->isDefaultThird);
+                $scheduleMeal->isDefault = boolval($innerScheduleMeal?->isDefault);
+                $scheduleMeal->isDefaultSecond = boolval($innerScheduleMeal?->isDefaultSecond);
+                $scheduleMeal->isDefaultThird = boolval($innerScheduleMeal?->isDefaultThird);
 
 
 
@@ -422,6 +427,32 @@ class MenuCalendarController extends Controller
             } // end loop
 
         } // end if
+
+
+
+
+
+
+
+
+
+
+        // ----------------------------------------------
+        // ----------------------------------------------
+
+
+
+
+
+
+
+        // 2: re-assign schedule
+        $calendarSchedule = MenuCalendarSchedule::find($request->menuCalendarScheduleId);
+
+
+        $this->reAssignSchedule($calendarSchedule);
+
+
 
 
 

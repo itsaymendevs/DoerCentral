@@ -7,6 +7,7 @@ use App\Livewire\Dashboard\Customers;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerAddresses;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerDeliveries;
+use App\Livewire\Dashboard\Customers\Manage\SingleCustomerMenu;
 use App\Livewire\Dashboard\CustomersStateOfAccount;
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Inventory;
@@ -404,6 +405,19 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
+
+
+
+
+    // ---------
+
+
+
+
+    // 7.4: customers - singleCustomer - menu
+    Route::get('dashboard/customers/{id}/menu', SingleCustomerMenu::class)->name('dashboard.singleCustomerMenu');
 
 
 

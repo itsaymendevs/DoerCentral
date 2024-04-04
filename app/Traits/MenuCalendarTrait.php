@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use App\Models\CustomerSubscription;
+use App\Models\CustomerSubscriptionSchedule;
 use App\Models\Meal;
 use stdClass;
 
@@ -33,8 +35,7 @@ trait MenuCalendarTrait
 
 
             // 1.3: loop - scheduleMeals
-            foreach ($calendarSchedule->meals->where('mealTypeId', $mealTypeId)
-            ->where($defaultIndex, true) as $scheduleMeal) {
+            foreach ($calendarSchedule->meals->where('mealTypeId', $mealTypeId)->where($defaultIndex, true) as $scheduleMeal) {
 
 
 
@@ -86,10 +87,7 @@ trait MenuCalendarTrait
 
 
         // 2: loop - checkRegular
-        foreach ($calendarSchedule->meals->where('mealTypeId', $mealTypeId)
-        ->where('isDefault', 0)
-        ->where('isDefaultSecond', 0)
-        ->where('isDefaultThird', 0) as $scheduleMeal) {
+        foreach ($calendarSchedule->meals->where('mealTypeId', $mealTypeId)->where('isDefault', 0)->where('isDefaultSecond', 0)->where('isDefaultThird', 0) as $scheduleMeal) {
 
 
 
@@ -169,6 +167,114 @@ trait MenuCalendarTrait
 
 
         return ['allergies' => $allergies, 'excludes' => $excludes];
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function reAssignSchedule($calendarSchedule)
+    {
+
+
+
+        // 1: getDefaultPlans
+        $defaultPlans = $calendarSchedule->calendar->defaultPlans()
+                ?->get()?->pluck('planId')?->toArray() ?? [];
+
+
+
+
+        // 1.2: getSubscription
+        $subscriptions = CustomerSubscription::whereIn('planId', $defaultPlans)
+            ->get()?->pluck('id')?->toArray() ?? [];
+
+
+
+
+
+
+
+
+        // ---------------------------------
+        // ---------------------------------
+
+
+
+
+
+
+
+        // 2: getSubscriptionSchedule
+        $subscriptionSchedules = CustomerSubscriptionSchedule::whereIn('customerSubscriptionId', $subscriptions)
+            ->where('scheduleDate', $calendarSchedule->scheduleDate)
+            ->get();
+
+
+
+
+        // :: loop - subscriptionSchedules
+        foreach ($subscriptionSchedules as $subscriptionSchedule) {
+
+
+
+            // :: loop - subscriptionScheduleMeals
+            foreach ($subscriptionSchedule->meals ?? [] as $scheduleMeal) {
+
+
+
+
+
+                // TODO 2.1: resetMeal => notInSchedule
+
+
+
+
+
+
+
+
+
+                // 2.2:  getMeal - CalendarSchedule
+                $scheduleMeal->mealId = $calendarSchedule ? $this->getScheduleMeal($scheduleMeal->subscription, $calendarSchedule, $scheduleMeal->mealTypeId) ?? null : null;
+
+
+
+                $scheduleMeal->save();
+
+
+
+
+            } // end loop - schedules
+
+
+        } // end loop - schedules
+
+
+
+
+
+
+
 
 
 

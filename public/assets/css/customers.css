@@ -89,3 +89,57 @@
         width: 13%;
     }
 }
+
+/* menu */
+
+.menu--calendar-movement::-webkit-scrollbar {
+    display: none !important;
+}
+
+.menu--calendar-days {
+    padding: 0px;
+    width: 58px;
+    height: 100px;
+    display: inline-flex;
+    flex-direction: column;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--input-border-color-hover);
+    margin-right: 18px;
+    position: relative;
+}
+
+.menu--calendar-days:last-of-type {
+    margin-right: 0px;
+}
+
+.menu--calendar-days svg {
+    visibility: hidden;
+    position: absolute;
+    bottom: 1px;
+    font-size: 17px;
+    fill: var(--color-theme-secondary) !important;
+}
+
+.menu--calendar-days.has-meals svg {
+    visibility: hidden;
+}
+
+.menu--calendar-days.active,
+.menu--calendar-days:hover,
+.menu--calendar-days:focus {
+    border-color: var(--bg-golden-dark) !important;
+}
+
+.menu--calendar-days.active svg,
+.menu--calendar-days:hover svg,
+.menu--calendar-days:focus svg {
+    fill: var(--bg-golden-dark) !important;
+}
+
+.menu--calendar-days.active span:first-of-type,
+.menu--calendar-days:hover span:first-of-type,
+.menu--calendar-days:focus span:first-of-type {
+    color: var(--bg-golden-dark) !important;
+}

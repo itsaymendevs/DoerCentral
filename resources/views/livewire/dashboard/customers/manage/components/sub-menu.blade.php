@@ -39,14 +39,16 @@
 
 
 
-            {{-- 2: plans --}}
-            <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/plans')) active @endif" role="button"
-                href="javascript:void(0);">Menu</a>
+            {{-- 2: menu --}}
+            <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/menu')) active @endif" role="button"
+                href="{{ route('dashboard.singleCustomerMenu', [$id]) }}" wire:navigate>Menu</a>
 
 
 
             <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/deliveries')) active @endif"
                 role="button" href="{{ route('dashboard.singleCustomerDeliveries', [$id]) }}" wire:navigate>Delivery</a>
+
+
 
 
             {{-- 4: history --}}

@@ -74,6 +74,8 @@ class SingleCustomerMenuViewExcludes extends Component
         $this->allergyIngredients = $combined?->allergyIngredients ?? [];
 
 
+        dd($this->allergyIngredients);
+
 
     } // end function
 

@@ -16,15 +16,15 @@
 
 
             {{-- labels --}}
-            <a wire:navigate href="{{ route('dashboard.kitchenLabels') }}" class="btn
+            {{-- <a wire:navigate href="{{ route('dashboard.kitchenLabels') }}" class="btn
                 @if (Request::is('dashboard/kitchen/labels', 'dashboard/kitchen/labels/*')) active @endif"
-                role="button">Labels</a>
+                role="button">Labels</a> --}}
 
 
             {{-- containers --}}
-            <a wire:navigate class="btn
+            {{-- <a wire:navigate class="btn
                 @if (Request::is('dashboard/kitchen/containers')) active @endif" role="button"
-                href="{{ route('dashboard.kitchenContainers') }}">Containers</a>
+                href="{{ route('dashboard.kitchenContainers') }}">Containers</a> --}}
 
 
 
@@ -38,18 +38,13 @@
 
 
             {{-- label --}}
-            <a class="btn" role="button" href="javascript:void(0);">Today Labels</a>
+            {{-- <a class="btn" role="button" href="javascript:void(0);">Today Labels</a> --}}
 
-
-
-
-            {{-- sync --}}
-            <a class="btn" role="button" href="javascript:void(0);">Sync Customers</a>
 
 
 
             {{-- settings --}}
-            <a class="btn" role="button" href="javascript:void(0);">Setting</a>
+            {{-- <a class="btn" role="button" href="javascript:void(0);">Setting</a> --}}
 
 
         </div>

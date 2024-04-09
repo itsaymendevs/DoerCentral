@@ -40,8 +40,8 @@
 
 
             {{-- 2: menu --}}
-            <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/menu')) active @endif" role="button"
-                href="{{ route('dashboard.singleCustomerMenu', [$id]) }}" wire:navigate>Menu</a>
+            <a class="btn fs-13 disabled @if (Request::is('dashboard/customers/' . $id . '/menu')) active @endif"
+                role="button" href="{{ route('dashboard.singleCustomerMenu', [$id]) }}" wire:navigate>Menu</a>
 
 
 

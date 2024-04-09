@@ -341,16 +341,16 @@ class Meal extends Model
 
 
             // :: recursion
-            $combinedArray = $mealPart->part->allergiesAndExcludesInArray($allergies, $excludes, $allergyIngredients, $excludeIngredients);
+            $combinedArray = $mealPart?->part?->allergiesAndExcludesInArray($allergies, $excludes, $allergyIngredients, $excludeIngredients);
 
 
 
             // :: merge
-            $excludes = array_merge($excludes, $combinedArray['excludes']);
-            $allergies = array_merge($allergies, $combinedArray['allergies']);
+            $excludes = array_merge($excludes, $combinedArray['excludes'] ?? []);
+            $allergies = array_merge($allergies, $combinedArray['allergies'] ?? []);
 
-            $allergyIngredients = array_merge($allergyIngredients, $combinedArray['allergyIngredients']);
-            $excludeIngredients = array_merge($excludeIngredients, $combinedArray['excludeIngredients']);
+            $allergyIngredients = array_merge($allergyIngredients, $combinedArray['allergyIngredients'] ?? []);
+            $excludeIngredients = array_merge($excludeIngredients, $combinedArray['excludeIngredients'] ?? []);
 
 
 

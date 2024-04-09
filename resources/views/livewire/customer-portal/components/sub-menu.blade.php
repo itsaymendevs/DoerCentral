@@ -26,7 +26,7 @@
 
 
             {{-- Menu --}}
-            <a wire:navigate class="btn fs-13 px-3
+            <a wire:navigate class="btn fs-13 px-3 disabled
             @if (Request::is('portals/customer/menu')) active @endif" role="button"
                 href="{{ route('portals.customer.menu') }}">Menu</a>
 

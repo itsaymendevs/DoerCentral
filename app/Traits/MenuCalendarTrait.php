@@ -170,7 +170,7 @@ trait MenuCalendarTrait
 
 
         // :: getBoth
-        $combinedArray = $meal->allergiesAndExcludesInArray();
+        $combinedArray = $meal?->allergiesAndExcludesInArray();
 
         $excludes = $combinedArray['excludes'];
         $allergies = $combinedArray['allergies'];
@@ -233,7 +233,9 @@ trait MenuCalendarTrait
         // 1.2: getMeal - allergies - excludes
         $meal = Meal::find($id);
 
-        $combinedArray = $meal->allergiesAndExcludesInArray();
+        $combinedArray = $meal?->allergiesAndExcludesInArray();
+
+
 
         $excludes = $combinedArray['excludes'];
         $allergies = $combinedArray['allergies'];
@@ -350,7 +352,7 @@ trait MenuCalendarTrait
 
 
         // :: loop - subscriptionSchedules
-        foreach ($subscriptionSchedules as $subscriptionSchedule) {
+        foreach ($subscriptionSchedules ?? [] as $subscriptionSchedule) {
 
 
 
@@ -385,7 +387,7 @@ trait MenuCalendarTrait
 
 
                     // 2.3: removeReplacement
-                    CustomerSubscriptionScheduleReplacement::whereIn('customerSubscriptionId', $scheduleMeal->subscriptionId)
+                    CustomerSubscriptionScheduleReplacement::where('customerSubscriptionId', $scheduleMeal->subscriptionId)
                         ->where('scheduleDate', $calendarSchedule->scheduleDate)
                         ->where('mealTypeId', $scheduleMeal->mealTypeId)
                         ->delete();

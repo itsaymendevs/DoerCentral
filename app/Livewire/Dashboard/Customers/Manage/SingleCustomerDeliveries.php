@@ -69,7 +69,7 @@ class SingleCustomerDeliveries extends Component
 
         // 1: dependencies
         $plans = Plan::all();
-        $statuses = ['Pending', 'Canceled', 'Completed'];
+        $statuses = ['Pending', 'Paused', 'Skipped', 'Canceled', 'Completed'];
 
 
         // dd(CustomerSubscriptionDelivery::where('customerId', $this->customer->id)->get());

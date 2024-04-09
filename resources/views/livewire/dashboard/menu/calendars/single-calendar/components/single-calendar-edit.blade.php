@@ -43,7 +43,7 @@
                     <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                         class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-4 py-1 me-2"
                         title="Number of Meals">
-                        {{ $meals->count() }}
+                        {{ $totalMeals }}
                     </h3>
 
 
@@ -87,8 +87,7 @@
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link @if ($mealTypes->first()->id == $mealType->id) active @endif"
                                     role="tab" data-bs-toggle="tab" href="#tab-type-{{ $mealType->id }}"
-                                    wire:ignore.self>{{
-                                    $mealType->name }}</a>
+                                    wire:ignore.self>{{ $mealType->name }}</a>
                             </li>
 
                             @endforeach
@@ -135,7 +134,7 @@
 
 
                                     {{-- loop - meals --}}
-                                    @foreach ($meals->where('typeId', $mealType->typeId) as $meal)
+                                    @foreach ($stock->{$mealType->name . 'Meals'} ?? [] as $meal)
 
 
 
@@ -149,15 +148,15 @@
 
 
 
-                                    {{-- --------------------------- --}}
-                                    {{-- :: get scheduleMeals - if-found --}}
+                                    {{-- ------------------------------- --}}
+                                    {{-- :: get scheduleMeals - ifExists --}}
                                     @php
 
                                     $scheduleMeal = $scheduleMeals?->where('mealId',
                                     $meal->id)?->where('mealTypeId', $mealType->id)?->first()
 
                                     @endphp
-                                    {{-- --------------------------- --}}
+                                    {{-- ------------------------------- --}}
 
 
 
@@ -441,9 +440,6 @@
 
 
 
-
-
-
                                     @endif
                                     {{-- end if - notMeal --}}
 
@@ -451,9 +447,23 @@
 
 
 
-
                                     @endforeach
                                     {{-- end loop --}}
+
+
+
+
+
+
+
+
+
+                                    {{-- pagination --}}
+                                    <div class="col-12">
+                                        {{ $stock->{$mealType->name . 'Meals'}?->links() }}
+                                    </div>
+
+
 
 
 

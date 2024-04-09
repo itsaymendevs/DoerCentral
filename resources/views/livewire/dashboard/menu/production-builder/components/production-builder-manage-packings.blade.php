@@ -22,14 +22,14 @@
 
                 {{-- 1: heat --}}
                 <div class="form-check form-switch mb-2 mealType--checkbox justify-content-start">
-                    <input class="form-check-input pointer" type="checkbox" id="serving-tag-1" />
+                    <input class="form-check-input pointer" disabled type="checkbox" id="serving-tag-1" />
                     <label class="form-check-label fs-14" for="serving-tag-1">Heat</label>
                 </div>
 
 
                 {{-- 2: enjoy --}}
                 <div class="form-check form-switch mb-2 mealType--checkbox justify-content-start">
-                    <input class="form-check-input pointer" type="checkbox" id="serving-tag-2" />
+                    <input class="form-check-input pointer" disabled type="checkbox" id="serving-tag-2" />
                     <label class="form-check-label fs-14" for="serving-tag-2">Enjoy</label>
                 </div>
 
@@ -37,7 +37,7 @@
 
                 {{-- 3: removeLid --}}
                 <div class="form-check form-switch mealType--checkbox justify-content-start">
-                    <input class="form-check-input pointer" type="checkbox" id="serving-tag-3" />
+                    <input class="form-check-input pointer" disabled type="checkbox" id="serving-tag-3" />
                     <label class="form-check-label fs-14" for="serving-tag-3">Remove Lid</label>
                 </div>
             </div>

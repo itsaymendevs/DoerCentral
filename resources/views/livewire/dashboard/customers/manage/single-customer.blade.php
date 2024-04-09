@@ -517,8 +517,8 @@
 
 
 
-                    {{-- 2: renew --}}
-                    <button class="btn btn--scheme btn--scheme-1 fs-12 px-2 mx-2 scale--self-05 h-32"
+                    {{-- 2: renew - original scheme-1 --}}
+                    <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32 disabled"
                         data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Re-New">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise fs-5">

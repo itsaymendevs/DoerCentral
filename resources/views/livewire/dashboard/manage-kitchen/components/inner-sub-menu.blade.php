@@ -12,16 +12,16 @@
 
 
         {{-- packing --}}
-        <a wire:navigate class="btn fs-13
+        {{-- <a wire:navigate class="btn fs-13
         @if (Request::is('dashboard/kitchen/today/packing', 'dashboard/kitchen/today/packing/*')) active @endif"
-            role="button" href="{{ route('dashboard.kitchenTodayPacking') }}">Packing</a>
+            role="button" href="{{ route('dashboard.kitchenTodayPacking') }}">Packing</a> --}}
 
 
 
         {{-- delivery --}}
-        <a wire:navigate class="btn fs-13
+        {{-- <a wire:navigate class="btn fs-13
         @if (Request::is('dashboard/kitchen/today/delivery', 'dashboard/kitchen/today/delivery/*')) active @endif"
-            role="button" href="{{ route('dashboard.kitchenTodayDelivery') }}">Delivery</a>
+            role="button" href="{{ route('dashboard.kitchenTodayDelivery') }}">Delivery</a> --}}
 
 
     </div>

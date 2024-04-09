@@ -388,7 +388,31 @@ class SingleCalendarEdit extends Component
 
         // 1: dependencies
         $mealTypes = MealType::all();
-        $meals = Meal::where('name', 'LIKE', '%' . $this->searchMeal . '%')->get();
+        $totalMeals = Meal::where('name', 'LIKE', '%' . $this->searchMeal . '%')->count();
+
+
+
+
+
+        // 1.2: separate into collections
+        $stock = new stdClass();
+
+
+        foreach ($mealTypes as $mealType) {
+
+
+            // :: BreakfastMeals / LunchMeals etc.
+            $stock->{$mealType->name . 'Meals'} = Meal::where('name', 'LIKE', '%' . $this->searchMeal . '%')
+                ->where('typeId', $mealType->type->id)
+                ->paginate(20, pageName: $mealType->name);
+
+
+        } // end loop
+
+
+
+
+
 
 
 
@@ -401,7 +425,7 @@ class SingleCalendarEdit extends Component
 
 
 
-        return view('livewire.dashboard.menu.calendars.single-calendar.components.single-calendar-edit', compact('mealTypes', 'meals'));
+        return view('livewire.dashboard.menu.calendars.single-calendar.components.single-calendar-edit', compact('mealTypes', 'totalMeals', 'stock'));
 
 
 

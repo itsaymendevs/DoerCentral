@@ -255,7 +255,6 @@ class Customer extends Authenticatable
 
 
 
-
         // 1.2: Allergies - Excludes
         $excludes = Exclude::whereIn('id', $combinedArray['excludes'])?->get();
         $allergies = Allergy::whereIn('id', $combinedArray['allergies'])?->get();

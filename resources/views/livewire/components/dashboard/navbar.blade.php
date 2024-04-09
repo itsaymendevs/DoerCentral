@@ -118,7 +118,7 @@
 
 
                     {{-- inventory --}}
-                    <a class="btn  navbar--menu-button
+                    <a class="btn  navbar--menu-button d-none
                     @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
                         href="{{ route('dashboard.inventory') }}">Inventory</a>
 
@@ -128,7 +128,7 @@
 
                     {{-- sales & marketing --}}
                     <div class="btn-group navbar--split">
-                        <button class="btn navbar--menu-button
+                        <button class="btn navbar--menu-button disabled
                             @if (Request::is('dashboard/sales', 'dashboard/sales/*')) active @endif" type="button">
                             Sales &amp; Marketing</button>
 
@@ -154,7 +154,7 @@
 
 
                     {{-- extra --}}
-                    <button class="btn navbar--menu-button" type="button">Extra</button>
+                    <button class="btn navbar--menu-button d-none" type="button">Extra</button>
 
 
 

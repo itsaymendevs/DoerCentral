@@ -33,7 +33,7 @@
 
 
             {{-- :: Details --}}
-            <a class="btn @if (Request::is('dashboard/customers/details')) active @endif" role="button"
+            <a class="btn disabled @if (Request::is('dashboard/customers/details')) active @endif" role="button"
                 href="javascript:void(0);">Details</a>
         </div>
     </div>

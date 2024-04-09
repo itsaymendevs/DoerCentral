@@ -15,7 +15,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
-class MealSeeder extends Seeder
+class ItemSeeder extends Seeder
 {
 
     public function run() : void
@@ -24,7 +24,7 @@ class MealSeeder extends Seeder
 
 
         // :: mealTypes
-        $generalTypes = ['Recipe', 'Meal', 'Sub-recipe', 'Sauce', 'Snack', 'Side', 'Drink'];
+        $generalTypes = ['Meal', 'Sub-recipe', 'Sauce', 'Snack', 'Side', 'Drink'];
 
 
 
@@ -40,7 +40,7 @@ class MealSeeder extends Seeder
 
 
             // ::root
-            $meals = Storage::disk('public')->get("sources/meals/{$generalType}.json");
+            $meals = Storage::disk('public')->get("sources/items/{$generalType}.json");
             $meals = $meals ? json_decode($meals, true) : [];
 
 
@@ -84,7 +84,7 @@ class MealSeeder extends Seeder
 
                     'containerId' => $meals[$i]['containerId'] ?? null,
                     'dietId' => $meals[$i]['dietId'] ?? null,
-                    'cuisineId' => $meals[$i]['cuisineId'] - 3 ?? null,
+                    'cuisineId' => $meals[$i]['cuisineId'] ? intval($meals[$i]['cuisineId']) - 3 : null,
 
 
                 ]);
@@ -206,7 +206,7 @@ class MealSeeder extends Seeder
 
                 // :: getMealSize - groupToken - limitLatestIngredient
                 $mealSize = $meal->sizes->first();
-                $groupToken = date('dmYhisA') . rand(999, 999999) . rand(74921, 99999);
+                $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
 
 
 
@@ -216,7 +216,7 @@ class MealSeeder extends Seeder
 
 
                 // :: root
-                $mealIngredients = Storage::disk('public')->get("sources/meals/{$generalType}Ingredients.json");
+                $mealIngredients = Storage::disk('public')->get("sources/items/{$generalType}Ingredients.json");
                 $mealIngredients = $mealIngredients ? json_decode($mealIngredients, true) : [];
 
 
@@ -309,7 +309,7 @@ class MealSeeder extends Seeder
 
 
                 // ::root
-                $mealParts = Storage::disk('public')->get("sources/meals/{$generalType}Parts.json");
+                $mealParts = Storage::disk('public')->get("sources/items/{$generalType}Parts.json");
                 $mealParts = $mealParts ? json_decode($mealParts, true) : [];
 
 

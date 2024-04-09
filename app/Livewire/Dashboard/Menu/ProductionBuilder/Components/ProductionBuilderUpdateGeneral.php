@@ -84,7 +84,7 @@ class ProductionBuilderUpdateGeneral extends Component
         if ($this->instance->imageFile) {
 
             $preview = asset('storage/menu/meals/' . $this->instance->imageFile);
-            $$this->dispatch('setFilePreview', filePreview: 'item--preview-1', defaultPreview: $preview);
+            $this->dispatch('setFilePreview', filePreview: 'item--preview-1', defaultPreview: $preview);
 
         } // end if
 

@@ -40,8 +40,7 @@
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Cuisine</label>
                 <div class="select--single-wrapper mb-4">
-                    <select class="form-select form--select" id='cuisine-select-2' data-instance='instance.cuisineId'
-                        required>
+                    <select class="form-select form--select" id='cuisine-select-2' data-instance='instance.cuisineId'>
                         <option value=""></option>
 
                         @foreach ($cuisines as $cuisine)

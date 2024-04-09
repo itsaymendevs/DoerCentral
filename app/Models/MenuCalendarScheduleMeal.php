@@ -11,12 +11,19 @@ class MenuCalendarScheduleMeal extends Model
 
 
 
+
+
+
+
     public function mealType()
     {
 
         return $this->belongsTo(MealType::class, 'mealTypeId');
 
     } // end function
+
+
+
 
 
 
@@ -28,6 +35,9 @@ class MenuCalendarScheduleMeal extends Model
 
 
     } // end function
+
+
+
 
 
 

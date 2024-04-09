@@ -55,6 +55,8 @@ class RangeSizesView extends Component
     {
 
 
+
+
         // 1: getSize
         $size = Size::find($this->instance->sizeId);
 

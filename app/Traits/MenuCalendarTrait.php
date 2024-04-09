@@ -2,8 +2,11 @@
 
 namespace App\Traits;
 
+use App\Models\Customer;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionSchedule;
+use App\Models\CustomerSubscriptionScheduleReplacement;
+use App\Models\Ingredient;
 use App\Models\Meal;
 use stdClass;
 
@@ -17,6 +20,9 @@ trait MenuCalendarTrait
 
     public function getScheduleMeal($subscription, $calendarSchedule, $mealTypeId)
     {
+
+
+
 
 
 
@@ -44,8 +50,8 @@ trait MenuCalendarTrait
                 $combinedArray = $this->checkMealValidity($scheduleMeal->mealId);
 
 
-                $allergyIngredients = $combinedArray['allergies'];
                 $excludeIngredients = $combinedArray['excludes'];
+                $allergyIngredients = $combinedArray['allergies'];
 
 
 
@@ -76,8 +82,12 @@ trait MenuCalendarTrait
 
 
 
+
+
         // ---------------------------------------
         // ---------------------------------------
+
+
 
 
 
@@ -96,8 +106,8 @@ trait MenuCalendarTrait
             $combinedArray = $this->checkMealValidity($scheduleMeal->mealId);
 
 
-            $allergyIngredients = $combinedArray['allergies'];
             $excludeIngredients = $combinedArray['excludes'];
+            $allergyIngredients = $combinedArray['allergies'];
 
 
 
@@ -158,15 +168,118 @@ trait MenuCalendarTrait
 
 
 
+
         // :: getBoth
         $combinedArray = $meal->allergiesAndExcludesInArray();
 
         $excludes = $combinedArray['excludes'];
         $allergies = $combinedArray['allergies'];
+        $excludeIngredients = $combinedArray['excludeIngredients'];
+        $allergyIngredients = $combinedArray['allergyIngredients'];
 
 
 
-        return ['allergies' => $allergies, 'excludes' => $excludes];
+
+        return ['allergies' => $allergies, 'excludes' => $excludes, 'allergyIngredients' => $allergyIngredients, 'excludeIngredients' => $excludeIngredients];
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function checkMealValidityFromCustomer($id, $customerId)
+    {
+
+
+
+
+
+        // 1: getCustomer - allergy - excludes
+        $customer = Customer::find($customerId);
+
+        $customerAllergies = $customer?->allergies?->pluck('allergyId')?->toArray() ?? [];
+        $customerExcludes = $customer?->excludes?->pluck('excludeId')?->toArray() ?? [];
+
+
+
+
+
+
+        // 1.2: getMeal - allergies - excludes
+        $meal = Meal::find($id);
+
+        $combinedArray = $meal->allergiesAndExcludesInArray();
+
+        $excludes = $combinedArray['excludes'];
+        $allergies = $combinedArray['allergies'];
+        $excludeIngredients = $combinedArray['excludeIngredients'];
+        $allergyIngredients = $combinedArray['allergyIngredients'];
+
+
+
+
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
+
+
+
+
+
+        // 1.3: getIntersect
+        $excludes = array_intersect($excludes, $customerExcludes);
+        $allergies = array_intersect($allergies, $customerAllergies);
+
+
+
+        $excludeIngredients = Ingredient::whereIn('id', $excludeIngredients)
+            ->whereIn('excludeId', $excludes)?->pluck('id')->toArray();
+
+
+
+
+        $allergyIngredients = Ingredient::whereIn('id', $allergyIngredients)
+            ->whereIn('allergyId', $allergies)?->pluck('id')->toArray();
+
+
+
+
+
+
+
+
+
+        return ['allergies' => $allergies ?? [], 'excludes' => $excludes ?? [], 'excludeIngredients' => $excludeIngredients ?? [], 'allergyIngredients' => $allergyIngredients ?? []];
 
 
 
@@ -197,9 +310,12 @@ trait MenuCalendarTrait
 
 
 
+
         // 1: getDefaultPlans
         $defaultPlans = $calendarSchedule->calendar->defaultPlans()
                 ?->get()?->pluck('planId')?->toArray() ?? [];
+
+
 
 
 
@@ -232,8 +348,12 @@ trait MenuCalendarTrait
 
 
 
+
         // :: loop - subscriptionSchedules
         foreach ($subscriptionSchedules as $subscriptionSchedule) {
+
+
+
 
 
 
@@ -243,23 +363,40 @@ trait MenuCalendarTrait
 
 
 
-
-                // TODO 2.1: resetMeal => notInSchedule
-
-
+                // 2.1: get calendarScheduleMeals - checkIfExists
+                $calendarScheduleMeals = $calendarSchedule?->meals?->where('mealTypeId', $scheduleMeal->mealTypeId)?->pluck('mealId')?->toArray() ?? [];
 
 
 
+                if (! in_array($scheduleMeal->mealId, $calendarScheduleMeals)) {
+
+
+
+                    // 2.2:  getMeal - CalendarSchedule
+                    $scheduleMeal->mealId = $calendarSchedule ? $this->getScheduleMeal($scheduleMeal->subscription, $calendarSchedule, $scheduleMeal->mealTypeId) ?? null : null;
+
+
+
+                    $scheduleMeal->save();
 
 
 
 
-                // 2.2:  getMeal - CalendarSchedule
-                $scheduleMeal->mealId = $calendarSchedule ? $this->getScheduleMeal($scheduleMeal->subscription, $calendarSchedule, $scheduleMeal->mealTypeId) ?? null : null;
+
+
+                    // 2.3: removeReplacement
+                    CustomerSubscriptionScheduleReplacement::whereIn('customerSubscriptionId', $scheduleMeal->subscriptionId)
+                        ->where('scheduleDate', $calendarSchedule->scheduleDate)
+                        ->where('mealTypeId', $scheduleMeal->mealTypeId)
+                        ->delete();
 
 
 
-                $scheduleMeal->save();
+
+                } // end if
+
+
+
 
 
 
@@ -268,11 +405,6 @@ trait MenuCalendarTrait
 
 
         } // end loop - schedules
-
-
-
-
-
 
 
 

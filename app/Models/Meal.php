@@ -44,6 +44,20 @@ class Meal extends Model
 
 
 
+
+    public function certainSize($sizeId)
+    {
+
+        return $this->sizes()?->where('sizeId', $sizeId)?->first() ?? null;
+
+    } // end function
+
+
+
+
+
+
+
     public function diet()
     {
 
@@ -271,7 +285,7 @@ class Meal extends Model
 
 
 
-    public function allergiesAndExcludesInArray($allergies = [], $excludes = [])
+    public function allergiesAndExcludesInArray($allergies = [], $excludes = [], $allergyIngredients = [], $excludeIngredients = [])
     {
 
 
@@ -284,12 +298,23 @@ class Meal extends Model
 
         foreach ($mealIngredients as $mealIngredient) {
 
-            if ($mealIngredient->ingredient && $mealIngredient->ingredient->excludeId)
+            if ($mealIngredient->ingredient && $mealIngredient->ingredient->excludeId) {
+
                 array_push($excludes, $mealIngredient->ingredient->excludeId);
+                array_push($excludeIngredients, $mealIngredient->ingredient->id);
+
+            } // end if
 
 
-            if ($mealIngredient->ingredient && $mealIngredient->ingredient->allergyId)
+
+
+            if ($mealIngredient->ingredient && $mealIngredient->ingredient->allergyId) {
+
                 array_push($allergies, $mealIngredient->ingredient->allergyId);
+                array_push($allergyIngredients, $mealIngredient->ingredient->id);
+
+            } // end if
+
 
         }  // end loop
 
@@ -316,13 +341,17 @@ class Meal extends Model
 
 
             // :: recursion
-            $combinedArray = $mealPart->part->allergiesAndExcludesInArray($allergies, $excludes);
+            $combinedArray = $mealPart->part->allergiesAndExcludesInArray($allergies, $excludes, $allergyIngredients, $excludeIngredients);
 
 
 
             // :: merge
             $excludes = array_merge($excludes, $combinedArray['excludes']);
             $allergies = array_merge($allergies, $combinedArray['allergies']);
+
+            $allergyIngredients = array_merge($allergyIngredients, $combinedArray['allergyIngredients']);
+            $excludeIngredients = array_merge($excludeIngredients, $combinedArray['excludeIngredients']);
+
 
 
         } // end loop
@@ -338,7 +367,9 @@ class Meal extends Model
 
 
         return ['allergies' => array_unique($allergies ?? []),
-            'excludes' => array_unique($excludes ?? [])];
+            'excludes' => array_unique($excludes ?? []),
+            'allergyIngredients' => array_unique($allergyIngredients ?? []),
+            'excludeIngredients' => array_unique($excludeIngredients ?? [])];
 
 
 

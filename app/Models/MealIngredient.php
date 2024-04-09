@@ -53,7 +53,6 @@ class MealIngredient extends Model
 
 
 
-
     public function totalMacro($currentAmount = 0)
     {
 

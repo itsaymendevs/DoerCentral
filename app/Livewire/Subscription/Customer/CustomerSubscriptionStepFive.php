@@ -333,7 +333,6 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-        dd($response->message);
 
 
         // :: redirectToCheckout

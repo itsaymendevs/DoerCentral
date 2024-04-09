@@ -26,8 +26,9 @@
 
 
             {{-- Menu --}}
-            <a class="btn fs-13 px-3
-            @if (Request::is('portals/customer/menu')) active @endif" role="button" href="javascript:void(0);">Menu</a>
+            <a wire:navigate class="btn fs-13 px-3
+            @if (Request::is('portals/customer/menu')) active @endif" role="button"
+                href="{{ route('portals.customer.menu') }}">Menu</a>
 
 
 
@@ -46,6 +47,14 @@
             <a class="btn fs-13 px-3
             @if (Request::is('portals/customer/history')) active @endif" role="button"
                 href="javascript:void(0);">History</a>
+
+
+
+
+            {{-- calendar --}}
+            <a wire:navigate class="btn fs-13 px-3
+            @if (Request::is('portals/customer/calendar')) active @endif" role="button"
+                href="{{ route('portals.customer.calendar') }}">Calendar</a>
 
 
 

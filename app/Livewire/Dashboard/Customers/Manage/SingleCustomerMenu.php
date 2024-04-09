@@ -4,12 +4,15 @@ namespace App\Livewire\Dashboard\Customers\Manage;
 
 use App\Models\Customer;
 use App\Models\CustomerSubscriptionSchedule;
+use App\Models\CustomerSubscriptionScheduleReplacement;
 use App\Models\MealType;
 use App\Models\MenuCalendar;
 use App\Models\MenuCalendarScheduleMeal;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
+use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class SingleCustomerMenu extends Component
 {
@@ -23,6 +26,7 @@ class SingleCustomerMenu extends Component
     // :: variables
     public $customer, $subscription;
     public $menuCalendarId, $scheduleDate;
+    public $skipStatus;
 
 
 
@@ -39,9 +43,55 @@ class SingleCustomerMenu extends Component
 
 
 
-        // 1.2: menuCalendar - scheduleDate
+        // 1.2: menuCalendar
         $this->menuCalendarId = $this->subscription?->menuCalendarId ?? null;
-        $this->scheduleDate = session('customerScheduleDate') ?? $this->getCurrentDate();
+
+
+
+
+
+
+
+
+
+        // 1.3: scheduleDate
+        if (session('customerScheduleDate') && session('customerScheduleDate') >= $this->subscription->startDate && session('customerScheduleDate') <= $this->subscription->untilDate) {
+
+
+            $this->scheduleDate = session('customerScheduleDate');
+
+
+        } else {
+
+
+            Session::put('customerScheduleDate', $this->subscription->startDate);
+            $this->scheduleDate = $this->subscription->startDate;
+
+
+        } // end if
+
+
+
+
+
+
+
+
+
+        // -------------------------------
+        // -------------------------------
+
+
+
+
+
+
+
+        // 1.3: skipStatus
+        $this->skipStatus = $this->subscription->deliveries?->where('deliveryDate', $this->scheduleDate)?->first()?->status ?? 'Skipped';
+
+
+
 
 
 
@@ -71,7 +121,7 @@ class SingleCustomerMenu extends Component
 
 
         // :: scheduleDateSession
-        Session::flash('customerScheduleDate', $scheduleDate);
+        Session::put('customerScheduleDate', $scheduleDate);
 
         return $this->redirect(route('dashboard.singleCustomerMenu', [$this->customer->id]), navigate: true);
 
@@ -79,6 +129,163 @@ class SingleCustomerMenu extends Component
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function skipScheduleDay()
+    {
+
+
+
+        // 1: create instance
+        $instance = new stdClass();
+
+        $instance->scheduleDate = $this->scheduleDate;
+        $instance->customerSubscriptionId = $this->subscription->id;
+
+
+
+
+
+
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/customers/menu/schedule/skip', $instance);
+
+
+
+
+        // 1.3: updateSkipStatus - alert
+        $this->skipStatus = 'Skipped';
+
+        $this->makeAlert('success', $response?->message);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function editRemarks($id)
+    {
+
+
+        // 1: dispatchId
+        $this->dispatch('editRemarks', $id);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function replaceMeal($scheduleMealId)
+    {
+
+
+
+
+        // 1: dispatchId
+        $this->dispatch('replaceMeal', $scheduleMealId);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function replaceMealForReplacement($replacementId, $mealTypeId)
+    {
+
+
+
+
+        // 1: getScheduleMeal
+        $scheduleMealId = MenuCalendarScheduleMeal::where('scheduleDate', $this->scheduleDate)
+            ->where('mealTypeId', $mealTypeId)?->first()->id;
+
+
+
+        // 1: dispatchIfFound
+        if ($scheduleMealId) {
+
+            $this->dispatch('replaceMeal', $scheduleMealId);
+
+        } else {
+
+            $this->makeAlert('info', 'No Replacements Available');
+
+        } // end if
+
+
+
+    } // end function
+
+
 
 
 
@@ -102,13 +309,97 @@ class SingleCustomerMenu extends Component
 
 
 
+    public function viewExcludes($id)
+    {
+
+
+        // 1: dispatchId
+        $this->dispatch('viewExcludes', $id);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function changeMeal($mealId, $mealTypeId)
+    {
+
+
+        // 1: create instance
+        $instance = new stdClass();
+
+        $instance->mealId = $mealId;
+        $instance->mealTypeId = $mealTypeId;
+        $instance->scheduleDate = $this->scheduleDate;
+        $instance->customerSubscriptionId = $this->subscription->id;
+
+
+
+
+
+
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/customers/menu/meals/change', $instance);
+
+
+
+        // 1.3: alert
+        $this->makeAlert('success', $response?->message);
+        $this->render();
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    #[On('refreshViews')]
     public function render()
     {
 
 
         // 1: dependencies
         $menuCalendars = MenuCalendar::where('isActive', true)->get();
-        $mealTypes = MealType::all();
+        $mealTypes = MealType::whereIn('id', $this->subscription->typesInArray())->get();
 
 
 
@@ -182,14 +473,85 @@ class SingleCustomerMenu extends Component
 
 
 
+        // ------------------
 
 
-        // 3: calendar - scheduleMeals
-        $calendarScheduleMeals = MenuCalendarScheduleMeal::where('menuCalendarScheduleId', $subscriptionSchedule->menuCalendarScheduleId)
+
+
+
+        // 3: subscription - schedule / replacements
+        $subscriptionScheduleReplacements = CustomerSubscriptionScheduleReplacement::where('customerSubscriptionId', $this->subscription->id)->where('scheduleDate', $this->scheduleDate)?->get();
+
+
+        $replacedMeals = $subscriptionScheduleReplacements?->pluck('mealId')?->toArray() ?? [];
+        $replacementMeals = $subscriptionScheduleReplacements?->pluck('replacementId')?->toArray() ?? [];
+
+
+
+
+
+
+
+        // ------------------
+
+
+
+
+
+
+        // 4: calendar - scheduleMeals
+        $calendarScheduleMeals = MenuCalendarScheduleMeal::where('menuCalendarScheduleId', $subscriptionSchedule?->menuCalendarScheduleId)
             ->where('scheduleDate', $this->scheduleDate)
+            ->whereNotIn('mealId', $replacedMeals)
+            ->whereNotIn('mealId', $replacementMeals)
             ->get();
 
 
+
+
+
+
+
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+
+
+
+
+        // 5: getSize - byMealType
+        $sizesByMealType = [];
+
+        foreach ($mealTypes as $mealType) {
+
+
+            // 4.1: getSize
+            $sizesByMealType[$mealType->id] = $subscriptionScheduleMeals ? $subscriptionScheduleMeals?->where('mealTypeId', $mealType->id)?->first()?->size : null;
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+
+        // 5.5: getDelivery
+        $deliveryStatus = $this->subscription->deliveries?->where('deliveryDate', $this->scheduleDate)?->first()?->status ?? 'No Delivery';
 
 
 
@@ -203,7 +565,9 @@ class SingleCustomerMenu extends Component
 
 
 
-        return view('livewire.dashboard.customers.manage.single-customer-menu', compact('menuCalendars', 'mealTypes', 'datesUntilSubscription', 'calendarScheduleMeals', 'subscriptionScheduleMeals'));
+        return view('livewire.dashboard.customers.manage.single-customer-menu', compact('menuCalendars', 'mealTypes', 'datesUntilSubscription', 'calendarScheduleMeals', 'subscriptionScheduleReplacements', 'subscriptionScheduleMeals', 'sizesByMealType', 'deliveryStatus'));
+
+
 
 
     } // end function

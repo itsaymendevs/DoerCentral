@@ -290,8 +290,8 @@
 
 
 
-                            {{-- manager --}}
-                            <div class="col-6">
+                            {{-- manager (HIDDEN) --}}
+                            <div class="col-6 d-none">
 
 
                                 {{-- title --}}
@@ -322,8 +322,8 @@
 
 
 
-                            {{-- driver --}}
-                            <div class="col-6">
+                            {{-- driver (HIDDEN) --}}
+                            <div class="col-6 d-none">
 
 
                                 {{-- title --}}

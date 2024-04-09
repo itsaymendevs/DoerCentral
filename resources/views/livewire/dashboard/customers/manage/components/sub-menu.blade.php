@@ -58,8 +58,9 @@
 
 
             {{-- 5: calendar --}}
-            <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/calendar')) active @endif"
-                role="button" href="javascript:void(0);">Calendar</a>
+            <a wire:navigate
+                class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/calendar')) active @endif"
+                role="button" href="{{ route('dashboard.singleCustomerCalendar', [$id]) }}">Calendar</a>
 
 
 

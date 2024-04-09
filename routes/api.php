@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BuilderController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\CustomerMenuController;
 use App\Http\Controllers\Api\CustomerSubscriptionController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\InventoryController;
@@ -615,6 +616,57 @@ Route::post('/dashboard/customers/subscription/shorten', [CustomerController::cl
 Route::post('/dashboard/customers/addresses/store', [CustomerController::class, 'storeCustomerAddress']);
 Route::post('/dashboard/customers/addresses/update', [CustomerController::class, 'updateCustomerAddress']);
 Route::post('/dashboard/customers/addresses/remove', [CustomerController::class, 'removeCustomerAddress']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
+// 6.2: customers - menu - meals - changeMeal - updateRemarks
+Route::post('/dashboard/customers/menu/meals/change', [CustomerMenuController::class, 'changeCustomerMeal']);
+
+
+Route::post('/dashboard/customers/menu/meals/remarks/update', [CustomerMenuController::class, 'updateCustomerMealRemarks']);
+
+
+
+
+
+
+// 6.2.2: customers - menu - meals - replaceMeal
+Route::post('/dashboard/customers/menu/meals/replace', [CustomerMenuController::class, 'replaceCustomerMeal']);
+
+
+
+
+
+
+
+
+
+
+// 6.2.3: customers - menu - schedule - skip
+Route::post('/dashboard/customers/menu/schedule/skip', [CustomerMenuController::class, 'skipScheduleDay']);
+
 
 
 

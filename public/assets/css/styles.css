@@ -584,6 +584,7 @@ textarea:read-only {
 
 .no-events {
     pointer-events: none !important;
+    cursor: not-allowed !important;
 }
 
 /* pointer */

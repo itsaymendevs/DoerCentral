@@ -440,6 +440,7 @@ class CustomerController extends Controller
         $pause->fromDate = $request->fromDate;
         $pause->untilDate = $request->untilDate;
         $pause->remarks = $request->remarks ?? null;
+        $pause->pauseToken = $this->makeGroupToken();
 
 
 
@@ -476,8 +477,10 @@ class CustomerController extends Controller
         CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
             ->where('deliveryDate', '>=', $request->fromDate)
             ->where('deliveryDate', '<=', $request->untilDate)
+            ->where('status', 'Pending')
             ->update([
-                "status" => "Paused"
+                "status" => "Paused",
+                "pauseToken" => $pause->pauseToken
             ]);
 
 
@@ -486,8 +489,10 @@ class CustomerController extends Controller
         CustomerSubscriptionSchedule::where('customerSubscriptionId', $subscription->id)
             ->where('scheduleDate', '>=', $request->fromDate)
             ->where('scheduleDate', '<=', $request->untilDate)
+            ->where('status', 'Pending')
             ->update([
-                "status" => "Paused"
+                "status" => "Paused",
+                "pauseToken" => $pause->pauseToken
             ]);
 
 
@@ -691,6 +696,7 @@ class CustomerController extends Controller
         $pausedDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
             ->where('deliveryDate', '>=', $this->getUnPauseDate())
             ->where('deliveryDate', '<=', $pause->untilDate)
+            ->where('pauseToken', $pause->pauseToken)
             ->where('status', 'Paused')
             ->count();
 
@@ -703,6 +709,8 @@ class CustomerController extends Controller
         CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
             ->where('deliveryDate', '>=', $this->getUnPauseDate())
             ->where('deliveryDate', '<=', $pause->untilDate)
+            ->where('pauseToken', $pause->pauseToken)
+            ->where('status', 'Paused')
             ->update([
                 "status" => "Pending"
             ]);
@@ -714,6 +722,8 @@ class CustomerController extends Controller
         CustomerSubscriptionSchedule::where('customerSubscriptionId', $subscription->id)
             ->where('scheduleDate', '>=', $this->getUnPauseDate())
             ->where('scheduleDate', '<=', $pause->untilDate)
+            ->where('pauseToken', $pause->pauseToken)
+            ->where('status', 'Paused')
             ->update([
                 "status" => "Pending"
             ]);

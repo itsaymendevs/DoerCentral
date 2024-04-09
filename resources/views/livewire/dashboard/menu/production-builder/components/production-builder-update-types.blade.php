@@ -175,7 +175,7 @@
 
     {{-- 4: subRecipeTypes for Drink --}}
     @if ($meal->type->name == 'Sub-recipe')
-    <div class="mt-4 w-75 mx-auto" id="for-drink">
+    <div class="mt-4 w-75 mx-auto" id="for-subRecipe">
 
 
         @foreach ($subRecipeTypes as $subRecipeType)

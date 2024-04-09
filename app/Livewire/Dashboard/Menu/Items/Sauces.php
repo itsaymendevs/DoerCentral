@@ -7,10 +7,13 @@ use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Sauces extends Component
 {
     use HelperTrait;
+    use WithPagination;
+
 
 
     // :: variables
@@ -126,7 +129,7 @@ class Sauces extends Component
 
         $sauces = Meal::where('typeId', $type->id)
             ->where('name', 'LIKE', '%' . $this->searchSauce . '%')
-            ->get();
+            ->paginate(20);
 
 
 

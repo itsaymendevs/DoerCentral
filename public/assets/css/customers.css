@@ -74,7 +74,7 @@
 
 @media (min-width: 1px) and (max-width: 575px) {
     .button--checkbox {
-        width: 47%;
+        width: 46%;
     }
 }
 
@@ -142,4 +142,13 @@
 .menu--calendar-days:hover span:first-of-type,
 .menu--calendar-days:focus span:first-of-type {
     color: var(--bg-golden-dark) !important;
+}
+
+/* alert */
+
+.menu--alert {
+    background-color: var(--color-card);
+    border-radius: var(--radius);
+    display: block;
+    border: 2px solid var(--input-border-color);
 }

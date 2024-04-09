@@ -80,11 +80,23 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
         // 1.2: setFilePreview
-        $preview = asset('storage/menu/meals/' . $this->instance->imageFile);
-        $this->dispatch('setFilePreview', filePreview: 'item--preview-1', defaultPreview: $preview);
 
-        $preview = asset('storage/menu/meals/' . $this->instance->secondImageFile);
-        $this->dispatch('setFilePreview', filePreview: 'item--preview-2', defaultPreview: $preview);
+        if ($this->instance->imageFile) {
+
+            $preview = asset('storage/menu/meals/' . $this->instance->imageFile);
+            $$this->dispatch('setFilePreview', filePreview: 'item--preview-1', defaultPreview: $preview);
+
+        } // end if
+
+
+
+        if ($this->instance->secondImageFile) {
+
+            $preview = asset('storage/menu/meals/' . $this->instance->secondImageFile);
+            $this->dispatch('setFilePreview', filePreview: 'item--preview-2', defaultPreview: $preview);
+
+        } // end if
+
 
 
         if ($this->instance->thirdImageFile) {
@@ -234,7 +246,7 @@ class ProductionBuilderUpdateGeneral extends Component
         $cuisines = Cuisine::all();
         $diets = Diet::all();
         $tags = Tag::all();
-        $categories = ['Vegetarian', 'Non-Vegetarian'];
+        $categories = ['Standard', 'Vegetarian', 'Non-Vegetarian'];
 
 
 

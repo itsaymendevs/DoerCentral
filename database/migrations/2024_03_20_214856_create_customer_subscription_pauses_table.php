@@ -18,9 +18,11 @@ return new class extends Migration {
             // 1: general
             $table->string('type', 100)->nullable()->default('Refund Wallet'); // - Extend Subscription
 
+
             $table->date('fromDate')->nullable();
             $table->date('untilDate')->nullable();
             $table->text('remarks')->nullable();
+            $table->string('pauseToken', 100)->nullable();
 
 
 

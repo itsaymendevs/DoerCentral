@@ -973,7 +973,13 @@ class PlanController extends Controller
 
 
         // :: getOtherPlans
-        $plans = Plan::where('id', '!=', $migrationBundle->planId)->get();
+        $plans = Plan::where('id', '!=', $migrationBundle->planId)
+            ->whereIn('id', array_keys((array) $request->plans ?? []))
+            ->get();
+
+
+
+
 
 
 
@@ -992,17 +998,8 @@ class PlanController extends Controller
 
             $bundle->name = $migrationBundle->name;
             $bundle->remarks = $migrationBundle->remarks ?? null;
-            $bundle->imageFile = 'migrated-' . $migrationBundle->imageFile;
+            $bundle->imageFile = 'migrated-bundle-' . $plan->id . $migrationBundle->id . $migrationBundle->imageFile;
             $bundle->isForWebsite = $migrationBundle->isForWebsite;
-
-
-
-
-            // 1.2: copyFile (source - destination)
-            Storage::copy("public/menu/plans/bundles/{$migrationBundle->imageFile}",
-                "public/menu/plans/bundles/{$bundle->imageFile}");
-
-
 
 
 

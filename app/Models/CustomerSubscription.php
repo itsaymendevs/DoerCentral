@@ -160,6 +160,14 @@ class CustomerSubscription extends Model
 
 
 
+    public function typesInArray()
+    {
+
+        return $this->types()?->get()?->pluck('mealTypeId')?->toArray();
+
+    } // end function
+
+
 
 
 

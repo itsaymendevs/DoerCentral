@@ -7,10 +7,13 @@ use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Sides extends Component
 {
     use HelperTrait;
+    use WithPagination;
+
 
 
     // :: variables
@@ -125,7 +128,7 @@ class Sides extends Component
 
         $sides = Meal::where('typeId', $type->id)
             ->where('name', 'LIKE', '%' . $this->searchSide . '%')
-            ->get();
+            ->paginate(20);
 
 
 

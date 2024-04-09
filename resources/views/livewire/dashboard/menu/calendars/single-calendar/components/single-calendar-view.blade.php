@@ -135,7 +135,7 @@
 
 
                         {{-- 1: commonMealType --}}
-                        <td class="fw-bold fs-14 underline-gold" colspan="">
+                        <td class="fw-bold fs-14 underline-gold py-3" colspan="">
                             {{ $scheduleMealsByMealType->first()->mealType->name }}
                         </td>
 

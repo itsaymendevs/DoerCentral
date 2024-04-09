@@ -142,8 +142,7 @@
             {{-- Description --}}
             <div class="col-8">
                 <label class="form-label form--label">Description</label>
-                <textarea class="form-control form--input form--textarea" required
-                    wire:model='instance.desc'></textarea>
+                <textarea class="form-control form--input form--textarea" wire:model='instance.desc'></textarea>
             </div>
 
 

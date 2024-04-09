@@ -91,11 +91,10 @@
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">
 
-
                                 {{-- image --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo"
-                                        src="{{ asset('storage/menu/meals/' . $sauce->imageFile) }}" />
+                                        src="{{ asset('storage/menu/meals/' . ($sauce->imageFile ?? $defaultPlate)) }}" />
                                 </div>
 
 
@@ -331,6 +330,20 @@
                     </div>
                     @endforeach
                     {{-- end loop --}}
+
+
+
+
+
+
+
+
+                    {{-- pagination --}}
+                    <div class="col-12">
+                        {{ $sauces->links() }}
+                    </div>
+
+
 
 
 

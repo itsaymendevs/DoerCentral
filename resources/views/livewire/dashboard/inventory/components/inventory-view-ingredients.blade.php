@@ -236,7 +236,7 @@
                             {{-- image --}}
                             <div class="col-12 text-center position-relative">
                                 <img class="client--card-logo"
-                                    src="{{ asset('storage/inventory/ingredients/' . $ingredient->imageFile) }}" />
+                                    src="{{ asset('storage/inventory/ingredients/' . ($ingredient->imageFile ?? $defaultIngredient)) }}" />
                             </div>
 
 

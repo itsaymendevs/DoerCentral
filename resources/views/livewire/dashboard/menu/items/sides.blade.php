@@ -95,7 +95,7 @@
                                 {{-- image --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo"
-                                        src="{{ asset('storage/menu/meals/' . $side->imageFile) }}" />
+                                        src="{{ asset('storage/menu/meals/' . ($side->imageFile ?? $defaultPlate)) }}" />
                                 </div>
 
 
@@ -331,6 +331,16 @@
                     </div>
                     @endforeach
                     {{-- end loop --}}
+
+
+
+
+
+
+                    {{-- pagination --}}
+                    <div class="col-12">
+                        {{ $sides->links() }}
+                    </div>
 
 
 

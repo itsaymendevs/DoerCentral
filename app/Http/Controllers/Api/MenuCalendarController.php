@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomerSubscription;
+use App\Models\CustomerSubscriptionSchedule;
 use App\Models\MenuCalendar;
 use App\Models\MenuCalendarDiet;
 use App\Models\MenuCalendarPlan;
@@ -350,7 +352,56 @@ class MenuCalendarController extends Controller
 
 
 
+
+
+        // ----------------------------------------------
+        // ----------------------------------------------
+
+
+
+
+
+
+        // 2: assignCalendarSchedule for subscription
+
+
+
+
+
+
+        // 2.1: getDefaultPlans
+        $defaultPlans = $schedule->calendar->defaultPlans()
+                ?->get()?->pluck('planId')?->toArray() ?? [];
+
+
+
+
+
+
+        // 2.2: getSubscription - updateCalendarSchedule
+        $subscriptions = CustomerSubscription::whereIn('planId', $defaultPlans)
+            ->get()?->pluck('id')?->toArray() ?? [];
+
+
+
+
+        CustomerSubscriptionSchedule::whereIn('customerSubscriptionId', $subscriptions)
+            ->where('scheduleDate', $schedule->scheduleDate)
+            ->whereNull('menuCalendarScheduleId')
+            ->update([
+                'menuCalendarScheduleId' => $schedule->id,
+            ]);
+
+
+
+
+
+
+
+
         return response()->json(['message' => 'Schedule has been created'], 200);
+
+
 
 
 
@@ -368,6 +419,8 @@ class MenuCalendarController extends Controller
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
+
+
 
 
 

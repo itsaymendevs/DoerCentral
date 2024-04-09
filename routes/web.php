@@ -1,11 +1,14 @@
 <?php
 
 use App\Livewire\CustomerPortal\CustomerAddresses;
+use App\Livewire\CustomerPortal\CustomerCalendar;
 use App\Livewire\CustomerPortal\CustomerDeliveries;
 use App\Livewire\CustomerPortal\CustomerGeneral;
+use App\Livewire\CustomerPortal\CustomerMenu;
 use App\Livewire\Dashboard\Customers;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerAddresses;
+use App\Livewire\Dashboard\Customers\Manage\SingleCustomerCalendar;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerDeliveries;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerMenu;
 use App\Livewire\Dashboard\CustomersStateOfAccount;
@@ -427,6 +430,24 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+    // ---------
+
+
+
+
+    // 7.5: customers - singleCustomer - calendar
+    Route::get('dashboard/customers/{id}/calendar', SingleCustomerCalendar::class)->name('dashboard.singleCustomerCalendar');
+
+
+
+
+
+
+
+
+
+
+
     // ----------------------------------------------------------------------------
 
 
@@ -729,6 +750,48 @@ Route::middleware(['auth.portals.customer'])->group(function () {
 
     // 3: portal - customer - delivery
     Route::get('portals/customer/delivery', CustomerDeliveries::class)->name('portals.customer.delivery');
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    // 4: portal - customer - menu
+    Route::get('portals/customer/menu', CustomerMenu::class)->name('portals.customer.menu');
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+    // 5: portal - customer - calendar
+    Route::get('portals/customer/calendar', CustomerCalendar::class)->name('portals.customer.calendar');
+
+
+
+
+
+
 
 
 

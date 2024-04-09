@@ -13,6 +13,13 @@ return new class extends Migration {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
 
+
+
+            // :: migrationId
+            $table->bigInteger('migrationId')->nullable();
+
+
+
             // 1: general
             $table->text('name')->nullable();
             $table->text('desc')->nullable();

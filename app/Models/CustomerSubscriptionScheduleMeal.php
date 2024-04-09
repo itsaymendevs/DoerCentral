@@ -56,4 +56,75 @@ class CustomerSubscriptionScheduleMeal extends Model
 
 
 
+
+    public function mealType()
+    {
+
+        return $this->belongsTo(MealType::class, 'mealTypeId');
+
+    } // end function
+
+
+
+
+
+
+
+
+    public function size()
+    {
+
+        return $this->belongsTo(Size::class, 'sizeId');
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function mealSize()
+    {
+
+
+
+        // 1: getMealSize
+        $mealSize = MealSize::where('mealId', $this?->mealId)
+            ->where('sizeId', $this?->sizeId)?->first();
+
+
+
+        return $mealSize;
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
 } // end model

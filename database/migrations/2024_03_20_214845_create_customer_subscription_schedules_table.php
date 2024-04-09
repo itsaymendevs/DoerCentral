@@ -19,6 +19,7 @@ return new class extends Migration {
             // 1: general
             $table->date('scheduleDate')->nullable();
             $table->string('status', 100)->nullable()->default('Pending');
+            $table->string('pauseToken', 100)->nullable();
 
 
 

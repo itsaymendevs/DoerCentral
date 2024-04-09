@@ -35,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
 
         // 1: defaultPreview
         View::share('defaultPreview', asset('assets/img/placeholder.png'));
+        View::share('defaultPlate', "plate.png");
+        View::share('defaultIngredient', "ingredient.png");
 
 
 

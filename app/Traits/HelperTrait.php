@@ -576,4 +576,38 @@ trait HelperTrait
 
 
 
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+    function makeGroupToken()
+    {
+
+
+
+        // :: returnToken
+        return date('dmYhisA');
+
+
+
+
+    } // end function
+
+
+
+
+
+
 } // end trait

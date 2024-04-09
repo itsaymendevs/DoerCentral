@@ -40,8 +40,8 @@
 
 
                 {{-- select --}}
-                <div class="select--single-wrapper mb-4" wire:ignore>
-                    <select class="form-select form--select" data-instance='menuCalendarId' data-trigger='true'
+                <div class="select--single-wrapper mb-4 " wire:ignore>
+                    <select class="form-select form--select" disabled data-instance='menuCalendarId' data-trigger='true'
                         value='{{ $subscription->menuCalendarId }}'>
                         <option value=""></option>
 
@@ -62,8 +62,9 @@
             {{-- skip --}}
             <div class="col-4">
                 <div class="text-center mb-4">
-                    <button class="btn btn--scheme btn--remove align-items-center d-inline-flex px-3 fs-12 scale--3"
-                        type="button">
+                    <button class="btn btn--scheme btn--remove align-items-center d-inline-flex px-3 fs-12 scale--3
+                    @if ($skipStatus == 'Skipped') disabled @endif" type="button" wire:click='skipScheduleDay()'
+                        wire:loading.attr='disabled'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-skip-end fs-5 me-2">
                             <path
@@ -160,6 +161,20 @@
 
             {{-- tabs --}}
             <div class="col-12 mt-2">
+
+
+
+
+
+
+
+                {{-- :: scheduleMealExists --}}
+                @if ($subscriptionScheduleMeals && ($deliveryStatus == 'Pending' || $deliveryStatus == 'Completed') )
+
+
+
+
+
                 <div class="tabs--wrap">
 
 
@@ -171,7 +186,7 @@
                         {{-- loop - mealTypes --}}
                         @foreach ($mealTypes as $mealType)
 
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item" role="presentation" wire:ignore>
                             <a class="nav-link px-3
                             @if ($mealType->id == $mealTypes->first()->id)) active @endif" data-bs-toggle="tab"
                                 role="tab" href="#tab-{{ $mealType->id }}">{{
@@ -206,8 +221,13 @@
 
 
 
-                    {{-- -------------------------- --}}
-                    {{-- -------------------------- --}}
+
+
+
+                    {{-- ------------------------ --}}
+                    {{-- ------------------------ --}}
+
+
 
 
 
@@ -234,7 +254,7 @@
                         {{-- tab - mealType --}}
                         <div class="tab-pane fade show no--card px-1
                         @if ($mealType->id == $mealTypes->first()->id) active @endif" role="tabpanel"
-                            id="tab-{{ $mealType->id }}">
+                            id="tab-{{ $mealType->id }}" wire:ignore.self>
 
 
                             {{-- mainRow --}}
@@ -247,14 +267,277 @@
 
 
 
+                                {{-- 1: loop - subscription - scheduleMeals --}}
+                                @foreach ($subscriptionScheduleMeals?->where('mealTypeId', $mealType->id)
+                                ?->whereNotNull('mealId') ?? [] as $subscriptionScheduleMeal)
 
-                                {{-- loop - calendarScheduleMeals --}}
+
+
+
+
+                                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"
+                                    key='schedule-meal-{{ $subscriptionScheduleMeal->id }}'>
+                                    <div class="overview--card client-version scale--self-05 mb-floating">
+                                        <div class="row">
+
+
+                                            {{-- imageFile --}}
+                                            <div class="col-12 text-center position-relative">
+                                                <img class="client--card-logo"
+                                                    src="{{ asset('storage/menu/meals/' . $subscriptionScheduleMeal->meal->imageFile) }}" />
+                                            </div>
+
+
+
+
+                                            {{-- name --}}
+                                            <div class="col-12">
+                                                <h6 class="text-center fw-bold mt-3 mb-2 truncate-text-2l height-2l">{{
+                                                    $subscriptionScheduleMeal->meal->name }}</h6>
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+                                            {{-- ------------------------ --}}
+                                            {{-- ------------------------ --}}
+
+
+
+
+
+
+
+
+
+
+
+                                            {{-- topCol --}}
+                                            <div class="col-12">
+
+
+                                                {{-- diet--}}
+                                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                                    <button
+                                                        class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
+                                                        type="button">
+                                                        {{ $subscriptionScheduleMeal?->meal?->diet?->name }}
+                                                    </button>
+                                                </div>
+
+
+
+                                                {{-- Actions --}}
+                                                <div class="d-flex align-items-center justify-content-center mb-2 mt-1">
+
+
+
+
+                                                    {{-- 1: checkExclude / checkAllergy --}}
+                                                    <button class="btn  btn--scheme btn--remove fs-11 px-2 mx-1 py-1"
+                                                        @if($customer->checkMealCompatibility($subscriptionScheduleMeal->meal->id)->allergies->count()
+                                                        == 0
+                                                        &&
+                                                        $customer->checkMealCompatibility($subscriptionScheduleMeal->meal->id)->excludes->count()
+                                                        == 0)
+                                                        disabled @endif
+                                                        type="button" data-bs-toggle='modal'
+                                                        data-bs-target='#meal-excludes'
+                                                        wire:click='viewExcludes({{ $subscriptionScheduleMeal->meal->id
+                                                        }})'>Excludes</button>
+
+
+
+
+
+
+
+
+
+
+
+                                                    {{-- 2: note --}}
+                                                    <button
+                                                        class="btn btn--scheme btn-outline-warning fs-11 px-2 mx-1 py-1"
+                                                        type="button" data-bs-toggle="modal"
+                                                        data-bs-target='#meal-remarks'
+                                                        wire:click='editRemarks({{ $subscriptionScheduleMeal->id }})'>Note</button>
+                                                </div>
+                                            </div>
+                                            {{-- endCol --}}
+
+
+
+
+
+
+
+                                            {{-- ------------------------ --}}
+                                            {{-- ------------------------ --}}
+
+
+
+
+
+
+
+
+                                            {{-- sizeMacros --}}
+                                            <div class="col-12 mt-1">
+                                                <div class="row">
+
+
+
+                                                    {{-- :: AFTERCOOK --}}
+
+                                                    {{-- 1: calories --}}
+                                                    <div class="col-3 text-end px-2">
+                                                        <div class="overview--box shrink--self macros-version sm">
+                                                            <h6 class="fs-12">CA</h6>
+                                                            <p class="fs-12">
+                                                                {{ $subscriptionScheduleMeal?->meal
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookCalories
+                                                                ?? 0
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    {{-- 2: proteins --}}
+                                                    <div class="col-3 text-end px-2">
+                                                        <div class="overview--box shrink--self macros-version sm">
+                                                            <h6 class="fs-12">P</h6>
+                                                            <p class="fs-12">
+                                                                {{ $subscriptionScheduleMeal?->meal
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookProteins
+                                                                ?? 0
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    {{-- carbs --}}
+                                                    <div class="col-3 text-end px-2">
+                                                        <div class="overview--box shrink--self macros-version sm">
+                                                            <h6 class="fs-12">C</h6>
+                                                            <p class="fs-12">
+                                                                {{ $subscriptionScheduleMeal?->meal
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookCarbs
+                                                                ?? 0
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    {{-- fats --}}
+                                                    <div class="col-3 text-end px-2">
+                                                        <div class="overview--box shrink--self macros-version sm">
+                                                            <h6 class="fs-12">F</h6>
+                                                            <p class="fs-12">
+                                                                {{ $subscriptionScheduleMeal?->meal
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookFats
+                                                                ?? 0
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- end sizeMacros --}}
+
+
+
+
+
+
+
+                                            {{-- changeButton - inActive --}}
+                                            <div class="col-12">
+                                                <div class="d-flex align-items-center justify-content-center mt-3">
+                                                    <button class="btn btn--scheme btn--theme fs-12 mx-1 h-32 w-75
+                                                    @if ($skipStatus == 'Skipped') disabled @endif" type="button">
+                                                        You Will Get This
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            {{-- endButton --}}
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- endCard --}}
+
+
+
+                                @endforeach
+                                {{-- end loop - subscription - scheduleMeals --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                {{-- ------------------------------------- --}}
+                                {{-- ------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+                                {{-- 2: loop - calendarScheduleMeals --}}
                                 @foreach ($calendarScheduleMeals
                                 ?->where('mealTypeId', $mealType->id) ?? [] as $calendarScheduleMeal)
 
 
 
-                                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 mb-lg-5">
+
+
+                                {{-- withoutDefault --}}
+                                @if ($calendarScheduleMeal->mealId !=
+                                $subscriptionScheduleMeals?->where('mealTypeId', $mealType->id)?->first()?->mealId)
+
+
+                                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"
+                                    key='schedule-meal-{{ $calendarScheduleMeal->id }}'>
                                     <div class="overview--card client-version scale--self-05 mb-floating">
                                         <div class="row">
 
@@ -278,8 +561,13 @@
 
 
 
-                                            {{-- ----------------- --}}
-                                            {{-- ----------------- --}}
+
+
+
+                                            {{-- ------------------------ --}}
+                                            {{-- ------------------------ --}}
+
+
 
 
 
@@ -290,15 +578,21 @@
                                             <div class="col-12">
 
 
-                                                {{-- size --}}
+                                                {{-- diet--}}
                                                 <div class="d-flex align-items-center justify-content-center mb-3">
                                                     <button
                                                         class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
-                                                        type="button" data-bs-target="#plan-ranges"
-                                                        data-bs-toggle="modal">
-                                                        Medium
+                                                        type="button">
+                                                        {{ $calendarScheduleMeal?->meal?->diet?->name }}
                                                     </button>
                                                 </div>
+
+
+
+
+
+
+
 
 
 
@@ -306,24 +600,40 @@
                                                 <div class="d-flex align-items-center justify-content-center mb-2 mt-1">
 
 
-                                                    {{-- viewExclude --}}
+                                                    {{-- 1: checkExclude / checkAllergy --}}
                                                     <button class="btn  btn--scheme btn--remove fs-11 px-2 mx-1 py-1"
-                                                        type="button">Excludes</button>
+                                                        @if($customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->allergies->count()
+                                                        == 0
+                                                        &&
+                                                        $customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->excludes->count()
+                                                        == 0)
+                                                        disabled @endif
+                                                        type="button" data-bs-toggle='modal'
+                                                        data-bs-target='#meal-excludes'
+                                                        wire:click='viewExcludes({{ $calendarScheduleMeal->meal->id
+                                                        }})'>Excludes</button>
 
 
 
-                                                    {{-- replace --}}
+
+
+
+                                                    {{-- 1.1: replace --}}
                                                     <button
                                                         class="btn  btn--scheme btn-outline-warning fs-11 px-2 mx-1 py-1"
-                                                        type="button">Replace</button>
+                                                        @if($customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->allergies->count()
+                                                        == 0
+                                                        &&
+                                                        $customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->excludes->count()
+                                                        == 0)
+                                                        disabled @endif
+                                                        type="button" data-bs-toggle='modal'
+                                                        data-bs-target='#meal-replacement'
+                                                        wire:click='replaceMeal({{ $calendarScheduleMeal->id
+                                                        }})'>Replace</button>
 
 
 
-
-                                                    {{-- note --}}
-                                                    <button
-                                                        class="btn btn--scheme btn-outline-warning fs-11 px-2 mx-1 py-1"
-                                                        type="button">Note</button>
                                                 </div>
                                             </div>
                                             {{-- endCol --}}
@@ -334,8 +644,15 @@
 
 
 
-                                            {{-- ----------------- --}}
-                                            {{-- ----------------- --}}
+
+
+
+
+                                            {{-- ------------------------ --}}
+                                            {{-- ------------------------ --}}
+
+
+
 
 
 
@@ -349,22 +666,42 @@
                                                 <div class="row">
 
 
+
+                                                    {{-- :: AFTERCOOK --}}
+
                                                     {{-- 1: calories --}}
                                                     <div class="col-3 text-end px-2">
                                                         <div class="overview--box shrink--self macros-version sm">
                                                             <h6 class="fs-12">CA</h6>
-                                                            <p class="fs-12">320</p>
+                                                            <p class="fs-12">
+                                                                {{ $calendarScheduleMeal?->meal
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookCalories
+                                                                ?? 0
+                                                                }}
+                                                            </p>
                                                         </div>
                                                     </div>
+
+
+
+
 
 
                                                     {{-- 2: proteins --}}
                                                     <div class="col-3 text-end px-2">
                                                         <div class="overview--box shrink--self macros-version sm">
                                                             <h6 class="fs-12">P</h6>
-                                                            <p class="fs-12">43</p>
+                                                            <p class="fs-12">
+                                                                {{ $calendarScheduleMeal?->meal
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookProteins
+                                                                ?? 0
+                                                                }}
+                                                            </p>
                                                         </div>
                                                     </div>
+
+
+
 
 
 
@@ -372,7 +709,12 @@
                                                     <div class="col-3 text-end px-2">
                                                         <div class="overview--box shrink--self macros-version sm">
                                                             <h6 class="fs-12">C</h6>
-                                                            <p class="fs-12">200</p>
+                                                            <p class="fs-12">
+                                                                {{ $calendarScheduleMeal?->meal
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookCarbs
+                                                                ?? 0
+                                                                }}
+                                                            </p>
                                                         </div>
                                                     </div>
 
@@ -382,7 +724,314 @@
                                                     <div class="col-3 text-end px-2">
                                                         <div class="overview--box shrink--self macros-version sm">
                                                             <h6 class="fs-12">F</h6>
-                                                            <p class="fs-12">15</p>
+                                                            <p class="fs-12">
+                                                                {{ $calendarScheduleMeal?->meal
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookFats
+                                                                ?? 0
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- end sizeMacros --}}
+
+
+
+
+
+
+
+
+
+
+                                            {{-- changeButton --}}
+                                            <div class="col-12">
+                                                <div class="d-flex align-items-center justify-content-center mt-3">
+
+
+
+
+                                                    {{-- 1: disabled --}}
+                                                    <button
+                                                        class="btn btn--scheme btn--scheme-2 fs-12 mx-1 h-32 w-75
+                                                        @if ($skipStatus == 'Skipped') disabled @endif
+                                                        @if ($customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->allergies->count() > 0) disabled @endif"
+                                                        type="button" wire:loading.attr='disabled'
+                                                        wire:target='changeMeal'
+                                                        wire:click='changeMeal({{ $calendarScheduleMeal->mealId }}, {{ $calendarScheduleMeal->mealTypeId }})'>
+                                                        I Want This
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            {{-- endButton --}}
+
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- endCard --}}
+
+
+
+
+                                @endif
+                                {{-- end if - withoutDefault --}}
+
+
+                                @endforeach
+                                {{-- end loop - scheduleMeals --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                {{-- ------------------------------------- --}}
+                                {{-- ------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+                                {{-- 2: loop - subscriptionScheduleReplacements --}}
+                                @foreach ($subscriptionScheduleReplacements
+                                ?->where('mealTypeId', $mealType->id) ?? [] as $subscriptionScheduleReplacement)
+
+
+
+
+
+                                {{-- withoutDefault --}}
+                                @if ($subscriptionScheduleReplacement->replacementId !=
+                                $subscriptionScheduleMeals?->where('mealTypeId', $mealType->id)?->first()?->mealId)
+
+
+
+
+                                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"
+                                    key='schedule-meal-{{ $subscriptionScheduleReplacement->id }}'>
+                                    <div class="overview--card client-version scale--self-05 mb-floating">
+                                        <div class="row">
+
+
+                                            {{-- imageFile --}}
+                                            <div class="col-12 text-center position-relative">
+                                                <img class="client--card-logo"
+                                                    src="{{ asset('storage/menu/meals/' . $subscriptionScheduleReplacement->replacement->imageFile) }}" />
+                                            </div>
+
+
+
+
+                                            {{-- name --}}
+                                            <div class="col-12">
+                                                <h6 class="text-center fw-bold mt-3 mb-2 truncate-text-2l height-2l">{{
+                                                    $subscriptionScheduleReplacement->replacement->name }}</h6>
+                                            </div>
+
+
+
+
+
+
+
+
+                                            {{-- ------------------------ --}}
+                                            {{-- ------------------------ --}}
+
+
+
+
+
+
+
+
+                                            {{-- topCol --}}
+                                            <div class="col-12">
+
+
+                                                {{-- diet--}}
+                                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                                    <button
+                                                        class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
+                                                        type="button">
+                                                        {{
+                                                        $subscriptionScheduleReplacement?->replacement?->diet?->name}}
+                                                    </button>
+                                                </div>
+
+
+
+
+
+
+
+
+
+
+                                                {{-- Actions --}}
+                                                <div class="d-flex align-items-center justify-content-center mb-2 mt-1">
+
+
+                                                    {{-- 1: checkExclude / checkAllergy --}}
+                                                    <button class="btn  btn--scheme btn--remove fs-11 px-2 mx-1 py-1"
+                                                        @if($customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->allergies->count()
+                                                        == 0
+                                                        &&
+                                                        $customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->excludes->count()
+                                                        == 0)
+                                                        disabled @endif
+                                                        type="button" data-bs-toggle='modal'
+                                                        data-bs-target='#meal-excludes'
+                                                        wire:click='viewExcludes({{
+                                                        $subscriptionScheduleReplacement->replacement->id
+                                                        }})'>Excludes</button>
+
+
+
+
+
+
+                                                    {{-- 1.1: replace --}}
+                                                    <button
+                                                        class="btn  btn--scheme btn-outline-warning fs-11 px-2 mx-1 py-1"
+                                                        @if($customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->allergies->count()
+                                                        == 0
+                                                        &&
+                                                        $customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->excludes->count()
+                                                        == 0)
+                                                        disabled @endif
+                                                        type="button" data-bs-toggle='modal'
+                                                        data-bs-target='#meal-replacement'
+                                                        wire:click='replaceMealForReplacement({{
+                                                        $subscriptionScheduleReplacement->id
+                                                        }}, {{
+                                                        $subscriptionScheduleReplacement->replacement
+                                                        }})'>Replace</button>
+
+
+
+                                                </div>
+                                            </div>
+                                            {{-- endCol --}}
+
+
+
+
+
+
+
+
+
+
+
+                                            {{-- ------------------------ --}}
+                                            {{-- ------------------------ --}}
+
+
+
+
+
+
+
+
+
+
+
+                                            {{-- sizeMacros --}}
+                                            <div class="col-12 mt-1">
+                                                <div class="row">
+
+
+
+                                                    {{-- :: AFTERCOOK --}}
+
+                                                    {{-- 1: calories --}}
+                                                    <div class="col-3 text-end px-2">
+                                                        <div class="overview--box shrink--self macros-version sm">
+                                                            <h6 class="fs-12">CA</h6>
+                                                            <p class="fs-12">
+                                                                {{ $subscriptionScheduleReplacement?->replacement
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookCalories
+                                                                ?? 0
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    {{-- 2: proteins --}}
+                                                    <div class="col-3 text-end px-2">
+                                                        <div class="overview--box shrink--self macros-version sm">
+                                                            <h6 class="fs-12">P</h6>
+                                                            <p class="fs-12">
+                                                                {{ $subscriptionScheduleReplacement?->replacement
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookProteins
+                                                                ?? 0
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    {{-- carbs --}}
+                                                    <div class="col-3 text-end px-2">
+                                                        <div class="overview--box shrink--self macros-version sm">
+                                                            <h6 class="fs-12">C</h6>
+                                                            <p class="fs-12">
+                                                                {{ $subscriptionScheduleReplacement?->replacement
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookCarbs
+                                                                ?? 0
+                                                                }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    {{-- fats --}}
+                                                    <div class="col-3 text-end px-2">
+                                                        <div class="overview--box shrink--self macros-version sm">
+                                                            <h6 class="fs-12">F</h6>
+                                                            <p class="fs-12">
+                                                                {{ $subscriptionScheduleReplacement?->replacement
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->afterCookFats
+                                                                ?? 0
+                                                                }}
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -398,8 +1047,10 @@
                                             {{-- changeButton --}}
                                             <div class="col-12">
                                                 <div class="d-flex align-items-center justify-content-center mt-3">
-                                                    <button class="btn btn--scheme btn--scheme-2 fs-12 mx-1 h-32 w-75"
-                                                        type="button">
+                                                    <button class="btn btn--scheme btn--scheme-2 fs-12 mx-1 h-32 w-75
+                                                    @if ($skipStatus == 'Skipped') disabled @endif" type="button"
+                                                        wire:loading.attr='disabled' wire:target='changeMeal'
+                                                        wire:click='changeMeal({{ $subscriptionScheduleReplacement->replacementId }}, {{ $subscriptionScheduleReplacement->mealTypeId }})'>
                                                         I Want This
                                                     </button>
                                                 </div>
@@ -415,9 +1066,17 @@
                                 {{-- endCard --}}
 
 
-                                @endforeach
-                                {{-- end loop - scheduleMeals --}}
 
+
+
+                                @endif
+                                {{-- end if - withoutDefault --}}
+
+
+
+
+                                @endforeach
+                                {{-- end loop - subscriptionScheduleReplacements --}}
 
 
 
@@ -432,10 +1091,130 @@
 
                     </div>
                 </div>
+                {{-- end tabsWrap --}}
+
+
+
+
+
+
+
+
+
+
+
+                {{-- ------------------------------------------ --}}
+                {{-- ------------------------------------------ --}}
+
+
+
+
+
+
+
+
+
+                {{-- :: schedule - notFound --}}
+                @else
+
+
+
+
+                {{-- alert - fallback --}}
+
+
+
+
+
+                {{-- 1: No Delivery --}}
+                @if ($deliveryStatus == 'No Delivery')
+
+                <div class="w-100 mb-5 menu--alert py-3 px-4 mt-4">
+                    <div class="d-flex flex-column align-items-start justify-content-center">
+                        <h5 class="mb-0 fw-normal">No Scheduled Meals for <span class="text-gold">today</span>
+                        </h5>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                {{-- 2: Canceled --}}
+                @elseif ($deliveryStatus == 'Canceled')
+
+                <div class="w-100 mb-5 menu--alert py-3 px-4 mt-4">
+                    <div class="d-flex flex-column align-items-start justify-content-center">
+                        <h5 class="mb-0 fw-normal">Today's Schedule has been <span class="text-gold">canceled</span>
+                        </h5>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                {{-- 3: Paused --}}
+                @elseif ($deliveryStatus == 'Paused')
+
+
+                <div class="w-100 mb-5 menu--alert py-3 px-4 mt-4">
+                    <div class="d-flex flex-column align-items-start justify-content-center">
+                        <h5 class="mb-0 fw-normal">Today's Schedule has been <span class="text-gold">paused</span>
+                        </h5>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                {{-- 4: Slipped --}}
+                @elseif ($deliveryStatus == 'Skipped')
+
+
+                <div class="w-100 mb-5 menu--alert py-3 px-4 mt-4">
+                    <div class="d-flex flex-column align-items-start justify-content-center">
+                        <h5 class="mb-0 fw-normal">Today's Schedule has been <span class="text-gold">skipped</span>
+                        </h5>
+                    </div>
+                </div>
+
+
+
+
+
+
+                @endif
+                {{-- end if --}}
+
+
+
+
+
+
+                @endif
+                {{-- end if - existingScheduleMeals --}}
+
+
+
+
+
             </div>
         </div>
     </div>
     {{-- endContainer --}}
+
+
+
+
 
 
 
@@ -477,6 +1256,93 @@
 
       }); //end function
     </script>
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @section('modals')
+
+
+    {{-- 1: editRemarks --}}
+    <livewire:dashboard.customers.manage.single-customer-menu.components.single-customer-menu-edit-remarks
+        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+
+
+
+
+
+
+    {{-- ------------------------------------- --}}
+
+
+
+
+
+    {{-- 2: viewExcludes --}}
+    <livewire:dashboard.customers.manage.single-customer-menu.components.single-customer-menu-view-excludes
+        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+
+
+
+
+
+
+
+
+
+
+    {{-- ------------------------------------- --}}
+
+
+
+
+
+    {{-- 3: replaceMeal --}}
+    <livewire:dashboard.customers.manage.single-customer-menu.components.single-customer-menu-replace-meal
+        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+
+
+
+
+
+
+
+
+    {{-- 3.5: replaceMealExcludes --}}
+    <livewire:dashboard.customers.manage.single-customer-menu.components.single-customer-menu-replace-meal-excludes
+        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+
+
+
+
+
+
+    @endsection
+    {{-- endSection --}}
+
+
+
 
 
 

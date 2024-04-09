@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Manage\Bundles\Components;
 use App\Models\Plan;
 use App\Models\PlanBundle;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use stdClass;
@@ -54,6 +55,7 @@ class BundlesMigrate extends Component
 
 
 
+
     public function migrate()
     {
 
@@ -63,16 +65,66 @@ class BundlesMigrate extends Component
         if ($this->selectedPlans && in_array(true, $this->selectedPlans)) {
 
 
-            // 1: create instance
+
+            // 1: filterSelectedPlans
+            $selectedPlans = array_filter($this->selectedPlans, function ($value, $key) {
+                return $value == true;
+            }, ARRAY_FILTER_USE_BOTH);
+
+
+
+
+            // 1.2: create instance
             $instance = new stdClass();
             $instance->id = $this->bundle->id;
-            $instance->plans = $this->selectedPlans;
+            $instance->plans = $selectedPlans;
 
 
 
 
 
-            // 1.2: makeRequest
+
+
+
+            // -------------------------------------
+            // -------------------------------------
+
+
+
+
+            // 1.3: loop - plans
+            foreach ($selectedPlans as $planId => $isChecked) {
+
+
+
+
+                // 1.2: copyFile (source - destination)
+                $imageFile = 'migrated-bundle-' . $planId . $this->bundle->id . $this->bundle->imageFile;
+
+
+                Storage::copy("public/menu/plans/bundles/{$this->bundle->imageFile}",
+                    "public/menu/plans/bundles/{$imageFile}");
+
+
+
+            } // end loop
+
+
+
+
+
+
+
+            // -------------------------------------
+            // -------------------------------------
+
+
+
+
+
+
+
+            // 1.5: makeRequest
             $response = $this->makeRequest('dashboard/menu/plans/bundles/migrate', $instance);
 
 
@@ -87,6 +139,8 @@ class BundlesMigrate extends Component
 
 
             $this->makeAlert('success', $response->message);
+
+
 
 
         } else {

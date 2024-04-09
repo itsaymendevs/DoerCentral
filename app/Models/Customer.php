@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\MenuCalendarTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
+use stdClass;
 
 class Customer extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    use MenuCalendarTrait;
 
 
 
@@ -215,14 +217,80 @@ class Customer extends Authenticatable
 
 
 
-
-
-        // :: return customerAddress
+        // :: return
         return $deliveryDay ? $deliveryDay->customerAddress : null;
 
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function checkMealCompatibility($id)
+    {
+
+
+
+
+        // 1: checkValidity
+        $combinedArray = $this->checkMealValidityFromCustomer($id, $this->id);
+
+
+
+
+        // 1.2: Allergies - Excludes
+        $excludes = Exclude::whereIn('id', $combinedArray['excludes'])?->get();
+        $allergies = Allergy::whereIn('id', $combinedArray['allergies'])?->get();
+
+
+
+        // 1.3: allergyIngredients - excludeIngredient
+        $excludeIngredients = Ingredient::whereIn('id', $combinedArray['excludeIngredients'])?->get();
+        $allergyIngredients = Ingredient::whereIn('id', $combinedArray['allergyIngredients'])?->get();
+
+
+
+
+
+
+
+
+
+        // :: return
+        $content = new stdClass();
+
+        $content->excludes = $excludes;
+        $content->allergies = $allergies;
+        $content->excludeIngredients = $excludeIngredients;
+        $content->allergyIngredients = $allergyIngredients;
+
+
+
+        return $content;
+
+
+
+    } // end function
+
+
 
 
 

@@ -9,8 +9,13 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
+
+
 class IngredientSeeder extends Seeder
 {
+
+
+
 
 
 
@@ -39,6 +44,8 @@ class IngredientSeeder extends Seeder
 
 
                 // 1: general
+                'migrationId' => $ingredients[$i]['id'],
+
                 'name' => $ingredients[$i]['name'],
                 'desc' => $ingredients[$i]['desc'] ?? null,
                 'usage' => $ingredients[$i]['usage'] ?? null,

@@ -9,3 +9,11 @@
         font-size: 13px !important;
     }
 }
+
+/* calendar mobile */
+
+@media (min-width: 1px) and (max-width: 767px) {
+    .calendar--table.mobile th.mobile {
+        min-width: 150px !important;
+    }
+}

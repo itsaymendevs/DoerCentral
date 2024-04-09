@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
 
         // ::root
-        $user = ['Admin', 'admin@doer.ae1', '9715590100', 1];
+        $user = ['Admin', 'admin@doer.ae', '9715590100', 1];
 
         User::create([
             'name' => $user[0],

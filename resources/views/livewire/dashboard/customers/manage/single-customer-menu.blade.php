@@ -280,15 +280,14 @@
                                 @php
 
 
-                                // 2.1: check allergy - exclude
-                                $isNotAllergy =
-                                $customer->checkMealCompatibility($subscriptionScheduleMeal->meal->id)->allergies->count()
-                                == 0;
+                                // :: check allergy - exclude
+                                $combine =
+                                $customer->checkMealCompatibility($subscriptionScheduleMeal->meal->id);
 
-                                $isNotExclude =
-                                $customer->checkMealCompatibility($subscriptionScheduleMeal->meal->id)->excludes->count()
-                                ==
-                                0;
+
+                                $isNotAllergy = $combine?->allergies->count() == 0;
+                                $isNotExclude = $combine?->excludes->count() == 0;
+
 
                                 @endphp
                                 {{-- -------------------- --}}
@@ -312,7 +311,7 @@
                                             {{-- imageFile --}}
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
-                                                    src="{{ asset('storage/menu/meals/' . $subscriptionScheduleMeal->meal->imageFile) }}" />
+                                                    src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleMeal->meal->imageFile ?? $defaultPlate)) }}" />
                                             </div>
 
 
@@ -563,14 +562,14 @@
                                 @php
 
 
-                                // 2.1: check allergy - exclude
-                                $isNotAllergy =
-                                $customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->allergies->count()
-                                == 0;
+                                // :: check allergy - exclude
+                                $combine =
+                                $customer->checkMealCompatibility($calendarScheduleMeal->meal->id);
 
-                                $isNotExclude =
-                                $customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->excludes->count() ==
-                                0;
+
+                                $isNotAllergy = $combine?->allergies->count() == 0;
+                                $isNotExclude = $combine?->excludes->count() == 0;
+
 
                                 @endphp
                                 {{-- -------------------- --}}
@@ -598,7 +597,7 @@
                                             {{-- imageFile --}}
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
-                                                    src="{{ asset('storage/menu/meals/' . $calendarScheduleMeal->meal->imageFile) }}" />
+                                                    src="{{ asset('storage/menu/meals/' . ($calendarScheduleMeal->meal->imageFile ?? $defaultPlate)) }}" />
                                             </div>
 
 
@@ -877,14 +876,15 @@
                                 @php
 
 
-                                // 2.1: check allergy - exclude
-                                $isNotAllergy =
-                                $customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->allergies->count()
-                                == 0;
+                                // :: check allergy - exclude
+                                $combine =
+                                $customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id);
 
-                                $isNotExclude =
-                                $customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->excludes->count()
-                                == 0;
+
+                                $isNotAllergy = $combine?->allergies->count() == 0;
+                                $isNotExclude = $combine?->excludes->count() == 0;
+
+
 
                                 @endphp
                                 {{-- -------------------- --}}
@@ -917,7 +917,7 @@
                                             {{-- imageFile --}}
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
-                                                    src="{{ asset('storage/menu/meals/' . $subscriptionScheduleReplacement->replacement->imageFile) }}" />
+                                                    src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleReplacement->replacement->imageFile ?? $defaultPlate)) }}" />
                                             </div>
 
 

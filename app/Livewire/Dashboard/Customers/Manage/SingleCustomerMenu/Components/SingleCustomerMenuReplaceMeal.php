@@ -248,7 +248,7 @@ class SingleCustomerMenuReplaceMeal extends Component
         $meals = Meal::where('id', '!=', $this->scheduleMeal?->mealId)
             ->where('id', '!=', $this->subscriptionDefaultMeal?->mealId)
             ->where('typeId', $this?->mealType?->type->id)
-            ->paginate(12, pageName: 'replacements');
+            ->paginate(8, pageName: 'replacements');
 
 
 

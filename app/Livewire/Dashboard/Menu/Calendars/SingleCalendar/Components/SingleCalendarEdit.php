@@ -12,12 +12,15 @@ use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 use stdClass;
 
 class SingleCalendarEdit extends Component
 {
 
     use HelperTrait;
+    use WithPagination;
+
 
 
 
@@ -386,6 +389,8 @@ class SingleCalendarEdit extends Component
         // 1: dependencies
         $mealTypes = MealType::all();
         $meals = Meal::where('name', 'LIKE', '%' . $this->searchMeal . '%')->get();
+
+
 
 
 

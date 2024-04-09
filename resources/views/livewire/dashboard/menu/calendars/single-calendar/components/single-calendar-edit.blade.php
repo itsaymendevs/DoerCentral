@@ -199,7 +199,7 @@
                                                         <button
                                                             class="btn btn--raw-icon fs-14 text-warning d-flex align-items-center justify-content-center fw-bold no-events"
                                                             type="button">
-                                                            {{ $meal->diet->name }}
+                                                            {{ $meal?->diet?->name ?? 'Undefined' }}
                                                         </button>
                                                     </p>
                                                 </div>
@@ -307,7 +307,7 @@
                                                 {{-- imageFile --}}
                                                 <div class="col-12 text-center position-relative">
                                                     <img class="client--card-logo"
-                                                        src="{{ asset('storage/menu/meals/' . $meal->imageFile) }}" />
+                                                        src="{{ asset('storage/menu/meals/' . ($meal->imageFile ?? $defaultPlate)) }}" />
                                                 </div>
 
 
@@ -323,7 +323,7 @@
                                                         <button
                                                             class="btn btn--raw-icon fs-14 text-warning d-flex align-items-center justify-content-center fw-bold no-events"
                                                             type="button">
-                                                            {{ $meal->diet->name }}
+                                                            {{ $meal?->diet?->name ?? 'Undefined' }}
                                                         </button>
                                                     </p>
                                                 </div>

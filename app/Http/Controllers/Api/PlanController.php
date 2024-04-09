@@ -1572,8 +1572,8 @@ class PlanController extends Controller
         // 1: get instance
         $bundleRangeType = PlanBundleRangeType::find($request->id);
 
-        $bundleRangeType->price = $request->price;
-        $bundleRangeType->calories = $request->calories;
+        $bundleRangeType->price = $request->price ?? 0;
+        $bundleRangeType->calories = $request->calories ?? 0;
 
         $bundleRangeType->sizeId = $request->sizeId ?? null;
 
@@ -1599,7 +1599,7 @@ class PlanController extends Controller
 
 
         // 2.1: getSubscriptionSchedules
-        $subscriptionSchedules = CustomerSubscriptionSchedule::where('scheduleDate', '>=', date('Y-m-d', strtotime('+4 hours')))->get()?->pluck('id')?->toArray() ?? [];
+        $subscriptionSchedules = CustomerSubscriptionSchedule::where('scheduleDate', '>', date('Y-m-d', strtotime('+4 hours')))->get()?->pluck('id')?->toArray() ?? [];
 
 
 

@@ -80,7 +80,7 @@
 
                         {{-- rangesTab --}}
                         <div class="tab-pane fade show @if ($bundles->first()->id == $bundle->id) active @endif no--card"
-                            role="tabpanel" id="tab-bundles-{{ $bundle->id }}">
+                            role="tabpanel" id="tab-bundles-{{ $bundle->id }}" key='tab-bundles-{{ $bundle->id }}'>
                             <div>
 
 
@@ -128,7 +128,8 @@
 
 
                                     <div class="tab-pane fade show @if ($bundle->ranges->first()->id == $bundleRange->id) active @endif no--card"
-                                        role="tabpanel" id="tab-bundles-{{ $bundle->id }}-{{ $bundleRange->id }}">
+                                        role="tabpanel" id="tab-bundles-{{ $bundle->id }}-{{ $bundleRange->id }}"
+                                        key='tab-bundles-{{ $bundle->id }}-{{ $bundleRange->id }}'>
                                         <div class="row row pt-2 align-items-center mb-4">
 
 
@@ -136,7 +137,7 @@
 
                                             {{-- :: toggleActive - overview --}}
                                             <livewire:dashboard.menu.plans.manage.range-sizes.components.range-sizes-overview
-                                                key='{{ $bundleRange->id }}' :$bundleRange />
+                                                key='bundle-toggle-{{ $bundleRange->id }}' :$bundleRange />
 
 
 
@@ -157,7 +158,7 @@
 
                                             {{-- :: singleRangeType --}}
                                             <livewire:dashboard.menu.plans.manage.range-sizes.components.range-sizes-view
-                                                key='{{ $bundleRangeType->id }}' :$bundleRangeType />
+                                                key='bundle-types-{{ $bundleRangeType->id }}' :$bundleRangeType />
 
 
                                             @endforeach

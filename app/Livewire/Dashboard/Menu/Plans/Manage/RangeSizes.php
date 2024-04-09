@@ -60,6 +60,7 @@ class RangeSizes extends Component
 
 
 
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 

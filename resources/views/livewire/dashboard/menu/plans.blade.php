@@ -53,7 +53,7 @@
 
                     {{-- 1: standard --}}
                     <button class="btn active btn--switch-view fw-bold" data-view="standard" data-target="plans-column"
-                        data-instance="1" type="button">
+                        data-instance="1" type="button" disabled>
                         S</button>
 
 

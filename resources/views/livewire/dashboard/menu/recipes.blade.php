@@ -38,8 +38,8 @@
 
                 {{-- viewType --}}
                 <div class="btn-group btn--swtich-group me-3" role="group" style="margin-bottom: 10px">
-                    <button class="btn active btn--switch-view fw-bold" data-view="standard" data-target="plans-column"
-                        data-instance="1" type="button">
+                    <button class="btn active btn--switch-view fw-bold" disabled data-view="standard"
+                        data-target="plans-column" data-instance="1" type="button">
                         S</button>
                     <button class="btn btn--switch-view fw-bold" disabled data-view="master" data-target="plans-column"
                         data-instance="1" type="button">
@@ -110,7 +110,7 @@
                                     {{-- mealType --}}
                                     <p class="text-center mb-2">
                                         @foreach ($meal->types as $type)
-                                        <span class="fs-6 text-warning scale--3 recipe--card-tag sm">{{
+                                        <span class="fs-13 text-warning scale--3 recipe--card-tag ">{{
                                             $type->mealType->shortName }}</span>
                                         @endforeach
                                     </p>
@@ -280,7 +280,7 @@
 
                                         {{-- 3: print to excel --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             type="button" title="Print Recipe">
                                             <svg class="bi bi-printer fs-5" xmlns="http://www.w3.org/2000/svg"
@@ -297,7 +297,7 @@
 
                                         {{-- 4: clone --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             type="button" title="Clone Recipe">
                                             <svg class="bi bi-front fs-5" xmlns="http://www.w3.org/2000/svg" width="1em"

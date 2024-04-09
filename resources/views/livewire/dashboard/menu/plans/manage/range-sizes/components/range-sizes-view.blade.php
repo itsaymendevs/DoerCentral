@@ -21,8 +21,8 @@
 
 
             <div class="select--single-wrapper mb-3" wire:loading.class='no-events' wire:ignore>
-                <select class="form-select form--select" data-instance='instance.sizeId' required
-                    data-placeholder='Size' value='{{ $instance->sizeId }}'>
+                <select class="form-select form--select form--select-{{ $instance?->id }}"
+                    data-instance='instance.sizeId' required data-placeholder='Size' value='{{ $instance?->sizeId }}'>
                     <option value=""></option>
 
                     @foreach ($sizes as $size)
@@ -91,22 +91,23 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select").on("change", function(event) {
+        // :: getId
+        id = @json($instance->id);
 
 
-
-         // 1.1: getValue - instance
-         selectValue = $(this).select2('val');
-         instance = $(this).attr('data-instance');
+        $(`.form--select-${id}`).on("change", function(event) {
 
 
-         @this.set(instance, selectValue);
-         @this.updateSize();
+            // 1.1: getValue - instance
+            selectValue = $(this).select2('val');
+            instance = $(this).attr('data-instance');
 
+
+            @this.set(instance, selectValue);
+            @this.updateSize();
 
       }); //end function
     </script>
-
 
 
 

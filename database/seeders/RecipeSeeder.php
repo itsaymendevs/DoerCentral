@@ -9,6 +9,7 @@ use App\Models\MealIngredient;
 use App\Models\MealPart;
 use App\Models\MealServing;
 use App\Models\MealSize;
+use App\Models\MealType;
 use App\Models\Size;
 use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -255,11 +256,24 @@ class RecipeSeeder extends Seeder
                             if ($mealsExtra[$y]['id'] == $recipeTypes[$p]['mealId']) {
 
 
+
+                                // 3.7.1: getMealType
+                                $mealType = null;
+
+
+                                $recipeTypes[$p]['mealTypeId'] == 1 ? $mealType = MealType::where('name', 'Breakfast')->first() : null;
+                                $recipeTypes[$p]['mealTypeId'] == 2 ? $mealType = MealType::where('name', 'Lunch')->first() : null;
+                                $recipeTypes[$p]['mealTypeId'] == 3 ? $mealType = MealType::where('name', 'Dinner')->first() : null;
+
+
+
+
+
                                 // 1.3: createType
                                 MealAvailableType::create([
 
                                     'mealId' => $meal->id,
-                                    'mealTypeId' => $recipeTypes[$p]['mealTypeId'],
+                                    'mealTypeId' => $mealType->id,
 
                                 ]);
 

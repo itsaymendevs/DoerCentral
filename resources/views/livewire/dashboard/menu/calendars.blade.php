@@ -227,9 +227,9 @@
 
 
 
-                                        {{-- 4: clone --}}
+                                        {{-- 4: clone - resetToScheme-1 --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-1 fs-12 px-2 mx-2 scale--self-05 h-32"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32 disabled"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             type="button" title="Clone">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"

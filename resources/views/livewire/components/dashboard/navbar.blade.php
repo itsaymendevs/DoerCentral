@@ -74,10 +74,6 @@
 
 
 
-                    {{-- delivery --}}
-                    {{-- <a class="btn navbar--menu-button
-                    @if (Request::is('dashboard/delivery', 'dashboard/delivery/*')) active @endif"
-                        href="{{ route('dashboard.delivery') }}" wire:navigate>Delivery</a> --}}
 
 
 
@@ -117,8 +113,21 @@
 
 
 
+
+
+                    {{-- delivery --}}
+                    <a class="btn navbar--menu-button
+                    @if (Request::is('dashboard/delivery', 'dashboard/delivery/*')) active @endif"
+                        href="{{ route('dashboard.delivery') }}" wire:navigate>Delivery</a>
+
+
+
+
+
+
+
                     {{-- inventory --}}
-                    <a class="btn  navbar--menu-button d-none
+                    <a class="btn  navbar--menu-button @if ($versionPermission->isProcessing) d-none @endif
                     @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
                         href="{{ route('dashboard.inventory') }}">Inventory</a>
 
@@ -126,9 +135,12 @@
 
 
 
+
+
                     {{-- sales & marketing --}}
                     <div class="btn-group navbar--split">
-                        <button class="btn navbar--menu-button disabled
+                        <button class="btn navbar--menu-button
+                        @if ($versionPermission->isProcessing) disabled @endif
                             @if (Request::is('dashboard/sales', 'dashboard/sales/*')) active @endif" type="button">
                             Sales &amp; Marketing</button>
 
@@ -154,7 +166,8 @@
 
 
                     {{-- extra --}}
-                    <button class="btn navbar--menu-button d-none" type="button">Extra</button>
+                    <button class="btn navbar--menu-button
+                    @if ($versionPermission->isProcessing) d-none @endif" type="button">Extra</button>
 
 
 

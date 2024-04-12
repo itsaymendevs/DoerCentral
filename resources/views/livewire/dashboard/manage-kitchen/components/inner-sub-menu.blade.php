@@ -11,17 +11,27 @@
 
 
 
+
         {{-- packing --}}
-        {{-- <a wire:navigate class="btn fs-13
-        @if (Request::is('dashboard/kitchen/today/packing', 'dashboard/kitchen/today/packing/*')) active @endif"
-            role="button" href="{{ route('dashboard.kitchenTodayPacking') }}">Packing</a> --}}
+        @if (!$versionPermission->isProcessing)
+        <a wire:navigate
+            class="btn fs-13 @if (Request::is('dashboard/kitchen/today/packing', 'dashboard/kitchen/today/packing/*')) active @endif"
+            role="button" href="{{ route('dashboard.kitchenTodayPacking') }}">Packing</a>
+        @endif
+
+
+
 
 
 
         {{-- delivery --}}
-        {{-- <a wire:navigate class="btn fs-13
-        @if (Request::is('dashboard/kitchen/today/delivery', 'dashboard/kitchen/today/delivery/*')) active @endif"
-            role="button" href="{{ route('dashboard.kitchenTodayDelivery') }}">Delivery</a> --}}
+        @if (!$versionPermission->isProcessing)
+        <a wire:navigate
+            class="btn fs-13 @if (Request::is('dashboard/kitchen/today/delivery', 'dashboard/kitchen/today/delivery/*')) active @endif"
+            role="button" href="{{ route('dashboard.kitchenTodayDelivery') }}">Delivery</a>
+        @endif
+
+
 
 
     </div>

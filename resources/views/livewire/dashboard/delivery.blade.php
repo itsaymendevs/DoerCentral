@@ -26,12 +26,14 @@
 
                         {{-- zones --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3" role="tab">Zones</a>
+                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
+                                data-bs-toggle="tab" href="#tab-3" role="tab">Zones</a>
                         </li>
 
                         {{-- drivers --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-4" role="tab">Drivers</a>
+                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
+                                data-bs-toggle="tab" href="#tab-4" role="tab">Drivers</a>
                         </li>
                     </ul>
 

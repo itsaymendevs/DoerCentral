@@ -549,6 +549,15 @@
 
 
                 {{-- wallet --}}
+
+
+
+                {{-- :: hasWallet --}}
+                @if ($versionPermission->hasWallet)
+
+
+
+
                 <div class="mt-1">
                     <hr class="w-75 mx-auto mb-4" />
                     <h6 class="fw-normal d-flex align-items-center justify-content-center mb-2">
@@ -570,6 +579,15 @@
                         Deposit</button>
 
                 </div>
+
+
+
+                @endif
+                {{-- end if - hasWallet --}}
+
+
+
+
 
             </div>
             {{-- end midCol --}}

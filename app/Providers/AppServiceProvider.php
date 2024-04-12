@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\VersionPermission;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -51,6 +52,25 @@ class AppServiceProvider extends ServiceProvider
         // 1.3: pauseDate - unPauseDate
         View::share('globalPauseDate', $this->getPauseDate());
         View::share('globalUnPauseDate', $this->getUnPauseDate());
+
+
+
+
+
+        // ------------------------------------------------
+        // ------------------------------------------------
+
+
+
+
+
+
+
+        // :: versionPermission
+        $versionPermission = VersionPermission::first();
+
+        View::share('versionPermission', $versionPermission);
+
 
 
 

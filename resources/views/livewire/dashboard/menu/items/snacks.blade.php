@@ -141,6 +141,16 @@
 
 
 
+                                {{-- :: masterView --}}
+                                @if ($versionPermission->hasMasterView)
+
+
+
+
+
+
+
+
                                 {{-- sizes --}}
                                 <div class="col-12">
                                     <div class="tabs--wrap">
@@ -220,6 +230,11 @@
 
 
 
+                                @endif
+                                {{-- end if - masterView --}}
+
+
+
 
                                 {{-- -------------------------------------- --}}
                                 {{-- -------------------------------------- --}}
@@ -249,6 +264,11 @@
 
 
                                         {{-- 2: ingredients tooltip --}}
+
+                                        {{-- :: masterView --}}
+                                        @if ($versionPermission->hasMasterView)
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 "
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-html='true'
@@ -266,11 +286,19 @@
                                         </button>
 
 
+                                        @endif
+                                        {{-- end if - masterView --}}
+
+
+
+
+
+
 
 
                                         {{-- 3: print excel --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             type="button" title="Print Snack">
                                             <svg class="bi bi-printer fs-5" xmlns="http://www.w3.org/2000/svg"
@@ -286,7 +314,7 @@
 
                                         {{-- 4: preview --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             type="button" title="Preview">
                                             <svg class="bi bi-eye fs-5" xmlns="http://www.w3.org/2000/svg" width="1em"

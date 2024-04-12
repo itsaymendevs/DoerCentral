@@ -175,6 +175,7 @@
 
 
                                         {{-- minus --}}
+
                                         <button class="btn btn--scheme px-2 range--button minus" type="button"
                                             data-type="minus" data-target="{{ $mealType->id }}-range-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
@@ -186,6 +187,8 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
 
 
 

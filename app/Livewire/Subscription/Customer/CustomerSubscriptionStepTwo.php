@@ -5,6 +5,7 @@ namespace App\Livewire\Subscription\Customer;
 use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Models\Plan;
 use App\Models\PlanBundle;
+use App\Models\PlanBundleDay;
 use App\Models\Type;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
@@ -121,7 +122,36 @@ class CustomerSubscriptionStepTwo extends Component
         $this->instance->totalBundleRangeCalories = $this->plan->ranges->where('id', $this->instance->bundleRangeId)->first()->caloriesRange;
 
 
-        $this->instance->totalBundleRangePrice = (intval($this->instance->planDays) ?? 0) * $this->instance->bundleRangePricePerDay;
+
+
+
+
+
+
+        // -------------------------
+        // -------------------------
+
+
+
+
+
+        // 1.3: getDiscountRaw
+        $discount = PlanBundleDay::where('planBundleId', $this->instance->planBundleId)
+            ->where('days', $this->instance?->planDays ?? 0)?->first()?->discount ?? 0;
+
+
+
+        // 1.4: calculateDiscount
+        $discountPrice = ((intval($this->instance->planDays) ?? 0) * $this->instance->bundleRangePricePerDay) * ($discount / 100);
+
+
+
+
+
+        // 1.5: totalPrice (-Discount)
+        $this->instance->totalBundleRangePrice = ((intval($this->instance->planDays) ?? 0) * $this->instance->bundleRangePricePerDay) - $discountPrice;
+
+
 
 
 
@@ -129,6 +159,9 @@ class CustomerSubscriptionStepTwo extends Component
 
         // ---------------------------
         // ---------------------------
+
+
+
 
 
 
@@ -187,13 +220,41 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
+
+
+
     public function updateOverview()
     {
 
 
 
-        // 1: get totalPrice
-        $this->instance->totalBundleRangePrice = (intval($this->instance->planDays) ?? 0) * $this->instance->bundleRangePricePerDay;
+        // 1: getDiscountRaw
+        $discount = PlanBundleDay::where('planBundleId', $this->instance->planBundleId)
+            ->where('days', $this->instance?->planDays ?? 0)?->first()?->discount ?? 0;
+
+
+
+        // 1.2: calculateDiscount
+        $discountPrice = ((intval($this->instance->planDays) ?? 0) * $this->instance->bundleRangePricePerDay) * ($discount / 100);
+
+
+
+
+
+
+        // ---------------------------
+        // ---------------------------
+
+
+
+
+
+
+
+        // 1.3: totalPrice (-Discount)
+        $this->instance->totalBundleRangePrice = ((intval($this->instance->planDays) ?? 0) * $this->instance->bundleRangePricePerDay) - $discountPrice;
+
+
 
 
 

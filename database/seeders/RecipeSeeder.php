@@ -48,6 +48,9 @@ class RecipeSeeder extends Seeder
 
 
 
+
+
+
             // :: dependencies
             $type = Type::where('name', $generalType)->first();
 
@@ -100,6 +103,9 @@ class RecipeSeeder extends Seeder
 
 
                 // 2: create mealServing
+
+
+
                 $serving = new MealServing();
                 $serving->mealId = $meal->id;
 
@@ -123,6 +129,13 @@ class RecipeSeeder extends Seeder
                 // 3: create MealSizes
 
 
+                $servings = Storage::disk('public')->get("sources/recipes/{$generalType}Servings.json");
+                $servings = $servings ? json_decode($servings, true) : [];
+
+
+
+
+
                 // 3.1: getSize
                 $sizes = Size::whereIn('shortName', ['S', 'M', 'L'])->get();
 
@@ -142,11 +155,29 @@ class RecipeSeeder extends Seeder
 
 
 
-                    // 3.3: afterCookMacros
-                    $mealSize->afterCookCalories = $meals[$i]['afterCookCalories'] ?? 0;
-                    $mealSize->afterCookProteins = $meals[$i]['afterCookProteins'] ?? 0;
-                    $mealSize->afterCookCarbs = $meals[$i]['afterCookCarbs'] ?? 0;
-                    $mealSize->afterCookFats = $meals[$i]['afterCookFats'] ?? 0;
+
+
+
+                    // 3.3: loop - afterCookMacros
+                    for ($y = 0; $y < count($servings); $y++) {
+
+
+                        if ($meal->migrationId == $servings[$y]['mealId'] && $size->id == $servings[$y]['sizeId']) {
+
+                            $mealSize->afterCookCalories = $servings[$y]['afterCookCalories'] ?? 0;
+                            $mealSize->afterCookProteins = $servings[$y]['afterCookProteins'] ?? 0;
+                            $mealSize->afterCookCarbs = $servings[$y]['afterCookCarbs'] ?? 0;
+                            $mealSize->afterCookFats = $servings[$y]['afterCookFats'] ?? 0;
+
+                        } // end if
+
+                    } // end loop
+
+
+
+
+
+
 
 
                     $mealSize->save();

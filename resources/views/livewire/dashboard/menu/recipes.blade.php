@@ -52,7 +52,7 @@
 
                 {{-- counter --}}
                 <h3 class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
-                    data-bs-toggle="tooltip" data-bss-tooltip="" title="Number of Meals">
+                    data-bs-toggle="tooltip" data-bss-tooltip="" title="Number of Recipes">
                     {{ $meals->count() }}
                 </h3>
             </div>
@@ -109,7 +109,7 @@
 
                                     {{-- mealType --}}
                                     <p class="text-center mb-2">
-                                        @foreach ($meal->types as $type)
+                                        @foreach ($meal->types?->sortBy('mealTypeId') ?? [] as $type)
                                         <span class="fs-13 text-warning scale--3 recipe--card-tag ">{{
                                             $type->mealType->shortName }}</span>
                                         @endforeach
@@ -129,6 +129,15 @@
 
 
                                 {{-- sizes --}}
+
+
+                                {{-- :: masterView --}}
+                                @if ($versionPermission->hasMasterView)
+
+
+
+
+
                                 <div class="col-12">
                                     <div class="tabs--wrap">
 
@@ -165,6 +174,9 @@
 
                                         {{-- tabContent --}}
                                         <div class="tab-content">
+
+
+
 
 
                                             {{-- loop - sizesMacros --}}
@@ -214,6 +226,10 @@
                                             {{-- end loop --}}
 
 
+
+
+
+
                                         </div>
                                         {{-- end tabContent --}}
 
@@ -224,6 +240,12 @@
                                 {{-- endSizes --}}
 
 
+
+
+
+
+                                @endif
+                                {{-- end if - masterView --}}
 
 
 
@@ -258,6 +280,12 @@
 
 
                                         {{-- 2: ingredients - tooltip --}}
+
+                                        {{-- :: masterView --}}
+                                        @if ($versionPermission->hasMasterView)
+
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
@@ -275,12 +303,18 @@
                                         </button>
 
 
+                                        @endif
+                                        {{-- end if - masterView --}}
+
+
+
+
 
 
 
                                         {{-- 3: print to excel --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 "
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             type="button" title="Print Recipe">
                                             <svg class="bi bi-printer fs-5" xmlns="http://www.w3.org/2000/svg"
@@ -297,7 +331,7 @@
 
                                         {{-- 4: clone --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 "
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             type="button" title="Clone Recipe">
                                             <svg class="bi bi-front fs-5" xmlns="http://www.w3.org/2000/svg" width="1em"

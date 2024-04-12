@@ -53,11 +53,14 @@
                                     {{-- loop - mealTypesCounter by Type --}}
                                     @foreach ($types as $type)
 
+
+
                                     <h4 data-bs-toggle="tooltip" data-bss-tooltip=""
                                         class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1 me-1"
                                         title="{{ $type->name }}">
-                                        {{ $requiredTypes[$type->id] }}
+                                        {{ $requiredTypes[$type->id] ?? 0 }}
                                     </h4>
+
 
 
                                     @endforeach

@@ -30,11 +30,16 @@ class PlansEdit extends Component
     public function remount($id)
     {
 
+
+
         // 1: clone instance
         $plan = Plan::find($id);
 
         foreach ($plan->toArray() as $key => $value)
             $this->instance->{$key} = $value;
+
+
+        $this->instance->imageFileName = $this->instance->imageFile;
 
 
 
@@ -60,8 +65,38 @@ class PlansEdit extends Component
 
 
 
+
+
+
+
     public function update()
     {
+
+
+        // :: validate
+        $this->instance->validate();
+
+
+
+
+
+
+        // 1: uploadFile
+        if ($this->instance->imageFile != $this->instance->imageFileName)
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans');
+
+
+
+
+
+
+
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/menu/plans/update', $this->instance);
+
+
+
+
 
 
 
@@ -76,7 +111,7 @@ class PlansEdit extends Component
 
 
         // :: alert
-        $this->makeAlert('success', 'Plan has been updated');
+        $this->makeAlert('success', $response->message);
 
 
 

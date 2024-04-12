@@ -180,7 +180,8 @@
 
 
                                             {{-- checkRange --}}
-                                            @if ($bundleRange->range->isForWebsite == true)
+                                            @if ($bundleRange->isForWebsite == true && $bundleRange->range->isForWebsite
+                                            == true)
 
 
                                             <li class="nav-item" role="presentation" wire:ignore>

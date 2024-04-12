@@ -16,15 +16,26 @@
 
 
             {{-- labels --}}
-            {{-- <a wire:navigate href="{{ route('dashboard.kitchenLabels') }}" class="btn
+            @if (!$versionPermission->isProcessing)
+            <a wire:navigate href="{{ route('dashboard.kitchenLabels') }}" class="btn
                 @if (Request::is('dashboard/kitchen/labels', 'dashboard/kitchen/labels/*')) active @endif"
-                role="button">Labels</a> --}}
+                role="button">Labels</a>
+            @endif
+
+
+
+
 
 
             {{-- containers --}}
-            {{-- <a wire:navigate class="btn
+            @if (!$versionPermission->isProcessing)
+            <a wire:navigate class="btn
                 @if (Request::is('dashboard/kitchen/containers')) active @endif" role="button"
-                href="{{ route('dashboard.kitchenContainers') }}">Containers</a> --}}
+                href="{{ route('dashboard.kitchenContainers') }}">Containers</a>
+            @endif
+
+
+
 
 
 
@@ -38,14 +49,18 @@
 
 
             {{-- label --}}
-            {{-- <a class="btn" role="button" href="javascript:void(0);">Today Labels</a> --}}
+            @if (!$versionPermission->isProcessing)
+            <a class="btn" role="button" href="javascript:void(0);">Today Labels</a>
+            @endif
+
 
 
 
 
             {{-- settings --}}
-            {{-- <a class="btn" role="button" href="javascript:void(0);">Setting</a> --}}
-
+            @if (!$versionPermission->isProcessing)
+            <a class="btn" role="button" href="javascript:void(0);">Setting</a>
+            @endif
 
         </div>
     </div>

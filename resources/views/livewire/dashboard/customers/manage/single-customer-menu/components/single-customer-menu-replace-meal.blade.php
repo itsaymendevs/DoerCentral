@@ -181,6 +181,8 @@
 
 
 
+
+
                         {{-- paginaions --}}
                         <diiv class="col-12">
                             {{ $meals?->links() }}

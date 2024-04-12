@@ -86,6 +86,16 @@
 
 
 
+
+                    {{-- inventory --}}
+                    <a class="btn navbar--menu-button
+                    @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
+                        href="{{ route('dashboard.inventory') }}">Inventory</a>
+
+
+
+
+
                     {{-- customers --}}
                     <a class="btn  navbar--menu-button
                     @if (Request::is('dashboard/customers', 'dashboard/customers/*', 'dashboard/customers-SOA')) active @endif"
@@ -121,15 +131,6 @@
                         href="{{ route('dashboard.delivery') }}" wire:navigate>Delivery</a>
 
 
-
-
-
-
-
-                    {{-- inventory --}}
-                    <a class="btn  navbar--menu-button @if ($versionPermission->isProcessing) d-none @endif
-                    @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
-                        href="{{ route('dashboard.inventory') }}">Inventory</a>
 
 
 

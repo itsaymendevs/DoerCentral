@@ -3,14 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
+use App\Models\CustomerSubscriptionPause;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\CustomerSubscriptionScheduleReplacement;
+use App\Models\CustomerWallet;
+use App\Models\CustomerWalletDeposit;
+use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
 class CustomerMenuController extends Controller
 {
+
+    use HelperTrait;
+
 
 
 
@@ -232,21 +240,173 @@ class CustomerMenuController extends Controller
 
 
 
+        // :: getSubscription
+        $subscription = CustomerSubscription::find($request->customerSubscriptionId);
 
-        // 1: update schedule - delivery
-        CustomerSubscriptionSchedule::where('customerSubscriptionId', $request->customerSubscriptionId)
-            ->where('scheduleDate', $request->scheduleDate)
+
+
+
+
+
+        // :: create instance
+        $pause = new CustomerSubscriptionPause();
+
+
+
+
+        // 1: general
+        $pause->type = 'Refund Wallet';
+        $pause->fromDate = $request->scheduleDate;
+        $pause->untilDate = $request->scheduleDate;
+        $pause->remarks = null;
+        $pause->pauseToken = $this->makeGroupToken();
+
+
+
+
+
+
+
+        // -------------------------------
+        // -------------------------------
+
+
+
+
+
+
+        // 1.2: pauseDays - changeDeliveryStatus - pricePerDay - totalPrice
+
+
+
+
+
+        // 1.2.1: pauseDays
+        $pause->pauseDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+            ->where('deliveryDate', '>=', $pause->fromDate)
+            ->where('deliveryDate', '<=', $pause->untilDate)
+            ->where('status', 'Pending')
+            ->count();
+
+
+
+
+
+        // 1.2.2: changeDeliveryStatus
+        CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+            ->where('deliveryDate', '>=', $pause->fromDate)
+            ->where('deliveryDate', '<=', $pause->untilDate)
+            ->where('status', 'Pending')
             ->update([
-                'status' => 'Skipped',
+                "status" => "Skipped",
+                "pauseToken" => $pause->pauseToken
             ]);
 
 
 
-        CustomerSubscriptionDelivery::where('customerSubscriptionId', $request->customerSubscriptionId)
-            ->where('deliveryDate', $request->scheduleDate)
+        // 1.2.3: changeScheduleStatus
+        CustomerSubscriptionSchedule::where('customerSubscriptionId', $subscription->id)
+            ->where('scheduleDate', '>=', $pause->fromDate)
+            ->where('scheduleDate', '<=', $pause->untilDate)
+            ->where('status', 'Pending')
             ->update([
-                'status' => 'Skipped',
+                "status" => "Skipped",
+                "pauseToken" => $pause->pauseToken
             ]);
+
+
+
+
+
+
+
+
+
+        // 1.2.4: pricePerDay - totalPrice
+        $pause->pricePerDay = $subscription->planPrice / $subscription->planDays;
+        $pause->totalPrice = $pause->pricePerDay * $pause->pauseDays;
+
+
+
+
+
+
+
+        // 1.3: customer - subscription
+        $pause->customerId = $subscription->customerId;
+        $pause->customerSubscriptionId = $subscription->id;
+
+
+
+        $pause->save();
+
+
+
+
+
+
+
+        // ------------------------------------
+        // ------------------------------------
+
+
+
+
+
+
+        // 2: checkPauseType
+
+
+
+
+        // 2.1: refundWallet
+        if ($pause->type == 'Refund Wallet') {
+
+
+
+
+
+            // 2.1.2: createDeposit
+            $walletDeposit = new CustomerWalletDeposit();
+
+
+            // :: general
+            $walletDeposit->depositDate = $this->getCurrentDate();
+            $walletDeposit->remarks = 'Skip Refund';
+            $walletDeposit->amount = $pause->totalPrice;
+
+
+
+            // :: pause -  customer - wallet
+            $walletDeposit->walletId = $subscription->customer->wallet->id;
+            $walletDeposit->customerId = $subscription->customer->id;
+            $walletDeposit->subscriptionPauseId = $pause->id;
+
+
+            $walletDeposit->save();
+
+
+
+
+            // ---------------------------
+            // ---------------------------
+
+
+
+
+
+            // 2.1.2: updateBalance
+            $wallet = CustomerWallet::find($subscription->customer->wallet->id);
+
+
+            $wallet->balance += $pause->totalPrice;
+            $wallet->save();
+
+
+
+
+        } // end if
+
 
 
 
@@ -260,6 +420,8 @@ class CustomerMenuController extends Controller
 
 
     } // end function
+
+
 
 
 

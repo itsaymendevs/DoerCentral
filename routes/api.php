@@ -17,6 +17,9 @@ use App\Http\Controllers\Api\PromoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -358,9 +361,9 @@ Route::post('/dashboard/inventory/configurations/groups/remove', [InventoryContr
 Route::post('/dashboard/inventory/configurations/excludes/store', [InventoryController::class, 'storeExclude']);
 Route::post('/dashboard/inventory/configurations/excludes/update', [InventoryController::class, 'updateExclude']);
 
-
 Route::post('/dashboard/inventory/configurations/excludes/remove', [InventoryController::class, 'removeExclude']);
 
+Route::post('/dashboard/inventory/configurations/excludes/ingredients/update', [InventoryController::class, 'updateExcludeIngredients']);
 
 
 
@@ -383,10 +386,10 @@ Route::post('/dashboard/inventory/configurations/excludes/remove', [InventoryCon
 Route::post('/dashboard/inventory/configurations/allergies/store', [InventoryController::class, 'storeAllergy']);
 Route::post('/dashboard/inventory/configurations/allergies/update', [InventoryController::class, 'updateAllergy']);
 
-
 Route::post('/dashboard/inventory/configurations/allergies/remove', [InventoryController::class, 'removeAllergy']);
 
 
+Route::post('/dashboard/inventory/configurations/allergies/ingredients/update', [InventoryController::class, 'updateAllergyIngredients']);
 
 
 

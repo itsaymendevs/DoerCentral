@@ -42,7 +42,15 @@ class InventoryViewExclude extends Component
 
 
 
-    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------
 
 
 
@@ -70,6 +78,36 @@ class InventoryViewExclude extends Component
         // :: alert
         $this->makeAlert('success', $response?->message);
 
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function editIngredients($id)
+    {
+
+
+        // 1: dispatchEvent
+        $this->dispatch('editExcludeIngredients', $id);
 
 
 

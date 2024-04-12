@@ -22,19 +22,22 @@
 
                         {{-- supplier --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-2" role="tab">Suppliers</a>
+                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
+                                data-bs-toggle="tab" href="#tab-2" role="tab">Suppliers</a>
                         </li>
 
 
                         {{-- purchases --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3" role="tab">Purchases</a>
+                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
+                                data-bs-toggle="tab" href="#tab-3" role="tab">Purchases</a>
                         </li>
 
 
                         {{-- stock --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-4" role="tab">Stock</a>
+                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
+                                data-bs-toggle="tab" href="#tab-4" role="tab">Stock</a>
                         </li>
 
 
@@ -205,6 +208,7 @@
     @section('modals')
 
 
+
     {{-- 1: createIngredient --}}
     <livewire:dashboard.inventory.components.inventory-create-ingredient />
 
@@ -213,7 +217,11 @@
 
 
 
+
+
     {{-- --------------------------- --}}
+
+
 
 
     {{-- 2: createSupplier --}}
@@ -226,7 +234,12 @@
     <livewire:dashboard.inventory.components.inventory-manage-supplier-ingredients />
 
 
+
+
+
     {{-- --------------------------- --}}
+
+
 
 
     {{-- 2: createPurchase --}}
@@ -237,6 +250,27 @@
 
     {{-- 2.2: viewPurchaseIngredients --}}
     <livewire:dashboard.inventory.components.inventory-manage-purchase-ingredients />
+
+
+
+
+
+
+    {{-- --------------------------- --}}
+
+
+
+
+
+    {{-- 3: editAllergy - Ingredients --}}
+    <livewire:dashboard.inventory.components.inventory-edit-allergy-ingredients />
+
+    {{-- 3.1: editExclude - Ingredients --}}
+    <livewire:dashboard.inventory.components.inventory-edit-exclude-ingredients />
+
+
+
+
 
     @endsection
 

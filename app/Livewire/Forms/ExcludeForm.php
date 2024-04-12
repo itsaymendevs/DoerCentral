@@ -8,11 +8,18 @@ use Livewire\Form;
 class ExcludeForm extends Form
 {
 
-   // :: variables
-   #[Validate('required')]
-   public $name, $desc;
+    // :: variables
+    #[Validate('required')]
+    public $name, $desc;
 
-   public $id;
+    public $id;
+
+
+
+    // :: helpers
+    public $ingredients = [];
+
+
 
 
 } // end form

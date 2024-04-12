@@ -15,4 +15,9 @@ class AllergyForm extends Form
     public $id;
 
 
+
+    // :: helpers
+    public $ingredients = [];
+
+
 } // end form

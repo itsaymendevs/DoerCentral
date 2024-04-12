@@ -469,7 +469,7 @@
 
 
                                     <div class="kitchen--size-box mb-2">
-                                        <h1 class="fs-13 my-0">{{ $scheduleMealsBySize?->first()?->size->name }}</h1>
+                                        <h1 class="fs-13 my-0">{{ $scheduleMealsBySize?->first()?->size?->name }}</h1>
                                         <span class="d-block">
                                             <small class="fw-semibold text-gold fs-14">
                                                 {{ $scheduleMealsBySize?->count() }}
@@ -523,7 +523,7 @@
 
                                     {{-- quantityPerSize --}}
                                     <div class="kitchen--size-box mb-2">
-                                        <h1 class="fs-13 my-0">{{ $scheduleMealsBySize?->first()?->size->name }}</h1>
+                                        <h1 class="fs-13 my-0">{{ $scheduleMealsBySize?->first()?->size?->name }}</h1>
                                         <span class="d-block">
                                             <small class="fw-semibold text-gold fs-14">{{ $scheduleMealsBySize?->count()
                                                 }}</small>
@@ -690,8 +690,43 @@
 
 
 
-                                {{-- empty --}}
-                                <td class="text-start"></td>
+
+
+
+
+
+
+
+                                {{-- --------------------------- --}}
+                                {{-- --------------------------- --}}
+
+
+
+
+
+
+
+
+                                {{-- actions --}}
+                                <td class="text-start">
+
+
+                                    <img class='w-100 of-contain' style="height: 130px"
+                                        src="{{ asset('storage/menu/meals/' . ($scheduleMealsByMeal->first()?->meal?->imageFile ?? $defaultPlate)) }}">
+
+
+
+
+
+                                    {{-- cookButton --}}
+                                    <div class="d-block text-center mt-2">
+                                        <button
+                                            class="btn btn--scheme btn--scheme-2 align-items-center d-inline-flex px-3 py-1 fs-12 justify-content-center fw-semibold"
+                                            type="button" style="border:1px dashed var(--color-theme-secondary)">
+                                            Mark As Cooked?
+                                        </button>
+                                    </div>
+                                </td>
 
 
 

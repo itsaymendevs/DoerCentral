@@ -93,6 +93,32 @@ class InventoryViewAllergy extends Component
 
 
 
+    public function editIngredients($id)
+    {
+
+
+        // 1: dispatchEvent
+        $this->dispatch('editAllergyIngredients', $id);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+
+
     public function remove($id)
     {
 

@@ -394,6 +394,73 @@ class InventoryController extends Controller
 
 
 
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateExcludeIngredients(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $exclude = Exclude::find($request->id);
+
+
+
+
+        // 1.2: resetIngredients - update
+        Ingredient::where('excludeId', $exclude->id)->update([
+            'excludeId' => null,
+        ]);
+
+
+        Ingredient::whereIn('id', $request->ingredients ?? [])->update([
+            'excludeId' => $exclude->id,
+        ]);
+
+
+
+
+
+
+        return response()->json(['message' => 'Exclude has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
     // --------------------------------------------------------------------------------------------
 
 
@@ -485,6 +552,10 @@ class InventoryController extends Controller
 
 
 
+
+
+
+
     // --------------------------------------------------------------------------------------------
 
 
@@ -528,6 +599,70 @@ class InventoryController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateAllergyIngredients(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $allergy = Allergy::find($request->id);
+
+
+
+
+        // 1.2: resetIngredients - update
+        Ingredient::where('allergyId', $allergy->id)->update([
+            'allergyId' => null,
+        ]);
+
+
+        Ingredient::whereIn('id', $request->ingredients ?? [])->update([
+            'allergyId' => $allergy->id,
+        ]);
+
+
+
+
+
+
+        return response()->json(['message' => 'Allergy has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
 
 
 

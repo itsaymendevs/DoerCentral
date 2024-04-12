@@ -59,12 +59,19 @@
 
 
 
-            {{-- skip --}}
+            {{-- skip / unSkip --}}
             <div class="col-4">
                 <div class="text-center mb-4">
-                    <button class="btn btn--scheme btn--remove align-items-center d-inline-flex px-3 fs-12 scale--3
-                    @if ($skipStatus == 'Skipped') disabled @endif" type="button" wire:click='skipScheduleDay()'
-                        wire:loading.attr='disabled'>
+
+
+
+
+                    {{-- A: skip --}}
+                    @if ($skipStatus != 'Skipped')
+
+
+                    <button class="btn btn--scheme btn--remove align-items-center d-inline-flex px-3 fs-12 scale--3"
+                        type="button" wire:click='skipScheduleDay()' wire:loading.attr='disabled'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-skip-end fs-5 me-2">
                             <path
@@ -72,9 +79,37 @@
                             </path>
                         </svg>Skip {{ date('jS F', strtotime($scheduleDate)) }}
                     </button>
+
+
+
+
+
+                    {{-- B: unSKip --}}
+                    @else
+
+
+
+                    <button
+                        class="btn btn--scheme btn--scheme-1 align-items-center d-inline-flex px-3 fs-12 scale--3 fw-semibold"
+                        type="button" wire:click='unSkipScheduleDay()' wire:loading.attr='disabled'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                            viewBox="0 0 16 16" class="bi bi-skip-end fs-5 me-2">
+                            <path
+                                d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.612C4.713 3.31 4 3.655 4 4.308v7.384c0 .653.713.998 1.233.696L11.5 8.752V12a.5.5 0 0 0 1 0V4zM5 4.633 10.804 8 5 11.367V4.633z">
+                            </path>
+                        </svg>Unskip {{ date('jS F', strtotime($scheduleDate)) }}
+                    </button>
+
+
+
+
+
+                    @endif
+                    {{-- end if --}}
+
                 </div>
             </div>
-
+            {{-- endDiv --}}
 
 
 
@@ -257,6 +292,7 @@
                             id="tab-{{ $mealType->id }}" wire:ignore.self>
 
 
+
                             {{-- mainRow --}}
                             <div class="row align-items-center mt-cards">
 
@@ -360,6 +396,7 @@
 
 
 
+
                                                 {{-- Actions --}}
                                                 <div class="d-flex align-items-center justify-content-center mb-2 mt-1">
 
@@ -372,8 +409,6 @@
                                                         type="button" data-bs-toggle='modal'
                                                         data-bs-target='#meal-excludes' wire:click='viewExcludes({{ $subscriptionScheduleMeal->meal->id
                                                         }})'>Excludes</button>
-
-
 
 
 
@@ -557,6 +592,16 @@
 
 
 
+                                {{-- withoutDefault --}}
+                                @if ($calendarScheduleMeal->mealId !=
+                                $subscriptionScheduleMeals?->where('mealTypeId', $mealType->id)?->first()?->mealId)
+
+
+
+
+
+
+
 
                                 {{-- -------------------- --}}
                                 @php
@@ -579,13 +624,6 @@
 
 
 
-
-
-
-
-                                {{-- withoutDefault --}}
-                                @if ($calendarScheduleMeal->mealId !=
-                                $subscriptionScheduleMeals?->where('mealTypeId', $mealType->id)?->first()?->mealId)
 
 
                                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"

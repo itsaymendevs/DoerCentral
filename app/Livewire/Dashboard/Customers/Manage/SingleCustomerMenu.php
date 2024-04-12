@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Customers\Manage;
 
 use App\Models\Customer;
+use App\Models\CustomerSubscriptionPause;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleReplacement;
 use App\Models\MealType;
@@ -172,7 +173,80 @@ class SingleCustomerMenu extends Component
         // 1.3: updateSkipStatus - alert
         $this->skipStatus = 'Skipped';
 
-        $this->makeAlert('success', $response?->message);
+        $this->makeAlert('info', $response?->message);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function unSkipScheduleDay()
+    {
+
+
+
+
+        // :: getSubscriptionPause
+        $pause = CustomerSubscriptionPause::where('customerSubscriptionId', $this->subscription->id)
+            ->where('fromDate', '>=', $this->scheduleDate)
+            ->where('untilDate', '<=', $this->scheduleDate)
+            ->where('isCanceled', false)
+            ->first();
+
+
+
+
+
+
+        // 1: create instance
+        $instance = new stdClass();
+
+        $instance->id = $pause->id;
+        $instance->customerSubscriptionId = $this->subscription->id;
+
+
+
+
+
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/customers/subscription/un-pause', $instance);
+
+
+
+
+
+        // 1.3: resetSkipStatus - alert
+        $this->skipStatus = 'Pending';
+
+        $this->makeAlert('info', $response?->message);
+
+
+
+
 
 
 

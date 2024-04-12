@@ -65,9 +65,15 @@
             {{-- skip --}}
             <div class="col-12 col-sm-5 col-md-4">
                 <div class="text-center text-sm-end text-md-center mb-4">
-                    <button class="btn btn--scheme btn--remove align-items-center d-inline-flex px-2 px-sm-3 fs-12 scale--3
-                    @if ($skipStatus == 'Skipped') disabled @endif" type="button" wire:click='skipScheduleDay()'
-                        wire:loading.attr='disabled'>
+
+
+                    {{-- A: skip --}}
+                    @if ($skipStatus != 'Skipped')
+
+
+                    <button
+                        class="btn btn--scheme btn--remove align-items-center d-inline-flex px-2 px-sm-3 fs-12 scale--3"
+                        type="button" wire:click='skipScheduleDay()' wire:loading.attr='disabled'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-skip-end fs-5 me-2">
                             <path
@@ -75,6 +81,34 @@
                             </path>
                         </svg>Skip {{ date('jS F', strtotime($scheduleDate)) }}
                     </button>
+
+
+
+                    {{-- B: unSKip --}}
+                    @else
+
+
+
+                    <button
+                        class="btn btn--scheme btn--scheme-1 align-items-center d-inline-flex px-2 px-sm-3 fs-12 scale--3 fw-semibold"
+                        type="button" wire:click='unSkipScheduleDay()' wire:loading.attr='disabled'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                            viewBox="0 0 16 16" class="bi bi-skip-end fs-5 me-2">
+                            <path
+                                d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.612C4.713 3.31 4 3.655 4 4.308v7.384c0 .653.713.998 1.233.696L11.5 8.752V12a.5.5 0 0 0 1 0V4zM5 4.633 10.804 8 5 11.367V4.633z">
+                            </path>
+                        </svg>Unskip {{ date('jS F', strtotime($scheduleDate)) }}
+                    </button>
+
+
+
+
+
+                    @endif
+                    {{-- end if --}}
+
+
+
                 </div>
             </div>
 
@@ -280,6 +314,31 @@
 
 
 
+
+                                {{-- -------------------- --}}
+                                @php
+
+
+                                // :: check allergy - exclude
+                                $combine =
+                                $customer->checkMealCompatibility($subscriptionScheduleMeal->meal->id);
+
+
+                                $isNotAllergy = $combine?->allergies->count() == 0;
+                                $isNotExclude = $combine?->excludes->count() == 0;
+
+
+                                @endphp
+                                {{-- -------------------- --}}
+
+
+
+
+
+
+
+
+
                                 <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"
                                     key='schedule-meal-{{ $subscriptionScheduleMeal->id }}'>
                                     <div class="overview--card client-version scale--self-05 mb-floating">
@@ -289,7 +348,7 @@
                                             {{-- imageFile --}}
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
-                                                    src="{{ asset('storage/menu/meals/' . $subscriptionScheduleMeal->meal->imageFile) }}" />
+                                                    src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleMeal->meal->imageFile ?? $defaultPlate)) }}" />
                                             </div>
 
 
@@ -344,17 +403,11 @@
 
 
 
-                                                    {{-- 1: checkExclude / checkAllergy --}}
+                                                    {{-- 1: checkExclude / ch-eckAllergy --}}
                                                     <button class="btn  btn--scheme btn--remove fs-11 px-2 mx-1 py-1"
-                                                        @if($customer->checkMealCompatibility($subscriptionScheduleMeal->meal->id)->allergies->count()
-                                                        == 0
-                                                        &&
-                                                        $customer->checkMealCompatibility($subscriptionScheduleMeal->meal->id)->excludes->count()
-                                                        == 0)
-                                                        disabled @endif
+                                                        @if($isNotAllergy && $isNotExclude) disabled @endif
                                                         type="button" data-bs-toggle='modal'
-                                                        data-bs-target='#meal-excludes'
-                                                        wire:click='viewExcludes({{ $subscriptionScheduleMeal->meal->id
+                                                        data-bs-target='#meal-excludes' wire:click='viewExcludes({{ $subscriptionScheduleMeal->meal->id
                                                         }})'>Excludes</button>
 
 
@@ -541,6 +594,36 @@
                                 $subscriptionScheduleMeals?->where('mealTypeId', $mealType->id)?->first()?->mealId)
 
 
+
+
+
+
+
+
+                                {{-- -------------------- --}}
+                                @php
+
+
+                                // :: check allergy - exclude
+                                $combine =
+                                $customer->checkMealCompatibility($calendarScheduleMeal->meal->id);
+
+
+                                $isNotAllergy = $combine?->allergies->count() == 0;
+                                $isNotExclude = $combine?->excludes->count() == 0;
+
+
+                                @endphp
+                                {{-- -------------------- --}}
+
+
+
+
+
+
+
+
+
                                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"
                                     key='schedule-meal-{{ $calendarScheduleMeal->id }}'>
                                     <div class="overview--card client-version scale--self-05 mb-floating">
@@ -550,7 +633,7 @@
                                             {{-- imageFile --}}
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
-                                                    src="{{ asset('storage/menu/meals/' . $calendarScheduleMeal->meal->imageFile) }}" />
+                                                    src="{{ asset('storage/menu/meals/' . ($calendarScheduleMeal?->meal->imageFile ?? $defaultPlate)) }}" />
                                             </div>
 
 
@@ -607,15 +690,9 @@
 
                                                     {{-- 1: checkExclude / checkAllergy --}}
                                                     <button class="btn  btn--scheme btn--remove fs-11 px-2 mx-1 py-1"
-                                                        @if($customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->allergies->count()
-                                                        == 0
-                                                        &&
-                                                        $customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->excludes->count()
-                                                        == 0)
-                                                        disabled @endif
+                                                        @if($isNotAllergy && $isNotExclude) disabled @endif
                                                         type="button" data-bs-toggle='modal'
-                                                        data-bs-target='#meal-excludes'
-                                                        wire:click='viewExcludes({{ $calendarScheduleMeal->meal->id
+                                                        data-bs-target='#meal-excludes' wire:click='viewExcludes({{ $calendarScheduleMeal->meal->id
                                                         }})'>Excludes</button>
 
 
@@ -626,15 +703,9 @@
                                                     {{-- 1.1: replace --}}
                                                     <button
                                                         class="btn  btn--scheme btn-outline-warning fs-11 px-2 mx-1 py-1"
-                                                        @if($customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->allergies->count()
-                                                        == 0
-                                                        &&
-                                                        $customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->excludes->count()
-                                                        == 0)
-                                                        disabled @endif
+                                                        @if($isNotAllergy && $isNotExclude) disabled @endif
                                                         type="button" data-bs-toggle='modal'
-                                                        data-bs-target='#meal-replacement'
-                                                        wire:click='replaceMeal({{ $calendarScheduleMeal->id
+                                                        data-bs-target='#meal-replacement' wire:click='replaceMeal({{ $calendarScheduleMeal->id
                                                         }})'>Replace</button>
 
 
@@ -758,12 +829,10 @@
 
 
                                                     {{-- 1: disabled --}}
-                                                    <button
-                                                        class="btn btn--scheme btn--scheme-2 fs-12 mx-1 h-32 w-75
+                                                    <button class="btn btn--scheme btn--scheme-2 fs-12 mx-1 h-32 w-75
                                                         @if ($skipStatus == 'Skipped') disabled @endif
-                                                        @if ($customer->checkMealCompatibility($calendarScheduleMeal->meal->id)->allergies->count() > 0) disabled @endif"
-                                                        type="button" wire:loading.attr='disabled'
-                                                        wire:target='changeMeal'
+                                                        @if (!$isNotAllergy) disabled @endif" type="button"
+                                                        wire:loading.attr='disabled' wire:target='changeMeal'
                                                         wire:click='changeMeal({{ $calendarScheduleMeal->mealId }}, {{ $calendarScheduleMeal->mealTypeId }})'>
                                                         I Want This
                                                     </button>
@@ -838,6 +907,39 @@
 
 
 
+
+
+
+
+
+
+
+
+                                {{-- -------------------- --}}
+                                @php
+
+
+                                // :: check allergy - exclude
+                                $combine =
+                                $customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id);
+
+
+                                $isNotAllergy = $combine?->allergies->count() == 0;
+                                $isNotExclude = $combine?->excludes->count() == 0;
+
+
+
+                                @endphp
+                                {{-- -------------------- --}}
+
+
+
+
+
+
+
+
+
                                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"
                                     key='schedule-meal-{{ $subscriptionScheduleReplacement->id }}'>
                                     <div class="overview--card client-version scale--self-05 mb-floating">
@@ -847,7 +949,7 @@
                                             {{-- imageFile --}}
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
-                                                    src="{{ asset('storage/menu/meals/' . $subscriptionScheduleReplacement->replacement->imageFile) }}" />
+                                                    src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleReplacement->replacement->imageFile ?? $defaultPlate)) }}" />
                                             </div>
 
 
@@ -904,15 +1006,9 @@
 
                                                     {{-- 1: checkExclude / checkAllergy --}}
                                                     <button class="btn  btn--scheme btn--remove fs-11 px-2 mx-1 py-1"
-                                                        @if($customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->allergies->count()
-                                                        == 0
-                                                        &&
-                                                        $customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->excludes->count()
-                                                        == 0)
-                                                        disabled @endif
+                                                        @if($isNotAllergy && $isNotExclude) disabled @endif
                                                         type="button" data-bs-toggle='modal'
-                                                        data-bs-target='#meal-excludes'
-                                                        wire:click='viewExcludes({{
+                                                        data-bs-target='#meal-excludes' wire:click='viewExcludes({{
                                                         $subscriptionScheduleReplacement->replacement->id
                                                         }})'>Excludes</button>
 
@@ -924,15 +1020,9 @@
                                                     {{-- 1.1: replace --}}
                                                     <button
                                                         class="btn  btn--scheme btn-outline-warning fs-11 px-2 mx-1 py-1"
-                                                        @if($customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->allergies->count()
-                                                        == 0
-                                                        &&
-                                                        $customer->checkMealCompatibility($subscriptionScheduleReplacement->replacement->id)->excludes->count()
-                                                        == 0)
-                                                        disabled @endif
+                                                        @if($isNotAllergy && $isNotExclude) disabled @endif
                                                         type="button" data-bs-toggle='modal'
-                                                        data-bs-target='#meal-replacement'
-                                                        wire:click='replaceMealForReplacement({{
+                                                        data-bs-target='#meal-replacement' wire:click='replaceMealForReplacement({{
                                                         $subscriptionScheduleReplacement->id
                                                         }}, {{
                                                         $subscriptionScheduleReplacement->replacement

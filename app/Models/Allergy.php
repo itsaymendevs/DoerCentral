@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Allergy extends Model
 {
     use HasFactory;
-}
+
+
+
+    public function ingredients()
+    {
+
+        return $this->hasMany(Ingredient::class, 'allergyId');
+
+    } // end function
+
+
+} // end model

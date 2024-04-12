@@ -697,7 +697,7 @@ class CustomerController extends Controller
             ->where('deliveryDate', '>=', $this->getUnPauseDate())
             ->where('deliveryDate', '<=', $pause->untilDate)
             ->where('pauseToken', $pause->pauseToken)
-            ->where('status', 'Paused')
+            ->whereIn('status', ['Paused', 'Skipped'])
             ->count();
 
 
@@ -710,7 +710,7 @@ class CustomerController extends Controller
             ->where('deliveryDate', '>=', $this->getUnPauseDate())
             ->where('deliveryDate', '<=', $pause->untilDate)
             ->where('pauseToken', $pause->pauseToken)
-            ->where('status', 'Paused')
+            ->whereIn('status', ['Paused', 'Skipped'])
             ->update([
                 "status" => "Pending"
             ]);
@@ -723,7 +723,7 @@ class CustomerController extends Controller
             ->where('scheduleDate', '>=', $this->getUnPauseDate())
             ->where('scheduleDate', '<=', $pause->untilDate)
             ->where('pauseToken', $pause->pauseToken)
-            ->where('status', 'Paused')
+            ->whereIn('status', ['Paused', 'Skipped'])
             ->update([
                 "status" => "Pending"
             ]);

@@ -76,15 +76,19 @@ Route::get('/storage-link', function () {
 
 
 
-// ::LivewireServerDeployment in subRoute
-// Livewire::setUpdateRoute(function ($handle) {
-//     return Route::post('/doer/aleens/public/livewire/update', $handle);
-// });
+// :: LivewireServerDeployment in subRoute
+if (env('APP_ENV') == 'production') {
+
+    Livewire::setUpdateRoute(function ($handle) {
+        return Route::post(env('LIVEWIRE_UPDATE_PATH'), $handle);
+    });
 
 
-// Livewire::setScriptRoute(function ($handle) {
-//     return Route::get('/doer/aleens/public/livewire/livewire.js', $handle);
-// });
+    Livewire::setScriptRoute(function ($handle) {
+        return Route::get(env('LIVEWIRE_JAVASCRIPT_PATH'), $handle);
+    });
+
+} // end if
 
 
 

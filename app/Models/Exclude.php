@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Exclude extends Model
 {
     use HasFactory;
-}
+
+
+
+
+    public function ingredients()
+    {
+
+        return $this->hasMany(Ingredient::class, 'excludeId');
+
+    } // end function
+
+
+} // end model
+
+
+
+

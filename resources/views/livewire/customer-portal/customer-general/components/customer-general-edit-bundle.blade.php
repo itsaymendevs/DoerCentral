@@ -56,7 +56,7 @@
                                     <h4 data-bs-toggle="tooltip" data-bss-tooltip=""
                                         class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1 me-1"
                                         title="{{ $type->name }}">
-                                        {{ $requiredTypes[$type->id] }}
+                                        {{ $requiredTypes[$type->id] ?? 0 }}
                                     </h4>
 
 
@@ -187,7 +187,7 @@
                         {{-- submitButton --}}
                         <div class="col-12 text-center mt-3">
                             <button
-                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
+                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 disabled">
                                 Update
                             </button>
                         </div>

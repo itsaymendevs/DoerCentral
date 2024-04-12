@@ -116,7 +116,7 @@
 
 
                 {{-- cardView --}}
-                <button class="btn btn--switch-view active" data-view="cards" data-target="ingredients-column"
+                <button class="btn btn--switch-view active disabled" data-view="cards" data-target="ingredients-column"
                     data-instance="1" type="button">
                     <svg class="bi bi-card-text" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                         fill="currentColor" viewBox="0 0 16 16">
@@ -132,8 +132,8 @@
 
 
                 {{-- 2: tableView --}}
-                <button class="btn disabled btn--switch-view" data-view="table" data-target="ingredients-column"
-                    data-instance="1" type="button">
+                <button class="btn disabled btn--switch-view disabled" data-view="table"
+                    data-target="ingredients-column" data-instance="1" type="button">
                     <svg class="bi bi-table" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                         fill="currentColor" viewBox="0 0 16 16">
                         <path
@@ -175,8 +175,9 @@
 
         {{-- newButton --}}
         <div class="col-3">
-            <button class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
-                data-bs-target="#new-ingredient" data-bs-toggle="modal" type="button">
+            <button class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center
+                @if ($versionPermission->isProcessing) disabled @endif" data-bs-target="#new-ingredient"
+                data-bs-toggle="modal" type="button">
                 <svg class="bi bi-plus-circle-dotted fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
                     height="1em" fill="currentColor" viewBox="0 0 16 16">
                     <path
@@ -259,9 +260,10 @@
 
 
                                     {{-- 1: brands --}}
-                                    <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3"
-                                        data-bs-toggle="modal" data-bss-tooltip="" data-bs-target="#ingredient-brands"
-                                        type="button" title="Brands">
+                                    <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3
+                                    @if ($versionPermission->isProcessing) disabled @endif" data-bs-toggle="modal"
+                                        data-bss-tooltip="" data-bs-target="#ingredient-brands" type="button"
+                                        title="Brands">
                                         <svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="1em"
                                             height="1em" fill="currentColor" viewBox="0 0 16 16">
                                             <path
@@ -278,7 +280,8 @@
 
 
                                     {{-- edit --}}
-                                    <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3"
+                                    <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3
+                                    @if ($versionPermission->isProcessing) disabled @endif"
                                         wire:click="edit({{ $ingredient->id }})" wire:loading.attr='disabled'
                                         data-bs-toggle="modal" data-bs-target="#edit-ingredient" type="button">
                                         <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -295,9 +298,9 @@
 
 
                                     {{-- remove --}}
-                                    <button class="btn btn--scheme btn--remove px-2 py-1 mx-1 text-white scale--3"
-                                        type="button" wire:click="remove({{ $ingredient->id }})"
-                                        wire:loading.attr='disabled'>
+                                    <button class="btn btn--scheme btn--remove px-2 py-1 mx-1 text-white scale--3
+                                    @if ($versionPermission->isProcessing) disabled @endif" type="button"
+                                        wire:click="remove({{ $ingredient->id }})" wire:loading.attr='disabled'>
                                         <svg class="bi bi-trash" xmlns="http://www.w3.org/2000/svg" width="1em"
                                             height="1em" fill="currentColor" viewBox="0 0 16 16">
                                             <path

@@ -16,7 +16,7 @@
                             </path>
                         </svg>
                     </button>
-                </header>
+                </header>z
                 {{-- endHeader --}}
 
 
@@ -49,7 +49,7 @@
                                     {{-- imageFile --}}
                                     <div class="col-12 text-center position-relative">
                                         <img class="client--card-logo mt-0"
-                                            src="{{ asset('storage/menu/meals/' . $meal->imageFile) }}" />
+                                            src="{{ asset('storage/menu/meals/' . ($meal->imageFile ?? $defaultPlate)) }}" />
                                     </div>
 
 
@@ -67,6 +67,32 @@
 
                                     {{-- ------------------------ --}}
                                     {{-- ------------------------ --}}
+
+
+
+
+
+                                    {{-- -------------------- --}}
+                                    @php
+
+
+                                    // :: check allergy - exclude
+                                    $combine =
+                                    $customer->checkMealCompatibility($meal->id);
+
+
+                                    $isNotAllergy = $combine?->allergies->count() == 0;
+                                    $isNotExclude = $combine?->excludes->count() == 0;
+
+
+                                    @endphp
+                                    {{-- -------------------- --}}
+
+
+
+
+
+
 
 
 
@@ -102,14 +128,8 @@
 
                                             {{-- 1: checkExclude / checkAllergy --}}
                                             <button class="btn btn--scheme btn--remove fs-11 px-3 mx-1 py-1"
-                                                @if($customer->checkMealCompatibility($meal->id)->allergies->count()
-                                                == 0 &&
-                                                $customer->checkMealCompatibility($meal->id)->excludes->count()
-                                                == 0)
-                                                disabled @endif
-                                                type="button"
-                                                data-bs-toggle='modal'
-                                                data-bs-target='#replacement-excludes'
+                                                @if($isNotAllergy && $isNotExclude) disabled @endif type="button"
+                                                data-bs-toggle='modal' data-bs-target='#replacement-excludes'
                                                 wire:click='viewReplacementExcludes({{ $meal->id
                                                 }})'>Excludes</button>
 
@@ -140,11 +160,9 @@
                                     {{-- replaceButton --}}
                                     <div class="col-12">
                                         <div class="d-flex align-items-center justify-content-center">
-                                            <button
-                                                class="btn btn--scheme btn--scheme-2 fs-12 mx-1  h-32 w-75
-                                                @if ($customer->checkMealCompatibility($meal->id)->allergies->count() >= 0) disabled @endif"
-                                                type="button" wire:click='replace({{ $meal->id }})'
-                                                wire:loading.attr='disabled'>
+                                            <button class="btn btn--scheme btn--scheme-2 fs-12 mx-1  h-32 w-75
+                                                @if (!$isNotAllergy) disabled @endif" type="button"
+                                                wire:click='replace({{ $meal->id }})' wire:loading.attr='disabled'>
                                                 Replace
                                             </button>
                                         </div>

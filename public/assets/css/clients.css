@@ -63,6 +63,13 @@
     margin-right: 15px;
 }
 
+@media (min-width: 1200px) {
+    .tabs--wrap .nav-tabs li {
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+}
+
 @media (min-width: 1px) and (max-width: 1199px) {
     .tabs--wrap .nav-tabs li {
         border-bottom: 1px solid var(--color-body);
@@ -97,7 +104,7 @@
 .tabs--wrap .nav-tabs a:hover,
 .tabs--wrap .nav-tabs a:focus {
     color: white;
-    transform: scale(1.1);
+    transform: scale(1);
     transition: var(--mid-transition);
     background-color: var(--bg-theme-secondary);
     border-color: var(--bg-theme-secondary);

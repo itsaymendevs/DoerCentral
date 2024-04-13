@@ -61,10 +61,6 @@ class RangeSizes extends Component
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
-
-
         return view('livewire.dashboard.menu.plans.manage.range-sizes', compact('bundles'));
 
     } // end function

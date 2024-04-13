@@ -71,6 +71,10 @@
         <link href="{{ asset('assets/css/kitchen.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/stickers.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/simple-animate.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet">
+
+
 
 
 
@@ -108,6 +112,17 @@
 
     {{-- body --}}
     <body>
+
+
+
+        {{-- loader --}}
+        {{--
+        <livewire:components.loaders.hourglass /> --}}
+
+
+
+
+
         <div data-aos="fade" data-aos-duration="1000">
 
 

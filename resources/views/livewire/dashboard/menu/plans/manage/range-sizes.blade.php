@@ -35,7 +35,7 @@
                         {{-- loop - bundles --}}
                         @foreach ($bundles as $bundle)
 
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item" role="presentation" key='bundle-tab-links-{{ $bundle->id }}'>
                             <a class="nav-link @if ($bundles->first()->id == $bundle->id) active @endif" role="tab"
                                 data-bs-toggle="tab" href="#tab-bundles-{{ $bundle->id }}">
                                 {{ $bundle->name }}

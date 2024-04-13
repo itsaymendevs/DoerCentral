@@ -142,8 +142,6 @@ class RangeSizesView extends Component
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
 
 
         return view('livewire.dashboard.menu.plans.manage.range-sizes.components.range-sizes-view', compact('sizes'));

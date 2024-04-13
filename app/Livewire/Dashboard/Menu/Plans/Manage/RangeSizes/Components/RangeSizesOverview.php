@@ -119,11 +119,6 @@ class RangeSizesOverview extends Component
 
 
 
-
-        // :: initTooltips
-        $this->dispatch('initTooltips');
-
-
         return view('livewire.dashboard.menu.plans.manage.range-sizes.components.range-sizes-overview');
 
     } // end function

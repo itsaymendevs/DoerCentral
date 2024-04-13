@@ -55,6 +55,11 @@ class AppServiceProvider extends ServiceProvider
 
 
 
+        // 1.4: globalCounter
+        View::share('globalSNCounter', 1);
+
+
+
 
 
         // ------------------------------------------------

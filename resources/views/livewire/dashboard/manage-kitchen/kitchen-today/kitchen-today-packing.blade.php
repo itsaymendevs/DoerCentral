@@ -33,7 +33,8 @@
                 </div>
 
                 {{-- input --}}
-                <input class="form--input" type="date" />
+                <input class="form--input" type="date" wire:model.live='searchScheduleDate'
+                    min='{{ $globalTodayDate }}' />
             </div>
 
 
@@ -70,7 +71,8 @@
 
             {{-- search --}}
             <div class="col-4 text-center">
-                <input type="text" class="form--input main-version w-100" placeholder="Search by Customer" />
+                <input type="text" class="form--input main-version w-100" placeholder="Search by Customer"
+                    wire:model.live='searchCustomer' />
             </div>
 
 
@@ -85,7 +87,7 @@
                 {{-- 1: print --}}
                 <button
                     class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold"
-                    type="button" data-bs-target="#extend-subscription" data-bs-toggle="modal">
+                    disabled type="button" data-bs-target="#extend-subscription" data-bs-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
                         <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
@@ -102,7 +104,7 @@
 
                 {{-- 2: exportExcel --}}
                 <button
-                    class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold ms-2"
+                    class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold ms-2 disabled"
                     type="button" data-bs-target="#extend-subscription" data-bs-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-file-text fs-6 me-2">
@@ -132,8 +134,8 @@
             <div class="col-4 text-end">
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
-                    title="Number of Recipes">
-                    1
+                    title="Number of Meals">
+                    {{ $scheduleMeals->count() }}
                 </h3>
             </div>
         </div>
@@ -169,19 +171,40 @@
                         {{-- headers --}}
                         <thead>
                             <tr>
+
+
+                                {{-- SN - customer--}}
                                 <th class="th--xs"></th>
                                 <th class="th--xs">Customer</th>
-                                <th class="th--sm">Breakfast</th>
-                                <th class="th--sm">Lunch</th>
-                                <th class="th--sm">Dinner</th>
-                                <th class="th--sm">Lunch Side</th>
-                                <th class="th--sm">Dinner Side</th>
-                                <th class="th--sm">Morning<br />Snack</th>
-                                <th class="th--sm">Morning<br />Snack II</th>
-                                <th class="th--sm">Afternoon<br />Snack</th>
+
+
+
+
+                                {{-- mealTypes --}}
+                                @foreach ($mealTypes as $mealType)
+                                <th class="th--sm">{{ $mealType->name }}</th>
+                                @endforeach
+                                {{-- end loop --}}
+
+
                             </tr>
                         </thead>
                         {{-- endHeaders --}}
+
+
+
+
+
+
+
+
+                        {{-- ----------------------------------- --}}
+                        {{-- ----------------------------------- --}}
+
+
+
+
+
 
 
 
@@ -191,21 +214,39 @@
                         <tbody>
 
 
+
+
+                            {{-- 1: loop - scheduleMeals - groupBySubscription --}}
+                            @foreach ($scheduleMeals?->groupBy('customerSubscriptionId') ?? [] as $commonSubscription =>
+                            $scheduleMealsBySubscription)
+
+
+
+
+
+
+
                             {{-- singleRow --}}
                             <tr>
 
 
                                 {{-- SN --}}
                                 <td class="fw-bold text-start">
-                                    <span class="fs-6 text-center d-block fw-bold">1</span>
+                                    <span class="fs-6 text-center d-block fw-bold">{{ $globalSNCounter++ }}</span>
                                 </td>
+
+
+
 
 
 
                                 {{-- customer - plan --}}
                                 <td class="fw-bold text-start">
-                                    <span class="d-block fs-14">Sadaf Maqbool
-                                        <small class="fw-semibold text-gold fs-14 d-block">Welness</small>
+                                    <span class="d-block fs-14">{{
+                                        $scheduleMealsBySubscription?->first()?->customer->name }}
+                                        <small class="fw-semibold text-gold fs-14 d-block">
+                                            {{ $scheduleMealsBySubscription?->first()->subscription?->plan->name }}
+                                        </small>
                                     </span>
                                 </td>
 
@@ -213,34 +254,107 @@
 
 
 
-                                {{-- loop - todayMealsByMealType --}}
+
+
+
+
+
+                                {{-- ------------------------- --}}
+                                {{-- ------------------------- --}}
+
+
+
+
+
+
+
+
+
+                                {{-- 2: loop - mealTypes --}}
+                                @foreach ($mealTypes as $mealType)
+
+
+
+
+                                {{-- meal - size --}}
                                 <td class="text-start">
-                                    <span class="d-block fs-14 mb-4 fw-normal">Mango Chia Pudding<small
-                                            class="fw-semibold text-gold fs-13 d-block">Medium</small></span><span
-                                        class="d-block fs-14 kitchen--table-remarks"><small
-                                            class="fw-semibold text-theme-secondary fs-11 d-block">Remarks</small><span
-                                            class="d-block fs-13 fw-normal">note about the breakfast</span></span>
+
+
+
+
+                                    {{-- :: getScheduleMeal --}}
+                                    @php $scheduleMealBySubscription =
+                                    $scheduleMealsBySubscription?->where('mealTypeId', $mealType->id)?->first()
+                                    @endphp
+
+
+
+
+
+
+
+                                    {{-- 1.2: mealExists --}}
+                                    @if ($scheduleMealBySubscription)
+
+
+
+
+
+                                    <span class="d-block fs-13 mb-4 fw-normal">{{
+                                        $scheduleMealBySubscription?->meal?->name }}
+                                        <small class="fw-semibold text-gold fs-13 d-block">
+                                            {{ $scheduleMealBySubscription?->size?->name }}
+                                        </small>
+                                    </span>
+
+
+
+
+
+
+                                    {{-- 1.3: remarks --}}
+                                    @if ($scheduleMealBySubscription?->remarks)
+
+                                    <span class="d-block fs-13 kitchen--table-remarks">
+                                        <small class="fw-semibold text-theme-secondary fs-11 d-block">Remarks</small>
+                                        <span class="d-block fs-13 fw-normal">
+                                            {{ $scheduleMealBySubscription?->remarks }}
+                                        </span>
+                                    </span>
+
+                                    @endif
+                                    {{-- end if - remarks --}}
+
+
+
+
+
+
+                                    @endif
+                                    {{-- end if - mealExists --}}
+
+
+
+
+
                                 </td>
-                                <td class="text-start"></td>
-                                <td class="text-start">
-                                    <span class="d-block fs-14 mb-4 fw-normal">Mango Chia Pudding<small
-                                            class="fw-semibold text-gold fs-13 d-block">Large</small></span>
-                                </td>
-                                <td class="text-start"></td>
-                                <td class="text-start"></td>
-                                <td class="text-start">
-                                    <span class="d-block fs-14 mb-4 fw-normal">Fruit Salad<small
-                                            class="fw-semibold text-gold fs-13 d-block">Small</small></span>
-                                </td>
-                                <td class="text-start"></td>
-                                <td class="text-start">
-                                    <span class="d-block fs-14 mb-4 fw-normal">Green Juice<small
-                                            class="fw-semibold text-gold fs-13 d-block">Medium</small></span><span
-                                        class="d-block fs-14 kitchen--table-remarks"><small
-                                            class="fw-semibold text-theme-secondary fs-11 d-block">Remarks</small><span
-                                            class="d-block fs-13 fw-normal">note about the breakfast</span></span>
-                                </td>
+                                @endforeach
+                                {{-- end loop - mealTypes --}}
+
+
+
+
+
+
+
+
                             </tr>
+                            @endforeach
+                            {{-- end loop - scheduleMeals - groupBySubscription --}}
+
+
+
+
                         </tbody>
                     </table>
                     {{-- endTable --}}

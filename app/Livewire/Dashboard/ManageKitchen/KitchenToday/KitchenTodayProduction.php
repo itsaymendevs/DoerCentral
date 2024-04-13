@@ -6,7 +6,9 @@ use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\MealType;
 use App\Traits\HelperTrait;
+use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class KitchenTodayProduction extends Component
 {
@@ -18,7 +20,7 @@ class KitchenTodayProduction extends Component
 
     // :: variables
     public $searchScheduleDate, $searchMealType;
-
+    public $cookMealId, $cookMealTypeId;
 
 
 
@@ -52,10 +54,101 @@ class KitchenTodayProduction extends Component
 
 
 
+    public function cookMeal($mealTypeId, $mealId)
+    {
 
 
 
 
+
+        // 1: params - confirmationBox
+        $this->cookMealId = $mealId;
+        $this->cookMealTypeId = $mealTypeId;
+
+
+
+        $this->makeAlert('question', 'Mark this meal as cooked?', 'confirmMealCooking');
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    #[On('confirmMealCooking')]
+    public function confirmMealCooking()
+    {
+
+
+
+        // 1: remove
+        if ($this->cookMealId && $this->cookMealTypeId) {
+
+
+
+            // 1: create instance
+            $instance = new stdClass();
+
+            $instance->mealId = $this->cookMealId;
+            $instance->mealTypeId = $this->cookMealTypeId;
+
+
+
+
+
+            // 1.2: makeRequest
+            $response = $this->makeRequest('dashboard/kitchen/production/meals/cook', $instance);
+
+
+            // :: render - reset
+            $this->cookMealId = null;
+            $this->cookMealTypeId = null;
+
+            $this->makeAlert('success', $response->message);
+
+
+
+        } // end if
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
 
 
 
@@ -85,8 +178,9 @@ class KitchenTodayProduction extends Component
 
 
 
+
         $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
-            ->where('subscriptionScheduleId', $schedules)
+            ->whereIn('subscriptionScheduleId', $schedules)
             ->whereIn('mealTypeId', $this->searchMealType ? [$this->searchMealType] : $mealTypes->pluck('id')->toArray())
             ->orderBy('mealTypeId')->get();
 

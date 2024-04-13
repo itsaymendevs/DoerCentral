@@ -33,7 +33,8 @@
                 </div>
 
                 {{-- input --}}
-                <input class="form--input" type="date" wire:model.live='searchScheduleDate' />
+                <input class="form--input" type="date" wire:model.live='searchScheduleDate'
+                    min='{{ $globalTodayDate }}' />
             </div>
 
 
@@ -145,7 +146,7 @@
             <div class="col-4 text-end">
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
-                    title="Number of Recipes">
+                    title="Number of Meals">
                     {{ $scheduleMeals->count() }}
                 </h3>
             </div>
@@ -189,7 +190,7 @@
                                 <th class="th--sm">Total P/S</th>
                                 <th class="th--md">Size &amp; Ingredients</th>
                                 <th class="th--sm">Allergies</th>
-                                <th class="th--lg">Actions</th>
+                                <th class="th--sm">Actions</th>
                             </tr>
                         </thead>
                         {{-- endHeaders --}}
@@ -211,7 +212,6 @@
                             {{-- 1: loop - scheduleMeals - groupByType --}}
                             @foreach ($scheduleMeals?->groupBy('mealTypeId') ?? [] as $commonType =>
                             $scheduleMealsByType)
-
 
 
 
@@ -261,6 +261,9 @@
 
 
 
+
+
+
                                 {{-- --------------------------- --}}
                                 {{-- --------------------------- --}}
 
@@ -297,7 +300,6 @@
 
 
 
-
                                     {{-- A: loop - ingredients - sumGrams --}}
                                     @foreach ($mealSize?->ingredients ?? [] as $mealSizeIngredient)
 
@@ -311,6 +313,12 @@
 
                                     @endforeach
                                     {{-- end loop - ingredients - sumGrams --}}
+
+
+
+
+
+
 
 
 
@@ -347,6 +355,10 @@
 
 
 
+
+
+
+
                                     {{-- ------------------------------------- --}}
                                     {{-- ------------------------------------- --}}
 
@@ -357,21 +369,21 @@
 
 
 
-                                    {{-- 1: loop - ingredients - totalGrams --}}
-                                    {{-- @foreach ($scheduleMealsByMeal->first()?->meal?->ingredients
-                                    ?->groupBy('mealId')?->first()->ingredients ?? [] as $commonMealSize =>
-                                    $mealIngredientsByMealSize)
 
+                                    {{-- A: loop - ingredients - totalGrams --}}
+                                    @foreach ($scheduleMealsByMeal->first()?->meal?->ingredients
+                                    ?->groupBy('ingredientId') ?? [] as $commonIngredient =>
+                                    $mealIngredientsByIngredient)
 
 
                                     <span class="mb-2 d-block fw-normal">
                                         <small class="fw-semibold text-gold fs-14 me-1">
-                                            {{ $totalGrams[$mealIngredientsByMealSize?->first()?->ingredientId] }}
-                                        </small>{{ $mealIngredientsByMealSize?->first()?->ingredient?->name }}
+                                            {{ $totalGrams[$mealIngredientsByIngredient?->first()?->ingredientId] }}
+                                        </small>{{ $mealIngredientsByIngredient?->first()?->ingredient?->name }}
                                     </span>
 
 
-                                    @endforeach --}}
+                                    @endforeach
                                     {{-- end loop - ingredients --}}
 
 
@@ -381,22 +393,22 @@
 
 
 
-                                    {{-- 2: loop - ingredients - totalGrams --}}
-                                    {{-- @foreach ($scheduleMealsByMeal->first()?->meal?->parts
-                                    ?->groupBy('mealId')?->first() ?? [] as $commonMealSize =>
-                                    $mealPartsByMealSize)
+                                    {{-- B: loop - parts - totalGrams --}}
+                                    @foreach ($scheduleMealsByMeal->first()?->meal?->parts
+                                    ?->groupBy('partId') ?? [] as $commonPart =>
+                                    $mealPartsByPart)
 
 
 
                                     <span class="mb-2 d-block fw-normal">
                                         <small class="fw-semibold text-gold fs-14 me-1">
-                                            {{ $totalGrams[$mealPartsByMealSize?->first()?->partId] }}
-                                        </small>{{ $mealPartsByMealSize?->first()?->part?->name }}
+                                            {{ $totalGramsOfParts[$mealPartsByPart?->first()?->partId] }}
+                                        </small>{{ $mealPartsByPart?->first()?->part?->name }}
                                     </span>
 
 
-                                    @endforeach --}}
-                                    {{-- end loop - ingredients --}}
+                                    @endforeach
+                                    {{-- end loop - parts --}}
 
 
 
@@ -420,6 +432,8 @@
 
                                 {{-- --------------------------- --}}
                                 {{-- --------------------------- --}}
+
+
 
 
 
@@ -476,7 +490,6 @@
                                             </small>
                                         </span>
                                     </div>
-
 
 
 
@@ -719,12 +732,37 @@
 
 
                                     {{-- cookButton --}}
-                                    <div class="d-block text-center mt-2">
+                                    <div class="d-block text-center mt-3">
+
+
+                                        {{-- A: pending --}}
+                                        @if ($scheduleMealsByMeal->first()->cookStatus == 'Pending')
+
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 align-items-center d-inline-flex px-3 py-1 fs-12 justify-content-center fw-semibold"
-                                            type="button" style="border:1px dashed var(--color-theme-secondary)">
+                                            class="btn btn--scheme btn--scheme-outline-3 align-items-center d-inline-flex px-3 py-1 fs-12 justify-content-center fw-semibold"
+                                            type="button" style="border:1px dashed var(--color-theme-secondary)"
+                                            wire:click='cookMeal({{ $commonType }}, {{ $commonMeal }})'>
                                             Mark As Cooked?
                                         </button>
+
+
+
+
+
+                                        {{-- B: Cooked --}}
+                                        @else
+
+
+                                        <button
+                                            class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 py-1 fs-12 justify-content-center fw-semibold disabled"
+                                            type="button" style="border:1px dashed var(--bs-warning)">
+                                            Meal is Cooked
+                                        </button>
+
+
+
+                                        @endif
+
                                     </div>
                                 </td>
 

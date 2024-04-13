@@ -517,74 +517,85 @@ class RecipeSeeder extends Seeder
 
                     // 5: create MealParts
 
+                    $partTypes = ['Sub-recipe', 'Snack', 'Side', 'Sauce', 'Meal', 'Sauce'];
+
+
+                    foreach ($partTypes as $partType) {
 
 
 
 
 
-                    // ::root
-                    $mealParts = Storage::disk('public')->get("sources/recipes/{$generalType}Parts.json");
-                    $mealParts = $mealParts ? json_decode($mealParts, true) : [];
-
-
-
-
-
-
-                    // 5.1: loop - mealParts
-                    for ($y = 0; $y < count($mealParts); $y++) {
-
-
-
-                        // 5.2: getType
-                        $partType = Type::where('name', $mealParts[$y]['type'])->first();
-
-
-
-
-
-                        // :: partOfMeal
-                        if ($meal->migrationId == $mealParts[$y]['mealId'] && $mealSize->sizeId == $mealParts[$y]['sizeId']) {
+                        // ::root
+                        $mealParts = Storage::disk('public')->get("sources/recipes/{$generalType}Parts-{$partType}.json");
+                        $mealParts = $mealParts ? json_decode($mealParts ?? [], true) : [];
 
 
 
 
 
 
-                            // 5.2.5: getMigrationPart
-                            $migrationPart = Meal::where('migrationId', $mealParts[$y]['partId'])?->first();
+                        // 5.1: loop - mealParts
+                        for ($y = 0; $y < count($mealParts); $y++) {
+
+
+
+                            // 5.2: getType
+                            $partType = Type::where('name', $partType)->first();
 
 
 
 
 
-                            // 5.3: createPart
-                            $mealPart = MealPart::create([
-
-
-                                'partId' => $migrationPart->id ?? null,
-                                'typeId' => $partType->id,
-
-                                'partType' => $mealParts[$y]['partType'] ?? null,
-                                'amount' => $mealParts[$y]['amount'] ?? 0,
-
-                                'remarks' => $mealParts[$y]['remarks'] ?? null,
-                                'groupToken' => $groupToken,
-                                'isReplacement' => boolval($mealParts[$y]['isReplacement']) ?? false,
-                                'isRemovable' => boolval($mealParts[$y]['isRemovable']) ?? false,
-
-                                'mealId' => $meal->id ?? null,
-                                'mealSizeId' => $mealSize->id ?? null,
-
-
-                            ]);
-
-                        } // end if
-
-                    } // end loop - parts
+                            // :: partOfMeal
+                            if ($meal->migrationId == $mealParts[$y]['mealId'] && $mealSize->sizeId == $mealParts[$y]['sizeId']) {
 
 
 
+
+
+
+                                // 5.2.5: getMigrationPart
+                                $migrationPart = Meal::where('migrationId', $mealParts[$y]['partId'])?->first();
+
+
+
+
+
+                                // 5.3: createPart
+                                $mealPart = MealPart::create([
+
+
+                                    'partId' => $migrationPart->id ?? null,
+                                    'typeId' => $partType->id,
+
+                                    'partType' => $mealParts[$y]['partType'] ?? null,
+                                    'amount' => $mealParts[$y]['amount'] ?? 0,
+
+                                    'remarks' => $mealParts[$y]['remarks'] ?? null,
+                                    'groupToken' => $groupToken,
+                                    'isReplacement' => boolval($mealParts[$y]['isReplacement']) ?? false,
+                                    'isRemovable' => boolval($mealParts[$y]['isRemovable']) ?? false,
+
+                                    'mealId' => $meal->id ?? null,
+                                    'mealSizeId' => $mealSize->id ?? null,
+
+
+                                ]);
+
+                            } // end if
+
+                        } // end loop - parts
+
+
+
+
+
+
+
+
+
+                    } // end loop - parts 1-2-3-4
 
 
 

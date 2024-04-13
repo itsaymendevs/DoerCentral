@@ -1,7 +1,7 @@
 /* table */
 
 .kitchen--table tr td {
-    vertical-align: initial;
+    vertical-align: top;
 }
 
 .kitchen--size-box {

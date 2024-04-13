@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
                 // DietSeeder::class,
                 // IngredientSeeder::class,
                 // TagSeeder::class,
+                // VersionPermissionSeeder::class,
                 // SizeSeeder::class,
                 // ItemSeeder::class,
-                // RecipeSeeder::class,
-            VersionPermissionSeeder::class,
+            RecipeSeeder::class,
 
         ]);
 

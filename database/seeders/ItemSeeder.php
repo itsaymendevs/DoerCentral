@@ -87,6 +87,7 @@ class ItemSeeder extends Seeder
                     'cuisineId' => $meals[$i]['cuisineId'] ? intval($meals[$i]['cuisineId']) - 3 : null,
 
 
+
                 ]);
 
 

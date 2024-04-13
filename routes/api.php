@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CustomerSubscriptionController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\KitchenController;
+use App\Http\Controllers\Api\KitchenTodayController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\MenuCalendarController;
 use App\Http\Controllers\Api\MenuMealController;
@@ -1101,6 +1102,36 @@ Route::post('/dashboard/kitchen/labels/store', [KitchenController::class, 'store
 Route::post('/dashboard/kitchen/labels/update', [KitchenController::class, 'updateLabel']);
 
 Route::post('/dashboard/kitchen/labels/remove', [KitchenController::class, 'removeLabel']);
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 14: kitchen - today
+Route::post('/dashboard/kitchen/production/meals/cook', [KitchenTodayController::class, 'cookMeals']);
+
+
+
+
 
 
 

@@ -13,11 +13,9 @@
 
 
         {{-- packing --}}
-        @if (!$versionPermission->isProcessing)
         <a wire:navigate
             class="btn fs-13 @if (Request::is('dashboard/kitchen/today/packing', 'dashboard/kitchen/today/packing/*')) active @endif"
             role="button" href="{{ route('dashboard.kitchenTodayPacking') }}">Packing</a>
-        @endif
 
 
 

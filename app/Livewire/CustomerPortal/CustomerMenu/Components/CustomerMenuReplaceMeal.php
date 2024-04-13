@@ -26,7 +26,7 @@ class CustomerMenuReplaceMeal extends Component
     // :: variables
     public $customer, $subscription;
     public $scheduleMeal, $subscriptionDefaultMeal, $mealType;
-
+    public $searchMeal = '';
 
 
 
@@ -248,7 +248,8 @@ class CustomerMenuReplaceMeal extends Component
         $meals = Meal::where('id', '!=', $this->scheduleMeal?->mealId)
             ->where('id', '!=', $this->subscriptionDefaultMeal?->mealId)
             ->where('typeId', $this?->mealType?->type->id)
-            ->paginate(12, pageName: 'replacements');
+            ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
+            ->paginate(4, pageName: 'replacements');
 
 
 

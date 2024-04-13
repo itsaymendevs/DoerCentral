@@ -16,7 +16,7 @@
                             </path>
                         </svg>
                     </button>
-                </header>z
+                </header>
                 {{-- endHeader --}}
 
 
@@ -35,6 +35,30 @@
                 {{-- wrapper --}}
                 <div class="px-4">
                     <div class="row justify-content-center align-items-center">
+
+
+
+
+
+
+                        {{-- search --}}
+                        <div class="col-4">
+                            <input wire:model.live='searchMeal'
+                                class="form-control form--input main-version mx-auto mb-5" type="search"
+                                placeholder="Search By Name" />
+                        </div>
+
+
+
+
+                        {{-- empty --}}
+                        <div class="col-12"></div>
+
+
+
+
+
+
 
 
                         {{-- loop - meals --}}

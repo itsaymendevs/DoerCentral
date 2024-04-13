@@ -233,7 +233,7 @@ class SingleCalendarEdit extends Component
         $isFound = false;
 
 
-        foreach ($this->instance->scheduleMeals as $key => $scheduleMeal) {
+        foreach ($this->instance->scheduleMeals ?? [] as $key => $scheduleMeal) {
 
 
             // 1: isFound - remove
@@ -242,11 +242,10 @@ class SingleCalendarEdit extends Component
                 $isFound = true;
                 unset($this->instance->scheduleMeals[$key]);
 
-
                 // 1.2: unCheckDefault
                 $this->dispatch('unCheckDefault', card: "#item-{$scheduleMeal->mealTypeId}-{$scheduleMeal->mealId}");
 
-
+                break;
 
 
             } // end if
@@ -404,7 +403,7 @@ class SingleCalendarEdit extends Component
             // :: BreakfastMeals / LunchMeals etc.
             $stock->{$mealType->name . 'Meals'} = Meal::where('name', 'LIKE', '%' . $this->searchMeal . '%')
                 ->where('typeId', $mealType->type->id)
-                ->paginate(20, pageName: $mealType->name);
+                ->paginate(8, pageName: $mealType->name);
 
 
         } // end loop
@@ -413,14 +412,6 @@ class SingleCalendarEdit extends Component
 
 
 
-
-
-
-
-
-
-        // :: initTooltips
-        $this->dispatch('initTooltips');
 
 
 

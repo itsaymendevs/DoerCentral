@@ -419,6 +419,9 @@ class RecipeSeeder extends Seeder
 
 
 
+
+
+
                     // :: groupToken
                     $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
 
@@ -430,12 +433,40 @@ class RecipeSeeder extends Seeder
 
 
                     // :: root
-                    $mealIngredients = Storage::disk('public')->get("sources/recipes/{$generalType}Ingredients.json");
-                    $mealIngredients = $mealIngredients ? json_decode($mealIngredients, true) : [];
+                    $mealIngredientsRaw = Storage::disk('public')->get("sources/recipes/{$generalType}Ingredients.json");
+                    $mealIngredientsRaw = $mealIngredientsRaw ? json_decode($mealIngredientsRaw, true) : [];
 
 
 
 
+
+
+                    // :: partOfMeal - sameSize
+                    $mealIngredients = array_filter($mealIngredientsRaw, function ($item) use ($meal, $mealSize) {
+                        if ($item['mealId'] == $meal->migrationId && $mealSize->sizeId == $item['sizeId'])
+                            return true;
+                        else
+                            return false;
+                    });
+
+
+
+
+
+                    // :: re-index
+                    $mealIngredients = array_values($mealIngredients);
+
+
+
+
+
+
+
+
+
+
+                    // -------------------------------------
+                    // -------------------------------------
 
 
 
@@ -452,16 +483,9 @@ class RecipeSeeder extends Seeder
 
 
 
-                        // :: partOfMeal - sameSize
-                        if ($meal->migrationId == $mealIngredients[$y]['mealId'] && $mealSize->sizeId == $mealIngredients[$y]['sizeId']) {
 
-
-
-
-
-
-                            // 4.1.5: getMigrationIngredient
-                            $migrationIngredient = Ingredient::where('migrationId', $mealIngredients[$y]['ingredientId'])?->first();
+                        // 4.1.5: getMigrationIngredient
+                        $migrationIngredient = Ingredient::where('migrationId', $mealIngredients[$y]['ingredientId'])?->first();
 
 
 
@@ -469,27 +493,26 @@ class RecipeSeeder extends Seeder
 
 
 
-                            // 4.2: createIngredient
-                            $mealIngredient = MealIngredient::create([
+                        // 4.2: createIngredient
+                        $mealIngredient = MealIngredient::create([
 
 
-                                'ingredientId' => $migrationIngredient->id ?? null,
+                            'ingredientId' => $migrationIngredient->id ?? null,
 
-                                'partType' => $mealIngredients[$y]['partType'] ?? null,
-                                'amount' => $mealIngredients[$y]['amount'] ?? 0,
+                            'partType' => $mealIngredients[$y]['partType'] ?? null,
+                            'amount' => $mealIngredients[$y]['amount'] ?? 0,
 
-                                'remarks' => $mealIngredients[$y]['remarks'] ?? null,
-                                'groupToken' => $groupToken,
-                                'isReplacement' => boolval($mealIngredients[$y]['isReplacement']) ?? false,
-                                'isRemovable' => boolval($mealIngredients[$y]['isRemovable']) ?? false,
+                            'remarks' => $mealIngredients[$y]['remarks'] ?? null,
+                            'groupToken' => $groupToken,
+                            'isReplacement' => boolval($mealIngredients[$y]['isReplacement']) ?? false,
+                            'isRemovable' => boolval($mealIngredients[$y]['isRemovable']) ?? false,
 
-                                'mealId' => $meal->id ?? null,
-                                'mealSizeId' => $mealSize->id ?? null,
+                            'mealId' => $meal->id ?? null,
+                            'mealSizeId' => $mealSize->id ?? null,
 
 
-                            ]);
+                        ]);
 
-                        } // end if
 
                     } // end loop - ingredients
 
@@ -504,6 +527,18 @@ class RecipeSeeder extends Seeder
 
                     // --------------------------------------------
                     // --------------------------------------------
+                    // --------------------------------------------
+                    // --------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -517,18 +552,51 @@ class RecipeSeeder extends Seeder
 
                     // 5: create MealParts
 
-                    $partTypes = ['Sub-recipe', 'Snack', 'Side', 'Sauce', 'Meal', 'Sauce'];
+                    $partTypes = ['Sub-recipe', 'Side', 'Sauce', 'Meal'];
 
 
-                    foreach ($partTypes as $partType) {
+                    foreach ($partTypes as $singlePartType) {
 
 
 
 
 
                         // ::root
-                        $mealParts = Storage::disk('public')->get("sources/recipes/{$generalType}Parts-{$partType}.json");
-                        $mealParts = $mealParts ? json_decode($mealParts ?? [], true) : [];
+                        $mealPartsRaw = Storage::disk('public')->get("sources/recipes/{$generalType}Parts-{$singlePartType}.json");
+                        $mealPartsRaw = $mealPartsRaw ? json_decode($mealPartsRaw ?? [], true) : [];
+
+
+
+
+
+                        // :: partOfMeal - sameSize
+                        $mealParts = array_filter($mealPartsRaw, function ($item) use ($meal, $mealSize) {
+                            if ($item['mealId'] == $meal->migrationId && $mealSize->sizeId == $item['sizeId'])
+                                return true;
+                            else
+                                return false;
+                        });
+
+
+
+
+
+                        // :: re-index
+                        $mealParts = array_values($mealParts);
+
+
+
+
+
+
+
+
+
+                        // --------------------
+                        // --------------------
+
+
+
 
 
 
@@ -540,50 +608,46 @@ class RecipeSeeder extends Seeder
 
 
 
+
+
                             // 5.2: getType
-                            $partType = Type::where('name', $partType)->first();
-
-
-
-
-
-                            // :: partOfMeal
-                            if ($meal->migrationId == $mealParts[$y]['mealId'] && $mealSize->sizeId == $mealParts[$y]['sizeId']) {
+                            $partType = Type::where('name', $singlePartType)->first();
 
 
 
 
 
 
-                                // 5.2.5: getMigrationPart
-                                $migrationPart = Meal::where('migrationId', $mealParts[$y]['partId'])?->first();
+                            // 5.2.5: getMigrationPart
+                            $migrationPart = Meal::where('migrationId', $mealParts[$y]['partId'])?->first();
 
 
 
 
 
-                                // 5.3: createPart
-                                $mealPart = MealPart::create([
+                            // 5.3: createPart
+                            $mealPart = MealPart::create([
 
 
-                                    'partId' => $migrationPart->id ?? null,
-                                    'typeId' => $partType->id,
+                                'partId' => $migrationPart->id ?? null,
+                                'typeId' => $partType->id,
 
-                                    'partType' => $mealParts[$y]['partType'] ?? null,
-                                    'amount' => $mealParts[$y]['amount'] ?? 0,
+                                'partType' => $mealParts[$y]['partType'] ?? null,
+                                'amount' => $mealParts[$y]['amount'] ?? 0,
 
-                                    'remarks' => $mealParts[$y]['remarks'] ?? null,
-                                    'groupToken' => $groupToken,
-                                    'isReplacement' => boolval($mealParts[$y]['isReplacement']) ?? false,
-                                    'isRemovable' => boolval($mealParts[$y]['isRemovable']) ?? false,
+                                'remarks' => $mealParts[$y]['remarks'] ?? null,
+                                'groupToken' => $groupToken,
+                                'isReplacement' => boolval($mealParts[$y]['isReplacement']) ?? false,
+                                'isRemovable' => boolval($mealParts[$y]['isRemovable']) ?? false,
 
-                                    'mealId' => $meal->id ?? null,
-                                    'mealSizeId' => $mealSize->id ?? null,
+                                'mealId' => $meal->id ?? null,
+                                'mealSizeId' => $mealSize->id ?? null,
 
 
-                                ]);
+                            ]);
 
-                            } // end if
+
+
 
                         } // end loop - parts
 
@@ -596,6 +660,8 @@ class RecipeSeeder extends Seeder
 
 
                     } // end loop - parts 1-2-3-4
+
+
 
 
 

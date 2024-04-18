@@ -38,7 +38,7 @@
 
                         {{-- name --}}
                         <div class="col-4">
-                            <label class="form-label form--label">Range</label>
+                            <label class="form-label form--label">Name</label>
                             <input class="form-control form--input mb-4" type="text" wire:model='instance.name'
                                 required />
                         </div>

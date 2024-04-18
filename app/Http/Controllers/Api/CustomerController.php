@@ -52,7 +52,9 @@ class CustomerController extends Controller
 
 
         // 1.2: general
-        $customer->name = $request->name;
+        $customer->firstName = $request->firstName;
+        $customer->lastName = $request->lastName;
+
         $customer->email = $request->email;
         $customer->birthDate = $request->birthDate ?? null;
         $customer->phone = $request->phone;

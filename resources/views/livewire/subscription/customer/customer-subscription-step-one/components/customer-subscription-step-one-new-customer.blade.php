@@ -41,18 +41,80 @@
 
 
 
+
+
+
                         {{-- name --}}
                         <div class="col-12 col-sm-6">
-                            <label class="form-label form--label">Name</label>
+                            <label class="form-label form--label">First Name</label>
                             <input class="form-control form--input mb-4" type="text" required
-                                wire:model='instance.name' />
+                                wire:model='instance.firstName' />
+                        </div>
+
+
+
+                        {{-- name --}}
+                        <div class="col-12 col-sm-6">
+                            <label class="form-label form--label">Last Name</label>
+                            <input class="form-control form--input mb-4" type="text" required
+                                wire:model='instance.lastName' />
                         </div>
 
 
 
 
-                        {{-- gender --}}
+
+
+
+
+                        {{-- email --}}
+                        <div class="col-12 col-sm-12">
+                            <label class="form-label form--label">Email</label>
+                            <input class="form-control form--input mb-4" type="email" required
+                                wire:model='instance.email' />
+                        </div>
+
+
+
+
+
+
+
+                        {{-- phone --}}
                         <div class="col-12 col-sm-6">
+                            <label class="form-label form--label">Phone</label>
+                            <div class="form--phone-input">
+                                <input class="form-control form--input mb-4" minlength='9' maxlength='9' type="text"
+                                    required wire:model='instance.phone' pattern="[0-9]+" />
+                                <span>+971</span>
+                            </div>
+                        </div>
+
+
+
+
+
+                        {{-- whatsapp --}}
+                        <div class="col-12 col-sm-6">
+                            <label class="form-label form--label">Whatsapp</label>
+                            <div class="form--phone-input">
+                                <input class="form-control form--input mb-4" minlength='9' maxlength='9' type="text"
+                                    required wire:model='instance.whatsapp' pattern="[0-9]+" />
+                                <span>+971</span>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                        {{-- gender --}}
+                        <div class="col-12 col-sm-12 mb-4 mt-2">
                             <div class="mx-auto text-center">
 
 
@@ -83,39 +145,6 @@
 
 
 
-
-                        {{-- email --}}
-                        <div class="col-12">
-                            <label class="form-label form--label">Email</label>
-                            <input class="form-control form--input mb-4" type="email" required
-                                wire:model='instance.email' />
-                        </div>
-
-
-
-                        {{-- phone --}}
-                        <div class="col-12 col-sm-6">
-                            <label class="form-label form--label">Phone</label>
-                            <div class="form--phone-input">
-                                <input class="form-control form--input mb-4" minlength='9' maxlength='9' type="text"
-                                    required wire:model='instance.phone' />
-                                <span>+971</span>
-                            </div>
-                        </div>
-
-
-
-
-
-                        {{-- whatsapp --}}
-                        <div class="col-12 col-sm-6">
-                            <label class="form-label form--label">Whatsapp</label>
-                            <div class="form--phone-input">
-                                <input class="form-control form--input mb-4" minlength='9' maxlength='9' type="text"
-                                    required wire:model='instance.whatsapp' />
-                                <span>+971</span>
-                            </div>
-                        </div>
 
 
 

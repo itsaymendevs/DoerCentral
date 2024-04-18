@@ -9,13 +9,13 @@ class CustomerForm extends Form
 {
 
 
-   // :: general
-   public $id, $phone, $email, $name, $height, $weight, $whatsapp, $gender, $newPassword, $birthDate, $isVIP, $isActive, $isEnabled, $bagRemarks;
+    // :: general
+    public $id, $phone, $email, $name, $firstName, $lastName, $height, $weight, $whatsapp, $gender, $newPassword, $birthDate, $isVIP, $isActive, $isEnabled, $bagRemarks;
 
 
 
-   public $allergyLists = [], $excludeLists = [];
-   public $managerId, $driverId;
+    public $allergyLists = [], $excludeLists = [];
+    public $managerId, $driverId;
 
 
 

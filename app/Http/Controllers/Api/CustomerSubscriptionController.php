@@ -18,12 +18,16 @@ use App\Models\CustomerWallet;
 use App\Models\MealType;
 use App\Models\Plan;
 use App\Models\PlanBundleRange;
-use App\Models\PlanBundleRangeType;
 use App\Models\PromoCode;
 use App\Traits\HelperTrait;
 use App\Traits\MenuCalendarTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
+
+
+
+
 
 class CustomerSubscriptionController extends Controller
 {
@@ -142,7 +146,9 @@ class CustomerSubscriptionController extends Controller
 
 
         // 1: general
-        $customer->name = $request->name;
+        $customer->firstName = $request->firstName;
+        $customer->lastName = $request->lastName;
+
         $customer->email = $request->email;
         $customer->gender = $request->gender ?? 'Male';
         $customer->phone = $request->phone ?? null;

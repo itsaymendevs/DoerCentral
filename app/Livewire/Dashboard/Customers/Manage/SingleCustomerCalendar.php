@@ -147,13 +147,11 @@ class SingleCustomerCalendar extends Component
         $mealTypes = MealType::whereIn('id', $this->subscription?->typesInArray())->get();
 
 
-        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', '>=', $this->searchFromDate)
+        $schedules = CustomerSubscriptionSchedule::where('customerSubscriptionId', $this->subscription->id)
+            ->where('scheduleDate', '>=', $this->searchFromDate)
             ->where('scheduleDate', '<=', end($weekDates))
             ->orderBy('scheduleDate')
             ->get();
-
-
-
 
 
 

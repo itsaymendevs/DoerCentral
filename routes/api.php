@@ -15,8 +15,22 @@ use App\Http\Controllers\Api\MenuSettingController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\Portals\PortalCustomerLoginController;
 use App\Http\Controllers\Api\PromoController;
+use App\Http\Controllers\ApiWebsite\HomeController as WebsiteHomeController;
+use App\Http\Controllers\ApiWebsite\HelperController as WebsiteHelperController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
+
+
+
+
+// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
+
+
+
 
 
 
@@ -1214,4 +1228,52 @@ Route::post('/subscription/customer/store', [CustomerSubscriptionController::cla
 
 // 1: portals - customer - checkCustomer
 Route::post('/portals/customer/checkCustomer', [PortalCustomerLoginController::class, 'checkCustomer']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** -------------------- WEBSITE - CUSTOMER ----------------------- **
+
+
+
+
+
+// 1: website - subscription - customer - store
+Route::post('/website/subscription/customer/store', [CustomerSubscriptionController::class, 'storeCustomer']);
+
+
+
+
+
+
+
+
+
+
+
 

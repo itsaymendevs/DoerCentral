@@ -71,6 +71,14 @@
 
 
 
+
+        {{-- :: special --}}
+        <link href="{{ asset('assets/css/client-customization/aleens.css') }}" rel="stylesheet">
+
+
+
+
+
         @yield('styles')
 
 

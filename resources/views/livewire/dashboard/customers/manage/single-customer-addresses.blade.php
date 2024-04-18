@@ -46,7 +46,7 @@
             {{-- customer --}}
             <div class="col-6">
                 <h4 class="fw-semibold d-flex align-items-center justify-content-center mb-0">
-                    {{ $customer->name }}
+                    {{ $customer->fullName() }}
                 </h4>
             </div>
 

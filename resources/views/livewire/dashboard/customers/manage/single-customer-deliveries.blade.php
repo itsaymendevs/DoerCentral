@@ -163,7 +163,7 @@
 
                                         {{-- id - name --}}
                                         <td class="fw-bold">D-{{ $delivery->id }}</td>
-                                        <td>{{ $delivery->customer->name }}</td>
+                                        <td>{{ $delivery->customer->fullName() }}</td>
 
 
 

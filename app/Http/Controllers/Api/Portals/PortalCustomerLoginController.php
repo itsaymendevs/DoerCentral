@@ -35,7 +35,7 @@ class PortalCustomerLoginController extends Controller
 
             $token = $customer->createToken('user', ['role:customer'])->plainTextToken;
             $customerId = $customer->id;
-            $customerName = $customer->name;
+            $customerName = $customer->fullName();
 
             return response()->json(['token' => $token, 'customerName' => $customerName, 'customerId' => $customerId], 200);
 

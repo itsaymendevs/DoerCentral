@@ -33,6 +33,9 @@
 
 
 
+
+
+
                 {{-- contentRow --}}
                 <div class="row row mt-4 align-items-center mb-5">
                     <div class="col-12">
@@ -52,9 +55,9 @@
                                 @foreach ($plan->bundles->where('isForWebsite', true) as $bundle)
 
                                 <li class="nav-item" role="presentation" wire:ignore>
-                                    <a class="nav-link" role="tab" data-bs-toggle="tab"
+                                    <a class="nav-link " role="tab" data-bs-toggle="tab"
                                         href="#bundle-tab-{{ $bundle->id }}"
-                                        wire:click='changeBundle({{ $bundle->id }})'>
+                                        wire:click='changeBundle({{ $bundle->id }})' wire:loading.class='disabled'>
                                         {{ $bundle->name }}
                                     </a>
                                 </li>

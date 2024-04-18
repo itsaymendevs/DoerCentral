@@ -167,13 +167,25 @@
 
 
 
-                            {{-- name --}}
+                            {{-- firstName --}}
                             <div class="col-12">
                                 <div class="input--with-label mb-4">
-                                    <label class="form-label form--label mb-0">Full Name</label>
-                                    <input type="text" class="form--input" required wire:model='instance.name' />
+                                    <label class="form-label form--label mb-0">First Name</label>
+                                    <input type="text" class="form--input" required wire:model='instance.firstName' />
                                 </div>
                             </div>
+
+
+
+                            {{-- lastName --}}
+                            <div class="col-12">
+                                <div class="input--with-label mb-4">
+                                    <label class="form-label form--label mb-0">Last Name</label>
+                                    <input type="text" class="form--input" required wire:model='instance.lastName' />
+                                </div>
+                            </div>
+
+
 
 
 

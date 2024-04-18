@@ -137,7 +137,8 @@ class KitchenTodayPacking extends Component
 
 
         // 1.2: getCustomersByFilter
-        $customers = Customer::where('name', 'LIKE', '%' . $this->searchCustomer . '%')?->pluck('id')->toArray();
+        $customers = Customer::where('firstName', 'LIKE', '%' . $this->searchCustomer . '%')
+            ->orWhere('lastName', 'LIKE', '%' . $this->searchCustomer . '%')?->pluck('id')->toArray();
         $subscriptions = CustomerSubscription::whereIn('customerId', $customers)->pluck('id')->toArray();
 
 

@@ -243,7 +243,7 @@
                                 {{-- customer - plan --}}
                                 <td class="fw-bold text-start">
                                     <span class="d-block fs-14">{{
-                                        $scheduleMealsBySubscription?->first()?->customer->name }}
+                                        $scheduleMealsBySubscription?->first()?->customer->fullName() }}
                                         <small class="fw-semibold text-gold fs-14 d-block">
                                             {{ $scheduleMealsBySubscription?->first()->subscription?->plan->name }}
                                         </small>

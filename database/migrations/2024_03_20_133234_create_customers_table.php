@@ -17,7 +17,8 @@ return new class extends Migration {
             // 1: general
             $table->text('email')->nullable();
             $table->date('birthDate')->nullable();
-            $table->string('name', 255)->nullable();
+            $table->string('firstName', 255)->nullable();
+            $table->string('lastName', 255)->nullable();
             $table->string('gender', 100)->nullable();
 
 

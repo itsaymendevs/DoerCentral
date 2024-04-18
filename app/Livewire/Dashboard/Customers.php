@@ -147,7 +147,8 @@ class Customers extends Component
 
 
         // 1.2: customers - makeFilter
-        $customersRaw = Customer::where('name', 'LIKE', '%' . $this->searchCustomer . '%')->get();
+        $customersRaw = Customer::where('firstName', 'LIKE', '%' . $this->searchCustomer . '%')
+            ->orWhere('lastName', 'LIKE', '%' . $this->searchCustomer . '%')->get();
 
 
 

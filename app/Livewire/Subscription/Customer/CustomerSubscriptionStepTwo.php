@@ -71,6 +71,8 @@ class CustomerSubscriptionStepTwo extends Component
         // 1.2: get requiredTypes
         $planBundle = PlanBundle::find($id);
 
+
+
         foreach ($planBundle->types->groupBy('typeId') as $commonType => $bundleTypes)
             $this->requiredTypes[$commonType] = $bundleTypes->sum('quantity');
 

@@ -27,8 +27,11 @@ return new class extends Migration {
 
 
 
-            // 2: hasMasterView - hasWallet - hasDynamicBundle
+            // 2: hasMasterView - hasCardView - hasWallet - hasDynamicBundle
             $table->boolean('hasMasterView')->nullable()->default(1);
+
+            $table->boolean('hasCardView')->nullable()->default(1);
+
 
             $table->boolean('hasWallet')->nullable()->default(1);
 

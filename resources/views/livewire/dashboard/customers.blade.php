@@ -196,6 +196,19 @@
 
         {{-- customersRow --}}
         <div class="row row pt-2 align-items-center mb-5">
+
+
+
+            {{-- CardView --}}
+
+
+
+            {{-- :: hasCardView --}}
+            @if ($versionPermission->hasCardView)
+
+
+
+
             <div class="col-12 mt-zone-cards plans-column" data-view="standard" data-instance="1">
                 <div class="row pt-2 row align-items-center mb-4">
 
@@ -255,7 +268,7 @@
 
                                     {{-- name --}}
                                     <h5 class="text-center fw-bold mt-2 mb-2
-                                    truncate-text-1l">{{ $customer->name }}</h5>
+                                    truncate-text-1l">{{ $customer->fullName() }}</h5>
 
 
 
@@ -399,6 +412,259 @@
 
                 </div>
             </div>
+
+
+
+            @endif
+            {{-- end if - hasCardView --}}
+
+
+
+
+
+
+
+
+
+            {{-- --------------------------------------------- --}}
+            {{-- --------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {{-- tableView --}}
+
+
+
+            {{-- :: hasCardView is False --}}
+            @if ($versionPermission->hasCardView == false)
+
+
+
+            <div class="col-12 mt-4">
+                <div class="table-responsive memoir--table w-100">
+                    <table class="table table-bordered" id="memoir--table">
+
+
+                        {{-- thead --}}
+                        <thead>
+                            <tr>
+                                <th class="th--xs"></th>
+                                <th class="th--md">Customer</th>
+                                <th class="th--md">Plan</th>
+                                <th class="th--sm">Status</th>
+                                <th class="th--sm"></th>
+                            </tr>
+                        </thead>
+
+
+
+
+                        {{-- ---------------------------- --}}
+                        {{-- ---------------------------- --}}
+
+
+
+
+
+                        {{-- tbody --}}
+                        <tbody>
+
+
+
+
+                            {{-- loop - customers --}}
+                            @foreach ($customers as $customer)
+
+
+
+                            <tr>
+
+
+                                {{-- SN - name - plan --}}
+                                <td class="fw-bold">{{ $globalSNCounter++ }}</td>
+                                <td class="fw-bold fs-14">{{ $customer->fullName() }}</td>
+                                <td class="text-gold fs-14">{{ $customer?->latestSubscription()?->plan?->name }}</td>
+
+
+
+
+
+
+                                {{-- status --}}
+                                <td class="fs-14">
+
+
+                                    {{-- 1: active --}}
+                                    @if ($customer->latestSubscription()->untilDate >= $globalTodayDate)
+
+                                    <span class="badge fs-13 badge--scheme-3 text-dark fw-semibold">Active</span>
+
+
+                                    {{-- 2: expired --}}
+                                    @else
+
+
+                                    <span class="badge fs-13 badge--remove text-dark fw-semibold">Active</span>
+
+
+                                    @endif
+                                    {{-- end if --}}
+
+
+                                </td>
+
+
+
+
+
+
+
+                                {{-- ------------------------- --}}
+                                {{-- ------------------------- --}}
+
+
+
+
+
+                                {{-- actions --}}
+                                <td>
+                                    <div class="d-flex align-items-center justify-content-center">
+
+
+
+                                        {{-- 1: manage --}}
+                                        <a wire:navigate
+                                            class="btn btn--scheme btn--theme fs-12 px-2 mx-1 scale--self-05 h-32"
+                                            href="{{ route('dashboard.singleCustomer', [$customer->id]) }}">
+                                            Manage
+                                        </a>
+
+
+
+
+
+
+
+                                        {{-- 2: re-new --}}
+                                        <button
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
+                                            data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
+                                            type="button" title="Re-New"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                                class="bi bi-arrow-counterclockwise fs-5">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z">
+                                                </path>
+                                                <path
+                                                    d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z">
+                                                </path>
+                                            </svg>
+                                        </button>
+
+
+
+
+
+
+
+
+
+                                        {{-- 3: pause --}}
+                                        <div data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
+                                            title="Pause">
+
+
+                                            <button
+                                                class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32
+                                                @if ($customer->latestSubscription()->untilDate < $globalPauseDate) disabled @endif"
+                                                type="button" data-bs-toggle="modal"
+                                                data-bs-target='#pause-subscription'
+                                                wire:click='pause({{ $customer->latestSubscription()->id }})'>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                    fill="currentColor" class="bi bi-stopwatch fs-5"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                                                    <path
+                                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                                                </svg>
+                                            </button>
+
+
+                                        </div>
+                                        {{-- endPause --}}
+
+
+
+
+
+
+
+
+
+                                        {{-- 4: remove --}}
+                                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
+                                            type="button" wire:click='remove({{ $customer->id }})'
+                                            wire:loading.attr='disabled' wire:target='remove'>
+                                            <svg class="bi bi-trash fs-5" xmlns="http://www.w3.org/2000/svg" width="1em"
+                                                height="1em" fill="currentColor" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
+                                                </path>
+                                                <path fill-rule="evenodd"
+                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
+                                                </path>
+                                            </svg>
+                                        </button>
+
+
+
+                                    </div>
+                                </td>
+                                {{-- endActions --}}
+
+
+
+
+                            </tr>
+                            @endforeach
+                            {{-- end loop - customers --}}
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {{-- endTable --}}
+
+
+
+
+
+            @endif
+            {{-- end if - hasCardView False --}}
+
+
+
         </div>
     </div>
     {{-- endContainer --}}

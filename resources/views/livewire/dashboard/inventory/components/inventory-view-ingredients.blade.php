@@ -111,12 +111,18 @@
             <label class="form-label form--label invisible">placeholder</label>
 
 
+
+
+            {{-- :: isMasterView --}}
+            @if ($versionPermission->hasCardView)
+
+
             {{-- switchGroup --}}
-            <div class="btn-group btn--swtich-group" role="group">
+            <div class="btn-group btn--swtich-group" role="group" wire:ignore>
 
 
                 {{-- cardView --}}
-                <button class="btn btn--switch-view active disabled" data-view="cards" data-target="ingredients-column"
+                <button class="btn btn--switch-view" data-view="cards" data-target="ingredients-column"
                     data-instance="1" type="button">
                     <svg class="bi bi-card-text" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                         fill="currentColor" viewBox="0 0 16 16">
@@ -132,8 +138,8 @@
 
 
                 {{-- 2: tableView --}}
-                <button class="btn disabled btn--switch-view disabled" data-view="table"
-                    data-target="ingredients-column" data-instance="1" type="button">
+                <button class="btn btn--switch-view active" data-view="table" data-target="ingredients-column"
+                    data-instance="1" type="button">
                     <svg class="bi bi-table" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                         fill="currentColor" viewBox="0 0 16 16">
                         <path
@@ -142,6 +148,16 @@
                     </svg>
                 </button>
             </div>
+
+
+
+
+            @endif
+            {{-- end if - masterView --}}
+
+
+
+
         </div>
         {{-- endCol --}}
 
@@ -221,7 +237,7 @@
 
 
         {{-- cardColumn --}}
-        <div class="col-12 ingredients-column" data-view="cards">
+        <div class="col-12 ingredients-column" data-view="cards" style="display: none" wire:ignore.self>
             <div class="row mt-cards">
 
 
@@ -262,8 +278,7 @@
                                     {{-- 1: brands --}}
                                     <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3
                                     @if ($versionPermission->isProcessing) disabled @endif" data-bs-toggle="modal"
-                                        data-bss-tooltip="" data-bs-target="#ingredient-brands" type="button"
-                                        title="Brands">
+                                        data-bss-tooltip="" data-bs-target="#ingredient-brands" type="button">
                                         <svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="1em"
                                             height="1em" fill="currentColor" viewBox="0 0 16 16">
                                             <path
@@ -328,11 +343,16 @@
 
 
 
-                {{-- pagination --}}
+
+
+
+
+
+
+                {{-- :: pagination --}}
                 <div class="col-12">
                     {{ $ingredients->links() }}
                 </div>
-
 
 
 
@@ -360,8 +380,12 @@
 
 
         {{-- 2: tableView (HIDDEN NOW) --}}
-        <div class="col-12 ingredients-column mt-4" data-view="table" style="display: none">
-            <div class="table-responsive memoir--table w-100">
+        <div class="col-12 ingredients-column mt-4 pt-3 " data-view="table" wire:ignore.self>
+
+
+
+            {{-- table --}}
+            <div class="table-responsive memoir--table w-100 mb-4">
                 <table class="table table-bordered" id="memoir--table">
 
 
@@ -369,39 +393,159 @@
                     <thead>
                         <tr>
                             <th class="th--xs"></th>
-                            <th class="th--xs">Name</th>
-                            <th class="th--md">Calories</th>
-                            <th class="th--md">Proteins</th>
+                            <th class="th--md">Name</th>
+                            <th class="th--sm">Calories</th>
+                            <th class="th--md th--sm">Proteins</th>
                             <th class="th--sm">Carbohydrates</th>
-                            <th class="th--md">Fats</th>
+                            <th class="th--md th--sm">Fats</th>
+                            <th class="th--sm"></th>
                         </tr>
                     </thead>
 
 
+
+
+
+
                     {{-- tbody --}}
                     <tbody>
+
+
+
+
+
+
+                        {{-- loop - ingredients --}}
+                        @foreach ($ingredients as $ingredient)
+
+
+
+
                         <tr>
-                            <td class="fw-bold">IN-0001</td>
-                            <td class="fw-bold">Bread</td>
-                            <td>2.74</td>
-                            <td class="scale--3">0.11</td>
-                            <td>0.48</td>
-                            <td>0.06</td>
+                            <td class="fw-bold">{{ $globalSNCounter++ }}</td>
+                            <td class="fw-bold">{{ $ingredient->name }}</td>
+                            <td>{{ $ingredient->freshMacro()->calories }}</td>
+                            <td>{{ $ingredient->freshMacro()->proteins }}1</td>
+                            <td>{{ $ingredient->freshMacro()->carbs }}</td>
+                            <td>{{ $ingredient->freshMacro()->fats }}</td>
+
+
+
+
+                            {{-- actions --}}
+                            <td>
+                                <div class="d-flex align-items-center justify-content-center">
+
+
+
+                                    {{-- Brands --}}
+                                    <button class="btn btn--raw-icon inline scale--3 px-2
+                                    @if ($versionPermission->isProcessing) disabled @endif" data-bs-toggle="modal"
+                                        data-bss-tooltip="" data-bs-target="#ingredient-brands" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            fill="currentColor" viewBox="0 0 16 16" class="bi bi-tags">
+                                            <path
+                                                d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z">
+                                            </path>
+                                            <path
+                                                d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z">
+                                            </path>
+                                        </svg>
+                                    </button>
+
+
+
+
+
+
+
+
+                                    {{-- edit --}}
+                                    <button class="btn btn--raw-icon inline scale--3 px-2 mx-2
+                                    @if ($versionPermission->isProcessing) disabled @endif"
+                                        wire:click="edit({{ $ingredient->id }})" wire:loading.attr='disabled'
+                                        data-bs-toggle="modal" data-bs-target="#edit-ingredient" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil-fill">
+                                            <path
+                                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z">
+                                            </path>
+                                        </svg>
+                                    </button>
+
+
+
+
+
+
+
+
+
+
+                                    {{-- remove --}}
+                                    <button class="btn btn--raw-icon inline remove scale--3 px-2
+                                    @if ($versionPermission->isProcessing) disabled @endif" type="button"
+                                        wire:click="remove({{ $ingredient->id }})" wire:loading.attr='disabled'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            fill="currentColor" viewBox="0 0 16 16" class="bi bi-trash-fill">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+
+
+
+                                </div>
+                            </td>
+                            {{-- endActions --}}
+
+
+
+
+
+
                         </tr>
-                        <tr>
-                            <td class="fw-bold">IN-0002</td>
-                            <td class="fw-bold">Onion Bread</td>
-                            <td>2.8</td>
-                            <td class="scale--3">0.13</td>
-                            <td>0.49</td>
-                            <td>0.07</td>
-                        </tr>
+
+
+
+                        @endforeach
+                        {{-- end loop - ingredients --}}
+
+
+
+
                     </tbody>
                     {{-- end tbody --}}
+
                 </table>
             </div>
+
+
+
+
+
+
+
+            {{-- :: pagination --}}
+            <div class="d-block">
+                {{ $ingredients->links() }}
+            </div>
+
+
         </div>
         {{-- endCol - tableView --}}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

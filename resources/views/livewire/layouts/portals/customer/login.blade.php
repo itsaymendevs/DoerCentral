@@ -53,6 +53,12 @@
 
 
 
+        {{-- :: special --}}
+        <link href="{{ asset('assets/css/client-customization/aleens.css') }}" rel="stylesheet">
+
+
+
+
 
         {{-- JQuery --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"

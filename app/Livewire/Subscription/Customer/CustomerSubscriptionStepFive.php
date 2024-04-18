@@ -29,7 +29,7 @@ class CustomerSubscriptionStepFive extends Component
     public CustomerSubscriptionForm $instance;
     public StripePaymentForm $payment;
 
-    public $plan, $paymentMethod, $promoCodes;
+    public $plan, $paymentMethod, $isPaymentSkipped, $promoCodes;
     public $isCouponApplied = false;
 
 
@@ -86,6 +86,7 @@ class CustomerSubscriptionStepFive extends Component
 
         // 2.1: getPaymentMethod
         $this->paymentMethod = CustomerSubscriptionSetting::all()->first()?->paymentMethod ?? null;
+        $this->isPaymentSkipped = CustomerSubscriptionSetting::all()->first()?->isPaymentSkipped;
 
 
 
@@ -273,34 +274,68 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-        // :: makePayment
-        $this->instance->paymentMethodId = $this->paymentMethod->id ?? null;
+
+
+        // A: check if paymentNotSkipped
+        if (! $this->isPaymentSkipped) {
 
 
 
 
-        // 1: Stripe
-        if ($this->paymentMethod->name == 'Stripe') {
 
-            $this->instance->isPaymentDone = $this->makeStripePayment($this->payment);
+            // :: makePayment
+            $this->instance->paymentMethodId = $this->paymentMethod->id ?? null;
+
+
+
+
+
+
+            // 1.5: Stripe
+            if ($this->paymentMethod->name == 'Stripe') {
+
+                $this->instance->isPaymentDone = $this->makeStripePayment($this->payment);
+
+            } // end if
+
+
+
+
+
+
+
+
+
+            // :: checkPaymentDone
+            if (! $this->instance->isPaymentDone) {
+
+                $this->makeAlert('info', 'Payment Failed');
+
+                return false;
+
+            } // end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // B: markPaymentDone
+        } else {
+
+
+            $this->instance->isPaymentDone = true;
+
 
         } // end if
 
-
-
-
-
-
-
-
-        // :: checkPaymentDone
-        if (! $this->instance->isPaymentDone) {
-
-            $this->makeAlert('info', 'Payment Failed');
-
-            return false;
-
-        } // end if
 
 
 

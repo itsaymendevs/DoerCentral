@@ -126,9 +126,9 @@
                                     {{-- headers --}}
                                     <thead>
                                         <tr>
-                                            <th class="th--md">Range</th>
+                                            <th class="th--lg">Name</th>
                                             <th class="th--lg">Calories</th>
-                                            <th>Description</th>
+                                            <th class='th=lg'>Description</th>
                                             <th class="th-xs">For Website?</th>
                                             <th class="th-xs"></th>
                                         </tr>

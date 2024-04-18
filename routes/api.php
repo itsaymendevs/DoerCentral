@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\MenuSettingController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\Portals\PortalCustomerLoginController;
 use App\Http\Controllers\Api\PromoController;
+use App\Http\Controllers\Api\WebsiteConfigController;
 use App\Http\Controllers\ApiWebsite\HomeController as WebsiteHomeController;
 use App\Http\Controllers\ApiWebsite\HelperController as WebsiteHelperController;
 
@@ -1146,6 +1147,37 @@ Route::post('/dashboard/kitchen/production/meals/cook', [KitchenTodayController:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 18: website-config - blogs - store - update
+Route::post('/dashboard/website-config/blogs/store', [WebsiteConfigController::class, 'storeBlog']);
+Route::post('/dashboard/website-config/blogs/update', [WebsiteConfigController::class, 'updateBlog']);
+Route::post('/dashboard/website-config/blogs/toggle', [WebsiteConfigController::class, 'toggleBlog']);
+
+Route::post('/dashboard/website-config/blogs/remove', [WebsiteConfigController::class, 'removeBlog']);
 
 
 

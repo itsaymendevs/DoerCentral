@@ -511,14 +511,14 @@
                                     {{-- 1: active --}}
                                     @if ($customer->latestSubscription()->untilDate >= $globalTodayDate)
 
-                                    <span class="badge fs-13 badge--scheme-3 text-dark fw-semibold">Active</span>
+                                    <span class="badge fs-13 badge--scheme-3 fw-semibold">Active</span>
 
 
                                     {{-- 2: expired --}}
                                     @else
 
 
-                                    <span class="badge fs-13 badge--remove text-dark fw-semibold">Active</span>
+                                    <span class="badge fs-13 badge--remove fw-semibold">Active</span>
 
 
                                     @endif

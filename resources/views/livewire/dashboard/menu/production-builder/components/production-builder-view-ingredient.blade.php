@@ -4,7 +4,7 @@
 
 
     {{-- amount --}}
-    <td class="fw-bold">
+    <td class="fw-bold" @if (!$versionPermission->hasAdminView) colspan='2' @endif>
         <input class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input"
             data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' required wire:model='instance.amount'
             wire:change='update' wire:loading.attr='readonly' wire:target='remove, update, init' />
@@ -13,11 +13,26 @@
 
 
 
+
+
     {{-- percentage --}}
+
+
+    {{-- :: hasAdminView --}}
+    @if ($versionPermission->hasAdminView)
+
+
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--percentage-input"
             data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly="" />
     </td>
+
+
+    @endif
+    {{-- end if - AdminView --}}
+
+
+
 
 
 

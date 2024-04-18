@@ -545,8 +545,26 @@
 
                     {{-- ingredientsHeaders --}}
                     <tr class="subheader">
-                        <td class="fw-bold">Grams</td>
+
+
+                        <td class="fw-bold" @if (!$versionPermission->hasAdminView) colspan='2' @endif>Grams</td>
+
+
+
+
+                        {{-- :: hasAdminView --}}
+                        @if ($versionPermission->hasAdminView)
+
+
                         <td class="fw-bold">%</td>
+
+
+                        @endif
+                        {{-- end if - AdminView --}}
+
+
+
+
                         <td class="fw-bold">CA</td>
                         <td class="fw-bold">P</td>
                         <td class="fw-bold">C</td>

@@ -141,7 +141,7 @@
                     {{-- sales & marketing --}}
                     <div class="btn-group navbar--split">
                         <button class="btn navbar--menu-button
-                        @if ($versionPermission->isProcessing) disabled @endif
+                        @if ($versionPermission->isProcessing) no-events @endif
                             @if (Request::is('dashboard/sales', 'dashboard/sales/*')) active @endif" type="button">
                             Sales &amp; Marketing</button>
 
@@ -166,9 +166,56 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
                     {{-- extra --}}
-                    <button class="btn navbar--menu-button
-                    @if ($versionPermission->isProcessing) d-none @endif" type="button">Extra</button>
+                    <div class="btn-group navbar--split">
+                        <button class="btn navbar--menu-button
+                        @if ($versionPermission->isProcessing) no-events @endif
+                        @if (Request::is('dashboard/extra', 'dashboard/extra/*')) active @endif"
+                            type="button">Extra</button>
+
+
+
+
+                        {{-- splitButton --}}
+                        <button @if ($versionPermission->isProcessing) no-events @endif
+                            class="btn btn-sm dropdown-toggle dropdown-toggle-split
+                            @if (Request::is('dashboard/website-config', 'dashboard/website-config/*')) active @endif"
+                            data-bs-toggle="dropdown" aria-expanded="false" type="button"></button>
+
+
+
+
+                        {{-- subMenu --}}
+                        <div class="dropdown-menu dropdown-menu-end
+                        @if (!$versionPermission->hasBlogs) d-none @endif">
+
+
+                            {{-- app & website --}}
+                            <a wire:navigate href="{{ route('dashboard.blogs') }}"
+                                class="dropdown-item fw-semibold
+                                @if (Request::is('dashboard/website-config', 'dashboard/website-config/*')) active @endif">App &amp; Website</a>
+                        </div>
+
+
+
+
+                    </div>
+                    {{-- endExtra --}}
+
+
+
+
 
 
 

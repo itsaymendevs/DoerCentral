@@ -275,9 +275,7 @@
                                                         {{-- startDate --}}
                                                         <div class="col-12 col-sm-4 mb-3 mb-sm-0">
                                                             <label class="form-label form--label">Start Date</label>
-                                                            <input type="date" required
-                                                                min="{{ date('Y-m-d', strtotime('+1 day +4 hours')) }}"
-                                                                class="form--input mb-0"
+                                                            <input type="date" required class="form--input mb-0"
                                                                 wire:model='instance.startDate' />
                                                         </div>
 
@@ -397,7 +395,7 @@
 
 
                                                                             {{-- loop - bundleTypes --}}
-                                                                            @foreach ($bundle->types as $key =>
+                                                                            @foreach ($bundle->types ?? [] as $key =>
                                                                             $bundleType)
 
                                                                             <div class="col-6 col-sm-4">
@@ -444,9 +442,13 @@
                                                                                     <input type="number"
                                                                                         data-type='{{ $bundleType->mealType->id }}'
                                                                                         class="form--input range--input"
-                                                                                        step="1" min="0"
-                                                                                        data-input="bundle-{{ $bundle->id }}-range-type-{{ $bundleType->mealType->id }}"
-                                                                                        wire:model='instance.bundleTypes.{{ $bundleType->mealType->id }}' />
+                                                                                        step="1" min="0" data-input="bundle-{{ $bundle->id}}-range-type-{{
+                                                                                    $bundleType->mealType->id }}"
+                                                                                        wire:model='instance.bundleTypes.{{
+                                                                                    $bundleType->mealType->id }}' />
+
+
+
 
 
 

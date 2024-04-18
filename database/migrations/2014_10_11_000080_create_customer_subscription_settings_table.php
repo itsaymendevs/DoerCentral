@@ -16,6 +16,7 @@ return new class extends Migration {
 
             // 1: general
             $table->integer('minimumDeliveryDays')->nullable()->default(1);
+            $table->boolean('isPaymentSkipped')->nullable()->default(0);
 
 
 

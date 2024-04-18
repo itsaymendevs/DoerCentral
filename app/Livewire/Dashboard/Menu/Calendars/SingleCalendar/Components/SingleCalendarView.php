@@ -102,11 +102,9 @@ class SingleCalendarView extends Component
 
 
 
-
         // 1.2: fromDate - weekDates
-        $this->searchFromDate == '' ? $this->searchFromDate = current($weeks) : null;
+        $this->searchFromDate == '' ? $this->searchFromDate = $this->getCurrentDate() : null;
         $weekDates = $this->getWeekDates($this->searchFromDate);
-
 
 
 

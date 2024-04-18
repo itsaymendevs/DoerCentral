@@ -15,6 +15,13 @@
 /* -------------------------- */
 /* -------------------------- */
 
+.select2-container .select2-search--inline .select2-search__field {
+    font-size: var(--input-font) !important;
+    margin: auto !important;
+    margin-left: 8px !important;
+    margin-bottom: 2px !important;
+}
+
 .form-select {
     width: 100% !important;
     height: var(--input-height);

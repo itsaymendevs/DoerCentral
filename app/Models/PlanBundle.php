@@ -80,9 +80,28 @@ class PlanBundle extends Model
 
 
         // :: loop - types
-        foreach ($types->groupBy('typeId') as $commonType => $typesByType)
-            $typesByType->sum('quantity') > 0 ?
-                array_push($typesInArray, "{$typesByType->sum('quantity')} {$typesByType->first()->type->name}") : null;
+        foreach ($types->groupBy('typeId') as $commonType => $typesByType) {
+
+
+            // 1.2: quantity > 0
+            if ($typesByType->sum('quantity') > 0) {
+
+
+                // 1.3: getTypeName
+                $typeName = $typesByType->first()->type->name == 'Recipe' ? 'Meal' : $typesByType->first()->type->name;
+
+
+                array_push($typesInArray, "{$typesByType->sum('quantity')} {$typeName}");
+
+
+            } // end if
+
+
+        } // end loop - types
+
+
+
+
 
 
 

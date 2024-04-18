@@ -663,8 +663,16 @@ class CustomerSubscriptionController extends Controller
 
 
                 // 1.2.1: general
-                $subscriptionDelivery->status = 'Pending';
                 $subscriptionDelivery->deliveryDate = $deliveryDate;
+
+
+                // 1.2.2: status - bagCollected - remarks
+                $subscriptionDelivery->status = $deliveryDate >= $this->getCurrentDate() ? 'Pending' : 'Completed';
+                $subscriptionDelivery->isBagCollected = $deliveryDate >= $this->getCurrentDate() ? false : true;
+                $subscriptionDelivery->remarks = $deliveryDate >= $this->getCurrentDate() ? null : 'Customer was migrated';
+
+
+
 
 
                 // 1.2.2: customer - customerSubscription
@@ -801,7 +809,7 @@ class CustomerSubscriptionController extends Controller
 
 
         // 1.2: general
-        $schedule->status = 'Pending';
+        $schedule->status = $subscriptionDelivery->deliveryDate >= $this->getCurrentDate() ? 'Pending' : 'Completed';
         $schedule->scheduleDate = $subscriptionDelivery->deliveryDate;
 
 
@@ -854,7 +862,7 @@ class CustomerSubscriptionController extends Controller
 
 
                 // 2.2: general
-                $scheduleMeal->cookStatus = 'Pending';
+                $scheduleMeal->cookStatus = $subscriptionDelivery->deliveryDate >= $this->getCurrentDate() ? 'Pending' : 'Packed';
                 $scheduleMeal->mealTypeId = $mealTypeId;
 
 

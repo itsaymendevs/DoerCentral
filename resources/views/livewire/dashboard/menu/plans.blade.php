@@ -192,7 +192,7 @@
 
 
 
-                                        {{-- 2: isForWebsite --}}
+                                        {{-- 3: isForWebsite --}}
                                         @if ($plan->isForWebsite)
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"

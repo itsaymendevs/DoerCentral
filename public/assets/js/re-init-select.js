@@ -6,11 +6,13 @@ $(document).ready(function () {
             setupClear = $(this).attr("data-clear") ? true : false;
             setupPlaceholder = $(this).attr("data-placeholder");
             setupTrigger = $(this).attr("data-trigger") ? true : false;
+            setupTags = $(this).attr("data-tags") ? true : false;
 
             if (setupValue == undefined) {
                 $(this).select2({
                     allowClear: setupClear,
                     placeholder: setupPlaceholder ? setupPlaceholder : "",
+                    tags: setupTags,
                 });
             } else {
                 $(this)
@@ -18,6 +20,7 @@ $(document).ready(function () {
                     .select2({
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
+                        tags: setupTags,
                     });
             } // end else
 
@@ -32,12 +35,14 @@ $(document).ready(function () {
             setupModal = $(this).attr("data-modal");
             setupPlaceholder = $(this).attr("data-placeholder");
             setupTrigger = $(this).attr("data-trigger") ? true : false;
+            setupTags = $(this).attr("data-tags") ? true : false;
 
             if (setupValue == undefined) {
                 $(this).select2({
                     dropdownParent: $(setupModal),
                     allowClear: setupClear,
                     placeholder: setupPlaceholder ? setupPlaceholder : "",
+                    tags: setupTags,
                 });
             } else {
                 $(this)
@@ -46,6 +51,7 @@ $(document).ready(function () {
                         dropdownParent: $(setupModal),
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
+                        tags: setupTags,
                     });
             } // end else
 
@@ -66,11 +72,13 @@ document.addEventListener(
                 setupClear = $(this).attr("data-clear") ? true : false;
                 setupPlaceholder = $(this).attr("data-placeholder");
                 setupTrigger = $(this).attr("data-trigger") ? true : false;
+                setupTags = $(this).attr("data-tags") ? true : false;
 
                 if (setupValue == undefined) {
                     $(this).select2({
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
+                        tags: setupTags,
                     });
                 } else {
                     $(this)
@@ -80,6 +88,7 @@ document.addEventListener(
                             placeholder: setupPlaceholder
                                 ? setupPlaceholder
                                 : "",
+                            tags: setupTags,
                         });
                 } // end else
 
@@ -92,12 +101,14 @@ document.addEventListener(
                 setupModal = $(this).attr("data-modal");
                 setupPlaceholder = $(this).attr("data-placeholder");
                 setupTrigger = $(this).attr("data-trigger") ? true : false;
+                setupTags = $(this).attr("data-tags") ? true : false;
 
                 if (setupValue == undefined) {
                     $(this).select2({
                         dropdownParent: $(setupModal),
                         allowClear: setupClear,
                         placeholder: setupPlaceholder ? setupPlaceholder : "",
+                        tags: setupTags,
                     });
                 } else {
                     $(this)
@@ -108,6 +119,7 @@ document.addEventListener(
                             placeholder: setupPlaceholder
                                 ? setupPlaceholder
                                 : "",
+                            tags: setupTags,
                         });
                 } // end else
 

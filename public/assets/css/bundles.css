@@ -38,3 +38,7 @@
     background-color: transparent;
     border-color: transparent !important;
 }
+
+.range--input-wrapper .range--button.disabled {
+    border-color: transparent;
+}

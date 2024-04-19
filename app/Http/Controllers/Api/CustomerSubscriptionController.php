@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\CustomerSubscriptionEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Bag;
 use App\Models\Customer;
@@ -16,6 +17,7 @@ use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
 use App\Models\MealType;
+use App\Models\Notification;
 use App\Models\Plan;
 use App\Models\PlanBundleRange;
 use App\Models\PromoCode;
@@ -100,6 +102,11 @@ class CustomerSubscriptionController extends Controller
 
 
 
+
+
+
+        // final: phase - notification
+        $this->storeNotification($subscription);
 
 
 
@@ -1038,6 +1045,97 @@ class CustomerSubscriptionController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function storeNotification($subscription)
+    {
+
+
+
+        // 1: create
+        $notification = new Notification();
+
+
+        // 1.2: general
+        $notification->date = $this->getCurrentDate();
+        $notification->title = 'New Subscription';
+        $notification->content = "{$subscription->customer->firstName} {$subscription->customer->lastName} has subscribed to {$subscription->plan->name}";
+
+
+
+
+        // 1.3: route
+        $notification->routeLink = "dashboard.singleCustomer";
+        $notification->routePayload = $subscription->customer->id;
+
+
+
+
+
+        // 1.4: markForDashboard
+        $notification->isForDashboard = true;
+
+
+
+
+        $notification->save();
+
+
+
+
+
+
+
+
+
+
+        // -----------------------------------------------------
+        // -----------------------------------------------------
+
+
+
+
+
+
+        // 2: makePusherEvent
+        event(new CustomerSubscriptionEvent($subscription->customer->fullName(), $subscription->plan->name));
+
+
+
+
+
+
+
+    } // end function
+
+
+
 
 
 

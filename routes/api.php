@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\BuilderController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\CustomerMenuController;
 use App\Http\Controllers\Api\CustomerSubscriptionController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\KitchenController;
@@ -81,6 +82,32 @@ Route::post('/checkUser', [LoginController::class, 'checkUser']);
 
 
 // Route::middleware(['auth:sanctum', 'auth.userApi'])->group(function () {
+
+
+
+
+
+
+
+
+
+// 0.5: notifications - update
+Route::post('/dashboard/notifications/update', [DashboardController::class, 'updateNotifications']);
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
 
 
 

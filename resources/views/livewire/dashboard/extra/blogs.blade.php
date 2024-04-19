@@ -41,7 +41,7 @@
             <div class="col-4 text-end">
 
 
-                <livewire:dashboard.website-config.components.sub-menu />
+                <livewire:dashboard.extra.components.sub-menu />
 
 
             </div>
@@ -78,7 +78,7 @@
 
 
 
-                    <div class="col-4 col-xl-3">
+                    <div class="col-4 col-xl-3" key='blog-{{ $blog->id }}'>
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">
 

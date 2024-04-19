@@ -44,7 +44,7 @@
             <div class="col-4 text-end">
 
 
-                <livewire:dashboard.website-config.components.sub-menu />
+                <livewire:dashboard.extra.components.sub-menu />
 
 
             </div>

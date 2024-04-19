@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\WebsiteConfig\Blogs;
+namespace App\Livewire\Dashboard\Extra\Blogs;
 
 use App\Livewire\Forms\BlogForm;
 use App\Models\Blog;
@@ -29,6 +29,9 @@ class BlogsView extends Component
 
 
 
+
+
+
     public function mount($id)
     {
 
@@ -51,8 +54,11 @@ class BlogsView extends Component
 
 
 
+
+
         // -----------------------------------------
         // -----------------------------------------
+
 
 
 
@@ -73,6 +79,8 @@ class BlogsView extends Component
 
 
     } // end function
+
+
 
 
 
@@ -121,7 +129,7 @@ class BlogsView extends Component
 
 
         // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/website-config/blogs/update', $this->instance);
+        $response = $this->makeRequest('dashboard/extra/blogs/update', $this->instance);
 
 
 
@@ -149,6 +157,34 @@ class BlogsView extends Component
 
 
 
+    // --------------------------------------------------------------------
+
+
+
+
+
+
+
+    public function editSection($id)
+    {
+
+
+        // 1: dispatchId
+        $this->dispatch('editSection', $id);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
     // -----------------------------------------------------------------
 
 
@@ -163,7 +199,7 @@ class BlogsView extends Component
         // 1: params - confirmationBox
         $this->removeId = $id;
 
-        $this->makeAlert('remove', null, 'confirmBlogRemove');
+        $this->makeAlert('remove', null, 'confirmSectionRemove');
 
 
 
@@ -183,7 +219,7 @@ class BlogsView extends Component
 
 
 
-    #[On('confirmBlogRemove')]
+    #[On('confirmSectionRemove')]
     public function confirmRemove()
     {
 
@@ -194,7 +230,7 @@ class BlogsView extends Component
         // 1: remove
         if ($this->removeId) {
 
-            $response = $this->makeRequest('dashboard/website-config/blogs/remove', $this->removeId);
+            $response = $this->makeRequest('dashboard/extra/blogs/sections/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
 
 
@@ -245,7 +281,7 @@ class BlogsView extends Component
 
 
 
-        return view('livewire.dashboard.website-config.blogs.blogs-view', compact('sections'));
+        return view('livewire.dashboard.extra.blogs.blogs-view', compact('sections'));
 
 
 

@@ -65,7 +65,6 @@
         <link href="{{ asset('assets/css/uploader.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/plans.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/bundles.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/portals/customer.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/customers.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/kitchen.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/simple-animate.css') }}" rel="stylesheet">
@@ -75,6 +74,7 @@
         {{-- :: special --}}
         <link href="{{ asset('assets/css/mobile-responsive.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/client-customization/aleens.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/portals/customer.css') }}" rel="stylesheet">
 
 
 
@@ -112,7 +112,34 @@
 
     {{-- body --}}
     <body>
-        <div data-aos="fade" data-aos-duration="1000">
+
+
+
+
+
+
+
+
+
+        {{-- mobile- sub-menu --}}
+        <livewire:customer-portal.components.mobile-sub-menu />
+
+
+
+
+
+
+        {{-- -------------------------------------- --}}
+        {{-- -------------------------------------- --}}
+
+
+
+
+
+
+
+
+        <div data-aos="fade" data-aos-duration="1000" class='position-relative'>
 
 
 

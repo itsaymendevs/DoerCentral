@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\CustomerSubscriptionEvent;
 use App\Livewire\CustomerPortal\CustomerAddresses;
 use App\Livewire\CustomerPortal\CustomerCalendar;
 use App\Livewire\CustomerPortal\CustomerDeliveries;
@@ -38,9 +39,9 @@ use App\Livewire\Dashboard\Menu\ProductionBuilder;
 use App\Livewire\Dashboard\Menu\Recipes;
 use App\Livewire\Dashboard\Menu\Settings;
 use App\Livewire\Dashboard\Promos;
-use App\Livewire\Dashboard\WebsiteConfig\Blogs;
-use App\Livewire\Dashboard\WebsiteConfig\Blogs\BlogsCreate;
-use App\Livewire\Dashboard\WebsiteConfig\Blogs\BlogsView;
+use App\Livewire\Dashboard\Extra\Blogs;
+use App\Livewire\Dashboard\Extra\Blogs\BlogsCreate;
+use App\Livewire\Dashboard\Extra\Blogs\BlogsView;
 use App\Livewire\Login;
 use App\Livewire\LoginCustomerPortal;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFive;
@@ -52,6 +53,12 @@ use App\Livewire\Subscription\Customer\CustomerSubscriptionStepTwo;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
+
+
+
+
+
+
 
 
 
@@ -70,12 +77,18 @@ use Livewire\Livewire;
 
 
 
+
+
 // :: linkStorage
 Route::get('/storage-link', function () {
 
     $return = Artisan::call('storage:link');
 
 });
+
+
+
+
 
 
 
@@ -92,6 +105,22 @@ if (env('APP_ENV') == 'production') {
     });
 
 } // end if
+
+
+
+
+
+
+
+// :: Broadcast - Event Test
+Route::get('broadcast-link', function () {
+    event(new CustomerSubscriptionEvent('CUSTOMER', 'PLAN'));
+    return "Broadcast - Event Test.";
+});
+
+
+
+
 
 
 
@@ -637,10 +666,10 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-    // 16: website-config - blogs - create - edit
-    Route::get('dashboard/website-config/blogs', Blogs::class)->name('dashboard.blogs');
-    Route::get('dashboard/website-config/blogs/create', BlogsCreate::class)->name('dashboard.createBlog');
-    Route::get('dashboard/website-config/blogs/{id}', BlogsView::class)->name('dashboard.viewBlog');
+    // 16: extra - blogs - create - edit
+    Route::get('dashboard/extra/blogs', Blogs::class)->name('dashboard.blogs');
+    Route::get('dashboard/extra/blogs/create', BlogsCreate::class)->name('dashboard.createBlog');
+    Route::get('dashboard/extra/blogs/{id}', BlogsView::class)->name('dashboard.viewBlog');
 
 
 

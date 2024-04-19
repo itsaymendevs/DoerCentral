@@ -9,7 +9,7 @@ use App\Models\BlogTag;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
-class WebsiteConfigController extends Controller
+class ExtraController extends Controller
 {
 
     use HelperTrait;
@@ -136,12 +136,9 @@ class WebsiteConfigController extends Controller
 
 
         // 1.2: imageFiles
-        if ($request->imageFile)
-            $blog->imageFile = $request->imageFileName;
+        $blog->imageFile = $request->imageFileName ?? null;
 
-
-        if ($request->headerImageFile)
-            $blog->headerImageFile = $request->headerImageFileName;
+        $blog->headerImageFile = $request->headerImageFileName ?? null;
 
 
 
@@ -276,7 +273,7 @@ class WebsiteConfigController extends Controller
 
 
         // 1: get instance
-        BlogSection::find($id)->delete();
+        Blog::find($id)->delete();
 
 
         return response()->json(['message' => 'Blog has been removed'], 200);
@@ -290,6 +287,201 @@ class WebsiteConfigController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function storeBlogSection(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $section = new BlogSection();
+
+        $section->title = $request->title ?? null;
+        $section->content = $request->content ?? null;
+
+
+
+
+        // 1.2: imageFiles
+        $section->sideImageFile = $request->sideImageFileName ?? null;
+        $section->bottomImageFile = $request->bottomImageFileName ?? null;
+
+
+
+        // 1.3: blog
+        $section->blogId = $request->blogId;
+
+
+
+
+
+        $section->save();
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Section has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateBlogSection(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $section = BlogSection::find($request->id);
+
+        $section->title = $request->title ?? null;
+        $section->content = $request->content ?? null;
+
+
+
+
+        // 1.2: imageFiles
+        $section->sideImageFile = $request->sideImageFileName ?? null;
+        $section->bottomImageFile = $request->bottomImageFileName ?? null;
+
+
+
+
+
+
+
+        $section->save();
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Section has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+    public function removeBlogSection(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        BlogSection::find($id)->delete();
+
+
+        return response()->json(['message' => 'Section has been removed'], 200);
+
+
+
+    } // end function
 
 
 

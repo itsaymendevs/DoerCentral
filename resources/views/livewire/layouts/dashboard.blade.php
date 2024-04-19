@@ -93,6 +93,10 @@
 
 
 
+        {{-- head --}}
+        @yield('head')
+
+
     </head>
     {{-- end head --}}
 

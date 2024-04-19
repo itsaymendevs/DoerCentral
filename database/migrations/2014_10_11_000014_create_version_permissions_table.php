@@ -44,6 +44,15 @@ return new class extends Migration {
 
 
 
+            // ----------------------------------
+            // ----------------------------------
+
+
+
+            $table->boolean('hasCustomerBundlesView')->nullable()->default(1);
+
+
+
             $table->timestamps();
         });
     }

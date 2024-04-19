@@ -3,9 +3,9 @@
     <div class="col-12 text-center">
 
 
-        {{-- subMenu - md - xl --}}
-        <div class="btn-group submenu--group mobile d-none d-md-block" role="group" data-aos="fade-down"
-            data-aos-duration="600" data-aos-delay="800" data-aos-once="true" wire:ignore.self>
+        {{-- subMenu--}}
+        <div class="btn-group submenu--group mobile" role="group" data-aos="fade-down" data-aos-duration="600"
+            data-aos-delay="800" data-aos-once="true" wire:ignore.self>
 
 
 

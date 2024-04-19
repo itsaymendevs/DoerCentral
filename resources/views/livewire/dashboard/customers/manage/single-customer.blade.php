@@ -723,6 +723,17 @@
 
 
                 {{-- bundleTypeRow - mealTypes --}}
+
+
+
+
+                {{-- :: hasCustomerBundlesView --}}
+                @if ($versionPermission->hasCustomerBundlesView)
+
+
+
+
+
                 <div class="row mb-5">
 
 
@@ -799,10 +810,19 @@
 
 
                 </div>
+
+
+
+
+
+                @endif
+                {{-- end if - hasCustomerBundlesView --}}
+
+
+
+
+
                 {{-- endRow --}}
-
-
-
 
 
 

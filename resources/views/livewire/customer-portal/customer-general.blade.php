@@ -639,6 +639,14 @@
 
 
                 {{-- bundleTypeRow - mealTypes --}}
+
+
+
+                {{-- :: hasCustomerBundlesView --}}
+                @if ($versionPermission->hasCustomerBundlesView)
+
+
+
                 <div class="row justify-content-center mb-5">
 
 
@@ -720,6 +728,12 @@
 
 
 
+                @endif
+                {{-- end if - hasCustomerBundlesPermissions --}}
+
+
+
+
 
 
 
@@ -728,6 +742,10 @@
 
                 {{-- ----------------------- --}}
                 {{-- ----------------------- --}}
+
+
+
+
 
 
 

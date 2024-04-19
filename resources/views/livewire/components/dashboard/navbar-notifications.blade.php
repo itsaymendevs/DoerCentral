@@ -52,6 +52,7 @@
                 key='notification-{{ $notification->id }}'>
 
 
+
                 {{-- title --}}
                 <p class="fs-6 mb-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
@@ -62,6 +63,8 @@
                         </path>
                     </svg>{{ $notification->title }}
                 </p>
+
+
 
 
                 {{-- content --}}

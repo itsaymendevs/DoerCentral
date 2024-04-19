@@ -122,7 +122,8 @@
 
 
         {{-- mobile- sub-menu --}}
-        <livewire:customer-portal.components.mobile-sub-menu />
+        {{--
+        <livewire:customer-portal.components.mobile-sub-menu /> --}}
 
 
 

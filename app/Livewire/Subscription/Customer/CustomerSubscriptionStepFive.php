@@ -71,8 +71,7 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-        $this->promoCodes = PromoCode::where('isForWebsite', true)
-            ->where('isActive', true)
+        $this->promoCodes = PromoCode::where('isActive', true)
             ->whereIn('id', $planPromoCodes)
             ->whereColumn('currentUsage', '<', 'limit')
             ->get()
@@ -365,6 +364,8 @@ class CustomerSubscriptionStepFive extends Component
 
         // 2.1: makeRequest
         $response = $this->makeRequest('subscription/customer/store', $this->instance);
+
+
 
 
 

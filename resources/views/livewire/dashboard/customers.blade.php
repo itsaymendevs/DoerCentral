@@ -518,7 +518,7 @@
                                     @else
 
 
-                                    <span class="badge fs-13 badge--remove fw-semibold">Active</span>
+                                    <span class="badge fs-13 badge--remove fw-semibold">Expired</span>
 
 
                                     @endif

@@ -35,7 +35,7 @@
                     {{-- totalBalanceDays --}}
                     <div class="col-4 mb-3">
                         <div class="overview--box shrink--self">
-                            <h6 class="fs-13 fw-normal">Balance Days</h6>
+                            <h6 class="fs-13 fw-normal">Balance</h6>
                             <p class="truncate-text-1l">-</p>
                         </div>
                     </div>
@@ -69,8 +69,8 @@
                     {{-- subscription - startDate --}}
                     <div class="col-6 mb-3">
                         <div class="overview--box shrink--self active" style="border: none">
-                            <h6 class="fs-13 fw-normal">Subscription Start</h6>
-                            <p class="truncate-text-1l">{{ date('d / m / Y',
+                            <h6 class="fs-13 fw-normal">Subscribed From</h6>
+                            <p class="truncate-text-1l fs-13">{{ date('d / m / Y',
                                 strtotime($latestSubscription->startDate)) }}</p>
                         </div>
                     </div>
@@ -81,8 +81,8 @@
                     {{-- subscription - untilDate --}}
                     <div class="col-6 mb-3">
                         <div class="overview--box shrink--self active" style="border: none">
-                            <h6 class="fs-13 fw-normal">Subscription End</h6>
-                            <p class="truncate-text-1l">{{ date('d / m / Y',
+                            <h6 class="fs-13 fw-normal">Until Date</h6>
+                            <p class="truncate-text-1l fs-13">{{ date('d / m / Y',
                                 strtotime($latestSubscription->untilDate)) }}</p>
                         </div>
                     </div>
@@ -832,6 +832,9 @@
 
                 {{-- ----------------------- --}}
                 {{-- ----------------------- --}}
+
+
+
 
 
 

@@ -5,6 +5,7 @@ use App\Livewire\CustomerPortal\CustomerAddresses;
 use App\Livewire\CustomerPortal\CustomerCalendar;
 use App\Livewire\CustomerPortal\CustomerDeliveries;
 use App\Livewire\CustomerPortal\CustomerGeneral;
+use App\Livewire\CustomerPortal\CustomerHome;
 use App\Livewire\CustomerPortal\CustomerMenu;
 use App\Livewire\Dashboard\Customers;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
@@ -821,6 +822,25 @@ Route::get('portals/customer/login', LoginCustomerPortal::class)->name('portals.
 
 // :: Authenticated
 Route::middleware(['auth.portals.customer'])->group(function () {
+
+
+
+
+
+
+
+
+    // 1: portal - customer - home
+    Route::get('portals/customer/home', CustomerHome::class)->name('portals.customer.home');
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+
 
 
 

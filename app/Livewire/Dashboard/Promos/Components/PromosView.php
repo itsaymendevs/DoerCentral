@@ -36,6 +36,39 @@ class PromosView extends Component
 
 
 
+
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+    public function toggleActive($id)
+    {
+
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/promo/promoCodes/toggle', $id);
+
+
+        // :: makeAlert
+        $this->makeAlert('success', $response->message);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
     // --------------------------------------------------------------
 
 

@@ -81,7 +81,7 @@
 
 
         {{-- midRow --}}
-        <div class="row align-items-start mb-4">
+        <div class="row align-items-start mb-5">
             <div class="col-12">
 
 

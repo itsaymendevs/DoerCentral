@@ -306,8 +306,8 @@
 
 
                                     {{-- sumGrams --}}
-                                    @php $totalGrams[$mealSizeIngredient->ingredientId] =
-                                    ($totalGrams[$mealSizeIngredient->ingredientId] ?? 0)
+                                    @php $totalGrams[$mealSizeIngredient?->ingredientId] =
+                                    ($totalGrams[$mealSizeIngredient?->ingredientId] ?? 0)
                                     + $mealSizeIngredient?->amount * $scheduleMealsBySize->count(); @endphp
 
 
@@ -333,8 +333,8 @@
 
 
                                     {{-- sumGrams --}}
-                                    @php $totalGramsOfParts[$mealSizePart->partId] =
-                                    ($totalGramsOfParts[$mealSizePart->partId] ?? 0)
+                                    @php $totalGramsOfParts[$mealSizePart?->partId] =
+                                    ($totalGramsOfParts[$mealSizePart?->partId] ?? 0)
                                     + $mealSizePart?->amount * $scheduleMealsBySize->count(); @endphp
 
 
@@ -378,7 +378,8 @@
 
                                     <span class="mb-2 d-block fw-normal">
                                         <small class="fw-semibold text-gold fs-14 me-1">
-                                            {{ $totalGrams[$mealIngredientsByIngredient?->first()?->ingredientId] }}
+                                            {{ $totalGrams[$mealIngredientsByIngredient?->first()?->ingredient?->id]
+                                            ?? '-' }}
                                         </small>{{ $mealIngredientsByIngredient?->first()?->ingredient?->name }}
                                     </span>
 
@@ -402,7 +403,7 @@
 
                                     <span class="mb-2 d-block fw-normal">
                                         <small class="fw-semibold text-gold fs-14 me-1">
-                                            {{ $totalGramsOfParts[$mealPartsByPart?->first()?->partId] }}
+                                            {{ $totalGramsOfParts[$mealPartsByPart?->first()?->partId] ?? '-' }}
                                         </small>{{ $mealPartsByPart?->first()?->part?->name }}
                                     </span>
 
@@ -534,12 +535,13 @@
 
 
 
+
                                     {{-- quantityPerSize --}}
                                     <div class="kitchen--size-box mb-2">
                                         <h1 class="fs-13 my-0">{{ $scheduleMealsBySize?->first()?->size?->name }}</h1>
                                         <span class="d-block">
-                                            <small class="fw-semibold text-gold fs-14">{{ $scheduleMealsBySize?->count()
-                                                }}</small>
+                                            <small class="fw-semibold text-gold fs-14">
+                                                {{ $scheduleMealsBySize?->count() }}</small>
                                         </span>
                                     </div>
 
@@ -577,29 +579,12 @@
 
 
                                             {{-- name - grams --}}
-                                            <small class="fw-semibold text-gold fs-13 me-1">{{
-                                                $mealSizeIngredient?->amount
-                                                * $scheduleMealsBySize->count() }}</small>
+                                            {{-- :: previous: * $scheduleMealsBySize->count() --}}
+                                            <small class="fw-semibold text-gold fs-13 me-1">
+                                                {{ $mealSizeIngredient?->amount }}</small>
                                             {{ $mealSizeIngredient?->ingredient?->name }}
 
 
-
-
-                                            {{-- :: viewIngredient --}}
-                                            <button
-                                                class="btn btn--raw-icon fs-14 text-warning d-inline-block scale--3 w-auto ms-1"
-                                                type="button" data-bs-target="#plan-ranges" data-bs-toggle="modal">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                    fill="currentColor" viewBox="0 0 16 16" class="bi bi-eye fs-6"
-                                                    style="fill: var(--bs-warning)">
-                                                    <path
-                                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z">
-                                                    </path>
-                                                    <path
-                                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z">
-                                                    </path>
-                                                </svg>
-                                            </button>
                                         </span>
 
 
@@ -626,17 +611,19 @@
 
 
                                             {{-- name - grams --}}
-                                            <small class="fw-semibold text-gold fs-13 me-1">{{ $mealSizePart?->amount
-                                                * $scheduleMealsBySize->count() }}</small>
+                                            {{-- previous: * $scheduleMealsBySize->count() --}}
+                                            <small class="fw-semibold text-gold fs-13 me-1">{{
+                                                $mealSizePart?->amount}}</small>
                                             {{ $mealSizePart?->part?->name }}
 
 
 
 
-                                            {{-- :: viewIngredient --}}
+                                            {{-- :: viewPart --}}
                                             <button
                                                 class="btn btn--raw-icon fs-14 text-warning d-inline-block scale--3 w-auto ms-1"
-                                                type="button" data-bs-target="#plan-ranges" data-bs-toggle="modal">
+                                                wire:click='viewPart({{ $mealSizePart->part->id }})' type="button"
+                                                data-bs-target="#view-part" data-bs-toggle="modal">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                     fill="currentColor" viewBox="0 0 16 16" class="bi bi-eye fs-6"
                                                     style="fill: var(--bs-warning)">
@@ -850,6 +837,34 @@
 
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+    @section('modals')
+
+
+    {{-- 1: viewPart - ingredients & otherParts --}}
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-part />
+
+
+
+    @endsection
+
+
+
+
+
+
+    {{-- ------------------------------------------ --}}
+    {{-- ------------------------------------------ --}}
 
 
 

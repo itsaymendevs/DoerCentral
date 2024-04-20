@@ -56,7 +56,7 @@ class LoginCustomerPortal extends Component
             Session::put('customerName', $response->customerName);
 
 
-            return $this->redirect(route('portals.customer.general'), navigate: false);
+            return $this->redirect(route('portals.customer.home'), navigate: false);
 
 
         } // end if

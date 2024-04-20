@@ -1,5 +1,5 @@
 {{-- notificationCol --}}
-<div class="col-1 text-center" data-aos="fade-left" data-aos-duration="800" data-aos-once="true" style="z-index:10"
+<div class="col-1 text-center " data-aos="fade-left" data-aos-duration="800" data-aos-once="true" style="z-index:10"
     wire:ignore.self>
 
 
@@ -21,8 +21,9 @@
 
 
         {{-- bellButton --}}
-        <button class="btn btn--raw-icon navbar--notify @if ($unPreviewedCount > 0) active @endif" aria-expanded="false"
-            data-bs-toggle="dropdown" type="button" wire:click='markAsPreviewed'>
+        <button class="btn btn--raw-icon navbar--notify @if ($unPreviewedCount > 0) active @endif
+            @if ($notifications->count() == 0) disabled @endif" aria-expanded="false" data-bs-toggle="dropdown"
+            type="button" wire:click='markAsPreviewed'>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
                 class="bi bi-bell">
                 <path

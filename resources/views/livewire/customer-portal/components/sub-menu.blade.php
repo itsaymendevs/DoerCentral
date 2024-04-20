@@ -1,10 +1,10 @@
 {{-- subMenuRow --}}
-<div class="row align-items-end mb-submenu" wire:ignore.self>
+<div class="row align-items-end mb-submenu d-none d-md-block" wire:ignore.self>
     <div class="col-12 text-center">
 
 
-        {{-- subMenu--}}
-        <div class="btn-group submenu--group mobile" role="group" data-aos="fade-down" data-aos-duration="600"
+        {{-- subMenu - md - xl --}}
+        <div class="btn-group submenu--group mobile " role="group" data-aos="fade-down" data-aos-duration="600"
             data-aos-delay="800" data-aos-once="true" wire:ignore.self>
 
 

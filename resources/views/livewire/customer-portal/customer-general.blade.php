@@ -27,8 +27,8 @@
 
 
             {{-- leftCol --}}
-            <div class="col-12 col-xl-5 order-xl-1" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true"
-                wire:ignore.self>
+            <div class="col-12 col-xl-5  order-last order-xl-1" data-aos="fade-right" data-aos-duration="1000"
+                data-aos-once="true" wire:ignore.self>
 
 
 
@@ -39,7 +39,7 @@
                     {{-- totalBalanceDays --}}
                     <div class="col-6 col-sm-4 mb-3">
                         <div class="overview--box shrink--self">
-                            <h6 class="fs-13 fw-normal">Balance Days</h6>
+                            <h6 class="fs-13 fw-normal">Balance</h6>
                             <p class="truncate-text-1l">-</p>
                         </div>
                     </div>
@@ -73,8 +73,9 @@
                     {{-- subscription - startDate --}}
                     <div class="col-6 mb-3">
                         <div class="overview--box shrink--self active" style="border: none">
-                            <h6 class="fs-13 fw-normal fs-xs-12">Subscription Start</h6>
-                            <p class="truncate-text-1l">{{ date('d / m / Y', strtotime($latestSubscription->startDate))
+                            <h6 class="fs-13 fw-normal fs-xs-12">Subscribed From</h6>
+                            <p class="truncate-text-1l fs-13">{{ date('d / m / Y',
+                                strtotime($latestSubscription->startDate))
                                 }}</p>
                         </div>
                     </div>
@@ -85,8 +86,9 @@
                     {{-- subscription - untilDate --}}
                     <div class="col-6 mb-3">
                         <div class="overview--box shrink--self active" style="border: none">
-                            <h6 class="fs-13 fw-normal fs-xs-12">Subscription End</h6>
-                            <p class="truncate-text-1l">{{ date('d / m / Y', strtotime($latestSubscription->untilDate))
+                            <h6 class="fs-13 fw-normal fs-xs-12">Until Date</h6>
+                            <p class="truncate-text-1l fs-13">{{ date('d / m / Y',
+                                strtotime($latestSubscription->untilDate))
                                 }}</p>
                         </div>
                     </div>
@@ -130,7 +132,8 @@
                             <div class="col-12">
                                 <div class="input--with-label mb-4">
                                     <label class="form-label form--label mb-0">First Name</label>
-                                    <input type="text" class="form--input" required wire:model='instance.firstName' />
+                                    <input type="text" class="form--input readonly" readonly required
+                                        wire:model='instance.firstName' />
                                 </div>
                             </div>
 
@@ -140,7 +143,8 @@
                             <div class="col-12">
                                 <div class="input--with-label mb-4">
                                     <label class="form-label form--label mb-0">Last Name</label>
-                                    <input type="text" class="form--input" required wire:model='instance.lastName' />
+                                    <input type="text" class="form--input readonly" readonly required
+                                        wire:model='instance.lastName' />
                                 </div>
                             </div>
 
@@ -171,10 +175,31 @@
                             {{-- password --}}
                             <div class="col-12">
                                 <div class="input--with-label mb-4">
-                                    <label class="form-label form--label mb-0">New Password</label>
+                                    <label class="form-label form--label mb-0">Password</label>
                                     <input type="password" class="form--input" wire:model='instance.newPassword' />
                                 </div>
                             </div>
+
+
+
+
+
+
+                            {{-- ---------------------------------------- --}}
+                            {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+                            {{-- hr (Mobile) --}}
+                            <div class="col-12 d-xl-none">
+                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <hr style="width: 50%" class=' mx-auto mt-1' />
+                                </div>
+                            </div>
+
 
 
 
@@ -193,6 +218,8 @@
                                     <input type="text" class="form--input" required wire:model='instance.phone'
                                         minlength='9' maxlength='9' />
                                 </div>
+
+
                             </div>
 
 
@@ -364,6 +391,28 @@
 
 
 
+
+
+
+
+
+
+
+                            {{-- submitButton - Desktop --}}
+                            <div class="col-12 d-block d-xl-none mt-3 mb-5">
+                                <button
+                                    class="btn btn--scheme btn--scheme-2 w-75 py-2 d-flex align-items-center mx-1 justify-content-center shrink--self fs-15 mx-auto"
+                                    style="border: 1px solid var(--color-theme-secondary)" wire:loading.attr='disabled'
+                                    wire:target='update'>
+                                    Update Profile
+                                </button>
+                            </div>
+
+
+
+
+
+
                         </div>
                     </div>
                     {{-- end generalInformation --}}
@@ -400,18 +449,20 @@
 
 
             {{-- midColumn --}}
-            <div class="col-12 col-xl-2 text-center order-first order-xl-2 mb-5 mb-xl-0">
+            <div class="col-12 col-xl-2 text-center order-first order-xl-2 mb-md-5 mb-xl-0">
 
 
 
-                {{-- image --}}
-                <img class="w-100 of-contain" src='{{ asset("assets/img/Customers/{$customer->gender}.png") }}'
-                    style="height: 250px" />
+                {{-- image (DESKTOP) --}}
+                <img class="w-100 of-contain d-none d-md-block"
+                    src='{{ asset("assets/img/Customers/{$customer->gender}.png") }}' style="height: 250px" />
+
+
 
 
 
                 {{-- subscriptionActions --}}
-                <div class="d-flex align-items-center justify-content-center mb-2 mt-3">
+                <div class="d-flex align-items-center justify-content-center mb-md-2 mt-md-3">
 
 
                     {{-- 1: pause --}}
@@ -491,7 +542,9 @@
 
 
 
-                <div class="mt-1">
+
+                {{-- wrapper (DESKTOP) --}}
+                <div class="mt-1 d-none d-md-block">
                     <hr class="w-75 mx-auto mb-4" />
                     <h6 class="fw-normal d-flex align-items-center justify-content-center mb-2">
                         Wallet<br />Balance
@@ -543,8 +596,8 @@
 
 
             {{-- rightCol --}}
-            <div class="col-12 col-xl-5 order-xl-3 mt-5 mt-xl-0" data-aos="fade-left" data-aos-duration="1000"
-                data-aos-once="true" wire:ignore.self>
+            <div class="col-12 col-xl-5 order-2 order-xl-3 mt-4 mt-md-5 mt-xl-0" data-aos="fade-left"
+                data-aos-duration="1000" data-aos-once="true" wire:ignore.self>
 
 
                 {{-- topRow --}}
@@ -555,44 +608,103 @@
                     <div class="col-12">
                         <div class="item--box py-3 active w-100 mb-3">
 
-
-                            {{-- plan - range --}}
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h4 class="fw-semibold d-flex align-items-center">
-                                    {{ $latestSubscription->plan->name }}
-                                </h4>
-                                <p class="text-center fs-16 mb-0 fw-semibold text-gold">
-                                    {{ $latestSubscription->range->name }}
-                                </p>
-                            </div>
+                            {{-- row --}}
+                            <div class="row align-items-center">
 
 
 
-
-                            {{-- bundle - editBundleTypes --}}
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h6 class="fw-normal d-flex align-items-center mb-0">
-                                    {{ $latestSubscription->bundle->name }}
-                                </h6>
+                                {{-- leftCol --}}
+                                <div class="col-12 col-sm-6 mb-3 mb-xl-0">
 
 
+                                    {{-- imageFile --}}
+                                    <img class="of-cover w-100 "
+                                        src="{{ asset('storage/menu/plans/' . $latestSubscription->plan->imageFile) }}"
+                                        style="height: 200px" />
 
-                                {{-- :: editBundle --}}
-                                <button
-                                    class="btn btn--raw-icon fs-15 text-warning d-inline-flex align-items-center justify-content-end scale--3 w-auto"
-                                    type="button" data-bs-target="#edit-bundle" data-bs-toggle="modal">
-                                    Edit Bundle<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                        fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil fs-6 ms-2"
-                                        style="fill: var(--bs-warning)">
-                                        <path
-                                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z">
-                                        </path>
-                                    </svg>
-                                </button>
+                                </div>
+                                {{-- end leftCol --}}
+
+
+
+
+
+
+
+
+                                {{-- ------------------- --}}
+                                {{-- ------------------- --}}
+
+
+
+
+
+                                {{-- rightCol --}}
+                                <div class="col-12 col-sm-6">
+
+
+                                    {{-- plan --}}
+                                    <h4 class="fw-semibold d-flex align-items-center justify-content-center">
+                                        {{ $latestSubscription->plan->name }}
+                                    </h4>
+
+
+                                    {{-- bundle --}}
+                                    <h6 class="fw-normal d-flex align-items-center justify-content-center mb-2">
+                                        {{ $latestSubscription->bundle->name }}
+                                    </h6>
+
+
+
+                                    {{-- :: editBundle --}}
+                                    <button
+                                        class="btn btn--raw-icon fs-15 text-warning d-flex align-items-center justify-content-center scale--3 h-auto mb-3"
+                                        type="button" data-bs-target="#edit-bundle" data-bs-toggle="modal">
+                                        Edit Bundle<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil fs-6 ms-2"
+                                            style="fill: var(--bs-warning)">
+                                            <path
+                                                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z">
+                                            </path>
+                                        </svg>
+                                    </button>
+
+
+
+
+                                    {{-- range --}}
+                                    <p class="text-center fs-16 mb-0 fw-semibold text-gold pe-2">
+                                        {{ $latestSubscription->range->name }}
+                                    </p>
+
+
+
+
+
+
+
+
+
+                                </div>
+                                {{-- end rightCol --}}
+
+
                             </div>
                         </div>
+
                     </div>
                     {{-- endCol --}}
+
+
+
+
+
+
+
+                    {{-- --------------------- --}}
+                    {{-- --------------------- --}}
+
+
 
 
 
@@ -839,9 +951,9 @@
 
 
 
-                {{-- submitButton --}}
-                <div class="row">
-                    <div class="col">
+                {{-- submitButton - Desktop --}}
+                <div class="row d-none d-xl-block">
+                    <div class="col-12">
                         <button
                             class="btn btn--scheme btn--scheme-2 w-100 py-2 d-inline-flex align-items-center mx-1 justify-content-center shrink--self fs-15"
                             style="border: 1px solid var(--color-theme-secondary)" wire:loading.attr='disabled'

@@ -4,7 +4,9 @@
 
 
     {{-- 1: home --}}
-    <a class="btn btn--scheme fs-13 " role="button" href="#!">
+    <a wire:navigate class="btn btn--scheme fs-13
+    @if (Request::is('portals/customer/home')) active @endif" role="button"
+        href="{{ route('portals.customer.home') }}">
         <img src="{{asset('assets/img/App/home.png')}}" /></a>
 
 
@@ -34,8 +36,10 @@
 
 
     {{-- 4: extra --}}
-    <a class="btn btn--scheme fs-13" role="button" href="#!">
-        <img src="{{asset('assets/img/App/extra.png')}}" /></a>
+    <button class="btn btn--scheme fs-13 sidebar--menu-toggler" role="button" href="#!">
+        <img src="{{asset('assets/img/App/extra.png')}}" /></button>
+
+
 
 
 

@@ -43,7 +43,6 @@
 
         {{-- styles --}}
         <link href="{{ asset('assets/css/aos.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/swiper.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/background.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/clients.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/file.css') }}" rel="stylesheet">
@@ -68,6 +67,7 @@
         <link href="{{ asset('assets/css/customers.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/kitchen.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/simple-animate.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/swiper.css') }}" rel="stylesheet">
 
 
 
@@ -75,6 +75,15 @@
         <link href="{{ asset('assets/css/mobile-responsive.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/client-customization/aleens.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/portals/customer.css') }}" rel="stylesheet">
+
+
+
+
+
+        {{-- :: swiper --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
 
 
 
@@ -122,9 +131,12 @@
 
 
         {{-- mobile- sub-menu --}}
-        {{--
-        <livewire:customer-portal.components.mobile-sub-menu /> --}}
+        <livewire:customer-portal.components.mobile-sub-menu />
 
+
+
+        {{-- mobile- side-menu --}}
+        <livewire:customer-portal.components.mobile-side-menu />
 
 
 
@@ -193,6 +205,7 @@
         <script src="{{ asset('assets/js/select2.min.js') }}"></script>
         <script src="{{ asset('assets/js/bs-init.js') }}"></script>
         <script src="{{ asset('assets/js/init.js') }}"></script>
+        <script src="{{ asset('assets/js/init-swiper.js') }}"></script>
         <script src="{{ asset('assets/js/switches.js') }}"></script>
         <script src="{{ asset('assets/js/range-input.js') }}"></script>
         <script src="{{ asset('assets/js/file-preview.js') }}"></script>
@@ -227,6 +240,11 @@
         {{-- 1.4: reinitiate general extensions --}}
         <script src="{{ asset('assets/js/re-init-general.js') }}"></script>
 
+
+
+
+        {{-- 1.5: customer.js --}}
+        <script src="{{ asset('assets/js/portals/customer.js') }}"></script>
 
 
 

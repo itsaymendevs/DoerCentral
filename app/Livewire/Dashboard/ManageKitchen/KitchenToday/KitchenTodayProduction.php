@@ -43,6 +43,30 @@ class KitchenTodayProduction extends Component
 
 
 
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function viewPart($id)
+    {
+
+
+
+        // :: dispatchEvent
+        $this->dispatch('viewPart', $id);
+
+
+    } // end function
+
+
+
+
+
+
 
 
 

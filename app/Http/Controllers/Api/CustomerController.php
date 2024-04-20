@@ -158,7 +158,7 @@ class CustomerController extends Controller
 
 
 
-        return response()->json(['message' => 'Customer has been updated'], 200);
+        return response()->json(['message' => 'Information has been updated'], 200);
 
 
 

@@ -2,13 +2,17 @@
 
 namespace App\Livewire\Dashboard\ManageKitchen\KitchenToday;
 
+use App\Exports\KitchenProductionExport;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\MealType;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 use stdClass;
+
+
 
 class KitchenTodayProduction extends Component
 {
@@ -165,6 +169,100 @@ class KitchenTodayProduction extends Component
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function export()
+    {
+
+
+
+
+        // 1: prepareExportData
+
+
+
+
+        // 1.2: getMealTypes
+        $mealTypes = MealType::all();
+
+
+
+
+
+
+
+        // 2: getSchedules - meals
+        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->searchScheduleDate)
+            ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
+
+
+
+
+        $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
+            ->whereIn('subscriptionScheduleId', $schedules)
+            ->whereIn('mealTypeId', $this->searchMealType ? [$this->searchMealType] : $mealTypes->pluck('id')->toArray())
+            ->orderBy('mealTypeId')->get();
+
+
+
+
+
+
+
+
+        // ---------------------------------------
+        // ---------------------------------------
+
+
+
+
+
+
+
+
+
+        // 2: makeExport
+        if ($scheduleMeals->count() > 0) {
+
+
+            return Excel::download(new KitchenProductionExport($scheduleMeals), 'kitchen-production.xlsx');
+
+
+
+            // :: no-production
+        } else {
+
+
+
+            $this->makeAlert('info', 'Production-list is empty');
+
+
+        } // end if
+
+
+
+
+
+
+
+    } // end function
 
 
 

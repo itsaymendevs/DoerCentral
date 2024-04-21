@@ -1,129 +1,132 @@
 .row--section {
-  padding-top: 18px;
-  border: 1px solid var(--color-doc-desc);
-  border-radius: var(--card-radius);
+    padding-top: 18px;
+    border: 1px solid var(--color-doc-desc);
+    border-radius: var(--card-radius);
 }
 
 /* table */
 
 .memoir--table tr {
-  border: 1px solid var(--table-border-color);
-  border-radius: var(--card-radius) !important;
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--card-radius) !important;
 }
 
 .memoir--table thead {
-  background-color: var(--table-border-color);
-  border-top: 5px solid var(--table-border-color);
-  border-bottom: 5px solid var(--table-border-color);
+    background-color: var(--table-border-color);
+    border-top: 5px solid var(--table-border-color);
+    border-bottom: 5px solid var(--table-border-color);
 }
 
 .memoir--table tr th {
-  border-right: 2px solid #6e5047;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 600 !important;
-  color: var(--color-solid-black);
+    border-right: 2px solid #6e5047;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600 !important;
+    color: var(--color-solid-black);
 }
 
 .memoir--table tr th:last-of-type {
-  border-right: none;
+    border-right: none;
 }
 
 .memoir--table tr td {
-  font-size: 12px;
-  text-align: center;
-  vertical-align: middle;
-  padding-top: 12px;
-  padding-bottom: 9px;
-  border-right: 2px solid var(--bs-gray-500);
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 12px;
+    padding-bottom: 9px;
+    border-right: 2px solid var(--bs-gray-500);
+}
+
+.memoir--table.vertical tr td {
+    vertical-align: top !important;
 }
 
 .memoir--table tr td:last-of-type {
-  border-right: none;
+    border-right: none;
 }
 
 /* subheader */
 
 .subheader {
-  background-color: #00000022;
+    background-color: #00000022;
 }
 
 /* task checkbox */
 
 .task--checkbox {
-  position: absolute;
-  top: 0px;
-  left: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  right: auto;
-  padding: 10px 12px;
-  border-radius: 0px 0px var(--card-radius) var(--card-radius);
-  background-color: var(--bg-golden);
+    position: absolute;
+    top: 0px;
+    left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: auto;
+    padding: 10px 12px;
+    border-radius: 0px 0px var(--card-radius) var(--card-radius);
+    background-color: var(--bg-golden);
 }
 
 .task--checkbox input {
-  width: 20px;
-  height: 20px;
-  margin-top: -2px;
-  display: inline-block;
-  border: none;
+    width: 20px;
+    height: 20px;
+    margin-top: -2px;
+    display: inline-block;
+    border: none;
 }
 
 .task--checkbox input:checked {
-  background-color: var(--bg-golden-dark);
+    background-color: var(--bg-golden-dark);
 }
 
 /* completed */
 
 .task--checkbox.success {
-  background-color: var(--color-scheme-3);
+    background-color: var(--color-scheme-3);
 }
 
 .task--checkbox.success input:checked {
-  background-color: var(--color-scheme-dark-3);
+    background-color: var(--color-scheme-dark-3);
 }
 
 .task--checkbox label {
-  display: inline-block;
+    display: inline-block;
 }
 
 .task--checkbox.success label {
-  color: white;
+    color: white;
 }
 
 /* collapse button */
 
 .collapse--btn {
-  width: 100%;
-  text-align: left;
-  color: var(--color-scheme-dark-2);
-  position: relative;
-  border: none;
+    width: 100%;
+    text-align: left;
+    color: var(--color-scheme-dark-2);
+    position: relative;
+    border: none;
 }
 
 .collapse--btn svg {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  font-size: 22px;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 22px;
 }
 
 .collapse--btn svg {
-  position: absolute;
-  top: 7px;
-  right: 13px;
-  font-size: 21px;
-  height: 30px;
-  fill: var(--color-theme);
-  border-radius: 5px;
-  background-color: var(--color-theme-secondary);
+    position: absolute;
+    top: 7px;
+    right: 13px;
+    font-size: 21px;
+    height: 30px;
+    fill: var(--color-theme);
+    border-radius: 5px;
+    background-color: var(--color-theme-secondary);
 }
 
 .collapse--content {
-  padding: 15px 15px;
-  margin-top: 5px;
-  border-top: 1px solid var(--color-body);
+    padding: 15px 15px;
+    margin-top: 5px;
+    border-top: 1px solid var(--color-body);
 }
-

@@ -556,8 +556,14 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-    // 10: kitchen - kitchenToday - production
+    // 10: kitchen - kitchenToday - production - export
     Route::get('dashboard/kitchen/today/production', KitchenTodayProduction::class)->name('dashboard.kitchenTodayProduction');
+
+
+
+
+
+
 
 
 
@@ -671,6 +677,20 @@ Route::middleware(['auth.user'])->group(function () {
     Route::get('dashboard/extra/blogs', Blogs::class)->name('dashboard.blogs');
     Route::get('dashboard/extra/blogs/create', BlogsCreate::class)->name('dashboard.createBlog');
     Route::get('dashboard/extra/blogs/{id}', BlogsView::class)->name('dashboard.viewBlog');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -918,6 +938,11 @@ Route::middleware(['auth.portals.customer'])->group(function () {
 
     // 5: portal - customer - calendar
     Route::get('portals/customer/calendar', CustomerCalendar::class)->name('portals.customer.calendar');
+
+
+
+
+
 
 
 

@@ -157,7 +157,7 @@ class CustomerSubscriptionController extends Controller
         $customer->lastName = $request->lastName;
 
         $customer->email = $request->email;
-        $customer->gender = $request->gender ?? 'Male';
+        $customer->gender = $request?->gender ?? 'Male';
         $customer->phone = $request->phone ?? null;
         $customer->whatsapp = $request->whatsapp ?? null;
         $customer->password = Hash::make($request->password ?? '123456');

@@ -360,7 +360,7 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-
+        dd($this->instance);
 
         // 2.1: makeRequest
         $response = $this->makeRequest('subscription/customer/store', $this->instance);

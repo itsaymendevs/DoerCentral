@@ -1168,8 +1168,10 @@ Route::post('/dashboard/kitchen/labels/remove', [KitchenController::class, 'remo
 
 
 
-// 14: kitchen - today
+// 14: kitchen - today - cook - pack
 Route::post('/dashboard/kitchen/production/meals/cook', [KitchenTodayController::class, 'cookMeals']);
+
+Route::post('/dashboard/kitchen/production/meals/pack', [KitchenTodayController::class, 'packMeals']);
 
 
 

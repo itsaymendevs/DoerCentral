@@ -59,4 +59,17 @@ class CustomerSubscriptionDelivery extends Model
 
 
 
+
+    public function schedule()
+    {
+
+        return $this->hasOne(CustomerSubscriptionSchedule::class, 'customerSubscriptionDeliveryId');
+
+    } // end function
+
+
+
+
+
+
 } // end model

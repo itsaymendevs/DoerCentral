@@ -263,6 +263,53 @@ class Customer extends Authenticatable
 
 
 
+
+
+
+
+    // --------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function deliveryTimeByDay($date)
+    {
+
+
+        // 1: getWeekDay
+        $currentWeekDay = date('l', strtotime($date));
+
+
+
+        // 1.2: loop - deliveryDays
+        $deliveryDay = $this->deliveryDays()->where('weekDay', $currentWeekDay)?->first() ?? null;
+
+
+
+
+        // :: return
+        return $deliveryDay ? $deliveryDay?->customerAddress?->deliveryTime ?? null : null;
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
     // --------------------------------------------------------
 
 

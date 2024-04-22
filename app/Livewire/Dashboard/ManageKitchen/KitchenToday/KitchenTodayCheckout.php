@@ -6,19 +6,16 @@ use App\Models\Customer;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Traits\HelperTrait;
-use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
-use stdClass;
 
-class KitchenTodayDelivery extends Component
+class KitchenTodayCheckout extends Component
 {
+
 
 
     use HelperTrait;
     use WithPagination;
-
-
 
 
     // :: variables
@@ -88,7 +85,7 @@ class KitchenTodayDelivery extends Component
         // 2: getDeliveries
         $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchDeliveryDate)
             ->whereIn('customerSubscriptionId', $subscriptions)
-            ->whereIn('status', ['Pending', 'Completed'])->paginate(30);
+            ->whereIn('status', ['Pending', 'Completed'])->paginate(16);
 
 
 
@@ -98,7 +95,7 @@ class KitchenTodayDelivery extends Component
 
 
 
-        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-delivery', compact('deliveries'));
+        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-checkout', compact('deliveries'));
 
 
 
@@ -108,4 +105,7 @@ class KitchenTodayDelivery extends Component
 
 
 } // end class
+
+
+
 

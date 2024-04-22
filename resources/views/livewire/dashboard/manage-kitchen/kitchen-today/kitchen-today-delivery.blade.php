@@ -32,8 +32,9 @@
                     <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Date</label>
                 </div>
 
+
                 {{-- input --}}
-                <input class="form--input" type="date" />
+                <input class="form--input" type="date" wire:model.live='searchDeliveryDate' />
             </div>
 
 
@@ -46,6 +47,10 @@
 
         </div>
         {{-- end midRow --}}
+
+
+
+
 
 
 
@@ -68,10 +73,24 @@
         <div class="row align-items-center mt-5">
 
 
+
             {{-- search --}}
             <div class="col-4 text-center">
-                <input type="text" class="form--input main-version w-100" placeholder="Search by Customer" />
+
+
+
+                {{-- search - customerName --}}
+                <input type="text" class="form--input main-version w-100" placeholder="Search Customer"
+                    wire:model.live='searchCustomer' />
+
+
             </div>
+            {{-- endSearch --}}
+
+
+
+
+
 
 
 
@@ -85,7 +104,7 @@
                 {{-- 1: print --}}
                 <button
                     class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold"
-                    type="button" data-bs-target="#extend-subscription" data-bs-toggle="modal">
+                    disabled type="button" data-bs-target="#extend-subscription" data-bs-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
                         <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
@@ -102,7 +121,7 @@
 
                 {{-- 2: exportExcel --}}
                 <button
-                    class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold ms-2"
+                    class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold ms-2 disabled"
                     type="button" data-bs-target="#extend-subscription" data-bs-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-file-text fs-6 me-2">
@@ -123,8 +142,13 @@
 
 
 
+
+
             {{-- -------------------- --}}
             {{-- -------------------- --}}
+
+
+
 
 
 
@@ -132,10 +156,15 @@
             <div class="col-4 text-end">
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
-                    title="Number of Deliveries">
-                    1
+                    title="Number of Meals">
+                    {{ $deliveries->count() }}
                 </h3>
             </div>
+
+
+
+
+
         </div>
     </div>
     {{-- endBottomRow --}}
@@ -161,7 +190,7 @@
     {{-- tableContainer --}}
     <div class="container-fluid">
         <div class="row mt-4 mb-2">
-            <div class="col-12 mt-4">
+            <div class="col-12 mt-4 mb-3">
                 <div id="print--table" class="memoir--table w-100 kitchen--table">
                     <table class="table table-bordered" id="memoir--table">
 
@@ -171,14 +200,24 @@
                             <tr>
                                 <th class="th--xs"></th>
                                 <th class="th--md">Customer</th>
-                                <th class="th--sm">Company</th>
+                                <th class="th--xs">Company</th>
                                 <th class="th--sm">Timing</th>
                                 <th class="th--lg">Address</th>
-                                <th class="th--sm">Date</th>
-                                <th class="th--sm"></th>
+                                <th class="th--xs">Date</th>
+                                <th class="th--xs"></th>
                             </tr>
                         </thead>
                         {{-- endHeaders --}}
+
+
+
+
+
+
+
+                        {{-- ----------------------------------- --}}
+                        {{-- ----------------------------------- --}}
+
 
 
 
@@ -188,34 +227,90 @@
                         <tbody>
 
 
+
+
+
                             {{-- loop - deliveries --}}
-                            <tr>
+                            @foreach ($deliveries as $delivery)
+
+
+                            <tr key='delivery-{{ $delivery->id }}'>
 
 
 
 
                                 {{-- SN --}}
                                 <td class="fw-bold text-start">
-                                    <span class="fs-6 text-center d-block fw-bold">1</span>
+                                    <span class="fs-6 text-center d-block fw-bold">{{ $globalSNCounter++ }}</span>
                                 </td>
+
+
 
 
                                 {{-- customer - plan --}}
                                 <td class="text-center fw-bold text-start">
-                                    <span class="d-block fs-14">Sadaf Maqbool
-                                        <small class="fw-semibold text-gold fs-14 d-block">Welness</small>
+                                    <span class="d-block fs-14">{{ $delivery->customer->fullName() }}
+                                        <small class="fw-semibold text-gold fs-14 d-block">{{
+                                            $delivery->subscription->plan->name }}</small>
                                     </span>
                                 </td>
 
 
 
-                                {{-- company - timing --}}
+
+
+
+
+                                {{-- --------------------------- --}}
+                                {{-- --------------------------- --}}
+
+
+
+
+
+
+
+                                {{-- company --}}
                                 <td class="text-start">
-                                    <span class="text-center d-block fs-14 mb-4 fw-normal">Company</span>
+                                    <span class="text-center d-block fs-14 mb-4 fw-normal"></span>
                                 </td>
+
+
+
+
+
+
+
+                                {{-- --------------------------- --}}
+                                {{-- --------------------------- --}}
+
+
+
+
+
+
+
+
+                                {{-- deliveryTime --}}
                                 <td class="text-start">
-                                    <span class="text-center d-block fs-14 fw-normal">Before 8 AM</span>
+                                    <span class="text-center d-block fs-14 fw-normal">
+                                        {{ $delivery->customer->deliveryTimeByDay($delivery->deliveryDate)?->title }}
+                                    </span>
                                 </td>
+
+
+
+
+
+
+
+
+                                {{-- --------------------------- --}}
+                                {{-- --------------------------- --}}
+
+
+
+
 
 
 
@@ -223,39 +318,119 @@
 
                                 {{-- address --}}
                                 <td class="text-start">
-                                    <span class="text-center d-block fs-14 fw-normal">Dubai<br />Business
-                                        Bay<br />Churchill Tower<br />12B -
-                                        5 Floor</span>
+                                    <span class="text-center d-block fs-14 fw-normal">
+                                        {!! $delivery->customer
+                                        ->addressByDay($delivery->deliveryDate)?->halfAddress() ?? '' !!}
+
+                                        <br />
+
+                                        {{ $delivery->customer
+                                        ->addressByDay($delivery->deliveryDate)?->apartmentAndFloor() ?? ''
+                                        }}
+                                    </span>
                                 </td>
+
+
+
+
+
+
+
+
+
+                                {{-- --------------------------- --}}
+                                {{-- --------------------------- --}}
+
+
+
+
+
+
+
 
 
 
                                 {{-- deliveryDate --}}
                                 <td class="text-start">
-                                    <span class="text-center d-block fs-14 fw-normal">30 / 03 / 2024</span>
+                                    <span class="text-center d-block fs-13 fw-normal">{{ date('d / m / Y',
+                                        strtotime($delivery->deliveryDate)) }}</span>
                                 </td>
+
+
+
+
+
+
+
+
+
+                                {{-- --------------------------- --}}
+                                {{-- --------------------------- --}}
+
+
+
+
+
+
 
 
 
                                 {{-- status --}}
-                                <td class="text-start">
-                                    <span class="text-center d-block fs-14 fw-normal">
-                                        <span class="badge fs-13 badge--warning scale--self-05 w-75">Pending</span>
+                                <td class="text-center">
+                                    <span class="badge fs-13 scale--self-05
+                                        @if ($delivery->status == 'Pending')
+                                        badge--warning
+                                        @elseif ($delivery->status == 'Paused')
+                                        badge--secondary
+                                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Skipped')
+                                        badge--remove
+                                        @else
+                                        badge--theme-secondary
+                                        @endif">{{ $delivery->status }}
                                     </span>
                                 </td>
+
+
+
+
+
+
+
+
                             </tr>
+                            {{-- endRow --}}
+
+
+
+                            @endforeach
                             {{-- end loop --}}
 
 
 
                         </tbody>
                     </table>
-                    {{-- endTable --}}
-
-
-
                 </div>
             </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
+
+
+
+            {{-- pagination --}}
+            <div class="col-12 mb-4">
+                {{ $deliveries->links() }}
+            </div>
+
+
+
+
+
         </div>
     </div>
     {{-- endContainer --}}

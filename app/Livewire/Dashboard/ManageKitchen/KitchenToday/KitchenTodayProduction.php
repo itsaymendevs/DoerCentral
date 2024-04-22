@@ -6,6 +6,7 @@ use App\Exports\KitchenProductionExport;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\MealType;
+use App\Models\Size;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -23,8 +24,10 @@ class KitchenTodayProduction extends Component
 
 
     // :: variables
-    public $searchScheduleDate, $searchMealType;
+    public $searchScheduleDate, $searchSize, $searchMealType;
     public $cookMealId, $cookMealTypeId;
+    public $toKG = false, $unit = 1;
+
 
 
 
@@ -138,6 +141,7 @@ class KitchenTodayProduction extends Component
 
             $instance->mealId = $this->cookMealId;
             $instance->mealTypeId = $this->cookMealTypeId;
+            $instance->scheduleDate = $this->searchScheduleDate;
 
 
 
@@ -199,7 +203,8 @@ class KitchenTodayProduction extends Component
 
 
 
-        // 1.2: getMealTypes
+        // 1.2: dependencies
+        $sizes = Size::all();
         $mealTypes = MealType::all();
 
 
@@ -217,6 +222,7 @@ class KitchenTodayProduction extends Component
 
         $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
             ->whereIn('subscriptionScheduleId', $schedules)
+            ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
             ->whereIn('mealTypeId', $this->searchMealType ? [$this->searchMealType] : $mealTypes->pluck('id')->toArray())
             ->orderBy('mealTypeId')->get();
 
@@ -285,8 +291,9 @@ class KitchenTodayProduction extends Component
 
 
         // 1: dependencies
+        $sizes = Size::all();
         $mealTypes = MealType::all();
-
+        $this->unit = $this->toKG ? $this->getGramToKG() : 1;
 
 
 
@@ -303,6 +310,7 @@ class KitchenTodayProduction extends Component
 
         $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
             ->whereIn('subscriptionScheduleId', $schedules)
+            ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
             ->whereIn('mealTypeId', $this->searchMealType ? [$this->searchMealType] : $mealTypes->pluck('id')->toArray())
             ->orderBy('mealTypeId')->get();
 
@@ -314,7 +322,8 @@ class KitchenTodayProduction extends Component
 
 
 
-        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-production', compact('scheduleMeals', 'mealTypes'));
+
+        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-production', compact('scheduleMeals', 'mealTypes', 'sizes'));
 
 
 

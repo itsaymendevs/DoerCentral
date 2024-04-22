@@ -33,8 +33,8 @@
                 </div>
 
                 {{-- input --}}
-                <input class="form--input" type="date" wire:model.live='searchScheduleDate'
-                    min='{{ $globalTodayDate }}' />
+                {{-- min='{{ $globalTodayDate }}' --}}
+                <input class="form--input" type="date" wire:model.live='searchScheduleDate' />
             </div>
 
 
@@ -71,9 +71,25 @@
 
             {{-- search --}}
             <div class="col-4 text-center">
-                <input type="text" class="form--input main-version w-100" placeholder="Search by Customer"
+
+
+
+                {{-- search - customerName --}}
+                <input type="text" class="form--input main-version w-100" placeholder="Search Customer"
                     wire:model.live='searchCustomer' />
+
+
             </div>
+            {{-- endSearch --}}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -187,6 +203,12 @@
                                 {{-- end loop --}}
 
 
+
+                                <th class="th--xs">C-Bag</th>
+                                <th class="th--sm">Actions</th>
+
+
+
                             </tr>
                         </thead>
                         {{-- endHeaders --}}
@@ -227,7 +249,9 @@
 
 
                             {{-- singleRow --}}
-                            <tr>
+                            <tr key='packing-row-{{ $scheduleMealsBySubscription?->first()?->id }}'>
+
+
 
 
                                 {{-- SN --}}
@@ -241,7 +265,7 @@
 
 
                                 {{-- customer - plan --}}
-                                <td class="fw-bold text-start">
+                                <td class="fw-normal text-start">
                                     <span class="d-block fs-14">{{
                                         $scheduleMealsBySubscription?->first()?->customer->fullName() }}
                                         <small class="fw-semibold text-gold fs-14 d-block">
@@ -348,9 +372,117 @@
 
 
 
+
+
+                                {{-- ------------------------- --}}
+                                {{-- ------------------------- --}}
+
+
+
+
+
+
+
+
+
+                                {{-- 3: cool-bag --}}
+                                <td class="fw-bold text-start">
+                                    <span class="d-block fs-14">
+                                        <small class="fw-semibold text-gold fs-14 d-block text-center">
+                                            {{ $scheduleMealsBySubscription?->first()->subscription?->bag?->name ==
+                                            $bag->name ? 'YES' : 'NO' }}
+                                        </small>
+                                    </span>
+                                </td>
+
+
+
+
+
+
+
+
+
+
+                                {{-- --------------------------- --}}
+                                {{-- --------------------------- --}}
+
+
+
+
+
+
+
+
+                                {{-- actions --}}
+                                <td class="text-start">
+
+
+                                    <img class='w-100 of-contain' style="height: 130px"
+                                        src="{{ asset('storage/menu/meals/' . ($scheduleMealsBySubscription?->first()?->meal?->imageFile ?? $defaultPlate)) }}">
+
+
+
+
+
+                                    {{-- packButton --}}
+                                    <div class="d-block text-center mt-3">
+
+
+
+
+                                        {{-- A: Cooked --}}
+                                        @if ($scheduleMealsBySubscription?->where('cookStatus', 'Cooked')?->count() ?? 0
+                                        > 0)
+
+
+
+                                        <button
+                                            class="btn btn--scheme btn--scheme-outline-3 align-items-center d-inline-flex px-3 py-1 fs-12 justify-content-center fw-semibold"
+                                            type="button" style="border:1px dashed var(--color-theme-secondary)"
+                                            wire:click='packMeals({{ $scheduleMealsBySubscription->first()->subscription->id }})'>Packed?</button>
+
+
+
+
+
+                                        {{-- B: Packed or Else --}}
+                                        @else
+
+
+                                        <button
+                                            class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 py-1 fs-12 justify-content-center fw-semibold disabled"
+                                            type="button" style="border:1px dashed var(--bs-warning)">
+                                            Packed
+                                        </button>
+
+
+                                        @endif
+                                        {{-- end if --}}
+
+
+
+                                    </div>
+                                </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </tr>
                             @endforeach
                             {{-- end loop - scheduleMeals - groupBySubscription --}}
+
+
+
 
 
 

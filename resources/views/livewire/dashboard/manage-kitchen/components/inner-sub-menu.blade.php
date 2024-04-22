@@ -21,13 +21,22 @@
 
 
 
+        {{-- checkout --}}
+        <a wire:navigate
+            class="btn fs-13 @if (Request::is('dashboard/kitchen/today/checkout', 'dashboard/kitchen/today/checkout/*')) active @endif"
+            role="button" href="{{ route('dashboard.kitchenTodayCheckout') }}">Checkout</a>
+
+
+
+
+
+
 
         {{-- delivery --}}
-        @if (!$versionPermission->isProcessing)
         <a wire:navigate
             class="btn fs-13 @if (Request::is('dashboard/kitchen/today/delivery', 'dashboard/kitchen/today/delivery/*')) active @endif"
             role="button" href="{{ route('dashboard.kitchenTodayDelivery') }}">Delivery</a>
-        @endif
+
 
 
 

@@ -33,8 +33,7 @@
                 </div>
 
                 {{-- input --}}
-                <input class="form--input" type="date" wire:model.live='searchScheduleDate'
-                    min='{{ $globalTodayDate }}' />
+                <input class="form--input" type="date" wire:model.live='searchScheduleDate' />
             </div>
 
 
@@ -69,20 +68,48 @@
         <div class="row align-items-center mt-5">
 
 
-            {{-- search --}}
+            {{-- filters --}}
             <div class="col-4">
+                <div class="row">
 
-                <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
-                    <select class="form--select" data-instance='searchMealType' data-placeholder='Select Type'
-                        data-clear='true' required>
-                        <option value=""></option>
 
-                        @foreach ($mealTypes as $mealType)
-                        <option value="{{ $mealType->id }}">{{ $mealType->name }}</option>
-                        @endforeach
-                    </select>
+
+                    {{-- search - mealTypes --}}
+                    <div class="col-6">
+                        <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
+                            <select class="form--select" data-instance='searchMealType' data-placeholder='Select Type'
+                                data-clear='true' required>
+                                <option value=""></option>
+
+                                @foreach ($mealTypes as $mealType)
+                                <option value="{{ $mealType->id }}">{{ $mealType->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
+
+
+
+                    {{-- search - mealSize --}}
+                    <div class="col-6">
+                        <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
+                            <select class="form--select" data-instance='searchSize' data-placeholder='Select Size'
+                                data-clear='true' required>
+                                <option value=""></option>
+
+                                @foreach ($sizes as $size)
+                                <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    {{-- endCol --}}
+
+
                 </div>
             </div>
+            {{-- endSearch --}}
 
 
 
@@ -143,13 +170,38 @@
 
 
             {{-- counter --}}
-            <div class="col-4 text-end">
+            <div class="col-4 text-end d-flex align-items-center justify-content-end">
+
+
+
+
+
+                {{-- switchToKG --}}
+                <div class="form-check form-switch mealType--checkbox py-2 rounded-1 px-4 d-inline-flex me-2 mb-0"
+                    style="background-color: var(--color-scheme-2)">
+
+
+                    {{-- input --}}
+                    <input class="form-check-input pointer" type="checkbox" id="switch-unit" wire:model.live='toKG'
+                        wire:loading.attr='disabled' />
+
+
+                    {{-- label --}}
+                    <label class="form-check-label border-0 ms-2 me-0 fw-semibold" for="switch-unit">KG</label>
+
+                </div>
+
+
+
+
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
                     title="Number of Meals">
                     {{ $scheduleMeals->count() }}
                 </h3>
             </div>
+
+
         </div>
     </div>
     {{-- endBottomRow --}}
@@ -227,7 +279,7 @@
 
 
                             {{-- singleRow --}}
-                            <tr>
+                            <tr key='production-row-{{ $scheduleMealsByMeal?->first()?->id }}'>
 
 
 
@@ -378,8 +430,8 @@
 
                                     <span class="mb-2 d-block fw-normal">
                                         <small class="fw-semibold text-gold fs-14 me-1">
-                                            {{ $totalGrams[$mealIngredientsByIngredient?->first()?->ingredient?->id]
-                                            ?? '-' }}
+                                            {{ ($totalGrams[$mealIngredientsByIngredient?->first()?->ingredient?->id] ??
+                                            0) / $unit }}
                                         </small>{{ $mealIngredientsByIngredient?->first()?->ingredient?->name }}
                                     </span>
 
@@ -403,7 +455,7 @@
 
                                     <span class="mb-2 d-block fw-normal">
                                         <small class="fw-semibold text-gold fs-14 me-1">
-                                            {{ $totalGramsOfParts[$mealPartsByPart?->first()?->partId] ?? '-' }}
+                                            {{ ($totalGramsOfParts[$mealPartsByPart?->first()?->partId] ?? 0) / $unit }}
                                         </small>{{ $mealPartsByPart?->first()?->part?->name }}
                                     </span>
 
@@ -581,7 +633,7 @@
                                             {{-- name - grams --}}
                                             {{-- :: previous: * $scheduleMealsBySize->count() --}}
                                             <small class="fw-semibold text-gold fs-13 me-1">
-                                                {{ $mealSizeIngredient?->amount }}</small>
+                                                {{ ($mealSizeIngredient?->amount ?? 0) / $unit }}</small>
                                             {{ $mealSizeIngredient?->ingredient?->name }}
 
 
@@ -612,8 +664,8 @@
 
                                             {{-- name - grams --}}
                                             {{-- previous: * $scheduleMealsBySize->count() --}}
-                                            <small class="fw-semibold text-gold fs-13 me-1">{{
-                                                $mealSizePart?->amount}}</small>
+                                            <small class="fw-semibold text-gold fs-13 me-1">
+                                                {{ ($mealSizePart?->amount ?? 0) / $unit }}</small>
                                             {{ $mealSizePart?->part?->name }}
 
 
@@ -723,7 +775,7 @@
 
 
                                         {{-- A: pending --}}
-                                        @if ($scheduleMealsByMeal->first()->cookStatus == 'Pending')
+                                        @if ($scheduleMealsByMeal?->where('cookStatus', 'Pending')?->count() ?? 0 > 0)
 
                                         <button
                                             class="btn btn--scheme btn--scheme-outline-3 align-items-center d-inline-flex px-3 py-1 fs-12 justify-content-center fw-semibold"
@@ -736,7 +788,7 @@
 
 
 
-                                        {{-- B: Cooked --}}
+                                        {{-- B: Cooked or Else --}}
                                         @else
 
 

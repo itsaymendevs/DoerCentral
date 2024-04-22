@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Dashboard\ManageKitchen\KitchenToday;
 
+use App\Models\Bag;
 use App\Models\Customer;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\MealType;
+use App\Models\Size;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -23,7 +25,8 @@ class KitchenTodayPacking extends Component
 
 
     // :: variables
-    public $searchScheduleDate, $searchCustomer;
+    public $searchScheduleDate, $searchSize, $searchCustomer;
+    public $customerSubscriptionId;
 
 
 
@@ -57,15 +60,19 @@ class KitchenTodayPacking extends Component
 
 
 
-    public function packMeal()
+    public function packMeals($customerSubscriptionId)
     {
 
 
 
 
-
         // 1: params - confirmationBox
-        // $this->makeAlert('question', 'Mark this meal as cooked?', 'confirmMealPacking');
+        $this->customerSubscriptionId = $customerSubscriptionId;
+
+
+
+        $this->makeAlert('question', 'Mark meals as packed?', 'confirmMealsPacking');
+
 
 
 
@@ -92,9 +99,45 @@ class KitchenTodayPacking extends Component
 
 
 
-    #[On('confirmMealPacking')]
-    public function confirmMealPacking()
+    #[On('confirmMealsPacking')]
+    public function confirmMealsPacking()
     {
+
+
+
+
+
+        // 1: remove
+        if ($this->customerSubscriptionId) {
+
+
+
+            // 1: create instance
+            $instance = new stdClass();
+
+            $instance->scheduleDate = $this->searchScheduleDate;
+            $instance->customerSubscriptionId = $this->customerSubscriptionId;
+
+
+
+
+            // 1.2: makeRequest
+            $response = $this->makeRequest('dashboard/kitchen/production/meals/pack', $instance);
+
+
+
+
+
+            // :: render - reset
+            $this->customerSubscriptionId = null;
+            $this->makeAlert('success', $response->message);
+
+
+
+        } // end if
+
+
+
 
 
 
@@ -132,7 +175,12 @@ class KitchenTodayPacking extends Component
 
 
         // 1: dependencies
+        $sizes = Size::all();
         $mealTypes = MealType::all();
+        $bag = Bag::whereIn('name', ['Cool Bag', 'Cooler Bag'])->first();
+
+
+
 
 
 
@@ -159,8 +207,9 @@ class KitchenTodayPacking extends Component
 
         $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
             ->whereIn('subscriptionScheduleId', $schedules)
+            ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
             ->whereIn('customerSubscriptionId', $subscriptions)
-            ->where('cookStatus', 'Cooked')
+            ->whereIn('cookStatus', ['Cooked', 'Packed'])
             ->orderBy('customerSubscriptionId')
             ->get();
 
@@ -171,8 +220,7 @@ class KitchenTodayPacking extends Component
 
 
 
-
-        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-packing', compact('scheduleMeals', 'mealTypes'));
+        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-packing', compact('scheduleMeals', 'mealTypes', 'bag', 'sizes'));
 
 
 

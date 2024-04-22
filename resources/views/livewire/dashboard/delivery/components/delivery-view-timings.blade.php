@@ -76,8 +76,8 @@
 
             {{-- 2: holidays --}}
             <button class="btn btn--switch-view fw-bold fs-12" data-view="holidays"
-                data-target="city-column-{{ $city->id }}" data-instance="{{ $city->id }}"
-                type="button">Holidays</button>
+                data-target="city-column-{{ $city->id }}" data-instance="{{ $city->id }}" type="button">Days
+                Off</button>
         </div>
         {{-- end switchViews --}}
 

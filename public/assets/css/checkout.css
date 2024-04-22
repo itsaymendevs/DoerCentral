@@ -1,0 +1,30 @@
+.checkout--card {
+    background-color: var(--color-scheme-1) !important;
+}
+
+.checkout--card .wrapper {
+    border: 2px solid var(--color-scheme-2);
+}
+
+.checkout--card * {
+    color: var(--color-scheme-2) !important;
+}
+
+/* singleRow */
+
+.checkout--card .single-row {
+    display: flex;
+    align-items: stretch;
+}
+
+.checkout--card .single-row h5 {
+    padding: 5px 3px;
+}
+
+.checkout--card .single-row h5 {
+    border-bottom: 2px solid var(--color-scheme-2);
+}
+
+.checkout--card .single-row h5:last-of-type {
+    border-left: 2px solid var(--color-scheme-2);
+}

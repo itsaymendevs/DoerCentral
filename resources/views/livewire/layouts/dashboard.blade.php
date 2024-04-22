@@ -73,6 +73,7 @@
         <link href="{{ asset('assets/css/simple-animate.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/checkout.css') }}" rel="stylesheet">
 
 
 

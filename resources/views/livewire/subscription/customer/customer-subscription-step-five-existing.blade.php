@@ -46,6 +46,43 @@
 
 
 
+
+                    {{-- if - walletAmount --}}
+                    @if ($wallet?->balance >= 0 && $wallet?->isActive)
+
+
+
+                    <div class="col-12 col-sm-6">
+                        <div class="form-check form-switch mb-2 mealType--checkbox justify-content-center">
+
+
+                            {{-- input --}}
+                            <input class="form-check-input pointer" type="checkbox" id="wallet-checkbox"
+                                wire:model.live='useWallet' wire:change='checkPromoCode' wire:loading.attr='disabled'
+                                wire:target='continue, useWallet' />
+
+
+                            {{-- label --}}
+                            <label class="form-check-label" for="wallet-checkbox">Use Wallet</label>
+                        </div>
+                    </div>
+
+
+
+                    @endif
+                    {{-- end if - hasWalletAmount --}}
+
+
+
+
+
+
+
+
+
+
+
+
                     {{-- ---------------------------- --}}
                     {{-- ---------------------------- --}}
 
@@ -321,6 +358,27 @@
                                     <small class="fw-semibold text-gold fs-10 ms-1">(AED)</small>
                                 </p>
                             </div>
+
+
+
+
+
+
+                            {{-- :: WalletDiscount --}}
+                            @if ($instance->useWallet == true)
+
+                            <div class="d-flex align-items-center justify-content-between pt-2">
+                                <p class="fs-12 w-50 pe-3 mb-0">Wallet</p>
+                                <p class="mb-0 w-50 text-end fw-bold">{{ $instance?->walletDiscountPrice ?? '0' }}
+                                    <small class="fw-semibold text-gold fs-10 ms-1">(AED)</small>
+                                </p>
+                            </div>
+
+
+                            @endif
+                            {{-- end if --}}
+
+
 
 
 

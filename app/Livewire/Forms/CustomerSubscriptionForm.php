@@ -120,6 +120,19 @@ class CustomerSubscriptionForm extends Form
 
 
 
+    // ---------------------------
+    // ---------------------------
+    // ---------------------------
+
+
+
+
+    // :: STEP 5 - Existing
+    public $useWallet = false, $walletDiscountPrice;
+
+
+
+
 
 
 

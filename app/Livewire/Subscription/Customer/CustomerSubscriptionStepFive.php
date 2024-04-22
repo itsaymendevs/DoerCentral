@@ -215,11 +215,6 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-            // :: alert
-            $this->makeAlert('success', 'Coupon Applied Successfully');
-
-
-
 
             // 1.2: invalidCoupon
         } else {
@@ -396,28 +391,9 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-        // 2.1: store existing
-        if ($this->instance->isExistingCustomer) {
 
-
-
-            // :: makeRequest
-            $response = $this->makeRequest('subscription/customer/existing/store', $this->instance);
-
-
-
-        } else {
-
-
-            // :: makeRequest
-            $response = $this->makeRequest('subscription/customer/store', $this->instance);
-
-
-
-        } // end if
-
-
-
+        // 2.1: makeRequest
+        $response = $this->makeRequest('subscription/customer/store', $this->instance);
 
 
 

@@ -5,6 +5,7 @@ namespace App\Livewire\Subscription\Customer;
 use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Livewire\Forms\StripePaymentForm;
 use App\Models\Bag;
+use App\Models\Customer;
 use App\Models\CustomerSubscriptionSetting;
 use App\Models\Plan;
 use App\Models\PromoCode;
@@ -32,6 +33,10 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
     public $plan, $paymentMethod, $isPaymentSkipped, $promoCodes;
     public $isCouponApplied = false;
+
+
+    // :: wallet-extra
+    public $wallet, $useWallet = false;
 
 
 
@@ -101,6 +106,13 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
 
+        // 2: prepareWallet
+        $this->wallet = Customer::where('email', $this->instance->email)->first()->wallet;
+
+
+
+
+
 
         // --------------------------------------------
         // --------------------------------------------
@@ -162,6 +174,9 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
 
+
+
+
     } // end function
 
 
@@ -209,7 +224,9 @@ class CustomerSubscriptionStepFiveExisting extends Component
                 // 1.2: byAmount
             } else {
 
+
                 $this->instance->promoCodeDiscountPrice = $promoCode->cashAmount;
+
 
             } // end if
 
@@ -240,15 +257,9 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
 
-            // :: alert
-            $this->makeAlert('success', 'Coupon Applied Successfully');
-
-
-
 
             // 1.2: invalidCoupon
         } else {
-
 
 
 
@@ -266,6 +277,71 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
         } // end if
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+
+
+
+
+
+        // // 1: useWallet
+        // if ($this->useWallet) {
+
+
+
+
+        //     // 1.2: useWallet - walletDiscountPrice
+        //     $this->instance->useWallet = true;
+        //     $this->instance->walletDiscountPrice = $this->wallet->balance;
+
+
+
+
+
+
+
+        //     // :: calculateTotalPrice
+        //     $this->instance->totalCheckoutPrice = round(($this->instance->totalBundleRangePrice - $this->instance->promoCodeDiscountPrice) + $this->instance->bagPrice, 2);
+
+
+
+
+
+
+
+
+
+
+        //     // 2: removeWallet
+        // } else {
+
+
+
+        //     // 2.1: reset
+        //     $this->instance->useWallet = false;
+        //     $this->instance->walletDiscountPrice = null;
+
+
+
+
+        // } // end if
+
 
 
 
@@ -306,6 +382,9 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
     } // end function
+
+
+
 
 
 
@@ -421,29 +500,8 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
 
-        // 2.1: store existing
-        if ($this->instance->isExistingCustomer) {
-
-
-
-            // :: makeRequest
-            $response = $this->makeRequest('subscription/customer/existing/store', $this->instance);
-
-
-
-        } else {
-
-
-            // :: makeRequest
-            $response = $this->makeRequest('subscription/customer/store', $this->instance);
-
-
-
-        } // end if
-
-
-
-
+        // 2.1: makeRequest
+        $response = $this->makeRequest('subscription/customer/existing/store', $this->instance);
 
 
 
@@ -493,7 +551,7 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
 
-        return view('livewire.subscription.customer.customer-subscription-step-five', compact('expiryYears'));
+        return view('livewire.subscription.customer.customer-subscription-step-five-existing', compact('expiryYears'));
 
 
     } // end function

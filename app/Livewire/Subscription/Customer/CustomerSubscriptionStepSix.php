@@ -5,6 +5,7 @@ namespace App\Livewire\Subscription\Customer;
 use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Models\Plan;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -38,10 +39,30 @@ class CustomerSubscriptionStepSix extends Component
 
 
 
+
+
+
+
         // :: checkSession
         session('customer') && session('customer')->{'deliveryDays'} ?
             $this->instance = session('customer') :
             $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
+
+
+
+
+
+        // :: migrateSession
+        Session::forget('customer');
+        Session::put('customerInvoice', $this->instance);
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
 
 
 

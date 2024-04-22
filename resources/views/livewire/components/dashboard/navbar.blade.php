@@ -77,21 +77,12 @@
 
 
 
-
-
-                    {{-- inventory --}}
-                    <a class="btn navbar--menu-button
-                    @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
-                        href="{{ route('dashboard.inventory') }}">Inventory</a>
-
-
-
-
-
                     {{-- customers --}}
                     <a class="btn  navbar--menu-button
                     @if (Request::is('dashboard/customers', 'dashboard/customers/*', 'dashboard/customers-SOA')) active @endif"
                         href="{{ route('dashboard.customers') }}" wire:navigate>Customers</a>
+
+
 
 
 
@@ -112,6 +103,18 @@
                     <a wire:navigate href="{{ route('dashboard.kitchenTodayProduction') }}" class="btn navbar--menu-button
                         @if (Request::is('dashboard/kitchen', 'dashboard/kitchen/*')) active @endif"
                         type="button">Kitchen</a>
+
+
+
+
+
+
+
+                    {{-- inventory --}}
+                    <a class="btn navbar--menu-button
+                    @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
+                        href="{{ route('dashboard.inventory') }}">Inventory</a>
+
 
 
 

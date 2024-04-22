@@ -8,6 +8,21 @@ use Livewire\Form;
 class CustomerSubscriptionForm extends Form
 {
 
+
+
+    // :: FLAGS
+    public $isExistingCustomer = false;
+
+
+
+
+    // --------------------------------------------------
+
+
+
+
+
+
     // :: STEP 1
     public $phone, $email, $name, $firstName, $lastName, $whatsapp, $gender, $planId, $password;
 

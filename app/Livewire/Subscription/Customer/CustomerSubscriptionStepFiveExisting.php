@@ -4,6 +4,7 @@ namespace App\Livewire\Subscription\Customer;
 
 use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Livewire\Forms\StripePaymentForm;
+use App\Models\Bag;
 use App\Models\CustomerSubscriptionSetting;
 use App\Models\Plan;
 use App\Models\PromoCode;
@@ -16,7 +17,7 @@ use Livewire\Component;
 
 
 #[Layout('livewire.layouts.subscription.customer')]
-class CustomerSubscriptionStepFive extends Component
+class CustomerSubscriptionStepFiveExisting extends Component
 {
 
     use HelperTrait;
@@ -50,18 +51,17 @@ class CustomerSubscriptionStepFive extends Component
         if (session('customer')->{'isExistingCustomer'}) {
 
 
-            // :: redirectBack
-            $this->redirect(route('subscription.customerStepOne'), navigate: true);
+            session('customer') && session('customer')->{'planDays'} && session('customer')->{'email'} ?
+                $this->instance = session('customer') :
+                $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
 
         } else {
 
 
-            session('customer') && session('customer')->{'deliveryDays'} ?
-                $this->instance = session('customer') :
-                $this->redirect(route('subscription.customerStepOne'), navigate: true);
-
+            // :: redirectBack
+            $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
         } // end if
@@ -84,13 +84,38 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
+        // :: reconstruct
+
+
+
+        // 1: defaultBag
+        $bag = Bag::all()->first();
+        $this->instance->bag = $bag->name;
+        $this->instance->bagImageFile = $bag->imageFile;
+        $this->instance->bagPrice = $bag->price;
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+
+
 
 
 
         // 1: get instance
         $this->plan = Plan::find($id);
-
-
 
 
 

@@ -32,6 +32,8 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
+
+
     public function mount($id)
     {
 
@@ -41,9 +43,23 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
-
         // :: checkSession
-        session('customer') ? $this->instance = session('customer') : $this->redirect(route('subscription.customerStepOne'), navigate: true);
+        session('customer') && session('customer')->{'email'} ?
+            $this->instance = session('customer') :
+            $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
+
+
+
+
+        // :: limitFutureSession
+        $this->instance->planDays = null; // 3rd
+        $this->instance->bag = null; // 4th
+        $this->instance->deliveryDays = null; // 5th
+        Session::put('customer', $this->instance);
+
+
+
 
 
     } // end function
@@ -52,7 +68,14 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
+
+
+
+
     // --------------------------------------------------------------
+
+
+
 
 
 
@@ -73,7 +96,7 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
-        foreach ($planBundle->types->groupBy('typeId') as $commonType => $bundleTypes)
+        foreach ($planBundle?->types?->groupBy('typeId') as $commonType => $bundleTypes)
             $this->requiredTypes[$commonType] = $bundleTypes->sum('quantity');
 
 
@@ -81,7 +104,7 @@ class CustomerSubscriptionStepTwo extends Component
 
 
         // 1.3: invoice bundleTypesInArray
-        $this->instance->bundleTypesInArray = implode(' • ', $planBundle->typesInArray());
+        $this->instance->bundleTypesInArray = implode(' • ', $planBundle?->typesInArray());
 
 
 
@@ -105,6 +128,7 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
+
     public function changeRange($id)
     {
 
@@ -115,13 +139,13 @@ class CustomerSubscriptionStepTwo extends Component
 
 
         // 1: getPlanBundle - bundleRangePricePerDay
-        $planBundle = $this->plan->bundles->where('id', $this->instance->planBundleId)->first();
-        $this->instance->bundleRangePricePerDay = $planBundle->rangesByPrice->where('planRangeId', $id)->first()->pricePerDay;
+        $planBundle = $this->plan?->bundles->where('id', $this->instance->planBundleId)->first();
+        $this->instance->bundleRangePricePerDay = $planBundle?->rangesByPrice?->where('planRangeId', $id)?->first()?->pricePerDay;
 
 
 
         // 1.2: get totalPrice - totalCalories
-        $this->instance->totalBundleRangeCalories = $this->plan->ranges->where('id', $this->instance->bundleRangeId)->first()->caloriesRange;
+        $this->instance->totalBundleRangeCalories = $this->plan?->ranges->where('id', $this->instance->bundleRangeId)->first()->caloriesRange;
 
 
 
@@ -170,7 +194,7 @@ class CustomerSubscriptionStepTwo extends Component
 
 
         // 2: getBundleTypes
-        foreach ($planBundle->types as $bundleType) {
+        foreach ($planBundle?->types ?? [] as $bundleType) {
 
             $this->instance->bundleTypes[$bundleType->mealType->id] = $bundleType->quantity;
 
@@ -333,9 +357,8 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
-        // --------------------------
-        // --------------------------
-
+        // ----------------------------------------
+        // ----------------------------------------
 
 
 
@@ -345,6 +368,9 @@ class CustomerSubscriptionStepTwo extends Component
         // :: continue
 
 
+
+
+
         // 1: makeSession
         Session::put('customer', $this->instance);
 
@@ -352,8 +378,31 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
-        // :: redirectStepTwo
-        return $this->redirect(route('subscription.customerStepThree', [$this->instance->planId]), navigate: true);
+
+        // 1.2: existingCustomer
+        if ($this->instance->isExistingCustomer) {
+
+
+
+
+            // :: redirectStepFive- existing
+            return $this->redirect(route('subscription.customerStepFiveExisting', [$this->instance->planId]), navigate: true);
+
+
+
+        } else {
+
+
+
+            // :: redirectStepTwo - regular
+            return $this->redirect(route('subscription.customerStepThree', [$this->instance->planId]), navigate: true);
+
+
+
+        } // end if
+
+
+
 
 
 

@@ -47,6 +47,7 @@ use App\Livewire\Dashboard\Extra\Blogs\BlogsView;
 use App\Livewire\Login;
 use App\Livewire\LoginCustomerPortal;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFive;
+use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFiveExisting;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFour;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepOne;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepSix;
@@ -794,6 +795,13 @@ Route::get('subscription/customer/{id}/delivery-information', CustomerSubscripti
 
 // 1.5: Subscription - customer - stepFive (checkout-information)
 Route::get('subscription/customer/{id}/checkout-information', CustomerSubscriptionStepFive::class)->name('subscription.customerStepFive');
+
+
+
+
+// 1.5.2: Subscription - customer - stepFiveExisting (checkout-information)
+Route::get('subscription/customer/{id}/checkout-information/existing', CustomerSubscriptionStepFiveExisting::class)->name('subscription.customerStepFiveExisting');
+
 
 
 

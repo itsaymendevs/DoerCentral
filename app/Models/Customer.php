@@ -181,11 +181,7 @@ class Customer extends Authenticatable
 
 
 
-
-
-
     // --------------------------------------------------------
-
 
 
 
@@ -214,6 +210,54 @@ class Customer extends Authenticatable
     } // end function
 
 
+
+
+
+
+
+
+    // --------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function deliveryWeekDays()
+    {
+
+
+        // 1: dependencies
+        $deliveryWeekDays = [];
+
+
+
+
+
+        // 1: getDeliveryDays
+        $deliveryDays = $this->deliveryDays()?->pluck('weekDay')?->toArray() ?? [];
+
+
+
+
+
+        // 1.2: loop - deliveryDays
+        foreach (array_unique($deliveryDays) as $deliveryDay)
+            array_push($deliveryWeekDays, $deliveryDay);
+
+
+
+
+        // :: return
+        return $deliveryWeekDays;
+
+
+
+    } // end function
 
 
 

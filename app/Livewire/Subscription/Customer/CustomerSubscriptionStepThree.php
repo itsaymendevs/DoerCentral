@@ -38,10 +38,55 @@ class CustomerSubscriptionStepThree extends Component
 
 
 
-        // :: checkSession
-        session('customer') && session('customer')->{'planDays'} ?
-            $this->instance = session('customer') :
+        // :: checkSession - existing
+        if (session('customer')->{'isExistingCustomer'}) {
+
+
+            // :: redirectBack
             $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
+
+
+        } else {
+
+
+            // :: checkSession
+            session('customer') && session('customer')->{'planDays'} ?
+                $this->instance = session('customer') :
+                $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
+
+
+        } // end if
+
+
+
+
+
+
+
+
+
+
+        // :: limitFutureSession
+        $this->instance->bag = null; // 4th
+        $this->instance->deliveryDays = null; // 5th
+        Session::put('customer', $this->instance);
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
 
 
 
@@ -115,6 +160,9 @@ class CustomerSubscriptionStepThree extends Component
 
         // 1: makeSession
         Session::put('customer', $this->instance);
+
+
+
 
 
 

@@ -190,7 +190,8 @@
                                             <li class="nav-item" role="presentation" wire:ignore>
                                                 <a class="nav-link" role="tab" data-bs-toggle="tab"
                                                     href="#bundle-tab-{{ $bundle->id }}-{{ $bundleRange->range->id }}"
-                                                    wire:click='changeRange({{ $bundleRange->range->id }})'>
+                                                    wire:click='changeRange({{ $bundleRange->range->id }})'
+                                                    wire:loading.class='disabled'>
                                                     {{ $bundleRange->range->name }}
                                                 </a>
                                             </li>
@@ -276,7 +277,8 @@
                                                         <div class="col-12 col-sm-4 mb-3 mb-sm-0">
                                                             <label class="form-label form--label">Start Date</label>
                                                             <input type="date" required class="form--input mb-0"
-                                                                wire:model='instance.startDate' />
+                                                                wire:model='instance.startDate'
+                                                                wire:loading.class='disabled' />
                                                         </div>
 
 
@@ -488,7 +490,8 @@
 
                                                                             {{-- submitButton --}}
                                                                             <div class="col-12">
-                                                                                <button
+                                                                                <button wire:loading.attr='disabled'
+                                                                                    wire:target='changeBundle, changeRange, updateOverview,  instance.startDate, instance.planDays'
                                                                                     class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-0 w-50 fw-semibold justify-content-center shrink--self"
                                                                                     style="border: 1px dashed var(--color-scheme-3);">
                                                                                     Continue

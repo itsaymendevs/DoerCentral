@@ -116,7 +116,7 @@
 
 
     {{-- body --}}
-    <body>
+    <body class='d-none d-lg-block'>
 
 
 

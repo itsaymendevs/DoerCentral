@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CustomerMenuController;
 use App\Http\Controllers\Api\CustomerSubscriptionController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DeliveryController;
+use App\Http\Controllers\Api\ExistingCustomerSubscriptionController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\KitchenController;
 use App\Http\Controllers\Api\KitchenTodayController;
@@ -1280,6 +1281,11 @@ Route::post('/dashboard/extra/blogs/sections/remove', [ExtraController::class, '
 // 1: subscription - customer - store
 Route::post('/subscription/customer/store', [CustomerSubscriptionController::class, 'storeCustomer']);
 
+
+
+
+// 2: subscription - customer - existing - store
+Route::post('/subscription/customer/existing/store', [ExistingCustomerSubscriptionController::class, 'storeExistingCustomer']);
 
 
 

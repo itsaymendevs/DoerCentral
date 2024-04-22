@@ -3,12 +3,19 @@
 namespace App\Livewire\Subscription\Customer\CustomerSubscriptionStepOne\Components;
 
 use App\Livewire\Forms\CustomerSubscriptionForm;
+use App\Models\Customer;
+use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class CustomerSubscriptionStepOneNewCustomer extends Component
 {
+
+
+    use HelperTrait;
+
+
 
     public CustomerSubscriptionForm $instance;
 
@@ -66,7 +73,39 @@ class CustomerSubscriptionStepOneNewCustomer extends Component
     public function continue()
     {
 
-        // :: validation
+
+
+        // 1: checkEmail
+        $exists = Customer::where('email', $this->instance->email)->count();
+
+        if ($exists) {
+
+
+            $this->makeAlert('info', 'Email Already Exists');
+            return false;
+
+        } // end if
+
+
+
+
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
+
+
+
+
+
+
+
+
+        // 2: continue
         if ($this->instance->gender) {
 
 

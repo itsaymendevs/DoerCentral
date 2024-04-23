@@ -16,6 +16,7 @@ class CustomerSubscriptionForm extends Form
 
 
 
+
     // --------------------------------------------------
 
 
@@ -38,7 +39,7 @@ class CustomerSubscriptionForm extends Form
 
 
     // :: STEP 2
-    public $planBundleId, $bundleRangeId, $planDays, $startDate;
+    public $planBundleId, $bundleRangeId, $planDays, $startDate, $initStartDate;
 
 
     public $bundleTypes = [];

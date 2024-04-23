@@ -78,8 +78,18 @@ class CustomerSubscriptionStepOneExistingCustomer extends Component
 
 
 
+            // 1.4: get initStartDate
+            $this->instance->initStartDate = $customer?->latestSubscription()?->untilDate ?? null;
 
-            // 1.4: makeSession - redirectStepTwo
+
+
+
+
+
+
+
+
+            // 1.5: makeSession - redirectStepTwo
             Session::put('customer', $this->instance);
 
             return $this->redirect(route('subscription.customerStepTwo', [$this->instance->planId]), navigate: true);
@@ -93,9 +103,10 @@ class CustomerSubscriptionStepOneExistingCustomer extends Component
 
 
 
-
             // 1.2: incorrect
         } else {
+
+
 
 
 

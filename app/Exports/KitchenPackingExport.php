@@ -2,8 +2,11 @@
 
 namespace App\Exports;
 
+use App\Models\Bag;
+use App\Models\MealType;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use stdClass;
 
 class KitchenPackingExport implements FromCollection, WithHeadings
 {
@@ -46,14 +49,52 @@ class KitchenPackingExport implements FromCollection, WithHeadings
     public function headings() : array
     {
 
-        return [
-            "Type",
-            "Name",
-            "Total Grams",
-            "Meals",
-            "Total P/S",
-            "Size & Ingredients",
-        ];
+
+
+        // 1: dependencies
+        $mealTypes = MealType::all();
+        $headingsArray = ["SN", "Customer", "Plan"];
+
+
+
+
+        // -----------------------------
+        // -----------------------------
+
+
+
+
+        // 1.2: loop - mealTypes
+        foreach ($mealTypes as $mealType) {
+
+            array_push($headingsArray, $mealType->name);
+            array_push($headingsArray, $mealType->name . ' Size');
+            array_push($headingsArray, $mealType->name . ' Remarks');
+
+
+        }// end loop
+
+
+
+
+
+
+        // -----------------------------
+        // -----------------------------
+
+
+
+
+
+        // 1.3: continue
+        array_push($headingsArray, 'C-Bag');
+
+
+
+
+        return $headingsArray;
+
+
 
 
     } // end headings
@@ -82,9 +123,17 @@ class KitchenPackingExport implements FromCollection, WithHeadings
 
 
 
-        // :: combineRows
+        // :: combineRows - dependencies
         $combineRows = array();
 
+        $counter = 0;
+        $mealTypes = MealType::all();
+        $bag = Bag::whereIn('name', ['Cool Bag', 'Cooler Bag'])->first();
+
+
+
+
+
 
 
 
@@ -97,8 +146,12 @@ class KitchenPackingExport implements FromCollection, WithHeadings
 
 
 
-        //  :: loop - scheduleMeals - groupByType
-        foreach ($this->scheduleMeals?->groupBy('mealTypeId') ?? [] as $commonType => $scheduleMealsByType) {
+
+        // :: loop - scheduleMeals - groupBySubscription
+        foreach ($this->scheduleMeals?->groupBy('customerSubscriptionId') ?? [] as $commonSubscription => $scheduleMealsBySubscription) {
+
+
+
 
 
 
@@ -108,49 +161,54 @@ class KitchenPackingExport implements FromCollection, WithHeadings
 
 
 
+            // 1: SN
+            $content->SN = $counter++;
 
 
 
-            //  :: loop - scheduleMeals - groupByMeal
-            foreach ($scheduleMealsByType?->groupBy('mealId') ?? [] as $commonMeal => $scheduleMealsByMeal) {
 
+            // 2: customer - plan
+            $content->customer = $scheduleMealsBySubscription?->first()?->customer->fullName();
+            $content->plan = $scheduleMealsBySubscription?->first()->subscription?->plan->name;
 
 
 
 
 
-                // 1: type
-                $content->type = $scheduleMealsByType?->first()->mealType->name;
 
 
 
 
+            //  ---------------------------
+            //  ---------------------------
 
-                // 2: mealName
-                $content->name = "{$scheduleMealsByMeal->first()?->meal?->name}\n{$scheduleMealsByMeal->first()?->meal?->diet?->name}";
 
 
 
+            //  :: loop - mealTypes
+            foreach ($mealTypes as $mealType) {
 
 
 
 
+                //  ** get getScheduleMeal **
+                $scheduleMealBySubscription = $scheduleMealsBySubscription?->where('mealTypeId', $mealType->id)?->first();
 
 
 
-                //  ---------------------------
-                //  ---------------------------
 
 
 
+                // 3: meal - size - remarks
+                $content->{$mealType->name} = $scheduleMealBySubscription?->meal?->name ?? '';
+                $content->{$mealType->name . ' Size'} = $scheduleMealBySubscription?->size?->name ?? '';
+                $content->{$mealType->name . ' Remarks'} = $scheduleMealBySubscription?->remarks ?? '';
 
 
 
 
 
-                //  ** init totalGrams **
-                $totalGrams = $totalGramsOfParts = [];
-                $content->totalGrams = '';
+            } // end loop - mealTypes
 
 
 
@@ -160,327 +218,17 @@ class KitchenPackingExport implements FromCollection, WithHeadings
 
 
 
-                //  :: loop - scheduleMeals - groupBySize
-                foreach ($scheduleMealsByMeal->groupBy('sizeId') ?? [] as $commonSize => $scheduleMealsBySize) {
+            //  ---------------------------
+            //  ---------------------------
 
 
 
 
-                    // ** Get MealSize **
-                    $mealSize = $scheduleMealsBySize?->first()?->mealSize();
 
 
-
-
-
-
-
-
-                    //  A: loop - ingredients - sumGrams
-                    foreach ($mealSize?->ingredients ?? [] as $mealSizeIngredient) {
-
-
-
-
-                        // :: sumGrams
-                        $totalGrams[$mealSizeIngredient?->ingredientId] =
-                            ($totalGrams[$mealSizeIngredient?->ingredientId] ?? 0)
-                            + $mealSizeIngredient?->amount * $scheduleMealsBySize->count();
-
-
-
-                    } //  end loop - ingredients - sumGrams
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    //  B: loop - parts - sumGrams
-                    foreach ($mealSize?->parts ?? [] as $mealSizePart) {
-
-
-
-                        // :: sumGrams
-                        $totalGramsOfParts[$mealSizePart?->partId] =
-                            ($totalGramsOfParts[$mealSizePart?->partId] ?? 0)
-                            + $mealSizePart?->amount * $scheduleMealsBySize->count();
-
-
-                    } //  end loop - parts - sumGrams
-
-
-
-
-                } //  end loop - groupBySize
-
-
-
-
-
-
-
-
-
-
-
-
-                //  -------------------------------------
-                //  -------------------------------------
-
-
-
-
-
-
-
-
-
-
-                //  A: loop - ingredients - totalGrams
-                foreach ($scheduleMealsByMeal->first()?->meal?->ingredients?->groupBy('ingredientId') ?? [] as $commonIngredient => $mealIngredientsByIngredient) {
-
-
-
-
-
-
-                    // 3: totalGrams - ingredients
-                    $content->totalGrams .= "{$totalGrams[$mealIngredientsByIngredient?->first()?->ingredient?->id]} (G) - {$mealIngredientsByIngredient?->first()?->ingredient?->name}\n";
-
-
-
-
-                } //  end loop - ingredients
-
-
-
-
-
-
-
-
-
-                //  B: loop - parts - totalGrams
-                foreach ($scheduleMealsByMeal->first()?->meal?->parts?->groupBy('partId') ?? [] as $commonPart => $mealPartsByPart) {
-
-
-
-
-                    // 3: totalGrams - parts
-                    $content->totalGrams .= "{$totalGramsOfParts[$mealPartsByPart?->first()?->partId]} (G) - {$mealPartsByPart?->first()?->part?->name}\n";
-
-
-
-
-                } //  end loop - parts
-
-
-
-
-
-
-
-
-
-
-
-
-
-                //  -------------------------------------
-                //  -------------------------------------
-
-
-
-
-
-
-
-
-                //  4: totalMeals
-                $content->totalMeals = $scheduleMealsByMeal->count();
-
-
-
-
-
-
-
-
-
-
-                //  -------------------------------------
-                //  -------------------------------------
-
-
-
-
-
-
-
-                // ** init totalPerSize **
-                $content->totalPerSize = '';
-
-
-
-
-
-
-
-
-                // :: loop - scheduleMeals - groupBySize
-                foreach ($scheduleMealsByMeal->groupBy('sizeId') ?? [] as $commonSize => $scheduleMealsBySize) {
-
-
-
-                    // 5: totalPerSize
-                    $content->totalPerSize .= "{$scheduleMealsBySize?->first()?->size?->name} / {$scheduleMealsBySize?->count()}\n";
-
-
-
-                } // end loop - groupBySize
-
-
-
-
-
-
-
-
-
-
-                //  -------------------------------------
-                //  -------------------------------------
-
-
-
-
-
-
-                // ** init totalPerSizeWithIngredients **
-                $content->totalPerSizeWithIngredients = '';
-
-
-
-
-
-
-
-
-
-
-
-                // 6: quantityPerSize + its Ingredients / parts
-
-
-
-
-                //  :: loop - scheduleMeals - groupBySize
-                foreach ($scheduleMealsByMeal->groupBy('sizeId') ?? [] as $commonSize => $scheduleMealsBySize) {
-
-
-
-
-
-                    // 6.1: quantityPerSize
-                    $content->totalPerSizeWithIngredients .= "{$scheduleMealsBySize?->first()?->size?->name} / {$scheduleMealsBySize?->count()}\n";
-
-
-
-
-
-
-
-
-
-
-
-
-                    // 6.2: ingredients / Parts
-
-
-
-                    //  ** Get MealSize **
-                    $mealSize = $scheduleMealsBySize?->first()?->mealSize();
-
-
-
-
-
-
-
-
-                    //  A: loop - ingredients
-                    foreach ($mealSize?->ingredients ?? [] as $mealSizeIngredient) {
-
-
-
-
-                        //  name - grams
-                        $content->totalPerSizeWithIngredients .= "{$mealSizeIngredient?->amount} (G) - {$mealSizeIngredient?->ingredient?->name}\n";
-
-
-
-
-                    } //  end loop - ingredients
-
-
-
-
-
-
-
-
-
-
-                    //  B: loop - parts
-                    foreach ($mealSize?->parts ?? [] as $mealSizePart) {
-
-
-
-
-                        //  name - grams
-                        $content->totalPerSizeWithIngredients .= "{$mealSizePart?->amount} (G) - {$mealSizePart?->part?->name}\n";
-
-
-
-
-
-                    } //  end loop - parts
-
-
-
-
-
-
-
-
-
-                    // :: extra - emptyLine
-                    $content->totalPerSizeWithIngredients .= "\n";
-
-
-
-
-
-                } //  end loop - groupBySize
-
-
-
-
-
-
-
-            } // end loop - groupByMeal
-
+            // 4: bag
+            $content->bag = $scheduleMealsBySubscription?->first()->subscription?->bag?->name ==
+                $bag->name ? 'YES' : 'NO';
 
 
 
@@ -495,7 +243,7 @@ class KitchenPackingExport implements FromCollection, WithHeadings
 
 
 
-        } // end loop - groupByType
+        } // end loop - groupBySubscription
 
 
 

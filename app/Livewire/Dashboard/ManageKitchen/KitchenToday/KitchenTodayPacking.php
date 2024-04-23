@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\ManageKitchen\KitchenToday;
 
+use App\Exports\KitchenPackingExport;
 use App\Models\Bag;
 use App\Models\Customer;
 use App\Models\CustomerSubscription;
@@ -12,6 +13,7 @@ use App\Models\Size;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 use stdClass;
 
 class KitchenTodayPacking extends Component
@@ -138,6 +140,122 @@ class KitchenTodayPacking extends Component
 
 
 
+
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function export()
+    {
+
+
+
+
+        // 1: prepareExportData
+
+
+
+
+        // 1.2: dependencies
+        $sizes = Size::all();
+
+
+
+
+
+
+        // 1.2: getCustomersByFilter
+        $customers = Customer::where('firstName', 'LIKE', '%' . $this->searchCustomer . '%')
+            ->orWhere('lastName', 'LIKE', '%' . $this->searchCustomer . '%')?->pluck('id')->toArray();
+        $subscriptions = CustomerSubscription::whereIn('customerId', $customers)->pluck('id')->toArray();
+
+
+
+
+
+
+
+
+
+
+        // 2: getSchedules - meals
+        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->searchScheduleDate)
+            ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
+
+
+
+
+        $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
+            ->whereIn('subscriptionScheduleId', $schedules)
+            ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
+            ->whereIn('customerSubscriptionId', $subscriptions)
+            ->whereIn('cookStatus', ['Cooked', 'Packed'])
+            ->orderBy('customerSubscriptionId')
+            ->get();
+
+
+
+
+
+
+
+
+
+        // ---------------------------------------
+        // ---------------------------------------
+
+
+
+
+
+
+
+
+
+        // 2: makeExport
+        if ($scheduleMeals->count() > 0) {
+
+
+            return Excel::download(new KitchenPackingExport($scheduleMeals), 'kitchen-packing.xlsx');
+
+
+
+            // :: no-packing
+        } else {
+
+
+
+            $this->makeAlert('info', 'Packing-list is empty');
+
+
+        } // end if
 
 
 

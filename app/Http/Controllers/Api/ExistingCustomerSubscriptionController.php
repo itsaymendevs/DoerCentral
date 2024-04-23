@@ -185,8 +185,49 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
 
-        // 1.2.2: planDeliveryDays - migrate
-        $subscription->planDeliveryDays = $latestSubscription->planDeliveryDays;
+        // 1.2.2: planDeliveryDays
+
+
+
+
+        // A: planDeliveryDays
+        if (count($request?->deliveryDays ?? []) > 0) {
+
+
+
+
+            // :: loop - deliveryDays
+            foreach ($request->deliveryDays ?? [] as $weekDay => $isChecked) {
+
+                boolval($isChecked) ?
+                    $subscription->planDeliveryDays = ($subscription->planDeliveryDays ?? '') . $weekDay . '_'
+                    : null;
+
+
+            } // end loop
+
+
+
+            // :: removeLastComma
+            $subscription->planDeliveryDays = rtrim($subscription->planDeliveryDays, '_');
+
+
+
+
+
+
+
+
+
+            // B: migrate
+        } else {
+
+
+            $subscription->planDeliveryDays = $latestSubscription->planDeliveryDays;
+
+
+        } // end if
+
 
 
 

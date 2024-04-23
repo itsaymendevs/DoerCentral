@@ -98,6 +98,20 @@ class Customer extends Authenticatable
 
 
 
+    public function latestAddress()
+    {
+
+        return $this->addresses()?->latest()?->first();
+
+
+    } // end function
+
+
+
+
+
+
+
 
 
     public function deliveryDays()

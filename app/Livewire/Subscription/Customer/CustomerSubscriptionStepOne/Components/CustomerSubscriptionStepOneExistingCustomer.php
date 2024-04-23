@@ -86,6 +86,9 @@ class CustomerSubscriptionStepOneExistingCustomer extends Component
 
 
 
+            // 1.5: resetVars
+            $this->instance->deliveryDays = [];
+
 
 
 

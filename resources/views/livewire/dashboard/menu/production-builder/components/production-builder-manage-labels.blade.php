@@ -26,12 +26,31 @@
 
 
 
+
+
+
+
+    {{-- :: permission - hasLabelPreview --}}
+    @if ($versionPermission->menuModuleHasBuilderLabelPreview)
+
+
+
     {{-- labelPreview --}}
     <div>
         <img class="w-100 of-contain" id='container-preview' @if ($currentLabel)
             src="{{ asset('storage/kitchen/labels/' . $currentLabel->imageFile) }}" @else
             src="{{ asset('assets/img/placeholder.png') }}" @endif style="height: 170px" />
     </div>
+
+
+
+
+    @endif
+    {{-- end if - permission --}}
+
+
+
+
 
 
 

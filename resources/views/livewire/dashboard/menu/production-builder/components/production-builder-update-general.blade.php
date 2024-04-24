@@ -261,6 +261,13 @@
 
 
 
+            {{-- :: permission - hasExtraPictures --}}
+            @if ($versionPermission->menuModuleHasBuilderExtraPictures)
+
+
+
+
+
 
             {{-- thirdImageFile --}}
             <div class="col-6">
@@ -325,6 +332,17 @@
                 </label>
             </div>
             {{-- endCol --}}
+
+
+
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
 
 
         </div>

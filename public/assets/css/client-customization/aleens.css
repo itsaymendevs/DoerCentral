@@ -1,0 +1,129 @@
+/* colors */
+
+/* root */
+/*
+:root {
+    --color-body: #fff;
+    --color-card: #f9f9f9;
+    --color-theme: #212529;
+    --color-theme-secondary: #00a651;
+    --color-theme-heading: #f7941d;
+    --color-theme-light: #a17a6d;
+    --color-scheme-1: #f0f0f0;
+    --color-scheme-dark-1: #dcdcdc;
+    --color-scheme-2: #18191a;
+    --color-scheme-dark-2: #18191a;
+    --color-scheme-3: #87b2a9;
+    --color-scheme-dark-3: #7aa89e;
+    --color-scheme-4: #ccb9a6;
+    --color-scheme-dark-4: #baab9b;
+    --color-doc-desc: #ccb9a6;
+    --color-black: #656565;
+    --color-pitch-black: #14172e;
+    --color-solid-black: #000;
+    --color-login: #362621;
+    --color-login-dark: #2d1f1b;
+    --bg-theme: #23262b;
+    --bg-theme-secondary: #87b2a9;
+    --doc-border-color: #36262122;
+    --bg-theme-dark: #6e6e6e;
+    --bg-alternate: #f8f8f8;
+    --color-border: #c5c5c5;
+    --bg-search: #faf6f4;
+    --radius: 8px;
+    --bs-bg-opacity: 1;
+    --badge-radius: 8px;
+    --searchbar-radius: 12px;
+    --menu-radius: 12px;
+    --card-radius: 12px;
+    --card-logo-radius: 50%;
+    --theme-shadow: 0px 2px 6px #23262b;
+    --login-card-shadow: 0px 5px 12px #2734321a;
+    --login-card-hover-shadow: 0px 15px 20px #3449451a;
+    --home-card-shadow: 0px 5px 12px #96d0c41a;
+    --home-card-hover-shadow: 0px 8px 14px var(--color-body);
+    --tab-content-shadow: 0px 4px 6px #23262b;
+    --btn-height: 48px;
+    --btn-height-sm: 35px;
+    --btn-radius: 8px;
+    --navbar-radius: 6px;
+    --navbar-btn-height: 60px;
+    --input-border-color: #87b2a922;
+    --input-border-color-hover: #87b2a957;
+    --input-bg: #23262b;
+    --input-radius: 8px;
+    --input-padding: 0px 18px;
+    --select-padding: 15px;
+    --select-padding-extra: 35px;
+    --input-font: 13px;
+    --input-sm-font: 12px;
+    --input-height: 38px;
+    --input-min-height: 34px;
+    --result-bg: #eee;
+    --bg-golden: #ffc1076e;
+    --bg-golden-dark: #ffc107b3;
+    --result-bg-odd: #f8f8f8;
+    --bg-tabs: #23262b;
+    --whitesmoke: whitesmoke;
+    --table-border-color: #eaeaea;
+    --edit-color: var(--color-theme-secondary);
+    --client-logo-shadow: 0px 3px 6px #00000029;
+    --delete-color: #ff3b42;
+    --slow-transition: 0.8s all ease-in-out;
+    --mid-transition: 0.5s all ease-in-out;
+    --ingredient-color: #88b3aa;
+    --meal-color: #ff7065;
+    --subrecipe-color: var(--color-theme);
+    --sauce-color: #e8bdfff2;
+    --snack-color: #ffcacd;
+    --side-color: #afc8de;
+    --drink-color: #ffadd4;
+} */
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+/* .text-gold {
+    color: var(--color-theme-heading);
+}
+
+.submenu--group .btn.active {
+    background-color: var(--color-theme-heading);
+} */
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* logo */
+.logo--wrapper {
+    width: 120px;
+    margin: auto;
+}
+
+.logo--wrapper img {
+    width: 100%;
+    height: 22px;
+    object-fit: contain;
+}
+.logo--wrapper span {
+    font-size: 7px;
+    font-weight: 500 !important;
+    display: block;
+    text-align: right;
+    /* color: #00a651; */
+}
+
+/* :: logo -  login */
+.logo--wrapper.for-login {
+    width: 200px;
+    margin: auto;
+}
+
+.logo--wrapper.for-login img {
+    height: 35px;
+}
+
+.logo--wrapper.for-login span {
+    font-size: 9px;
+    font-weight: 600 !important;
+    margin-right: 16px;
+    letter-spacing: 1px;
+}

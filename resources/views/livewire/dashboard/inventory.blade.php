@@ -20,25 +20,40 @@
                         </li>
 
 
+
+
+                        {{-- :: permission - hasStock --}}
+                        @if ($versionPermission->inventoryModuleHasStock)
+
+
+
                         {{-- supplier --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
-                                data-bs-toggle="tab" href="#tab-2" role="tab">Suppliers</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-2" role="tab">Suppliers</a>
                         </li>
 
 
                         {{-- purchases --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
-                                data-bs-toggle="tab" href="#tab-3" role="tab">Purchases</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3" role="tab">Purchases</a>
                         </li>
 
 
                         {{-- stock --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
-                                data-bs-toggle="tab" href="#tab-4" role="tab">Stock</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-4" role="tab">Stock</a>
                         </li>
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
 
 
                         {{-- configurations --}}
@@ -93,6 +108,13 @@
 
 
 
+                        {{-- :: permission - hasStock --}}
+                        @if ($versionPermission->inventoryModuleHasStock)
+
+
+
+
+
 
 
 
@@ -141,6 +163,12 @@
 
 
 
+
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
 
 
 

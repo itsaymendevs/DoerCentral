@@ -759,7 +759,7 @@
 
 
 
-                <div class="row justify-content-center mb-5">
+                <div class="row justify-content-start mb-5">
 
 
 
@@ -779,7 +779,7 @@
 
 
                     {{-- column --}}
-                    <div class="col-10 col-sm-4 mb-4 mb-sm-0">
+                    <div class="col-6 col-sm-4 mb-4 mb-sm-0">
                         <div class="item--box p-0 pt-2 d-flex flex-column no-events customers--meal-types-wrapper">
 
                             {{-- imageFile --}}

@@ -479,8 +479,7 @@ class CustomerMenu extends Component
 
         // 1: dependencies
         $menuCalendars = MenuCalendar::where('isActive', true)->get();
-        $mealTypes = MealType::whereIn('id', $this->subscription->typesInArray())->get();
-
+        $mealTypes = MealType::orderBy('typeId')->whereIn('id', $this->subscription->typesInArray())->get();
 
 
 

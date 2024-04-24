@@ -29,7 +29,16 @@
 
 
             {{-- calendarSelect --}}
+
+
+            {{-- :: permission - hasEditCalendar --}}
+            @if ($versionPermission->customerModuleEditCalendar)
+
+
+
+
             <div class="col-4">
+
 
 
                 {{-- hr --}}
@@ -50,7 +59,17 @@
                         @endforeach
                     </select>
                 </div>
+
+
             </div>
+            {{-- endCol --}}
+
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
 
 
 
@@ -61,6 +80,14 @@
 
             {{-- skip / unSkip --}}
             <div class="col-4">
+
+
+                {{-- :: permission - hasSkip --}}
+                @if ($versionPermission->customerModuleHasSkip)
+
+
+
+
                 <div class="text-center mb-4">
 
 
@@ -109,6 +136,15 @@
                     {{-- end if --}}
 
                 </div>
+
+
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
+
             </div>
             {{-- endDiv --}}
 
@@ -387,6 +423,12 @@
 
 
                                                 {{-- diet--}}
+
+                                                {{-- :: permission - hasMealFullView --}}
+                                                @if ($versionPermission->menuModuleHasMealFullView)
+
+
+
                                                 <div class="d-flex align-items-center justify-content-center mb-3">
                                                     <button
                                                         class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
@@ -394,6 +436,14 @@
                                                         {{ $subscriptionScheduleMeal?->meal?->diet?->name }}
                                                     </button>
                                                 </div>
+
+
+
+                                                @endif
+                                                {{-- end if - permission --}}
+
+
+
 
 
 
@@ -446,6 +496,12 @@
 
 
                                             {{-- sizeMacros --}}
+
+                                            {{-- :: permission - hasMealFullView --}}
+                                            @if ($versionPermission->menuModuleHasMealFullView)
+
+
+
                                             <div class="col-12 mt-1">
                                                 <div class="row">
 
@@ -518,7 +574,21 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
+
+                                            @endif
+                                            {{-- end if - permission --}}
+
+
+
+
                                             {{-- end sizeMacros --}}
+
+
+
+
+
 
 
 
@@ -670,6 +740,12 @@
 
 
                                                 {{-- diet--}}
+
+                                                {{-- :: permission - hasMealFullView --}}
+                                                @if ($versionPermission->menuModuleHasMealFullView)
+
+
+
                                                 <div class="d-flex align-items-center justify-content-center mb-3">
                                                     <button
                                                         class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
@@ -677,6 +753,11 @@
                                                         {{ $calendarScheduleMeal?->meal?->diet?->name }}
                                                     </button>
                                                 </div>
+
+
+
+                                                @endif
+                                                {{-- end if - permission --}}
 
 
 
@@ -741,6 +822,14 @@
 
 
                                             {{-- sizeMacros --}}
+
+
+                                            {{-- :: permission - hasMealFullView --}}
+                                            @if ($versionPermission->menuModuleHasMealFullView)
+
+
+
+
                                             <div class="col-12 mt-1">
                                                 <div class="row">
 
@@ -813,6 +902,14 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
+
+                                            @endif
+                                            {{-- end if - permission --}}
+
+
+
                                             {{-- end sizeMacros --}}
 
 
@@ -990,6 +1087,12 @@
 
 
                                                 {{-- diet--}}
+
+                                                {{-- :: permission - hasMealFullView --}}
+                                                @if ($versionPermission->menuModuleHasMealFullView)
+
+
+
                                                 <div class="d-flex align-items-center justify-content-center mb-3">
                                                     <button
                                                         class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
@@ -998,6 +1101,11 @@
                                                         $subscriptionScheduleReplacement?->replacement?->diet?->name}}
                                                     </button>
                                                 </div>
+
+
+
+                                                @endif
+                                                {{-- end if - permission --}}
 
 
 
@@ -1066,6 +1174,13 @@
 
 
                                             {{-- sizeMacros --}}
+
+
+                                            {{-- :: permission - hasMealFullView --}}
+                                            @if ($versionPermission->menuModuleHasMealFullView)
+
+
+
                                             <div class="col-12 mt-1">
                                                 <div class="row">
 
@@ -1138,7 +1253,17 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
+                                            @endif
+                                            {{-- end if - permission --}}
+
+
+
                                             {{-- end sizeMacros --}}
+
+
+
 
 
 

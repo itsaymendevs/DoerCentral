@@ -213,12 +213,12 @@
 
 
 
-                <div class="tabs--wrap">
+                <div class="tabs--wrap for-mobile">
 
 
 
                     {{-- tabLinks --}}
-                    <ul class="nav nav-tabs nav-tabs-centered" role="tablist">
+                    <ul class="nav nav-tabs nav-tabs-centered " role="tablist">
 
 
                         {{-- loop - mealTypes --}}
@@ -388,7 +388,8 @@
 
 
                                                 {{-- diet--}}
-                                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                                <div
+                                                    class="d-flex align-items-center justify-content-center mb-3 d-none">
                                                     <button
                                                         class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
                                                         type="button">
@@ -398,13 +399,14 @@
 
 
 
-                                                {{-- Actions --}}
-                                                <div class="d-flex align-items-center justify-content-center mb-2 mt-1">
+                                                {{-- Actions (HIDDEN) --}}
+                                                <div
+                                                    class="d-flex align-items-center justify-content-center mb-2 mt-1 d-none">
 
 
 
 
-                                                    {{-- 1: checkExclude / ch-eckAllergy --}}
+                                                    {{-- 1: checkExclude / checkAllergy --}}
                                                     <button class="btn  btn--scheme btn--remove fs-11 px-2 mx-1 py-1"
                                                         @if($isNotAllergy && $isNotExclude) disabled @endif
                                                         type="button" data-bs-toggle='modal'
@@ -412,21 +414,6 @@
                                                         }})'>Excludes</button>
 
 
-
-
-
-
-
-
-
-
-
-                                                    {{-- 2: note --}}
-                                                    <button
-                                                        class="btn btn--scheme btn-outline-warning fs-11 px-2 mx-1 py-1"
-                                                        type="button" data-bs-toggle="modal"
-                                                        data-bs-target='#meal-remarks'
-                                                        wire:click='editRemarks({{ $subscriptionScheduleMeal->id }})'>Note</button>
                                                 </div>
                                             </div>
                                             {{-- endCol --}}
@@ -668,7 +655,8 @@
 
 
                                                 {{-- diet--}}
-                                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                                <div
+                                                    class="d-flex align-items-center justify-content-center mb-3 d-none">
                                                     <button
                                                         class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
                                                         type="button">
@@ -685,8 +673,9 @@
 
 
 
-                                                {{-- Actions --}}
-                                                <div class="d-flex align-items-center justify-content-center mb-2 mt-1">
+                                                {{-- Actions (HIDDEN) --}}
+                                                <div
+                                                    class="d-flex align-items-center justify-content-center mb-2 mt-1 d-none">
 
 
                                                     {{-- 1: checkExclude / checkAllergy --}}
@@ -984,7 +973,8 @@
 
 
                                                 {{-- diet--}}
-                                                <div class="d-flex align-items-center justify-content-center mb-3">
+                                                <div
+                                                    class="d-flex align-items-center justify-content-center mb-3 d-none">
                                                     <button
                                                         class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
                                                         type="button">
@@ -1001,8 +991,9 @@
 
 
 
-                                                {{-- Actions --}}
-                                                <div class="d-flex align-items-center justify-content-center mb-2 mt-1">
+                                                {{-- Actions (HIDDEN) --}}
+                                                <div
+                                                    class="d-flex align-items-center justify-content-center mb-2 mt-1 d-none">
 
 
                                                     {{-- 1: checkExclude / checkAllergy --}}
@@ -1384,55 +1375,11 @@
     @section('modals')
 
 
-    {{-- 1: editRemarks --}}
-    <livewire:customer-portal.customer-menu.components.customer-menu-edit-remarks id='{{ $customer->id }}'
-        key='{{ $customer->id }}' />
 
 
-
-
-
-
-    {{-- ------------------------------------- --}}
-
-
-
-
-
-    {{-- 2: viewExcludes --}}
+    {{-- 1: viewExcludes --}}
     <livewire:customer-portal.customer-menu.components.customer-menu-view-excludes id='{{ $customer->id }}'
         key='{{ $customer->id }}' />
-
-
-
-
-
-
-
-
-
-
-    {{-- ------------------------------------- --}}
-
-
-
-
-
-    {{-- 3: replaceMeal --}}
-    <livewire:customer-portal.customer-menu.components.customer-menu-replace-meal id='{{ $customer->id }}'
-        key='{{ $customer->id }}' />
-
-
-
-
-
-
-
-
-    {{-- 3.5: replaceMealExcludes --}}
-    <livewire:customer-portal.customer-menu.components.customer-menu-replace-meal-excludes id='{{ $customer->id }}'
-        key='{{ $customer->id }}' />
-
 
 
 

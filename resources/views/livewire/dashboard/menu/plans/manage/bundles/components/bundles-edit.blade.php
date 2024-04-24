@@ -188,10 +188,46 @@
 
 
                                         {{-- input --}}
+
+
+
+                                        {{-- :: permission - hasDynamicBundles --}}
+                                        @if ($versionPermission->menuModuleHasDynamicBundles)
+
+
+
+
+
+                                        {{-- A: dynamic --}}
                                         <input class="form-control form--input range--input" type="number" step="1"
                                             min="0" data-input="{{ $mealType->id }}-range-2"
                                             wire:model='instance.mealTypes.{{ $mealType->id }}'
                                             data-instance='instance.mealTypes.{{ $mealType->id }}' required />
+
+
+
+
+
+
+                                        {{-- limit => 1 --}}
+                                        @else
+
+
+
+                                        {{-- B: limit --}}
+                                        <input class="form-control form--input range--input" type="number" step="1"
+                                            min="0" max='1' data-input="{{ $mealType->id }}-range-2"
+                                            wire:model='instance.mealTypes.{{ $mealType->id }}'
+                                            data-instance='instance.mealTypes.{{ $mealType->id }}' required />
+
+
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
 
 
 

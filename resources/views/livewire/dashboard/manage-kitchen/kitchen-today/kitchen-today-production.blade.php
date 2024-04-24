@@ -74,6 +74,15 @@
 
 
 
+
+                    {{-- :: permission - hasTypeSizeFilters --}}
+                    @if ($versionPermission->kitchenModuleHasTypeSizeFilters)
+
+
+
+
+
+
                     {{-- search - mealTypes --}}
                     <div class="col-6">
                         <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
@@ -107,6 +116,17 @@
                     {{-- endCol --}}
 
 
+
+
+
+                    @endif
+                    {{-- end if - permission --}}
+
+
+
+
+
+
                 </div>
             </div>
             {{-- endSearch --}}
@@ -118,6 +138,14 @@
 
             {{-- actions --}}
             <div class="col-4 text-center">
+
+
+
+
+
+
+                {{-- :: permission - hasPrintExcel --}}
+                @if ($versionPermission->kitchenModuleHasPrintExcel)
 
 
 
@@ -155,6 +183,16 @@
                         </path>
                     </svg>Excel
                 </button>
+
+
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
+
+
 
 
             </div>
@@ -763,6 +801,14 @@
                                 <td class="text-start">
 
 
+
+
+                                    {{-- :: permission - hasConfirmCooking --}}
+                                    @if ($versionPermission->kitchenModuleHasConfirmCooking)
+
+
+
+
                                     <img class='w-100 of-contain' style="height: 130px"
                                         src="{{ asset('storage/menu/meals/' . ($scheduleMealsByMeal->first()?->meal?->imageFile ?? $defaultPlate)) }}">
 
@@ -803,8 +849,17 @@
                                         @endif
 
                                     </div>
-                                </td>
 
+
+
+                                    @endif
+                                    {{-- end if - permission --}}
+
+
+
+
+                                </td>
+                                {{-- endActions --}}
 
 
 

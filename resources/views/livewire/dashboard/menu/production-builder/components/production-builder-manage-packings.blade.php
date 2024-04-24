@@ -61,7 +61,22 @@
 
 
 
-    {{-- form --}}
+
+
+
+
+    {{-- :: permission - hasPackings --}}
+    @if ($versionPermission->menuModuleHasBuilderPackings)
+
+
+
+
+
+
+
+
+
+    {{-- packings --}}
     <form wire:submit='store' class="row align-items-center">
 
 
@@ -116,7 +131,14 @@
             </button>
         </div>
     </form>
-    {{-- endForm --}}
+    {{-- endPacking --}}
+
+
+
+
+
+
+
 
 
 
@@ -183,6 +205,19 @@
         </div>
     </div>
     {{-- endRow --}}
+
+
+
+
+
+
+
+
+
+    @endif
+    {{-- end if - permission --}}
+
+
 
 
 

@@ -4,7 +4,7 @@
 
 
     {{-- amount --}}
-    <td class="fw-bold" @if (!$versionPermission->hasAdminView) colspan='2' @endif>
+    <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderPercentage) colspan='2' @endif>
         <input class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input"
             data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' required wire:model='instance.amount'
             wire:change='update' wire:loading.attr='readonly' wire:target='remove, update, init' />
@@ -18,8 +18,8 @@
     {{-- percentage --}}
 
 
-    {{-- :: hasAdminView --}}
-    @if ($versionPermission->hasAdminView)
+    {{-- :: permission - hasPercentage --}}
+    @if ($versionPermission->menuModuleHasBuilderPercentage)
 
 
     <td class="fw-bold">
@@ -28,8 +28,9 @@
     </td>
 
 
+
     @endif
-    {{-- end if - AdminView --}}
+    {{-- end if - permission --}}
 
 
 
@@ -54,6 +55,24 @@
             data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly="" wire:model='instance.calories'
             wire:loading.attr='readonly' />
     </td>
+
+
+
+
+
+
+
+    {{-- --------------------------------- --}}
+    {{-- --------------------------------- --}}
+
+
+
+
+
+    {{-- :: permission - hasMacros --}}
+    @if ($versionPermission->menuModuleHasBuilderMacros)
+
+
 
 
     {{-- proteins --}}
@@ -90,8 +109,65 @@
 
 
 
-    {{-- --------------- --}}
-    {{-- --------------- --}}
+    {{-- Hidden --}}
+    @else
+
+
+
+
+
+
+
+
+    {{-- proteins --}}
+    <td class="fw-bold invisible">
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--proteins-input"
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly="" wire:model='instance.proteins'
+            wire:loading.attr='readonly' />
+    </td>
+
+
+
+    {{-- carbs --}}
+    <td class="fw-bold invisible">
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--carbs-input"
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly="" wire:model='instance.carbs'
+            wire:loading.attr='readonly' />
+    </td>
+
+
+
+
+
+    {{-- fats --}}
+    <td class="fw-bold invisible">
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--fats-input" type="number"
+            data-size='{{ $instance->mealSizeId }}' step='0.01' readonly="" wire:model='instance.fats'
+            wire:loading.attr='readonly' />
+    </td>
+
+
+
+
+
+
+    @endif
+    {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- --------------------------------- --}}
+    {{-- --------------------------------- --}}
+
 
 
 
@@ -136,7 +212,29 @@
 
 
 
+
+
+
+
+    {{-- --------------------------------- --}}
+    {{-- --------------------------------- --}}
+
+
+
+
+
+
+
     {{-- isReplacement --}}
+
+
+
+    {{-- :: permission - hasMacros --}}
+    @if ($versionPermission->menuModuleHasBuilderMacros)
+
+
+
+
     <td class="fw-bold">
         <div class="form-check form-switch mealType--checkbox justify-content-center">
 
@@ -154,6 +252,46 @@
     </td>
 
 
+
+    {{-- Hidden --}}
+    @else
+
+
+
+    <td class="fw-bold invisible">
+        <div class="form-check form-switch mealType--checkbox justify-content-center">
+
+
+            <input class="form-check-input pointer replacement--checkbox" data-group='{{ $instance->groupToken }}'
+                type="checkbox" @if($this->instance->isReplacement) checked @endif
+            id="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}"
+            wire:model='instance.isReplacement'
+            wire:change='update' wire:loading.attr='disabled' wire:target='update, remove, init' />
+
+
+            <label class="form-check-label d-none"
+                for="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}">placeholder</label>
+        </div>
+    </td>
+
+
+
+    @endif
+    {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- --------------------------------- --}}
+    {{-- --------------------------------- --}}
 
 
 

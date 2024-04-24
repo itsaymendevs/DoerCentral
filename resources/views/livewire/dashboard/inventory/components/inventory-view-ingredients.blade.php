@@ -113,8 +113,11 @@
 
 
 
-            {{-- :: isMasterView --}}
-            @if ($versionPermission->hasCardView)
+            {{-- :: permission - hasMasterView --}}
+            @if ($versionPermission->hasMasterView)
+
+
+
 
 
             {{-- switchGroup --}}
@@ -153,7 +156,7 @@
 
 
             @endif
-            {{-- end if - masterView --}}
+            {{-- end if - permission --}}
 
 
 
@@ -191,9 +194,18 @@
 
         {{-- newButton --}}
         <div class="col-3">
-            <button class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center
-                @if ($versionPermission->isProcessing) disabled @endif" data-bs-target="#new-ingredient"
-                data-bs-toggle="modal" type="button">
+
+
+
+
+            {{-- :: permission - hasAdminView --}}
+            @if ($versionPermission->hasAdminView)
+
+
+
+
+            <button class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
+                data-bs-target="#new-ingredient" data-bs-toggle="modal" type="button">
                 <svg class="bi bi-plus-circle-dotted fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
                     height="1em" fill="currentColor" viewBox="0 0 16 16">
                     <path
@@ -201,7 +213,17 @@
                     </path>
                 </svg>New Ingredient
             </button>
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
         </div>
+        {{-- endCol --}}
 
 
 
@@ -269,16 +291,24 @@
 
                             {{-- actions --}}
                             <div class="col-12">
+
+
+
+
+                                {{-- :: permission - hasAdminView --}}
+                                @if ($versionPermission->hasAdminView)
+
+
+
+
                                 <div class="d-flex align-items-center justify-content-center mb-1 mt-2">
 
 
 
-
-
                                     {{-- 1: brands --}}
-                                    <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3
-                                    @if ($versionPermission->isProcessing) disabled @endif" data-bs-toggle="modal"
-                                        data-bss-tooltip="" data-bs-target="#ingredient-brands" type="button">
+                                    <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3"
+                                        data-bs-toggle="modal" data-bss-tooltip="" data-bs-target="#ingredient-brands"
+                                        type="button">
                                         <svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="1em"
                                             height="1em" fill="currentColor" viewBox="0 0 16 16">
                                             <path
@@ -295,8 +325,7 @@
 
 
                                     {{-- edit --}}
-                                    <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3
-                                    @if ($versionPermission->isProcessing) disabled @endif"
+                                    <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3"
                                         wire:click="edit({{ $ingredient->id }})" wire:loading.attr='disabled'
                                         data-bs-toggle="modal" data-bs-target="#edit-ingredient" type="button">
                                         <svg class="bi bi-pencil" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -313,9 +342,9 @@
 
 
                                     {{-- remove --}}
-                                    <button class="btn btn--scheme btn--remove px-2 py-1 mx-1 text-white scale--3
-                                    @if ($versionPermission->isProcessing) disabled @endif" type="button"
-                                        wire:click="remove({{ $ingredient->id }})" wire:loading.attr='disabled'>
+                                    <button class="btn btn--scheme btn--remove px-2 py-1 mx-1 text-white scale--3"
+                                        type="button" wire:click="remove({{ $ingredient->id }})"
+                                        wire:loading.attr='disabled'>
                                         <svg class="bi bi-trash" xmlns="http://www.w3.org/2000/svg" width="1em"
                                             height="1em" fill="currentColor" viewBox="0 0 16 16">
                                             <path
@@ -327,6 +356,18 @@
                                         </svg>
                                     </button>
                                 </div>
+                                {{-- endWrapper --}}
+
+
+
+
+
+
+                                @endif
+                                {{-- end if - permission --}}
+
+
+
                             </div>
                             {{-- endActionCol --}}
 
@@ -398,9 +439,28 @@
                             <th class="th--md th--sm">Proteins</th>
                             <th class="th--sm">Carbohydrates</th>
                             <th class="th--md th--sm">Fats</th>
+
+
+                            {{-- :: permission - hasAdminView --}}
+                            @if ($versionPermission->hasAdminView)
+
                             <th class="th--sm"></th>
+
+                            @endif
+                            {{-- end if - permission --}}
+
+
                         </tr>
                     </thead>
+
+
+
+
+
+
+                    {{-- ------------------------------ --}}
+                    {{-- ------------------------------ --}}
+
 
 
 
@@ -432,8 +492,16 @@
 
 
 
+
+
                             {{-- actions --}}
+
+                            {{-- :: permission - hasAdminView --}}
+                            @if ($versionPermission->hasAdminView)
+
+
                             <td>
+
                                 <div class="d-flex align-items-center justify-content-center">
 
 
@@ -497,18 +565,21 @@
 
 
                                 </div>
+
                             </td>
+
+
+                            @endif
+                            {{-- end if - permission --}}
+
+
                             {{-- endActions --}}
 
 
 
 
 
-
                         </tr>
-
-
-
                         @endforeach
                         {{-- end loop - ingredients --}}
 

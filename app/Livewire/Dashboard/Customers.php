@@ -7,12 +7,15 @@ use App\Models\Plan;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Customers extends Component
 {
 
 
     use HelperTrait;
+    use WithPagination;
+
 
 
     // :: variable
@@ -146,14 +149,29 @@ class Customers extends Component
 
 
 
+
+
+
+
+
+        // ---------------------------------
+        // ---------------------------------
+
+
+
+
+
+
         // 1.2: customers - makeFilter
         $customersRaw = Customer::where('firstName', 'LIKE', '%' . $this->searchCustomer . '%')
             ->orWhere('lastName', 'LIKE', '%' . $this->searchCustomer . '%')->get();
 
 
 
-        $customers = $customersRaw->filter(function ($item) {
 
+
+        // 1.2.1: getIds
+        $customerIds = $customersRaw->filter(function ($item) {
 
 
             // :: Filters
@@ -185,7 +203,21 @@ class Customers extends Component
 
             return $toReturn;
 
-        });
+        })?->pluck('id')?->toArray() ?? [];
+
+
+
+
+
+
+
+        // 1.2.2: getCustomers
+        $customers = Customer::whereIn('id', $customerIds)->paginate(20);
+
+
+
+
+
 
 
 

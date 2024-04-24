@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Customers\Components;
 use App\Livewire\Forms\CustomerSubscriptionPauseForm;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
+use App\Models\VersionPermission;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -147,7 +148,18 @@ class CustomersPauseSubscription extends Component
 
 
         // 1: dependencies
-        $types = ['Refund Wallet'];
+        $types = [];
+        $versionPermission = VersionPermission::first();
+
+
+
+
+
+        // :: permission - hasWallet
+        if ($versionPermission->customerModuleHasWallet)
+            $types = ['Refund Wallet'];
+
+
 
 
 

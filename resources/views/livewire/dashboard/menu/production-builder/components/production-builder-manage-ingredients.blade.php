@@ -412,7 +412,7 @@
                         <th class="th--sm" colspan="1">Protein</th>
                         <th class="th--sm" colspan="1">Carb</th>
                         <th class="th--sm" colspan="1">Fat</th>
-                        <th class="th--lg" colspan="1">Remarks</th>
+                        <th class="th--lg" colspan="1">Note</th>
                         <th class="th--xs" colspan="3"></th>
 
                     </tr>
@@ -499,6 +499,24 @@
                                 data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
                         </td>
 
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+
+
+                        {{-- :: permission - hasMacros --}}
+                        @if ($versionPermission->menuModuleHasBuilderMacros)
+
+
+
+
+
                         {{-- P --}}
                         <td colspan="1">
                             <input
@@ -522,6 +540,68 @@
                                 class="form-control form--input form--table-input-sm readonly ingredient--fats-total-input"
                                 data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
                         </td>
+
+
+
+
+
+
+                        {{-- HIDDEN --}}
+                        @else
+
+
+
+
+
+                        {{-- P --}}
+                        <td class='invisible' colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--proteins-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+                        {{-- C --}}
+                        <td class="invisible" colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--carbs-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+                        {{-- F --}}
+                        <td class="invisible" colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--fats-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+
+
+
+
 
                         {{-- empty --}}
                         <td class="scale--3" colspan="1"></td>
@@ -547,31 +627,124 @@
                     <tr class="subheader">
 
 
-                        <td class="fw-bold" @if (!$versionPermission->hasAdminView) colspan='2' @endif>Grams</td>
 
 
 
+                        {{-- :: permission - hasPercentage --}}
+                        @if ($versionPermission->menuModuleHasBuilderPercentage)
 
-                        {{-- :: hasAdminView --}}
-                        @if ($versionPermission->hasAdminView)
 
-
+                        {{-- grams - % --}}
+                        <td class="fw-bold">Grams</td>
                         <td class="fw-bold">%</td>
 
 
+                        @else
+
+
+                        {{-- grams --}}
+                        <td class="fw-bold" colspan='2'>Grams</td>
+
+
                         @endif
-                        {{-- end if - AdminView --}}
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
 
 
 
 
                         <td class="fw-bold">CA</td>
+
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+
+
+                        {{-- :: permission - hasMacros --}}
+                        @if ($versionPermission->menuModuleHasBuilderMacros)
+
+
                         <td class="fw-bold">P</td>
                         <td class="fw-bold">C</td>
                         <td class="fw-bold">F</td>
+
+
+
+                        @else
+
+
+                        <td class="fw-bold invisible">P</td>
+                        <td class="fw-bold invisible">C</td>
+                        <td class="fw-bold invisible">F</td>
+
+
+                        @endif
+                        {{-- end if --}}
+
+
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+
+
+
                         <td class="fw-bold"></td>
                         <td class="fw-bold fs-10">Removable</td>
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+
+
+
+                        {{-- :: permission - hasMacros --}}
+                        @if ($versionPermission->menuModuleHasBuilderMacros)
+
+
                         <td class="fw-bold fs-10">Replacement</td>
+
+
+                        @else
+
+                        <td class="fw-bold fs-10 invisible">Replacement</td>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+
                         <td class="fw-bold"></td>
                     </tr>
 

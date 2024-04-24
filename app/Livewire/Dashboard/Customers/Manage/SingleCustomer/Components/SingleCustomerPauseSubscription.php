@@ -149,8 +149,8 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-        // :: checkWalletPermission
-        if ($versionPermission->hasWallet)
+        // :: permission - hasWallet
+        if ($versionPermission->customerModuleHasWallet)
             $types = ['Refund Wallet'];
 
 

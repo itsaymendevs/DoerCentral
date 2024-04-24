@@ -22,10 +22,20 @@
 
 
         {{-- checkout --}}
+
+        {{-- :: permission - hasCheckoutTab --}}
+        @if ($versionPermission->kitchenModuleHasCheckoutTab)
+
+
+
         <a wire:navigate
             class="btn fs-13 @if (Request::is('dashboard/kitchen/today/checkout', 'dashboard/kitchen/today/checkout/*')) active @endif"
             role="button" href="{{ route('dashboard.kitchenTodayCheckout') }}">Checkout</a>
 
+
+
+        @endif
+        {{-- end if - permission --}}
 
 
 

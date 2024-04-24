@@ -2,6 +2,32 @@
     .submenu--group.mobile {
         display: block;
     }
+
+    .menu--calendar-days {
+        margin-right: 10px;
+        width: 55px;
+    }
+}
+
+@media (min-width: 1px) and (max-width: 767px) {
+    .tabs--wrap.for-mobile .nav-tabs li {
+        width: 33%;
+        margin: 0px;
+    }
+
+    .tabs--wrap.for-mobile .nav-tabs li {
+        white-space: nowrap;
+    }
+
+    .tabs--wrap.for-mobile .nav-tabs li a {
+        font-size: 12px;
+    }
+
+    .tabs--wrap.for-mobile .nav-tabs li a.active {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--bg-theme-secondary);
+    }
 }
 
 @media (min-width: 1px) and (max-width: 767px) {

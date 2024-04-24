@@ -276,6 +276,12 @@
 
 
                                     {{-- 1: VIP --}}
+
+                                    {{-- :: permission - hasVIP --}}
+                                    @if ($versionPermission->customerModuleHasVIP)
+
+
+
                                     <div class="form-check form-switch mb-3 mealType--checkbox">
                                         <input class="form-check-input pointer" wire:model='instance.isVIP'
                                             type="checkbox" id="formCheck-1" @if($instance->isVIP) checked @endif />
@@ -284,13 +290,39 @@
 
 
 
+
+                                    @endif
+                                    {{-- end if - permission --}}
+
+
+
+
+
+
+
+
                                     {{-- 2: Enabled --}}
+
+
+                                    {{-- :: permission - hasEnabled --}}
+                                    @if ($versionPermission->customerModuleHasEnabled)
+
+
                                     <div class="form-check form-switch mb-3 mealType--checkbox">
                                         <input class="form-check-input pointer" wire:model='instance.isEnabled'
                                             id="formCheck-2" type="checkbox" @if($instance->isEnabled) checked @endif
                                         />
                                         <label class="form-check-label fs-6" for="formCheck-2">Enabled</label>
                                     </div>
+
+
+                                    @endif
+                                    {{-- end if - permission--}}
+
+
+
+
+
                                 </div>
                             </div>
 
@@ -372,7 +404,18 @@
 
 
 
+
+
                             {{-- manager --}}
+
+
+
+                            {{-- :: permission - hasManager --}}
+                            @if ($versionPermission->customerModuleHasManager)
+
+
+
+
                             <div class="col-6">
 
 
@@ -401,10 +444,23 @@
 
 
 
+                            @endif
+                            {{-- end if - permission --}}
+
+
+
+
+
 
 
 
                             {{-- driver --}}
+
+                            {{-- :: permission - hasDriver --}}
+                            @if ($versionPermission->customerModuleHasDriver)
+
+
+
                             <div class="col-6">
 
 
@@ -431,6 +487,14 @@
                                 </div>
                             </div>
                             {{-- endCol --}}
+
+
+
+                            @endif
+                            {{-- end if - permission --}}
+
+
+
 
 
 
@@ -475,8 +539,24 @@
 
 
                 {{-- image --}}
+
+                {{-- :: permission - hasVector --}}
+                @if ($versionPermission->customerModuleHasVector)
+
+
                 <img class="w-100 of-contain" src='{{ asset("assets/img/Customers/{$customer->gender}.png") }}'
                     style="height: 250px" />
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
+
+
+
+
+
 
 
 
@@ -564,8 +644,8 @@
 
 
 
-                {{-- :: hasWallet --}}
-                @if ($versionPermission->hasWallet)
+                {{-- :: permission - hasWallet --}}
+                @if ($versionPermission->customerModuleHasWallet)
 
 
 
@@ -589,13 +669,12 @@
                         type="button" style="/*border: 1px solid var(--color-theme-secondary);*/"
                         data-bs-target="#wallet-deposit" data-bs-toggle="modal">
                         Deposit</button>
-
                 </div>
 
 
 
                 @endif
-                {{-- end if - hasWallet --}}
+                {{-- end if - permission --}}
 
 
 
@@ -661,7 +740,16 @@
 
 
 
+
+
+
                                 {{-- :: editBundle --}}
+
+                                {{-- :: permission - hasEditBundle --}}
+                                @if ($versionPermission->customerModuleHasEditBundle)
+
+
+
                                 <button
                                     class="btn btn--raw-icon fs-15 text-warning d-inline-flex align-items-center justify-content-end scale--3 w-auto"
                                     type="button" data-bs-target="#edit-bundle" data-bs-toggle="modal">
@@ -673,10 +761,20 @@
                                         </path>
                                     </svg>
                                 </button>
+
+
+                                @endif
+                                {{-- end if - permission --}}
+
+
+
                             </div>
                         </div>
                     </div>
                     {{-- endCol --}}
+
+
+
 
 
 
@@ -727,8 +825,9 @@
 
 
 
-                {{-- :: hasCustomerBundlesView --}}
-                @if ($versionPermission->hasCustomerBundlesView)
+                {{-- :: permission - hasBundleView --}}
+                @if ($versionPermission->customerModuleHasBundlesView)
+
 
 
 
@@ -816,7 +915,7 @@
 
 
                 @endif
-                {{-- end if - hasCustomerBundlesView --}}
+                {{-- end if - permission --}}
 
 
 

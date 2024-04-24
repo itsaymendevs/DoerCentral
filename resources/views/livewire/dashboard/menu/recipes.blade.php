@@ -37,6 +37,12 @@
 
 
                 {{-- viewType --}}
+
+
+                {{-- :: permission - hasMasterView --}}
+                @if ($versionPermission->hasMasterView)
+
+
                 <div class="btn-group btn--swtich-group me-3" role="group" style="margin-bottom: 10px">
                     <button class="btn active btn--switch-view fw-bold" disabled data-view="standard"
                         data-target="plans-column" data-instance="1" type="button">
@@ -46,6 +52,14 @@
                         M
                     </button>
                 </div>
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
+
+
 
 
 
@@ -86,9 +100,14 @@
 
                     {{-- loop - meals --}}
                     @foreach ($meals as $meal)
+
+
+
                     <div class="col-4 col-xl-3 col-xxl-3">
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">
+
+
 
                                 {{-- cover --}}
                                 <div class="col-12 text-center position-relative">
@@ -97,13 +116,16 @@
                                 </div>
 
 
+
+
+
                                 {{-- col --}}
                                 <div class="col-12">
 
 
                                     {{-- name --}}
-                                    <h6 class="text-center fw-bold mt-3 mb-2 truncate-text-2l height-2l">{{ $meal->name
-                                        }}</h6>
+                                    <h6 class="text-center fw-bold mt-3 mb-2 truncate-text-2l height-2l">{{
+                                        $meal->name}}</h6>
 
 
 
@@ -131,8 +153,9 @@
                                 {{-- sizes --}}
 
 
-                                {{-- :: masterView --}}
-                                @if ($versionPermission->hasMasterView)
+
+                                {{-- :: permission - hasMealView --}}
+                                @if ($versionPermission->menuModuleHasMealFullView)
 
 
 
@@ -245,7 +268,7 @@
 
 
                                 @endif
-                                {{-- end if - masterView --}}
+                                {{-- end if - permission --}}
 
 
 
@@ -279,13 +302,10 @@
 
 
 
+
+
+
                                         {{-- 2: ingredients - tooltip --}}
-
-                                        {{-- :: masterView --}}
-                                        @if ($versionPermission->hasMasterView)
-
-
-
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
@@ -303,8 +323,12 @@
                                         </button>
 
 
-                                        @endif
-                                        {{-- end if - masterView --}}
+
+
+
+
+
+
 
 
 
@@ -313,6 +337,12 @@
 
 
                                         {{-- 3: print to excel --}}
+
+
+                                        {{-- :: permission - hasMealView --}}
+                                        @if ($versionPermission->menuModuleHasMealFullView)
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 "
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
@@ -325,6 +355,14 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
 
 
 

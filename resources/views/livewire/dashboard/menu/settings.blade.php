@@ -24,6 +24,15 @@
 
 
                 {{-- 1: dietsTab --}}
+
+
+                {{-- :: permission - hasDietTypes --}}
+                @if ($versionPermission->menuModuleHasDietTypes)
+
+
+
+
+
                 <div class="tab-pane-like mt-2" style="border: 1px solid var(--color-theme-secondary)">
 
 
@@ -63,6 +72,15 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
+
+
                 {{-- end tab --}}
 
 
@@ -146,6 +164,15 @@
 
 
                 {{-- 3: tagsTab --}}
+
+
+                {{-- :: permission - hasTags --}}
+                @if ($versionPermission->menuModuleHasTags)
+
+
+
+
+
                 <div class="tab-pane-like mt-4" style="border: 1px solid var(--color-theme-secondary)">
 
 
@@ -188,6 +215,15 @@
                     {{-- endRow --}}
 
                 </div>
+
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
+
+
                 {{-- end tab --}}
 
 

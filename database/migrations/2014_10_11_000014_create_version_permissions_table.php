@@ -232,9 +232,9 @@ return new class extends Migration {
             // 7: extraModule
 
 
-            // 6.1: salesPromo
-            $table->boolean('salesModuleHasPromoFixedAmount')->nullable()->default(1);
-            $table->boolean('salesModuleHasPromoTogglers')->nullable()->default(1);
+            // 7.1: extraBlogs - extraBanners
+            $table->boolean('extraModuleHasBlogs')->nullable()->default(1);
+            $table->boolean('extraModuleHasBanners')->nullable()->default(1);
 
 
 

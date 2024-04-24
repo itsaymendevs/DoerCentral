@@ -142,13 +142,8 @@
 
 
 
-                                {{-- :: masterView --}}
-                                @if ($versionPermission->hasMasterView)
-
-
-
-
-
+                                {{-- :: permission - hasMealView --}}
+                                @if ($versionPermission->menuModuleHasMealFullView)
 
 
 
@@ -230,10 +225,11 @@
 
 
 
-
-
                                 @endif
-                                {{-- end if - masterView --}}
+                                {{-- end if - permission --}}
+
+
+
 
 
 
@@ -267,11 +263,6 @@
 
 
                                         {{-- 2: ingredients tooltip --}}
-
-                                        {{-- :: masterView --}}
-                                        @if ($versionPermission->hasMasterView)
-
-
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-html='true'
@@ -289,15 +280,17 @@
                                         </button>
 
 
-                                        @endif
-                                        {{-- end if - masterView --}}
-
 
 
 
 
 
                                         {{-- 3: print excel --}}
+
+                                        {{-- :: permission - hasMealView --}}
+                                        @if ($versionPermission->menuModuleHasMealFullView)
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
@@ -313,7 +306,23 @@
 
 
 
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
                                         {{-- 4: preview --}}
+
+                                        {{-- :: permission - hasMealView --}}
+                                        @if ($versionPermission->menuModuleHasMealFullView)
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
@@ -328,6 +337,13 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
 
 
 

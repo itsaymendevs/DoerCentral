@@ -48,6 +48,14 @@
 
 
             {{-- standard - master --}}
+
+
+            {{-- :: permission - hasMasterView --}}
+            @if ($versionPermission->hasMasterView)
+
+
+
+
             <div class="col-3 text-end">
                 <div class="btn-group btn--swtich-group me-3" role="group" style="margin-bottom: 10px">
 
@@ -74,6 +82,16 @@
                 </h3>
 
             </div>
+
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
         </div>
         {{-- endMidRow --}}
 
@@ -193,6 +211,14 @@
 
 
                                         {{-- 3: isForWebsite --}}
+
+
+                                        {{-- :: permission - hasHidePlan --}}
+                                        @if ($versionPermission->menuModuleHasHidePlan)
+
+
+
+
                                         @if ($plan->isForWebsite)
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
@@ -235,6 +261,12 @@
                                         @endif
                                         {{-- end if --}}
 
+
+
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
 
 
 
@@ -282,8 +314,12 @@
 
 
 
+
             {{-- -------------------------------------------------- --}}
             {{-- -------------------------------------------------- --}}
+
+
+
 
 
 

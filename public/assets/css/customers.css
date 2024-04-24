@@ -55,7 +55,6 @@
 }
 
 /* button checkboxes */
-
 .button--checkbox {
     height: var(--input-height);
     display: inline-flex;
@@ -91,14 +90,13 @@
 }
 
 /* menu */
-
 .menu--calendar-movement::-webkit-scrollbar {
     display: none !important;
 }
 
 .menu--calendar-days {
     padding: 0px;
-    width: 58px;
+    width: 54px;
     height: 100px;
     display: inline-flex;
     flex-direction: column;
@@ -145,7 +143,6 @@
 }
 
 /* alert */
-
 .menu--alert {
     background-color: var(--color-card);
     border-radius: var(--radius);

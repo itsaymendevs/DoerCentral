@@ -157,6 +157,14 @@
 
 
                                         {{-- 2: isForWebsite --}}
+
+
+                                        {{-- :: permission - hasHideBundle --}}
+                                        @if ($versionPermission->menuModuleHasHideBundle)
+
+
+
+
                                         @if ($bundle->isForWebsite)
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
@@ -201,6 +209,17 @@
                                         </button>
                                         @endif
                                         {{-- end if --}}
+
+
+
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
+
 
 
 

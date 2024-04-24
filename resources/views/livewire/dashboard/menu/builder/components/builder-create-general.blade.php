@@ -255,6 +255,15 @@
 
 
 
+
+
+            {{-- :: permission - hasExtraPictures --}}
+            @if ($versionPermission->menuModuleHasBuilderExtraPictures)
+
+
+
+
+
             {{-- thirdImageFile --}}
             <div class="col-6">
                 <label class="col-form-label upload--wrap " data-bs-toggle="tooltip" data-bss-tooltip=""
@@ -318,6 +327,16 @@
                 </label>
             </div>
             {{-- endCol --}}
+
+
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
 
 
         </div>

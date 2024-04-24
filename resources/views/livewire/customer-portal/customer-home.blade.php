@@ -347,7 +347,7 @@
                                     {{-- name - type --}}
                                     <p class='swiper--caption for-meals position-relative '>
                                         <span class='truncate-text-1l'>{{ $meal->name }}</span>
-                                        <span class='fs-10 text-theme-secondary d-block'>{{ $meal }}</span>
+                                        <span class='fs-10 text-theme-secondary d-block'>{{ 'Breakfast' }}</span>
                                     </p>
 
 

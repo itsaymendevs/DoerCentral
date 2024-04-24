@@ -24,6 +24,13 @@
 
             {{-- newButton --}}
             <div class="col-3">
+
+
+                {{-- :: permission - hasCreateCalendar --}}
+                @if ($versionPermission->menuModuleHasCreateCalendar)
+
+
+
                 <button class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
                     type="button" data-bs-target="#new-calendar" data-bs-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
@@ -33,7 +40,23 @@
                         </path>
                     </svg>New Calendar
                 </button>
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
+
+
             </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
 
 
 

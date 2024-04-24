@@ -128,7 +128,13 @@
 
 
 
-                                        {{-- size --}}
+                                        {{-- diet --}}
+
+
+                                        {{-- :: permission - hasMealFullView --}}
+                                        @if ($versionPermission->menuModuleHasMealFullView)
+
+
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <button
                                                 class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
@@ -136,6 +142,11 @@
                                                 {{ $meal?->diet?->name }}
                                             </button>
                                         </div>
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
 
 
 

@@ -23,12 +23,23 @@
 
 
     {{-- containerPreview --}}
+
+
+    {{-- :: permission - hasContainerPreview --}}
+    @if ($versionPermission->menuModuleHasBuilderContainerPreview)
+
+
+
     <div>
         <img class="w-100 of-contain" id='container-preview' style="height: 170px" @if ($currentContainer)
             src="{{ asset('storage/kitchen/containers/' . $currentContainer->imageFile) }}" @else
             src="{{ asset('assets/img/placeholder.png') }}" @endif />
     </div>
 
+
+
+    @endif
+    {{-- end if - permission --}}
 
 
 

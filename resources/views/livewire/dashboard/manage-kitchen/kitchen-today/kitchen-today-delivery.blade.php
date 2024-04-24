@@ -101,6 +101,13 @@
 
 
 
+
+                {{-- :: permission - hasPrintExcel --}}
+                @if ($versionPermission->kitchenModuleHasPrintExcel)
+
+
+
+
                 {{-- 1: print --}}
                 <button
                     class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold"
@@ -135,6 +142,14 @@
                         </path>
                     </svg>Excel
                 </button>
+
+
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
 
 
 

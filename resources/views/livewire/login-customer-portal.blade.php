@@ -22,6 +22,15 @@
                         style="height: 80px" />
 
 
+
+                    {{-- :: Aleens --}}
+                    {{-- <div class='logo--wrapper for-login mb-3' data-aos="fade-down" data-aos-duration="800"
+                        data-aos-delay="600" data-aos-once="true">
+                        <img src="{{ asset('assets/img/App/Clients/logo.png') }}" width="73" height="41">
+                        <span class='text-uppercase'>Nutritious meal plan</span>
+                    </div> --}}
+
+
                     {{-- email / password --}}
                     <input class="form-control form--input mb-4" data-aos="flip-up" data-aos-delay="600"
                         data-aos-once="true" type="email" wire:model='email' placeholder="Email Address" required>

@@ -87,6 +87,8 @@
 
                     {{-- loop - subRecipes --}}
                     @foreach ($subRecipes as $subRecipe)
+
+
                     <div class="col-4 col-xl-3 col-xxl-3">
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">
@@ -97,6 +99,8 @@
                                     <img class="client--card-logo"
                                         src="{{ asset('storage/menu/meals/' . ($subRecipe->imageFile ?? $defaultPlate)) }}" />
                                 </div>
+
+
 
 
 
@@ -112,9 +116,15 @@
                                     <p class="text-center fs-13 fw-bold text-danger mb-0">
                                         <button
                                             class="btn btn--raw-icon fs-14 text-warning d-flex align-items-center justify-content-center fw-bold"
-                                            type="button">{{ $subRecipe->partType ?? 'Not Specified' }}</button>
+                                            type="button">{{ $subRecipe->partType ?? 'Not Specified' }}
+                                        </button>
                                     </p>
+
+
+
+
                                 </div>
+                                {{-- endCol --}}
 
 
 
@@ -140,10 +150,9 @@
 
 
 
-                                {{-- :: masterView --}}
-                                @if ($versionPermission->hasMasterView)
 
-
+                                {{-- :: permission - hasMealView --}}
+                                @if ($versionPermission->menuModuleHasMealFullView)
 
 
 
@@ -230,7 +239,7 @@
 
 
                                 @endif
-                                {{-- end if - masterView --}}
+                                {{-- end if - permission --}}
 
 
 
@@ -262,12 +271,6 @@
 
 
                                         {{-- 2: ingredients tooltip --}}
-
-                                        {{-- :: masterView --}}
-                                        @if ($versionPermission->hasMasterView)
-
-
-
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-html='true'
@@ -286,8 +289,7 @@
 
 
 
-                                        @endif
-                                        {{-- end if - masterView --}}
+
 
 
 
@@ -295,6 +297,12 @@
 
 
                                         {{-- 3: print excel --}}
+
+
+                                        {{-- :: permission - hasMealView --}}
+                                        @if ($versionPermission->menuModuleHasMealFullView)
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
@@ -310,7 +318,23 @@
 
 
 
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
                                         {{-- 4: preview --}}
+
+                                        {{-- :: permission - hasMealView --}}
+                                        @if ($versionPermission->menuModuleHasMealFullView)
+
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
@@ -325,6 +349,15 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
+
 
 
 

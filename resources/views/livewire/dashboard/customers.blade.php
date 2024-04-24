@@ -203,8 +203,8 @@
 
 
 
-            {{-- :: hasCardView --}}
-            @if ($versionPermission->hasCardView)
+            {{-- :: permission - masterView --}}
+            @if ($versionPermission->hasMasterView)
 
 
 
@@ -410,13 +410,30 @@
 
 
 
+
+
+
+
+
+                    {{-- :: pagination --}}
+                    <div class="col-12">
+                        {{ $customers->links() }}
+                    </div>
+
+
+
+
                 </div>
             </div>
 
 
 
+
+
+
+
             @endif
-            {{-- end if - hasCardView --}}
+            {{-- end if - permission --}}
 
 
 
@@ -449,8 +466,10 @@
 
 
 
-            {{-- :: hasCardView is False --}}
-            @if ($versionPermission->hasCardView == false)
+            {{-- :: permission - masterView --}}
+            @if (!$versionPermission->hasMasterView)
+
+
 
 
 
@@ -660,8 +679,21 @@
 
 
 
+
+
+
+            {{-- :: pagination --}}
+            <div class="col-12">
+                {{ $customers->links() }}
+            </div>
+
+
+
+
+
+
             @endif
-            {{-- end if - hasCardView False --}}
+            {{-- end if - permission --}}
 
 
 

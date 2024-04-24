@@ -24,8 +24,8 @@ class CustomerHome extends Component
 
 
     // :: variables
-    public $customer, $latestSubscription;
-
+    public $customer, $customerAddress;
+    public $latestSubscription;
 
 
 
@@ -40,6 +40,12 @@ class CustomerHome extends Component
         // :: getCustomer - latestSubscription
         $this->customer = Customer::find(session('customerId'));
         $this->latestSubscription = $this->customer->latestSubscription();
+
+
+
+        // :: getCustomerAddress
+        $this->customerAddress = $this->customer->addressByDay($this->getCurrentDate());
+
 
 
 
@@ -97,13 +103,15 @@ class CustomerHome extends Component
             ->where('scheduleDate', $this->getCurrentDate())->first();
 
 
-        $scheduleMeals = $schedule?->meals?->whereNotNull('mealId')?->pluck('mealId')?->toArray() ?? [];
+        $scheduleMeals = $schedule?->meals;
+        $scheduleMealsArray = $schedule?->meals?->whereNotNull('mealId')?->pluck('mealId')?->toArray() ?? [];
 
 
 
 
         // 2.2: todayMeals
-        $todayMeals = Meal::whereIn('id', $scheduleMeals)->get();
+        $todayMeals = Meal::whereIn('id', $scheduleMealsArray)->get();
+        // $todayMeals = Meal::whereNotNull('imageFile')->take(10)->get();
 
 
 
@@ -116,7 +124,7 @@ class CustomerHome extends Component
 
 
 
-        return view('livewire.customer-portal.customer-home', compact('todayMeals', 'blogs'));
+        return view('livewire.customer-portal.customer-home', compact('todayMeals', 'blogs', 'scheduleMeals'));
 
 
     } // end function

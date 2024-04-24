@@ -138,7 +138,8 @@ class CustomerAddress extends Model
 
 
         // 1: format (Apartment - Floor)
-        $apartmentAndFloor = $this?->apartment . ($this?->floor ? ' - ' . $this->floor . ' Floor' : '');
+        $apartmentAndFloor = $this?->apartment ? 'Apartment. ' . $this->apartment : '';
+        $apartmentAndFloor .= $this?->floor ? ' - Floor. ' . $this->floor : '';
 
 
 

@@ -104,9 +104,9 @@
 
                                 {{-- extendDate --}}
                                 <div class="col-5">
-                                    <label class="form-label form--label">Extend Until</label>
-                                    <input class="form-control form--input mb-4" type="date" required
-                                        wire:model='instance.untilDate' min='{{ $instance->fromDate }}' />
+                                    <label class="form-label form--label">Extension Days</label>
+                                    <input class="form-control form--input mb-4" type="number" min='1' step='1' required
+                                        wire:model='instance.extendDays' />
                                 </div>
 
 

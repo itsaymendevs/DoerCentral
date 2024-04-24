@@ -203,7 +203,7 @@
 
             <div class="col-4 col-xl-3 col-xxl-3 mb-5" key='delivery-{{ $delivery->id }}'>
                 <div class="overview--card client-version checkout--card scale--img align-items-start h-100">
-                    <div class="wrapper h-100">
+                    <div class="wrapper h-100 w-100">
 
 
 

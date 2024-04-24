@@ -9,9 +9,10 @@
 
 
 
-            {{-- overview --}}
-            <a class="btn fs-13 px-3
-            @if (Request::is('portals/customer/overview')) active @endif" role="button" href="#!">Overview</a>
+            {{-- home --}}
+            <a wire:navigate class="btn fs-13 px-3
+            @if (Request::is('portals/customer/home')) active @endif" role="button"
+                href="{{ route('portals.customer.home') }}">Home</a>
 
 
 

@@ -11,11 +11,11 @@ class CustomerSubscriptionExtendForm extends Form
 
     // :: variables
     #[Validate('required')]
-    public $fromDate, $untilDate, $reason, $customerId, $customerSubscriptionId;
+    public $fromDate, $extendDays, $reason, $customerId, $customerSubscriptionId;
 
 
 
-    public $remarks, $pricePerDay, $totalPrice, $extendDays, $imageFile;
+    public $remarks, $pricePerDay, $totalPrice, $untilDate, $imageFile;
 
 
     // :: helper

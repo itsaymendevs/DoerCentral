@@ -119,10 +119,12 @@
 
 
 
+
+
                 {{-- 2: exportExcel --}}
-                <button
-                    class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold ms-2 disabled"
-                    type="button" data-bs-target="#extend-subscription" data-bs-toggle="modal">
+                <button wire:click='export' wire:loading.class='disabled'
+                    class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold ms-2"
+                    type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-file-text fs-6 me-2">
                         <path
@@ -133,6 +135,9 @@
                         </path>
                     </svg>Excel
                 </button>
+
+
+
 
 
             </div>

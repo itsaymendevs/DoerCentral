@@ -84,9 +84,14 @@
                         <div class="col-12 col-sm-6">
                             <label class="form-label form--label">Phone</label>
                             <div class="form--phone-input">
-                                <input class="form-control form--input mb-4" minlength='9' maxlength='9' type="text"
-                                    required wire:model='instance.phone' pattern="[0-9]+" />
-                                <span>+971</span>
+                                <input class="form-control form--input mb-4" required ire:model='instance.phone'
+                                    pattern="[0-9]+" minlength='9' maxlength='9' type="text" w />
+                                <span>
+                                    <select class="form-select nice--select" required>
+                                        <option value="">+971</option>
+                                        <option value="">+249</option>
+                                    </select>
+                                </span>
                             </div>
                         </div>
 

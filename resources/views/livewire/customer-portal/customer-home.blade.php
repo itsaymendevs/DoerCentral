@@ -41,18 +41,29 @@
 
                     {{-- name - location --}}
                     <div class="col-12 col-md-8">
+
+
+                        {{-- name --}}
                         <h5 class="fw-normal d-flex align-items-center mb-3">
                             Good Morning
                             <span class="text-gold fw-semibold ms-2" data-aos='zoom-out' data-aos-delay='200'
                                 wire:ignore.self>{{ $customer->firstName }}</span>
                         </h5>
-                        <h6 class="fw-normal d-flex align-items-center">
-                            <img class="me-2" src="{{ asset('assets/img/App/pin.png') }}"
-                                style="width: 25px" />Churchill Tower,
-                            10th
-                            Street, Business Bay
+
+
+                        {{-- location --}}
+                        <h6 class="fw-normal d-flex align-items-center ">
+                            <img class="me-2" src="{{ asset('assets/img/App/pin.png') }}" style="width: 25px" />
+                            {{ $customerAddress ? "{$customerAddress->city->name},
+                            {$customerAddress->district->name}\n{$customerAddress->locationAddress}"
+                            : 'No Deliveries Today!' }}
                         </h6>
+
                     </div>
+
+
+
+
 
 
 
@@ -103,7 +114,7 @@
                                     <path fill-rule="evenodd"
                                         d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z">
                                     </path>
-                                </svg>Nutrition facts from today's menu
+                                </svg>Today's Calories Intake
                             </h4>
 
 
@@ -127,9 +138,9 @@
 
 
                             {{-- proteins --}}
-                            <div class="col-12 col-sm-4 col-md-12 col-lg-4" data-aos='slide-left' data-aos-delay='100'
+                            <div class="col-4 col-sm-4 col-md-12 col-lg-4" data-aos='slide-left' data-aos-delay='100'
                                 wire:ignore.self>
-                                <div class="item--box mb-3 mb-sm-0 mb-md-3 mb-lg-0">
+                                <div class="item--box mb-0 mb-sm-0 mb-md-3 mb-lg-0">
                                     <p class="text-center fs-15 mb-0">
                                         <span class="fs-2 fw-bold text-gold d-block">240</span><span
                                             class="fs-6 d-block fw-semibold">Protein</span>
@@ -140,7 +151,7 @@
 
 
                             {{-- carbs --}}
-                            <div class="col-6 col-sm-4 col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='200'
+                            <div class="col-4 col-sm-4 col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='200'
                                 wire:ignore.self>
                                 <div class="item--box">
                                     <p class="text-center fs-15 mb-0">
@@ -154,7 +165,7 @@
 
 
                             {{-- fats --}}
-                            <div class="col-6 col-sm-4 col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='300'
+                            <div class="col-4 col-sm-4 col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='300'
                                 wire:ignore.self>
                                 <div class="item--box">
                                     <p class="text-center fs-15 mb-0">
@@ -316,7 +327,7 @@
 
                         {{-- swiper --}}
                         <div class="swiper general-swiper meals-swiper"
-                            style='aspect-ratio: 1 / 0.8; max-height: 260px;'>
+                            style='aspect-ratio: 1 / 0.9; max-height: 340px;'>
 
 
 
@@ -331,12 +342,62 @@
 
 
                                 <div class="swiper-slide">
+
+
+                                    {{-- name - type --}}
+                                    <p class='swiper--caption for-meals position-relative '>
+                                        <span class='truncate-text-1l'>{{ $meal->name }}</span>
+                                        <span class='fs-10 text-theme-secondary d-block'>{{ $meal }}</span>
+                                    </p>
+
+
+
+                                    {{-- image --}}
                                     <img src="{{ asset('storage/menu/meals/' . ($meal->imageFile ?? $defaultPlate)) }}"
                                         alt="" loading='lazy'>
                                     <div class="swiper-lazy-preloader"></div>
 
 
-                                    <p class='swiper--caption for-meals'>{{ $meal->name }}</p>
+
+
+
+
+
+
+
+                                    {{-- :: macros --}}
+                                    <p class='swiper--caption for-meals macros position-relative'>
+
+
+                                        {{-- calories --}}
+                                        <span class='d-flex flex-column align-items-center fw-semibold '>210
+                                            <span
+                                                class='d-block fs-10 fw-bold text-uppercase text-theme-secondary'>Cal</span>
+                                        </span>
+
+
+
+                                        {{-- proteins --}}
+                                        <span class='d-flex flex-column align-items-center fw-semibold'>210
+                                            <span
+                                                class='d-block fs-10 fw-bold text-uppercase text-theme-secondary'>P</span>
+                                        </span>
+
+
+                                        {{-- carbs --}}
+                                        <span class='d-flex flex-column align-items-center fw-semibold'>210
+                                            <span
+                                                class='d-block fs-10 fw-bold text-uppercase text-theme-secondary'>C</span>
+                                        </span>
+
+
+                                        {{-- carbs --}}
+                                        <span class='d-flex flex-column align-items-center fw-semibold'>210
+                                            <span
+                                                class='d-block fs-10 fw-bold text-uppercase text-theme-secondary'>F</span>
+                                        </span>
+
+                                    </p>
                                 </div>
 
                                 @endforeach

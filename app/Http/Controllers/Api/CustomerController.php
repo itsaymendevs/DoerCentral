@@ -868,7 +868,7 @@ class CustomerController extends Controller
 
         // 1: general
         $extend->fromDate = $request->fromDate;
-        $extend->untilDate = $request->untilDate;
+        $extend->extendDays = $request->extendDays;
         $extend->reason = $request->reason;
         $extend->remarks = $request->remarks ?? null;
 
@@ -1126,16 +1126,14 @@ class CustomerController extends Controller
 
 
 
-            // :: beyondUntilDate
-            if ($deliveryDate >= $extend->untilDate) {
+            // :: beyondExtendDays
+            if ($deliveryCounter >= $extend->extendDays) {
 
 
-                // :: save extendDays
-                $extend->extendDays = $deliveryCounter;
+                // :: save untilDate - totalPrice
+                $extend->untilDate = $deliveryDate;
                 $extend->totalPrice = $extend->pricePerDay * $extend->extendDays;
-
                 $extend->save();
-
 
                 break;
 

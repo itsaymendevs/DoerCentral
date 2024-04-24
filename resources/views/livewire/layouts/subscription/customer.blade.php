@@ -66,6 +66,7 @@
         <link href="{{ asset('assets/css/uploader.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/plans.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/bundles.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/nice-select.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/customer-subscription.css') }}" rel="stylesheet">
 
@@ -73,7 +74,7 @@
 
 
         {{-- :: special --}}
-        <link href="{{ asset('assets/css/client-customization/aleens.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/client-customization/doer.css') }}" rel="stylesheet">
 
 
 
@@ -169,6 +170,7 @@
         <script src="{{ asset('assets/js/range-input.js') }}"></script>
         <script src="{{ asset('assets/js/file-preview.js') }}"></script>
         <script src="{{ asset('assets/js/button-checkbox.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.nice-select.js') }}"></script>
 
 
 
@@ -189,6 +191,13 @@
 
         {{-- 1.2: reinitiate select extensions --}}
         <script src="{{ asset('assets/js/re-init-select.js') }}"></script>
+
+
+
+        {{-- 1.2.5: reinitiate nice-select extensions --}}
+        <script src="{{ asset('assets/js/re-init-nice-select.js') }}"></script>
+
+
 
 
 

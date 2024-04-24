@@ -59,7 +59,27 @@
     width: 100%;
     text-align: center;
     font-size: 13px;
-    padding: 7px 6px;
+    padding: 7px 6px 3px;
     background-color: var(--color-scheme-2);
     border-radius: var(--radius) var(--radius) 0px 0px;
+}
+
+.meals-swiper .swiper-slide img {
+    height: 200px;
+    border-radius: 0px;
+}
+
+.swiper--caption.for-meals.macros {
+    top: unset;
+    bottom: 0px;
+    font-size: 12px;
+    padding: 5px 6px 8px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+}
+
+.swiper--caption.for-meals.macros {
+    border-radius: 0px 0px var(--radius) var(--radius);
+    background-color: var(--color-card);
 }

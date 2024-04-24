@@ -13,30 +13,54 @@
                     <ul class="nav nav-tabs mb-4" data-aos="flip-up" data-aos-duration="600" data-aos-delay="800"
                         data-aos-once="true" role="tablist">
 
+
+
                         {{-- delivery --}}
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" data-bs-toggle="tab" href="#tab-1" role="tab">Delivery</a>
                         </li>
 
+
+
                         {{-- cityTime / charges --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#tab-2" role="tab">City Time &amp;
-                                Charges</a>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#tab-2" role="tab">
+                                City Time &amp; Charges</a>
                         </li>
+
+
+
+
+
+
+
+                        {{-- :: permission - hasDrivers --}}
+                        @if ($versionPermission->deliveryModuleHasDrivers)
+
+
 
                         {{-- zones --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
-                                data-bs-toggle="tab" href="#tab-3" role="tab">Zones</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3" role="tab">Zones</a>
                         </li>
 
                         {{-- drivers --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link @if ($versionPermission->isProcessing) disabled @endif"
-                                data-bs-toggle="tab" href="#tab-4" role="tab">Drivers</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-4" role="tab">Drivers</a>
                         </li>
-                    </ul>
 
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+                    </ul>
+                    {{-- endLinks --}}
 
 
 

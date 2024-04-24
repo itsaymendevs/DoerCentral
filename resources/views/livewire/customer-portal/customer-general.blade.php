@@ -536,8 +536,8 @@
                 {{-- wallet --}}
 
 
-                {{-- :: hasWallet --}}
-                @if ($versionPermission->hasWallet)
+                {{-- :: permission - hasWallet --}}
+                @if ($versionPermission->customerModuleHasWallet)
 
 
 
@@ -564,7 +564,7 @@
 
 
                 @endif
-                {{-- end if - hasWallet --}}
+                {{-- end if - permission --}}
 
 
 

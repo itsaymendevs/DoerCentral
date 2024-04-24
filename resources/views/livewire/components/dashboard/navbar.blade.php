@@ -173,9 +173,16 @@
 
 
                     {{-- extra --}}
+
+
+                    {{-- :: permission - hasExtraModule --}}
+                    @if ($versionPermission->extraModuleHasModule)
+
+
+
+
                     <div class="btn-group navbar--split">
                         <button class="btn navbar--menu-button
-                        @if ($versionPermission->isProcessing) no-events @endif
                         @if (Request::is('dashboard/extra', 'dashboard/extra/*')) active @endif"
                             type="button">Extra</button>
 
@@ -183,8 +190,7 @@
 
 
                         {{-- splitButton --}}
-                        <button @if ($versionPermission->isProcessing) no-events @endif
-                            class="btn btn-sm dropdown-toggle dropdown-toggle-split
+                        <button class="btn btn-sm dropdown-toggle dropdown-toggle-split
                             @if (Request::is('dashboard/extra', 'dashboard/extra/*')) active @endif"
                             data-bs-toggle="dropdown" aria-expanded="false" type="button"></button>
 
@@ -192,8 +198,7 @@
 
 
                         {{-- subMenu --}}
-                        <div class="dropdown-menu dropdown-menu-end
-                        @if (!$versionPermission->hasBlogs) d-none @endif">
+                        <div class="dropdown-menu dropdown-menu-end">
 
 
                             {{-- app & website --}}
@@ -206,6 +211,12 @@
 
 
                     </div>
+
+                    @endif
+                    {{-- end if - permission --}}
+
+
+
                     {{-- endExtra --}}
 
 

@@ -40,6 +40,25 @@
                         </div>
 
 
+
+
+                        {{-- :: permission - !hasPromoFixedAmount --}}
+                        @if (!$versionPermission->salesModuleHasPromoFixedAmount)
+
+
+                        {{-- empty - forViewPurpose --}}
+                        <div class="col-4"></div>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
                         {{-- empty --}}
                         <div class="col-4"></div>
 
@@ -59,13 +78,31 @@
                                 wire:model='instance.percentage' />
                         </div>
 
+
+
+
+
                         {{-- amount --}}
+
+                        {{-- :: permission - hasPromoFixedAmount --}}
+                        @if ($versionPermission->salesModuleHasPromoFixedAmount)
+
+
                         <div class="col-4">
                             <label class="form-label form--label">Amount<small
                                     class="ms-1 fw-semibold text-gold fs-10">(AED)</small></label>
                             <input class="form-control form--input mb-4" type="number"
                                 wire:model='instance.cashAmount' />
                         </div>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
 
 
                         {{-- limit --}}

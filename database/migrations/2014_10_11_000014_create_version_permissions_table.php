@@ -231,12 +231,8 @@ return new class extends Migration {
 
             // 7: extraModule
 
-
-            // 7.1: extraBlogs - extraBanners
-            $table->boolean('extraModuleHasBlogs')->nullable()->default(1);
-            $table->boolean('extraModuleHasBanners')->nullable()->default(1);
-
-
+            // 7.1: extraModule
+            $table->boolean('extraModuleHasModule')->nullable()->default(1);
 
 
 

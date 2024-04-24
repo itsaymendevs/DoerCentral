@@ -57,8 +57,21 @@
                         <th class="th--sm">Limit</th>
                         <th class="th--sm">Used</th>
                         <th class="th--md">Status</th>
+
+
+
+                        {{-- :: permission - hasPromoTogglers --}}
+                        @if ($versionPermission->salesModuleHasPromoTogglers)
+
+
                         <th class="th--md">Active?</th>
                         <th class="th--md">For Website?</th>
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
                         <th class="th--sm"></th>
                     </tr>
                 </thead>
@@ -122,6 +135,13 @@
 
 
 
+
+                        {{-- :: permission - hasPromoTogglers --}}
+                        @if ($versionPermission->salesModuleHasPromoTogglers)
+
+
+
+
                         {{-- isActive --}}
                         <td>
                             <div class="form-check form-switch form-check-inline input--switch">
@@ -147,6 +167,15 @@
                                 <label class="form-check-label d-none" for="formCheck-1">Hidden</label>
                             </div>
                         </td>
+
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
 
 
 

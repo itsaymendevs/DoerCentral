@@ -19,7 +19,7 @@ class IngredientOriginalSeeder extends Seeder
 
 
         // ::root
-        $ingredients = Storage::disk('public')->get('sources/Ingredients.json');
+        $ingredients = Storage::disk('public')->get('sources/aleens/Ingredients.json');
         $ingredients = json_decode($ingredients, true);
 
 

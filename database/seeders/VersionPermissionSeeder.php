@@ -15,10 +15,7 @@ class VersionPermissionSeeder extends Seeder
         // ::root
         VersionPermission::create([
             'isProcessing' => true,
-            'hasMasterView' => true,
-            'hasCardView' => true,
-            'hasWallet' => true,
-            'hasDynamicBundle' => true,
+            'hasAdminView' => true,
         ]);
 
 

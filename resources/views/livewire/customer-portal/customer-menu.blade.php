@@ -145,9 +145,12 @@
 
 
 
+                    {{-- :: disabled previousDates --}}
+
                     <a class="btn btn--scheme menu--calendar-days @if ($numberOfMeals > 0) has-meals @endif
-                        @if ($scheduleDate == $commonDate) active @endif" role="button" href="javascript:void(0);"
-                        wire:click="changeScheduleDate('{{ $commonDate }}')">
+                        @if ($scheduleDate == $commonDate) active @endif
+                        @if ($commonDate < $globalCurrentDate) disabled @endif" role="button"
+                        href="javascript:void(0);" wire:click="changeScheduleDate('{{ $commonDate }}')">
 
 
                         {{-- day --}}

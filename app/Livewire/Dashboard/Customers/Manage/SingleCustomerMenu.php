@@ -55,22 +55,24 @@ class SingleCustomerMenu extends Component
 
 
 
-        // 1.3: scheduleDate
-        if (session('customerScheduleDate') && session('customerScheduleDate') >= $this->subscription->startDate && session('customerScheduleDate') <= $this->subscription->untilDate) {
+        // 1.3: scheduleDate (>= currentDate - inHisSchedule)
+        if (session('customerScheduleDate') && session('customerScheduleDate') >= $this->getCurrentDate() &&
+            session('customerScheduleDate') >= $this->subscription->startDate && session('customerScheduleDate') <= $this->subscription->untilDate) {
 
 
             $this->scheduleDate = session('customerScheduleDate');
 
 
+
+            // :: currentDate as ScheduleDate
         } else {
 
 
-            Session::put('customerScheduleDate', $this->subscription->startDate);
-            $this->scheduleDate = $this->subscription->startDate;
+            Session::put('customerScheduleDate', $this->getCurrentDate());
+            $this->scheduleDate = $this->getCurrentDate();
 
 
         } // end if
-
 
 
 

@@ -108,6 +108,11 @@
     position: relative;
 }
 
+.menu--calendar-days.disabled {
+    opacity: 0.4;
+    border-color: #252525 !important;
+}
+
 .menu--calendar-days:last-of-type {
     margin-right: 0px;
 }

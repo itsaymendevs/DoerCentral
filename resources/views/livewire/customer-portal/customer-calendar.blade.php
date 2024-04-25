@@ -36,7 +36,7 @@
                 {{-- weekSelect --}}
                 <div class="select--single-wrapper" wire:ignore>
                     <select class="form-select form--select" data-instance='searchFromDate' data-trigger='true' required
-                        value='{{ current($weeks) }}'>
+                        value='{{ $searchFromDate }}'>
 
                         @foreach ($weeks as $week)
                         <option value="{{ $week }}">Show From {{ date('d / m / Y', strtotime($week)) }}</option>

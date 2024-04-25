@@ -87,8 +87,10 @@
 
 
 
-
+                {{-- wrapper --}}
                 <div class="text-center mb-4">
+
+
 
 
 
@@ -118,6 +120,10 @@
 
 
 
+
+
+
+
                     {{-- B: unSKip --}}
                     @elseif ($deliveryStatus == 'Skipped')
 
@@ -141,8 +147,11 @@
                     @endif
                     {{-- end if --}}
 
-                </div>
 
+
+
+                </div>
+                {{-- endWrapper --}}
 
 
 
@@ -172,6 +181,8 @@
 
 
 
+
+
             {{-- untilSubscription - dates --}}
             <div class="col-12">
                 <div class="d-block overflow-auto pb-3 text-center" style="white-space: nowrap">
@@ -183,9 +194,14 @@
 
 
 
+
+                    {{-- :: disabled previousDates --}}
+
+
                     <a class="btn btn--scheme menu--calendar-days @if ($numberOfMeals > 0) has-meals @endif
-                        @if ($scheduleDate == $commonDate) active @endif" role="button" href="javascript:void(0);"
-                        wire:click="changeScheduleDate('{{ $commonDate }}')">
+                        @if ($scheduleDate == $commonDate) active @endif
+                        @if ($commonDate < $globalCurrentDate) disabled @endif" role="button"
+                        href="javascript:void(0);" wire:click="changeScheduleDate('{{ $commonDate }}')">
 
 
                         {{-- day --}}

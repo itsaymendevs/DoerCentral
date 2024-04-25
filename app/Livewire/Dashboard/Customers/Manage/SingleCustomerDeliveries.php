@@ -72,19 +72,18 @@ class SingleCustomerDeliveries extends Component
         $statuses = ['Pending', 'Paused', 'Skipped', 'Canceled', 'Completed'];
 
 
-        // dd(CustomerSubscriptionDelivery::where('customerId', $this->customer->id)->get());
 
         // 1.2: deliveriesWithFilter
         if ($this->searchPlan)
             $deliveries = CustomerSubscriptionDelivery::where('customerId', $this->customer->id)
                 ->where('planId', $this->searchPlan)
-                ->where('deliveryDate', '>=', $this->searchFromDate ?? '2000-01-01')
+                ->where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
                 ->where('deliveryDate', '<=', $this->searchUntilDate ?? '3000-01-01')
                 ->where('status', 'LIKE', '%' . $this->searchStatus . '%')
                 ->paginate(20);
         else
             $deliveries = CustomerSubscriptionDelivery::where('customerId', $this->customer->id)
-                ->where('deliveryDate', '>=', $this->searchFromDate ?? '2000-01-01')
+                ->where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
                 ->where('deliveryDate', '<=', $this->searchUntilDate ?? '3000-01-01')
                 ->where('status', 'LIKE', '%' . $this->searchStatus . '%')
                 ->paginate(20);

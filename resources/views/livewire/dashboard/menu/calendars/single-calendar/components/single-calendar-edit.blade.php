@@ -145,9 +145,8 @@
 
 
 
-                                    {{-- ** STRICT TO MEALTYPE IF IT IS ** --}}
-                                    @if ($meal->type->name != 'Meal'
-                                    || $meal?->types?->whereIn('mealTypeId', [$mealType->id])?->first())
+                                    {{-- ** EXCLUDE TYPE MEAL ** --}}
+                                    @if ($meal->type->name != 'Meal')
 
 
 

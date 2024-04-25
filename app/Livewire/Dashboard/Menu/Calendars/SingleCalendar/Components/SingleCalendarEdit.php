@@ -400,14 +400,47 @@ class SingleCalendarEdit extends Component
         foreach ($mealTypes as $mealType) {
 
 
-            // :: BreakfastMeals / LunchMeals etc.
-            $stock->{$mealType->name . 'Meals'} = Meal::where('name', 'LIKE', '%' . $this->searchMeal . '%')
-                ->where('typeId', $mealType->type->id)
-                ->paginate(8, pageName: $mealType->name);
+
+            // ** BreakfastMeals / LunchMeals etc. **
+
+
+
+
+
+            // 1.2.1: Recipe Type
+            if ($mealType->type->name == 'Recipe') {
+
+
+
+                // :: extra: filter => mealType
+                $stock->{$mealType->name . 'Meals'} = Meal::whereHas('types', function ($query) use ($mealType) {
+                    $query->whereIn('mealTypeId', [$mealType->id]);
+                })
+                    ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
+                    ->where('typeId', $mealType->type->id)
+                    ->paginate(8, pageName: $mealType->name);
+
+
+
+
+
+                // :: 1.2.2: others
+            } else {
+
+
+
+                $stock->{$mealType->name . 'Meals'} = Meal::where('name', 'LIKE', '%' . $this->searchMeal . '%')
+                    ->where('typeId', $mealType->type->id)
+                    ->paginate(8, pageName: $mealType->name);
+
+
+            } // end if
+
+
+
 
 
         } // end loop
-
 
 
 

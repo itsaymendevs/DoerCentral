@@ -615,9 +615,8 @@
                             {{-- end if - restriction --}}
 
 
-
-
                     </div>
+                    {{-- endPause --}}
 
 
 
@@ -789,8 +788,8 @@
 
 
 
-                                <button
-                                    class="btn btn--raw-icon fs-15 text-warning d-inline-flex align-items-center justify-content-end scale--3 w-auto"
+                                <button class="btn btn--raw-icon fs-15 text-warning d-inline-flex align-items-center justify-content-end scale--3 w-auto
+                                    @if ($latestSubscription->untilDate < $globalCurrentDate) disabled @endif"
                                     type="button" data-bs-target="#edit-bundle" data-bs-toggle="modal">
                                     Edit Bundle<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                         fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil fs-6 ms-2"

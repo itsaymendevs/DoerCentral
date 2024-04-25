@@ -190,7 +190,7 @@
                         {{-- submitButton --}}
                         <div class="col-12 text-center mt-3">
                             <button
-                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 disabled">
+                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 ">
                                 Update
                             </button>
                         </div>

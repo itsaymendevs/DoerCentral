@@ -108,7 +108,7 @@ trait HelperTrait
 
 
 
-    protected function getTmwDate()
+    protected function getNextDate()
     {
 
 
@@ -127,27 +127,6 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-
-
-
-
-
-
-
-    protected function getPauseDate()
-    {
-
-
-        // 1: getDate
-        return $pauseDate = date('Y-m-d', strtotime('+1 day +4 hours'));
-
-
-    } // end function
-
-
-
-
 
 
 
@@ -160,12 +139,12 @@ trait HelperTrait
 
 
 
-    protected function getUnPauseDate()
+    protected function getDateByDays($days)
     {
 
 
         // 1: getDate
-        return $unPauseDate = date('Y-m-d', strtotime('+1 day +4 hours'));
+        return $date = date('Y-m-d', strtotime("+{$days} day +4 hours"));
 
 
     } // end function

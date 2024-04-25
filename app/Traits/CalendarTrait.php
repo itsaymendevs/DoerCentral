@@ -9,6 +9,7 @@ trait CalendarTrait
 {
 
 
+    use HelperTrait;
 
 
     protected function getWeeksOptions()
@@ -16,7 +17,7 @@ trait CalendarTrait
 
         // :: root
         $weeks = [];
-        $currentDate = date('Y-m-d', strtotime('+4 hours'));
+        $currentDate = $this->getCurrentDate();
 
 
         // 1: getPreviousWeeks - 3 weeks

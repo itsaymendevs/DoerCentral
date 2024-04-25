@@ -102,11 +102,14 @@
 
 
                     {{-- 1: shortenSubscription --}}
+
+                    {{-- :: restriction inline - shorten --}}
+
                     <div class="col-6 mb-3">
                         <button
                             class="btn btn--scheme btn--remove w-100 align-items-center d-flex px-2 fs-12 justify-content-center scalemix--3"
                             type="button" data-bs-toggle="modal" data-bs-target="#shorten-subscription"
-                            @if($latestSubscription->untilDate <= $globalTodayDate) disabled @endif>
+                            @if($latestSubscription->untilDate < $allowedShortenDate) disabled @endif>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                     viewBox="0 0 16 16" class="bi bi-dash-lg fs-6 me-2">
                                     <path fill-rule="evenodd"
@@ -119,11 +122,15 @@
 
 
 
+
+
+
+
                     {{-- 2: extendSubscription --}}
                     <div class="col-6 mb-3">
                         <button
                             class="btn btn--scheme btn--scheme-1 w-100 align-items-center d-flex px-2 fs-12 justify-content-center scalemix--3"
-                            @if ($latestSubscription->untilDate < $globalTodayDate) disabled @endif type="button"
+                            @if ($latestSubscription->untilDate < $globalCurrentDate) disabled @endif type="button"
                                 data-bs-toggle="modal" data-bs-target="#extend-subscription">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                     viewBox="0 0 16 16" class="bi bi-plus-lg fs-6 me-2">
@@ -568,16 +575,48 @@
                     <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause">
 
 
-                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32
-                            @if ($latestSubscription->untilDate < $globalPauseDate) disabled @endif"
-                            data-bs-toggle="modal" data-bs-target="#pause-subscription" type='button'>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                class="bi bi-stopwatch fs-5" viewBox="0 0 16 16">
-                                <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
-                                <path
-                                    d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
-                            </svg>
-                        </button>
+
+                        {{-- :: restriction - pause --}}
+
+                        @if ($allowedPauseDate <= $latestSubscription->untilDate)
+
+
+                            <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
+                                data-bs-toggle="modal" data-bs-target="#pause-subscription" type='button'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                    class="bi bi-stopwatch fs-5" viewBox="0 0 16 16">
+                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                                    <path
+                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                                </svg>
+                            </button>
+
+
+
+
+                            {{-- :: disabled --}}
+                            @else
+
+
+
+                            <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32 disabled"
+                                data-bs-toggle="modal" data-bs-target="#pause-subscription" type='button'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                    class="bi bi-stopwatch fs-5" viewBox="0 0 16 16">
+                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                                    <path
+                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                                </svg>
+                            </button>
+
+
+
+                            @endif
+                            {{-- end if - restriction --}}
+
+
+
+
                     </div>
 
 

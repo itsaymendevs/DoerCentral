@@ -8,14 +8,20 @@
 
                 {{-- scheduleDate --}}
                 <div class="col-3">
+
+
+                    {{-- heading --}}
                     <div class="d-flex align-items-center justify-content-between mb-1 hr--title">
                         <hr style="width: 55%" />
                         <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Schedule
                             Date</label>
                     </div>
-                    <input class="form-control form--input mb-4" type="date" wire:model='instance.scheduleDate' required
-                        wire:change='changeScheduleDate' wire:loading.attr='readonly'
-                        wire:target='changeScheduleDate, toggle, update' />
+
+
+                    {{-- input --}}
+                    <input class="form-control form--input mb-4" type="date" min='{{ $globalCurrentDate }}'
+                        wire:model='instance.scheduleDate' required wire:change='changeScheduleDate'
+                        wire:loading.attr='readonly' wire:target='changeScheduleDate, toggle, update' />
                 </div>
 
 

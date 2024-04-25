@@ -26,31 +26,19 @@
 
             {{-- navLinks --}}
             <div class="col-9 col-sm-10 col-lg-11" data-aos="flip-up" data-aos-duration="800" data-aos-once="true">
-                <div class="navbar--menu d-none d-lg-flex align-items-center justify-content-between">
+                <div class="navbar--menu d-none d-lg-flex align-items-center justify-content-start">
 
-                    {{-- Home --}}
-                    <button class="btn navbar--menu-button" type="button">Home</button>
+
+                    {{-- learn more --}}
+                    <a wire:navigate class="btn navbar--menu-button me-5"
+                        href="{{ route('dashboard.customers') }}">Customers</a>
+
 
 
                     {{-- mealPlans --}}
                     <a href="{{ route('subscription.customerStepOne') }}" class="btn navbar--menu-button active"
                         type="button" wire:navigate>Meal Plans</a>
 
-
-
-                    {{-- learn more --}}
-                    <button class="btn navbar--menu-button" type="button">Learn More</button>
-
-
-                    {{-- Catering --}}
-                    <button class="btn navbar--menu-button" type="button">Catering</button>
-
-                    {{-- Blogs --}}
-                    <button class="btn navbar--menu-button" type="button">Blogs</button>
-
-
-                    {{-- lets talk --}}
-                    <button class="btn navbar--menu-button" type="button">Let's Talk</button>
 
 
 

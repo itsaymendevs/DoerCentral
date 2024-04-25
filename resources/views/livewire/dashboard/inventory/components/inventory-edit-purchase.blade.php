@@ -76,7 +76,7 @@
                         <div class="col-4">
                             <label class="form-label form--label">Receiving Date</label>
                             <input class="form-control form--input mb-4" type="date" wire:model='instance.receivingDate'
-                                required min="{{ date('Y-m-d', strtotime('+4 hours')) }}" />
+                                required min="{{ $globalCurrentDate }}" />
                         </div>
 
 

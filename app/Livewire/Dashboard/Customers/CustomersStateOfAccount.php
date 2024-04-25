@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard;
+namespace App\Livewire\Dashboard\Customers;
 
 use App\Models\Customer;
 use App\Models\CustomerSubscription;
@@ -68,7 +68,7 @@ class CustomersStateOfAccount extends Component
 
 
 
-        return view('livewire.dashboard.customers-state-of-account', compact('plans', 'subscriptions'));
+        return view('livewire.dashboard.customers.customers-state-of-account', compact('plans', 'subscriptions'));
 
 
 

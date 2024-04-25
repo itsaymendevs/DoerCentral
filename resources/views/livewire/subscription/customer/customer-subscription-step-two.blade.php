@@ -273,17 +273,56 @@
 
 
 
+
+                                                        {{-- --------------------------- --}}
+                                                        {{-- --------------------------- --}}
+
+
+
+
                                                         {{-- startDate --}}
+
+
+
+                                                        {{-- A: existingCustomer --}}
+                                                        @if($instance->initStartDate)
+
+
+
                                                         <div class="col-12 col-sm-4 mb-3 mb-sm-0">
                                                             <label class="form-label form--label">Start Date</label>
                                                             <input type="date" required class="form--input mb-0"
                                                                 wire:model='instance.startDate'
                                                                 wire:loading.class='disabled'
-                                                                @if($instance->initStartDate)
-                                                            min='{{ date('Y-m-d',
-                                                            strtotime($instance->initStartDate . ' +1 day')) }}'
-                                                            @endif />
+                                                                min='{{ $instance->initStartDate }}' />
                                                         </div>
+
+
+
+
+                                                        {{-- B: regularCustomer --}}
+                                                        @else
+
+
+
+                                                        <div class="col-12 col-sm-4 mb-3 mb-sm-0">
+                                                            <label class="form-label form--label">Start Date</label>
+                                                            <input type="date" required class="form--input mb-0"
+                                                                wire:model='instance.startDate'
+                                                                wire:loading.class='disabled'
+                                                                min='{{ $globalCurrentDate }}' />
+                                                        </div>
+
+
+
+
+                                                        @endif
+                                                        {{-- end if --}}
+
+
+
+
+
 
 
 
@@ -445,6 +484,14 @@
 
 
                                                                                     {{-- range - input --}}
+
+
+                                                                                    {{-- :: permission -
+                                                                                    hasDynamicBundles --}}
+                                                                                    @if($versionPermission->menuModuleHasDynamicBundles)
+
+
+
                                                                                     <input type="number"
                                                                                         data-type='{{ $bundleType->mealType->id }}'
                                                                                         class="form--input range--input"
@@ -453,6 +500,28 @@
                                                                                         wire:model='instance.bundleTypes.{{
                                                                                     $bundleType->mealType->id }}' />
 
+
+
+
+
+                                                                                    {{-- limit => 1 --}}
+                                                                                    @else
+
+
+
+                                                                                    <input type="number"
+                                                                                        data-type='{{ $bundleType->mealType->id }}'
+                                                                                        class="form--input range--input"
+                                                                                        step="1" min="0" max='1'
+                                                                                        data-input="bundle-{{ $bundle->id}}-range-type-{{
+                                                                                    $bundleType->mealType->id }}"
+                                                                                        wire:model='instance.bundleTypes.{{
+                                                                                    $bundleType->mealType->id }}' />
+
+
+
+                                                                                    @endif
+                                                                                    {{-- end if - permission --}}
 
 
 

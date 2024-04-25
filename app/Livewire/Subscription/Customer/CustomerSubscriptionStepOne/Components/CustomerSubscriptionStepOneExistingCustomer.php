@@ -79,7 +79,8 @@ class CustomerSubscriptionStepOneExistingCustomer extends Component
 
 
             // 1.4: get initStartDate
-            $this->instance->initStartDate = $customer?->latestSubscription()?->untilDate ?? null;
+            $this->instance->initStartDate = $customer?->latestSubscription()?->untilDate ?
+                date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate . ' +1 day')) : null;
 
 
 

@@ -17,11 +17,16 @@ use App\Models\PlanBundleType;
 use App\Models\PlanRange;
 use App\Models\Size;
 use App\Models\Type;
+use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PlanController extends Controller
 {
+
+
+    use HelperTrait;
+
 
 
 
@@ -1599,7 +1604,7 @@ class PlanController extends Controller
 
 
         // 2.1: getSubscriptionSchedules
-        $subscriptionSchedules = CustomerSubscriptionSchedule::where('scheduleDate', '>', date('Y-m-d', strtotime('+4 hours')))->get()?->pluck('id')?->toArray() ?? [];
+        $subscriptionSchedules = CustomerSubscriptionSchedule::where('scheduleDate', '>', $this->getCurrentDate())->get()?->pluck('id')?->toArray() ?? [];
 
 
 

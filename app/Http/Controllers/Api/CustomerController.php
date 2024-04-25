@@ -14,6 +14,7 @@ use App\Models\CustomerSubscriptionExtend;
 use App\Models\CustomerSubscriptionPause;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
+use App\Models\CustomerSubscriptionSetting;
 use App\Models\CustomerSubscriptionShorten;
 use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
@@ -651,6 +652,11 @@ class CustomerController extends Controller
 
 
 
+
+
+
+
+
         // :: getSubscription
         $subscription = CustomerSubscription::find($request->customerSubscriptionId);
 
@@ -685,6 +691,13 @@ class CustomerController extends Controller
 
 
 
+        // :: subscriptionSettings
+        $subscriptionSettings = CustomerSubscriptionSetting::first();
+
+
+
+
+
 
 
 
@@ -696,7 +709,7 @@ class CustomerController extends Controller
 
         // 1.2.1: pausedDays
         $pausedDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
-            ->where('deliveryDate', '>=', $this->getUnPauseDate())
+            ->where('deliveryDate', '>=', $this->getDateByDays($subscriptionSettings->unPauseRestriction))
             ->where('deliveryDate', '<=', $pause->untilDate)
             ->where('pauseToken', $pause->pauseToken)
             ->whereIn('status', ['Paused', 'Skipped'])
@@ -709,7 +722,7 @@ class CustomerController extends Controller
 
         // 1.2.2: changeDeliveryStatus
         CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
-            ->where('deliveryDate', '>=', $this->getUnPauseDate())
+            ->where('deliveryDate', '>=', $this->getDateByDays($subscriptionSettings->unPauseRestriction))
             ->where('deliveryDate', '<=', $pause->untilDate)
             ->where('pauseToken', $pause->pauseToken)
             ->whereIn('status', ['Paused', 'Skipped'])
@@ -722,7 +735,7 @@ class CustomerController extends Controller
 
         // 1.2.3: changeScheduleStatus
         CustomerSubscriptionSchedule::where('customerSubscriptionId', $subscription->id)
-            ->where('scheduleDate', '>=', $this->getUnPauseDate())
+            ->where('scheduleDate', '>=', $this->getDateByDays($subscriptionSettings->unPauseRestriction))
             ->where('scheduleDate', '<=', $pause->untilDate)
             ->where('pauseToken', $pause->pauseToken)
             ->whereIn('status', ['Paused', 'Skipped'])

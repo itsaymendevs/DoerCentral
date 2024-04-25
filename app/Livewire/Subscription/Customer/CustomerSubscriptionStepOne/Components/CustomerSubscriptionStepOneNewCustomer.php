@@ -76,19 +76,21 @@ class CustomerSubscriptionStepOneNewCustomer extends Component
 
 
         // 1: checkEmail
-        $exists = Customer::where('email', $this->instance->email)->count();
+        $emailExists = Customer::where('email', $this->instance->email)->count();
+        $phoneExists = Customer::where('phone', $this->instance->phone)->count();
 
-        if ($exists) {
 
+        if ($emailExists) {
 
             $this->makeAlert('info', 'Email Already Exists');
             return false;
 
+        } else if ($phoneExists) {
+
+            $this->makeAlert('info', 'Phone Already Exists');
+            return false;
+
         } // end if
-
-
-
-
 
 
 

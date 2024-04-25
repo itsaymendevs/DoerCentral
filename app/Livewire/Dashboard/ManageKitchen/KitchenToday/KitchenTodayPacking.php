@@ -10,6 +10,7 @@ use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\MealType;
 use App\Models\Size;
+use App\Models\VersionPermission;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -185,7 +186,7 @@ class KitchenTodayPacking extends Component
 
         // 1.2: dependencies
         $sizes = Size::all();
-
+        $versionPermission = VersionPermission::first();
 
 
 
@@ -212,14 +213,40 @@ class KitchenTodayPacking extends Component
 
 
 
-        $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
-            ->whereIn('subscriptionScheduleId', $schedules)
-            ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
-            ->whereIn('customerSubscriptionId', $subscriptions)
-            ->whereIn('cookStatus', ['Cooked', 'Packed'])
-            ->orderBy('customerSubscriptionId')
-            ->get();
 
+
+
+        // 3: ScheduleMeals
+
+
+        // :: permission - hasConfirmCooking
+        if ($versionPermission->kitchenModuleHasConfirmCooking) {
+
+
+            $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
+                ->whereIn('subscriptionScheduleId', $schedules)
+                ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
+                ->whereIn('customerSubscriptionId', $subscriptions)
+                ->whereIn('cookStatus', ['Cooked', 'Packed'])
+                ->orderBy('customerSubscriptionId')
+                ->get();
+
+
+
+
+            // :: withoutCookingAction
+        } else {
+
+
+            $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
+                ->whereIn('subscriptionScheduleId', $schedules)
+                ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
+                ->whereIn('customerSubscriptionId', $subscriptions)
+                ->orderBy('customerSubscriptionId')
+                ->get();
+
+
+        } // end if - permission
 
 
 
@@ -295,6 +322,7 @@ class KitchenTodayPacking extends Component
         // 1: dependencies
         $sizes = Size::all();
         $mealTypes = MealType::all();
+        $versionPermission = VersionPermission::first();
         $bag = Bag::whereIn('name', ['Cool Bag', 'Cooler Bag'])->first();
 
 
@@ -323,13 +351,47 @@ class KitchenTodayPacking extends Component
 
 
 
-        $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
-            ->whereIn('subscriptionScheduleId', $schedules)
-            ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
-            ->whereIn('customerSubscriptionId', $subscriptions)
-            ->whereIn('cookStatus', ['Cooked', 'Packed'])
-            ->orderBy('customerSubscriptionId')
-            ->get();
+
+
+        // 3: ScheduleMeals
+
+
+        // :: permission - hasConfirmCooking
+        if ($versionPermission->kitchenModuleHasConfirmCooking) {
+
+
+
+
+            $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
+                ->whereIn('subscriptionScheduleId', $schedules)
+                ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
+                ->whereIn('customerSubscriptionId', $subscriptions)
+                ->whereIn('cookStatus', ['Cooked', 'Packed'])
+                ->orderBy('customerSubscriptionId')
+                ->get();
+
+
+
+            // :: withoutCookingAction
+        } else {
+
+
+
+
+            $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
+                ->whereIn('subscriptionScheduleId', $schedules)
+                ->whereIn('sizeId', $this->searchSize ? [$this->searchSize] : $sizes->pluck('id')->toArray())
+                ->whereIn('customerSubscriptionId', $subscriptions)
+                ->orderBy('customerSubscriptionId')
+                ->get();
+
+
+
+        } // end if - permission
+
+
+
+
 
 
 

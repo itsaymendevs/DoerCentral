@@ -69,7 +69,7 @@ class CustomerDeliveries extends Component
 
         // 1: dependencies
         $deliveries = CustomerSubscriptionDelivery::where('customerId', $this->customer->id)
-            ->where('deliveryDate', '>=', $this->searchFromDate ?? date('Y-m-d', strtotime('+4 hours')))
+            ->where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
             ->paginate(20);
 
 

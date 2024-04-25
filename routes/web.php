@@ -9,12 +9,13 @@ use App\Livewire\CustomerPortal\CustomerGeneral;
 use App\Livewire\CustomerPortal\CustomerHome;
 use App\Livewire\CustomerPortal\CustomerMenu;
 use App\Livewire\Dashboard\Customers;
+use App\Livewire\Dashboard\Customers\CustomersSubscriptionSettings;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerAddresses;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerCalendar;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerDeliveries;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerMenu;
-use App\Livewire\Dashboard\CustomersStateOfAccount;
+use App\Livewire\Dashboard\Customers\CustomersStateOfAccount;
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\ManageKitchen\KitchenContainers;
@@ -461,7 +462,41 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 7: Customers
+
+
+
+        // 7: Customers - SOA
+        Route::get('dashboard/customers/SOA', CustomersStateOfAccount::class)->name('dashboard.customers.SOA');
+
+
+
+
+
+        // 7.2: Customers - subscriptionSettings
+        Route::get('dashboard/customers/settings', CustomersSubscriptionSettings::class)->name('dashboard.customers.settings');
+
+
+
+
+
+
+
+
+
+
+
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+        // 8: Customers
         Route::get('dashboard/customers', Customers::class)->name('dashboard.customers');
 
 
@@ -472,7 +507,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 7.1: customers - singleCustomer - general
+        // 8.1: customers - singleCustomer - general
         Route::get('dashboard/customers/{id}', SingleCustomer::class)->name('dashboard.singleCustomer');
 
 
@@ -486,7 +521,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 7.2: customers - singleCustomer - addresses
+        // 8.2: customers - singleCustomer - addresses
         Route::get('dashboard/customers/{id}/addresses', SingleCustomerAddresses::class)->name('dashboard.singleCustomerAddresses');
 
 
@@ -500,7 +535,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 7.3: customers - singleCustomer - deliveries
+        // 8.3: customers - singleCustomer - deliveries
         Route::get('dashboard/customers/{id}/deliveries', SingleCustomerDeliveries::class)->name('dashboard.singleCustomerDeliveries');
 
 
@@ -517,7 +552,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 7.4: customers - singleCustomer - menu
+        // 8.4: customers - singleCustomer - menu
         Route::get('dashboard/customers/{id}/menu', SingleCustomerMenu::class)->name('dashboard.singleCustomerMenu');
 
 
@@ -533,32 +568,9 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 7.5: customers - singleCustomer - calendar
+        // 8.5: customers - singleCustomer - calendar
         Route::get('dashboard/customers/{id}/calendar', SingleCustomerCalendar::class)->name('dashboard.singleCustomerCalendar');
 
-
-
-
-
-
-
-
-
-
-
-        // ----------------------------------------------------------------------------
-        // ----------------------------------------------------------------------------
-        // ----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-        // 8: Customers - SOA
-        Route::get('dashboard/customers-SOA', CustomersStateOfAccount::class)->name('dashboard.customersSOA');
 
 
 

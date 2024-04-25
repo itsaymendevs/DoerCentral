@@ -106,9 +106,10 @@
                                 <div class="col-5">
                                     <label class="form-label form--label">Shorten Until</label>
                                     <input class="form-control form--input mb-4" type="date" required
-                                        wire:model='instance.untilDate' min='{{ $globalTodayDate }}'
+                                        wire:model='instance.untilDate' min='{{ $globalCurrentDate }}'
                                         max='{{ $instance->fromDate }}' />
                                 </div>
+
 
 
 

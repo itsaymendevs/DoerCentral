@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\CustomerSubscriptionSetting;
 use App\Models\VersionPermission;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\View;
@@ -41,21 +42,15 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-        // 1.2: todayDate - tmwDate
-        View::share('globalTodayDate', $this->getCurrentDate());
-        View::share('globalTmwDate', $this->getTmwDate());
+        // 1.2: currentDate - nextDate
+        View::share('globalCurrentDate', $this->getCurrentDate());
+        View::share('globalNextDate', $this->getNextDate());
 
 
 
 
 
-        // 1.3: pauseDate - unPauseDate
-        View::share('globalPauseDate', $this->getPauseDate());
-        View::share('globalUnPauseDate', $this->getUnPauseDate());
-
-
-
-        // 1.4: globalCounter
+        // 1.3: globalCounter
         View::share('globalSNCounter', 1);
 
 
@@ -66,6 +61,10 @@ class AppServiceProvider extends ServiceProvider
 
 
 
+
+
+
+
         // ------------------------------------------------
         // ------------------------------------------------
 
@@ -75,10 +74,50 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-        // :: versionPermission
+        // 2: versionPermission
         $versionPermission = VersionPermission::first();
 
         View::share('versionPermission', $versionPermission);
+
+
+
+
+
+
+
+
+        // ------------------------------------------------
+        // ------------------------------------------------
+
+
+
+
+
+
+
+        // 2.1: subscriptionSettings
+        $subscriptionSettings = CustomerSubscriptionSetting::first();
+
+        View::share('subscriptionSettings', $subscriptionSettings);
+
+
+
+
+
+
+        // :: allowedPauseDate - allowedUnPauseDate - allowedShorten
+        View::share('allowedPauseDate', $this->getDateByDays($subscriptionSettings->pauseRestriction));
+        View::share('allowedUnPauseDate', $this->getDateByDays($subscriptionSettings->unPauseRestriction));
+        View::share('allowedSkipDate', $this->getDateByDays($subscriptionSettings->skipRestriction));
+        View::share('allowedShortenDate', $this->getDateByDays($subscriptionSettings->shortenRestriction));
+
+
+
+        // :: allowedCalendarMigrationDate - allowedMealSelectionDate
+        View::share('allowedCalendarMigrationDate', $this->getDateByDays($subscriptionSettings->changeCalendarRestriction));
+        View::share('allowedMealSelectionDate', $this->getDateByDays($subscriptionSettings->mealSelectionRestriction));
+
+
 
 
 

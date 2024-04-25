@@ -69,8 +69,8 @@ class SingleCustomerExtendSubscription extends Component
 
 
         // 1.4: initialDate
-        $initialDate = $this->subscription->untilDate >= date('Y-m-d') ?
-            $this->subscription->untilDate : date('Y-m-d');
+        $initialDate = $this->subscription->untilDate >= $this->getCurrentDate() ?
+            $this->subscription->untilDate : $this->getCurrentDate();
 
 
 

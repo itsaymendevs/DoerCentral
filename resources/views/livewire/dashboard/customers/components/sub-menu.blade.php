@@ -25,23 +25,47 @@
             data-aos-delay="800" data-aos-once="true" wire:ignore.self>
 
 
-            {{-- :: SAO --}}
-            <a wire:navigate class="btn @if (Request::is('dashboard/customers-SOA')) active @endif" role="button"
-                href="{{ route('dashboard.customersSOA') }}">SOA</a>
+            {{-- 1: SAO --}}
+            <a wire:navigate class="btn @if (Request::is('dashboard/customers/SOA')) active @endif" role="button"
+                href="{{ route('dashboard.customers.SOA') }}">SOA</a>
 
 
 
 
-            {{-- :: Details --}}
+
+            {{-- 2: Details --}}
 
 
 
             {{-- :: permission - processing --}}
             @if (!$versionPermission->isProcessing)
 
-
             <a class="btn @if (Request::is('dashboard/customers/details')) active @endif" role="button"
                 href="#!">Details</a>
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+
+
+
+            {{-- 3: Settings --}}
+
+            {{-- :: permission - hasAdminView --}}
+            @if ($versionPermission->hasAdminView)
+
+
+            <a wire:navigate class="btn @if (Request::is('dashboard/customers/settings')) active @endif" role="button"
+                href="{{ route('dashboard.customers.settings') }}">Settings</a>
+
 
 
             @endif

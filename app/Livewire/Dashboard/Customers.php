@@ -188,13 +188,13 @@ class Customers extends Component
             if ($this->searchStatus && $this->searchStatus == 'Active') {
 
 
-                $item->latestSubscription()->untilDate < date('Y-m-d', strtotime('+4 hours')) ? $toReturn = false : null;
+                $item->latestSubscription()->untilDate < $this->getCurrentDate() ? $toReturn = false : null;
 
 
             } elseif ($this->searchStatus && $this->searchStatus == 'Expired') {
 
 
-                $item->latestSubscription()->untilDate >= date('Y-m-d', strtotime('+4 hours')) ? $toReturn = false : null;
+                $item->latestSubscription()->untilDate >= $this->getCurrentDate() ? $toReturn = false : null;
 
 
             } // end if

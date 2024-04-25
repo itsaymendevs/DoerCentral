@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\BuilderController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\CustomerMenuController;
+use App\Http\Controllers\Api\CustomerSettingsController;
 use App\Http\Controllers\Api\CustomerSubscriptionController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DeliveryController;
@@ -590,6 +591,10 @@ Route::post('/dashboard/menu/plans/calendars/toggle-default', [PlanController::c
 
 
 
+
+
+
+
 // 6: customers - update
 Route::post('/dashboard/customers/update', [CustomerController::class, 'updateCustomer']);
 Route::post('/dashboard/customers/remove', [CustomerController::class, 'removeCustomer']);
@@ -721,6 +726,23 @@ Route::post('/dashboard/customers/menu/schedule/skip', [CustomerMenuController::
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+// 6.4: customer - settings - update
+Route::post('/dashboard/customers/settings/update', [CustomerSettingsController::class, 'updateSettings']);
+
+
+
+
+
+
+
+
 
 
 
@@ -729,6 +751,9 @@ Route::post('/dashboard/customers/menu/schedule/skip', [CustomerMenuController::
 // ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
+
+
+
 
 
 

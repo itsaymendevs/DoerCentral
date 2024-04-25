@@ -76,7 +76,7 @@
 
                             {{-- input --}}
                             <input class="form-control form--input mb-4" type="date" required
-                                wire:model.live='instance.fromDate' min="{{ $globalPauseDate }}"
+                                wire:model.live='instance.fromDate' min="{{ $allowedPauseDate }}"
                                 max='{{ $subscription?->untilDate }}' />
 
                         </div>
@@ -100,7 +100,7 @@
 
                             {{-- input --}}
                             <input class="form-control form--input mb-4" type="date" required
-                                wire:model='instance.untilDate' min="{{ $instance->fromDate ?? $globalPauseDate }}"
+                                wire:model='instance.untilDate' min="{{ $instance->fromDate ?? $allowedPauseDate }}"
                                 max='{{ $subscription?->untilDate }}' wire:loading.attr='readonly'
                                 wire:target='instance.fromDate, pause' />
 

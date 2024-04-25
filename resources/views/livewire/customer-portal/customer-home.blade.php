@@ -71,7 +71,7 @@
                     <div class="col-12 col-md-4 d-none d-md-block text-center">
                         <h6 class="fw-semibold d-inline-flex align-items-center justify-content-end justify-content-md-center pb-1"
                             style="border-bottom: 1px solid var(--color-theme-secondary)">
-                            {{ date('d / m / Y', strtotime($globalTodayDate)) }}
+                            {{ date('d / m / Y', strtotime($globalCurrentDate)) }}
                         </h6>
                     </div>
                 </div>

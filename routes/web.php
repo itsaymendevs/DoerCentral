@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\CustomerSubscriptionEvent;
+use App\Livewire\Control\Permissions;
 use App\Livewire\CustomerPortal\CustomerAddresses;
 use App\Livewire\CustomerPortal\CustomerCalendar;
 use App\Livewire\CustomerPortal\CustomerDeliveries;
@@ -714,6 +715,36 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // -------------------------------- CONTROL -----------------------------------
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!! SERVER SIDE ONLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+    // :: control - permissions
+    Route::get('dashboard/control/permissions', Permissions::class)->name('dashboard.control.permissions');
 
 
 

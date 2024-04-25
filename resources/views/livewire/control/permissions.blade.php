@@ -1,4 +1,4 @@
-<section id="content--section" class="content--section">
+<section id="content--section " class="content--section ">
     <div class="container">
 
 
@@ -23,7 +23,7 @@
 
 
         {{-- contentRow --}}
-        <div class="permissions--wrapper">
+        <div class="permissions--wrapper ">
             <div class="row pt-2 align-items-start mb-5">
 
 

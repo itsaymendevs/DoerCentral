@@ -52,7 +52,25 @@ class Login extends Component
             // 1.2: makeSessions
             Session::put('token', $response->token);
 
-            return $this->redirect(route('dashboard.menuPlans'), navigate: false);
+
+
+
+
+            // ----------------------------
+            // ----------------------------
+
+
+
+
+            // 1.3: determine APP_TYPE
+
+
+            if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH')
+                return $this->redirect(route('dashboard.menuPlans'), navigate: false);
+            else
+                return $this->redirect(route('dashboard.control.permissions'), navigate: false);
+
+
 
 
         } // end if

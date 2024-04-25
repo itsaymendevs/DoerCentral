@@ -33,8 +33,6 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             VersionPermissionSeeder::class,
             SizeSeeder::class,
-
-
             ItemSeeder::class,
             RecipeSeeder::class,
 

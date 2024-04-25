@@ -119,15 +119,6 @@
     <body class='d-none d-lg-block'>
 
 
-
-        {{-- loader --}}
-        {{--
-        <livewire:components.loaders.hourglass /> --}}
-
-
-
-
-
         <div data-aos="fade" data-aos-duration="1000">
 
 
@@ -135,7 +126,38 @@
 
 
             {{-- navbar --}}
+
+
+            {{-- 1: CLIENT APP --}}
+            @if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH')
+
+
+
             <livewire:components.dashboard.navbar />
+
+
+
+
+            {{-- 2: SERVER APP --}}
+            @else
+
+
+
+            <livewire:components.dashboard.control-navbar />
+
+
+
+            @endif
+            {{-- end if - CLIENT APP --}}
+
+
+
+
+
+
+            {{-- ------------------------------ --}}
+            {{-- ------------------------------ --}}
+
 
 
 

@@ -57,7 +57,7 @@ class Permissions extends Component
             // 1.1: general
             'hasAdminView' => 'Admin View',
             'hasMasterView' => 'Master View',
-            'isProcessing' => 'On-going Functions',
+            'isProcessing' => 'Hide On-going Functions',
 
 
             // 1.2: customer

@@ -58,9 +58,11 @@ class CustomerSubscriptionStepFive extends Component
         } else {
 
 
-            session('customer') && session('customer')->{'deliveryDays'} ?
-                $this->instance = session('customer') :
-                $this->redirect(route('subscription.customerStepOne'), navigate: true);
+            // :: redirectBack
+            if (session('customer') && session('customer')->{'deliveryDays'})
+                $this->instance = session('customer');
+            else
+                return $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
 

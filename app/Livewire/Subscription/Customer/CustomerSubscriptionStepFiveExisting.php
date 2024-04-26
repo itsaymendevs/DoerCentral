@@ -56,9 +56,12 @@ class CustomerSubscriptionStepFiveExisting extends Component
         if (session('customer')->{'isExistingCustomer'}) {
 
 
-            session('customer') && session('customer')->{'planDays'} && session('customer')->{'email'} ?
-                $this->instance = session('customer') :
-                $this->redirect(route('subscription.customerStepOne'), navigate: true);
+            // :: checkSession
+            if (session('customer') && session('customer')->{'planDays'} && session('customer')->{'email'})
+                $this->instance = session('customer');
+            else
+                return $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
 
 
 

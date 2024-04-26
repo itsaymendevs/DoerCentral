@@ -49,6 +49,8 @@ return new class extends Migration {
             $table->boolean('customerModuleHasDriver')->nullable()->default(1);
             $table->boolean('customerModuleHasEditBundle')->nullable()->default(1);
             $table->boolean('customerModuleHasBundlesView')->nullable()->default(1);
+            $table->boolean('customerModuleHasDynamicBundles')->nullable()->default(1);
+            $table->boolean('customerModuleHasInvoicesView')->nullable()->default(1);
 
 
 

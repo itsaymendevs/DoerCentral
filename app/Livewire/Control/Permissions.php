@@ -69,6 +69,9 @@ class Permissions extends Component
             'customerModuleHasDriver' => 'Driver Option',
             'customerModuleHasEditBundle' => 'Edit Bundle',
             'customerModuleHasBundlesView' => 'View Bundle',
+            'customerModuleHasDynamicBundles' => 'Dynamic Bundles',
+            'customerModuleHasInvoicesView' => 'View Invoices',
+
             'customerModuleEditCalendar' => 'Edit Calendar',
             'customerModuleHasSkip' => 'Skip Day',
             'customerModuleHasMultipleAddress' => 'Multiple Address',
@@ -151,7 +154,7 @@ class Permissions extends Component
 
 
         // 2.2: customer
-        $customerPermissions = VersionPermission::get(['customerModuleHasVector', 'customerModuleHasVIP', 'customerModuleHasEnabled', 'customerModuleHasWallet', 'customerModuleHasManager', 'customerModuleHasDriver', 'customerModuleHasEditBundle', 'customerModuleHasBundlesView', 'customerModuleEditCalendar', 'customerModuleHasSkip', 'customerModuleHasMultipleAddress'])->first()->toArray();
+        $customerPermissions = VersionPermission::get(['customerModuleHasVector', 'customerModuleHasVIP', 'customerModuleHasEnabled', 'customerModuleHasWallet', 'customerModuleHasManager', 'customerModuleHasDriver', 'customerModuleHasEditBundle', 'customerModuleHasBundlesView', 'customerModuleHasDynamicBundles', 'customerModuleHasInvoicesView', 'customerModuleEditCalendar', 'customerModuleHasSkip', 'customerModuleHasMultipleAddress'])->first()->toArray();
 
 
 

@@ -168,8 +168,8 @@ class KitchenDeliveryExport implements FromCollection, WithHeadings
             if ($customerAddress) {
 
                 $content->address = "{$customerAddress?->city->name} - {$customerAddress?->district->name}\n";
-                $content->address .= $customerAddress?->apartment ? $customerAddress->apartment . " Apartment\n" : "";
-                $content->address .= $customerAddress?->floor ? $customerAddress->floor . " Floor" : "";
+                $content->address .= $customerAddress?->apartment ? "Apartment. " . $customerAddress->apartment . "\n" : "";
+                $content->address .= $customerAddress?->floor ? "Floor. " . $customerAddress->floor : "";
 
 
             } else {

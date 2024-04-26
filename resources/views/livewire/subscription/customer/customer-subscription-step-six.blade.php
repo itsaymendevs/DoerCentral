@@ -31,14 +31,8 @@
 
 
 
-
-
-
-
-
-            {{-- ----------------------------------------------- --}}
-            {{-- ----------------------------------------------- --}}
-
+            {{-- ---------------------------------------------- --}}
+            {{-- ---------------------------------------------- --}}
 
 
 
@@ -47,172 +41,304 @@
 
 
 
+            {{-- bottomCol --}}
+            <div class="col-12" data-aos="fade" data-aos-duration="600" data-aos-delay="800" data-aos-once="true">
 
 
 
-            {{-- rightCol --}}
-            <div class="col-12 col-sm-10 col-md-7 col-lg-6 col-xl-5 col-xxl-4 text-center" data-aos="fade-left"
-                data-aos-duration="600" data-aos-delay="800" data-aos-once="true" wire:ignore.self>
+
+                {{-- Actions --}}
+                <div class="d-block">
 
 
 
-                {{-- planRow --}}
-                <div class="overview--card client-version scale--self-05 mb-3 mb-3 mt-zone-cards plans-column">
 
-                    <div class="row">
-
-                        {{-- cover --}}
-                        <div class="col-12 text-center position-relative">
-                            <img class="client--card-logo of-cover"
-                                src="{{ asset('storage/menu/plans/' . $plan->imageFile) }}" />
-                        </div>
-
-
-                        {{-- content --}}
-                        <div class="col-12">
-                            <h4 class="text-center fw-bold mt-3 mb-1">{{ $plan->name }}</h4>
-                        </div>
-                    </div>
+                    {{-- 1: print --}}
+                    <button
+                        class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-4 fs-13 justify-content-center fw-semibold mb-2"
+                        type="button" data-bs-target="#extend-subscription" data-bs-toggle="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                            viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
+                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
+                            <path
+                                d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z">
+                            </path>
+                        </svg>Print
+                    </button>
                 </div>
-                {{-- end planRow --}}
 
 
 
 
 
 
-                {{-- -------------------- --}}
-                {{-- -------------------- --}}
+
+                {{-- ------------------------------------- --}}
+                {{-- ------------------------------------- --}}
 
 
 
 
 
 
-                {{-- invoiceRow --}}
+
+                {{-- invoiceWrapper --}}
                 <div class="text-start overview--card client-version mb-5 w-100 flex-row subscription--side-invoice">
-                    <div class="row w-100">
-                        <div class="col-12">
-
-                            {{-- heading --}}
-                            <h6 class="fw-semibold mb-3 text-gold text-center">Summary</h6>
+                    <div class="row align-items-end w-100">
 
 
 
-                            {{-- :: averageCaloriesPerDay --}}
-                            <div class="d-flex align-items-center justify-content-between mb-3">
-                                <p class="fs-12 w-75 pe-3 mb-0">
-                                    Calories / Day
-                                </p>
-                                <p class="fs-13 mb-0 w-50 text-end">{{ $instance->totalBundleRangeCalories ?? '' }}
-                                </p>
+                        {{-- topCol --}}
+                        <div class="col-12 order-first">
+                            <div class="row align-items-center">
+
+
+                                {{-- title --}}
+                                <div class="col-12 col-sm-6 text-center text-sm-start">
+                                    <h1 class="display-4 fw-bold mb-4 mt-0">Invoice</h1>
+                                </div>
+
+
+                                {{-- logo --}}
+                                <div class="col-12 col-sm-6 text-center text-sm-end">
+                                    <img class="mb-3 of-contain" src="{{ asset('assets/img/Logo/doer.png') }}"
+                                        style="height: 55px" />
+                                </div>
                             </div>
-
-
-
-
-                            {{-- :: planDays --}}
-                            <div class="d-flex align-items-center justify-content-between mb-3">
-                                <p class="fs-12 w-75 pe-3 mb-0">Plan Days</p>
-                                <p class="fs-13 mb-0 w-50 text-end ">{{ $instance->planDays ?? '' }}</p>
-                            </div>
-
-
-
-                            {{-- :: pricePerDay --}}
-                            <div class="d-flex align-items-center justify-content-between mb-3">
-                                <p class="fs-12 w-75 pe-3 mb-0">Price / Day</p>
-                                <p class="fs-13 mb-0 w-50 text-end ">{{ $instance->bundleRangePricePerDay ?? '' }}
-                                </p>
-                            </div>
-
-
-
-                            {{-- :: plan - meals --}}
-                            <div class="d-flex align-items-center justify-content-between mb-3">
-                                <p class="fs-12 w-50 pe-3 mb-0">Plan Details</p>
-                                <p class="fs-13 mb-0 w-50 text-end">
-                                    {{ $instance->bundleTypesInArray ?? '' }}
-                                </p>
-                            </div>
+                        </div>
 
 
 
 
 
-
-                            {{-- --------------------------- --}}
-                            {{-- --------------------------- --}}
-
+                        {{-- ------------------ --}}
+                        {{-- ------------------ --}}
 
 
 
-                            {{-- :: planPrice --}}
-                            <div class="d-flex align-items-center justify-content-between pt-3"
-                                style="border-top: 1px dashed var(--bg-golden-dark)">
-                                <p class="fs-12 w-50 pe-3 mb-0">Plan Price</p>
-                                <p class="mb-0 w-50 text-end fw-bold">{{ $instance->totalBundleRangePrice ?? ''}}
-                                    <small class="fw-semibold text-gold fs-10 ms-1">(AED)</small>
+
+
+                        {{-- leftCol --}}
+                        <div class="col-12 col-lg-6 order-3 order-lg-2">
+
+
+                            {{-- date / serial --}}
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <p class="fs-6 w-50 pe-3 mb-0 text-gold"># 104050</p>
+                                <p class="fs-6 mb-0 w-50 text-end fw-bold">
+                                    {{ date('d / m / Y', strtotime($subscription->created_at)) }}
                                 </p>
                             </div>
 
 
 
 
-                            {{-- :: bag --}}
-                            <div class="d-flex align-items-center justify-content-between pt-2">
-                                <p class="fs-12 w-50 pe-3 mb-0">{{ $instance->bag }}</p>
-                                <p class="mb-0 w-50 text-end fw-bold">{{ $instance->bagPrice }}
-                                    <small class="fw-semibold text-gold fs-10 ms-1">(AED)</small>
-                                </p>
+
+                            {{-- tableOfContent --}}
+                            <div style=" border-top: 2px solid var(--color-scheme-dark-1); border-radius: 1px;">
+                                <div class="row">
+
+
+                                    {{-- 1: plan / coupon / bagPrice / empty --}}
+                                    <div class="col-6 col-sm-4 pt-2"
+                                        style="border-right: 2px solid var(--color-scheme-dark-1);">
+                                        <p class="text-center w-100 fs-13 mt-2 mb-4">Item</p>
+                                        <p class="text-center mb-3 fw-bold">{{ $subscription?->plan?->name }}</p>
+
+
+                                        {{-- :: checkCoupon --}}
+                                        @if ($subscription?->promoCodeId)
+
+                                        <p class="text-center mb-3 fw-bold">Coupon</p>
+
+                                        @endif
+                                        {{-- end if - --}}
+
+
+                                        <p class="text-center mb-3 fw-bold">{{ $subscription?->bag?->name }}</p>
+                                        <p class="text-center mb-3 fw-bold"></p>
+                                    </div>
+
+
+
+
+
+
+                                    {{-- ------------------------- --}}
+                                    {{-- ------------------------- --}}
+
+
+
+
+                                    {{-- 2: QTY --}}
+                                    <div class="col-6 col-sm-4 pt-2 d-none d-sm-block"
+                                        style="border-right: 2px solid var(--color-scheme-dark-1);">
+                                        <p class="text-center w-100 fs-13 mt-2 mb-4">QTY</p>
+                                        <p class="text-center mb-3 fw-bold">x1</p>
+
+
+                                        {{-- :: checkCoupon --}}
+                                        @if ($subscription?->promoCodeId)
+
+                                        <p class="text-center mb-3 fw-bold">x1</p>
+
+                                        @endif
+                                        {{-- end if - --}}
+
+
+                                        <p class="text-center mb-3 fw-bold">x1</p>
+                                    </div>
+
+
+
+
+
+
+                                    {{-- ------------------------- --}}
+                                    {{-- ------------------------- --}}
+
+
+
+
+
+
+
+
+                                    {{-- 3: planPrice - coupon - bagPrice - totalPrice --}}
+                                    <div class="col-6 col-sm-4 pt-2">
+                                        <p class="text-center w-100 fs-13 mt-2 mb-4">Total<small
+                                                class="fw-semibold text-gold fs-10 ms-1">(AED)</small></p>
+
+
+                                        {{-- planPrice --}}
+                                        <p class="text-center mb-3 fw-bold">{{ $subscription?->planPrice ?? 0 }}</p>
+
+
+
+                                        {{-- :: checkCoupon --}}
+                                        @if ($subscription?->promoCodeId)
+
+                                        <p class="text-center mb-3 fw-bold">
+                                            {{ $subscription?->promoCodeDiscountPrice ?? 0 }}</p>
+
+                                        @endif
+                                        {{-- end if - --}}
+
+
+
+                                        {{-- bagPrice - totalCheckoutPrice --}}
+                                        <p class="text-center mb-3 fw-bold">{{ $subscription?->bagPrice ?? 0 }}</p>
+                                        <p class="fs-4 text-center mb-0 fw-bold">
+                                            {{ $subscription?->totalCheckoutPrice?? 0 }}
+                                        </p>
+
+
+
+                                    </div>
+                                </div>
                             </div>
+                            {{-- end tableOfContetn --}}
 
-
-                            {{-- :: Coupon --}}
-                            <div class="d-flex align-items-center justify-content-between pt-2">
-                                <p class="fs-12 w-50 pe-3 mb-0">Coupon</p>
-                                <p class="mb-0 w-50 text-end fw-bold">{{ $instance->promoCodeDiscountPrice ?? '0' }}
-                                    <small class="fw-semibold text-gold fs-10 ms-1">(AED)</small>
-                                </p>
-                            </div>
-
-
-
-
-                            {{-- :: totalCheckoutPrice --}}
-                            <div class="d-flex align-items-center justify-content-between pt-2">
-                                <p class="w-50 pe-2 mb-0 fs-14 fw-semibold">Total Checkout</p>
-                                <p class="mb-0 w-50 text-end fw-bold fs-4">{{ $instance->totalCheckoutPrice ?? '0' }}
-                                    <small class="fw-semibold text-gold fs-10 ms-1">(AED)</small>
-                                </p>
-                            </div>
 
 
 
                         </div>
+                        {{-- end leftCol --}}
+
+
+
+
+
+
+
+                        {{-- ------------------ --}}
+                        {{-- ------------------ --}}
+
+
+
+
+
+
+
+                        {{-- ** getAddress ** --}}
+                        @php $customerAddress = $customer->addresses->first(); @endphp
+
+
+
+
+
+                        {{-- rightCol - personalInformatino --}}
+                        <div class="col-12 col-lg-6 text-center text-lg-start order-2 order-lg-2 mb-5 mb-lg-0">
+                            <div class="invoice--right-section">
+                                <h6 class="fw-normal mb-1">Bill To</h6>
+
+
+                                {{-- name --}}
+                                <h6 class="fw-semibold text-gold mb-4">{{ $customer?->fullName() }}</h6>
+
+                                {{-- city - district - address --}}
+                                <h6 class="fw-normal mb-1">{{ $customerAddress?->city?->name }} - {{
+                                    $customerAddress?->district?->name }}</h6>
+                                <h6 class="fw-normal mb-1">{{ $customerAddress?->locationAddress }}</h6>
+
+
+                                {{-- apartment - floor --}}
+                                <h6 class="fw-normal mb-3">Apartment. {{ $customerAddress?->apartment }}{{
+                                    $customerAddress?->floor ? ' - Floor. ' . $customerAddress?->floor : '' }}</h6>
+
+
+                                {{-- phone - email --}}
+                                <h6 class="fw-normal mb-1">{{ $customer?->phone }}</h6>
+                                <h6 class="fw-normal mb-1">{{ $customer?->email }}</h6>
+                            </div>
+                        </div>
+                        {{-- end rightCol --}}
                     </div>
                 </div>
-                {{-- end invoiceRow --}}
+                {{-- end invoiceWrapper --}}
 
 
 
 
+
+
+
+
+
+
+                {{-- -------------------------- --}}
+                {{-- -------------------------- --}}
 
 
 
 
                 {{-- :: returnButton --}}
-                <a href="{{ route('subscription.customerStepOne') }}"
-                    class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-4  fw-semibold justify-content-center shrink--self w-75"
-                    style="border: 1px dashed var(--color-scheme-3)">
-                    Continue
-                </a>
+                <div class="d-block text-center">
+                    <a href="{{ route('subscription.customerStepOne') }}"
+                        class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-5 fw-semibold justify-content-center shrink--self w-100"
+                        style="border: 1px dashed var(--color-scheme-3); max-width: 200px">
+                        Continue
+                    </a>
+                </div>
+
+
 
 
 
 
             </div>
-            {{-- end rightCol --}}
+            {{-- endCol --}}
+
+
+
+
+
+
+
+            {{-- ----------------------------------------------- --}}
+            {{-- ----------------------------------------------- --}}
+
+
 
 
 

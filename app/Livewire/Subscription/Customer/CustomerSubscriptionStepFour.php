@@ -52,9 +52,11 @@ class CustomerSubscriptionStepFour extends Component
 
 
             // :: checkSession
-            session('customer') && session('customer')->{'bag'} ?
-                $this->instance = session('customer') :
-                $this->redirect(route('subscription.customerStepOne'), navigate: true);
+            if (session('customer') && session('customer')->{'bag'})
+                $this->instance = session('customer');
+            else
+                return $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
 
 
 

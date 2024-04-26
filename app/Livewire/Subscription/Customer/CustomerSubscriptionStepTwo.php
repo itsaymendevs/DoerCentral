@@ -44,10 +44,10 @@ class CustomerSubscriptionStepTwo extends Component
 
 
         // :: checkSession
-        session('customer') && session('customer')->{'email'} ?
-            $this->instance = session('customer') :
-            $this->redirect(route('subscription.customerStepOne'), navigate: true);
-
+        if (session('customer') && session('customer')->{'email'})
+            $this->instance = session('customer');
+        else
+            return $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
 

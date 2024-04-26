@@ -388,7 +388,7 @@ trait HelperTrait
     {
 
 
-        // 1: makeFileName - upload
+        // 1: uploadFile - makeFileName
         $fileName = date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . $instanceFile->getClientOriginalName();
         $instanceFile->storeAs($path, $fileName, 'public');
 
@@ -399,6 +399,51 @@ trait HelperTrait
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------
+    // --------------------------------------------------------------
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    protected function replaceFile($instanceFile, $fileName, $path, $key = 'RG')
+    {
+
+
+        // 1: removeFile
+        Storage::disk('public')->delete($path . '/' . $fileName);
+
+
+
+        // 2: uploadFile - makeFileName
+        $fileName = date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . $instanceFile->getClientOriginalName();
+        $instanceFile->storeAs($path, $fileName, 'public');
+
+
+        // 1.2: return fileName
+        return $fileName;
+
+
+
+    } // end function
+
+
 
 
 
@@ -431,6 +476,16 @@ trait HelperTrait
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Livewire\Subscription\Customer;
 
 use App\Livewire\Forms\CustomerSubscriptionForm;
+use App\Models\Customer;
 use App\Models\Plan;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
@@ -23,7 +24,7 @@ class CustomerSubscriptionStepSix extends Component
     // :: variables
     public CustomerSubscriptionForm $instance;
 
-    public $plan;
+    public $plan, $customer, $subscription;
 
 
 
@@ -42,11 +43,14 @@ class CustomerSubscriptionStepSix extends Component
 
 
 
-
         // :: checkSession
-        session('customer') && session('customer')->{'deliveryDays'} ?
-            $this->instance = session('customer') :
-            $this->redirect(route('subscription.customerStepOne'), navigate: true);
+        if (session('customer') && session('customer')->{'deliveryDays'})
+            $this->instance = session('customer');
+        else
+            return $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
+
+
 
 
 
@@ -69,6 +73,10 @@ class CustomerSubscriptionStepSix extends Component
 
         // 1: get instance
         $this->plan = Plan::find($id);
+        $this->customer = Customer::where('email', session('customerInvoice')->{'email'})->first();
+        $this->subscription = $this->customer->latestSubscription();
+
+
 
 
 

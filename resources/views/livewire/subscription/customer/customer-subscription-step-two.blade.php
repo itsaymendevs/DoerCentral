@@ -390,18 +390,50 @@
                                                                             <div class="col-12">
 
                                                                                 {{-- title --}}
+
+
+                                                                                {{-- :: permission -
+                                                                                hasDynamicBundles - forCustomers --}}
+                                                                                @if($versionPermission->customerModuleHasDynamicBundles)
+
+
                                                                                 <p
                                                                                     class="text-center fs-14 fw-normal mb-0">
                                                                                     Pick based on your preference
                                                                                 </p>
 
 
+
+                                                                                {{-- :: fixed --}}
+                                                                                @else
+
+
+                                                                                <p
+                                                                                    class="text-center fs-14 fw-normal mb-0">
+                                                                                    Types based on your preference
+                                                                                </p>
+
+
+                                                                                @endif
+                                                                                {{-- end if - permission --}}
+
+
+
+
+
+
+
+                                                                                {{-- ----------------------- --}}
+                                                                                {{-- ----------------------- --}}
+
+
+
+
                                                                                 {{-- types --}}
                                                                                 <p
                                                                                     class="text-center fs-12 fw-normal text-gold mb-0">
                                                                                     {{ implode(' • ',
-                                                                                    $bundle->typesInArray())
-                                                                                    }}
+                                                                                    $bundle->typesInArray()) }}
                                                                                 </p>
 
 
@@ -414,15 +446,23 @@
 
 
 
-                                                                        {{-- ----------------- --}}
-                                                                        {{-- ----------------- --}}
+                                                                        {{-- ---------------------- --}}
+                                                                        {{-- ---------------------- --}}
 
 
 
 
 
                                                                         {{-- typesRow --}}
-                                                                        <div class="row">
+
+
+
+                                                                        {{-- :: permission inline -
+                                                                        hasDynamicBundles - forCustomers --}}
+
+
+                                                                        <div
+                                                                            class="row @if(!$versionPermission->customerModuleHasDynamicBundles) d-none @endif">
 
 
 
@@ -557,12 +597,30 @@
 
 
 
+                                                                        </div>
+                                                                        {{-- endRow --}}
 
 
 
 
-                                                                            {{-- submitButton --}}
-                                                                            <div class="col-12">
+
+
+
+                                                                        {{-- ------------------------- --}}
+                                                                        {{-- ------------------------- --}}
+
+
+
+
+
+
+
+
+
+                                                                        {{-- submitButton --}}
+                                                                        <div class="row">
+
+                                                                            <div class="col-12 mt-4">
                                                                                 <button wire:loading.attr='disabled'
                                                                                     wire:target='changeBundle, changeRange, updateOverview,  instance.startDate, instance.planDays'
                                                                                     class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-0 w-50 fw-semibold justify-content-center shrink--self"
@@ -570,12 +628,16 @@
                                                                                     Continue
                                                                                 </button>
                                                                             </div>
-                                                                            {{-- endCol --}}
-
-
 
 
                                                                         </div>
+                                                                        {{-- endCol --}}
+
+
+
+
+
+
                                                                     </div>
                                                                 </div>
                                                                 {{-- endRow --}}

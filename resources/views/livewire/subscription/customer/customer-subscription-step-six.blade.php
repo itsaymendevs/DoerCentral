@@ -11,7 +11,7 @@
 
                 {{-- heading --}}
                 <h3 data-aos="fade" data-aos-duration="600" data-aos-delay="800" data-aos-once="true"
-                    class="mb-5 fw-semibold pb-lg-4" wire:ignore>
+                    class="mb-4 mb-md-4 fw-semibold pb-lg-4" wire:ignore>
                     Thanks for choosing Doer<br />Enjoy your meals!
 
                     {{-- icon --}}

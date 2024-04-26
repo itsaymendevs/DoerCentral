@@ -211,6 +211,7 @@
         <script src="{{ asset('assets/js/range-input.js') }}"></script>
         <script src="{{ asset('assets/js/file-preview.js') }}"></script>
         <script src="{{ asset('assets/js/button-checkbox.js') }}"></script>
+        <script src="{{ asset('assets/js/html2canvas.js') }}"></script>
 
 
 
@@ -247,6 +248,16 @@
 
         {{-- 1.5: builder extensions --}}
         <script src="{{ asset('assets/js/builder.js') }}"></script>
+
+
+
+        {{-- 1.6: init actions (download / print) --}}
+        <script src="{{ asset('assets/js/init-actions.js') }}"></script>
+
+
+
+
+
 
 
         {{-- 1.6: otherScripts --}}

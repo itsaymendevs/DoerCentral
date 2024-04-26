@@ -407,6 +407,12 @@ class RecipeSeeder extends Seeder
 
 
 
+
+
+
+
+
+
                 // 4: create MealIngredients
 
 
@@ -415,15 +421,8 @@ class RecipeSeeder extends Seeder
                 // 4.0.5: loop - mealSizes
                 $mealSizes = $meal->sizes;
 
-                foreach ($mealSizes ?? [] as $mealSize) {
+                foreach ($mealSizes ?? [] as $key => $mealSize) {
 
-
-
-
-
-
-                    // :: groupToken
-                    $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
 
 
 
@@ -486,6 +485,58 @@ class RecipeSeeder extends Seeder
 
                         // 4.1.5: getMigrationIngredient
                         $migrationIngredient = Ingredient::where('migrationId', $mealIngredients[$y]['ingredientId'])?->first();
+
+
+
+
+
+
+                        // ----------------------------------
+                        // ----------------------------------
+
+
+
+
+
+
+                        // A: get groupToken if found
+                        $groupToken = MealIngredient::where('mealId', $meal?->id)
+                            ->where('ingredientId', $migrationIngredient?->id)
+                            ->orderBy('created_at', 'desc')?->first()?->groupToken ?? null;
+
+
+
+                        // :: updateToAll
+                        if ($groupToken) {
+
+
+
+                            MealIngredient::where('mealId', $meal?->id)
+                                ->where('ingredientId', $migrationIngredient?->id)
+                                ->update([
+                                    'groupToken' => $groupToken
+                                ]);
+
+
+
+
+                            // B: createNewOne
+                        } else {
+
+
+
+                            $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
+
+
+
+                        } // end if
+
+
+
+
+
+
+
 
 
 
@@ -561,6 +612,7 @@ class RecipeSeeder extends Seeder
 
 
 
+
                         // ::root
                         $mealPartsRaw = Storage::disk('public')->get("sources/aleens/recipes/{$generalType}Parts-{$singlePartType}.json");
                         $mealPartsRaw = $mealPartsRaw ? json_decode($mealPartsRaw ?? [], true) : [];
@@ -620,6 +672,60 @@ class RecipeSeeder extends Seeder
 
                             // 5.2.5: getMigrationPart
                             $migrationPart = Meal::where('migrationId', $mealParts[$y]['partId'])?->first();
+
+
+
+
+
+
+
+
+
+                            // ----------------------------------
+                            // ----------------------------------
+
+
+
+
+
+
+                            // A: get groupToken if found
+                            $groupToken = MealPart::where('mealId', $meal?->id)
+                                ->where('partId', $migrationPart?->id)
+                                ->orderBy('created_at', 'desc')?->first()?->groupToken ?? null;
+
+
+
+                            // :: updateToAll
+                            if ($groupToken) {
+
+
+
+                                MealPart::where('mealId', $meal?->id)
+                                    ->where('partId', $migrationPart?->id)
+                                    ->update([
+                                        'groupToken' => $groupToken
+                                    ]);
+
+
+
+
+                                // B: createNewOne
+                            } else {
+
+
+
+                                $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
+
+
+
+                            } // end if
+
+
+
+
+
+
 
 
 

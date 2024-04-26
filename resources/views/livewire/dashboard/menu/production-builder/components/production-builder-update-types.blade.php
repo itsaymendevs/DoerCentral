@@ -2,6 +2,34 @@
 <div class="d-block">
 
 
+
+
+
+    {{-- styles --}}
+    @section('styles')
+
+    <style>
+        .itemType--radio input[type=radio][checked] {
+            background-color: var(--bg-golden-dark) !important;
+            border-color: var(--bg-golden-dark) !important;
+        }
+    </style>
+
+    @endsection
+    {{-- end style --}}
+
+
+    {{-- --------------------------------------------- --}}
+    {{-- --------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
     {{-- meal - name --}}
     <h3 class="fw-semibold text-center">
         {{ $instance->name }}

@@ -48,15 +48,36 @@
 
 
                 {{-- Actions --}}
-                <div class="d-block">
+                <div class="d-block text-end">
 
 
 
 
-                    {{-- 1: print --}}
+
+                    {{-- 1: download / capture --}}
                     <button
-                        class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-4 fs-13 justify-content-center fw-semibold mb-2"
-                        type="button" data-bs-target="#extend-subscription" data-bs-toggle="modal">
+                        class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-4 fs-13 justify-content-center fw-semibold mb-2 download--btn me-2"
+                        data-download='#invoice--1' type="button" data-bs-target="#extend-subscription"
+                        data-bs-toggle="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                            class="bi bi-download fs-6 me-2" viewBox="0 0 16 16">
+                            <path
+                                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                            <path
+                                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                        </svg>Download
+                    </button>
+
+
+
+
+
+
+                    {{-- 2: print --}}
+                    <button
+                        class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-4 fs-13 justify-content-center fw-semibold mb-2 print--btn"
+                        data-print='#invoice--1' type="button" data-bs-target="#extend-subscription"
+                        data-bs-toggle="modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
                             <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
@@ -65,7 +86,12 @@
                             </path>
                         </svg>Print
                     </button>
+
+
+
+
                 </div>
+                {{-- endActions --}}
 
 
 
@@ -83,7 +109,8 @@
 
 
                 {{-- invoiceWrapper --}}
-                <div class="text-start overview--card client-version mb-5 w-100 flex-row subscription--side-invoice">
+                <div class="text-start overview--card client-version mb-5 w-100 flex-row subscription--side-invoice"
+                    id='invoice--1'>
                     <div class="row align-items-end w-100">
 
 
@@ -288,7 +315,7 @@
 
 
                                 {{-- phone - email --}}
-                                <h6 class="fw-normal mb-1">{{ $customer?->phone }}</h6>
+                                <h6 class="fw-normal mb-1">+971 {{ $customer?->phone }}</h6>
                                 <h6 class="fw-normal mb-1">{{ $customer?->email }}</h6>
                             </div>
                         </div>

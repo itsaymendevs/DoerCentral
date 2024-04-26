@@ -14,6 +14,7 @@ use App\Livewire\Dashboard\Customers\Manage\SingleCustomer;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerAddresses;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerCalendar;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerDeliveries;
+use App\Livewire\Dashboard\Customers\Manage\SingleCustomerHistory;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerMenu;
 use App\Livewire\Dashboard\Customers\CustomersStateOfAccount;
 use App\Livewire\Dashboard\Delivery;
@@ -570,6 +571,23 @@ Route::middleware(['auth.user'])->group(function () {
 
         // 8.5: customers - singleCustomer - calendar
         Route::get('dashboard/customers/{id}/calendar', SingleCustomerCalendar::class)->name('dashboard.singleCustomerCalendar');
+
+
+
+
+
+
+
+
+
+        // ---------
+
+
+
+
+        // 8.6: customers - singleCustomer - history
+        Route::get('dashboard/customers/{id}/history', SingleCustomerHistory::class)->name('dashboard.singleCustomerHistory');
+
 
 
 

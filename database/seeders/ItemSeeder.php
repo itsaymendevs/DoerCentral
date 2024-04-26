@@ -203,10 +203,8 @@ class ItemSeeder extends Seeder
 
 
 
-                // :: getMealSize - groupToken - limitLatestIngredient
+                // :: getMealSize - limitLatestIngredient
                 $mealSize = $meal->sizes->first();
-                $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
-
 
 
 
@@ -239,6 +237,15 @@ class ItemSeeder extends Seeder
 
                     // :: partOfMeal
                     if ($meal->migrationId == $mealIngredients[$y]['mealId']) {
+
+
+
+
+
+                        // :: groupToken
+                        $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
+
+
 
 
 
@@ -333,6 +340,11 @@ class ItemSeeder extends Seeder
                     // :: partOfMeal
                     if ($meal->migrationId == $mealParts[$y]['mealId']) {
 
+
+
+
+                        // :: groupToken
+                        $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
 
 
 

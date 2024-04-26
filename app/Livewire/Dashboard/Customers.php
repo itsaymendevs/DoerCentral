@@ -212,16 +212,12 @@ class Customers extends Component
 
 
         // 1.2.2: getCustomers
-        $customers = Customer::whereIn('id', $customerIds)->paginate(20);
+        $customers = Customer::whereHas('subscriptions')->whereIn('id', $customerIds)->paginate(20);
 
 
 
 
-
-
-
-
-
+        // Reem Flayhan
 
 
 

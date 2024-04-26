@@ -517,7 +517,7 @@ class CustomerController extends Controller
 
 
         // 1.3: customer - subscription
-        $pause->customerId = $request->customerId;
+        $pause->customerId = $subscription->customerId;
         $pause->customerSubscriptionId = $request->customerSubscriptionId;
 
 
@@ -851,7 +851,7 @@ class CustomerController extends Controller
 
         // :: getSubscription - customer - deliveryDays
         $subscription = CustomerSubscription::find($request->customerSubscriptionId);
-        $customer = Customer::find($request->customerId);
+        $customer = Customer::find($subscription->customerId);
 
 
 
@@ -901,7 +901,7 @@ class CustomerController extends Controller
 
 
         // 1.3: customer - subscription
-        $extend->customerId = $request->customerId;
+        $extend->customerId = $subscription->customerId;
         $extend->customerSubscriptionId = $request->customerSubscriptionId;
 
 
@@ -1426,7 +1426,7 @@ class CustomerController extends Controller
 
         // :: getSubscription - customer
         $subscription = CustomerSubscription::find($request->customerSubscriptionId);
-        $customer = Customer::find($request->customerId);
+        $customer = Customer::find($subscription->customer->id);
 
 
 
@@ -1476,7 +1476,7 @@ class CustomerController extends Controller
 
 
         // 1.3: customer - subscription
-        $shorten->customerId = $request->customerId;
+        $shorten->customerId = $customer->id;
         $shorten->customerSubscriptionId = $request->customerSubscriptionId;
 
 

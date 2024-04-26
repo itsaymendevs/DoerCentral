@@ -249,15 +249,45 @@ class SingleCustomerMenuReplaceMeal extends Component
 
 
         // 1: dependencies
-        $meals = Meal::where('id', '!=', $this->scheduleMeal?->mealId)
-            ->where('id', '!=', $this->subscriptionDefaultMeal?->mealId)
-            ->where('typeId', $this?->mealType?->type->id)
-            ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
-            ->paginate(4, pageName: 'replacements');
+
+
+
+        // 1.1: Recipe Type
+        if ($this?->mealType?->type?->name == 'Recipe') {
+
+
+
+            // :: prepParams
+            $mealTypeId = $this?->mealType->id;
+
+
+            $meals = Meal::whereHas('types', function ($query) use ($mealTypeId) {
+                $query->whereIn('mealTypeId', [$mealTypeId]);
+            })
+                ->where('id', '!=', $this->scheduleMeal?->mealId)
+                ->where('id', '!=', $this->subscriptionDefaultMeal?->mealId)
+                ->where('typeId', $this?->mealType?->type?->id)
+                ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
+                ->paginate(4, pageName: 'replacements');
 
 
 
 
+            // 1.2: others
+        } else {
+
+
+
+            $meals = Meal::where('id', '!=', $this->scheduleMeal?->mealId)
+                ->where('id', '!=', $this->subscriptionDefaultMeal?->mealId)
+                ->where('typeId', $this?->mealType?->type?->id)
+                ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
+                ->paginate(4, pageName: 'replacements');
+
+
+
+
+        } // end if
 
 
 

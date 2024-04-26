@@ -64,7 +64,7 @@
                         {{-- submit --}}
                         <div class="col-6 offset-3 text-center">
                             <button wire:loading.attr='disabled'
-                                class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-0 w-100 fw-semibold justify-content-center "
+                                class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-0 w-100 fw-semibold justify-content-center disabled"
                                 type="submit">
                                 Continue
                             </button>

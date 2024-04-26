@@ -692,7 +692,7 @@ class CustomerController extends Controller
 
 
         // :: subscriptionSettings
-        $subscriptionSettings = CustomerSubscriptionSetting::first();
+        $subscriptionSettings = CustomerSubscriptionSetting::all()->first();
 
 
 

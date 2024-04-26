@@ -230,32 +230,37 @@ class CustomerMenu extends Component
 
 
 
-        // 1: create instance
-        $instance = new stdClass();
-
-        $instance->id = $pause->id;
-        $instance->customerSubscriptionId = $this->subscription->id;
+        // :: pauseFound
+        if ($pause) {
 
 
 
+            // 1: create instance
+            $instance = new stdClass();
 
-
-        // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/customers/subscription/un-pause', $instance);
+            $instance->id = $pause->id;
+            $instance->customerSubscriptionId = $this->subscription->id;
 
 
 
 
 
-        // 1.3: resetSkipStatus - alert
-        $this->skipStatus = 'Pending';
-
-        $this->makeAlert('info', $response?->message);
+            // 1.2: makeRequest
+            $response = $this->makeRequest('dashboard/customers/subscription/un-pause', $instance);
 
 
 
 
 
+            // 1.3: resetSkipStatus - alert
+            $this->skipStatus = 'Pending';
+
+            $this->makeAlert('info', $response?->message);
+
+
+
+
+        } // end if
 
 
 

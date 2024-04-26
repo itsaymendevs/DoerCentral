@@ -127,7 +127,9 @@
                                             {{-- amount (grams) --}}
                                             <td class="fw-bold text-start">
                                                 <span class="text-center d-block fs-15 fw-semibold text-gold">{{
-                                                    $mealSizePart?->amount }}</span>
+                                                    ($mealSizePart?->amount ?? 0) / $unit }}
+                                                    <small class='fs-10'>{{ $unit == 1 ? '(G)' : '(KG)'}}</small>
+                                                </span>
                                             </td>
 
 
@@ -236,7 +238,9 @@
                                             {{-- amount (grams) --}}
                                             <td class="fw-bold text-start">
                                                 <span class="text-center d-block fs-15 fw-semibold text-gold">{{
-                                                    $mealSizeIngredient?->amount }}</span>
+                                                    ($mealSizeIngredient?->amount ?? 0) / $unit }}
+                                                    <small class='fs-10'>{{ $unit == 1 ? '(G)' : '(KG)'}}</small>
+                                                </span>
                                             </td>
 
 

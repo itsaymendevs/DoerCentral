@@ -64,7 +64,7 @@ class KitchenTodayProduction extends Component
 
 
         // :: dispatchEvent
-        $this->dispatch('viewPart', $id);
+        $this->dispatch('viewPart', $id, $this->unit);
 
 
     } // end function

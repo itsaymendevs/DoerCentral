@@ -16,11 +16,9 @@
 
 
             {{-- labels --}}
-            @if (!$versionPermission->isProcessing)
             <a wire:navigate href="{{ route('dashboard.kitchenLabels') }}" class="btn
                 @if (Request::is('dashboard/kitchen/labels', 'dashboard/kitchen/labels/*')) active @endif"
                 role="button">Labels</a>
-            @endif
 
 
 
@@ -28,11 +26,9 @@
 
 
             {{-- containers --}}
-            @if (!$versionPermission->isProcessing)
             <a wire:navigate class="btn
                 @if (Request::is('dashboard/kitchen/containers')) active @endif" role="button"
                 href="{{ route('dashboard.kitchenContainers') }}">Containers</a>
-            @endif
 
 
 

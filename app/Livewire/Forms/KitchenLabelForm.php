@@ -8,23 +8,57 @@ use Livewire\Form;
 class KitchenLabelForm extends Form
 {
 
-   // :: variables
-   #[Validate('required')]
-   public $name, $charge, $width, $height, $backgroundColor, $fontColor, $labelBackgroundColor, $imageFile;
+    // :: variables
+    #[Validate('required')]
+    public $name, $charge, $width, $height;
 
 
 
-   public $id, $desc, $radius, $showQRCode, $showPrice, $showAllergy, $showMealRemarks, $showCustomerName, $showProductionDate, $showServingInstructions;
+    // :: extra
+    public $id, $desc, $footerImageFile, $imageFile;
+
+
+
+    // :: show / Hide
+    public $showCustomerName, $showMealName, $showMealMacros, $showProductionDate, $showExpiryDate, $showFooterImageFile;
 
 
 
 
-   // :: helper
-   public $imageFileName;
+    // :: colors - padding - radius
+    public $caloriesColor, $carbsColor, $fatsColor, $proteinsColor, $backgroundColor, $fontColor, $labelBackgroundColor, $borderColor;
+
+    public $paddingLeft, $paddingRight, $paddingTop, $paddingBottom;
+    public $radius;
 
 
 
-   // relations
-   public $containers = [];
+
+    // :: helper
+    public $imageFileName, $footerImageFileName;
+
+
+
+
+
+    // relations
+    public $containers = [];
+
+
+
+
+    // -----------------------------
+    // -----------------------------
+
+
+
+
+
+
+    // :: NOT ACTIVE
+
+    public $showQRCode, $showPrice, $showAllergy, $showMealRemarks, $showServingInstructions;
+
+
 
 } // end form

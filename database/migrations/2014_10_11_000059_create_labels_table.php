@@ -23,29 +23,65 @@ return new class extends Migration {
 
 
 
+            // :: padding
+            $table->double('paddingLeft', 15)->nullable()->default(0);
+            $table->double('paddingRight', 15)->nullable()->default(0);
+            $table->double('paddingTop', 15)->nullable()->default(0);
+            $table->double('paddingBottom', 15)->nullable()->default(0);
+
+
+
+
+            // :: desc
+            $table->text('desc')->nullable();
+
+
+
+
+
 
             // 1.2: colors
-            $table->string('backgroundColor', 100)->nullable();
             $table->string('fontColor', 100)->nullable();
+            $table->string('backgroundColor', 100)->nullable();
+            $table->string('borderColor', 100)->nullable();
             $table->string('labelBackgroundColor', 100)->nullable();
+            $table->string('caloriesColor', 100)->nullable();
+            $table->string('carbsColor', 100)->nullable();
+            $table->string('fatsColor', 100)->nullable();
+            $table->string('proteinsColor', 100)->nullable();
+
 
 
             // 1.3: showTags
             $table->boolean('showQRCode')->nullable()->default(0);
             $table->boolean('showPrice')->nullable()->default(0);
-            $table->boolean('showAllergy')->nullable()->default(0);
-            $table->boolean('showMealRemarks')->nullable()->default(0);
-            $table->boolean('showCustomerName')->nullable()->default(0);
+
             $table->boolean('showProductionDate')->nullable()->default(0);
+            $table->boolean('showExpiryDate')->nullable()->default(0);
+
+            $table->boolean('showAllergy')->nullable()->default(0);
+            $table->boolean('showFooterImageFile')->nullable()->default(0);
             $table->boolean('showServingInstructions')->nullable()->default(0);
 
 
+            $table->boolean('showCustomerName')->nullable()->default(0);
+            $table->boolean('showMealName')->nullable()->default(0);
+            $table->boolean('showMealMacros')->nullable()->default(0);
+            $table->boolean('showMealRemarks')->nullable()->default(0);
 
 
 
-            // 1.4: imageFile - desc
-            $table->text('desc')->nullable();
+
+
+
+
+
+
+
+            // 1.5: imageFile - footerImageFile
             $table->text('imageFile')->nullable();
+            $table->text('footerImageFile')->nullable();
+
 
 
 

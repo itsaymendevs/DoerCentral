@@ -108,7 +108,8 @@
 
 
                                         {{-- edit --}}
-                                        <button class="btn btn--scheme btn--scheme-outline-3 fs-12 px-2 mx-2 h-32 "
+                                        <button
+                                            class="btn btn--scheme btn--scheme-outline-3 fs-12 px-2 mx-2 h-32 disabled"
                                             type="button"><svg class="bi bi-pencil fs-5"
                                                 xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16">

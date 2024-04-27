@@ -114,7 +114,7 @@
 
                                         {{-- maange --}}
                                         <a wire:navigate
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05 disabled"
                                             href="{{ route('dashboard.kitchenLabelsEdit', [$label->id]) }}">Manage</a>
 
 

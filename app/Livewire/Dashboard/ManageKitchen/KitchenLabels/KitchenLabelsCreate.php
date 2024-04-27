@@ -31,10 +31,30 @@ class KitchenLabelsCreate extends Component
     {
 
 
-        // 1: defaultColorValues
+        // 1: defaultValues
+
+
+
+        // 1.2: colors
         $this->instance->backgroundColor = '#ffffff';
-        $this->instance->labelBackgroundColor = '#000000';
         $this->instance->fontColor = '#000000';
+        $this->instance->borderColor = '#ffffff';
+
+        $this->instance->caloriesColor = '#000000';
+        $this->instance->proteinsColor = '#000000';
+        $this->instance->carbsColor = '#000000';
+        $this->instance->fatsColor = '#000000';
+
+
+
+
+        // 1.3: showLabels
+        $this->instance->showCustomerName = true;
+        $this->instance->showMealName = true;
+        $this->instance->showMealMacros = true;
+        $this->instance->showProductionDate = true;
+        $this->instance->showExpiryDate = true;
+        $this->instance->showFooterImageFile = true;
 
 
 
@@ -71,6 +91,12 @@ class KitchenLabelsCreate extends Component
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'kitchen/labels');
+
+
+
+
+        if ($this->instance->footerImageFile)
+            $this->instance->footerImageFileName = $this->uploadFile($this->instance->footerImageFile, 'kitchen/labels/footers');
 
 
 

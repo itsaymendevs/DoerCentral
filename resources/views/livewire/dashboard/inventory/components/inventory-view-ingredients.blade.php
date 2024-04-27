@@ -240,7 +240,7 @@
         <div class="col-3 text-end">
             <h3 class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
                 data-bs-toggle="tooltip" data-bss-tooltip="" title="Number of Ingredients">
-                {{ $ingredients->count() }}
+                {{ $ingredients->total() }}
             </h3>
         </div>
 

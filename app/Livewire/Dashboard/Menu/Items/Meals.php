@@ -135,6 +135,11 @@ class Meals extends Component
 
 
 
+
+
+
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 

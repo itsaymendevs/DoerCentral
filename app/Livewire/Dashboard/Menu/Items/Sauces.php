@@ -134,6 +134,10 @@ class Sauces extends Component
 
 
 
+
+
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 

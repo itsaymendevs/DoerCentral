@@ -138,12 +138,20 @@ class SubRecipes extends Component
 
 
 
+
+        // :: overview
+        $totalSubRecipes = Meal::where('typeId', $type->id)->get();
+
+
+
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 
 
 
-        return view('livewire.dashboard.menu.items.sub-recipes', compact('subRecipes'));
+        return view('livewire.dashboard.menu.items.sub-recipes', compact('subRecipes', 'totalSubRecipes'));
 
     } // end function
 

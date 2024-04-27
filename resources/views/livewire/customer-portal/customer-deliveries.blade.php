@@ -61,7 +61,7 @@
                         <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                             class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 py-1 mb-0"
                             title="Number of Deliveries">
-                            {{ $deliveries->count() }}
+                            {{ $deliveries->total() }}
                         </h3>
                     </div>
 

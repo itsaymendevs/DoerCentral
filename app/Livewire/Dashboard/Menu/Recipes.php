@@ -135,6 +135,8 @@ class Recipes extends Component
 
 
 
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 

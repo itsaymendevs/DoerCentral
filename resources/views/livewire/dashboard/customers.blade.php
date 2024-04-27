@@ -119,7 +119,7 @@
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6>Total</h6>
-                    <p class="truncate-text-1l">{{ $customers->count() }}</p>
+                    <p class="truncate-text-1l">{{ $totalCustomers->count() }}</p>
                 </div>
             </div>
 
@@ -154,7 +154,7 @@
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6>Males</h6>
-                    <p class="truncate-text-1l">{{ $customers->where('gender', 'Male')->count() }}</p>
+                    <p class="truncate-text-1l">{{ $totalCustomers->where('gender', 'Male')->count() }}</p>
                 </div>
             </div>
 
@@ -168,7 +168,7 @@
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6>Females</h6>
-                    <p class="truncate-text-1l">{{ $customers->where('gender', 'Female')->count() }}</p>
+                    <p class="truncate-text-1l">{{ $totalCustomers->where('gender', 'Female')->count() }}</p>
                 </div>
             </div>
 

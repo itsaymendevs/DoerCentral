@@ -95,6 +95,8 @@ class KitchenTodayCheckout extends Component
 
 
 
+
+
         return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-checkout', compact('deliveries'));
 
 

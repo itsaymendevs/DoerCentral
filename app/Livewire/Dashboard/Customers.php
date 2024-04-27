@@ -145,7 +145,7 @@ class Customers extends Component
 
         // 1: dependencies
         $plans = Plan::all();
-
+        $totalCustomers = Customer::whereHas('subscriptions')->get();
 
 
 
@@ -217,7 +217,6 @@ class Customers extends Component
 
 
 
-        // Reem Flayhan
 
 
 
@@ -226,7 +225,7 @@ class Customers extends Component
 
 
 
-        return view('livewire.dashboard.customers', compact('plans', 'customers'));
+        return view('livewire.dashboard.customers', compact('plans', 'customers', 'totalCustomers'));
 
 
 

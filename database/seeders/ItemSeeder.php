@@ -167,21 +167,47 @@ class ItemSeeder extends Seeder
 
 
 
-
-            // --------------------------------------------------
-            // --------------------------------------------------
-            // --------------------------------------------------
-            // --------------------------------------------------
+        } // end loop - generalTypes
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------------
+        // --------------------------------------------------
+        // --------------------------------------------------
+        // --------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+        // :: loop - generalTypes II
+        foreach ($generalTypes as $generalType) {
 
 
 
 
 
             // :: dependencies
+            $type = Type::where('name', $generalType)->first();
             $meals = Meal::where('typeId', $type->id)->get();
 
 
@@ -351,7 +377,8 @@ class ItemSeeder extends Seeder
 
 
                         // 5.2.5: getMigrationPart
-                        $migrationPart = Meal::where('migrationId', $mealParts[$y]['partId'])?->first();
+                        $migrationPart = Meal::where('migrationId', $mealParts[$y]['partId'])
+                            ->where('typeId', $partType->id)?->first();
 
 
 
@@ -396,7 +423,7 @@ class ItemSeeder extends Seeder
 
 
 
-        } // end loop - generalTypes
+        } // end loop - generalTypes II
 
 
 

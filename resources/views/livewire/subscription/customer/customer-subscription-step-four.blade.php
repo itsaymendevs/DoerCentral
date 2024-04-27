@@ -29,52 +29,11 @@
 
                 {{-- form --}}
                 <form wire:submit='continue' class="row mt-4 align-items-center mb-5">
-                    <div class="col-12">
 
 
 
-                        {{-- subheading --}}
-                        <div class="d-flex align-items-center justify-content-between mb-2 hr--title">
-                            <hr class="w-100" />
-                            <label class="form-label form--label px-3 mb-0 w-75
-                            justify-content-center fs-13">Delivery Days</label>
-                        </div>
-
-
-
-
-
-
-                        {{-- deliveryDays --}}
-                        <div class="mb-4 flex submenu--group text-start" wire:ignore>
-
-
-                            {{-- loop - deliveryDays --}}
-                            @foreach ($weekDays as $key => $weekDay)
-
-
-                            <label class="form-check button--checkbox btn fs-14 p-0" for="formCheck-{{ $key }}">{{
-                                $weekDay }}</label>
-
-
-                            {{-- input --}}
-                            <input class="form-check-input d-none" type="checkbox" value='{{ $weekDay }}'
-                                wire:model='instance.deliveryDays.{{ $weekDay }}' id="formCheck-{{ $key }}" />
-
-                            @endforeach
-                            {{-- end loop --}}
-
-                        </div>
-                    </div>
-
-
-
-
-
-
-                    {{-- ------------------------------------- --}}
-                    {{-- ------------------------------------- --}}
-
+                    {{-- empty --}}
+                    <div class="col-12 mt-3"></div>
 
 
 
@@ -87,8 +46,9 @@
                     <div class="col-6 col-sm-4" wire:ignore>
                         <label class="form-label form--label">Location</label>
                         <div class="select--single-wrapper mb-4">
-                            <select class="form-select form--select parent-select" data-instance='instance.cityId'
-                                data-child='#district-select' data-second-child='#deliveryTime-select' required>
+                            <select class="form-select form--select parent-select" id='city-select'
+                                data-instance='instance.cityId' data-child='#district-select'
+                                data-second-child='#deliveryTime-select' required>
                                 <option value=""></option>
 
                                 @foreach ($cities as $city)
@@ -159,11 +119,81 @@
 
 
 
+
+
+
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+                    <div class="col-12">
+
+
+
+                        {{-- subheading --}}
+                        <div class="d-flex align-items-center justify-content-between mb-2 hr--title">
+                            <hr class="w-100" />
+                            <label class="form-label form--label px-3 mb-0 w-75
+                            justify-content-center fs-13">Delivery Days</label>
+                        </div>
+
+
+
+
+
+
+                        {{-- deliveryDays --}}
+                        <div class="mb-4 flex submenu--group text-start">
+
+
+                            {{-- loop - deliveryDays --}}
+                            @foreach ($weekDays as $key => $weekDay)
+
+
+                            <label class="form-check button--checkbox btn fs-14 p-0" for="formCheck-{{ $key }}"
+                                key='weekDays-{{ $key }}' wire:ignore.self>{{
+                                $weekDay }}</label>
+
+
+                            {{-- input --}}
+                            <input class="form-check-input d-none" type="checkbox" value='{{ $weekDay }}'
+                                wire:model='instance.deliveryDays.{{ $weekDay }}' id="formCheck-{{ $key }}"
+                                wire:ignore.self />
+
+                            @endforeach
+                            {{-- end loop --}}
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+
+
+
+
+
+
+
                     {{-- submitButton --}}
-                    <div class="col-12 col-sm-4 align-self-end text-center">
+                    <div class="col-12 col-sm-12 align-self-end text-center">
                         <button
                             class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-4 w-75 fw-semibold justify-content-center shrink--self"
-                            type="submit" style="border: 1px dashed var(--color-scheme-3)">
+                            type="submit" style="border: 1px dashed var(--color-scheme-3); max-width: 210px;">
                             Continue
                         </button>
                     </div>
@@ -408,6 +438,20 @@
 
 
          } // end if
+
+
+
+
+
+
+
+        //  1.3: checkHolidays
+        if ($(this).attr('id') == 'city-select') {
+
+        @this.checkHolidays();
+
+        } // end if
+
 
 
 

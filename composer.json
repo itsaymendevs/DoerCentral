@@ -19,6 +19,7 @@
         "pharaonic/livewire-select2": "^1.2",
         "pusher/pusher-php-server": "^7.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-backup": "^8.6",
         "stichoza/google-translate-php": "^5.1"
     },
     "require-dev": {

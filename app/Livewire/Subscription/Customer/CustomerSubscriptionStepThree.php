@@ -37,7 +37,6 @@ class CustomerSubscriptionStepThree extends Component
 
 
 
-
         // :: checkSession - existing
         if (session('customer')->{'isExistingCustomer'}) {
 
@@ -160,7 +159,6 @@ class CustomerSubscriptionStepThree extends Component
 
         // 1: makeSession
         Session::put('customer', $this->instance);
-
 
 
 

@@ -6,6 +6,7 @@ use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Models\Allergy;
 use App\Models\City;
 use App\Models\CityDistrict;
+use App\Models\CityHoliday;
 use App\Models\CustomerSubscriptionSetting;
 use App\Models\Plan;
 use App\Traits\HelperTrait;
@@ -29,7 +30,8 @@ class CustomerSubscriptionStepFour extends Component
     // :: variables
     public CustomerSubscriptionForm $instance;
     public $plan;
-    public $minimumDeliveryDays;
+    public $minimumDeliveryDays, $weekDays;
+
 
 
 
@@ -100,9 +102,9 @@ class CustomerSubscriptionStepFour extends Component
 
 
         // 2: deliveryDays - defaultValues
-        $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        $this->weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-        foreach ($weekDays as $weekDay)
+        foreach ($this->weekDays as $weekDay)
             $this->instance->deliveryDays[$weekDay] = false;
 
 
@@ -122,6 +124,49 @@ class CustomerSubscriptionStepFour extends Component
 
 
 
+
+
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+    public function checkHolidays()
+    {
+
+
+
+
+
+        // 1: getWeekDays - getHolidays
+        $this->weekDays = CityHoliday::where('cityId', $this->instance->cityId)->where('isActive', 0)
+                ?->get()?->pluck('weekday')?->toArray() ?? [];
+
+        $holidayWeekDays = CityHoliday::where('cityId', $this->instance->cityId)->where('isActive', 1)
+                ?->get()?->pluck('weekday')?->toArray() ?? [];
+
+
+
+
+        // :: resetDeliveryDays
+        foreach (['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as $weekDay)
+            $this->instance->deliveryDays[$weekDay] = false;
+
+
+
+
+
+        // 2: sync-checkbox
+        $this->dispatch('resetButtonCheckbox', className: '.button--checkbox');
+
+
+
+    } // end function
 
 
 
@@ -206,6 +251,10 @@ class CustomerSubscriptionStepFour extends Component
 
 
 
+
+
+
+
     // --------------------------------------------------------------
 
 
@@ -220,7 +269,6 @@ class CustomerSubscriptionStepFour extends Component
 
 
         // 1: dependencies
-        $weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         $cities = City::all();
 
 
@@ -235,7 +283,7 @@ class CustomerSubscriptionStepFour extends Component
 
 
 
-        return view('livewire.subscription.customer.customer-subscription-step-four', compact('weekDays', 'cities'));
+        return view('livewire.subscription.customer.customer-subscription-step-four', compact('cities'));
 
 
     } // end function

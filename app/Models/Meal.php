@@ -81,6 +81,34 @@ class Meal extends Model
 
 
 
+
+    public function container()
+    {
+
+        return $this->belongsTo(Container::class, 'containerId');
+
+    } // end function
+
+
+
+
+
+
+
+
+    public function label()
+    {
+
+        return $this->belongsTo(Label::class, 'labelId');
+
+    } // end function
+
+
+
+
+
+
+
     public function types()
     {
 

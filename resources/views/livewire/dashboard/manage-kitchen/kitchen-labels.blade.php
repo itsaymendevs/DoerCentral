@@ -106,6 +106,7 @@
 
 
 
+
                                 {{-- actions --}}
                                 <div class="col-12">
                                     <div class="d-flex align-items-center justify-content-center mb-1 mt-1">
@@ -114,7 +115,7 @@
 
                                         {{-- maange --}}
                                         <a wire:navigate
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05 disabled"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05 "
                                             href="{{ route('dashboard.kitchenLabelsEdit', [$label->id]) }}">Manage</a>
 
 

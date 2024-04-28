@@ -34,7 +34,8 @@
 
                 {{-- input --}}
                 {{-- min='{{ $globalCurrentDate }}' --}}
-                <input class="form--input" type="date" wire:model.live='searchScheduleDate' />
+                <input class="form--input" type="date" wire:model.live='searchScheduleDate'
+                    wire:loading.attr='disabled' />
             </div>
 
 

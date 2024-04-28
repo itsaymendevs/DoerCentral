@@ -341,14 +341,15 @@ class KitchenController extends Controller
 
 
 
-        // 1: create
+        // 1: get instance
         $label = Label::find($request->id);
+
 
 
 
         // 1.2: general
         $label->name = $request->name;
-        $label->charge = $request->charge;
+        $label->charge = $request->charge ?? 0;
 
         $label->width = $request->width;
         $label->height = $request->height;
@@ -360,28 +361,54 @@ class KitchenController extends Controller
 
 
         // 1.3: colors
-        $label->backgroundColor = $request->backgroundColor;
-        $label->fontColor = $request->fontColor;
-        $label->labelBackgroundColor = $request->labelBackgroundColor;
+        $label->fontColor = $request->fontColor ?? null;
+        $label->backgroundColor = $request->backgroundColor ?? null;
+        $label->borderColor = $request?->borderColor ?? null;
+        $label->labelBackgroundColor = $request?->labelBackgroundColor ?? null;
+
+        $label->caloriesColor = $request?->caloriesColor ?? null;
+        $label->proteinsColor = $request?->proteinsColor ?? null;
+        $label->carbsColor = $request?->carbsColor ?? null;
+        $label->fatsColor = $request?->fatsColor ?? null;
 
 
 
 
 
-        // 1.4: showOptions
-        $label->showQRCode = boolval($request->showQRCode) ?? false;
-        $label->showPrice = boolval($request->showPrice) ?? false;
-        $label->showAllergy = boolval($request->showAllergy) ?? false;
-        $label->showMealRemarks = boolval($request->showMealRemarks) ?? false;
-        $label->showCustomerName = boolval($request->showCustomerName) ?? false;
+
+        // 1.4: padding
+        $label->paddingLeft = $request?->paddingLeft ?? null;
+        $label->paddingRight = $request?->paddingRight ?? null;
+        $label->paddingTop = $request?->paddingTop ?? null;
+        $label->paddingBottom = $request?->paddingBottom ?? null;
+
+
+
+
+
+
+
+
+        // 1.5: showOptions
         $label->showProductionDate = boolval($request->showProductionDate) ?? false;
-        $label->showServingInstructions = boolval($request->showServingInstructions) ?? false;
+        $label->showExpiryDate = boolval($request->showExpiryDate) ?? false;
+        $label->showFooterImageFile = boolval($request->showFooterImageFile) ?? false;
+        $label->showCustomerName = boolval($request->showCustomerName) ?? false;
+        $label->showMealName = boolval($request->showMealName) ?? false;
+        $label->showMealMacros = boolval($request->showMealMacros) ?? false;
+
+
+
+
+
+
 
 
 
 
         // 1.5: imageFile
         $label->imageFile = $request->imageFileName ?? null;
+        $label->footerImageFile = $request->footerImageFileName ?? null;
 
 
         $label->save();
@@ -405,6 +432,7 @@ class KitchenController extends Controller
         LabelContainer::where('labelId', $label->id)->delete();
 
         foreach ($request->containers ?? [] as $container) {
+
 
 
             // 2.1: create

@@ -14,7 +14,7 @@
     height: 70mm;
     max-height: 100mm;
     background-color: var(--color-theme);
-    border: 1px solid var(--color-theme);
+    /* border: 1px solid var(--color-theme); */
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -22,14 +22,17 @@
 
 .sticker--label * {
     color: inherit;
-    transition: 0.2s all ease;
+    transition: 0.1s all ease;
 }
 
 /* header */
 .sticker--label-header {
-    width: 100%;
-    height: 35%;
-    border-bottom: 1px solid #e6e6e6;
+    width: 90%;
+    margin: auto;
+    max-height: 35%;
+    border-bottom: 1px solid #c2c3c5;
+    padding-top: 3mm;
+    padding-bottom: 2mm;
 }
 
 .sticker--label-header div {
@@ -37,24 +40,25 @@
 }
 
 .sticker--label-header div:first-of-type {
-    border-right: 1px solid #e6e6e6;
+    border-right: 1px solid #c2c3c5;
 }
 
 .sticker--label-header div * {
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .sticker--label-header .sticker--label-tags span:last-of-type {
     margin-right: 0px !important;
 }
 
+/* header - vertical */
 .sticker--label-header.flex-column {
     border-bottom: none;
-    height: 40%;
+    max-height: 40%;
 }
 
 .sticker--label-header.flex-column div {
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid #c2c3c5;
     margin-bottom: 5px;
     min-width: 60%;
 }
@@ -67,20 +71,21 @@
 
 /* content */
 .sticker--label-content {
-    width: 100%;
-    height: 40%;
+    width: 90%;
+    min-height: 40%;
+    margin: auto;
 }
 
 .sticker--label-content div.larger-section {
-    width: 70%;
+    width: 65%;
 }
 
 .sticker--label-content div.smaller-section {
-    width: 30%;
+    width: 35%;
 }
 
 .sticker--label-content div * {
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .sticker--label-macro {

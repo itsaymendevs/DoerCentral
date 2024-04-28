@@ -45,9 +45,8 @@
 
 
             {{-- label --}}
-            @if (!$versionPermission->isProcessing)
-            <a class="btn" role="button" href="#!">Today Labels</a>
-            @endif
+            <a wire:navigate class="btn @if (Request::is('dashboard/kitchen/today/labels')) active @endif" role="button"
+                href="{{ route('dashboard.kitchenTodayLabel') }}">Today Labels</a>
 
 
 

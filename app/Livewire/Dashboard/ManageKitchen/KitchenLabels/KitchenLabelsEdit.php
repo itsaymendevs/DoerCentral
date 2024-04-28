@@ -37,7 +37,9 @@ class KitchenLabelsEdit extends Component
         foreach ($label->toArray() as $key => $value)
             $this->instance->{$key} = $value;
 
-        $this->instance->imageFileName = $this->instance->imageFile;
+
+        $this->instance->imageFileName = $this->instance->imageFile ?? null;
+        $this->instance->footerImageFileName = $this->instance->footerImageFile ?? null;
 
 
 
@@ -48,7 +50,22 @@ class KitchenLabelsEdit extends Component
 
         // 1.2: setFilePreview
         $preview = asset('storage/kitchen/labels/' . $this->instance->imageFile);
-        $this->dispatch('setFilePreview', filePreview: 'label--preview-2', defaultPreview: $preview);
+        $this->dispatch('setFilePreview', filePreview: 'poster--preview-1', defaultPreview: $preview);
+
+
+
+
+        if ($this->instance->footerImageFile) {
+
+            $preview = asset('storage/kitchen/labels/footers/' . $this->instance->footerImageFile);
+            $this->dispatch('setFilePreview', filePreview: 'footer--preview-1', defaultPreview: $preview);
+            $this->dispatch('setFilePreview', filePreview: 'footer--preview-2', defaultPreview: $preview);
+
+        } // end if
+
+
+
+
 
 
 
@@ -86,11 +103,16 @@ class KitchenLabelsEdit extends Component
 
 
 
-
-
         // 1: uploadFile
         if ($this->instance->imageFile != $this->instance->imageFileName)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'kitchen/labels');
+
+
+
+        if ($this->instance->footerImageFile != $this->instance->footerImageFileName)
+            $this->instance->footerImageFileName = $this->uploadFile($this->instance->footerImageFile, 'kitchen/labels/footers');
+
+
 
 
 

@@ -75,14 +75,14 @@
 
                             {{-- sticker - label --}}
                             <div class="sticker--label mx-auto position-relative" style="width: {{ $instance->width ?? 100 }}mm;
-                            height: {{ $instance->height ?? 70 }}mm;
-                            border-radius: {{ $instance->radius ?? 0 }}px;
-                            padding-top: {{ $instance->paddingTop  ?? 0 }}mm;
-                            padding-bottom: {{ $instance->paddingBottom  ?? 0 }}mm;
-                            background-color: {{ $instance->backgroundColor ?? '#fff' }};
-                            border-color: {{ $instance->borderColor ?? '#fff' }};
-                            color: {{ $instance->fontColor ?? '#000' }};
-                            ">
+                                height: {{ $instance->height ?? 70 }}mm;
+                                border-radius: {{ $instance->radius ?? 0 }}px;
+                                padding-top: {{ $instance->paddingTop  ?? 0 }}mm;
+                                padding-bottom: {{ $instance->paddingBottom  ?? 0 }}mm;
+                                background-color: {{ $instance->backgroundColor ?? '#fff' }};
+                                border-color: {{ $instance->borderColor ?? '#fff' }};
+                                color: {{ $instance->fontColor ?? '#000' }};
+                                ">
 
 
 
@@ -98,29 +98,61 @@
                                 {{-- 1.5: top --}}
                                 <div class='sticker--label-header d-flex  justify-content-around align-items-center'
                                     style="padding-left: {{ $instance->paddingLeft  ?? 0 }}mm;
-                                padding-right: {{ $instance->paddingRight  ?? 0 }}mm;">
+                                        padding-right: {{ $instance->paddingRight  ?? 0 }}mm;
+                                        border-color: {{ $instance->borderColor  ?? '#c2c3c5' }}">
 
 
 
 
                                     {{-- leftSection --}}
-                                    <div class='text-center'>
-                                        <h4 class='fw-semibold sticker--label-customer mb-2'>Customer's Name</h4>
-                                        <h4 class='fw-normal sticker--label-meal mb-2'>Meal's Name</h4>
+                                    <div style="border-color: {{ $instance->borderColor  ?? '#c2c3c5' }}">
+
+
+                                        {{-- customerName --}}
+
+                                        @if ($instance->showCustomerName)
+
+                                        <h4 class='fw-semibold sticker--label-customer mb-1'>Richard Branson
+                                        </h4>
+
+                                        @endif
+                                        {{-- end if - showHide --}}
+
+
+
+
+
+
+                                        {{-- mealName --}}
+
+                                        @if ($instance->showMealName)
+
+                                        <h4 class='fw-normal sticker--label-meal mb-2'>Grilled chicken with mashed
+                                            potato</h4>
+
+                                        @endif
+                                        {{-- end if - showHide --}}
+
+
+
                                     </div>
+                                    {{-- endLeftSection --}}
+
+
+
 
 
 
 
                                     {{-- rightSection / bottomSection --}}
-                                    <div class='text-center'>
-                                        <h4 class='fw-semibold sticker--label-general-tag mb-2'>Your Nutritious
+                                    <div class='text-start ps-3'>
+                                        <h4 class='fw-normal sticker--label-general-tag mb-1 fs-10'>Your Nutritious
                                             Breakfast
                                         </h4>
-                                        <h4 class='fw-normal sticker--label-tags mb-2'>
-                                            <span class='fw-normal me-1'>Remove Lid,</span><span
-                                                class='fw-normal me-1'>heat,</span><span
-                                                class='fw-normal me-1'>enjoy</span>
+                                        <h4 class='fw-normal sticker--label-tags mb-2 fs-10'>
+                                            <span class='fw-normal me-1 fs-10'>Remove Lid,</span><span
+                                                class='fw-normal me-1 fs-10'>heat,</span><span
+                                                class='fw-normal me-1 fs-10'>enjoy</span>
                                         </h4>
                                     </div>
 
@@ -148,30 +180,58 @@
                                 {{-- 2: middle --}}
                                 <div class='sticker--label-content d-flex justify-content-around align-items-center'
                                     style="padding-left: {{ $instance->paddingLeft  ?? 0 }}mm;
-                                    padding-right: {{ $instance->paddingRight  ?? 0 }}mm;">
+                                        padding-right: {{ $instance->paddingRight  ?? 0 }}mm;">
 
 
 
 
                                     {{-- leftSection --}}
-                                    <div class='text-start smaller-section' style="margin-left: 5%">
+                                    <div
+                                        class='text-start smaller-section @if(!$instance->showProductionDate && !$instance->showExpiryDate) d-none @endif'>
 
 
                                         {{-- 1: production --}}
-                                        <h4 class='fw-semibold sticker--label-production mb-1'>Prod. Date</h4>
-                                        <h4 class='fw-normal sticker--label-production mb-3'>{{ date('d / m / Y',
+
+                                        @if($instance->showProductionDate)
+
+                                        <h4 class='fw-normal sticker--label-production mb-1'>Prod. Date</h4>
+                                        <h4 class='fw-semibold sticker--label-production mb-3'>{{ date('d . m . Y',
                                             strtotime($globalCurrentDate)) }}
                                         </h4>
+
+                                        @endif
+                                        {{-- end if - showHide --}}
+
+
+
 
 
 
                                         {{-- 2: expiry --}}
-                                        <h4 class='fw-semibold sticker--label-expiry mb-1'>Expiry Date</h4>
-                                        <h4 class='fw-normal sticker--label-expiry mb-0'>{{ date('d / m / Y',
+
+                                        @if($instance->showExpiryDate)
+
+
+                                        <h4 class='fw-normal sticker--label-expiry mb-1'>Expiry Date</h4>
+                                        <h4 class='fw-semibold sticker--label-expiry mb-0'>{{ date('d . m . Y',
                                             strtotime($globalNextDate)) }}</h4>
 
 
+
+                                        @endif
+                                        {{-- end if - showHide --}}
+
+
+
                                     </div>
+                                    {{-- endLeftSection --}}
+
+
+
+
+
+
+
 
 
 
@@ -181,6 +241,14 @@
                                     {{-- rightSection --}}
                                     <div
                                         class='text-center larger-section d-flex justify-content-evenly h-100 align-items-center'>
+
+
+
+
+
+                                        {{-- :: mealMacros --}}
+
+                                        @if ($instance->showMealMacros)
 
 
 
@@ -226,6 +294,13 @@
                                         </h4>
 
 
+
+
+                                        @endif
+                                        {{-- end if - showHide --}}
+
+
+
                                     </div>
                                     {{-- endSection --}}
 
@@ -255,14 +330,22 @@
 
 
                                 {{-- 3: bottom --}}
+
+                                @if ($instance->showFooterImageFile)
+
+
                                 <div class='sticker--label-footer d-flex flex-column'>
-                                    <img id='footer--preview-2' class='of-contain w-100 h-100'
-                                        src=" {{ asset('assets/img/placeholder.png') }}" wire:ignore.self>
+
+                                    <img id='footer--preview-2' class='of-cover w-100 h-100'
+                                        src=" {{ asset('assets/img/Labels/placeholder.png') }}" wire:ignore.self>
+
                                 </div>
+                                {{-- endBottom --}}
 
 
 
-
+                                @endif
+                                {{-- end if - showHide --}}
 
 
 
@@ -698,7 +781,7 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-1"
-                                        wire:model='instance.showCustomerName' />
+                                        wire:model.live='instance.showCustomerName' />
                                     <label class="form-check-label fs-14" for="formCheck-1">Customer
                                         Name</label>
                                 </div>
@@ -715,7 +798,7 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-2"
-                                        wire:model='instance.showMealName' />
+                                        wire:model.live='instance.showMealName' />
                                     <label class="form-check-label fs-14" for="formCheck-2">Meal Name</label>
                                 </div>
                             </div>
@@ -730,7 +813,7 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-3"
-                                        wire:model='instance.showProductionDate' />
+                                        wire:model.live='instance.showProductionDate' />
                                     <label class="form-check-label fs-14" for="formCheck-3">Production
                                         Date</label>
                                 </div>
@@ -743,7 +826,7 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-4"
-                                        wire:model='instance.showExpiryDate' />
+                                        wire:model.live='instance.showExpiryDate' />
                                     <label class="form-check-label fs-14" for="formCheck-4">Expiry
                                         Date</label>
                                 </div>
@@ -758,7 +841,7 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-5"
-                                        wire:model='instance.showMealMacros' />
+                                        wire:model.live='instance.showMealMacros' />
                                     <label class="form-check-label fs-14" for="formCheck-5">Meal Macros</label>
                                 </div>
                             </div>
@@ -770,7 +853,7 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-6"
-                                        wire:model='instance.showFooterImageFile' />
+                                        wire:model.live='instance.showFooterImageFile' />
                                     <label class="form-check-label fs-14" for="formCheck-6">Footer Picture</label>
                                 </div>
                             </div>

@@ -38,7 +38,7 @@ class KitchenLabelsCreate extends Component
         // 1.2: colors
         $this->instance->backgroundColor = '#ffffff';
         $this->instance->fontColor = '#000000';
-        $this->instance->borderColor = '#ffffff';
+        $this->instance->borderColor = '#c2c3c5';
 
         $this->instance->caloriesColor = '#000000';
         $this->instance->proteinsColor = '#000000';

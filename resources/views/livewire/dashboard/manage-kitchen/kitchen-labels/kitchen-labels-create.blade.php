@@ -149,10 +149,12 @@
                                         <h4 class='fw-normal sticker--label-general-tag mb-1 fs-10'>Your Nutritious
                                             Breakfast
                                         </h4>
+
+
+                                        {{-- servingInstructions --}}
                                         <h4 class='fw-normal sticker--label-tags mb-2 fs-10'>
-                                            <span class='fw-normal me-1 fs-10'>Remove Lid,</span><span
-                                                class='fw-normal me-1 fs-10'>heat,</span><span
-                                                class='fw-normal me-1 fs-10'>enjoy</span>
+                                            <span class='fw-normal me-1 fs-10'>{{ implode(', ',
+                                                $servingInstructions) }}</span>
                                         </h4>
                                     </div>
 

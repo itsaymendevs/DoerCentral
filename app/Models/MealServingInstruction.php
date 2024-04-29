@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MealInstructionTag extends Model
+class MealServingInstruction extends Model
 {
     use HasFactory;
 
@@ -24,10 +24,10 @@ class MealInstructionTag extends Model
 
 
 
-    public function tag()
+    public function instruction()
     {
 
-        return $this->belongsTo(InstructionTag::class, 'instructionTagId');
+        return $this->belongsTo(ServingInstruction::class, 'servingInstructionId');
 
     } // end function
 

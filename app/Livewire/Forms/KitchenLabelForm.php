@@ -20,7 +20,7 @@ class KitchenLabelForm extends Form
 
 
     // :: show / Hide
-    public $showCustomerName, $showMealName, $showMealMacros, $showProductionDate, $showExpiryDate, $showFooterImageFile;
+    public $showCustomerName, $showMealName, $showMealMacros, $showProductionDate, $showExpiryDate, $showFooterImageFile, $showInstructions;
 
 
 

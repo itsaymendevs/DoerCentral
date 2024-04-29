@@ -32,10 +32,10 @@ class Meal extends Model
 
 
 
-    public function instructionTags()
+    public function servingInstructions()
     {
 
-        return $this->hasMany(MealInstructionTag::class, 'mealId');
+        return $this->hasMany(MealServingInstruction::class, 'mealId');
 
     } // end function
 

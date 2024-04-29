@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\ManageKitchen\KitchenLabels;
 
 use App\Livewire\Forms\KitchenLabelForm;
 use App\Models\Container;
+use App\Models\ServingInstruction;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -139,6 +140,7 @@ class KitchenLabelsCreate extends Component
 
         // 1: dependencies
         $containers = Container::all();
+        $servingInstructions = ServingInstruction::all()?->pluck('name')?->toArray() ?? [];
 
 
 
@@ -146,7 +148,7 @@ class KitchenLabelsCreate extends Component
         $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.manage-kitchen.kitchen-labels.kitchen-labels-create', compact('containers'));
+        return view('livewire.dashboard.manage-kitchen.kitchen-labels.kitchen-labels-create', compact('containers', 'servingInstructions'));
 
 
     } // end function

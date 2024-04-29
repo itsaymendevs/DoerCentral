@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('meal_instruction_tags', function (Blueprint $table) {
+        Schema::create('meal_serving_instructions', function (Blueprint $table) {
             $table->id();
 
 
@@ -18,8 +18,8 @@ return new class extends Migration {
             // 1: general
             $table->boolean('isActive')->nullable()->default(0);
 
-            $table->bigInteger('instructionTagId')->unsigned()->nullable();
-            $table->foreign('instructionTagId')->references('id')->on('instruction_tags')->onDelete('cascade');
+            $table->bigInteger('servingInstructionId')->unsigned()->nullable();
+            $table->foreign('servingInstructionId')->references('id')->on('serving_instructions')->onDelete('cascade');
 
 
 

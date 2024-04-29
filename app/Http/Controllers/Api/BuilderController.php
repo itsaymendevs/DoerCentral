@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\InstructionTag;
 use App\Models\Meal;
 use App\Models\MealAvailableType;
 use App\Models\MealDrink;
@@ -14,11 +13,13 @@ use App\Models\MealPacking;
 use App\Models\MealPart;
 use App\Models\MealSauce;
 use App\Models\MealServing;
+use App\Models\MealServingInstruction;
 use App\Models\MealSide;
 use App\Models\MealSize;
 use App\Models\MealSnack;
 use App\Models\MealSubRecipe;
 use App\Models\MealTag;
+use App\Models\ServingInstruction;
 use Illuminate\Http\Request;
 
 class BuilderController extends Controller
@@ -117,19 +118,19 @@ class BuilderController extends Controller
 
 
         // 4: instructionTags
-        $instructionTags = InstructionTag::all();
+        $servingInstructions = ServingInstruction::all();
 
 
-        foreach ($instructionTags ?? [] as $instructionTag) {
+        foreach ($servingInstructions ?? [] as $servingInstruction) {
 
 
             // 2.1: general
-            $mealInstructionTag = new MealInstructionTag();
+            $mealServingInstruction = new MealServingInstruction();
 
-            $mealInstructionTag->mealId = $meal->id;
-            $mealInstructionTag->instructionTagId = $instructionTag->id;
+            $mealServingInstruction->mealId = $meal->id;
+            $mealServingInstruction->servingInstructionId = $servingInstruction->id;
 
-            $mealInstructionTag->save();
+            $mealServingInstruction->save();
 
         } // end loop
 
@@ -1073,7 +1074,7 @@ class BuilderController extends Controller
 
 
 
-    public function toggleBuilderInstructionTag(Request $request)
+    public function toggleBuilderServingInstruction(Request $request)
     {
 
 
@@ -1086,11 +1087,11 @@ class BuilderController extends Controller
 
 
         // 1: get instance
-        $instructionTag = MealInstructionTag::find($request->id);
+        $servingInstruction = MealServingInstruction::find($request->id);
 
-        $instructionTag->isActive = ! boolval($instructionTag->isActive);
+        $servingInstruction->isActive = ! boolval($servingInstruction->isActive);
 
-        $instructionTag->save();
+        $servingInstruction->save();
 
 
 

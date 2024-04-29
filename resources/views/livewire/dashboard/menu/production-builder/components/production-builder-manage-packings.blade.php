@@ -21,25 +21,27 @@
 
 
 
-                {{-- loop - instructionTags --}}
-                @foreach ($instructionTags ?? [] as $instructionTag)
+                {{-- loop - servingInstructions --}}
+                @foreach ($servingInstructions ?? [] as $servingInstruction)
 
 
 
                 {{-- Tag --}}
                 <div class="form-check form-switch mb-2 mealType--checkbox justify-content-start"
-                    key='instruction-tag-{{ $instructionTag->id }}'>
+                    key='serving-instruction-{{ $servingInstruction->id }}'>
 
 
                     {{-- input --}}
                     <input class="form-check-input pointer" type="checkbox"
-                        wire:change='toggleTag({{ $instructionTag->id }})' wire:loading.attr='disabled'
-                        id="instruction-tag-{{ $instructionTag->id }}" @if ($instructionTag->isActive) checked @endif />
+                        wire:change='toggleTag({{ $servingInstruction->id }})' wire:loading.attr='disabled'
+                        id="serving-instruction-{{ $servingInstruction->id }}" @if ($servingInstruction->isActive)
+                    checked
+                    @endif />
 
 
                     {{-- label --}}
-                    <label class="form-check-label fs-14" for="instruction-tag-{{ $instructionTag->id }}">
-                        {{ $instructionTag->tag->name }}</label>
+                    <label class="form-check-label fs-14" for="serving-instruction-{{ $servingInstruction->id }}">
+                        {{ $servingInstruction->instruction->name }}</label>
 
 
 

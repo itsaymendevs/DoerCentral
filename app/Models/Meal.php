@@ -32,6 +32,17 @@ class Meal extends Model
 
 
 
+    public function instructionTags()
+    {
+
+        return $this->hasMany(MealInstructionTag::class, 'mealId');
+
+    } // end function
+
+
+
+
+
 
     public function sizes()
     {

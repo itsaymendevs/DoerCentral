@@ -11,16 +11,16 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-                // CitySeeder::class,
-                // CityDistrictSeeder::class,
-                // ShiftTypeSeeder::class,
-                // HolidaySeeder::class,
-                // MealTypeSeeder::class,
-                // ContainerSeeder::class,
-                // UnitSeeder::class,
-                // CuisineSeeder::class,
-                // RoleSeeder::class,
-            UserSeeder::class,
+            // CitySeeder::class,
+            // CityDistrictSeeder::class,
+            // ShiftTypeSeeder::class,
+            // HolidaySeeder::class,
+            // MealTypeSeeder::class,
+            // ContainerSeeder::class,
+            // UnitSeeder::class,
+            // CuisineSeeder::class,
+            // RoleSeeder::class,
+            // UserSeeder::class,
             // IngredientCategorySeeder::class,
             // IngredientGroupSeeder::class,
             // ExcludeSeeder::class,
@@ -33,8 +33,10 @@ class DatabaseSeeder extends Seeder
             // TagSeeder::class,
             // VersionPermissionSeeder::class,
             // SizeSeeder::class,
+            // InstructionTagSeeder::class,
             // ItemSeeder::class,
             // RecipeSeeder::class,
+            // MealInstructionTagSeeder::class,
 
         ]);
 

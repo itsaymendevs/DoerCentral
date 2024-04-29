@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\InstructionTag;
 use App\Models\Meal;
 use App\Models\MealAvailableType;
 use App\Models\MealDrink;
 use App\Models\MealIngredient;
 use App\Models\MealInstruction;
+use App\Models\MealInstructionTag;
 use App\Models\MealPacking;
 use App\Models\MealPart;
 use App\Models\MealSauce;
@@ -104,6 +106,32 @@ class BuilderController extends Controller
         $serving->save();
 
 
+
+
+
+
+
+
+
+
+
+
+        // 4: instructionTags
+        $instructionTags = InstructionTag::all();
+
+
+        foreach ($instructionTags ?? [] as $instructionTag) {
+
+
+            // 2.1: general
+            $mealInstructionTag = new MealInstructionTag();
+
+            $mealInstructionTag->mealId = $meal->id;
+            $mealInstructionTag->instructionTagId = $instructionTag->id;
+
+            $mealInstructionTag->save();
+
+        } // end loop
 
 
 
@@ -1021,6 +1049,67 @@ class BuilderController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function toggleBuilderInstructionTag(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: get instance
+        $instructionTag = MealInstructionTag::find($request->id);
+
+        $instructionTag->isActive = ! boolval($instructionTag->isActive);
+
+        $instructionTag->save();
+
+
+
+
+        return response()->json(['message' => 'Status has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
 
 
 

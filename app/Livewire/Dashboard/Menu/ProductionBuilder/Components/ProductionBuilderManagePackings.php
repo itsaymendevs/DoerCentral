@@ -2,14 +2,17 @@
 
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
+use App\Livewire\Forms\MealInstructionTagForm;
 use App\Livewire\Forms\MealPackingForm;
 use App\Livewire\Forms\MealServingForm;
 use App\Models\Meal;
+use App\Models\MealInstructionTag;
 use App\Models\MealPacking;
 use App\Models\MealServing;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class ProductionBuilderManagePackings extends Component
 {
@@ -20,6 +23,9 @@ class ProductionBuilderManagePackings extends Component
     // :: variables
     public MealPackingForm $instance;
     public MealServingForm $instanceServing;
+    public $instructionTags;
+
+
 
 
 
@@ -42,6 +48,21 @@ class ProductionBuilderManagePackings extends Component
         // 1.2: assignMeal
         $this->instance->mealId = $id;
 
+
+
+
+
+
+        // -----------------------------
+        // -----------------------------
+
+
+
+
+
+
+        // 1.3: instructionTags
+        $this->instructionTags = MealInstructionTag::where('mealId', $id)->get();
 
 
 
@@ -92,6 +113,45 @@ class ProductionBuilderManagePackings extends Component
 
 
 
+
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+    public function toggleTag($id)
+    {
+
+
+
+        // :: create instance
+        $instance = new stdClass();
+        $instance->id = $id;
+
+
+
+
+
+
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/menu/builder/instruction-tags/toggle', $instance);
+
+
+
+
+
+
+    } // end function
 
 
 

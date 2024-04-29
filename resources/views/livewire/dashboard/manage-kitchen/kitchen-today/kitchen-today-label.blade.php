@@ -171,7 +171,7 @@
 
 
                 {{-- topBar --}}
-                <div class="d-flex justify-content-around align-items-center mb-3">
+                <div class="d-flex justify-content-evenly align-items-center mb-2">
 
 
 
@@ -184,7 +184,8 @@
                     {{-- 2: PrintLabel --}}
                     <button
                         class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold"
-                        type="button">
+                        type="button" data-bs-toggle='modal' data-bs-target='#label-print'
+                        wire:click='labelPrint({{ $scheduleMealsByMeal }})'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
                             <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
@@ -595,6 +596,29 @@
 
 
 
+
+
+
+
+
+
+    @section('modals')
+
+
+    {{-- 1: printLabel --}}
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-label.components.kitchen-today-label-print />
+
+
+
+    @endsection
+
+
+
+
+
+
+    {{-- ------------------------------------------ --}}
+    {{-- ------------------------------------------ --}}
 
 
 

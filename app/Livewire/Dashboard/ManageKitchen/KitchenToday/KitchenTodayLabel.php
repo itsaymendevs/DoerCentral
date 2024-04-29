@@ -47,7 +47,22 @@ class KitchenTodayLabel extends Component
 
 
 
+    // -----------------------------------------------------------
 
+
+
+
+
+    public function labelPrint($scheduleMealsByMeal)
+    {
+
+
+
+        // :: dispatchEvent
+        $this->dispatch('labelPrint', $scheduleMealsByMeal);
+
+
+    } // end function
 
 
 

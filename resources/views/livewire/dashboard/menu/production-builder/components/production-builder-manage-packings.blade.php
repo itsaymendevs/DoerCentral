@@ -20,26 +20,40 @@
             <div class="w-100 mx-auto ms-2">
 
 
-                {{-- 1: heat --}}
-                <div class="form-check form-switch mb-2 mealType--checkbox justify-content-start">
-                    <input class="form-check-input pointer" disabled type="checkbox" id="serving-tag-1" />
-                    <label class="form-check-label fs-14" for="serving-tag-1">Heat</label>
+
+                {{-- loop - instructionTags --}}
+                @foreach ($instructionTags ?? [] as $instructionTag)
+
+
+
+                {{-- Tag --}}
+                <div class="form-check form-switch mb-2 mealType--checkbox justify-content-start"
+                    key='instruction-tag-{{ $instructionTag->id }}'>
+
+
+                    {{-- input --}}
+                    <input class="form-check-input pointer" type="checkbox"
+                        wire:change='toggleTag({{ $instructionTag->id }})' wire:loading.attr='disabled'
+                        id="instruction-tag-{{ $instructionTag->id }}" @if ($instructionTag->isActive) checked @endif />
+
+
+                    {{-- label --}}
+                    <label class="form-check-label fs-14" for="instruction-tag-{{ $instructionTag->id }}">
+                        {{ $instructionTag->tag->name }}</label>
+
+
+
                 </div>
-
-
-                {{-- 2: enjoy --}}
-                <div class="form-check form-switch mb-2 mealType--checkbox justify-content-start">
-                    <input class="form-check-input pointer" disabled type="checkbox" id="serving-tag-2" />
-                    <label class="form-check-label fs-14" for="serving-tag-2">Enjoy</label>
-                </div>
+                {{-- endTag --}}
 
 
 
-                {{-- 3: removeLid --}}
-                <div class="form-check form-switch mealType--checkbox justify-content-start">
-                    <input class="form-check-input pointer" disabled type="checkbox" id="serving-tag-3" />
-                    <label class="form-check-label fs-14" for="serving-tag-3">Remove Lid</label>
-                </div>
+                @endforeach
+                {{-- end loop --}}
+
+
+
+
             </div>
         </div>
 

@@ -172,8 +172,7 @@
                                         {{-- 2: print --}}
                                         <button
                                             class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-4 fs-13 justify-content-center fw-semibold mb-2 print--btn"
-                                            data-print='#invoice--{{ $invoice->id }}' type="button"
-                                            data-bs-target="#extend-subscription" data-bs-toggle="modal">
+                                            data-print='#invoice--{{ $invoice->id }}' type="button">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
                                                 <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>

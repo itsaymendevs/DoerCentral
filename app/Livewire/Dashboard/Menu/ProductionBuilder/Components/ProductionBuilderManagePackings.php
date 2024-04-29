@@ -64,7 +64,6 @@ class ProductionBuilderManagePackings extends Component
         $this->servingInstructions = MealServingInstruction::where('mealId', $id)->get();
 
 
-
     } // end function
 
 

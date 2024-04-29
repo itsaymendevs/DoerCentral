@@ -117,7 +117,7 @@ class BuilderController extends Controller
 
 
 
-        // 4: instructionTags
+        // 4: servingInstructions
         $servingInstructions = ServingInstruction::all();
 
 

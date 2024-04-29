@@ -53,7 +53,7 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
         // :: checkSession - existing
-        if (session('customer')->{'isExistingCustomer'}) {
+        if (session('customer')?->{'isExistingCustomer'}) {
 
 
             // :: checkSession
@@ -69,10 +69,11 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
             // :: redirectBack
-            $this->redirect(route('subscription.customerStepOne'), navigate: true);
+            return $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
         } // end if
+
 
 
 

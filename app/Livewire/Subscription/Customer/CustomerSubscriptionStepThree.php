@@ -38,11 +38,11 @@ class CustomerSubscriptionStepThree extends Component
 
 
         // :: checkSession - existing
-        if (session('customer')->{'isExistingCustomer'}) {
+        if (session('customer')?->{'isExistingCustomer'}) {
 
 
             // :: redirectBack
-            $this->redirect(route('subscription.customerStepOne'), navigate: true);
+            return $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
 

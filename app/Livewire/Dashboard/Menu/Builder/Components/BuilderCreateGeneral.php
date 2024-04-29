@@ -63,7 +63,7 @@ class BuilderCreateGeneral extends Component
 
 
         // :: alert - redirect to productionBuilder
-        $this->redirect(route('dashboard.menuProductionBuilder', $response->id), navigate: true);
+        return $this->redirect(route('dashboard.menuProductionBuilder', $response->id), navigate: true);
 
 
 

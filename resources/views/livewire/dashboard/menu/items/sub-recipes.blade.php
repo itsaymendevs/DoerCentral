@@ -270,7 +270,17 @@
 
 
 
+
+
+
+
                                         {{-- 2: ingredients tooltip --}}
+
+                                        {{-- :: permission - hasMealView --}}
+                                        @if ($versionPermission->menuModuleHasMealFullView)
+
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-html='true'
@@ -286,6 +296,12 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
 
 
 

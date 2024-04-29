@@ -233,22 +233,19 @@ class SingleCalendarEdit extends Component
         $isFound = false;
 
 
-        foreach ($this->instance->scheduleMeals ?? [] as $key => $scheduleMeal) {
+        foreach (collect($this->instance->scheduleMeals ?? [])?->where('mealTypeId', $mealTypeId)?->where('mealId', $mealId) ?? [] as $key => $scheduleMeal) {
 
 
             // 1: isFound - remove
-            if ($scheduleMeal->mealId == $mealId && $scheduleMeal->mealTypeId == $mealTypeId) {
+            $isFound = true;
+            unset($this->instance->scheduleMeals[$key]);
 
-                $isFound = true;
-                unset($this->instance->scheduleMeals[$key]);
+            // 1.2: unCheckDefault
+            $this->dispatch('unCheckDefault', card: "#item-{$scheduleMeal->mealTypeId}-{$scheduleMeal->mealId}");
 
-                // 1.2: unCheckDefault
-                $this->dispatch('unCheckDefault', card: "#item-{$scheduleMeal->mealTypeId}-{$scheduleMeal->mealId}");
-
-                break;
+            break;
 
 
-            } // end if
 
         } // end loop
 
@@ -335,16 +332,13 @@ class SingleCalendarEdit extends Component
 
 
         // 1: get instance
-        foreach ($this->instance->scheduleMeals as $key => $scheduleMeal) {
+        foreach (collect($this->instance->scheduleMeals ?? [])->where('mealTypeId', $mealTypeId) ?? [] as $key => $scheduleMeal) {
 
 
 
             // 1.2: removeDefaultFromAll
-            if ($scheduleMeal->mealTypeId == $mealTypeId) {
+            $this->instance->scheduleMeals[$key]->{$isDefaultGroup} = false;
 
-                $this->instance->scheduleMeals[$key]->{$isDefaultGroup} = false;
-
-            } //end if
 
 
 

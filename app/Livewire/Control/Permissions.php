@@ -61,6 +61,7 @@ class Permissions extends Component
 
 
             // 1.2: customer
+            'customerModuleHasSettings' => 'General Settings',
             'customerModuleHasVector' => 'Vector Picture',
             'customerModuleHasVIP' => 'VIP Checkbox',
             'customerModuleHasEnabled' => 'Enable Checkbox',
@@ -91,6 +92,9 @@ class Permissions extends Component
             'kitchenModuleHasConfirmCooking' => 'Confirm Cooking',
             'kitchenModuleHasConfirmPacking' => 'Confirm Packing',
             'kitchenModuleHasCheckoutTab' => 'Checkout Tab',
+            'kitchenModuleHasLabelsTab' => 'Labels Tab',
+            'kitchenModuleHasContainersTab' => 'Containers Tab',
+
 
 
 
@@ -114,8 +118,16 @@ class Permissions extends Component
             'menuModuleHasDynamicBundles' => 'Dynamic Bundle',
             'menuModuleHasMealFullView' => 'Full Meal Preview',
             'menuModuleHasBuilderExtraPictures' => 'Builder Extra Pictures',
-            'menuModuleHasBuilderMacros' => 'Builder Macros & Replacement',
+
+            'menuModuleHasBuilderSizeOverview' => 'Builder Size Overview',
+            'menuModuleHasBuilderExtraItems' => 'Builder Extra Items',
+
+
+
+            'menuModuleHasBuilderMacros' => 'Builder Macros',
+            'menuModuleHasBuilderReplacements' => 'Builder Replacements',
             'menuModuleHasBuilderPercentage' => 'Builder Percentage',
+            'menuModuleHasBuilderCutlery' => 'Builder Cutlery',
             'menuModuleHasBuilderPackings' => 'Builder Packings',
             'menuModuleHasBuilderLabelPreview' => 'Builder Label Preview',
             'menuModuleHasBuilderContainerPreview' => 'Builder Container Preview',
@@ -154,7 +166,7 @@ class Permissions extends Component
 
 
         // 2.2: customer
-        $customerPermissions = VersionPermission::get(['customerModuleHasVector', 'customerModuleHasVIP', 'customerModuleHasEnabled', 'customerModuleHasWallet', 'customerModuleHasManager', 'customerModuleHasDriver', 'customerModuleHasEditBundle', 'customerModuleHasBundlesView', 'customerModuleHasDynamicBundles', 'customerModuleHasInvoicesView', 'customerModuleEditCalendar', 'customerModuleHasSkip', 'customerModuleHasMultipleAddress'])->first()->toArray();
+        $customerPermissions = VersionPermission::get(['customerModuleHasSettings', 'customerModuleHasVector', 'customerModuleHasVIP', 'customerModuleHasEnabled', 'customerModuleHasWallet', 'customerModuleHasManager', 'customerModuleHasDriver', 'customerModuleHasEditBundle', 'customerModuleHasBundlesView', 'customerModuleHasDynamicBundles', 'customerModuleHasInvoicesView', 'customerModuleEditCalendar', 'customerModuleHasSkip', 'customerModuleHasMultipleAddress'])->first()->toArray();
 
 
 
@@ -167,7 +179,7 @@ class Permissions extends Component
 
 
         // 2.4: kitchen
-        $kitchenPermissions = VersionPermission::get(['kitchenModuleHasPrintExcel', 'kitchenModuleHasTypeSizeFilters', 'kitchenModuleHasConfirmCooking', 'kitchenModuleHasConfirmPacking', 'kitchenModuleHasCheckoutTab'])->first()->toArray();
+        $kitchenPermissions = VersionPermission::get(['kitchenModuleHasPrintExcel', 'kitchenModuleHasTypeSizeFilters', 'kitchenModuleHasConfirmCooking', 'kitchenModuleHasConfirmPacking', 'kitchenModuleHasCheckoutTab', 'kitchenModuleHasLabelsTab', 'kitchenModuleHasContainersTab'])->first()->toArray();
 
 
 
@@ -190,7 +202,7 @@ class Permissions extends Component
 
 
         // 2.7: planAndBuilder
-        $planBuilderPermissions = VersionPermission::get(['menuModuleHasHidePlan', 'menuModuleHasHideBundle', 'menuModuleHasDynamicBundles', 'menuModuleHasMealFullView', 'menuModuleHasBuilderExtraPictures', 'menuModuleHasBuilderMacros', 'menuModuleHasBuilderPercentage', 'menuModuleHasBuilderPackings', 'menuModuleHasBuilderLabelPreview', 'menuModuleHasBuilderContainerPreview'])->first()->toArray();
+        $planBuilderPermissions = VersionPermission::get(['menuModuleHasHidePlan', 'menuModuleHasHideBundle', 'menuModuleHasDynamicBundles', 'menuModuleHasMealFullView', 'menuModuleHasBuilderExtraPictures', 'menuModuleHasBuilderSizeOverview', 'menuModuleHasBuilderExtraItems', 'menuModuleHasBuilderMacros', 'menuModuleHasBuilderReplacements', 'menuModuleHasBuilderPercentage', 'menuModuleHasBuilderCutlery', 'menuModuleHasBuilderPackings', 'menuModuleHasBuilderLabelPreview', 'menuModuleHasBuilderContainerPreview'])->first()->toArray();
 
 
 

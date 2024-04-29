@@ -8,6 +8,7 @@ use App\Models\Meal;
 use App\Models\MealPart;
 use App\Models\MealSize;
 use App\Models\Type;
+use App\Models\VersionPermission;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -511,8 +512,45 @@ class ProductionBuilderManageIngredients extends Component
 
         // 1: dependencies
         $ingredients = Ingredient::all();
-        $types = Type::where('name', '!=', 'Recipe')->get();
+        $versionPermission = VersionPermission::first();
         $mealSize = MealSize::where('mealId', $this->meal->id)->first();
+
+
+
+
+
+
+        // 1.2: types
+
+
+        // :: permission - hasExtraTypes
+        if ($versionPermission->menuModuleHasBuilderExtraItems) {
+
+
+            $types = Type::where('name', '!=', 'Recipe')->get();
+
+
+        } else {
+
+
+            $types = Type::whereNotIn('name', ['Recipe', 'Snack', 'Side', 'Drink'])->get();
+
+
+        } // end if - permission
+
+
+
+
+
+
+
+
+        // -----------------------------------------
+        // -----------------------------------------
+
+
+
+
 
 
 

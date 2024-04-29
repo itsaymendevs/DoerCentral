@@ -68,6 +68,14 @@
 
 
     {{-- cutlery --}}
+
+
+    {{-- :: permission - hasCutlery --}}
+    @if ($versionPermission->menuModuleHasBuilderCutlery)
+
+
+
+
     <div class="mt-4 w-100 mx-auto">
         <div class="form-check form-switch mb-2 mealType--checkbox justify-content-center">
 
@@ -84,6 +92,9 @@
     </div>
 
 
+
+    @endif
+    {{-- end if - permission --}}
 
 
 

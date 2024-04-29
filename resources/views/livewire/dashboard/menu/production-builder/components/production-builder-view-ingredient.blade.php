@@ -229,8 +229,8 @@
 
 
 
-    {{-- :: permission - hasMacros --}}
-    @if ($versionPermission->menuModuleHasBuilderMacros)
+    {{-- :: permission - hasReplacements --}}
+    @if ($versionPermission->menuModuleHasBuilderReplacements)
 
 
 
@@ -252,27 +252,6 @@
     </td>
 
 
-
-    {{-- Hidden --}}
-    @else
-
-
-
-    <td class="fw-bold invisible">
-        <div class="form-check form-switch mealType--checkbox justify-content-center">
-
-
-            <input class="form-check-input pointer replacement--checkbox" data-group='{{ $instance->groupToken }}'
-                type="checkbox" @if($this->instance->isReplacement) checked @endif
-            id="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}"
-            wire:model='instance.isReplacement'
-            wire:change='update' wire:loading.attr='disabled' wire:target='update, remove, init' />
-
-
-            <label class="form-check-label d-none"
-                for="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}">placeholder</label>
-        </div>
-    </td>
 
 
 
@@ -299,8 +278,8 @@
 
 
 
-    {{-- remove Ingredient --}}
-    <td class="fw-bold">
+    {{-- remove Ingredient - stretch --}}
+    <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderReplacements) colspan='2' @endif>
         <div class="d-flex align-items-center justify-content-center">
             <button class="btn btn--raw-icon inline remove scale--3 px-0 " type="button" wire:loading.attr='disabled'
                 wire:target='remove, update, init' wire:click='remove({{ $instance->id }})'>

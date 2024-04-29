@@ -586,8 +586,8 @@
 
                 {{-- fallback --}}
                 <div class="d-block px-2 py-3 overview--card client-version w-75 mx-auto text-center mt-3">
-                    <h5>{{ $scheduleMeal?->meal?->name }}</h5>
-                    <p class="fs-14 text-gold mb-0">Label is not assigned</p>
+                    <p class="fs-13 text-gold mb-0">Label is not assigned</p>
+                    <h6 class='truncate-text-1l px-2 mb-1'>{{ $scheduleMeal?->meal?->name }}</h6>
                 </div>
 
 

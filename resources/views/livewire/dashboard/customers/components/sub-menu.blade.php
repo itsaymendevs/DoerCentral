@@ -58,8 +58,18 @@
 
 
             {{-- 3: Settings --}}
+
+            {{-- :: permission - hasSettings --}}
+            @if ($versionPermission->customerModuleHasSettings)
+
+
             <a wire:navigate class="btn @if (Request::is('dashboard/customers/settings')) active @endif" role="button"
                 href="{{ route('dashboard.customers.settings') }}">Settings</a>
+
+
+
+            @endif
+            {{-- end if - permission --}}
 
 
 

@@ -709,3 +709,7 @@ select.form-select option {
 .select--single-wrapper.no-events:hover {
     cursor: not-allowed !important;
 }
+
+.d-none-permission {
+    display: none !important;
+}

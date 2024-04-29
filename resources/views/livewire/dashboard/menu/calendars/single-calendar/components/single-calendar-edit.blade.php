@@ -144,7 +144,6 @@
 
 
 
-
                                     {{-- ** EXCLUDE TYPE MEAL ** --}}
                                     @if ($meal->type->name != 'Meal')
 
@@ -153,15 +152,56 @@
 
 
 
+
+
                                     {{-- ------------------------------- --}}
+                                    {{-- ------------------------------- --}}
+                                    {{-- ------------------------------- --}}
+
+
+
+
+
+
                                     {{-- :: get scheduleMeals - ifExists --}}
                                     @php
 
                                     $scheduleMeal = $scheduleMeals?->where('mealId',
-                                    $meal->id)?->where('mealTypeId', $mealType->id)?->first()
+                                    $meal->id)?->where('mealTypeId', $mealType->id)?->first();
 
                                     @endphp
+
+
+
+
+
+
+                                    {{-- :: permission - hasDynamicBundles --}}
+                                    @if ($versionPermission->menuModuleHasDynamicBundles)
+
+
+                                    @php $multipleOptionTypes = ['Recipe', 'Drink']; @endphp
+
+
+                                    {{-- :: else --}}
+                                    @else
+
+
+                                    @php $multipleOptionTypes = []; @endphp
+
+
+                                    @endif
+                                    {{-- end if - permission --}}
+
+
+
+
+
+
                                     {{-- ------------------------------- --}}
+                                    {{-- ------------------------------- --}}
+                                    {{-- ------------------------------- --}}
+
 
 
 
@@ -171,7 +211,7 @@
 
 
                                     {{-- A: otherTypes --}}
-                                    @if ($meal->type->name != 'Recipe' && $meal->type->name != 'Drink')
+                                    @if (!in_array($meal->type->name, $multipleOptionTypes))
 
 
 

@@ -39,6 +39,9 @@ return new class extends Migration {
 
 
             // 1: customerModule
+            $table->boolean('customerModuleHasSettings')->nullable()->default(1);
+
+
 
             // 1.1: customerProfile
             $table->boolean('customerModuleHasVector')->nullable()->default(1);
@@ -102,9 +105,14 @@ return new class extends Migration {
             // 2.4: menuBuilder
             $table->boolean('menuModuleHasBuilderExtraPictures')->nullable()->default(1);
 
+            $table->boolean('menuModuleHasBuilderSizeOverview')->nullable()->default(1);
+            $table->boolean('menuModuleHasBuilderExtraItems')->nullable()->default(1);
+
             $table->boolean('menuModuleHasBuilderMacros')->nullable()->default(1);
+            $table->boolean('menuModuleHasBuilderReplacements')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderPercentage')->nullable()->default(1);
 
+            $table->boolean('menuModuleHasBuilderCutlery')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderPackings')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderLabelPreview')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderContainerPreview')->nullable()->default(1);
@@ -155,6 +163,14 @@ return new class extends Migration {
 
             // 3.2: kitchenCheckout
             $table->boolean('kitchenModuleHasCheckoutTab')->nullable()->default(1);
+
+
+
+
+            // 3.3: kitchenLabels / Containers
+            $table->boolean('kitchenModuleHasLabelsTab')->nullable()->default(1);
+            $table->boolean('kitchenModuleHasContainersTab')->nullable()->default(1);
+
 
 
 

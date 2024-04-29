@@ -103,10 +103,27 @@
 
 
 
+
+
+
+
+
+
+
         {{-- loop - sizeMacros From sizeMacros --}}
         @foreach ($meal->sizes as $mealSize)
-        <div class="row @if ($initSizeId != $mealSize->size->id) d-none @endif" data-instance='mealSizes'
-            data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
+
+
+
+        {{-- :: permission inline - hasSizeOverview --}}
+
+
+
+        <div class="row @if ($initSizeId != $mealSize->size->id) d-none @endif
+            @if (!$versionPermission->menuModuleHasBuilderSizeOverview) d-none-permission @endif"
+            data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
+
+
 
 
             {{-- 1: calories --}}
@@ -179,6 +196,7 @@
 
 
 
+
         {{-- -------------------------------------------------- --}}
         {{-- -------------------------------------------------- --}}
 
@@ -188,7 +206,7 @@
 
 
 
-        {{-- select-handle --}}
+        {{-- selectHandle --}}
         <script>
             $(document).ready(function() {
                 $(".size--select").on("change", function(event) {
@@ -211,6 +229,10 @@
 
         {{-- -------------------------------------------------- --}}
         {{-- -------------------------------------------------- --}}
+
+
+
+
 
 
 

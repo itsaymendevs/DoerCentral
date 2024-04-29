@@ -721,16 +721,11 @@
 
 
 
-                        {{-- :: permission - hasMacros --}}
-                        @if ($versionPermission->menuModuleHasBuilderMacros)
+                        {{-- :: permission - hasReplacements --}}
+                        @if ($versionPermission->menuModuleHasBuilderReplacements)
 
 
                         <td class="fw-bold fs-10">Replacement</td>
-
-
-                        @else
-
-                        <td class="fw-bold fs-10 invisible">Replacement</td>
 
 
                         @endif
@@ -745,7 +740,14 @@
 
 
 
-                        <td class="fw-bold"></td>
+
+
+                        {{-- :: stretch --}}
+                        <td @if (!$versionPermission->menuModuleHasBuilderReplacements) colspan='2' @endif
+                            class="fw-bold" ></td>
+
+
+
                     </tr>
 
 

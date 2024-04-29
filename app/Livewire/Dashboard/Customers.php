@@ -164,7 +164,9 @@ class Customers extends Component
 
         // 1.2: customers - makeFilter
         $customersRaw = Customer::where('firstName', 'LIKE', '%' . $this->searchCustomer . '%')
-            ->orWhere('lastName', 'LIKE', '%' . $this->searchCustomer . '%')->get();
+            ->orWhere('lastName', 'LIKE', '%' . $this->searchCustomer . '%')
+            ->whereHas('subscriptions')
+            ->get();
 
 
 
@@ -180,7 +182,7 @@ class Customers extends Component
 
 
             // 1: plan
-            $this->searchPlan ? $item->latestSubscription()->planId != $this->searchPlan ? $toReturn = false : null : null;
+            $this->searchPlan ? $item?->latestSubscription()?->planId != $this->searchPlan ? $toReturn = false : null : null;
 
 
 
@@ -188,13 +190,13 @@ class Customers extends Component
             if ($this->searchStatus && $this->searchStatus == 'Active') {
 
 
-                $item->latestSubscription()->untilDate < $this->getCurrentDate() ? $toReturn = false : null;
+                $item?->latestSubscription()?->untilDate < $this->getCurrentDate() ? $toReturn = false : null;
 
 
             } elseif ($this->searchStatus && $this->searchStatus == 'Expired') {
 
 
-                $item->latestSubscription()->untilDate >= $this->getCurrentDate() ? $toReturn = false : null;
+                $item?->latestSubscription()?->untilDate >= $this->getCurrentDate() ? $toReturn = false : null;
 
 
             } // end if

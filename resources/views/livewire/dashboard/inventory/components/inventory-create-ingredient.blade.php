@@ -126,8 +126,8 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Measuring Unit</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#new-ingredient'
-                                        data-instance='instance.unitId' required>
+                                    <select class="form-select form--modal-select form--modal-create-ingredient-select"
+                                        data-modal='#new-ingredient' data-instance='instance.unitId' required>
                                         <option value=""></option>
 
                                         @foreach ($units as $unit)
@@ -143,8 +143,8 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Category</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#new-ingredient'
-                                        data-instance='instance.categoryId' required>
+                                    <select class="form-select form--modal-select form--modal-create-ingredient-select"
+                                        data-modal='#new-ingredient' data-instance='instance.categoryId' required>
                                         <option value=""></option>
 
                                         @foreach ($categories as $category)
@@ -161,8 +161,8 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Exclude</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#new-ingredient'
-                                        data-instance='instance.excludeId'>
+                                    <select class="form-select form--modal-select form--modal-create-ingredient-select"
+                                        data-modal='#new-ingredient' data-instance='instance.excludeId'>
                                         <option value=""></option>
 
                                         @foreach ($excludes as $exclude)
@@ -199,8 +199,8 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Purchase Unit</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#new-ingredient'
-                                        data-instance='instance.purchaseUnitId' required>
+                                    <select class="form-select form--modal-select form--modal-create-ingredient-select"
+                                        data-modal='#new-ingredient' data-instance='instance.purchaseUnitId' required>
                                         <option value=""></option>
 
                                         @foreach ($units as $unit)
@@ -216,8 +216,8 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Group</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#new-ingredient'
-                                        data-instance='instance.groupId' required>
+                                    <select class="form-select form--modal-select form--modal-create-ingredient-select"
+                                        data-modal='#new-ingredient' data-instance='instance.groupId' required>
                                         <option value=""></option>
 
                                         @foreach ($groups as $group)
@@ -236,8 +236,8 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Alllergy</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#new-ingredient'
-                                        data-instance='instance.allergyId'>
+                                    <select class="form-select form--modal-select form--modal-create-ingredient-select"
+                                        data-modal='#new-ingredient' data-instance='instance.allergyId'>
                                         <option value=""></option>
 
                                         @foreach ($allergies as $allergy)
@@ -307,7 +307,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-create-ingredient-select").on("change", function(event) {
 
 
 

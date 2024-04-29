@@ -705,3 +705,7 @@ select.form-select option {
 .blur-6 {
     filter: blur(6px) !important;
 }
+
+.select--single-wrapper.no-events:hover {
+    cursor: not-allowed !important;
+}

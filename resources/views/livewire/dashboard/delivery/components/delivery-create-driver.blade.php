@@ -92,8 +92,8 @@
                         <div class="col-4" wire:ignore>
                             <label class="form-label form--label">Shift Type</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                <select class="form-select form--modal-select" data-modal='#new-driver'
-                                    data-instance='instance.shiftTypeId' required>
+                                <select class="form-select form--modal-select form--modal-driver-select-1"
+                                    data-modal='#new-driver' data-instance='instance.shiftTypeId' required>
                                     <option value=""></option>
 
                                     @foreach ($shiftTypes as $shiftType)
@@ -112,8 +112,8 @@
                         <div class="col-8" wire:ignore>
                             <label class="form-label form--label">Delivery Zones</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                <select class="form-select form--modal-select" data-modal='#new-driver'
-                                    data-instance='instance.zones' multiple="">
+                                <select class="form-select form--modal-select form--modal-driver-select-1"
+                                    data-modal='#new-driver' data-instance='instance.zones' multiple="">
                                     @foreach ($zones as $zone)
                                     <option value="{{ $zone->id }}">{{ $zone->name }}</option>
                                     @endforeach
@@ -250,7 +250,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-driver-select-1").on("change", function(event) {
 
 
 

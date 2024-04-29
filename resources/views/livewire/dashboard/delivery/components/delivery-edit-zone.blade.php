@@ -98,7 +98,8 @@
                                 <div class="col-6" wire:ignore>
                                     <label class="form-label form--label">City</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                        <select class="form-select form--modal-select parent-select parent-select-2"
+                                        <select
+                                            class="form-select form--modal-select form--modal-zone-select-2 parent-select parent-select-2"
                                             id='city-select-2' data-modal='#edit-zone' data-instance='instance.cityId'
                                             data-child='#district-select-2' data-trigger='true' required>
                                             <option value=""></option>
@@ -119,9 +120,10 @@
                                 <div class="col-12" wire:ignore>
                                     <label class="form-label form--label">Districts</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                        <select class="form-select form--modal-select" id='district-select-2'
-                                            data-modal='#edit-zone' data-instance='instance.cityDistricts' multiple=''
-                                            data-trigger='true' required>
+                                        <select class="form-select form--modal-select form--modal-zone-select-2"
+                                            id='district-select-2' data-modal='#edit-zone'
+                                            data-instance='instance.cityDistricts' multiple='' data-trigger='true'
+                                            required>
 
                                         </select>
                                     </div>
@@ -196,7 +198,7 @@
 
 
       // 1: handleSelect
-      $(".form--select, .form--modal-select").on("change", function(event) {
+      $(".form--modal-zone-select-2").on("change", function(event) {
 
 
 

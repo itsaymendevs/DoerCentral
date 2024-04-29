@@ -12,8 +12,8 @@
 
         {{-- weekSelect --}}
         <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
-            <select class="form-select form--select" data-instance='searchFromDate' data-trigger='true' required
-                value='{{ $searchFromDate }}'>
+            <select class="form-select form--select form--view-calendar-select" data-instance='searchFromDate'
+                data-trigger='true' required value='{{ $searchFromDate }}'>
 
                 @foreach ($weeks as $week)
                 <option value="{{ $week }}">Show From {{ date('d / m / Y', strtotime($week)) }}</option>
@@ -207,7 +207,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--select").on("change", function(event) {
+        $(".form--view-calendar-select").on("change", function(event) {
 
 
 

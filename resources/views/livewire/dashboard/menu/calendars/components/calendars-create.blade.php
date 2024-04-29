@@ -108,8 +108,9 @@
                                 <div class="col-12" wire:ignore>
                                     <label class="form-label form--label">Diet Types</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                        <select class="form-select form--modal-select" data-modal='#new-calendar'
-                                            data-instance='instance.diets' multiple>
+                                        <select
+                                            class="form-select form--modal-select form--modal-create-calendar-select"
+                                            data-modal='#new-calendar' data-instance='instance.diets' multiple>
 
                                             @foreach ($diets as $diet)
                                             <option value="{{ $diet->id }}">{{ $diet->name }}</option>
@@ -126,8 +127,9 @@
                                 <div class="col-12" wire:ignore>
                                     <label class="form-label form--label">Meal Plans</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                        <select class="form-select form--modal-select" data-modal='#new-calendar'
-                                            data-instance='instance.plans' multiple>
+                                        <select
+                                            class="form-select form--modal-select form--modal-create-calendar-select"
+                                            data-modal='#new-calendar' data-instance='instance.plans' multiple>
 
                                             @foreach ($plans as $plan)
                                             <option value="{{ $plan->id }}">{{ $plan->name }}</option>
@@ -191,7 +193,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-create-calendar-select").on("change", function(event) {
 
 
 

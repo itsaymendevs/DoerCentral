@@ -41,8 +41,8 @@
                         <div class="col-4" wire:ignore>
                             <label class="form-label form--label">Supplier</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                <select class="form-select form--modal-select" data-modal='#new-purchase'
-                                    data-instance='instance.supplierId' required>
+                                <select class="form-select form--modal-select form--modal-create-purchase-select"
+                                    data-modal='#new-purchase' data-instance='instance.supplierId' required>
                                     <option value=""></option>
 
                                     @foreach ($suppliers as $supplier)
@@ -144,7 +144,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-create-purchase-select").on("change", function(event) {
 
 
 

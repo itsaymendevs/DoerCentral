@@ -168,8 +168,8 @@
                     <div class="col-4" wire:ignore>
                         <label class="form-label form--label">Tags</label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                            <select class="form-select form--select" id='tags-select-1' data-instance='instance.tags'
-                                data-tags='true' multiple=''>
+                            <select class="form-select form--select form--tag-select" id='tags-select-1'
+                                data-instance='instance.tags' data-tags='true' multiple=''>
                             </select>
                         </div>
                     </div>
@@ -238,7 +238,7 @@
     {{-- select-handle --}}
     <script>
         $(document).ready(function() {
-            $(".form--select").on("change", function(event) {
+            $(".form--tag-select").on("change", function(event) {
 
                 // 1.1: getValue - instance
                 selectValue = $(this).select2('val');

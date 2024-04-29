@@ -7,8 +7,8 @@
 
 
     <div class="select--single-wrapper mb-4 mx-auto" wire:loading.class='no-events' wire:ignore>
-        <select class="form-select form--select" id='container-select-1' data-instance='container' data-trigger='true'
-            @if ($currentContainer) value='{{ $currentContainer->id }}' @endif>
+        <select class="form-select form--select container--select" id='container-select-1' data-instance='container'
+            data-trigger='true' @if ($currentContainer) value='{{ $currentContainer->id }}' @endif>
 
             <option value=""></option>
 
@@ -59,7 +59,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".container--select").on("change", function(event) {
 
 
 

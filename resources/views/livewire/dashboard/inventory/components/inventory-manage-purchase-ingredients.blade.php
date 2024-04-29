@@ -78,7 +78,8 @@
                                 <div class="col-4">
                                     <label class="form-label form--label">Ingredient</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                        <select class="form-select form--modal-select"
+                                        <select
+                                            class="form-select form--modal-select form--modal-filter-ingredient-select"
                                             data-modal='#purchase-ingredients' id='purchase-ingredient-select-2'
                                             data-instance='instance.ingredientId' required>
                                             <option value=""></option>
@@ -237,7 +238,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-filter-ingredient-select").on("change", function(event) {
 
 
             // 1.1: getValue - instance

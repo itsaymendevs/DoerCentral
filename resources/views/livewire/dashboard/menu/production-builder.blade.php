@@ -5,6 +5,9 @@
 
 
 
+        <div wire:loading>
+            CLose
+        </div>
 
 
 

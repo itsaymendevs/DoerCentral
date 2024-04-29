@@ -41,8 +41,8 @@
                         <div class="col-4" wire:ignore>
                             <label class="form-label form--label">Ingredient</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                <select class="form-select form--modal-select" data-modal='#supplier-ingredients'
-                                    data-instance='instance.ingredientId' required>
+                                <select class="form-select form--modal-select form--modal-manage-supplier-select"
+                                    data-modal='#supplier-ingredients' data-instance='instance.ingredientId' required>
                                     <option value=""></option>
 
                                     @foreach ($ingredients as $ingredient)
@@ -58,8 +58,8 @@
                         <div class="col-3" wire:ignore>
                             <label class="form-label form--label">Unit</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                <select class="form-select form--modal-select" data-modal='#supplier-ingredients'
-                                    data-instance='instance.unitId' required>
+                                <select class="form-select form--modal-select form--modal-manage-supplier-select"
+                                    data-modal='#supplier-ingredients' data-instance='instance.unitId' required>
                                     <option value=""></option>
 
                                     @foreach ($units as $unit)
@@ -184,7 +184,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-manage-supplier-select").on("change", function(event) {
 
 
 

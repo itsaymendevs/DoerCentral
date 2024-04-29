@@ -85,9 +85,9 @@
                         <div class="col-4" wire:ignore>
                             <label class="form-label form--label">Shift Type</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                <select class="form-select form--modal-select" id='shift-select-2'
-                                    data-modal='#edit-driver' data-instance='instance.shiftTypeId' data-trigger='true'
-                                    required>
+                                <select class="form-select form--modal-select form--modal-driver-select-2"
+                                    id='shift-select-2' data-modal='#edit-driver' data-instance='instance.shiftTypeId'
+                                    data-trigger='true' required>
                                     <option value=""></option>
 
                                     @foreach ($shiftTypes as $shiftType)
@@ -104,9 +104,9 @@
                         <div class="col-12" wire:ignore>
                             <label class="form-label form--label">Delivery Zones</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                <select class="form-select form--modal-select" id='zone-select-2'
-                                    data-modal='#edit-driver' data-trigger='true' data-instance='instance.zones'
-                                    multiple="">
+                                <select class="form-select form--modal-select form--modal-driver-select-2"
+                                    id='zone-select-2' data-modal='#edit-driver' data-trigger='true'
+                                    data-instance='instance.zones' multiple="">
                                     @foreach ($zones as $zone)
                                     <option value="{{ $zone->id }}">{{ $zone->name }}</option>
                                     @endforeach
@@ -242,7 +242,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-driver-select-2").on("change", function(event) {
 
 
 

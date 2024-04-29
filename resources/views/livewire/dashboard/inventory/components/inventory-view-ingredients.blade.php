@@ -20,7 +20,8 @@
         <div class="col-2" wire:ignore>
             <label class="form-label form--label">Category</label>
             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                <select class="form-select form--select" data-clear='true' data-instance='searchCategory'>
+                <select class="form-select form--select form--search-ingredient-select" data-clear='true'
+                    data-instance='searchCategory'>
                     <option value=""></option>
 
                     @foreach ($categories as $category)
@@ -39,7 +40,8 @@
         <div class="col-2" wire:ignore>
             <label class="form-label form--label">Group</label>
             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                <select class="form-select form--select" data-clear='true' data-instance='searchGroup'>
+                <select class="form-select form--select form--search-ingredient-select" data-clear='true'
+                    data-instance='searchGroup'>
                     <option value=""></option>
 
                     @foreach ($groups as $group)
@@ -58,7 +60,8 @@
         <div class="col-2" wire:ignore>
             <label class="form-label form--label">Exclude</label>
             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                <select class="form-select form--select" data-clear='true' data-instance='searchExclude'>
+                <select class="form-select form--select form--search-ingredient-select" data-clear='true'
+                    data-instance='searchExclude'>
                     <option value=""></option>
 
                     @foreach ($excludes as $exclude)
@@ -77,7 +80,8 @@
         <div class="col-2" wire:ignore>
             <label class="form-label form--label">Allergy</label>
             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                <select class="form-select form--select" data-clear='true' data-instance='searchAllergy'>
+                <select class="form-select form--select form--search-ingredient-select" data-clear='true'
+                    data-instance='searchAllergy'>
                     <option value=""></option>
 
                     @foreach ($allergies as $allergy)
@@ -643,7 +647,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--search-ingredient-select").on("change", function(event) {
 
 
             // 1.1: getValue - instance

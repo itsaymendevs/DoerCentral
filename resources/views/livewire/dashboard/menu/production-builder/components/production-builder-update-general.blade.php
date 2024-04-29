@@ -20,8 +20,8 @@
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Type</label>
                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select" id='type-select-2' data-instance='instance.typeId'
-                        required>
+                    <select class="form-select form--select form--general-select" id='type-select-2'
+                        data-instance='instance.typeId' required>
                         <option value=""></option>
 
                         @foreach ($types as $type)
@@ -40,7 +40,8 @@
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Cuisine</label>
                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select" id='cuisine-select-2' data-instance='instance.cuisineId'>
+                    <select class="form-select form--select form--general-select" id='cuisine-select-2'
+                        data-instance='instance.cuisineId'>
                         <option value=""></option>
 
                         @foreach ($cuisines as $cuisine)
@@ -57,8 +58,8 @@
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Category</label>
                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select" id='category-select-2' data-instance='instance.category'
-                        data-clear='true'>
+                    <select class="form-select form--select form--general-select" id='category-select-2'
+                        data-instance='instance.category' data-clear='true'>
                         <option value=""></option>
 
                         @foreach ($categories as $category)
@@ -75,8 +76,8 @@
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Diet Type</label>
                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select" id='diet-select-2' data-instance='instance.dietId'
-                        required>
+                    <select class="form-select form--select form--general-select" id='diet-select-2'
+                        data-instance='instance.dietId' required>
                         <option value=""></option>
 
                         @foreach ($diets as $diet)
@@ -125,8 +126,8 @@
             <div class="col-12" wire:ignore>
                 <label class="form-label form--label">Tags</label>
                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select" id='tags-select-2' data-instance='instance.tags'
-                        multiple="">
+                    <select class="form-select form--select form--general-select" id='tags-select-2'
+                        data-instance='instance.tags' multiple="">
                         @foreach ($tags as $tag)
                         <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                         @endforeach
@@ -369,7 +370,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--general-select").on("change", function(event) {
 
 
 

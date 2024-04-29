@@ -108,9 +108,9 @@
                                 <div class="col-12" wire:ignore>
                                     <label class="form-label form--label">Diet Types</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                        <select class="form-select form--modal-select" data-modal='#edit-calendar'
-                                            data-instance='instance.diets' data-trigger='true' id='diet-select-2'
-                                            multiple>
+                                        <select class="form-select form--modal-select form--modal-edit-calendar-select"
+                                            data-modal='#edit-calendar' data-instance='instance.diets'
+                                            data-trigger='true' id='diet-select-2' multiple>
 
                                             @foreach ($diets as $diet)
                                             <option value="{{ $diet->id }}">{{ $diet->name }}</option>
@@ -127,9 +127,9 @@
                                 <div class="col-12" wire:ignore>
                                     <label class="form-label form--label">Meal Plans</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                        <select class="form-select form--modal-select" data-modal='#edit-calendar'
-                                            data-instance='instance.plans' data-trigger='true' id='plan-select-2'
-                                            multiple>
+                                        <select class="form-select form--modal-select form--modal-edit-calendar-select"
+                                            data-modal='#edit-calendar' data-instance='instance.plans'
+                                            data-trigger='true' id='plan-select-2' multiple>
 
                                             @foreach ($plans as $plan)
                                             <option value="{{ $plan->id }}">{{ $plan->name }}</option>
@@ -192,7 +192,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-edit-calendar-select").on("change", function(event) {
 
 
 

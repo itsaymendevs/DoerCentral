@@ -126,8 +126,9 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Measuring Unit</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='unit-select-2' data-instance='instance.unitId' data-trigger='true' required>
+                                    <select class="form-select form--modal-select form--modal-edit-ingredient-select"
+                                        data-modal='#edit-ingredient' id='unit-select-2' data-instance='instance.unitId'
+                                        data-trigger='true' required>
                                         <option value=""></option>
 
                                         @foreach ($units as $unit)
@@ -143,9 +144,9 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Category</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='category-select-2' data-trigger='true' data-instance='instance.categoryId'
-                                        required>
+                                    <select class="form-select form--modal-select form--modal-edit-ingredient-select"
+                                        data-modal='#edit-ingredient' id='category-select-2' data-trigger='true'
+                                        data-instance='instance.categoryId' required>
                                         <option value=""></option>
 
                                         @foreach ($categories as $category)
@@ -162,8 +163,9 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Exclude</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='exclude-select-2' data-trigger='true' data-instance='instance.excludeId'>
+                                    <select class="form-select form--modal-select form--modal-edit-ingredient-select"
+                                        data-modal='#edit-ingredient' id='exclude-select-2' data-trigger='true'
+                                        data-instance='instance.excludeId'>
                                         <option value=""></option>
 
                                         @foreach ($excludes as $exclude)
@@ -200,8 +202,8 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Purchase Unit</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='purchaseUnit-select-2' data-trigger='true'
+                                    <select class="form-select form--modal-select form--modal-edit-ingredient-select"
+                                        data-modal='#edit-ingredient' id='purchaseUnit-select-2' data-trigger='true'
                                         data-instance='instance.purchaseUnitId' required>
                                         <option value=""></option>
 
@@ -218,9 +220,9 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Group</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='group-select-2' data-trigger='true' data-instance='instance.groupId'
-                                        required>
+                                    <select class="form-select form--modal-select form--modal-edit-ingredient-select"
+                                        data-modal='#edit-ingredient' id='group-select-2' data-trigger='true'
+                                        data-instance='instance.groupId' required>
                                         <option value=""></option>
 
                                         @foreach ($groups as $group)
@@ -239,8 +241,9 @@
                             <div wire:ignore>
                                 <label class="form-label form--label">Alllergy</label>
                                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select" data-modal='#edit-ingredient'
-                                        id='allergy-select-2' data-trigger='true' data-instance='instance.allergyId'>
+                                    <select class="form-select form--modal-select form--modal-edit-ingredient-select"
+                                        data-modal='#edit-ingredient' id='allergy-select-2' data-trigger='true'
+                                        data-instance='instance.allergyId'>
                                         <option value=""></option>
 
                                         @foreach ($allergies as $allergy)
@@ -310,7 +313,7 @@
 
     {{-- select-handle --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-edit-ingredient-select").on("change", function(event) {
 
 
 

@@ -10,7 +10,7 @@
 
         {{-- size --}}
         <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
-            <select class="form-select form--select" id='size-select-1' data-instance='size' required
+            <select class="form-select form--select size--select" id='size-select-1' data-instance='size' required
                 data-placeholder=''>
                 <option value="" selected></option>
 
@@ -191,7 +191,7 @@
         {{-- select-handle --}}
         <script>
             $(document).ready(function() {
-                $(".form--select, .form--modal-select").on("change", function(event) {
+                $(".size--select").on("change", function(event) {
 
                     // 1.1: getValue - instance
                     selectValue = $(this).select2('val');

@@ -97,7 +97,8 @@
                                 <div class="col-6 " wire:ignore>
                                     <label class="form-label form--label">City</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                        <select class="form-select form--modal-select parent-select"
+                                        <select
+                                            class="form-select form--modal-select form--modal-zone-select-1 parent-select"
                                             data-modal='#new-zone' data-instance='instance.cityId'
                                             data-child='#district-select-1' required>
                                             <option value=""></option>
@@ -118,9 +119,9 @@
                                 <div class="col-12" wire:ignore>
                                     <label class="form-label form--label">Districts</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                        <select class="form-select form--modal-select" id='district-select-1'
-                                            data-modal='#new-zone' data-instance='instance.cityDistricts' multiple=''
-                                            required>
+                                        <select class="form-select form--modal-select form--modal-zone-select-1"
+                                            id='district-select-1' data-modal='#new-zone'
+                                            data-instance='instance.cityDistricts' multiple='' required>
                                         </select>
                                     </div>
                                 </div>
@@ -186,7 +187,7 @@
 
     {{-- handleSelect --}}
     <script>
-        $(".form--select, .form--modal-select").on("change", function(event) {
+        $(".form--modal-zone-select-1").on("change", function(event) {
 
 
          // 1.1: getValue - instance

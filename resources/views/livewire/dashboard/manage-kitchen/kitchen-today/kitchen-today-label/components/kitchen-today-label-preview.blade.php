@@ -95,7 +95,8 @@
                         {{-- :: mealLabel --}}
                         <div class="d-inline-flex justify-content-around align-items-center text-start"
                             key='printable-schedule-meal-{{ $scheduleMeal->id }}'>
-                            <div class="sticker--label-layout sticky--div mb-2 px-0 py-0">
+                            <div class="sticker--label-layout sticky--div px-0 py-0"
+                                style="border-bottom: 1px solid {{ $scheduleMeal?->meal?->label->borderColor ?? '#efefef' }};">
 
 
 

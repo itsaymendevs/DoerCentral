@@ -236,7 +236,7 @@ class Meal extends Model
 
 
         // 1: getMealServingInstructions
-        $mealServingInstructions = $this->servingInstructions()?->pluck('servingInstructionId')?->toArray() ?? [];
+        $mealServingInstructions = $this->servingInstructions()?->where('isActive', true)?->pluck('servingInstructionId')?->toArray() ?? [];
 
 
 

@@ -8,6 +8,8 @@ $(".print--btn").click(function () {
     }).then((canvas) => {
         // :: createLink
         invoiceLink = document.createElement("a");
+        invoiceLink.classList.add("p-0");
+        invoiceLink.classList.add("m-0");
         invoiceLink.src = canvas.toDataURL("image/png");
 
         printJS(canvas.toDataURL("image/png"), "image");

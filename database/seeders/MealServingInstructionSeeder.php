@@ -35,6 +35,7 @@ class MealServingInstructionSeeder extends Seeder
                 // 1.3: create
                 $mealInstruction = new MealServingInstruction();
 
+                $mealInstruction->isActive = false;
                 $mealInstruction->mealId = $meal->id;
                 $mealInstruction->servingInstructionId = $servingInstruction->id;
 

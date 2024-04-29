@@ -159,7 +159,7 @@
 
 
                                         {{-- 1: id - name - plan --}}
-                                        <td class="fw-bold">C-{{ $subscription->id }}</td>
+                                        <td class="fw-bold">{{ $globalSNCounter++ }}</td>
                                         <td>{{ $subscription?->customer->fullName() ?? '' }}</td>
                                         <td>{{ $subscription?->plan->name ?? ''}}</td>
 

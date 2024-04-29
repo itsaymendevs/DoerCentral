@@ -172,7 +172,9 @@ class PromosView extends Component
 
 
         // 1: dependencies
-        $promoCodes = PromoCode::where('code', 'LIKE', '%' . $this->searchPromoCode . '%')->get();
+        $promoCodes = PromoCode::where('code', 'LIKE', '%' . $this->searchPromoCode . '%')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
 
 

@@ -45,13 +45,13 @@ class CustomersStateOfAccount extends Component
 
         // 1.2: subscriptions
         if ($this->searchPlan)
-            $subscriptions = CustomerSubscription::orderBy('startDate')
+            $subscriptions = CustomerSubscription::orderBy('created_at', 'desc')
                 ->where('planId', $this->searchPlan)
                 ->where('startDate', '>=', $this->searchFromDate ?? '2000-01-01')
                 ->where('untilDate', '<=', $this->searchUntilDate ?? '3000-01-01')
                 ->paginate(20);
         else
-            $subscriptions = CustomerSubscription::orderBy('startDate')
+            $subscriptions = CustomerSubscription::orderBy('created_at', 'desc')
                 ->where('startDate', '>=', $this->searchFromDate ?? '2000-01-01')
                 ->where('untilDate', '<=', $this->searchUntilDate ?? '3000-01-01')
                 ->paginate(20);

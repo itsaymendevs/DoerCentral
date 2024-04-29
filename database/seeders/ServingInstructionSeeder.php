@@ -14,7 +14,7 @@ class ServingInstructionSeeder extends Seeder
 
 
         // ::root
-        $servingInstruction = ['Heat', 'Remove Lid', 'Enjoy'];
+        $servingInstruction = ['Enjoy guilt free!', 'Remove Lid, heat, enjoy!', 'Eat Cold!'];
 
         for ($i = 0; $i < count($servingInstruction); $i++) {
             ServingInstruction::create([

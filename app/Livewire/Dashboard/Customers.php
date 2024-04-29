@@ -212,7 +212,8 @@ class Customers extends Component
 
 
         // 1.2.2: getCustomers
-        $customers = Customer::whereHas('subscriptions')->whereIn('id', $customerIds)->paginate(20);
+        $customers = Customer::whereHas('subscriptions')->whereIn('id', $customerIds)
+            ->orderBy('created_at', 'desc')->paginate(20);
 
 
 

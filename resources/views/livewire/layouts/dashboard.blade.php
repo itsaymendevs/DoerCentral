@@ -229,14 +229,16 @@
 
 
 
+        {{-- 1.2: activateTab --}}
+        <script src="{{ asset('assets/js/activate-tab.js') }}"></script>
 
-        {{-- 1.2: reinitiate select extensions --}}
+
+
+
+        {{-- 1.3: reinitiate select extensions --}}
         <script src="{{ asset('assets/js/re-init-select.js') }}"></script>
 
 
-
-        {{-- 1.3: activateTab --}}
-        <script src="{{ asset('assets/js/activate-tab.js') }}"></script>
 
 
         {{-- 1.4: reinitiate general extensions --}}

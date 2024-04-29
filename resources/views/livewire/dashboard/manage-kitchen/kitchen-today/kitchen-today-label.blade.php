@@ -382,7 +382,7 @@
 
                                     @if($scheduleMeal?->meal?->label->showProductionDate)
 
-                                    <h4 class='fw-normal sticker--label-production mb-1 '>Prod. Date</h4>
+                                    <h4 class='fw-normal sticker--label-production mb-2 '>Prod. Date</h4>
                                     <h4 class='fw-semibold sticker--label-production mb-3'>{{ date('d . m . Y',
                                         strtotime($searchScheduleDate)) }}
                                     </h4>
@@ -445,7 +445,8 @@
                                     <h4 class='sticker--label-macro calories'
                                         style="border-color: {{ $scheduleMeal?->meal?->label->caloriesColor ?? 'revert-layer' }}; color: {{ $scheduleMeal?->meal?->label->caloriesColor ?? 'revert-layer' }}">
                                         <span class='sticker--label-macro-caption fw-semibold'>KCAL</span>
-                                        <span class='sticker--label-macro-value'>{{
+                                        <span class='sticker--label-macro-value'
+                                            style="color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
                                             $scheduleMeal?->mealSize()?->afterCookCalories ?? 0 }}</span>
                                     </h4>
 
@@ -457,7 +458,8 @@
                                     <h4 class='sticker--label-macro carbs'
                                         style="border-color: {{ $scheduleMeal?->meal?->label->carbsColor ?? 'revert-layer' }}; color: {{ $scheduleMeal?->meal?->label->carbsColor ?? 'revert-layer' }}">
                                         <span class='sticker--label-macro-caption fw-semibold'>Carbs</span>
-                                        <span class='sticker--label-macro-value'>{{
+                                        <span class='sticker--label-macro-value'
+                                            style="color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
                                             $scheduleMeal?->mealSize()?->afterCookCarbs ?? 0 }}</span>
                                     </h4>
 
@@ -470,7 +472,8 @@
                                     <h4 class='sticker--label-macro proteins'
                                         style="border-color: {{ $scheduleMeal?->meal?->label->proteinsColor ?? 'revert-layer' }}; color: {{ $scheduleMeal?->meal?->label->proteinsColor ?? 'revert-layer' }}">
                                         <span class='sticker--label-macro-caption fw-semibold'>Prot</span>
-                                        <span class='sticker--label-macro-value'>{{
+                                        <span class='sticker--label-macro-value'
+                                            style="color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
                                             $scheduleMeal?->mealSize()?->afterCookProteins ?? 0 }}</span>
                                     </h4>
 
@@ -482,7 +485,8 @@
                                     <h4 class='sticker--label-macro fats'
                                         style="border-color: {{ $scheduleMeal?->meal?->label->fatsColor ?? 'revert-layer' }}; color: {{ $scheduleMeal?->meal?->label->fatsColor ?? 'revert-layer' }}">
                                         <span class='sticker--label-macro-caption fw-semibold'>Fat</span>
-                                        <span class='sticker--label-macro-value'>{{
+                                        <span class='sticker--label-macro-value'
+                                            style="color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
                                             $scheduleMeal?->mealSize()?->afterCookFats ?? 0 }}</span>
                                     </h4>
 

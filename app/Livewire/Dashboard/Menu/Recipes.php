@@ -129,6 +129,7 @@ class Recipes extends Component
 
         $meals = Meal::where('typeId', $type->id)
             ->where('name', 'LIKE', '%' . $this->searchRecipe . '%')
+            ->orderBy('created_at', 'desc')
             ->paginate(20);
 
 

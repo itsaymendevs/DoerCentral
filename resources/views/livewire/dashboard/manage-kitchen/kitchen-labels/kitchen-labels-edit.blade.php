@@ -157,8 +157,8 @@
                                         @if ($instance->showServingInstructions)
 
                                         <h4 class='fw-normal sticker--label-tags mb-2 fs-10'>
-                                            <span class='fw-normal me-1 fs-10'>{{ implode(', ',
-                                                $servingInstructions) }}</span>
+                                            <span class='fw-normal me-1 fs-10'>{{ $servingInstructions[1] ?? ''
+                                                }}</span>
                                         </h4>
 
                                         @endif
@@ -264,7 +264,8 @@
                                         <h4 class='sticker--label-macro calories'
                                             style="border-color: {{ $instance->caloriesColor ?? 'revert-layer' }}; color: {{ $instance->caloriesColor ?? 'revert-layer' }}">
                                             <span class='sticker--label-macro-caption fw-semibold'>KCAL</span>
-                                            <span class='sticker--label-macro-value'>240</span>
+                                            <span class='sticker--label-macro-value'
+                                                style="color: {{ $instance->fontColor }}">240</span>
                                         </h4>
 
 
@@ -275,7 +276,8 @@
                                         <h4 class='sticker--label-macro carbs'
                                             style="border-color: {{ $instance->carbsColor ?? 'revert-layer' }}; color: {{ $instance->carbsColor ?? 'revert-layer' }}">
                                             <span class='sticker--label-macro-caption fw-semibold'>Carbs</span>
-                                            <span class='sticker--label-macro-value'>70</span>
+                                            <span class='sticker--label-macro-value'
+                                                style="color: {{ $instance->fontColor }}">70</span>
                                         </h4>
 
 
@@ -287,7 +289,8 @@
                                         <h4 class='sticker--label-macro proteins'
                                             style="border-color: {{ $instance->proteinsColor ?? 'revert-layer' }}; color: {{ $instance->proteinsColor ?? 'revert-layer' }}">
                                             <span class='sticker--label-macro-caption fw-semibold'>Prot</span>
-                                            <span class='sticker--label-macro-value'>30</span>
+                                            <span class='sticker--label-macro-value'
+                                                style="color: {{ $instance->fontColor }}">30</span>
                                         </h4>
 
 
@@ -298,7 +301,8 @@
                                         <h4 class='sticker--label-macro fats'
                                             style="border-color: {{ $instance->fatsColor ?? 'revert-layer' }}; color: {{ $instance->fatsColor ?? 'revert-layer' }}">
                                             <span class='sticker--label-macro-caption fw-semibold'>Fat</span>
-                                            <span class='sticker--label-macro-value'>12</span>
+                                            <span class='sticker--label-macro-value'
+                                                style="color: {{ $instance->fontColor }}">12</span>
                                         </h4>
 
 

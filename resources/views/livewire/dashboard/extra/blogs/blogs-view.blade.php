@@ -167,7 +167,7 @@
                     {{-- tags --}}
                     <div class="col-4" wire:ignore>
                         <label class="form-label form--label">Tags</label>
-                        <div class="select--single-wrapper mb-4">
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select" id='tags-select-2' data-instance='instance.tags'
                                 data-trigget='true' data-tags='true' multiple=''>
 

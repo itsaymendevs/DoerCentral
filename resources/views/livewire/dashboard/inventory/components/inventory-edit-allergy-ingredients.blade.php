@@ -60,7 +60,7 @@
 
 
                             {{-- select --}}
-                            <div class="select--single-wrapper mb-4">
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select class="form-select form--modal-select" id='allergy-ingredients-select-2'
                                     data-modal='#edit-allergy' data-instance='instance.ingredients' multiple>
 

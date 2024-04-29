@@ -125,7 +125,7 @@
                             {{-- unit --}}
                             <div wire:ignore>
                                 <label class="form-label form--label">Measuring Unit</label>
-                                <div class="select--single-wrapper mb-4">
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                     <select class="form-select form--modal-select" data-modal='#new-ingredient'
                                         data-instance='instance.unitId' required>
                                         <option value=""></option>
@@ -142,7 +142,7 @@
                             {{-- category --}}
                             <div wire:ignore>
                                 <label class="form-label form--label">Category</label>
-                                <div class="select--single-wrapper mb-4">
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                     <select class="form-select form--modal-select" data-modal='#new-ingredient'
                                         data-instance='instance.categoryId' required>
                                         <option value=""></option>
@@ -160,7 +160,7 @@
                             {{-- exclude --}}
                             <div wire:ignore>
                                 <label class="form-label form--label">Exclude</label>
-                                <div class="select--single-wrapper mb-4">
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                     <select class="form-select form--modal-select" data-modal='#new-ingredient'
                                         data-instance='instance.excludeId'>
                                         <option value=""></option>
@@ -198,7 +198,7 @@
                             {{-- purchaseUnit --}}
                             <div wire:ignore>
                                 <label class="form-label form--label">Purchase Unit</label>
-                                <div class="select--single-wrapper mb-4">
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                     <select class="form-select form--modal-select" data-modal='#new-ingredient'
                                         data-instance='instance.purchaseUnitId' required>
                                         <option value=""></option>
@@ -215,7 +215,7 @@
                             {{-- group --}}
                             <div wire:ignore>
                                 <label class="form-label form--label">Group</label>
-                                <div class="select--single-wrapper mb-4">
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                     <select class="form-select form--modal-select" data-modal='#new-ingredient'
                                         data-instance='instance.groupId' required>
                                         <option value=""></option>
@@ -235,7 +235,7 @@
                             {{-- allergy --}}
                             <div wire:ignore>
                                 <label class="form-label form--label">Alllergy</label>
-                                <div class="select--single-wrapper mb-4">
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                     <select class="form-select form--modal-select" data-modal='#new-ingredient'
                                         data-instance='instance.allergyId'>
                                         <option value=""></option>

@@ -225,24 +225,24 @@
 
 
                 {{-- :: mealLabel --}}
-                <div class="d-flex justify-content-around align-items-center">
-                    <div class="sticker--label-layout sticky--div mb-2 px-0 py-2">
+
+
+
+                {{-- :: checkLabel --}}
+                @if (!empty($scheduleMeal?->meal?->label))
 
 
 
 
-
-
-
-                        {{-- :: checkLabel --}}
-                        @if (!empty($scheduleMeal?->meal?->label))
+                <div class="d-flex justify-content-around align-items-center ">
+                    <div class="sticker--label-layout sticky--div mb-2 px-0 py-2 ">
 
 
 
 
 
                         {{-- sticker - label --}}
-                        <div class="sticker--label mx-auto position-relative" style="
+                        <div class="sticker--label mx-auto position-relative " style="
                         width: {{ $scheduleMeal?->meal?->label->width ?? 100 }}mm;
                         height: {{ $scheduleMeal?->meal?->label->height ?? 70 }}mm;
                         border-radius: {{ $scheduleMeal?->meal?->label->radius ?? 0 }}px;
@@ -382,7 +382,7 @@
 
                                     @if($scheduleMeal?->meal?->label->showProductionDate)
 
-                                    <h4 class='fw-normal sticker--label-production mb-2 '>Prod. Date</h4>
+                                    <h4 class='fw-normal sticker--label-production mb-1'>Prod. Date</h4>
                                     <h4 class='fw-semibold sticker--label-production mb-3'>{{ date('d . m . Y',
                                         strtotime($searchScheduleDate)) }}
                                     </h4>
@@ -548,45 +548,54 @@
 
 
 
-
                         </div>
                         {{-- endSticker --}}
-
-
-
-
-
-
-
-
-
-
-
-                        {{-- :: noLabel --}}
-                        @else
-
-
-
-
-                        {{-- TODO: FALLBACK --}}
-
-
-
-
-
-
-
-                        @endif
-                        {{-- end if - checkLabel --}}
-
-
-
 
 
 
                     </div>
                 </div>
                 {{-- end mealLabel --}}
+
+
+
+
+
+
+
+
+
+                {{-- ------------------------------------------- --}}
+                {{-- ------------------------------------------- --}}
+                {{-- ------------------------------------------- --}}
+                {{-- ------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+                {{-- :: noLabel --}}
+                @else
+
+
+
+
+                {{-- fallback --}}
+                <div class="d-block px-2 py-3 overview--card client-version w-75 mx-auto text-center mt-3">
+                    <h5>{{ $scheduleMeal?->meal?->name }}</h5>
+                    <p class="fs-14 text-gold mb-0">Label is not assigned</p>
+                </div>
+
+
+
+                @endif
+                {{-- end if - checkLabel --}}
+
+
 
 
 

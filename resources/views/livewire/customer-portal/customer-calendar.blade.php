@@ -34,7 +34,7 @@
 
 
                 {{-- weekSelect --}}
-                <div class="select--single-wrapper" wire:ignore>
+                <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
                     <select class="form-select form--select" data-instance='searchFromDate' data-trigger='true' required
                         value='{{ $searchFromDate }}'>
 

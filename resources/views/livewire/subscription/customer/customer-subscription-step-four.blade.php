@@ -45,7 +45,7 @@
                     {{-- city --}}
                     <div class="col-6 col-sm-4" wire:ignore>
                         <label class="form-label form--label">Location</label>
-                        <div class="select--single-wrapper mb-4">
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select parent-select" id='city-select'
                                 data-instance='instance.cityId' data-child='#district-select'
                                 data-second-child='#deliveryTime-select' required>
@@ -66,7 +66,7 @@
                     {{-- districts --}}
                     <div class="col-6 col-sm-4" wire:ignore>
                         <label class="form-label form--label">District</label>
-                        <div class="select--single-wrapper mb-4">
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select" id='district-select'
                                 data-instance='instance.cityDistrictId' data-empty='true' required>
                                 <option value=""></option>
@@ -80,7 +80,7 @@
                     {{-- deliveryTimes --}}
                     <div class="col-12 col-sm-4" wire:ignore>
                         <label class="form-label form--label">Delivery Time</label>
-                        <div class="select--single-wrapper mb-4">
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select" id='deliveryTime-select'
                                 data-instance='instance.cityDeliveryTimeId' data-empty='true' required>
                                 <option value=""></option>

@@ -9,7 +9,7 @@
 
 
         {{-- size --}}
-        <div class="select--single-wrapper" wire:ignore>
+        <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
             <select class="form-select form--select" id='size-select-1' data-instance='size' required
                 data-placeholder=''>
                 <option value="" selected></option>

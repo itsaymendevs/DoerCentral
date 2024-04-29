@@ -70,7 +70,7 @@ class ProductionBuilderManageLabels extends Component
 
 
         // :: notEmpty
-        if ($this->label) {
+        if ($instance->id) {
 
 
             // 1: makeRequest

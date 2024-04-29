@@ -19,7 +19,7 @@
 
 
             {{-- select --}}
-            <div class="select--single-wrapper mb-4" wire:ignore>
+            <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
 
                 <select class="form-select form--select parent-select" id='city-select-{{ $address->id }}'
                     data-instance='instance.cityId' data-child='#district-select-{{ $address->id }}'
@@ -54,7 +54,7 @@
 
 
             {{-- select --}}
-            <div class="select--single-wrapper mb-4" wire:ignore>
+            <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
                 <select class="form-select form--select" id='district-select-{{ $address->id }}'
                     data-instance='instance.cityDistrictId' required value='{{ $instance->cityDistrictId }}'
                     data-trigger='true'>
@@ -81,7 +81,7 @@
 
 
             {{-- select --}}
-            <div class="select--single-wrapper mb-4" wire:ignore>
+            <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
                 <select class="form-select form--select" id='deliveryTime-select-{{ $address->id }}'
                     data-instance='instance.deliveryTimeId' value='{{ $instance->deliveryTimeId }}' required
                     data-trigger='true'>

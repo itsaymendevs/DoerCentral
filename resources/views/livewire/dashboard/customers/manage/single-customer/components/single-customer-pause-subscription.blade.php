@@ -44,7 +44,7 @@
                         {{-- types --}}
                         <div class="col-12" wire:ignore>
                             <label class="form-label form--label">Process</label>
-                            <div class="select--single-wrapper mb-4">
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select class="form-select form--modal-select" data-instance='instance.type'
                                     data-modal='#pause-subscription' required>
                                     <option value=""></option>

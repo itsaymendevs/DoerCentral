@@ -254,7 +254,8 @@
 
 
                                                         {{-- bundleDays --}}
-                                                        <div class="col-12 col-sm-4 mb-3 mb-sm-0" wire:ignore>
+                                                        <div class="col-12 col-sm-4 mb-3 mb-sm-0" wire:ignore
+                                                            wire:loading.class='no-events'>
                                                             <label class="form-label form--label">Plan Days</label>
                                                             <div class="select--single-wrapper text-start">
                                                                 <select

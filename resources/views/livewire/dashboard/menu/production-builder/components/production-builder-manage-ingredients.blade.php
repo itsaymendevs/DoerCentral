@@ -160,7 +160,7 @@
                         <td class="fw-bold tr--ingredient" wire:ignore>
 
 
-                            <div class="select--single-wrapper builder px-2 mx-auto"
+                            <div class="select--single-wrapper builder px-2 mx-auto" wire:loading.class='no-events'
                                 style="width: 170px !important; max-width: 170px !important">
                                 <select class="form-select ingredient--select"
                                     id='ingredient--select-{{ $mealSizeIngredient->id }}'
@@ -188,7 +188,7 @@
 
                         {{-- type --}}
                         <td class="fw-bold" wire:ignore>
-                            <div class="select--single-wrapper xxs"
+                            <div class="select--single-wrapper xxs" wire:loading.class='no-events'
                                 style="width: 85px !important; max-width: 85px !important">
                                 <select class="form-select ingredient--type-select "
                                     id='ingredient--type-select-{{ $mealSizeIngredient->id }}'
@@ -266,7 +266,7 @@
 
 
 
-                            <div class="select--single-wrapper builder px-2 mx-auto"
+                            <div class="select--single-wrapper builder px-2 mx-auto" wire:loading.class='no-events'
                                 style="width: 170px !important; max-width: 170px !important">
                                 <select class="form-select part--select" id='part--select-{{ $mealSizePart->id }}'
                                     data-instance='instanceParts.partId.{{ $mealSizePart->id }}'
@@ -298,7 +298,7 @@
 
                         {{-- type --}}
                         <td class="fw-bold" wire:ignore>
-                            <div class="select--single-wrapper xxs"
+                            <div class="select--single-wrapper xxs" wire:loading.class='no-events'
                                 style="width: 85px !important; max-width: 85px !important">
                                 <select class="form-select part--type-select "
                                     id='part--type-select-{{ $mealSizePart->id }}'

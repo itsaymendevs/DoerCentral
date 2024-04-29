@@ -6,7 +6,7 @@
     <label class="form-label form--label justify-content-center">Container</label>
 
 
-    <div class="select--single-wrapper mb-4 mx-auto" wire:ignore>
+    <div class="select--single-wrapper mb-4 mx-auto" wire:loading.class='no-events' wire:ignore>
         <select class="form-select form--select" id='container-select-1' data-instance='container' data-trigger='true'
             @if ($currentContainer) value='{{ $currentContainer->id }}' @endif>
 

@@ -356,7 +356,7 @@
 
 
                                 {{-- select --}}
-                                <div class="select--single-wrapper mb-4" wire:ignore>
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
 
                                     <select class="form-select form--select" id='allergy-select' multiple
                                         data-instance='instance.allergyLists' data-trigger='true'>
@@ -390,7 +390,7 @@
 
 
                                 {{-- select --}}
-                                <div class="select--single-wrapper mb-4" wire:ignore>
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
 
                                     <select class="form-select form--select" id='exclude-select' multiple
                                         data-instance='instance.excludeLists' data-trigger='true'>
@@ -435,7 +435,7 @@
 
 
                                 {{-- select --}}
-                                <div class="select--single-wrapper mb-4" wire:ignore>
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
 
                                     <select class="form-select form--select" value='{{ $instance->managerId ?? null }}'
                                         data-instance='instance.managerId'>
@@ -480,7 +480,7 @@
 
 
                                 {{-- select --}}
-                                <div class="select--single-wrapper mb-4" wire:ignore>
+                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
 
                                     <select class="form-select form--select" value='{{ $instance->driverId ?? null }}'
                                         data-instance='instance.driverId'>

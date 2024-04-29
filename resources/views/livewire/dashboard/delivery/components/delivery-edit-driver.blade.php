@@ -84,7 +84,7 @@
                         {{-- shift --}}
                         <div class="col-4" wire:ignore>
                             <label class="form-label form--label">Shift Type</label>
-                            <div class="select--single-wrapper mb-4">
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select class="form-select form--modal-select" id='shift-select-2'
                                     data-modal='#edit-driver' data-instance='instance.shiftTypeId' data-trigger='true'
                                     required>
@@ -103,7 +103,7 @@
                         {{-- deliveryZones --}}
                         <div class="col-12" wire:ignore>
                             <label class="form-label form--label">Delivery Zones</label>
-                            <div class="select--single-wrapper mb-4">
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select class="form-select form--modal-select" id='zone-select-2'
                                     data-modal='#edit-driver' data-trigger='true' data-instance='instance.zones'
                                     multiple="">

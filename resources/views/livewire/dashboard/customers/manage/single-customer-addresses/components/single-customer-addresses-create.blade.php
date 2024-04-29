@@ -54,7 +54,7 @@
                             <label class="form-label form--label">City</label>
 
                             {{-- select --}}
-                            <div class="select--single-wrapper mb-4" wire:ignore>
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
 
                                 <select class="form-select form--modal-select parent-select parent-select-2"
                                     id='city-modal-select-2' data-instance='instance.cityId' data-modal='#new-address'
@@ -83,7 +83,7 @@
                             <label class="form-label form--label">District</label>
 
                             {{-- select --}}
-                            <div class="select--single-wrapper mb-4" wire:ignore>
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
                                 <select class="form-select form--modal-select" id='district-modal-select-2'
                                     data-instance='instance.cityDistrictId' data-modal='#new-address' required>
                                     <option value=""></option>
@@ -104,7 +104,7 @@
                             <label class="form-label form--label">Timing</label>
 
                             {{-- select --}}
-                            <div class="select--single-wrapper mb-4" wire:ignore>
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
                                 <select class="form-select form--modal-select" id='deliveryTime-modal-select-2'
                                     data-instance='instance.deliveryTimeId' data-modal='#new-address' required>
                                     <option value=""></option>

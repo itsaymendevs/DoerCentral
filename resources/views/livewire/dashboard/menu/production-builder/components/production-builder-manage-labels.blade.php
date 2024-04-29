@@ -7,9 +7,9 @@
 
 
     {{-- select --}}
-    <div class="select--single-wrapper mb-4 mx-auto" wire:ignore>
-        <select class="form-select form--select label--select" id='label-select-1' data-instance='label'
-            data-trigger='true' @if($currentLabel) value='{{ $currentLabel->id }}' @endif>
+    <div class="select--single-wrapper mb-4 mx-auto" wire:loading.class='no-events' wire:ignore>
+        <select class="form-select form--select label--select" data-clear='true' id='label-select-1'
+            data-instance='label' data-trigger='true' @if($currentLabel) value='{{ $currentLabel->id }}' @endif>
 
             <option value=""></option>
 

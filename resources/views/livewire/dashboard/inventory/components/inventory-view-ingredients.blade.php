@@ -19,7 +19,7 @@
         {{-- categoryFilter --}}
         <div class="col-2" wire:ignore>
             <label class="form-label form--label">Category</label>
-            <div class="select--single-wrapper mb-4">
+            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                 <select class="form-select form--select" data-clear='true' data-instance='searchCategory'>
                     <option value=""></option>
 
@@ -38,7 +38,7 @@
         {{-- groupsFilter --}}
         <div class="col-2" wire:ignore>
             <label class="form-label form--label">Group</label>
-            <div class="select--single-wrapper mb-4">
+            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                 <select class="form-select form--select" data-clear='true' data-instance='searchGroup'>
                     <option value=""></option>
 
@@ -57,7 +57,7 @@
         {{-- excludeFilter --}}
         <div class="col-2" wire:ignore>
             <label class="form-label form--label">Exclude</label>
-            <div class="select--single-wrapper mb-4">
+            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                 <select class="form-select form--select" data-clear='true' data-instance='searchExclude'>
                     <option value=""></option>
 
@@ -76,7 +76,7 @@
         {{-- allergyFilter --}}
         <div class="col-2" wire:ignore>
             <label class="form-label form--label">Allergy</label>
-            <div class="select--single-wrapper mb-4">
+            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                 <select class="form-select form--select" data-clear='true' data-instance='searchAllergy'>
                     <option value=""></option>
 

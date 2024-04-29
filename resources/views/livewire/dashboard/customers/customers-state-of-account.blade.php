@@ -33,7 +33,7 @@
                     {{-- plan --}}
                     <div class="col-3" wire:ignore>
                         <label class="form-label form--label">Plan</label>
-                        <div class="select--single-wrapper">
+                        <div class="select--single-wrapper" wire:loading.class='no-events'>
                             <select class="form-select form--select" data-instance='searchPlan' data-clear='true'>
                                 <option value=""></option>
 

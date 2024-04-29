@@ -44,7 +44,7 @@
 
                         {{-- allergy --}}
                         <label class="form-label form--label">Allergy</label>
-                        <div class="select--single-wrapper mb-4" wire:ignore>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
                             <select class="form-select form--select" data-instance='instance.allergyLists' multiple>
 
                                 @foreach ($allergyLists as $allergyList)
@@ -58,7 +58,7 @@
 
                         {{-- exclude --}}
                         <label class="form-label form--label">Exclude</label>
-                        <div class="select--single-wrapper mb-4" wire:ignore>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
                             <select class="form-select form--select" data-instance='instance.excludeLists' multiple>
 
                                 @foreach ($excludeLists as $excludeList)

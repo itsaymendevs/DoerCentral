@@ -40,7 +40,7 @@
             {{-- 2: plan --}}
             <div class="col-3" wire:ignore>
                 <label class="form-label form--label">Plan</label>
-                <div class="select--single-wrapper mb-4">
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
 
                     <select class="form-select form--select" data-instance='searchPlan' data-clear='true'>
                         <option value=""></option>
@@ -59,7 +59,7 @@
             {{-- 3: status --}}
             <div class="col-3" wire:ignore>
                 <label class="form-label form--label">Status</label>
-                <div class="select--single-wrapper mb-4">
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                     <select class="form-select form--select" data-instance='searchStatus' data-clear='true'>
                         <option value=""></option>
 

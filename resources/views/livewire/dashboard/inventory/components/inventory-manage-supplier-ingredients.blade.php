@@ -40,7 +40,7 @@
                         {{-- ingredient --}}
                         <div class="col-4" wire:ignore>
                             <label class="form-label form--label">Ingredient</label>
-                            <div class="select--single-wrapper mb-4">
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select class="form-select form--modal-select" data-modal='#supplier-ingredients'
                                     data-instance='instance.ingredientId' required>
                                     <option value=""></option>
@@ -57,7 +57,7 @@
                         {{-- unit --}}
                         <div class="col-3" wire:ignore>
                             <label class="form-label form--label">Unit</label>
-                            <div class="select--single-wrapper mb-4">
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select class="form-select form--modal-select" data-modal='#supplier-ingredients'
                                     data-instance='instance.unitId' required>
                                     <option value=""></option>

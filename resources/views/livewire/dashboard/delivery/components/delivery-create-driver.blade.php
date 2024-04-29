@@ -91,7 +91,7 @@
                         {{-- shift --}}
                         <div class="col-4" wire:ignore>
                             <label class="form-label form--label">Shift Type</label>
-                            <div class="select--single-wrapper mb-4">
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select class="form-select form--modal-select" data-modal='#new-driver'
                                     data-instance='instance.shiftTypeId' required>
                                     <option value=""></option>
@@ -111,7 +111,7 @@
                         {{-- deliveryZones --}}
                         <div class="col-8" wire:ignore>
                             <label class="form-label form--label">Delivery Zones</label>
-                            <div class="select--single-wrapper mb-4">
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select class="form-select form--modal-select" data-modal='#new-driver'
                                     data-instance='instance.zones' multiple="">
                                     @foreach ($zones as $zone)

@@ -107,7 +107,7 @@
                                 {{-- diets --}}
                                 <div class="col-12" wire:ignore>
                                     <label class="form-label form--label">Diet Types</label>
-                                    <div class="select--single-wrapper mb-4">
+                                    <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                         <select class="form-select form--modal-select" data-modal='#new-calendar'
                                             data-instance='instance.diets' multiple>
 
@@ -125,7 +125,7 @@
                                 {{-- plans --}}
                                 <div class="col-12" wire:ignore>
                                     <label class="form-label form--label">Meal Plans</label>
-                                    <div class="select--single-wrapper mb-4">
+                                    <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                         <select class="form-select form--modal-select" data-modal='#new-calendar'
                                             data-instance='instance.plans' multiple>
 

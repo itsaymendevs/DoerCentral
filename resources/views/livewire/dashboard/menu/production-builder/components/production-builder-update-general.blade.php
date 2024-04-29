@@ -19,7 +19,7 @@
             {{-- type --}}
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Type</label>
-                <div class="select--single-wrapper mb-4">
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                     <select class="form-select form--select" id='type-select-2' data-instance='instance.typeId'
                         required>
                         <option value=""></option>
@@ -39,7 +39,7 @@
             {{-- cuisine --}}
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Cuisine</label>
-                <div class="select--single-wrapper mb-4">
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                     <select class="form-select form--select" id='cuisine-select-2' data-instance='instance.cuisineId'>
                         <option value=""></option>
 
@@ -56,7 +56,7 @@
             {{-- category --}}
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Category</label>
-                <div class="select--single-wrapper mb-4">
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                     <select class="form-select form--select" id='category-select-2' data-instance='instance.category'
                         data-clear='true'>
                         <option value=""></option>
@@ -74,7 +74,7 @@
             {{-- dietType --}}
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Diet Type</label>
-                <div class="select--single-wrapper mb-4">
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                     <select class="form-select form--select" id='diet-select-2' data-instance='instance.dietId'
                         required>
                         <option value=""></option>
@@ -124,7 +124,7 @@
             {{-- tags --}}
             <div class="col-12" wire:ignore>
                 <label class="form-label form--label">Tags</label>
-                <div class="select--single-wrapper mb-4">
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                     <select class="form-select form--select" id='tags-select-2' data-instance='instance.tags'
                         multiple="">
                         @foreach ($tags as $tag)

@@ -1,6 +1,8 @@
 {{-- contentSection --}}
-<section class="content--section" id="content--section">
+<section class="content--section" id="content--section" wire:ignore.self wire:loading.class='no-events'>
     <div class="container">
+
+
 
 
 

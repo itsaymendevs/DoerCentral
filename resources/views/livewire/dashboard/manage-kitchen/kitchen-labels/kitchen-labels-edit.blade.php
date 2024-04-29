@@ -674,7 +674,7 @@
                     {{-- containers --}}
                     <div class="col-12" wire:ignore>
                         <label class="form-label form--label">Containers</label>
-                        <div class="select--single-wrapper mb-4">
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select id='container-select-2' class="form-select form--select" multiple=""
                                 data-instance='instance.containers'>
                                 @foreach ($containers as $container)

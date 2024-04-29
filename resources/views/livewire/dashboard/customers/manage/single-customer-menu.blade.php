@@ -49,7 +49,7 @@
 
 
                 {{-- select --}}
-                <div class="select--single-wrapper mb-4 " wire:ignore>
+                <div class="select--single-wrapper mb-4 " wire:loading.class='no-events' wire:ignore>
                     <select class="form-select form--select" disabled data-instance='menuCalendarId' data-trigger='true'
                         value='{{ $subscription->menuCalendarId }}'>
                         <option value=""></option>

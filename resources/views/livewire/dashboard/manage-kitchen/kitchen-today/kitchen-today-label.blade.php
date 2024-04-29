@@ -167,6 +167,15 @@
 
 
 
+            {{-- ** get first - scheduleMeal ** --}}
+            @php $scheduleMeal = $scheduleMealsByMeal->first(); @endphp
+
+
+
+
+
+
+
             <div class="col-5 mb-4" key='schedule-meal-{{ $commonMeal }}'>
 
 
@@ -184,6 +193,7 @@
                     {{-- 2: PrintLabel --}}
                     <button
                         class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold"
+                        @if (empty($scheduleMeal?->meal?->label)) disabled @endif
                         type="button" data-bs-toggle='modal' data-bs-target='#label-print'
                         wire:click='labelPrint({{ $scheduleMealsByMeal }})'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
@@ -212,6 +222,8 @@
 
 
 
+
+
                 {{-- :: mealLabel --}}
                 <div class="d-flex justify-content-around align-items-center">
                     <div class="sticker--label-layout sticky--div mb-2 px-0 py-2">
@@ -220,16 +232,25 @@
 
 
 
+
+
+                        {{-- :: checkLabel --}}
+                        @if (!empty($scheduleMeal?->meal?->label))
+
+
+
+
+
                         {{-- sticker - label --}}
-                        <div class="sticker--label mx-auto position-relative" style="width: {{ $label->width ?? 100 }}mm;
-                    height: {{ $label->height ?? 70 }}mm;
-                    border-radius: {{ $label->radius ?? 0 }}px;
-                    padding-top: {{ $label->paddingTop  ?? 0 }}mm;
-                    padding-bottom: {{ $label->paddingBottom  ?? 0 }}mm;
-                    background-color: {{ $label->backgroundColor ?? '#fff' }};
-                    border-color: {{ $label->borderColor ?? '#fff' }};
-                    color: {{ $label->fontColor ?? '#000' }};
-                    ">
+                        <div class="sticker--label mx-auto position-relative" style="
+                        width: {{ $scheduleMeal?->meal?->label->width ?? 100 }}mm;
+                        height: {{ $scheduleMeal?->meal?->label->height ?? 70 }}mm;
+                        border-radius: {{ $scheduleMeal?->meal?->label->radius ?? 0 }}px;
+                        padding-top: {{ $scheduleMeal?->meal?->label->paddingTop  ?? 0 }}mm;
+                        padding-bottom: {{ $scheduleMeal?->meal?->label->paddingBottom  ?? 0 }}mm;
+                        background-color: {{ $scheduleMeal?->meal?->label->backgroundColor ?? '#fff' }};
+                        border-color: {{ $scheduleMeal?->meal?->label->borderColor ?? '#fff' }};
+                        color: {{ $label->fontColor ?? '#000' }};">
 
 
 
@@ -243,20 +264,26 @@
 
 
                             {{-- 1.5: top --}}
-                            <div class='sticker--label-header d-flex  justify-content-around align-items-center' style="padding-left: {{ $label->paddingLeft  ?? 0 }}mm;
-                            padding-right: {{ $label->paddingRight  ?? 0 }}mm;
-                            border-color: {{ $label->borderColor  ?? '#c2c3c5' }}">
+                            <div class='sticker--label-header d-flex  justify-content-around align-items-center' style="padding-left: {{ $scheduleMeal?->meal?->label->paddingLeft  ?? 0 }}mm;
+                            padding-right: {{ $scheduleMeal?->meal?->label->paddingRight  ?? 0 }}mm;
+                            border-color: {{ $scheduleMeal?->meal?->label->borderColor  ?? '#c2c3c5' }}">
+
+
+
 
 
 
 
                                 {{-- leftSection --}}
-                                <div style="border-color: {{ $label->borderColor  ?? '#c2c3c5' }}">
+                                <div
+                                    style="border-color: {{ $scheduleMeal?->meal?->label->borderColor  ?? '#c2c3c5' }}">
+
+
 
 
                                     {{-- customerName --}}
 
-                                    @if ($label->showCustomerName)
+                                    @if ($scheduleMeal?->meal?->label->showCustomerName)
 
                                     <h4 class='fw-semibold sticker--label-customer mb-1'>Richard Branson
                                     </h4>
@@ -269,15 +296,17 @@
 
 
 
+
                                     {{-- mealName --}}
 
-                                    @if ($label->showMealName)
+                                    @if ($scheduleMeal?->meal?->label->showMealName)
 
                                     <h4 class='fw-normal sticker--label-meal mb-2'>{{
-                                        $scheduleMealsByMeal?->first()?->meal?->name }}</h4>
+                                        $scheduleMeal?->meal?->name }}</h4>
 
                                     @endif
                                     {{-- end if - showHide --}}
+
 
 
 
@@ -293,13 +322,24 @@
                                 {{-- rightSection / bottomSection --}}
                                 <div class='text-start ps-3'>
                                     <h4 class='fw-normal sticker--label-general-tag mb-1 fs-10'>Your Nutritious
-                                        {{ $scheduleMealsByMeal?->first()?->mealType?->name }}
+                                        {{ $scheduleMeal?->mealType?->name }}
                                     </h4>
-                                    <h4 class='fw-normal sticker--label-tags mb-2 '>
-                                        <span class='fw-normal me-1 fs-10'>Remove Lid,</span><span
-                                            class='fw-normal me-1 fs-10'>heat,</span><span
-                                            class='fw-normal me-1 fs-10'>enjoy</span>
+
+
+                                    {{-- servingInstructions --}}
+
+                                    @if ($scheduleMeal?->meal?->label?->showServingInstructions)
+
+                                    <h4 class='fw-normal sticker--label-tags mb-2 fs-10'>
+                                        <span class='fw-normal me-1 fs-10'>{{ implode(', ',
+                                            $scheduleMeal?->meal?->servingInstructionsInArray()) }}</span>
                                     </h4>
+
+                                    @endif
+                                    {{-- end if - showHide --}}
+
+
+
                                 </div>
 
 
@@ -324,20 +364,23 @@
 
 
                             {{-- 2: middle --}}
-                            <div class='sticker--label-content d-flex justify-content-around align-items-center' style="padding-left: {{ $label->paddingLeft  ?? 0 }}mm;
-                            padding-right: {{ $label->paddingRight  ?? 0 }}mm;">
+                            <div class='sticker--label-content d-flex justify-content-around align-items-center' style="padding-left: {{ $scheduleMeal?->meal?->label->paddingLeft  ?? 0 }}mm;
+                            padding-right: {{ $scheduleMeal?->meal?->label->paddingRight  ?? 0 }}mm;">
 
 
 
 
                                 {{-- leftSection --}}
                                 <div
-                                    class='text-start smaller-section @if(!$label->showProductionDate && !$label->showExpiryDate) d-none @endif'>
+                                    class='text-start smaller-section @if(!$scheduleMeal?->meal?->label->showProductionDate && !$scheduleMeal?->meal?->label->showExpiryDate) d-none @endif'>
+
+
+
 
 
                                     {{-- 1: production --}}
 
-                                    @if($label->showProductionDate)
+                                    @if($scheduleMeal?->meal?->label->showProductionDate)
 
                                     <h4 class='fw-normal sticker--label-production mb-1 '>Prod. Date</h4>
                                     <h4 class='fw-semibold sticker--label-production mb-3'>{{ date('d . m . Y',
@@ -354,12 +397,13 @@
 
                                     {{-- 2: expiry --}}
 
-                                    @if($label->showExpiryDate)
+                                    @if($scheduleMeal?->meal?->label->showExpiryDate)
 
 
                                     <h4 class='fw-normal sticker--label-expiry mb-1'>Expiry Date</h4>
                                     <h4 class='fw-semibold sticker--label-expiry mb-0'>{{ date('d . m . Y',
-                                        strtotime($searchScheduleDate . '+1 day')) }}</h4>
+                                        strtotime($searchScheduleDate . "+{$scheduleMeal?->meal?->validity} day"))
+                                        }}</h4>
 
 
 
@@ -393,15 +437,16 @@
 
                                     {{-- :: mealMacros --}}
 
-                                    @if ($label->showMealMacros)
+                                    @if ($scheduleMeal?->meal?->label->showMealMacros)
 
 
 
                                     {{-- :: cals --}}
                                     <h4 class='sticker--label-macro calories'
-                                        style="border-color: {{ $label->caloriesColor ?? 'revert-layer' }}; color: {{ $label->caloriesColor ?? 'revert-layer' }}">
+                                        style="border-color: {{ $scheduleMeal?->meal?->label->caloriesColor ?? 'revert-layer' }}; color: {{ $scheduleMeal?->meal?->label->caloriesColor ?? 'revert-layer' }}">
                                         <span class='sticker--label-macro-caption fw-semibold'>KCAL</span>
-                                        <span class='sticker--label-macro-value'>240</span>
+                                        <span class='sticker--label-macro-value'>{{
+                                            $scheduleMeal?->mealSize()?->afterCookCalories ?? 0 }}</span>
                                     </h4>
 
 
@@ -410,9 +455,10 @@
 
                                     {{-- :: carbs --}}
                                     <h4 class='sticker--label-macro carbs'
-                                        style="border-color: {{ $label->carbsColor ?? 'revert-layer' }}; color: {{ $label->carbsColor ?? 'revert-layer' }}">
+                                        style="border-color: {{ $scheduleMeal?->meal?->label->carbsColor ?? 'revert-layer' }}; color: {{ $scheduleMeal?->meal?->label->carbsColor ?? 'revert-layer' }}">
                                         <span class='sticker--label-macro-caption fw-semibold'>Carbs</span>
-                                        <span class='sticker--label-macro-value'>70</span>
+                                        <span class='sticker--label-macro-value'>{{
+                                            $scheduleMeal?->mealSize()?->afterCookCarbs ?? 0 }}</span>
                                     </h4>
 
 
@@ -422,9 +468,10 @@
 
                                     {{-- :: proteins --}}
                                     <h4 class='sticker--label-macro proteins'
-                                        style="border-color: {{ $label->proteinsColor ?? 'revert-layer' }}; color: {{ $label->proteinsColor ?? 'revert-layer' }}">
+                                        style="border-color: {{ $scheduleMeal?->meal?->label->proteinsColor ?? 'revert-layer' }}; color: {{ $scheduleMeal?->meal?->label->proteinsColor ?? 'revert-layer' }}">
                                         <span class='sticker--label-macro-caption fw-semibold'>Prot</span>
-                                        <span class='sticker--label-macro-value'>30</span>
+                                        <span class='sticker--label-macro-value'>{{
+                                            $scheduleMeal?->mealSize()?->afterCookProteins ?? 0 }}</span>
                                     </h4>
 
 
@@ -433,9 +480,10 @@
 
                                     {{-- :: fats --}}
                                     <h4 class='sticker--label-macro fats'
-                                        style="border-color: {{ $label->fatsColor ?? 'revert-layer' }}; color: {{ $label->fatsColor ?? 'revert-layer' }}">
+                                        style="border-color: {{ $scheduleMeal?->meal?->label->fatsColor ?? 'revert-layer' }}; color: {{ $scheduleMeal?->meal?->label->fatsColor ?? 'revert-layer' }}">
                                         <span class='sticker--label-macro-caption fw-semibold'>Fat</span>
-                                        <span class='sticker--label-macro-value'>12</span>
+                                        <span class='sticker--label-macro-value'>{{
+                                            $scheduleMeal?->mealSize()?->afterCookFats ?? 0 }}</span>
                                     </h4>
 
 
@@ -476,13 +524,13 @@
 
                             {{-- 3: bottom --}}
 
-                            @if ($label->showFooterImageFile)
+                            @if ($scheduleMeal?->meal?->label->showFooterImageFile)
 
 
                             <div class='sticker--label-footer d-flex flex-column'>
 
                                 <img id='footer--preview-2' class='of-cover w-100 h-100'
-                                    src=" {{ asset('storage/kitchen/labels/footers/' . $label->footerImageFile) }}"
+                                    src=" {{ asset('storage/kitchen/labels/footers/' . $scheduleMeal?->meal?->label->footerImageFile) }}"
                                     wire:ignore.self>
 
                             </div>
@@ -502,8 +550,32 @@
 
 
 
-                        {{-- --------------------------- --}}
-                        {{-- --------------------------- --}}
+
+
+
+
+
+
+
+
+                        {{-- :: noLabel --}}
+                        @else
+
+
+
+
+                        {{-- TODO: FALLBACK --}}
+
+
+
+
+
+
+
+                        @endif
+                        {{-- end if - checkLabel --}}
+
+
 
 
 
@@ -514,18 +586,7 @@
 
 
 
-
-
-
-
-
-
-
-
             </div>
-
-
-
             @endforeach
             {{-- end loop - groupByMeal --}}
 
@@ -605,8 +666,8 @@
     @section('modals')
 
 
-    {{-- 1: printLabel --}}
-    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-label.components.kitchen-today-label-print />
+    {{-- 1: preview / print --}}
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-label.components.kitchen-today-label-preview />
 
 
 

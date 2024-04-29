@@ -45,7 +45,7 @@
 
 
             {{-- label --}}
-            <a wire:navigate class="btn @if (Request::is('dashboard/kitchen/today/labels')) active @endif" role="button"
+            <a class="btn @if (Request::is('dashboard/kitchen/today/labels')) active @endif" role="button"
                 href="{{ route('dashboard.kitchenTodayLabel') }}">Today Labels</a>
 
 

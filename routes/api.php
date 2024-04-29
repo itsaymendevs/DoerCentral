@@ -970,7 +970,7 @@ Route::post('/dashboard/menu/builder/servings/update', [BuilderController::class
 
 
 // 9.10.2: menu - builder - servingInstructions - toggle
-Route::post('/dashboard/menu/builder/serving-instructions/toggle', [BuilderController::class, 'toggleBuilderInstructionTag']);
+Route::post('/dashboard/menu/builder/serving-instructions/toggle', [BuilderController::class, 'toggleBuilderServingInstruction']);
 
 
 

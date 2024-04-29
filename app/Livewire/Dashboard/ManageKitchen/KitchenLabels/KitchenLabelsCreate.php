@@ -55,6 +55,7 @@ class KitchenLabelsCreate extends Component
         $this->instance->showMealMacros = true;
         $this->instance->showProductionDate = true;
         $this->instance->showExpiryDate = true;
+        $this->instance->showServingInstructions = true;
         $this->instance->showFooterImageFile = true;
 
 

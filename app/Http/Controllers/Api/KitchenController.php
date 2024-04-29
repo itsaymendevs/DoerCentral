@@ -240,6 +240,7 @@ class KitchenController extends Controller
         $label->showCustomerName = boolval($request->showCustomerName) ?? false;
         $label->showMealName = boolval($request->showMealName) ?? false;
         $label->showMealMacros = boolval($request->showMealMacros) ?? false;
+        $label->showServingInstructions = boolval($request->showServingInstructions) ?? false;
 
 
 
@@ -396,6 +397,7 @@ class KitchenController extends Controller
         $label->showCustomerName = boolval($request->showCustomerName) ?? false;
         $label->showMealName = boolval($request->showMealName) ?? false;
         $label->showMealMacros = boolval($request->showMealMacros) ?? false;
+        $label->showServingInstructions = boolval($request->showServingInstructions) ?? false;
 
 
 

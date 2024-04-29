@@ -150,17 +150,23 @@
                                             Breakfast
                                         </h4>
 
+
+
                                         {{-- servingInstructions --}}
+
+                                        @if ($instance->showServingInstructions)
+
                                         <h4 class='fw-normal sticker--label-tags mb-2 fs-10'>
                                             <span class='fw-normal me-1 fs-10'>{{ implode(', ',
                                                 $servingInstructions) }}</span>
                                         </h4>
 
+                                        @endif
+                                        {{-- end if - showHide --}}
+
+
+
                                     </div>
-
-
-
-
                                 </div>
                                 {{-- endTop --}}
 
@@ -868,7 +874,7 @@
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-6"
-                                        @if($instance->showInstructions) checked @endif
+                                        @if($instance->showServingInstructions) checked @endif
                                     wire:model.live='instance.showServingInstructions' />
                                     <label class="form-check-label fs-14" for="formCheck-6">Serving Instructions</label>
                                 </div>

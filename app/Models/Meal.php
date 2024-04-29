@@ -222,6 +222,56 @@ class Meal extends Model
 
 
 
+
+
+
+    public function servingInstructionsInArray()
+    {
+
+
+        // :: root
+        $servingInstructionsInArray = [];
+
+
+
+
+        // 1: getMealServingInstructions
+        $mealServingInstructions = $this->servingInstructions()?->pluck('servingInstructionId')?->toArray() ?? [];
+
+
+
+
+        // 1.2: getServingInstructions
+        $servingInstructionsInArray = ServingInstruction::whereIn('id', $mealServingInstructions)?->get()?->pluck('name')?->toArray() ?? [];
+
+
+
+
+        return $servingInstructionsInArray;
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------
+
+
+
+
+
+
+
+
     public function totalGrams()
     {
 
@@ -241,6 +291,11 @@ class Meal extends Model
 
 
     } // end function
+
+
+
+
+
 
 
 
@@ -414,6 +469,14 @@ class Meal extends Model
 
 
     } // end function
+
+
+
+
+
+
+
+
 
 
 

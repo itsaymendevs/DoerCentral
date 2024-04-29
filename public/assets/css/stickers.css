@@ -14,7 +14,7 @@
     height: 70mm;
     max-height: 100mm;
     background-color: var(--color-theme);
-    /* border: 1px solid var(--color-theme); */
+    border: 1px solid var(--color-theme);
     display: flex;
     justify-content: space-between;
     flex-direction: column;

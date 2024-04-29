@@ -151,13 +151,22 @@
                                         </h4>
 
 
+
+
                                         {{-- servingInstructions --}}
+
+                                        @if ($instance->showServingInstructions)
+
                                         <h4 class='fw-normal sticker--label-tags mb-2 fs-10'>
                                             <span class='fw-normal me-1 fs-10'>{{ implode(', ',
                                                 $servingInstructions) }}</span>
                                         </h4>
-                                    </div>
 
+                                        @endif
+                                        {{-- end if - showHide --}}
+
+
+                                    </div>
 
 
 
@@ -851,12 +860,28 @@
 
 
 
-                            {{-- footer --}}
+
+                            {{-- instructions --}}
                             <div class="col-6">
                                 <div class="form-check form-switch mb-3 mealType--checkbox">
                                     <input class="form-check-input pointer sm" type="checkbox" id="formCheck-6"
+                                        wire:model.live='instance.showServingInstructions' />
+                                    <label class="form-check-label fs-14" for="formCheck-6">Serving Instructions</label>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                            {{-- footer --}}
+                            <div class="col-6">
+                                <div class="form-check form-switch mb-3 mealType--checkbox">
+                                    <input class="form-check-input pointer sm" type="checkbox" id="formCheck-7"
                                         wire:model.live='instance.showFooterImageFile' />
-                                    <label class="form-check-label fs-14" for="formCheck-6">Footer Picture</label>
+                                    <label class="form-check-label fs-14" for="formCheck-7">Footer Picture</label>
                                 </div>
                             </div>
 

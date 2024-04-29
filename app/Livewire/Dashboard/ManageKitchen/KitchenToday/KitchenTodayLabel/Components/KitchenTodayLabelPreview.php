@@ -7,7 +7,7 @@ use App\Models\Label;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class KitchenTodayLabelPrint extends Component
+class KitchenTodayLabelPreview extends Component
 {
 
 
@@ -57,7 +57,7 @@ class KitchenTodayLabelPrint extends Component
 
 
 
-        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-label.components.kitchen-today-label-print', compact('label'));
+        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-label.components.kitchen-today-label-preview', compact('label'));
 
 
     } // end function

@@ -74,7 +74,8 @@
 
 
                             {{-- sticker - label --}}
-                            <div class="sticker--label mx-auto position-relative" style="width: {{ $instance->width ?? 100 }}mm;
+                            <div class="sticker--label mx-auto position-relative
+                            @if ($instance->isVertical) vertical @endif" style="width: {{ $instance->width ?? 100 }}mm;
                                 height: {{ $instance->height ?? 70 }}mm;
                                 border-radius: {{ $instance->radius ?? 0 }}px;
                                 padding-top: {{ $instance->paddingTop  ?? 0 }}mm;
@@ -96,7 +97,7 @@
 
 
                                 {{-- 1.5: top --}}
-                                <div class='sticker--label-header d-flex  justify-content-around align-items-center'
+                                <div class='sticker--label-header d-flex justify-content-around align-items-center'
                                     style="padding-left: {{ $instance->paddingLeft  ?? 0 }}mm;
                                         padding-right: {{ $instance->paddingRight  ?? 0 }}mm;
                                         border-color: {{ $instance->borderColor  ?? '#c2c3c5' }}">
@@ -127,8 +128,9 @@
 
                                         @if ($instance->showMealName)
 
-                                        <h4 class='fw-normal sticker--label-meal mb-2'>Grilled chicken with mashed
-                                            potato</h4>
+                                        <h4 class='fw-normal sticker--label-meal mb-2'>{{ ($instance->isVertical) ?
+                                            'Chocolate Cookies' : 'Grilled chicken with mashed potato' }}
+                                        </h4>
 
                                         @endif
                                         {{-- end if - showHide --}}
@@ -144,10 +146,14 @@
 
 
 
+
+
+
+
                                     {{-- rightSection / bottomSection --}}
-                                    <div class='text-start ps-3'>
-                                        <h4 class='fw-normal sticker--label-general-tag mb-1 fs-10'>Your Nutritious
-                                            Breakfast
+                                    <div class='text-start @if (!$instance->isVertical) ps-3 @endif'>
+                                        <h4 class='fw-normal sticker--label-general-tag mb-1 fs-10'>Your Nutritious {{
+                                            ($instance->isVertical) ? 'Snack' : 'Breakfast' }}
                                         </h4>
 
 
@@ -158,8 +164,9 @@
                                         @if ($instance->showServingInstructions)
 
                                         <h4 class='fw-normal sticker--label-tags mb-2 fs-10'>
-                                            <span class='fw-normal me-1 fs-10'>{{ $servingInstructions[1] ?? ''
-                                                }}</span>
+                                            <span class='fw-normal me-1 fs-10'>{{ ($instance->isVertical) ?
+                                                $servingInstructions[0] :$servingInstructions[1] }}
+                                            </span>
                                         </h4>
 
                                         @endif
@@ -188,8 +195,12 @@
 
 
 
+
+
+
+
                                 {{-- 2: middle --}}
-                                <div class='sticker--label-content d-flex justify-content-around align-items-center'
+                                <div class='sticker--label-content d-flex justify-content-around align-items-center '
                                     style="padding-left: {{ $instance->paddingLeft  ?? 0 }}mm;
                                         padding-right: {{ $instance->paddingRight  ?? 0 }}mm;">
 
@@ -198,20 +209,33 @@
 
                                     {{-- leftSection --}}
                                     <div
-                                        class='text-start smaller-section @if(!$instance->showProductionDate && !$instance->showExpiryDate) d-none @endif'>
+                                        class='text-start smaller-section
+                                        @if(!$instance->showProductionDate && !$instance->showExpiryDate) d-none @endif'>
+
+
 
 
                                         {{-- 1: production --}}
 
                                         @if($instance->showProductionDate)
 
-                                        <h4 class='fw-normal sticker--label-production mb-1'>Prod. Date</h4>
-                                        <h4 class='fw-semibold sticker--label-production mb-3'>{{ date('d . m . Y',
-                                            strtotime($globalCurrentDate)) }}
-                                        </h4>
+                                        <div>
+                                            <h4 class='fw-normal sticker--label-production mb-1'>
+                                                {{ $instance->isVertical ? 'Prod.' : 'Prod. Date' }}
+                                            </h4>
+
+                                            <h4 class='fw-semibold sticker--label-production mb-3'>
+                                                {{ $instance->isVertical ?
+                                                date('d.m.Y', strtotime($globalCurrentDate)) :
+                                                date('d . m . Y', strtotime($globalCurrentDate)) }}
+                                            </h4>
+                                        </div>
 
                                         @endif
                                         {{-- end if - showHide --}}
+
+
+
 
 
 
@@ -222,10 +246,16 @@
 
                                         @if($instance->showExpiryDate)
 
-
-                                        <h4 class='fw-normal sticker--label-expiry mb-1'>Expiry Date</h4>
-                                        <h4 class='fw-semibold sticker--label-expiry mb-0'>{{ date('d . m . Y',
-                                            strtotime($globalNextDate)) }}</h4>
+                                        <div>
+                                            <h4 class='fw-normal sticker--label-expiry mb-1'>
+                                                {{ $instance->isVertical ? 'Expiry.' : 'Expiry Date' }}
+                                            </h4>
+                                            <h4 class='fw-semibold sticker--label-expiry mb-0'>
+                                                {{ $instance->isVertical ?
+                                                date('d.m.Y', strtotime($globalNextDate)) :
+                                                date('d . m . Y', strtotime($globalNextDate)) }}
+                                            </h4>
+                                        </div>
 
 
 
@@ -791,6 +821,19 @@
 
 
 
+                            {{-- vertical --}}
+                            <div class="col-6">
+                                <div class="form-check form-switch mb-3 mealType--checkbox">
+                                    <input class="form-check-input pointer sm" type="checkbox" id="formCheck-0"
+                                        wire:model.live='instance.isVertical' />
+                                    <label class="form-check-label fs-14" for="formCheck-0">Vertical Label</label>
+                                </div>
+                            </div>
+
+
+
+
+
 
                             {{-- customerName --}}
                             <div class="col-6">
@@ -817,6 +860,21 @@
                                     <label class="form-check-label fs-14" for="formCheck-2">Meal Name</label>
                                 </div>
                             </div>
+
+
+
+
+
+                            {{-- instructions --}}
+                            <div class="col-6">
+                                <div class="form-check form-switch mb-3 mealType--checkbox">
+                                    <input class="form-check-input pointer sm" type="checkbox" id="formCheck-6"
+                                        wire:model.live='instance.showServingInstructions' />
+                                    <label class="form-check-label fs-14" for="formCheck-6">Serving Instructions</label>
+                                </div>
+                            </div>
+
+
 
 
 
@@ -863,16 +921,6 @@
 
 
 
-
-
-                            {{-- instructions --}}
-                            <div class="col-6">
-                                <div class="form-check form-switch mb-3 mealType--checkbox">
-                                    <input class="form-check-input pointer sm" type="checkbox" id="formCheck-6"
-                                        wire:model.live='instance.showServingInstructions' />
-                                    <label class="form-check-label fs-14" for="formCheck-6">Serving Instructions</label>
-                                </div>
-                            </div>
 
 
 

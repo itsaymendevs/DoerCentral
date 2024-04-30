@@ -202,6 +202,10 @@ class KitchenController extends Controller
 
 
 
+        // 1.2.5: isVertical
+        $label->isVertical = $request->isVertical ?? false;
+
+
 
 
         // 1.3: colors
@@ -358,6 +362,8 @@ class KitchenController extends Controller
         $label->radius = $request->radius ?? 0;
 
 
+        // 1.2.5: isVertical
+        $label->isVertical = $request->isVertical ?? false;
 
 
 

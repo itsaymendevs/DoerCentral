@@ -61,22 +61,7 @@
     margin-right: 0px !important;
 }
 
-/* header - vertical */
-.sticker--label-header.flex-column {
-    border-bottom: none;
-    max-height: 40%;
-}
-
-.sticker--label-header.flex-column div {
-    border-bottom: 1px solid #c2c3c5;
-    margin-bottom: 5px;
-    min-width: 60%;
-}
-
-.sticker--label-header.flex-column div:first-of-type {
-    border-right: none;
-}
-
+/* -------------------- */
 /* -------------------- */
 
 /* content */
@@ -119,4 +104,83 @@
 .sticker--label-footer {
     width: 100%;
     height: 25%;
+}
+
+/* ------------------- */
+/* ------------------- */
+/* ------------------- */
+/* ------------------- */
+/* ------------------- */
+/* ------------------- */
+/* ------------------- */
+
+/* sticker - vertical */
+
+.sticker--label.vertical .sticker--label-header {
+    border-bottom: none;
+    max-height: 40%;
+    flex-direction: column;
+    padding-bottom: 0px;
+}
+
+.sticker--label.vertical .sticker--label-header div * {
+    font-size: 9px;
+}
+
+.sticker--label.vertical .sticker--label-header div {
+    border: none;
+    border-bottom: 1px solid #c2c3c5;
+    margin-bottom: 5px;
+    min-width: 60%;
+    text-align: center !important;
+}
+
+.sticker--label-header.flex-column div:first-of-type {
+    border-right: none;
+}
+
+/* -------------------- */
+/* -------------------- */
+
+/* content */
+.sticker--label.vertical .sticker--label-content {
+    flex-direction: column-reverse;
+    width: 90%;
+    min-height: 40%;
+    margin: auto;
+}
+
+.sticker--label.vertical .sticker--label-content div * {
+    font-size: 10px;
+}
+
+.sticker--label.vertical .sticker--label-content div.larger-section {
+    width: 85%;
+}
+
+.sticker--label.vertical .sticker--label-content div.smaller-section {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.sticker--label.vertical .sticker--label-content div.smaller-section div {
+    display: flex;
+}
+
+.sticker--label.vertical .sticker--label-content div.smaller-section div * {
+    margin-bottom: 0px !important;
+}
+
+.sticker--label.vertical .sticker--label-content div.smaller-section * {
+    font-size: 9px !important;
+}
+
+.sticker--label.vertical
+    .sticker--label-content
+    div.smaller-section
+    div
+    h4:first-of-type {
+    margin-right: 3px;
 }

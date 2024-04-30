@@ -144,7 +144,7 @@ class ProductionBuilderUpdateTypes extends Component
         $snackTypes = ['Sweet', 'Savoury'];
         $drinkTypes = ['Hot Drink', 'Cold Drink'];
         $sauceTypes = ['On Side', 'Part of Meal'];
-        $subRecipeTypes = ['Protein', 'Standard', 'Carbohydrates'];
+        $subRecipeTypes = ['Protein', 'Standard', 'Vegetables', 'Carbohydrates'];
 
 
 

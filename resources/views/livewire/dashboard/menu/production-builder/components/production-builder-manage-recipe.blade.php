@@ -7,7 +7,7 @@
 
 
     {{-- topRow --}}
-    <div class="row align-items-start pt-2 mb-5 pb-4">
+    <div class="row align-items-start pt-2 mb-5 pb-4 ">
 
 
 

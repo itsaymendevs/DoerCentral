@@ -50,6 +50,7 @@ class KitchenLabelsCreate extends Component
 
 
         // 1.3: showLabels
+        $this->instance->isVertical = false;
         $this->instance->showCustomerName = true;
         $this->instance->showMealName = true;
         $this->instance->showMealMacros = true;

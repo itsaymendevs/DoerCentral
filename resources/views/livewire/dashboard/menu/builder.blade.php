@@ -1,6 +1,6 @@
 {{-- contentSection --}}
 <section class="content--section" id="content--section">
-    <div class="container">
+    <div class="container-fluid">
 
 
 

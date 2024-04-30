@@ -374,6 +374,20 @@ textarea:read-only {
     /*color: black;*/
 }
 
+.form--password-input {
+    position: relative;
+}
+
+.form--password-input {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    bottom: 0px;
+    margin: auto;
+    height: 100%;
+    width: 20px;
+    cursor: pointer;
+}
 .form--table-input {
     max-width: 90%;
     text-align: center;
@@ -382,7 +396,7 @@ textarea:read-only {
 }
 
 .form--table-input-xxs {
-    max-width: 70px;
+    max-width: 80px;
     width: 100%;
     margin: auto;
     text-align: center;
@@ -712,4 +726,9 @@ select.form-select option {
 
 .d-none-permission {
     display: none !important;
+}
+
+.td--overflow {
+    white-space: nowrap !important;
+    overflow: auto !important;
 }

@@ -1,13 +1,48 @@
 {{-- contentSection --}}
 <section class="content--section" id="content--section" wire:ignore.self wire:loading.class='no-events'>
-    <div class="container">
+    <div class="container-fluid">
 
 
 
 
-        <div wire:loading>
-            CLose
-        </div>
+
+
+        {{-- :: restyling --}}
+        @section('styles')
+
+        <style>
+            .form--table-input-xxs {
+                max-width: 190px;
+            }
+
+
+            .recipe--builder-wrapper .form--table-input-sm {
+                padding: 0px 3px !important;
+            }
+        </style>
+
+
+
+        @endsection
+        {{-- endSection --}}
+
+
+
+
+
+
+
+
+        {{-- ----------------------------------------- --}}
+        {{-- ----------------------------------------- --}}
+
+
+
+
+
+
+
+
 
 
 

@@ -70,7 +70,6 @@ class KitchenLabelsEdit extends Component
 
 
 
-
         // 1.3: setContainers
         $this->dispatch('setSelect', id: '#container-select-2', value: $label?->containers?->pluck('containerId')->toArray() ?? []);
 

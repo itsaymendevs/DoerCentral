@@ -23,7 +23,7 @@ return new class extends Migration {
 
 
 
-            // :: padding
+            // 1.2: padding
             $table->double('paddingLeft', 15)->nullable()->default(0);
             $table->double('paddingRight', 15)->nullable()->default(0);
             $table->double('paddingTop', 15)->nullable()->default(0);
@@ -32,15 +32,16 @@ return new class extends Migration {
 
 
 
-            // :: desc
+            // 1.3: isVertical - description
             $table->text('desc')->nullable();
+            $table->boolean('isVertical')->nullable()->default(0);
 
 
 
 
 
 
-            // 1.2: colors
+            // 1.4: colors
             $table->string('fontColor', 100)->nullable();
             $table->string('backgroundColor', 100)->nullable();
             $table->string('borderColor', 100)->nullable();
@@ -52,7 +53,11 @@ return new class extends Migration {
 
 
 
-            // 1.3: showTags
+
+
+
+
+            // 1.5: showTags
             $table->boolean('showQRCode')->nullable()->default(0);
             $table->boolean('showPrice')->nullable()->default(0);
 
@@ -78,7 +83,7 @@ return new class extends Migration {
 
 
 
-            // 1.5: imageFile - footerImageFile
+            // 1.6: imageFile - footerImageFile
             $table->text('imageFile')->nullable();
             $table->text('footerImageFile')->nullable();
 

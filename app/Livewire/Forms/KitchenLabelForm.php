@@ -15,7 +15,8 @@ class KitchenLabelForm extends Form
 
 
     // :: extra
-    public $id, $desc, $footerImageFile, $imageFile;
+    public $id, $desc, $footerImageFile, $imageFile, $isVertical;
+
 
 
 

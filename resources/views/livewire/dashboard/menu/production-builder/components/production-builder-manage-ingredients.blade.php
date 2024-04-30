@@ -1,5 +1,5 @@
 {{-- row --}}
-<div class="row">
+<div class="row recipe--builder-wrapper">
     <div class="col-12 text-start d-flex justify-content-evenly mb-2">
 
 
@@ -70,9 +70,9 @@
 
 
     <!-- ingredientsCol -->
-    <div class="col-3">
+    <div class="col-4">
         <div class="table memoir--table w-100 h-100">
-            <table class="table table-bordered" id="memoir--table">
+            <table class=" table table-bordered" id="memoir--table">
 
                 {{-- header --}}
                 <thead>
@@ -157,11 +157,11 @@
 
 
                         {{-- coloringTD --}}
-                        <td class="fw-bold tr--ingredient" wire:ignore>
+                        <td class="fw-bold tr--ingredient td--overflow" wire:ignore style="max-width: 250px;">
 
 
                             <div class="select--single-wrapper builder px-2 mx-auto" wire:loading.class='no-events'
-                                style="width: 170px !important; max-width: 170px !important">
+                                style="width: 100% !important;">
                                 <select class="form-select ingredient--select"
                                     id='ingredient--select-{{ $mealSizeIngredient->id }}'
                                     data-instance='instance.partId.{{ $mealSizeIngredient->id }}'
@@ -262,12 +262,13 @@
 
 
                         {{-- coloringTD --}}
-                        <td class="fw-bold tr--{{ strtolower($mealSizePart->type->name) }}" wire:ignore>
+                        <td class="fw-bold tr--{{ strtolower($mealSizePart->type->name) }} td--overflow" wire:ignore
+                            style="max-width: 250px;">
 
 
 
                             <div class="select--single-wrapper builder px-2 mx-auto" wire:loading.class='no-events'
-                                style="width: 170px !important; max-width: 170px !important">
+                                style="width: 100%">
                                 <select class="form-select part--select" id='part--select-{{ $mealSizePart->id }}'
                                     data-instance='instanceParts.partId.{{ $mealSizePart->id }}'
                                     data-instanceId='{{ $mealSizePart->id }}'
@@ -398,7 +399,7 @@
 
 
     {{-- viewIngredients --}}
-    <div class="col-9 @if ($initSizeId != $mealSize->size->id) d-none @endif" data-instance='mealSizes'
+    <div class="col-8 @if ($initSizeId != $mealSize->size->id) d-none @endif" data-instance='mealSizes'
         data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
         <div class="table-responsive memoir--table w-100">
             <table class="table table-bordered">

@@ -63,10 +63,21 @@
 
 
 
+
+
+
+
                         {{-- settings --}}
+                        @if (!$versionPermission->isProcessing)
+
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" data-bs-toggle="tab" href="#tab-6" role="tab">Settings</a>
                         </li>
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
 
 
 
@@ -251,211 +262,8 @@
                         <div class="tab-pane fade no--card" id="tab-6" role="tabpanel">
 
 
-
-
-
-
-                            {{-- wrapper --}}
-                            <div class="tab-pane-like mt-4" style="border: 1px solid var(--color-theme-secondary)">
-
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div>
-
-
-                                            {{-- collapseButton --}}
-                                            <a class="btn fs-5 collapse--btn fw-semibold" data-bs-toggle="collapse"
-                                                href="#collapse-5" role="button" aria-expanded="false"
-                                                aria-controls="collapse-5">Conversions<svg class="bi bi-chevron-expand"
-                                                    xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                    fill="currentColor" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
-                                                        d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z">
-                                                    </path>
-                                                </svg>
-                                            </a>
-
-
-
-
-
-
-
-
-
-                                            {{-- collapseContent --}}
-                                            <div class="collapse collapse--content" id="collapse-5">
-
-
-
-                                                {{-- :: store - view - update --}}
-                                                {{-- wrapper --}}
-                                                <div>
-
-
-                                                    {{-- form --}}
-                                                    <form class="row align-items-end pt-2" wire:submit='store'>
-
-
-
-
-                                                        {{-- cover --}}
-                                                        <div class="col-5 text-center">
-                                                            <img class="w-100 inventory--image-frame"
-                                                                src="{{ asset('assets/img/Allergies/allergy.png') }}" />
-                                                        </div>
-
-
-
-                                                        {{-- name - desc --}}
-                                                        <div class="col-7">
-                                                            <label class="form-label form--label">Name</label>
-                                                            <input class="form-control form--input mb-4" type="text"
-                                                                wire:model='instance.name' required />
-
-
-
-
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <label class="form-label form--label">Name</label>
-                                                                    <input class="form-control form--input mb-4"
-                                                                        type="text" wire:model='instance.name'
-                                                                        required />
-                                                                </div>
-
-
-                                                                <div class="col">
-                                                                    <label class="form-label form--label">Name</label>
-                                                                    <input class="form-control form--input mb-4"
-                                                                        type="text" wire:model='instance.name'
-                                                                        required />
-                                                                </div>
-
-                                                                <div class="col">
-                                                                    <label class="form-label form--label">Name</label>
-                                                                    <input class="form-control form--input mb-4"
-                                                                        type="text" wire:model='instance.name'
-                                                                        required />
-                                                                </div>
-
-                                                                <div class="col">
-                                                                    <label class="form-label form--label">Name</label>
-                                                                    <input class="form-control form--input mb-4"
-                                                                        type="text" wire:model='instance.name'
-                                                                        required />
-                                                                </div>
-
-                                                                <div class="col">
-                                                                    <label class="form-label form--label">Name</label>
-                                                                    <input class="form-control form--input mb-4"
-                                                                        type="text" wire:model='instance.name'
-                                                                        required />
-                                                                </div>
-
-                                                                <div class="col">
-                                                                    <label class="form-label form--label">Name</label>
-                                                                    <input class="form-control form--input mb-4"
-                                                                        type="text" wire:model='instance.name'
-                                                                        required />
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-
-
-
-
-                                                        {{-- submit --}}
-                                                        <div class="col-12 text-end">
-                                                            <button
-                                                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center"
-                                                                wire:loading.attr='disabled'>
-                                                                Save
-                                                            </button>
-                                                        </div>
-
-
-                                                    </form>
-                                                    {{-- endForm --}}
-
-
-
-
-
-
-
-
-                                                    {{-- ------------------------------------------------- --}}
-                                                    {{-- ------------------------------------------------- --}}
-
-
-
-
-
-
-
-                                                    {{-- tableView Row --}}
-                                                    <div class="row align-items-end pt-2">
-
-
-                                                        {{-- tableView --}}
-                                                        <div class="col-12 mt-5" data-view="table">
-                                                            <div class="table-responsive memoir--table w-100">
-                                                                <table class="table table-bordered" id="memoir--table">
-
-
-                                                                    {{-- thead --}}
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th class="th--xs"></th>
-                                                                            <th class="th--md" s="">Group</th>
-                                                                            <th class="th--md">Description</th>
-                                                                            <th class="th--xs"></th>
-                                                                        </tr>
-                                                                    </thead>
-
-
-
-                                                                    {{-- tbody --}}
-                                                                    <tbody>
-
-
-
-
-                                                                    </tbody>
-                                                                    {{-- end tbody --}}
-
-
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {{-- endRow --}}
-
-
-
-                                                </div>
-                                                {{-- endWrapper --}}
-
-
-                                            </div>
-                                            {{-- end collapseContent --}}
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            {{-- endWrap --}}
-
-
-
+                            {{-- :: conversions --}}
+                            <livewire:dashboard.inventory.components.inventory-manage-configurations />
 
 
                         </div>
@@ -567,6 +375,24 @@
 
     {{-- 3.1: editExclude - Ingredients --}}
     <livewire:dashboard.inventory.components.inventory-edit-exclude-ingredients />
+
+
+
+
+
+
+    {{-- --------------------------- --}}
+
+
+
+
+
+    {{-- 4: editConversion - Ingredients --}}
+    <livewire:dashboard.inventory.components.inventory-edit-conversion-ingredients />
+
+
+
+
 
 
 

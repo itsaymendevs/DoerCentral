@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\ExistingCustomerSubscriptionController;
 use App\Http\Controllers\Api\InventoryController;
+use App\Http\Controllers\Api\InventoryExtraController;
 use App\Http\Controllers\Api\KitchenController;
 use App\Http\Controllers\Api\KitchenTodayController;
 use App\Http\Controllers\Api\LoginController;
@@ -435,6 +436,32 @@ Route::post('/dashboard/inventory/configurations/allergies/remove', [InventoryCo
 
 
 Route::post('/dashboard/inventory/configurations/allergies/ingredients/update', [InventoryController::class, 'updateAllergyIngredients']);
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 3.9: inventory - settings - storeConversion - update - remove
+Route::post('/dashboard/inventory/settings/conversions/store', [InventoryExtraController::class, 'storeConversion']);
+Route::post('/dashboard/inventory/settings/conversions/update', [InventoryExtraController::class, 'updateConversion']);
+
+Route::post('/dashboard/inventory/settings/conversions/remove', [InventoryExtraController::class, 'removeConversion']);
+
 
 
 

@@ -72,15 +72,35 @@ class Customer extends Authenticatable
 
 
 
-
-
-
     public function latestSubscription()
     {
 
         return $this->subscriptions()->latest()->first();
 
     } // end function
+
+
+
+
+
+
+
+
+    public function currentSubscription()
+    {
+
+
+        $currentSubscription = $this->subscriptions()?->where('startDate', '>=', $this->getCurrentDate())
+                ?->where('untilDate', '<=', $this->getCurrentDate)?->first();
+
+
+        return $currentSubscription;
+
+
+    } // end function
+
+
+
 
 
 

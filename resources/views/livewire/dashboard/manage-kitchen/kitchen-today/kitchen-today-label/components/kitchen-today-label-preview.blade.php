@@ -70,7 +70,7 @@
 
 
                     {{-- paper --}}
-                    <div class="d-inline-block text-center print" id='label--paper'>
+                    <div class="d-inline-block text-center print print--bg" id='label--paper'>
 
 
 
@@ -95,8 +95,7 @@
                         {{-- :: mealLabel --}}
                         <div class="d-inline-flex justify-content-around align-items-center text-start"
                             key='printable-schedule-meal-{{ $scheduleMeal->id }}'>
-                            <div class="sticker--label-layout sticky--div px-0 py-0"
-                                style="border-bottom: 1px solid {{ $scheduleMeal?->meal?->label->borderColor ?? '#efefef' }};">
+                            <div class="sticker--label-layout sticky--div px-0 py-0">
 
 
 
@@ -112,7 +111,8 @@
 
 
                                 {{-- sticker - label --}}
-                                <div class="sticker--label mx-auto position-relative" style="
+                                <div class="sticker--label mx-auto position-relative
+                                @if ($scheduleMeal?->meal?->label?->isVertical) vertical @endif" style="
                                  width: {{ $scheduleMeal?->meal?->label->width ?? 100 }}mm;
                                  height: {{ $scheduleMeal?->meal?->label->height ?? 70 }}mm;
                                  border-radius: {{ $scheduleMeal?->meal?->label->radius ?? 0 }}px;
@@ -180,7 +180,8 @@
 
 
                                         {{-- rightSection / bottomSection --}}
-                                        <div class='text-start ps-3'>
+                                        <div class='text-start @if (!$scheduleMeal?->meal?->label?->isVertical) ps-3 @endif'
+                                            style="border-color: transparent">
 
 
                                             {{-- subtitle --}}
@@ -243,12 +244,20 @@
 
                                             @if($scheduleMeal?->meal?->label->showProductionDate)
 
-                                            <h4 class='fw-normal sticker--label-production mb-3 invisible'>Prod. Date
-                                            </h4>
-                                            <h4 class='fw-semibold sticker--label-production mb-3'>{{ date('d . m .
-                                                Y',
-                                                strtotime($scheduleMeal->schedule->scheduleDate)) }}
-                                            </h4>
+
+                                            <div>
+                                                <h4 class='fw-normal sticker--label-production mb-3 invisible'>
+                                                    {{ $scheduleMeal?->meal?->label?->isVertical ? 'Prod.' : 'Prod.
+                                                    Date' }}
+                                                </h4>
+
+                                                <h4 class='fw-semibold sticker--label-production mb-3'>
+                                                    {{ $scheduleMeal?->meal?->label?->isVertical ?
+                                                    date('d.m.Y', strtotime($globalCurrentDate)) :
+                                                    date('d . m . Y', strtotime($globalCurrentDate)) }}
+                                                </h4>
+                                            </div>
+
 
                                             @endif
                                             {{-- end if - showHide --}}
@@ -263,10 +272,26 @@
                                             @if($scheduleMeal?->meal?->label->showExpiryDate)
 
 
-                                            <h4 class='fw-normal sticker--label-expiry mb-1 invisible'>Expiry Date</h4>
-                                            <h4 class='fw-semibold sticker--label-expiry mb-0'>{{ date('d . m . Y',
-                                                strtotime($scheduleMeal->schedule->scheduleDate .
-                                                "+{$scheduleMeal?->meal?->validity} day")) }}</h4>
+                                            <div>
+                                                <h4 class='fw-normal sticker--label-expiry mb-1 invisible'>
+                                                    {{ $scheduleMeal?->meal?->label?->isVertical ? 'Expiry.' : 'Expiry
+                                                    Date' }}
+                                                </h4>
+
+                                                <h4 class='fw-semibold sticker--label-expiry mb-0'>
+                                                    {{ $scheduleMeal?->meal?->label?->isVertical ?
+                                                    date('d.m.Y',
+                                                    strtotime($scheduleMeal->schedule->scheduleDate .
+                                                    "+{$scheduleMeal?->meal?->validity}
+                                                    day"))
+                                                    :
+                                                    date('d . m . Y',
+                                                    strtotime($scheduleMeal->schedule->scheduleDate .
+                                                    "+{$scheduleMeal?->meal?->validity}
+                                                    day"))
+                                                    }}
+                                                </h4>
+                                            </div>
 
 
 
@@ -309,8 +334,9 @@
                                                 style="border-color: transparent; color: {{ $scheduleMeal?->meal?->label->caloriesColor ?? 'revert-layer' }}">
                                                 <span
                                                     class='sticker--label-macro-caption fw-semibold invisible'>KCAL</span>
-                                                <span class='sticker--label-macro-value fw-bold'
-                                                    style="margin-right: 50px; color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
+                                                <span class='sticker--label-macro-value fw-bold' style="
+                                                    margin-right: {{ ($scheduleMeal?->meal?->label->isVertical) ? '0px' : '50px' }};
+                                                    color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
                                                     $scheduleMeal?->mealSize()?->afterCookCalories ?? 0 }}</span>
                                             </h4>
 
@@ -323,8 +349,9 @@
                                                 style="border-color: transparent; color: {{ $scheduleMeal?->meal?->label->carbsColor ?? 'revert-layer' }}">
                                                 <span
                                                     class='sticker--label-macro-caption fw-semibold invisible'>Carbs</span>
-                                                <span class='sticker--label-macro-value fw-bold'
-                                                    style="margin-right: 50px; color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
+                                                <span class='sticker--label-macro-value fw-bold' style="
+                                                    margin-right: {{ ($scheduleMeal?->meal?->label->isVertical) ? '0px' : '50px' }};
+                                                    color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
                                                     $scheduleMeal?->mealSize()?->afterCookCarbs ?? 0 }}</span>
                                             </h4>
 
@@ -338,8 +365,9 @@
                                                 style="border-color: transparent; color: {{ $scheduleMeal?->meal?->label->proteinsColor ?? 'revert-layer' }}">
                                                 <span
                                                     class='sticker--label-macro-caption fw-semibold invisible'>Prot</span>
-                                                <span class='sticker--label-macro-value fw-bold'
-                                                    style="margin-right: 50px; color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
+                                                <span class='sticker--label-macro-value fw-bold' style="
+                                                    margin-right: {{ ($scheduleMeal?->meal?->label->isVertical) ? '0px' : '50px' }};
+                                                    color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
                                                     $scheduleMeal?->mealSize()?->afterCookProteins ?? 0 }}</span>
                                             </h4>
 
@@ -352,8 +380,9 @@
                                                 style="border-color: transparent; color: {{ $scheduleMeal?->meal?->label->fatsColor ?? 'revert-layer' }}">
                                                 <span
                                                     class='sticker--label-macro-caption fw-semibold invisible'>Fat</span>
-                                                <span class='sticker--label-macro-value fw-bold'
-                                                    style="margin-right: 50px; color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
+                                                <span class='sticker--label-macro-value fw-bold' style="
+                                                    margin-right: {{ ($scheduleMeal?->meal?->label->isVertical) ? '0px' : '50px' }};
+                                                    color: {{ $scheduleMeal?->meal?->label->fontColor }}">{{
                                                     $scheduleMeal?->mealSize()?->afterCookFats ?? 0 }}</span>
                                             </h4>
 
@@ -406,9 +435,8 @@
 
                                     <div class='sticker--label-footer d-flex flex-column invisible'>
 
-                                        <img id='footer--preview-2' class='of-cover w-100 h-100'
-                                            src=" {{ asset('storage/kitchen/labels/footers/' . $scheduleMeal?->meal?->label->footerImageFile) }}"
-                                            wire:ignore.self>
+                                        <img class='of-cover w-100 h-100'
+                                            src=" {{ asset('storage/kitchen/labels/footers/' . $scheduleMeal?->meal?->label->footerImageFile) }}">
 
                                     </div>
                                     {{-- endBottom --}}
@@ -466,7 +494,8 @@
 
 
                                 {{-- sticker - label --}}
-                                <div class="sticker--label mx-auto position-relative" style="
+                                <div class="sticker--label mx-auto position-relative
+                                @if ($scheduleMeal?->meal?->label?->isVertical) vertical @endif" style="
                                 width: {{ $scheduleMeal?->meal?->label->width ?? 100 }}mm;
                                 height: {{ $scheduleMeal?->meal?->label->height ?? 70 }}mm;
                                 border-radius: {{ $scheduleMeal?->meal?->label->radius ?? 0 }}px;
@@ -536,7 +565,8 @@
 
 
                                         {{-- rightSection / bottomSection --}}
-                                        <div class='text-start ps-3'>
+                                        <div class='text-start @if (!$scheduleMeal?->meal?->label?->isVertical) ps-3 @endif'
+                                            style="border-color: {{ $scheduleMeal?->meal?->label->borderColor ?? '#c2c3c5' }}">
 
 
                                             {{-- subtitle --}}
@@ -600,13 +630,18 @@
 
                                             @if($scheduleMeal?->meal?->label->showProductionDate)
 
-                                            <h4 class='fw-normal sticker--label-production mb-1 '>Prod. Date
-                                            </h4>
-                                            <h4 class='fw-semibold sticker--label-production mb-3'>{{ date('d .
-                                                m .
-                                                Y',
-                                                strtotime($scheduleMeal->schedule->scheduleDate)) }}
-                                            </h4>
+                                            <div>
+                                                <h4 class='fw-normal sticker--label-production mb-1'>
+                                                    {{ $scheduleMeal?->meal?->label?->isVertical ? 'Prod.' : 'Prod.
+                                                    Date' }}
+                                                </h4>
+
+                                                <h4 class='fw-semibold sticker--label-production mb-3'>
+                                                    {{ $scheduleMeal?->meal?->label?->isVertical ?
+                                                    date('d.m.Y', strtotime($globalCurrentDate)) :
+                                                    date('d . m . Y', strtotime($globalCurrentDate)) }}
+                                                </h4>
+                                            </div>
 
                                             @endif
                                             {{-- end if - showHide --}}
@@ -621,12 +656,26 @@
                                             @if($scheduleMeal?->meal?->label->showExpiryDate)
 
 
-                                            <h4 class='fw-normal sticker--label-expiry mb-1'>Expiry Date</h4>
-                                            <h4 class='fw-semibold sticker--label-expiry mb-0'>{{ date('d . m .
-                                                Y',
-                                                strtotime($scheduleMeal->schedule->scheduleDate .
-                                                "+{$scheduleMeal?->meal?->validity} day")) }}</h4>
+                                            <div>
+                                                <h4 class='fw-normal sticker--label-expiry mb-1'>
+                                                    {{ $scheduleMeal?->meal?->label?->isVertical ? 'Expiry.' : 'Expiry
+                                                    Date' }}
+                                                </h4>
 
+                                                <h4 class='fw-semibold sticker--label-expiry mb-0'>
+                                                    {{ $scheduleMeal?->meal?->label?->isVertical ?
+                                                    date('d.m.Y',
+                                                    strtotime($scheduleMeal->schedule->scheduleDate .
+                                                    "+{$scheduleMeal?->meal?->validity}
+                                                    day"))
+                                                    :
+                                                    date('d . m . Y',
+                                                    strtotime($scheduleMeal->schedule->scheduleDate .
+                                                    "+{$scheduleMeal?->meal?->validity}
+                                                    day"))
+                                                    }}
+                                                </h4>
+                                            </div>
 
 
                                             @endif
@@ -757,9 +806,8 @@
 
                                     <div class='sticker--label-footer d-flex flex-column'>
 
-                                        <img id='footer--preview-2' class='of-cover w-100 h-100'
-                                            src=" {{ asset('storage/kitchen/labels/footers/' . $scheduleMeal?->meal?->label->footerImageFile) }}"
-                                            wire:ignore.self>
+                                        <img class='of-cover w-100 h-100'
+                                            src=" {{ asset('storage/kitchen/labels/footers/' . $scheduleMeal?->meal?->label->footerImageFile) }}">
 
                                     </div>
                                     {{-- endBottom --}}

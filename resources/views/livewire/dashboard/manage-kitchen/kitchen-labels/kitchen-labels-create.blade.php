@@ -151,7 +151,8 @@
 
 
                                     {{-- rightSection / bottomSection --}}
-                                    <div class='text-start @if (!$instance->isVertical) ps-3 @endif'>
+                                    <div class='text-start @if (!$instance->isVertical) ps-3 @endif'
+                                        style="border-color: {{ $instance->borderColor  ?? '#c2c3c5' }}">
                                         <h4 class='fw-normal sticker--label-general-tag mb-1 fs-10'>Your Nutritious {{
                                             ($instance->isVertical) ? 'Snack' : 'Breakfast' }}
                                         </h4>

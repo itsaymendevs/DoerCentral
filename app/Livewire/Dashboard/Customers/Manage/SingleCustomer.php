@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Customers\Manage;
 
 use App\Livewire\Forms\CustomerForm;
+use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Models\Allergy;
 use App\Models\Bag;
 use App\Models\Customer;
@@ -11,6 +12,7 @@ use App\Models\Driver;
 use App\Models\Exclude;
 use App\Models\User;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -25,6 +27,9 @@ class SingleCustomer extends Component
     public CustomerForm $instance;
     public $customer, $latestSubscription;
 
+    public CustomerSubscriptionForm $subscriptionInstance;
+
+
 
 
 
@@ -32,6 +37,14 @@ class SingleCustomer extends Component
 
     public function mount($id)
     {
+
+
+
+
+        // :: resetCustomer - subscription
+        Session::forget('customer');
+
+
 
 
         // :: getCustomer - latestSubscription
@@ -50,10 +63,9 @@ class SingleCustomer extends Component
 
 
 
-
-
         // --------------------------------------
         // --------------------------------------
+
 
 
 
@@ -67,6 +79,12 @@ class SingleCustomer extends Component
 
 
         $this->dispatch('setSelect', id: '#exclude-select', value: $this->customer->excludes?->pluck('excludeId')->toArray() ?? []);
+
+
+
+
+
+
 
 
 
@@ -103,6 +121,89 @@ class SingleCustomer extends Component
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+
+    public function reNew($id)
+    {
+
+
+
+        // 1: getCustomer
+        $customer = Customer::find($id);
+
+
+
+
+
+
+
+        // 1.2: flag - getBasicInformation (extra: planId)
+        $this->subscriptionInstance->planId = $customer?->latestSubscription()?->planId;
+        $this->subscriptionInstance->isExistingCustomer = true;
+
+
+        $this->subscriptionInstance->firstName = $customer->firstName;
+        $this->subscriptionInstance->lastName = $customer->lastName;
+        $this->subscriptionInstance->email = $customer->email;
+
+
+
+
+        // 1.4: get initStartDate
+        $this->subscriptionInstance->initStartDate = $customer?->latestSubscription()?->untilDate ?
+            date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate . ' +1 day')) : null;
+
+
+
+
+
+
+        // 1.5: resetVars
+        $this->subscriptionInstance->deliveryDays = [];
+
+
+
+
+
+
+
+
+        // 1.5: makeSession - redirectStepTwo
+        Session::put('customer', $this->subscriptionInstance);
+
+
+
+
+        return $this->redirect(route('subscription.customerStepTwo', [$this->subscriptionInstance->planId]), navigate: true);
+
+
+
+
+
+
+
+
+    } // end function
+
+
 
 
 

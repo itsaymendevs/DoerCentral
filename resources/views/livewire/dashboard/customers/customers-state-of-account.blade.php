@@ -169,7 +169,7 @@
                                         {{-- 2: planDays - pricePerDay - planPrice --}}
                                         <td class="fs-14">{{ $subscription->planDays }}</td>
                                         <td class="scale--3 fs-14">
-                                            {{ $subscription->planPrice / $subscription->planDays }}
+                                            {{ $subscription->pricePerDay() }}
                                         </td>
                                         <td class="scale--3 fs-14">{{ $subscription->planPrice }}</td>
 
@@ -192,9 +192,8 @@
 
                                         <td class="scale--3 fs-14">
                                             {{ '+ ' . ($subscription->incompleteDeliveries()?->count() ?? 0) *
-                                            ($subscription->planPrice / $subscription->planDays) }}
+                                            ($subscription->pricePerDay()) }}
                                         </td>
-
 
 
 

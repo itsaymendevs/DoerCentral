@@ -321,10 +321,11 @@
 
                                         {{-- 2: re-new --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
-                                            type="button" title="Re-New"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                            type="button" title="Re-New" wire:click='reNew({{ $customer->id }})'><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                fill="currentColor" viewBox="0 0 16 16"
                                                 class="bi bi-arrow-counterclockwise fs-5">
                                                 <path fill-rule="evenodd"
                                                     d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z">

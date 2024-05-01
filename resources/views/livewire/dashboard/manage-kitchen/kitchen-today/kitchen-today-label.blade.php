@@ -234,7 +234,7 @@
 
 
 
-                <div class="d-flex justify-content-around align-items-center ">
+                <div class="d-flex justify-content-around align-items-center">
                     <div class="sticker--label-layout sticky--div mb-2 px-0 py-2 ">
 
 
@@ -242,7 +242,8 @@
 
 
                         {{-- sticker - label --}}
-                        <div class="sticker--label mx-auto position-relative " style="
+                        <div class="sticker--label mx-auto position-relative
+                        @if ($scheduleMeal?->meal?->label?->isVertical) vertical @endif" style="
                         width: {{ $scheduleMeal?->meal?->label->width ?? 100 }}mm;
                         height: {{ $scheduleMeal?->meal?->label->height ?? 70 }}mm;
                         border-radius: {{ $scheduleMeal?->meal?->label->radius ?? 0 }}px;
@@ -320,7 +321,8 @@
 
 
                                 {{-- rightSection / bottomSection --}}
-                                <div class='text-start ps-3'>
+                                <div class='text-start @if (!$scheduleMeal?->meal?->label?->isVertical) ps-3 @endif'
+                                    style="border-color: {{ $scheduleMeal?->meal?->label->borderColor ?? '#c2c3c5' }}">
                                     <h4 class='fw-normal sticker--label-general-tag mb-1 fs-10'>Your Nutritious
                                         {{ $scheduleMeal?->mealType?->name }}
                                     </h4>
@@ -382,10 +384,19 @@
 
                                     @if($scheduleMeal?->meal?->label->showProductionDate)
 
-                                    <h4 class='fw-normal sticker--label-production mb-1'>Prod. Date</h4>
-                                    <h4 class='fw-semibold sticker--label-production mb-3'>{{ date('d . m . Y',
-                                        strtotime($searchScheduleDate)) }}
-                                    </h4>
+                                    <div>
+                                        <h4 class='fw-normal sticker--label-production mb-1'>
+                                            {{ $scheduleMeal?->meal?->label?->isVertical ? 'Prod.' : 'Prod. Date' }}
+                                        </h4>
+
+                                        <h4 class='fw-semibold sticker--label-production mb-3'>
+                                            {{ $scheduleMeal?->meal?->label?->isVertical ?
+                                            date('d.m.Y', strtotime($globalCurrentDate)) :
+                                            date('d . m . Y', strtotime($globalCurrentDate)) }}
+                                        </h4>
+                                    </div>
+
+
 
                                     @endif
                                     {{-- end if - showHide --}}
@@ -399,11 +410,21 @@
 
                                     @if($scheduleMeal?->meal?->label->showExpiryDate)
 
+                                    <div>
+                                        <h4 class='fw-normal sticker--label-expiry mb-1'>
+                                            {{ $scheduleMeal?->meal?->label?->isVertical ? 'Expiry.' : 'Expiry Date' }}
+                                        </h4>
 
-                                    <h4 class='fw-normal sticker--label-expiry mb-1'>Expiry Date</h4>
-                                    <h4 class='fw-semibold sticker--label-expiry mb-0'>{{ date('d . m . Y',
-                                        strtotime($searchScheduleDate . "+{$scheduleMeal?->meal?->validity} day"))
-                                        }}</h4>
+                                        <h4 class='fw-semibold sticker--label-expiry mb-0'>
+                                            {{ $scheduleMeal?->meal?->label?->isVertical ?
+                                            date('d.m.Y',
+                                            strtotime($searchScheduleDate . "+{$scheduleMeal?->meal?->validity} day"))
+                                            :
+                                            date('d . m . Y',
+                                            strtotime($searchScheduleDate . "+{$scheduleMeal?->meal?->validity} day"))
+                                            }}
+                                        </h4>
+                                    </div>
 
 
 
@@ -527,15 +548,12 @@
 
 
                             {{-- 3: bottom --}}
-
                             @if ($scheduleMeal?->meal?->label->showFooterImageFile)
-
 
                             <div class='sticker--label-footer d-flex flex-column'>
 
-                                <img id='footer--preview-2' class='of-cover w-100 h-100'
-                                    src=" {{ asset('storage/kitchen/labels/footers/' . $scheduleMeal?->meal?->label->footerImageFile) }}"
-                                    wire:ignore.self>
+                                <img class='of-cover w-100 h-100'
+                                    src="{{ asset('storage/kitchen/labels/footers/' . $scheduleMeal?->meal?->label->footerImageFile) }}">
 
                             </div>
                             {{-- endBottom --}}

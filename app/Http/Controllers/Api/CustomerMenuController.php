@@ -323,7 +323,7 @@ class CustomerMenuController extends Controller
 
 
         // 1.2.4: pricePerDay - totalPrice
-        $pause->pricePerDay = $subscription->planPrice / $subscription->planDays;
+        $pause->pricePerDay = $subscription->pricePerDay();
         $pause->totalPrice = $pause->pricePerDay * $pause->pauseDays;
 
 

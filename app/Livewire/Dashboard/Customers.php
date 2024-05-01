@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Dashboard;
 
+use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Models\Customer;
 use App\Models\Plan;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -23,7 +25,31 @@ class Customers extends Component
     public $searchPlan, $searchStatus;
     public $removeId;
 
+    public CustomerSubscriptionForm $subscriptionInstance;
 
+
+
+
+
+
+
+    public function mount()
+    {
+
+
+        // :: resetCustomer - subscription
+        Session::forget('customer');
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------
 
 
 
@@ -51,6 +77,79 @@ class Customers extends Component
     // -----------------------------------------------------------------
 
 
+
+
+
+
+
+    public function reNew($id)
+    {
+
+
+
+        // 1: getCustomer
+        $customer = Customer::find($id);
+
+
+
+
+
+
+
+        // 1.2: flag - getBasicInformation (extra: planId)
+        $this->subscriptionInstance->planId = $customer?->latestSubscription()?->planId;
+        $this->subscriptionInstance->isExistingCustomer = true;
+
+
+        $this->subscriptionInstance->firstName = $customer->firstName;
+        $this->subscriptionInstance->lastName = $customer->lastName;
+        $this->subscriptionInstance->email = $customer->email;
+
+
+
+
+        // 1.4: get initStartDate
+        $this->subscriptionInstance->initStartDate = $customer?->latestSubscription()?->untilDate ?
+            date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate . ' +1 day')) : null;
+
+
+
+
+
+
+        // 1.5: resetVars
+        $this->subscriptionInstance->deliveryDays = [];
+
+
+
+
+
+
+
+
+        // 1.5: makeSession - redirectStepTwo
+        Session::put('customer', $this->subscriptionInstance);
+
+
+
+
+        return $this->redirect(route('subscription.customerStepTwo', [$this->subscriptionInstance->planId]), navigate: true);
+
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------------
 
 
 

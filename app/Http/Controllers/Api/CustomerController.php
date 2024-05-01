@@ -507,7 +507,7 @@ class CustomerController extends Controller
 
 
         // 1.2.4: pricePerDay - totalPrice
-        $pause->pricePerDay = $subscription->planPrice / $subscription->planDays;
+        $pause->pricePerDay = $subscription->pricePerDay();
         $pause->totalPrice = $pause->pricePerDay * $pause->pauseDays;
 
 
@@ -752,7 +752,7 @@ class CustomerController extends Controller
 
 
         // 1.2.4: pricePerDay - totalPrice :: ONLY LEFTOVER PAUSE DAYS
-        $pricePerDay = $subscription->planPrice / $subscription->planDays;
+        $pricePerDay = $subscription->pricePerDay();
         $totalPrice = $pause->pricePerDay * $pausedDays;
 
 
@@ -893,7 +893,7 @@ class CustomerController extends Controller
 
         // 1.2: imageFile - pricePerDay
         $extend->imageFile = $request->imageFileName ?? null;
-        $extend->pricePerDay = $subscription->planPrice / $subscription->planDays;
+        $extend->pricePerDay = $subscription->pricePerDay();
 
 
 
@@ -1468,7 +1468,7 @@ class CustomerController extends Controller
 
         // 1.2: imageFile - pricePerDay
         $shorten->imageFile = $request->imageFileName ?? null;
-        $shorten->pricePerDay = $subscription->planPrice / $subscription->planDays;
+        $shorten->pricePerDay = $subscription->pricePerDay();
 
 
 

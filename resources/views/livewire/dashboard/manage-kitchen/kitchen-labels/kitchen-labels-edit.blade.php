@@ -77,15 +77,15 @@
 
                             {{-- sticker - label --}}
                             <div class="sticker--label mx-auto position-relative
-                            @if ($instance->isVertical) vertical @endif" style="width: {{ $instance->width ?? 100 }}mm;
+                            @if ($instance->isVertical) vertical @endif" style="
+                                width: {{ $instance->width ?? 100 }}mm;
                                 height: {{ $instance->height ?? 70 }}mm;
                                 border-radius: {{ $instance->radius ?? 0 }}px;
                                 padding-top: {{ $instance->paddingTop  ?? 0 }}mm;
                                 padding-bottom: {{ $instance->paddingBottom  ?? 0 }}mm;
                                 background-color: {{ $instance->backgroundColor ?? '#fff' }};
                                 border-color: {{ $instance->borderColor ?? '#fff' }};
-                                color: {{ $instance->fontColor ?? '#000' }};
-                                ">
+                                color: {{ $instance->fontColor ?? '#000' }};">
 
 
 
@@ -153,7 +153,8 @@
 
 
                                     {{-- rightSection / bottomSection --}}
-                                    <div class='text-start @if (!$instance->isVertical) ps-3 @endif'>
+                                    <div class='text-start @if (!$instance->isVertical) ps-3 @endif'
+                                        style="border-color: {{ $instance->borderColor  ?? '#c2c3c5' }}">
                                         <h4 class='fw-normal sticker--label-general-tag mb-1 fs-10'>Your Nutritious {{
                                             ($instance->isVertical) ? 'Snack' : 'Breakfast' }}
                                         </h4>

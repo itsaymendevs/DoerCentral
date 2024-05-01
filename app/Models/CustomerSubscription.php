@@ -159,6 +159,43 @@ class CustomerSubscription extends Model
 
 
 
+    public function pricePerDay()
+    {
+
+
+
+        // 1: totalCheckoutPrice - bagPrice
+        $totalCheckoutPriceOnly = $this->totalCheckoutPrice - $this->bagPrice;
+
+
+        // :: checkValidity
+        $totalCheckoutPriceOnly < 0 ? $totalCheckoutPriceOnly = 0 : null;
+
+
+
+
+        // 2: getPricePerDay
+        $pricePerDay = $totalCheckoutPriceOnly / $this->planDays;
+
+
+
+
+        // :: return
+        return $pricePerDay ?? 0;
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
 
     public function typesInArray()
     {

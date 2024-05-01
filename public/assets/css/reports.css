@@ -1,26 +1,29 @@
 /* logo */
 
+.print--bg {
+    background-color: white;
+}
+
 .print--logo {
-  width: 100%;
-  height: 170px;
-  object-fit: contain;
+    width: 100%;
+    height: 170px;
+    object-fit: contain;
 }
 
 /* tables */
 
 .th--lg {
-  width: 180px;
+    width: 180px;
 }
 
 .th--md {
-  width: 125px;
+    width: 125px;
 }
 
 .th--sm {
-  width: 95px;
+    width: 95px;
 }
 
 .th--xs {
-  width: 70px;
+    width: 70px;
 }
-

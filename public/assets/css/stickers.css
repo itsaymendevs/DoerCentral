@@ -124,14 +124,15 @@
 }
 
 .sticker--label.vertical .sticker--label-header div * {
-    font-size: 9px;
+    font-size: 9px !important;
+    margin-bottom: 0.25rem !important;
 }
 
 .sticker--label.vertical .sticker--label-header div {
     border: none;
     border-bottom: 1px solid #c2c3c5;
     margin-bottom: 5px;
-    min-width: 60%;
+    min-width: 80%;
     text-align: center !important;
 }
 
@@ -151,15 +152,15 @@
 }
 
 .sticker--label.vertical .sticker--label-content div * {
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .sticker--label.vertical .sticker--label-content div.larger-section {
-    width: 85%;
+    width: 90%;
 }
 
 .sticker--label.vertical .sticker--label-content div.smaller-section {
-    width: 85%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;

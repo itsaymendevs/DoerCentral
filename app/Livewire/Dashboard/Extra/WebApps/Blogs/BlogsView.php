@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Extra\Blogs;
+namespace App\Livewire\Dashboard\Extra\WebApps\Blogs;
 
 use App\Livewire\Forms\BlogForm;
 use App\Models\Blog;
@@ -281,7 +281,7 @@ class BlogsView extends Component
 
 
 
-        return view('livewire.dashboard.extra.blogs.blogs-view', compact('sections'));
+        return view('livewire.dashboard.extra.web-apps.blogs.blogs-view', compact('sections'));
 
 
 

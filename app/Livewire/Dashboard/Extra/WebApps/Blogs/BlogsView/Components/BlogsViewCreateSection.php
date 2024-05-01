@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Extra\Blogs\BlogsView\Components;
+namespace App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsView\Components;
 
 use App\Livewire\Forms\BlogSectionForm;
 use App\Traits\HelperTrait;
@@ -139,7 +139,7 @@ class BlogsViewCreateSection extends Component
         $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.extra.blogs.blogs-view.components.blogs-view-create-section');
+        return view('livewire.dashboard.extra.web-apps.blogs.blogs-view.components.blogs-view-create-section');
 
     } // end function
 

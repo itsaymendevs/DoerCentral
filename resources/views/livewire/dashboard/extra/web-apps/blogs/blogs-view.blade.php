@@ -44,7 +44,7 @@
             <div class="col-4 text-end">
 
 
-                <livewire:dashboard.extra.components.sub-menu />
+                <livewire:dashboard.extra.web-apps.components.sub-menu />
 
 
             </div>
@@ -448,14 +448,15 @@
 
 
     {{-- 1: createSection --}}
-    <livewire:dashboard.extra.blogs.blogs-view.components.blogs-view-create-section key='create-section-{{ $blog->id }}'
-        id='{{ $blog->id }}' />
+    <livewire:dashboard.extra.web-apps.blogs.blogs-view.components.blogs-view-create-section
+        key='create-section-{{ $blog->id }}' id='{{ $blog->id }}' />
 
 
 
 
     {{-- 1: editSection --}}
-    <livewire:dashboard.extra.blogs.blogs-view.components.blogs-view-edit-section key='edit-section-{{ $blog->id }}' />
+    <livewire:dashboard.extra.web-apps.blogs.blogs-view.components.blogs-view-edit-section
+        key='edit-section-{{ $blog->id }}' />
 
 
 

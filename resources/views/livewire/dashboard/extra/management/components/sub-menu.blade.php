@@ -5,10 +5,10 @@
 
 
 
-    {{-- 1: blogs --}}
+    {{-- 1: users --}}
     <a wire:navigate class="btn fs-13
-    @if (Request::is('dashboard/extra/blogs', 'dashboard/extra/blogs/*')) active @endif" role="button"
-        href="{{ route('dashboard.blogs') }}">Blogs</a>
+    @if (Request::is('dashboard/extra/management/users', 'dashboard/extra/management/users/*')) active @endif"
+        role="button" href="{{ route('dashboard.management.users') }}">Users</a>
 
 
 
@@ -17,8 +17,10 @@
 
 
 
-    {{-- 2: banners --}}
-    <a class="btn fs-13 disabled" role="button" href="#!">Banners</a>
+    {{-- 2: departments --}}
+    <a wire:navigate
+        class="btn fs-13 @if (Request::is('dashboard/extra/management/departments', 'dashboard/extra/management/departments/*')) active @endif"
+        role="button" href="{{ route('dashboard.management.roles') }}" role=" button">Departments</a>
 
 
 

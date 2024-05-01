@@ -201,10 +201,26 @@
                         <div class="dropdown-menu dropdown-menu-end">
 
 
+
+                            {{-- management --}}
+                            <a wire:navigate href="{{ route('dashboard.management.users') }}"
+                                class="dropdown-item fw-semibold
+                               @if (Request::is('dashboard/extra/management', 'dashboard/extra/management/*')) active @endif">Management</a>
+
+
+
+
+
                             {{-- app & website --}}
-                            <a wire:navigate href="{{ route('dashboard.blogs') }}" class="dropdown-item fw-semibold
-                                @if (Request::is('dashboard/extra', 'dashboard/extra/*')) active @endif">App
+                            <a wire:navigate href="{{ route('dashboard.blogs') }}"
+                                class="dropdown-item fw-semibold
+                                @if (Request::is('dashboard/extra/blogs', 'dashboard/extra/blogs/*')) active @endif">App
                                 &amp; Website</a>
+
+
+
+
+
                         </div>
 
 

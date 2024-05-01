@@ -18,6 +18,8 @@ use App\Livewire\Dashboard\Customers\Manage\SingleCustomerHistory;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerMenu;
 use App\Livewire\Dashboard\Customers\CustomersStateOfAccount;
 use App\Livewire\Dashboard\Delivery;
+use App\Livewire\Dashboard\Extra\Management\Roles;
+use App\Livewire\Dashboard\Extra\Management\Users;
 use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\ManageKitchen\KitchenContainers;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels;
@@ -775,6 +777,32 @@ Route::middleware(['auth.user'])->group(function () {
         Route::get('dashboard/extra/blogs/{id}', BlogsView::class)->name('dashboard.viewBlog');
 
 
+
+
+
+
+
+
+
+
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+        // 17: extra - management- roles - create - edit - remove
+        Route::get('dashboard/extra/management/departments', Roles::class)->name('dashboard.management.roles');
+
+
+
+
+        // 17.5: extra - management- users - create - edit - remove
+        Route::get('dashboard/extra/management/users', Users::class)->name('dashboard.management.users');
 
 
 

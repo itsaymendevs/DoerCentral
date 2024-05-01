@@ -16,8 +16,11 @@ return new class extends Migration {
             $table->id();
 
 
-            // 1: general (MODULES)
+            // 1: general
             $table->string('name', 255)->nullable();
+            $table->string('group', 255)->nullable();
+
+
 
 
             $table->timestamps();

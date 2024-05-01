@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\InventoryExtraController;
 use App\Http\Controllers\Api\KitchenController;
 use App\Http\Controllers\Api\KitchenTodayController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\ManagementController;
 use App\Http\Controllers\Api\MenuCalendarController;
 use App\Http\Controllers\Api\MenuMealController;
 use App\Http\Controllers\Api\MenuSettingController;
@@ -1285,6 +1286,36 @@ Route::post('/dashboard/extra/blogs/sections/store', [ExtraController::class, 's
 Route::post('/dashboard/extra/blogs/sections/update', [ExtraController::class, 'updateBlogSection']);
 
 Route::post('/dashboard/extra/blogs/sections/remove', [ExtraController::class, 'removeBlogSection']);
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 19: extra - management - roles - store - update
+Route::post('/dashboard/extra/management/roles/store', [ManagementController::class, 'storeRole']);
+Route::post('/dashboard/extra/management/roles/update', [ManagementController::class, 'updateRole']);
+
+Route::post('/dashboard/extra/management/roles/remove', [ManagementController::class, 'removeRole']);
+
 
 
 

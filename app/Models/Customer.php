@@ -91,7 +91,7 @@ class Customer extends Authenticatable
 
 
         $currentSubscription = $this->subscriptions()?->where('startDate', '>=', $this->getCurrentDate())
-                ?->where('untilDate', '<=', $this->getCurrentDate)?->first();
+                ?->where('untilDate', '<=', $this->getCurrentDate())?->first();
 
 
         return $currentSubscription;

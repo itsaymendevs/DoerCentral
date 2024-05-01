@@ -62,13 +62,6 @@
 
 
                 {{-- search - mealTypes --}}
-
-
-                {{-- :: permission - hasTypeSizeFilters --}}
-                @if ($versionPermission->kitchenModuleHasTypeSizeFilters)
-
-
-
                 <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
                     <select class="form--select" data-instance='searchMealType' data-placeholder='Select Type'
                         value='{{ $searchMealType }}' required>
@@ -82,8 +75,6 @@
 
 
 
-                @endif
-                {{-- end if - permission --}}
 
 
 

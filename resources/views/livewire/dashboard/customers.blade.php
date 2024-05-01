@@ -246,7 +246,7 @@
 
 
                                         {{-- 1: active --}}
-                                        @if ($customer->latestSubscription()->untilDate >= $globalCurrentDate)
+                                        @if ($customer->currentSubscription()->untilDate >= $globalCurrentDate)
 
                                         <span class="fw-bold badge badge--scheme-3 text-dark fs-12 py-1">Active</span>
 
@@ -276,7 +276,7 @@
                                     <p class="text-center fs-13 fw-bold text-danger mb-0">
                                         <button
                                             class="btn btn--raw-icon fs-15 text-warning d-flex align-items-center justify-content-center fw-bold"
-                                            type="button">{{ $customer->latestSubscription()->plan->name }}</button>
+                                            type="button">{{ $customer->currentSubscription()->plan->name }}</button>
                                     </p>
 
 
@@ -353,14 +353,14 @@
 
                                             {{-- :: restriction - pause --}}
 
-                                            @if ($allowedPauseDate <= $customer->latestSubscription()->untilDate)
+                                            @if ($allowedPauseDate <= $customer->currentSubscription()->untilDate)
 
 
                                                 <button
                                                     class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                                     type="button" data-bs-toggle="modal"
                                                     data-bs-target='#pause-subscription'
-                                                    wire:click='pause({{ $customer->latestSubscription()->id }})'>
+                                                    wire:click='pause({{ $customer->currentSubscription()->id }})'>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                         fill="currentColor" class="bi bi-stopwatch fs-5"
                                                         viewBox="0 0 16 16">
@@ -383,7 +383,7 @@
                                                     class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
                                                     type="button" data-bs-toggle="modal"
                                                     data-bs-target='#pause-subscription'
-                                                    wire:click='pause({{ $customer->latestSubscription()->id }})'>
+                                                    wire:click='pause({{ $customer->currentSubscription()->id }})'>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                         fill="currentColor" class="bi bi-stopwatch fs-5"
                                                         viewBox="0 0 16 16">
@@ -554,7 +554,7 @@
                                 {{-- SN - name - plan --}}
                                 <td class="fw-bold">{{ $globalSNCounter++ }}</td>
                                 <td class="fw-bold fs-14">{{ $customer->fullName() }}</td>
-                                <td class="text-gold fs-14">{{ $customer?->latestSubscription()?->plan?->name }}</td>
+                                <td class="text-gold fs-14">{{ $customer?->currentSubscription()?->plan?->name }}</td>
 
 
 
@@ -566,7 +566,7 @@
 
 
                                     {{-- 1: active --}}
-                                    @if ($customer->latestSubscription()->untilDate >= $globalCurrentDate)
+                                    @if ($customer->currentSubscription()->untilDate >= $globalCurrentDate)
 
                                     <span class="badge fs-13 badge--scheme-3 fw-semibold">Active</span>
 
@@ -648,7 +648,7 @@
 
                                             {{-- :: restriction - pause --}}
 
-                                            @if ($allowedPauseDate <= $customer->latestSubscription()->untilDate)
+                                            @if ($allowedPauseDate <= $customer->currentSubscription()->untilDate)
 
 
 
@@ -657,7 +657,7 @@
                                                     class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
                                                     type="button" data-bs-toggle="modal"
                                                     data-bs-target='#pause-subscription'
-                                                    wire:click='pause({{ $customer->latestSubscription()->id }})'>
+                                                    wire:click='pause({{ $customer->currentSubscription()->id }})'>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                         fill="currentColor" class="bi bi-stopwatch fs-5"
                                                         viewBox="0 0 16 16">
@@ -680,7 +680,7 @@
                                                     class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 disabled"
                                                     type="button" data-bs-toggle="modal"
                                                     data-bs-target='#pause-subscription'
-                                                    wire:click='pause({{ $customer->latestSubscription()->id }})'>
+                                                    wire:click='pause({{ $customer->currentSubscription()->id }})'>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                         fill="currentColor" class="bi bi-stopwatch fs-5"
                                                         viewBox="0 0 16 16">

@@ -20,7 +20,7 @@ class SingleCustomerCalendar extends Component
 
 
     // :: variables
-    public $customer, $subscription;
+    public $customer, $subscription, $activeSubscriptions;
     public $searchFromDate = '';
 
 
@@ -37,7 +37,8 @@ class SingleCustomerCalendar extends Component
 
         // :: getCustomer - subscription
         $this->customer = Customer::find($id);
-        $this->subscription = $this->customer?->latestSubscription();
+        $this->subscription = $this->customer?->currentSubscription();
+        $this->activeSubscriptions = $this->customer?->activeSubscriptions();
 
 
 
@@ -149,9 +150,12 @@ class SingleCustomerCalendar extends Component
 
         // 1.2: get schedules - mealTypes
         $mealTypes = MealType::whereIn('id', $this->subscription?->typesInArray())->get();
+        // $mealTypes = MealType::all(); // ?? allow to show different types
 
 
-        $schedules = CustomerSubscriptionSchedule::where('customerSubscriptionId', $this->subscription->id)
+
+
+        $schedules = CustomerSubscriptionSchedule::whereIn('customerSubscriptionId', $this->activeSubscriptions?->pluck('id')?->toArray() ?? [])
             ->where('scheduleDate', '>=', $this->searchFromDate)
             ->where('scheduleDate', '<=', end($weekDates))
             ->orderBy('scheduleDate')

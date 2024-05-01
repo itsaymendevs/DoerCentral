@@ -71,6 +71,12 @@ class Customer extends Authenticatable
 
 
 
+    // ---------------------------------------------------
+    // ---------------------------------------------------
+
+
+
+
 
     public function latestSubscription()
     {
@@ -90,14 +96,42 @@ class Customer extends Authenticatable
     {
 
 
-        $currentSubscription = $this->subscriptions()?->where('startDate', '>=', $this->getCurrentDate())
-                ?->where('untilDate', '<=', $this->getCurrentDate())?->first();
+        $currentSubscription = $this->subscriptions()?->where('untilDate', '>=', $this->getCurrentDate())?->first();
 
 
         return $currentSubscription;
 
 
     } // end function
+
+
+
+
+
+
+
+
+    public function activeSubscriptions()
+    {
+
+
+        $activeSubscriptions = $this->subscriptions()?->where('untilDate', '>=', $this->getCurrentDate())?->get();
+
+
+        return $activeSubscriptions;
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // ---------------------------------------------------
+    // ---------------------------------------------------
 
 
 

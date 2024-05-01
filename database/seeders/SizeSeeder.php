@@ -17,7 +17,7 @@ class SizeSeeder extends Seeder
 
 
         // ::root
-        $sizes = Storage::disk('public')->get("sources/Sizes.json");
+        $sizes = Storage::disk('public')->get("sources/doer/Sizes.json");
         $sizes = $sizes ? json_decode($sizes, true) : [];
 
 

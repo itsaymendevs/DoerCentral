@@ -40,7 +40,7 @@ class SingleCustomerMenuReplaceMeal extends Component
 
         // :: getCustomer - subscription
         $this->customer = Customer::find($id);
-        $this->subscription = $this->customer?->latestSubscription();
+        $this->subscription = $this->customer?->currentSubscription();
 
 
 

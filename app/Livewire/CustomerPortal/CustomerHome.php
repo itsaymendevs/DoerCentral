@@ -39,7 +39,7 @@ class CustomerHome extends Component
 
         // :: getCustomer - latestSubscription
         $this->customer = Customer::find(session('customerId'));
-        $this->latestSubscription = $this->customer->latestSubscription();
+        $this->latestSubscription = $this->customer->currentSubscription();
 
 
 

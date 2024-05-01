@@ -49,7 +49,7 @@ class SingleCustomer extends Component
 
         // :: getCustomer - latestSubscription
         $this->customer = Customer::find($id);
-        $this->latestSubscription = $this->customer->latestSubscription();
+        $this->latestSubscription = $this->customer->currentSubscription();
 
 
 

@@ -43,7 +43,7 @@ class RecipeSeeder extends Seeder
 
 
             // ::root
-            $meals = Storage::disk('public')->get("sources/aleens/recipes/_{$generalType}.json");
+            $meals = Storage::disk('public')->get("sources/doer/recipes/_{$generalType}.json");
             $meals = $meals ? json_decode($meals, true) : [];
 
 
@@ -129,7 +129,7 @@ class RecipeSeeder extends Seeder
                 // 3: create MealSizes
 
 
-                $servings = Storage::disk('public')->get("sources/aleens/recipes/{$generalType}Servings.json");
+                $servings = Storage::disk('public')->get("sources/doer/recipes/{$generalType}Servings.json");
                 $servings = $servings ? json_decode($servings, true) : [];
 
 
@@ -137,7 +137,7 @@ class RecipeSeeder extends Seeder
 
 
                 // 3.1: getSize
-                $sizes = Size::whereIn('shortName', ['S', 'M', 'L'])->get();
+                $sizes = Size::whereIn('shortName', ['XS', 'S', 'M', 'L', 'XL'])->get();
 
 
 
@@ -243,14 +243,14 @@ class RecipeSeeder extends Seeder
 
 
             // ::root - mealsExtra
-            $mealsExtra = Storage::disk('public')->get("sources/aleens/recipes/{$generalType}.json");
+            $mealsExtra = Storage::disk('public')->get("sources/doer/recipes/{$generalType}.json");
             $mealsExtra = $mealsExtra ? json_decode($mealsExtra, true) : [];
 
 
 
 
             // :: root - recipeTypes
-            $recipeTypes = Storage::disk('public')->get("sources/aleens/recipes/{$generalType}MealTypes.json");
+            $recipeTypes = Storage::disk('public')->get("sources/doer/recipes/{$generalType}MealTypes.json");
             $recipeTypes = $recipeTypes ? json_decode($recipeTypes, true) : [];
 
 
@@ -451,7 +451,7 @@ class RecipeSeeder extends Seeder
 
 
                     // :: root
-                    $mealIngredientsRaw = Storage::disk('public')->get("sources/aleens/recipes/{$generalType}Ingredients.json");
+                    $mealIngredientsRaw = Storage::disk('public')->get("sources/doer/recipes/{$generalType}Ingredients.json");
                     $mealIngredientsRaw = $mealIngredientsRaw ? json_decode($mealIngredientsRaw, true) : [];
 
 
@@ -633,7 +633,7 @@ class RecipeSeeder extends Seeder
 
 
                         // ::root
-                        $mealPartsRaw = Storage::disk('public')->get("sources/aleens/recipes/{$generalType}Parts-{$singlePartType}.json");
+                        $mealPartsRaw = Storage::disk('public')->get("sources/doer/recipes/{$generalType}Parts-{$singlePartType}.json");
                         $mealPartsRaw = $mealPartsRaw ? json_decode($mealPartsRaw ?? [], true) : [];
 
 

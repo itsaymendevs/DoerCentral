@@ -40,7 +40,7 @@ class ItemSeeder extends Seeder
 
 
             // ::root
-            $meals = Storage::disk('public')->get("sources/aleens/items/{$generalType}.json");
+            $meals = Storage::disk('public')->get("sources/doer/items/{$generalType}.json");
             $meals = $meals ? json_decode($meals, true) : [];
             $type = Type::where('name', $generalType)->first();
 
@@ -239,7 +239,7 @@ class ItemSeeder extends Seeder
 
 
                 // :: root
-                $mealIngredients = Storage::disk('public')->get("sources/aleens/items/{$generalType}Ingredients.json");
+                $mealIngredients = Storage::disk('public')->get("sources/doer/items/{$generalType}Ingredients.json");
                 $mealIngredients = $mealIngredients ? json_decode($mealIngredients, true) : [];
 
 
@@ -341,7 +341,7 @@ class ItemSeeder extends Seeder
 
 
                 // ::root
-                $mealParts = Storage::disk('public')->get("sources/aleens/items/{$generalType}Parts.json");
+                $mealParts = Storage::disk('public')->get("sources/doer/items/{$generalType}Parts.json");
                 $mealParts = $mealParts ? json_decode($mealParts, true) : [];
 
 

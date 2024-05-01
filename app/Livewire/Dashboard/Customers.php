@@ -281,7 +281,7 @@ class Customers extends Component
 
 
             // 1: plan
-            $this->searchPlan ? $item?->latestSubscription()?->planId != $this->searchPlan ? $toReturn = false : null : null;
+            $this->searchPlan ? $item?->currentSubscription()?->planId != $this->searchPlan ? $toReturn = false : null : null;
 
 
 
@@ -289,13 +289,13 @@ class Customers extends Component
             if ($this->searchStatus && $this->searchStatus == 'Active') {
 
 
-                $item?->latestSubscription()?->untilDate < $this->getCurrentDate() ? $toReturn = false : null;
+                $item?->currentSubscription()?->untilDate < $this->getCurrentDate() ? $toReturn = false : null;
 
 
             } elseif ($this->searchStatus && $this->searchStatus == 'Expired') {
 
 
-                $item?->latestSubscription()?->untilDate >= $this->getCurrentDate() ? $toReturn = false : null;
+                $item?->currentSubscription()?->untilDate >= $this->getCurrentDate() ? $toReturn = false : null;
 
 
             } // end if

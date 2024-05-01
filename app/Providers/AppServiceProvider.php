@@ -95,27 +95,27 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-        // 2.1: subscriptionSettings
-        $subscriptionSettings = CustomerSubscriptionSetting::first();
+        // // 2.1: subscriptionSettings
+        // $subscriptionSettings = CustomerSubscriptionSetting::first();
 
-        View::share('subscriptionSettings', $subscriptionSettings);
-
-
+        // View::share('subscriptionSettings', $subscriptionSettings);
 
 
 
 
-        // :: allowedPauseDate - allowedUnPauseDate - allowedShorten
-        View::share('allowedPauseDate', $this->getDateByDays($subscriptionSettings->pauseRestriction));
-        View::share('allowedUnPauseDate', $this->getDateByDays($subscriptionSettings->unPauseRestriction));
-        View::share('allowedSkipDate', $this->getDateByDays($subscriptionSettings->skipRestriction));
-        View::share('allowedShortenDate', $this->getDateByDays($subscriptionSettings->shortenRestriction));
+
+
+        // // :: allowedPauseDate - allowedUnPauseDate - allowedShorten
+        // View::share('allowedPauseDate', $this->getDateByDays($subscriptionSettings->pauseRestriction));
+        // View::share('allowedUnPauseDate', $this->getDateByDays($subscriptionSettings->unPauseRestriction));
+        // View::share('allowedSkipDate', $this->getDateByDays($subscriptionSettings->skipRestriction));
+        // View::share('allowedShortenDate', $this->getDateByDays($subscriptionSettings->shortenRestriction));
 
 
 
-        // :: allowedCalendarMigrationDate - allowedMealSelectionDate
-        View::share('allowedCalendarMigrationDate', $this->getDateByDays($subscriptionSettings->changeCalendarRestriction));
-        View::share('allowedMealSelectionDate', $this->getDateByDays($subscriptionSettings->mealSelectionRestriction));
+        // // :: allowedCalendarMigrationDate - allowedMealSelectionDate
+        // View::share('allowedCalendarMigrationDate', $this->getDateByDays($subscriptionSettings->changeCalendarRestriction));
+        // View::share('allowedMealSelectionDate', $this->getDateByDays($subscriptionSettings->mealSelectionRestriction));
 
 
 

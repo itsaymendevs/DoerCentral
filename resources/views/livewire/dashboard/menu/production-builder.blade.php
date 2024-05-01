@@ -19,6 +19,13 @@
             .recipe--builder-wrapper .form--table-input-sm {
                 padding: 0px 3px !important;
             }
+
+
+
+            .itemType--radio input[type=radio][checked] {
+                background-color: var(--bg-golden-dark) !important;
+                border-color: var(--bg-golden-dark) !important;
+            }
         </style>
 
 

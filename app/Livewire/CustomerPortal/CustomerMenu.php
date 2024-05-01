@@ -47,7 +47,7 @@ class CustomerMenu extends Component
 
         // :: getCustomer - subscription
         $this->customer = Customer::find(session('customerId'));
-        $this->subscription = $this->customer?->latestSubscription();
+        $this->subscription = $this->customer?->currentSubscription();
 
 
 

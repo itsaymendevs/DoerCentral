@@ -68,7 +68,7 @@
 
 
                         {{-- settings --}}
-                        @if (!$versionPermission->isProcessing)
+                        @if ($versionPermission->hasAdminView)
 
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" data-bs-toggle="tab" href="#tab-6" role="tab">Settings</a>

@@ -27,7 +27,7 @@ class SingleCustomerMenu extends Component
     // :: variables
     public $customer, $subscription;
     public $menuCalendarId, $scheduleDate;
-    public $skipStatus;
+    public $skipStatus, $hasUpcomingSubscription = false;
 
 
 
@@ -38,9 +38,56 @@ class SingleCustomerMenu extends Component
     {
 
 
-        // :: getCustomer - subscription
+        // :: getCustomer - getSubscription
         $this->customer = Customer::find($id);
         $this->subscription = $this->customer?->currentSubscription();
+
+
+
+
+
+
+        // :: getSubscription
+
+
+        // A: hasUpcoming
+        if ($this->subscription->id != $this->customer->latestSubscription()?->id) {
+
+
+
+            // 1.1: checkUpcomingSubscription
+            $this->hasUpcomingSubscription = true;
+
+
+
+
+
+            // 1.2: checkActive
+            if (! empty(session('showUpcomingSubscription')) && session('showUpcomingSubscription') == true) {
+
+                $this->subscription = $this->customer?->latestSubscription();
+
+            } // end if
+
+
+
+
+        } // end if - checkUpcoming
+
+
+
+
+
+
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
+
 
 
 
@@ -60,7 +107,10 @@ class SingleCustomerMenu extends Component
             session('customerScheduleDate') >= $this->subscription->startDate && session('customerScheduleDate') <= $this->subscription->untilDate) {
 
 
+
             $this->scheduleDate = session('customerScheduleDate');
+
+
 
 
 
@@ -68,8 +118,25 @@ class SingleCustomerMenu extends Component
         } else {
 
 
+
+
             Session::put('customerScheduleDate', $this->getCurrentDate());
             $this->scheduleDate = $this->getCurrentDate();
+
+
+
+
+
+            // :: checkUpcoming
+            if (! empty(session('showUpcomingSubscription')) && session('showUpcomingSubscription') == true) {
+
+
+                Session::put('customerScheduleDate', $this->subscription->startDate);
+                $this->scheduleDate = $this->subscription->startDate;
+
+
+            } // end if - checkUpcoming
+
 
 
         } // end if
@@ -104,6 +171,32 @@ class SingleCustomerMenu extends Component
 
 
 
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function upcomingSubscription()
+    {
+
+
+
+
+        // :: showUpcomingOnly - forgetScheduleDate
+        Session::put('showUpcomingSubscription', true);
+        Session::forget('customerScheduleDate');
+
+
+
+        return $this->redirect(route('dashboard.singleCustomerMenu', $this->customer->id));
+
+
+    } // end function
+
+
 
 
 
@@ -111,6 +204,39 @@ class SingleCustomerMenu extends Component
 
 
     // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function currentSubscription()
+    {
+
+
+
+        // :: showCurrentOnly - forgetScheduleDate
+        Session::put('showUpcomingSubscription', false);
+        Session::forget('customerScheduleDate');
+
+
+        return $this->redirect(route('dashboard.singleCustomerMenu', $this->customer->id));
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
 
 
 

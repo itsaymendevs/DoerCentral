@@ -22,8 +22,88 @@
 
 
 
-            {{-- empty --}}
-            <div class="col-4"></div>
+            {{-- upcomingSubscription --}}
+            <div class="col-4">
+                <div class="text-center mb-4">
+
+
+
+
+
+
+                    {{-- A: hasUpcomingSubscription --}}
+                    @if ($hasUpcomingSubscription)
+
+
+
+
+                    {{-- 1: showUpcoming --}}
+                    @if (empty(session('showUpcomingSubscription')) || session('showUpcomingSubscription') == false)
+
+
+                    <button
+                        class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-12 scale--3"
+                        type="button" wire:click='upcomingSubscription()' wire:loading.attr='disabled'>
+                        <svg class="bi bi-arrow-right fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
+                            height="1em" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
+                            </path>
+                        </svg>Upcoming Subscription
+                    </button>
+
+
+
+
+                    {{-- 2: return to Current --}}
+                    @else
+
+
+
+                    <button
+                        class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-12 scale--3"
+                        type="button" wire:click='currentSubscription()' wire:loading.attr='disabled'>
+                        <svg class="bi bi-arrow-left fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
+                            height="1em" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
+                            </path>
+                        </svg>Current Subscription
+                    </button>
+
+
+
+                    @endif
+                    {{-- end if - toggleUpcoming / current --}}
+
+
+
+
+
+
+                    @endif
+                    {{-- end if - upcomingSubscription --}}
+
+
+                </div>
+            </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
+
+
+            {{-- -------------------------------- --}}
+            {{-- -------------------------------- --}}
+
+
+
+
+
 
 
 
@@ -263,7 +343,8 @@
 
 
                 {{-- :: scheduleMealExists --}}
-                @if ($subscriptionScheduleMeals && ($deliveryStatus == 'Pending' || $deliveryStatus == 'Completed') )
+                @if ($subscriptionScheduleMeals && ($deliveryStatus == 'Pending' || $deliveryStatus == 'Completed')
+                )
 
 
 

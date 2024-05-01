@@ -129,7 +129,7 @@ class Sides extends Component
         $sides = Meal::where('typeId', $type->id)
             ->where('name', 'LIKE', '%' . $this->searchSide . '%')
             ->orderBy('created_at', 'desc')
-            ->paginate(20);
+            ->paginate(env('PAGINATE_LG'));
 
 
 

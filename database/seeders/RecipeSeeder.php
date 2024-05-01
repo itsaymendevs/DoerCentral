@@ -674,6 +674,9 @@ class RecipeSeeder extends Seeder
 
 
 
+
+
+
                         // 5.1: loop - mealParts
                         for ($y = 0; $y < count($mealParts); $y++) {
 
@@ -690,8 +693,8 @@ class RecipeSeeder extends Seeder
 
 
                             // 5.2.5: getMigrationPart
-                            $migrationPart = Meal::where('migrationId', $mealParts[$y]['partId'])?->first();
-
+                            $migrationPart = Meal::where('migrationId', $mealParts[$y]['partId'])
+                                ->where('typeId', $partType->id)?->first();
 
 
 
@@ -707,42 +710,51 @@ class RecipeSeeder extends Seeder
 
 
 
-
-                            // A: get groupToken if found
-                            $groupToken = MealPart::where('mealId', $meal?->id)
-                                ->where('partId', $migrationPart?->id)
-                                ->orderBy('created_at', 'desc')?->first()?->groupToken ?? null;
+                            // :: if - partExists
+                            if ($migrationPart) {
 
 
 
-                            // :: updateToAll
-                            if ($groupToken) {
 
 
 
-                                MealPart::where('mealId', $meal?->id)
+
+
+
+
+
+
+                                // A: get groupToken if found
+                                $groupToken = MealPart::where('mealId', $meal?->id)
                                     ->where('partId', $migrationPart?->id)
-                                    ->update([
-                                        'groupToken' => $groupToken
-                                    ]);
+                                    ->orderBy('created_at', 'desc')?->first()?->groupToken ?? null;
+
+
+
+                                // :: updateToAll
+                                if ($groupToken) {
+
+
+
+                                    MealPart::where('mealId', $meal?->id)
+                                        ->where('partId', $migrationPart?->id)
+                                        ->update([
+                                            'groupToken' => $groupToken
+                                        ]);
 
 
 
 
-                                // B: createNewOne
-                            } else {
+                                    // B: createNewOne
+                                } else {
 
 
 
-                                $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
+                                    $groupToken = $mealSize->id . date('dmYhisA') . rand(999, 999999) . rand(74921, 99999) . rand(74921, 99999) . rand(74921, 99999);
 
 
 
-                            } // end if
-
-
-
-
+                                } // end if
 
 
 
@@ -750,29 +762,39 @@ class RecipeSeeder extends Seeder
 
 
 
-                            // 5.3: createPart
-                            $mealPart = MealPart::create([
-
-
-                                'partId' => $migrationPart->id ?? null,
-                                'typeId' => $partType->id,
-
-                                'partType' => $mealParts[$y]['partType'] ?? null,
-                                'amount' => $mealParts[$y]['amount'] ?? 0,
-
-                                'remarks' => $mealParts[$y]['remarks'] ?? null,
-                                'groupToken' => $groupToken,
-                                'isReplacement' => boolval($mealParts[$y]['isReplacement']) ?? false,
-                                'isRemovable' => boolval($mealParts[$y]['isRemovable']) ?? false,
-
-                                'mealId' => $meal->id ?? null,
-                                'mealSizeId' => $mealSize->id ?? null,
-
-
-                            ]);
 
 
 
+
+                                // 5.3: createPart
+                                $mealPart = MealPart::create([
+
+
+                                    'partId' => $migrationPart->id ?? null,
+                                    'typeId' => $partType->id,
+
+                                    'partType' => $mealParts[$y]['partType'] ?? null,
+                                    'amount' => $mealParts[$y]['amount'] ?? 0,
+
+                                    'remarks' => $mealParts[$y]['remarks'] ?? null,
+                                    'groupToken' => $groupToken,
+                                    'isReplacement' => boolval($mealParts[$y]['isReplacement']) ?? false,
+                                    'isRemovable' => boolval($mealParts[$y]['isRemovable']) ?? false,
+
+                                    'mealId' => $meal->id ?? null,
+                                    'mealSizeId' => $mealSize->id ?? null,
+
+
+                                ]);
+
+
+
+
+
+
+
+
+                            } //end if - partExists
 
                         } // end loop - parts
 

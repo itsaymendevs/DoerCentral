@@ -57,7 +57,8 @@
                                 <li class="nav-item" role="presentation" wire:ignore>
                                     <a class="nav-link " role="tab" data-bs-toggle="tab"
                                         href="#bundle-tab-{{ $bundle->id }}"
-                                        wire:click='changeBundle({{ $bundle->id }})' wire:loading.class='disabled'>
+                                        wire:click='changeBundle({{ $bundle->id }})' wire:loading.class='disabled'
+                                        wire:target='changeRange, changeBundle'>
                                         {{ $bundle->name }}
                                     </a>
                                 </li>
@@ -191,7 +192,8 @@
                                                 <a class="nav-link" role="tab" data-bs-toggle="tab"
                                                     href="#bundle-tab-{{ $bundle->id }}-{{ $bundleRange->range->id }}"
                                                     wire:click='changeRange({{ $bundleRange->range->id }})'
-                                                    wire:loading.class='disabled'>
+                                                    wire:loading.class='disabled'
+                                                    wire:target='changeRange, changeBundle'>
                                                     {{ $bundleRange->range->name }}
                                                 </a>
                                             </li>

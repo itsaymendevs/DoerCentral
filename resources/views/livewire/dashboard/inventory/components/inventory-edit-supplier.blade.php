@@ -33,7 +33,7 @@
 
                 {{-- form --}}
                 <form wire:submit='update' class="px-4">
-                    <div class="row row pt-2 mb-4">
+                    <div class="row pt-2 mb-4">
 
 
                         {{-- name --}}

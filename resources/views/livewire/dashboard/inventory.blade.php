@@ -196,6 +196,40 @@
 
 
 
+
+
+
+
+
+
+                        {{-- ------------------------------------------------ --}}
+                        {{-- ------------------------------------------------ --}}
+
+
+
+
+
+
+
+
+                        {{-- 4: stockTab --}}
+                        <div class="tab-pane fade no--card" id="tab-4" role="tabpanel">
+
+
+                            {{-- :: stock --}}
+                            <livewire:dashboard.inventory.components.inventory-manage-stock />
+
+                        </div>
+                        {{-- endTab --}}
+
+
+
+
+
+
+
+
+
                         {{-- ------------------------------------------------ --}}
                         {{-- ------------------------------------------------ --}}
 
@@ -389,6 +423,11 @@
 
     {{-- 4: editConversion - Ingredients --}}
     <livewire:dashboard.inventory.components.inventory-edit-conversion-ingredients />
+
+
+
+
+
 
 
 

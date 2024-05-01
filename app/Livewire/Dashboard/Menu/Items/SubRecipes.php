@@ -134,7 +134,7 @@ class SubRecipes extends Component
         $subRecipes = Meal::where('typeId', $type->id)
             ->where('name', 'LIKE', '%' . $this->searchSubRecipe . '%')
             ->orderBy('created_at', 'desc')
-            ->paginate(20);
+            ->paginate(env('PAGINATE_LG'));
 
 
 

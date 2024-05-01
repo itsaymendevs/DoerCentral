@@ -82,6 +82,7 @@ class InventoryViewPurchases extends Component
 
 
             // 1.2: renderView
+            $this->dispatch('refreshStock');
             $this->render();
 
 

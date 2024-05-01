@@ -192,7 +192,7 @@ class InventoryViewIngredients extends Component
 
         // 1.2.2: applyPagination
         $ingredients = Ingredient::whereIn('id', $ingredients?->pluck('id')?->toArray() ?? [])
-            ->paginate(24, pageName: 'ingredients');
+            ->paginate(env('PAGINATE_LG'), pageName: 'ingredients');
 
 
 

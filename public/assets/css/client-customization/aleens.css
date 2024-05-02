@@ -1,18 +1,24 @@
 /* colors */
 
 /* root */
-/*
+
 :root {
     --color-body: #fff;
     --color-card: #f9f9f9;
+    --color-theme-1: #f9a474;
+    --color-theme-2: #c6e6be;
+    --color-theme-3: #8dc1e6;
+    --color-theme-4: #fcc43d;
+    --color-theme-secondary: #f7941d;
+    --color-theme-alternative: #00a651;
+
     --color-theme: #212529;
-    --color-theme-secondary: #00a651;
     --color-theme-heading: #f7941d;
     --color-theme-light: #a17a6d;
-    --color-scheme-1: #f0f0f0;
-    --color-scheme-dark-1: #dcdcdc;
-    --color-scheme-2: #18191a;
-    --color-scheme-dark-2: #18191a;
+    --color-scheme-1: #00a651;
+    --color-scheme-dark-1: #009f4d;
+    --color-scheme-2: #f7941d;
+    --color-scheme-dark-2: #e88c1b;
     --color-scheme-3: #87b2a9;
     --color-scheme-dark-3: #7aa89e;
     --color-scheme-4: #ccb9a6;
@@ -24,8 +30,8 @@
     --color-login: #362621;
     --color-login-dark: #2d1f1b;
     --bg-theme: #23262b;
-    --bg-theme-secondary: #87b2a9;
-    --doc-border-color: #36262122;
+    --bg-theme-secondary: #00a651;
+    --doc-border-color: #02020222;
     --bg-theme-dark: #6e6e6e;
     --bg-alternate: #f8f8f8;
     --color-border: #c5c5c5;
@@ -48,9 +54,9 @@
     --btn-radius: 8px;
     --navbar-radius: 6px;
     --navbar-btn-height: 60px;
-    --input-border-color: #87b2a922;
-    --input-border-color-hover: #87b2a957;
-    --input-bg: #23262b;
+    --input-border-color: #c7c7c7;
+    --input-border-color-hover: #c5c5c5;
+    --input-bg: #fff;
     --input-radius: 8px;
     --input-padding: 0px 18px;
     --select-padding: 15px;
@@ -78,21 +84,69 @@
     --snack-color: #ffcacd;
     --side-color: #afc8de;
     --drink-color: #ffadd4;
-} */
+}
 
 /* --------------------------------------------------- */
 /* --------------------------------------------------- */
-/* .text-gold {
+* {
+    color: var(--color-theme);
+}
+
+.text-gold {
     color: var(--color-theme-heading);
 }
 
 .submenu--group .btn.active {
-    background-color: var(--color-theme-heading);
-} */
+    /* background-color: var(--color-theme-heading); */
+}
 /* --------------------------------------------------- */
 /* --------------------------------------------------- */
 
+/* home */
+.text-orange {
+    color: var(--color-theme-secondary);
+}
+
+.text-green {
+    color: var(--color-theme-alternative);
+}
+.item--box.macros {
+    border-radius: 300px;
+    padding: 30px 0px;
+    width: 70px;
+    border: 4px solid transparent;
+    background-color: transparent;
+}
+
+.item--box.macros.for--calories,
+.item--box.macros.for--calories p span:last-of-type {
+    border-color: var(--color-theme-1);
+    color: var(--color-theme-1);
+}
+
+.item--box.macros.for--carbs,
+.item--box.macros.for--carbs p span:last-of-type {
+    border-color: var(--color-theme-2);
+    color: var(--color-theme-2);
+}
+
+.item--box.macros.for--proteins,
+.item--box.macros.for--proteins p span:last-of-type {
+    border-color: var(--color-theme-3);
+    color: var(--color-theme-3);
+}
+
+.item--box.macros.for--fats,
+.item--box.macros.for--fats p span:last-of-type {
+    border-color: var(--color-theme-4);
+    color: var(--color-theme-4);
+}
+
 /* logo */
+
+.navbar--hr {
+    border-color: #000;
+}
 .logo--wrapper {
     width: 120px;
     margin: auto;
@@ -126,4 +180,81 @@
     font-weight: 600 !important;
     margin-right: 16px;
     letter-spacing: 1px;
+}
+
+/* meals */
+.swiper--caption.for-meals {
+    background-color: #fff;
+}
+
+/* nav-menu */
+.mobile--menu {
+    background-color: var(--color-theme-secondary) !important;
+}
+.mobile--menu .btn:focus,
+.mobile--menu .btn:hover,
+.mobile--menu .btn.active {
+    background-color: var(--color-theme-alternative) !important;
+    border-top: none !important;
+}
+
+/* journey */
+
+/* item-box */
+.item--box.journey:hover,
+.item--box.journey:focus,
+.item--box.journey.active {
+    background-color: transparent;
+    border: none;
+    transform: unset !important;
+}
+
+.plan--title {
+    border: 2px solid #f7941d70;
+}
+
+.overview--box.journey p {
+    background-color: #f7941d21;
+}
+
+.input--with-label.journey label {
+    background-color: #f7941d21;
+    border-color: #f7941d21;
+}
+
+.form--input.readonly {
+    background-color: initial;
+}
+
+/* customer menu */
+
+.customer--nav {
+    flex-wrap: nowrap;
+    overflow: auto;
+    background-color: transparent !important;
+}
+
+.customer--nav li a.active {
+    transform: scale(1.2) !important;
+}
+
+.menu--calendar-days.active {
+    border-color: var(--color-theme-secondary) !important;
+}
+
+.menu--calendar-days.active span:first-of-type,
+.menu--calendar-days:hover span:first-of-type,
+.menu--calendar-days:focus span:first-of-type {
+    color: var(--color-theme-secondary) !important;
+}
+
+.menu--calendar-days.disabled {
+    border-color: #ededed !important;
+}
+
+.overview--card.menu {
+    background-color: #ffffff;
+    border: 2px solid #0000000d;
+    box-shadow: 0px 2px 3px 0px #0000000f;
+    border-radius: var(--card-radius);
 }

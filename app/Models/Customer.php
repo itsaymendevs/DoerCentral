@@ -96,7 +96,17 @@ class Customer extends Authenticatable
     {
 
 
+
+        // 1: getCurrent
         $currentSubscription = $this->subscriptions()?->where('untilDate', '>=', $this->getCurrentDate())?->first();
+
+
+
+
+        // :: extra: getLatest if empty
+        if (empty($currentSubscription))
+            $currentSubscription = $this->latestSubscription();
+
 
 
         return $currentSubscription;

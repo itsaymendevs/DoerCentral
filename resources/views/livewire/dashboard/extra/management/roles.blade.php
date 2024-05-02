@@ -120,12 +120,12 @@
 
 
 
-
                                 {{-- 3: permissionList - view --}}
                                 <td class="text-start">
                                     <div class="d-flex align-items-center justify-content-center">
                                         <button class="btn btn--raw-icon inline view scale--3" data-bs-toggle="tooltip"
-                                            data-bss-tooltip="" type="button" title="Permission List">
+                                            data-bs-html='true' data-bss-tooltip="" type="button"
+                                            title="{{ implode('<br />', $role->permissionsInArray()) }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-list-ul">
                                                 <path fill-rule="evenodd"
@@ -145,9 +145,9 @@
                                 {{-- Users --}}
                                 <td class="text-start">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <button class="btn btn--raw-icon inline view scale--3" data-bs-toggle="modal"
-                                            data-bss-tooltip="" type="button" data-bs-target="#supplier-ingredients"
-                                            title="Users List">
+                                        <button class="btn btn--raw-icon inline view scale--3" data-bs-toggle="tooltip"
+                                            data-bs-html='true' data-bss-tooltip="" type="button"
+                                            title="{{ implode('<br />', $role->usersInArray()) }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-list-ul">
                                                 <path fill-rule="evenodd"

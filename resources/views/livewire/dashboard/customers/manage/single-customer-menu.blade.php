@@ -277,7 +277,6 @@
 
                     {{-- :: disabled previousDates --}}
 
-
                     <a class="btn btn--scheme menu--calendar-days @if ($numberOfMeals > 0) has-meals @endif
                         @if ($scheduleDate == $commonDate) active @endif
                         @if ($commonDate < $globalCurrentDate) disabled @endif" role="button"

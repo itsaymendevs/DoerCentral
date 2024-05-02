@@ -31,28 +31,17 @@
 
 
 
-            {{-- calendarSelect --}}
+            {{-- subheading --}}
             <div class="col-12 col-sm-7 col-md-4">
 
 
                 {{-- hr --}}
                 <div class="d-flex align-items-center justify-content-between mb-1">
-                    <hr style="width: 65%" />
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Calendar</label>
+                    <label class="form-label form--label px-3 w-100 justify-content-center mb-2 fs-6 fw-bold">Delicious
+                        Meals
+                        Cooked with Love</label>
                 </div>
 
-
-                {{-- select --}}
-                <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
-                    <select class="form-select form--select" disabled data-instance='menuCalendarId' data-trigger='true'
-                        value='{{ $subscription->menuCalendarId }}'>
-                        <option value=""></option>
-
-                        @foreach ($menuCalendars as $menuCalendar)
-                        <option value="{{ $menuCalendar->id }}">{{ $menuCalendar->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
             </div>
 
 
@@ -223,7 +212,7 @@
 
 
                     {{-- tabLinks --}}
-                    <ul class="nav nav-tabs nav-tabs-centered " role="tablist">
+                    <ul class="nav nav-tabs nav-tabs-centered customer--nav" role="tablist">
 
 
                         {{-- loop - mealTypes --}}

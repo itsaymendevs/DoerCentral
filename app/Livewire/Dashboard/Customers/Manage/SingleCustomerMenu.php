@@ -38,6 +38,32 @@ class SingleCustomerMenu extends Component
     {
 
 
+
+        // :: resetSession / differentCustomer
+        if (! empty(session('showUpcomingSubscriptionCustomer')) && session('showUpcomingSubscriptionCustomer') != $id) {
+
+            Session::forget(['showUpcomingSubscriptionCustomer', 'showUpcomingSubscription']);
+
+        } // end if
+
+
+
+
+
+
+
+
+        // -----------------------------------------
+        // -----------------------------------------
+
+
+
+
+
+
+
+
+
         // :: getCustomer - getSubscription
         $this->customer = Customer::find($id);
         $this->subscription = $this->customer?->currentSubscription();
@@ -113,9 +139,9 @@ class SingleCustomerMenu extends Component
 
 
 
-
             // :: currentDate as ScheduleDate
         } else {
+
 
 
 
@@ -187,6 +213,8 @@ class SingleCustomerMenu extends Component
 
         // :: showUpcomingOnly - forgetScheduleDate
         Session::put('showUpcomingSubscription', true);
+        Session::put('showUpcomingSubscriptionCustomer', $this->customer->id);
+
         Session::forget('customerScheduleDate');
 
 
@@ -218,6 +246,8 @@ class SingleCustomerMenu extends Component
 
         // :: showCurrentOnly - forgetScheduleDate
         Session::put('showUpcomingSubscription', false);
+        Session::put('showUpcomingSubscriptionCustomer', $this->customer->id);
+
         Session::forget('customerScheduleDate');
 
 

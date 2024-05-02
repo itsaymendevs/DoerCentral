@@ -16,14 +16,15 @@ return new class extends Migration {
             $table->id();
 
             // 1: general
-            $table->string('name', 100)->nullable();
-            $table->string('phone', 100)->nullable();
+            $table->string('name', 255)->nullable();
+            $table->string('phone', 255)->nullable();
             $table->string('email', 255)->unique();
             $table->text('password')->nullable();
 
 
 
-            // 1.2: isActive
+            // 1.2: imageFile - isActive
+            $table->text('imageFile')->nullable();
             $table->boolean('isActive')->nullable()->default(1);
 
 

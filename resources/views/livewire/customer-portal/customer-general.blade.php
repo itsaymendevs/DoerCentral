@@ -22,7 +22,7 @@
 
 
         {{-- outerRow --}}
-        <form wire:submit='update' class="row align-items-start pt-3 mb-5">
+        <form wire:submit='update' class="row align-items-start justify-content-center pt-3 mb-5">
 
 
 
@@ -38,7 +38,7 @@
 
                     {{-- totalBalanceDays --}}
                     <div class="col-6 col-sm-4 mb-3">
-                        <div class="overview--box shrink--self">
+                        <div class="overview--box journey shrink--self">
                             <h6 class="fs-13 fw-normal">Balance</h6>
                             <p class="truncate-text-1l">-</p>
                         </div>
@@ -48,7 +48,7 @@
 
                     {{-- totalPlanDays --}}
                     <div class="col-6 col-sm-4 mb-3">
-                        <div class="overview--box shrink--self">
+                        <div class="overview--box journey shrink--self">
                             <h6 class="fs-13 fw-normal">Total Days</h6>
                             <p class="truncate-text-1l">{{ $customer->subscriptions->sum('planDays') }}</p>
                         </div>
@@ -58,7 +58,7 @@
 
                     {{-- toalCheckoutPrice --}}
                     <div class="col-12 col-sm-4 mb-3">
-                        <div class="overview--box shrink--self">
+                        <div class="overview--box journey shrink--self">
                             <h6 class="fs-13 fw-normal">
                                 Amount<small class="ms-1 fw-semibold text-gold fs-10">(AED)</small>
                             </h6>
@@ -72,7 +72,7 @@
 
                     {{-- subscription - startDate --}}
                     <div class="col-6 mb-3">
-                        <div class="overview--box shrink--self active" style="border: none">
+                        <div class="overview--box journey shrink--self active" style="border: none">
                             <h6 class="fs-13 fw-normal fs-xs-12">Subscribed From</h6>
                             <p class="truncate-text-1l fs-13">{{ date('d / m / Y',
                                 strtotime($latestSubscription->startDate))
@@ -85,7 +85,7 @@
 
                     {{-- subscription - untilDate --}}
                     <div class="col-6 mb-3">
-                        <div class="overview--box shrink--self active" style="border: none">
+                        <div class="overview--box journey shrink--self active" style="border: none">
                             <h6 class="fs-13 fw-normal fs-xs-12">Until Date</h6>
                             <p class="truncate-text-1l fs-13">{{ date('d / m / Y',
                                 strtotime($latestSubscription->untilDate))
@@ -130,7 +130,7 @@
 
                             {{-- firstName --}}
                             <div class="col-12">
-                                <div class="input--with-label mb-4">
+                                <div class="input--with-label journey mb-4">
                                     <label class="form-label form--label mb-0">First Name</label>
                                     <input type="text" class="form--input readonly" readonly required
                                         wire:model='instance.firstName' />
@@ -141,7 +141,7 @@
 
                             {{-- lastName --}}
                             <div class="col-12">
-                                <div class="input--with-label mb-4">
+                                <div class="input--with-label journey mb-4">
                                     <label class="form-label form--label mb-0">Last Name</label>
                                     <input type="text" class="form--input readonly" readonly required
                                         wire:model='instance.lastName' />
@@ -154,9 +154,10 @@
 
                             {{-- email --}}
                             <div class="col-12">
-                                <div class="input--with-label mb-4">
+                                <div class="input--with-label journey mb-4">
                                     <label class="form-label form--label mb-0">Email Address</label>
-                                    <input type="email" class="form--input" required wire:model='instance.email' />
+                                    <input type="email" class="form--input readonly" readonly required
+                                        wire:model='instance.email' />
                                 </div>
                             </div>
 
@@ -164,9 +165,10 @@
 
                             {{-- birthdate --}}
                             <div class="col-12">
-                                <div class="input--with-label mb-4">
+                                <div class="input--with-label journey mb-4">
                                     <label class="form-label form--label mb-0">Birthdate</label>
-                                    <input class="form--input" type="date" wire:model='instance.birthDate' />
+                                    <input class="form--input readonly" readonly type="date"
+                                        wire:model='instance.birthDate' />
                                 </div>
                             </div>
 
@@ -174,7 +176,7 @@
 
                             {{-- password --}}
                             <div class="col-12">
-                                <div class="input--with-label mb-4">
+                                <div class="input--with-label journey mb-4">
                                     <label class="form-label form--label mb-0">Password</label>
                                     <input type="password" class="form--input" wire:model='instance.newPassword' />
                                 </div>
@@ -206,7 +208,7 @@
 
                             {{-- phone --}}
                             <div class="col-12 col-sm-6">
-                                <div class="input--with-label mb-4">
+                                <div class="input--with-label journey mb-4">
                                     <label class="form-label form--label mb-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                             fill="currentColor" viewBox="0 0 16 16" class="bi bi-telephone fs-6">
@@ -215,8 +217,8 @@
                                             </path>
                                         </svg>
                                     </label>
-                                    <input type="text" class="form--input" required wire:model='instance.phone'
-                                        minlength='9' maxlength='9' />
+                                    <input type="text" class="form--input readonly" readonly required
+                                        wire:model='instance.phone' minlength='9' maxlength='9' />
                                 </div>
 
 
@@ -229,7 +231,7 @@
 
                             {{-- whatsapp --}}
                             <div class="col-12 col-sm-6">
-                                <div class="input--with-label mb-4">
+                                <div class="input--with-label journey mb-4">
                                     <label class="form-label form--label mb-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                             fill="currentColor" viewBox="0 0 16 16" class="bi bi-whatsapp fs-6">
@@ -238,8 +240,8 @@
                                             </path>
                                         </svg>
                                     </label>
-                                    <input type="text" class="form--input" required wire:model='instance.whatsapp'
-                                        minlength='9' maxlength='9' />
+                                    <input type="text" class="form--input readonly" readonly required
+                                        wire:model='instance.whatsapp' minlength='9' maxlength='9' />
                                 </div>
                             </div>
 
@@ -401,9 +403,9 @@
                             {{-- submitButton - Desktop --}}
                             <div class="col-12 d-block d-xl-none mt-3 mb-5">
                                 <button
-                                    class="btn btn--scheme btn--scheme-2 w-75 py-2 d-flex align-items-center mx-1 justify-content-center shrink--self fs-15 mx-auto"
-                                    style="border: 1px solid var(--color-theme-secondary)" wire:loading.attr='disabled'
-                                    wire:target='update'>
+                                    class="btn btn--scheme btn--scheme-1 w-75 py-2 d-flex align-items-center mx-1 justify-content-center shrink--self fs-15 mx-auto"
+                                    style="border: 1px solid var(--color-theme-alternative)"
+                                    wire:loading.attr='disabled' wire:target='update'>
                                     Update Profile
                                 </button>
                             </div>
@@ -449,7 +451,7 @@
 
 
             {{-- midColumn --}}
-            <div class="col-12 col-xl-2 text-center order-first order-xl-2 mb-md-5 mb-xl-0">
+            <div class="col-11 col-xl-2 text-center order-first order-xl-2 mb-md-5 mb-xl-0 mt-3">
 
 
 
@@ -462,11 +464,11 @@
 
 
                 {{-- subscriptionActions --}}
-                <div class="d-flex align-items-center justify-content-center mb-md-2 mt-md-3">
+                <div class="d-flex align-items-center justify-content-center mb-md-2">
 
 
                     {{-- 1: pause --}}
-                    <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause">
+                    <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause" class='mx-2'>
 
                         <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32" type='button'
                             data-bs-toggle="modal" data-bs-target="#pause-subscription">
@@ -477,6 +479,8 @@
                                     d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
                             </svg>
                         </button>
+
+                        <p class='fs-12 mt-1 mb-0'>Pause</p>
 
                     </div>
 
@@ -489,32 +493,45 @@
 
 
                     {{-- 2: resume --}}
-                    <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
-                        data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Resume"
-                        style="border:1px dashed var(--color-theme-secondary)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                            class="bi bi-play-circle fs-5" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                            <path
-                                d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445" />
-                        </svg>
-                    </button>
+                    <div class='mx-3'>
+                        <button class="btn btn--scheme btn--scheme-1 fs-12 px-2 mx-2 scale--self-05 h-32"
+                            data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Resume">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                class="bi bi-play-circle fs-5" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                <path
+                                    d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445" />
+                            </svg>
+                        </button>
+
+                        <p class='fs-12 mt-1 mb-0'>Resume</p>
+                    </div>
+
+
+
+
 
 
 
 
                     {{-- 2: renew --}}
-                    <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32 disabled"
-                        data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Re-New">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                            viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise fs-5">
-                            <path fill-rule="evenodd"
-                                d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"></path>
-                            <path
-                                d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z">
-                            </path>
-                        </svg>
-                    </button>
+                    <div class='mx-2'>
+                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32 "
+                            data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Re-New">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise fs-5">
+                                <path fill-rule="evenodd"
+                                    d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"></path>
+                                <path
+                                    d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z">
+                                </path>
+                            </svg>
+                        </button>
+
+
+                        <p class='fs-12 mt-1 mb-0'>Renew</p>
+                    </div>
+
                 </div>
 
 
@@ -596,8 +613,9 @@
 
 
             {{-- rightCol --}}
-            <div class="col-12 col-xl-5 order-2 order-xl-3 mt-4 mt-md-5 mt-xl-0" data-aos="fade-left"
-                data-aos-duration="1000" data-aos-once="true" wire:ignore.self>
+            <div class="col-11 col-xl-5 order-2 order-xl-3 mt-4 mt-md-5 mt-xl-0 rounded-1 mb-4 mb-md-0"
+                data-aos="fade-left" data-aos-duration="1000" data-aos-once="true" wire:ignore.self
+                style="border:3px solid #0000000f">
 
 
                 {{-- topRow --}}
@@ -606,7 +624,7 @@
 
                     {{-- planCol --}}
                     <div class="col-12">
-                        <div class="item--box py-3 active w-100 mb-3">
+                        <div class="item--box journey py-3 active w-100 mb-3">
 
                             {{-- row --}}
                             <div class="row align-items-center">
@@ -618,7 +636,7 @@
 
 
                                     {{-- imageFile --}}
-                                    <img class="of-cover w-100 "
+                                    <img class="of-cover w-100 rounded-1"
                                         src="{{ asset('storage/menu/plans/' . $latestSubscription->plan->imageFile) }}"
                                         style="height: 200px" />
 
@@ -644,7 +662,8 @@
 
 
                                     {{-- plan --}}
-                                    <h4 class="fw-semibold d-flex align-items-center justify-content-center">
+                                    <h4
+                                        class="fw-semibold d-flex align-items-center justify-content-center plan--title rounded-1 py-1">
                                         {{ $latestSubscription->plan->name }}
                                     </h4>
 
@@ -656,28 +675,12 @@
 
 
 
-                                    {{-- :: editBundle --}}
-                                    <button
-                                        class="btn btn--raw-icon fs-15 text-warning d-flex align-items-center justify-content-center scale--3 h-auto mb-3"
-                                        type="button" data-bs-target="#edit-bundle" data-bs-toggle="modal">
-                                        Edit Bundle<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                            fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil fs-6 ms-2"
-                                            style="fill: var(--bs-warning)">
-                                            <path
-                                                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z">
-                                            </path>
-                                        </svg>
-                                    </button>
-
-
 
 
                                     {{-- range --}}
-                                    <p class="text-center fs-16 mb-0 fw-semibold text-gold pe-2">
+                                    <p class="text-center fs-16 mb-0 fw-semibold text-green pe-2">
                                         {{ $latestSubscription->range->name }}
                                     </p>
-
-
 
 
 
@@ -940,7 +943,7 @@
                     {{-- remarks --}}
                     <div class="col-7">
                         <textarea class="form--input form--textarea h-100" placeholder="Remarks About Bag"
-                            wire:model='instance.bagRemarks'>{{ $customer->bagRemarks }}</textarea>
+                            wire:model='instance.bagRemarks' readonly>{{ $customer->bagRemarks }}</textarea>
                     </div>
                 </div>
                 {{-- end bagRow --}}

@@ -36,7 +36,7 @@
 
 
 
-                <div class="row align-items-start mb-5">
+                <div class="row align-items-start mb-4">
 
 
                     {{-- name - location --}}
@@ -46,17 +46,16 @@
                         {{-- name --}}
                         <h5 class="fw-normal d-flex align-items-center mb-3">
                             Good Morning
-                            <span class="text-gold fw-semibold ms-2" data-aos='zoom-out' data-aos-delay='200'
-                                wire:ignore.self>{{ $customer->firstName }}</span>
+                            <span class="fw-semibold ms-2" data-aos='zoom-out' data-aos-delay='200' wire:ignore.self>{{
+                                $customer->firstName }}</span>
                         </h5>
 
 
                         {{-- location --}}
-                        <h6 class="fw-normal d-flex align-items-center ">
-                            <img class="me-2" src="{{ asset('assets/img/App/pin.png') }}" style="width: 25px" />
-                            {{ $customerAddress ? "{$customerAddress->city->name},
-                            {$customerAddress->district->name}\n{$customerAddress->locationAddress}"
-                            : 'No Deliveries Today!' }}
+                        <h6 class="fw-semibold d-flex align-items-center ">
+                            <img class="me-2" src="{{ asset('assets/img/App/pin.png') }}" style="width: 16px" />
+                            {{ $customerAddress ? "{$customerAddress->city->name}, {$customerAddress->district->name}" :
+                            'No Deliveries Today!' }}
                         </h6>
 
                     </div>
@@ -88,109 +87,16 @@
 
 
 
-                {{-- ------------------------------------------------ --}}
-                {{-- ------------------------------------------------ --}}
-
-
-
-
-
-
-
-                {{-- totalMacros --}}
-                <div class="row align-items-stretch mb-5" wire:ignore>
-
-
-                    {{-- calories --}}
-                    <div class="col-12 col-md-7 col-lg-6 col-xl-5">
-                        <div class="item--box d-flex flex-column justify-content-center h-100">
-
-
-                            {{-- heading --}}
-                            <h4 class="fw-semibold d-flex align-items-center mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                    viewBox="0 0 16 16" class="bi bi-chevron-compact-right fs-5 me-2"
-                                    style="fill: var(--color-theme-secondary)">
-                                    <path fill-rule="evenodd"
-                                        d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z">
-                                    </path>
-                                </svg>Today's Calories Intake
-                            </h4>
-
-
-                            {{-- calories --}}
-                            <p class="text-center fs-15 mb-0">
-                                <span class="fs-2 fw-bold text-gold d-block">1200</span><span
-                                    class="fs-6 d-block fw-semibold">Calories</span>
-                            </p>
-                        </div>
-                    </div>
-
-
-
-
-
-
-                    {{-- macros --}}
-                    <div class="col-12 col-md-5 col-lg-6 col-xl-7 align-self-end mt-3 mt-md-0">
-                        <div class="row align-items-end">
-
-
-
-                            {{-- proteins --}}
-                            <div class="col-4 col-sm-4 col-md-12 col-lg-4" data-aos='slide-left' data-aos-delay='100'
-                                wire:ignore.self>
-                                <div class="item--box mb-0 mb-sm-0 mb-md-3 mb-lg-0">
-                                    <p class="text-center fs-15 mb-0">
-                                        <span class="fs-2 fw-bold text-gold d-block">240</span><span
-                                            class="fs-6 d-block fw-semibold">Protein</span>
-                                    </p>
-                                </div>
-                            </div>
-
-
-
-                            {{-- carbs --}}
-                            <div class="col-4 col-sm-4 col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='200'
-                                wire:ignore.self>
-                                <div class="item--box">
-                                    <p class="text-center fs-15 mb-0">
-                                        <span class="fs-2 fw-bold text-gold d-block">700</span><span
-                                            class="fs-6 d-block fw-semibold">Carb</span>
-                                    </p>
-                                </div>
-                            </div>
-
-
-
-
-                            {{-- fats --}}
-                            <div class="col-4 col-sm-4 col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='300'
-                                wire:ignore.self>
-                                <div class="item--box">
-                                    <p class="text-center fs-15 mb-0">
-                                        <span class="fs-2 fw-bold text-gold d-block">80</span><span
-                                            class="fs-6 d-block fw-semibold">Fat</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                {{-- endRow --}}
-
-
-
-
-
-
 
 
 
 
                 {{-- ------------------------------------------------ --}}
                 {{-- ------------------------------------------------ --}}
+
+
+
+
 
 
 
@@ -285,6 +191,112 @@
 
 
 
+                {{-- totalMacros --}}
+                <div class="row align-items-stretch mb-5" wire:ignore>
+
+                    {{-- heading --}}
+                    <div class="col-12">
+                        <h4 class="fw-semibold d-flex align-items-center justify-content-center mb-3">Today's Macros
+                        </h4>
+                    </div>
+
+
+
+
+
+
+
+                    {{-- macros --}}
+                    <div class="col-12 col-md-5 col-lg-6 col-xl-7 align-self-end mt-3 mt-md-0 ">
+                        <div class="row align-items-end justify-content-center">
+
+
+
+                            {{-- calories --}}
+                            <div class="col-auto col-md-12 col-lg-4" data-aos='slide-left' data-aos-delay='100'
+                                wire:ignore.self>
+                                <div class="item--box macros for--calories">
+                                    <p class="text-center fs-15 mb-0">
+                                        <span class="fs-5 fw-bold  d-block">1200</span><span
+                                            class="fs-12 d-block fw-bold mt-3">Cals</span>
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+
+
+                            {{-- carbs --}}
+                            <div class="col-auto col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='200'
+                                wire:ignore.self>
+                                <div class="item--box macros for--carbs">
+                                    <p class="text-center fs-15 mb-0">
+                                        <span class="fs-5 fw-bold  d-block">700</span>
+                                        <span class="fs-12 d-block fw-bold  mt-3">Carbs</span>
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+
+
+                            {{-- proteins --}}
+                            <div class="col-auto col-md-12 col-lg-4" data-aos='slide-left' data-aos-delay='300'
+                                wire:ignore.self>
+                                <div class="item--box macros for--proteins">
+                                    <p class="text-center  mb-0">
+                                        <span class="fs-5 fw-bold  d-block">240</span><span
+                                            class="fs-12 d-block fw-bold mt-3">Proteins</span>
+                                    </p>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            {{-- fats --}}
+                            <div class=" col-auto col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='400'
+                                wire:ignore.self>
+                                <div class="item--box macros for--fats">
+                                    <p class="text-center fs-15 mb-0">
+                                        <span class="fs-5 fw-bold  d-block">80</span><span
+                                            class="fs-12 d-block fw-bold  mt-3">Fat</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{-- endRow --}}
+
+
+
+
+
+
+
+
+
+
+                {{-- ------------------------------------------------ --}}
+                {{-- ------------------------------------------------ --}}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 {{-- today's meals --}}
@@ -296,15 +308,7 @@
                     <div class="col-12">
                         <div class="d-flex justify-content-between mb-3 align-items-center">
                             <h4 class="fw-semibold d-flex align-items-center mb-0" data-aos='slide-down'
-                                data-aos-delay='100' wire:ignore.self>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                    viewBox="0 0 16 16" class="bi bi-chevron-compact-right fs-5 me-2"
-                                    style="fill: var(--color-theme-secondary)">
-                                    <path fill-rule="evenodd"
-                                        d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z">
-                                    </path>
-                                </svg>Today's Menu
-                            </h4>
+                                data-aos-delay='100' wire:ignore.self>Today's Menu</h4>
 
 
                             {{-- menuLink --}}

@@ -30,8 +30,10 @@ class Roles extends Component
     {
 
 
+
         // 1: dispatchId
         $this->dispatch('editRole', $id);
+
 
 
     } // end function
@@ -132,8 +134,10 @@ class Roles extends Component
 
 
 
-        // :: init tooltips
+
+        // :: initTooltips
         $this->dispatch('initTooltips');
+
 
 
         return view('livewire.dashboard.extra.management.roles', compact('roles'));

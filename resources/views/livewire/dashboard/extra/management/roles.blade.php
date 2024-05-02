@@ -102,7 +102,7 @@
                             {{-- loop - departments --}}
                             @foreach ($roles ?? [] as $role)
 
-                            <tr>
+                            <tr key='role-{{ $role->id }}'>
 
 
                                 {{-- 1: counter --}}

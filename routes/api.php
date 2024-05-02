@@ -1323,6 +1323,21 @@ Route::post('/dashboard/extra/management/roles/remove', [ManagementController::c
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 19.5: extra - management - users - store - toggle - update
+Route::post('/dashboard/extra/management/users/store', [ManagementController::class, 'storeUser']);
+Route::post('/dashboard/extra/management/users/update', [ManagementController::class, 'updateUser']);
+Route::post('/dashboard/extra/management/users/toggle', [ManagementController::class, 'toggleUser']);
+
+Route::post('/dashboard/extra/management/users/remove', [ManagementController::class, 'removeUser']);
+
 
 
 

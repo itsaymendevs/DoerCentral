@@ -31,11 +31,28 @@ class LoginController extends Controller
         // 1.2: checkValidity - token
         if ($user && Hash::check($request->password, $user->password)) {
 
+
+
+
+            // 1.2.1: check inactive
+            if (! $user->isActive)
+                return response()->json(['error' => 'Account Restricted'], 401);
+
+
+
+
+
+            // :: continue
             $token = $user->createToken('user', ['role:user'])->plainTextToken;
             $userId = $user->id;
             $userName = $user->name;
 
+
+
+
             return response()->json(['token' => $token, 'userName' => $userName, 'userId' => $userId], 200);
+
+
 
         } // end if
 

@@ -28,7 +28,7 @@
 
             {{-- search --}}
             <div class="col-4 text-center">
-                <input type="text" class="form--input" placeholder="Search for Users" wire:model.live='searchUsers' />
+                <input type="text" class="form--input" placeholder="Search for Users" wire:model.live='searchUser' />
             </div>
 
 
@@ -56,8 +56,16 @@
 
 
 
+
+
+
         {{-- ---------------------------------------------- --}}
         {{-- ---------------------------------------------- --}}
+
+
+
+
+
 
 
 
@@ -73,15 +81,27 @@
 
 
                     {{-- loop - users --}}
-                    <div class="col-4 col-xl-3">
+                    @foreach ($users as $user)
+
+                    <div class="col-4 col-xl-3" key='user-{{ $user->id }}'>
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">
 
 
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
-                                    <img class="client--card-logo of-cover" src="assets/img/Calendars/keto.jpg" />
+                                    <img class="client--card-logo of-cover"
+                                        src="{{ asset('storage/extra/management/users/' . ($user?->imageFile ?? $defaultUser)) }}" />
                                 </div>
+
+
+
+
+
+                                {{-- ----------------------- --}}
+                                {{-- ----------------------- --}}
+
+
 
 
 
@@ -92,7 +112,7 @@
 
 
                                     {{-- name --}}
-                                    <h6 class="text-center fw-bold mt-3 mb-2 truncate-text-1l"></h6>
+                                    <h6 class="text-center fw-bold mt-3 mb-2 truncate-text-1l">{{ $user->name }}</h6>
 
 
                                     {{-- wrapper --}}
@@ -104,9 +124,11 @@
                                         <p class="text-center fs-13 fw-bold text-danger mb-0">
                                             <button
                                                 class="btn btn--raw-icon fs-14 text-warning d-inline-flex align-items-center justify-content-center scale--3 w-auto fw-semibold"
-                                                data-bs-toggle="tooltip" data-bss-tooltip="" type="button"
-                                                title="Rules ..">
-                                                Admin<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                data-bs-toggle="tooltip" data-bs-html='true' data-bss-tooltip=""
+                                                type="button"
+                                                title="{{ implode('<br />', $user->role->permissionsInArray()) }}">{{
+                                                $user->role->name }}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                     fill="currentColor" viewBox="0 0 16 16"
                                                     class="bi bi-list-nested fs-6 ms-2" style="fill: var(--bs-warning)">
                                                     <path fill-rule="evenodd"
@@ -118,14 +140,50 @@
 
 
 
+
+
+                                        {{-- ----------------------------- --}}
+                                        {{-- ----------------------------- --}}
+
+
+
+
+
+
+
                                         {{-- isActive --}}
                                         <p class="text-center fs-13 fw-bold text-danger mb-0">
+
+
+
+                                            {{-- A: isActive --}}
+                                            @if ($user->isActive)
+
+
+                                            <button
+                                                class="btn btn--raw-icon fs-14 d-inline-flex align-items-center justify-content-center scale--3 w-auto fw-semibold">
+                                                Enabled
+                                            </button>
+
+
+
+
+                                            {{-- B: notActive --}}
+                                            @else
+
+
+
                                             <button
                                                 class="btn btn--raw-icon fs-14 text-danger d-inline-flex align-items-center justify-content-center scale--3 w-auto fw-semibold"
                                                 data-bs-toggle="tooltip" data-bss-tooltip="" type="button"
-                                                title="Cannot Access DOer">
+                                                title="Restricted Access">
                                                 Disabled
                                             </button>
+
+
+
+                                            @endif
+
                                         </p>
                                     </div>
                                 </div>
@@ -147,7 +205,8 @@
                                         {{-- 1: edit --}}
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"
-                                            type="button">
+                                            type="button" data-bs-toggle='modal' data-bs-target='#edit-user'
+                                            wire:click='edit({{ $user->id }})' wire:loading.attr='disabled'>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil fs-5">
                                                 <path
@@ -158,19 +217,51 @@
 
 
 
-                                        {{-- toggleActive --}}
+
+
+
+                                        {{-- ------------------------------ --}}
+
+
+
+
+
+                                        {{-- A: disable --}}
+                                        @if ($user->isActive)
+
+
+                                        <button class="btn btn--scheme btn--remove fs-12 px-3 mx-2 scale--self-05 h-32"
+                                            type="button" wire:click='toggle({{ $user->id }})'
+                                            wire:loading.attr='disabled'>Disable</button>
+
+
+                                        {{-- B: enable --}}
+                                        @else
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-3 mx-2 scale--self-05 h-32"
-                                            type="button">
-                                            Enable</button>
+                                            type="button" wire:click='toggle({{ $user->id }})'
+                                            wire:loading.attr='disabled'>Enable</button>
 
+                                        @endif
+                                        {{-- end if --}}
+
+
+
+
+
+
+                                        {{-- ------------------------------ --}}
 
 
 
 
                                         {{-- remove --}}
+                                        @if (session('userId') != $user->id)
+
                                         <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
-                                            type="button">
+                                            type="button" wire:click='remove({{ $user->id }})'
+                                            wire:loading.attr='disabled'>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-trash fs-5">
                                                 <path
@@ -181,6 +272,12 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
+                                        @endif
+                                        {{-- end if --}}
+
+
                                     </div>
                                 </div>
                                 {{-- endActions --}}
@@ -190,6 +287,9 @@
                             </div>
                         </div>
                     </div>
+
+
+                    @endforeach
                     {{-- end loop --}}
 
 
@@ -199,6 +299,8 @@
         </div>
     </div>
     {{-- endContainer --}}
+
+
 
 
 
@@ -233,15 +335,13 @@
 
 
     {{-- 1: createUser --}}
-    {{--
-    <livewire:dashboard.extra.management.users.components.users-create /> --}}
+    <livewire:dashboard.extra.management.users.components.users-create />
 
 
 
 
     {{-- 2: editUser --}}
-    {{--
-    <livewire:dashboard.extra.management.users.components.users-edit /> --}}
+    <livewire:dashboard.extra.management.users.components.users-edit />
 
 
 

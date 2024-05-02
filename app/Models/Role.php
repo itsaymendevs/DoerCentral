@@ -50,7 +50,7 @@ class Role extends Model
 
         // 1: getPermissions - convert
         $permissionsList = $this?->permissions()?->get()?->pluck('permissionId')?->toArray() ?? [];
-        $permissionsInArray = Permission::whereIn('id', $permissionsList)->get()?->pluck('name')?->toArray() ?? [];
+        $permissionsInArray = Permission::whereIn('id', $permissionsList)->get()?->pluck('name')?->toArray() ?? ['No Permissions Available'];
 
 
 
@@ -83,7 +83,7 @@ class Role extends Model
 
 
         // 1: getUsers - convert
-        $usersInArray = $this?->users()?->get()?->pluck('name')?->toArray() ?? [];
+        $usersInArray = $this?->users()?->get()?->pluck('name')?->toArray() ?? ['No Users Available'];
 
 
 

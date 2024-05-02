@@ -51,6 +51,13 @@ class Login extends Component
 
             // 1.2: makeSessions
             Session::put('token', $response->token);
+            Session::put('userId', $response->userId);
+            Session::put('userName', $response->userName);
+
+
+
+
+
 
 
 

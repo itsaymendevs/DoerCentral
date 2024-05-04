@@ -12,7 +12,7 @@
 @media (min-width: 1px) and (max-width: 767px) {
     .tabs--wrap.for-mobile .nav-tabs li {
         width: 33%;
-        margin: 0px;
+        margin: 0px !important;
     }
 
     .tabs--wrap.for-mobile .nav-tabs li {
@@ -26,7 +26,11 @@
     .tabs--wrap.for-mobile .nav-tabs li a.active {
         background-color: transparent;
         border-color: transparent;
-        color: var(--bg-theme-secondary);
+        color: var(--color-theme-secondary);
+    }
+
+    .menu--title {
+        font-size: 17px !important;
     }
 }
 

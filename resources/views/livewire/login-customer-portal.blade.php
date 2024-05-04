@@ -4,12 +4,12 @@
 
 
         {{-- row --}}
-        <div class="row align-items-center min-vh-100" wire:ignore>
+        <div class="row align-items-center justify-content-center justify-content-md-start min-vh-100" wire:ignore>
 
 
 
             {{-- loginForm --}}
-            <div class="col-12 col-lg-6 col-xl-5">
+            <div class="col-11 col-lg-6 col-xl-5">
                 <form class="login--form" data-aos="fade-right" data-aos-duration="600" data-aos-once="true"
                     wire:submit='checkCustomer'>
 

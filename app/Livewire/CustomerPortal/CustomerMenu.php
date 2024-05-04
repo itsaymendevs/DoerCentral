@@ -34,7 +34,7 @@ class CustomerMenu extends Component
     // :: variables
     public $customer, $subscription;
     public $menuCalendarId, $scheduleDate;
-    public $skipStatus;
+    public $skipStatus, $hasUpcomingSubscription = false;
 
 
 
@@ -45,9 +45,87 @@ class CustomerMenu extends Component
     {
 
 
-        // :: getCustomer - subscription
-        $this->customer = Customer::find(session('customerId'));
+
+        // :: makeId
+        $id = session('customerId');
+
+
+
+
+        // :: resetSession / differentCustomer
+        if (! empty(session('showUpcomingSubscriptionCustomer')) && session('showUpcomingSubscriptionCustomer') != $id) {
+
+            Session::forget(['showUpcomingSubscriptionCustomer', 'showUpcomingSubscription']);
+
+        } // end if
+
+
+
+
+
+
+
+
+        // -----------------------------------------
+        // -----------------------------------------
+
+
+
+
+
+
+
+
+
+        // :: getCustomer - getSubscription
+        $this->customer = Customer::find($id);
         $this->subscription = $this->customer?->currentSubscription();
+
+
+
+
+
+
+        // :: getSubscription
+
+
+        // A: hasUpcoming
+        if ($this->subscription->id != $this->customer->latestSubscription()?->id) {
+
+
+
+            // 1.1: checkUpcomingSubscription
+            $this->hasUpcomingSubscription = true;
+
+
+
+
+
+            // 1.2: checkActive
+            if (! empty(session('showUpcomingSubscription')) && session('showUpcomingSubscription') == true) {
+
+                $this->subscription = $this->customer?->latestSubscription();
+
+            } // end if
+
+
+
+
+        } // end if - checkUpcoming
+
+
+
+
+
+
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
 
 
 
@@ -63,7 +141,8 @@ class CustomerMenu extends Component
 
 
         // 1.3: scheduleDate (>= currentDate - inHisSchedule)
-        if (session('customerScheduleDate') && session('customerScheduleDate') >= $this->getCurrentDate() && session('customerScheduleDate') >= $this->subscription->startDate && session('customerScheduleDate') <= $this->subscription->untilDate) {
+        if (session('customerScheduleDate') && session('customerScheduleDate') >= $this->getCurrentDate() &&
+            session('customerScheduleDate') >= $this->subscription->startDate && session('customerScheduleDate') <= $this->subscription->untilDate) {
 
 
 
@@ -71,18 +150,34 @@ class CustomerMenu extends Component
 
 
 
+
             // :: currentDate as ScheduleDate
         } else {
+
+
+
 
 
             Session::put('customerScheduleDate', $this->getCurrentDate());
             $this->scheduleDate = $this->getCurrentDate();
 
 
+
+
+
+            // :: checkUpcoming
+            if (! empty(session('showUpcomingSubscription')) && session('showUpcomingSubscription') == true) {
+
+
+                Session::put('customerScheduleDate', $this->subscription->startDate);
+                $this->scheduleDate = $this->subscription->startDate;
+
+
+            } // end if - checkUpcoming
+
+
+
         } // end if
-
-
-
 
 
 
@@ -108,7 +203,82 @@ class CustomerMenu extends Component
 
 
 
+
+
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function upcomingSubscription()
+    {
+
+
+
+
+        // :: showUpcomingOnly - forgetScheduleDate
+        Session::put('showUpcomingSubscription', true);
+        Session::put('showUpcomingSubscriptionCustomer', $this->customer->id);
+
+        Session::forget('customerScheduleDate');
+
+
+
+        return $this->redirect(route('portals.customer.menu'));
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function currentSubscription()
+    {
+
+
+
+        // :: showCurrentOnly - forgetScheduleDate
+        Session::put('showUpcomingSubscription', false);
+        Session::put('showUpcomingSubscriptionCustomer', $this->customer->id);
+
+        Session::forget('customerScheduleDate');
+
+
+        return $this->redirect(route('portals.customer.menu'));
+
+
+
+    } // end function
+
+
+
 
 
 
@@ -152,7 +322,11 @@ class CustomerMenu extends Component
 
 
 
+
+
     // -----------------------------------------------------------
+
+
 
 
 
@@ -229,7 +403,6 @@ class CustomerMenu extends Component
 
 
 
-
         // :: pauseFound
         if ($pause) {
 
@@ -265,7 +438,11 @@ class CustomerMenu extends Component
 
 
 
+
     } // end function
+
+
+
 
 
 

@@ -86,7 +86,7 @@
 
 
                 {{-- tableRow --}}
-                <div class="row mb-4">
+                <div class="row mb-5 pb-3">
                     <div class="col-12 mt-4 pt-2" data-view="table">
                         <div class="table-responsive memoir--table w-100">
                             <table class="table table-bordered" id="memoir--table">

@@ -25,21 +25,18 @@
 
 
 
-            {{-- empty --}}
-            <div class="col-4 d-none d-md-block"></div>
-
 
 
 
             {{-- subheading --}}
-            <div class="col-12 col-sm-7 col-md-4">
+            <div class="col-12 col-sm-12">
 
 
                 {{-- hr --}}
                 <div class="d-flex align-items-center justify-content-between mb-1">
-                    <label class="form-label form--label px-3 w-100 justify-content-center mb-2 fs-6 fw-bold">Delicious
-                        Meals
-                        Cooked with Love</label>
+                    <label
+                        class="form-label form--label px-3 w-100 justify-content-center mb-3 fs-5 fw-bold menu--title">Delicious
+                        Meals Cooked with Love</label>
                 </div>
 
             </div>
@@ -51,9 +48,120 @@
 
 
 
+
+            {{-- -------------------------------- --}}
+            {{-- -------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+            {{-- upcomingSubscription --}}
+            <div class="col-12 col-sm-6 col-md-6 mb-2 mb-sm-4">
+                <div class="text-center">
+
+
+
+
+
+
+                    {{-- A: hasUpcomingSubscription --}}
+                    @if ($hasUpcomingSubscription)
+
+
+
+
+                    {{-- 1: showUpcoming --}}
+                    @if (empty(session('showUpcomingSubscription')) || session('showUpcomingSubscription') == false)
+
+
+                    <button
+                        class="btn btn--scheme btn--scheme-outline-2 align-items-center d-inline-flex px-3 fs-12 scale--3"
+                        type="button" wire:click='upcomingSubscription()' wire:loading.attr='disabled'>
+                        <svg class="bi bi-arrow-right fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
+                            height="1em" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
+                            </path>
+                        </svg>Upcoming Subscription
+                    </button>
+
+
+
+
+                    {{-- 2: return to Current --}}
+                    @else
+
+
+
+                    <button
+                        class="btn btn--scheme btn--scheme-outline-2 align-items-center d-inline-flex px-3 fs-12 scale--3"
+                        type="button" wire:click='currentSubscription()' wire:loading.attr='disabled'>
+                        <svg class="bi bi-arrow-left fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
+                            height="1em" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z">
+                            </path>
+                        </svg>Current Subscription
+                    </button>
+
+
+
+                    @endif
+                    {{-- end if - toggleUpcoming / current --}}
+
+
+
+
+
+
+                    @endif
+                    {{-- end if - upcomingSubscription --}}
+
+
+                </div>
+            </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             {{-- skip --}}
-            <div class="col-12 col-sm-5 col-md-4">
-                <div class="text-center text-sm-end text-md-center mb-4 d-none">
+            <div class="col-12 col-sm-6 col-md-6">
+
+
+
+
+
+
+
+
+                {{-- :: permission - hasSkip --}}
+                @if ($versionPermission->customerModuleHasSkip)
+
+
+
+                <div class="text-center text-sm-end text-md-center mb-4">
+
+
 
 
                     {{-- A: skip --}}
@@ -61,9 +169,14 @@
 
 
 
-                    <button class="btn btn--scheme btn--remove align-items-center d-inline-flex px-2 px-sm-3 fs-12 scale--3 @if ($deliveryStatus == 'No Delivery') disabled @endif
+
+
+                    {{-- :: restriction inline - skip --}}
+
+                    <button class="btn btn--scheme btn--remove align-items-center d-inline-flex px-3 fs-12 scale--3
+                        @if ($deliveryStatus == 'No Delivery') disabled @endif
                         @if($scheduleDate < $allowedSkipDate) disabled @endif" type="button"
-                        wire:click='skipScheduleDay()' wire:loading.attr='disabled'>
+                        wire:click='skipScheduleDay()' wire:loading.attr='disabled' wire:target='skipScheduleDay'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-skip-end fs-5 me-2">
                             <path
@@ -76,14 +189,18 @@
 
 
 
+
+
+
+
                     {{-- B: unSKip --}}
                     @elseif ($deliveryStatus == 'Skipped')
 
 
 
-                    <button class="btn btn--scheme btn--scheme-1 align-items-center d-inline-flex px-2 px-sm-3 fs-12 scale--3 fw-semibold @if ($deliveryStatus == 'No Delivery') disabled @endif
+                    <button class="btn btn--scheme btn--scheme-1 align-items-center d-inline-flex px-3 fs-12 scale--3 fw-semibold @if ($deliveryStatus == 'No Delivery') disabled @endif
                         @if($scheduleDate < $allowedSkipDate) disabled @endif" type="button"
-                        wire:click='unSkipScheduleDay()' wire:loading.attr='disabled'>
+                        wire:click='unSkipScheduleDay()' wire:loading.attr='disabled' wire:target='unSkipScheduleDay'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-skip-end fs-5 me-2">
                             <path
@@ -102,7 +219,17 @@
 
 
                 </div>
+                {{-- endWrapper --}}
+
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
             </div>
+            {{-- endDiv --}}
+
 
 
 
@@ -115,6 +242,8 @@
 
             {{-- ------------------------------------------------ --}}
             {{-- ------------------------------------------------ --}}
+
+
 
 
 
@@ -125,6 +254,10 @@
 
             {{-- untilSubscription - dates --}}
             <div class="col-12">
+
+
+
+
                 <div class="d-block overflow-auto pb-3 text-center" style="white-space: nowrap">
 
 
@@ -207,7 +340,7 @@
 
 
 
-                <div class="tabs--wrap for-mobile">
+                <div class="tabs--wrap for-mobile for-menu">
 
 
 
@@ -273,7 +406,7 @@
 
 
                     {{-- tabContent --}}
-                    <div class="tab-content mt-4 mt-lg-0">
+                    <div class="tab-content mt-0 mt-lg-0">
 
 
 
@@ -334,9 +467,9 @@
 
 
 
-                                <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"
+                                <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 mb-0 mb-lg-5"
                                     key='schedule-meal-{{ $subscriptionScheduleMeal->id }}'>
-                                    <div class="overview--card client-version scale--self-05 mb-floating">
+                                    <div class="overview--card client-version menu scale--self-05 mb-floating">
                                         <div class="row">
 
 
@@ -430,14 +563,14 @@
 
                                             {{-- sizeMacros --}}
                                             <div class="col-12 mt-1">
-                                                <div class="row">
+                                                <div class="row justify-content-center">
 
 
 
                                                     {{-- :: AFTERCOOK --}}
 
                                                     {{-- 1: calories --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-calories sm">
                                                             <h6 class="fs-12">CA</h6>
@@ -456,7 +589,7 @@
 
 
                                                     {{-- 2: proteins --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-proteins sm">
                                                             <h6 class="fs-12">P</h6>
@@ -475,7 +608,7 @@
 
 
                                                     {{-- carbs --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-carbs sm">
                                                             <h6 class="fs-12">C</h6>
@@ -491,7 +624,7 @@
 
 
                                                     {{-- fats --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-fats sm">
                                                             <h6 class="fs-12">F</h6>
@@ -610,9 +743,9 @@
 
 
 
-                                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"
+                                <div class="col-10 col-sm-6 col-lg-4 col-xl-3 mb-0 mb-lg-5"
                                     key='schedule-meal-{{ $calendarScheduleMeal->id }}'>
-                                    <div class="overview--card client-version scale--self-05 mb-floating">
+                                    <div class="overview--card client-version menu scale--self-05 mb-floating">
                                         <div class="row">
 
 
@@ -727,14 +860,14 @@
 
                                             {{-- sizeMacros --}}
                                             <div class="col-12 mt-1">
-                                                <div class="row">
+                                                <div class="row justify-content-center">
 
 
 
                                                     {{-- :: AFTERCOOK --}}
 
                                                     {{-- 1: calories --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-calories sm">
                                                             <h6 class="fs-12">CA</h6>
@@ -753,7 +886,7 @@
 
 
                                                     {{-- 2: proteins --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-proteins sm">
                                                             <h6 class="fs-12">P</h6>
@@ -772,7 +905,7 @@
 
 
                                                     {{-- carbs --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-carbs sm">
                                                             <h6 class="fs-12">C</h6>
@@ -788,7 +921,7 @@
 
 
                                                     {{-- fats --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-fats sm">
                                                             <h6 class="fs-12">F</h6>
@@ -821,10 +954,13 @@
 
 
                                                     {{-- 1: disabled --}}
-                                                    <button class="btn btn--scheme btn--scheme-2 fs-12 mx-1 h-32 w-75
+                                                    <button
+                                                        class="btn btn--scheme btn--scheme-2 fs-12 mx-1 h-32 w-75
                                                         @if ($skipStatus == 'Skipped') disabled @endif
-                                                        @if (!$isNotAllergy) disabled @endif" type="button"
-                                                        wire:loading.attr='disabled' wire:target='changeMeal'
+                                                        @if (!$isNotAllergy) disabled @endif
+                                                        @if ($scheduleDate < $allowedMealSelectionDate) disabled @endif"
+                                                        type="button" wire:loading.attr='disabled'
+                                                        wire:target='changeMeal'
                                                         wire:click='changeMeal({{ $calendarScheduleMeal->mealId }}, {{ $calendarScheduleMeal->mealTypeId }})'>
                                                         I Want This
                                                     </button>
@@ -932,9 +1068,9 @@
 
 
 
-                                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 mb-lg-5"
+                                <div class="col-10 col-sm-6 col-lg-4 col-xl-3 mb-0 mb-lg-5"
                                     key='schedule-meal-{{ $subscriptionScheduleReplacement->id }}'>
-                                    <div class="overview--card client-version scale--self-05 mb-floating">
+                                    <div class="overview--card client-version menu scale--self-05 mb-floating">
                                         <div class="row">
 
 
@@ -1053,14 +1189,14 @@
 
                                             {{-- sizeMacros --}}
                                             <div class="col-12 mt-1">
-                                                <div class="row">
+                                                <div class="row justify-content-center">
 
 
 
                                                     {{-- :: AFTERCOOK --}}
 
                                                     {{-- 1: calories --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-calories sm">
                                                             <h6 class="fs-12">CA</h6>
@@ -1079,7 +1215,7 @@
 
 
                                                     {{-- 2: proteins --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-proteins sm">
                                                             <h6 class="fs-12">P</h6>
@@ -1098,7 +1234,7 @@
 
 
                                                     {{-- carbs --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-carbs sm">
                                                             <h6 class="fs-12">C</h6>
@@ -1114,7 +1250,7 @@
 
 
                                                     {{-- fats --}}
-                                                    <div class="col-3 text-end px-2">
+                                                    <div class="col-auto text-end px-1">
                                                         <div
                                                             class="overview--box shrink--self macros-version for-fats sm">
                                                             <h6 class="fs-12">F</h6>
@@ -1140,8 +1276,10 @@
                                             <div class="col-12">
                                                 <div class="d-flex align-items-center justify-content-center mt-3">
                                                     <button class="btn btn--scheme btn--scheme-2 fs-12 mx-1 h-32 w-75
-                                                    @if ($skipStatus == 'Skipped') disabled @endif" type="button"
-                                                        wire:loading.attr='disabled' wire:target='changeMeal'
+                                                    @if ($skipStatus == 'Skipped') disabled @endif
+                                                    @if ($scheduleDate < $allowedMealSelectionDate) disabled @endif"
+                                                        type="button" wire:loading.attr='disabled'
+                                                        wire:target='changeMeal'
                                                         wire:click='changeMeal({{ $subscriptionScheduleReplacement->replacementId }}, {{ $subscriptionScheduleReplacement->mealTypeId }})'>
                                                         I Want This
                                                     </button>

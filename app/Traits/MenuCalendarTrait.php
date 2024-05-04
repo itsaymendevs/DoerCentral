@@ -370,7 +370,10 @@ trait MenuCalendarTrait
 
 
 
-                if (! in_array($scheduleMeal->mealId, $calendarScheduleMeals)) {
+
+                /* :: This Was The Condition ! in_array($scheduleMeal->mealId, $calendarScheduleMeals)
+                   :: Now => im overriding regardless */
+                if (true) {
 
 
 

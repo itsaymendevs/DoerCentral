@@ -137,7 +137,7 @@
 
 
                     {{-- tabContent --}}
-                    <div class="tab-content">
+                    <div class="tab-content mb-4">
 
 
 

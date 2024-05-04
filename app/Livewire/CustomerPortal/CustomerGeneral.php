@@ -11,9 +11,11 @@ use App\Models\Driver;
 use App\Models\Exclude;
 use App\Models\User;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 
 
@@ -29,6 +31,60 @@ class CustomerGeneral extends Component
     // :: variables
     public CustomerForm $instance;
     public $customer, $latestSubscription;
+
+
+
+
+
+
+
+
+
+
+
+    public function reNew($id)
+    {
+
+
+
+        // 1: create instance
+        $instance = new stdClass();
+
+        $instance->email = $this->customer->email;
+
+
+
+
+        // 1.2: makeSession - redirectStepOne
+        Session::put('renewCustomer', $instance);
+
+
+
+
+        // return $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
+
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
 
 
 

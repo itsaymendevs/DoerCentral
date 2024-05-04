@@ -464,25 +464,65 @@
 
 
                 {{-- subscriptionActions --}}
-                <div class="d-flex align-items-center justify-content-center mb-md-2 d-none">
+                <div class="d-flex align-items-center justify-content-center mb-md-2">
 
 
                     {{-- 1: pause --}}
                     <div data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Pause" class='mx-2'>
 
-                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32" type='button'
-                            data-bs-toggle="modal" data-bs-target="#pause-subscription">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                class="bi bi-stopwatch fs-5" viewBox="0 0 16 16">
-                                <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
-                                <path
-                                    d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
-                            </svg>
-                        </button>
 
-                        <p class='fs-12 mt-1 mb-0'>Pause</p>
+                        {{-- :: restriction - pause --}}
+
+                        @if ($allowedPauseDate <= $latestSubscription->untilDate)
+
+
+
+
+                            <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
+                                type='button' data-bs-toggle="modal" data-bs-target="#pause-subscription">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                    class="bi bi-stopwatch fs-5" viewBox="0 0 16 16">
+                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                                    <path
+                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                                </svg>
+                            </button>
+
+                            <p class='fs-12 mt-1 mb-0'>Pause</p>
+
+
+
+                            {{-- :: disabled --}}
+                            @else
+
+
+
+
+
+                            <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32 disabled"
+                                type='button' data-bs-toggle="modal" data-bs-target="#pause-subscription">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                    class="bi bi-stopwatch fs-5" viewBox="0 0 16 16">
+                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                                    <path
+                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                                </svg>
+                            </button>
+
+                            <p class='fs-12 mt-1 mb-0'>Pause</p>
+
+
+
+
+                            @endif
+                            {{-- end if - restriction --}}
 
                     </div>
+                    {{-- end pause --}}
+
+
+
+
 
 
 
@@ -494,8 +534,8 @@
 
                     {{-- 2: resume --}}
                     <div class='mx-3'>
-                        <button class="btn btn--scheme btn--scheme-1 fs-12 px-2 mx-2 scale--self-05 h-32"
-                            data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Resume">
+                        <button class="btn btn--scheme btn--scheme-1 fs-12 px-2 mx-2 scale--self-05 h-32" type="button"
+                            data-bs-toggle="modal" data-bs-target="#unpause-subscription">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 class="bi bi-play-circle fs-5" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -517,7 +557,8 @@
                     {{-- 2: renew --}}
                     <div class='mx-2'>
                         <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32 "
-                            data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Re-New">
+                            data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Re-New"
+                            wire:click='reNew({{ $customer->id }})'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise fs-5">
                                 <path fill-rule="evenodd"
@@ -532,7 +573,12 @@
                         <p class='fs-12 mt-1 mb-0'>Renew</p>
                     </div>
 
+
+
+
+
                 </div>
+                {{-- endCol --}}
 
 
 
@@ -544,6 +590,8 @@
 
                 {{-- ------------------------- --}}
                 {{-- ------------------------- --}}
+
+
 
 
 
@@ -613,9 +661,8 @@
 
 
             {{-- rightCol --}}
-            <div class="col-11 col-xl-5 order-2 order-xl-3 mt-4 mt-md-5 mt-xl-0 rounded-1 mb-4 mb-md-0"
-                data-aos="fade-left" data-aos-duration="1000" data-aos-once="true" wire:ignore.self
-                style="border:3px solid #0000000f">
+            <div class="col-11 col-xl-5 order-2 order-xl-3 mt-4 mt-md-5 mt-xl-0 rounded-1 mb-4 mb-md-0 general--right-col"
+                data-aos="fade-left" data-aos-duration="1000" data-aos-once="true" wire:ignore.self>
 
 
                 {{-- topRow --}}
@@ -663,13 +710,13 @@
 
                                     {{-- plan --}}
                                     <h4
-                                        class="fw-semibold d-flex align-items-center justify-content-center plan--title rounded-1 py-1">
+                                        class="fw-semibold d-flex align-items-center justify-content-center plan--title rounded-1 py-1 mb-3">
                                         {{ $latestSubscription->plan->name }}
                                     </h4>
 
 
                                     {{-- bundle --}}
-                                    <h6 class="fw-normal d-flex align-items-center justify-content-center mb-2">
+                                    <h6 class="fw-semibold d-flex align-items-center justify-content-center mb-2">
                                         {{ $latestSubscription->bundle->name }}
                                     </h6>
 
@@ -678,7 +725,7 @@
 
 
                                     {{-- range --}}
-                                    <p class="text-center fs-16 mb-0 fw-semibold text-green pe-2">
+                                    <p class="text-center fs-16 mb-0 fw-semibold pe-0">
                                         {{ $latestSubscription->range->name }}
                                     </p>
 
@@ -1034,9 +1081,22 @@
 
 
 
-    {{-- 1: editBundle --}}
-    <livewire:customer-portal.customer-general.components.customer-general-edit-bundle
-        id='{{ $latestSubscription->id }}' key='edit-bundle-{{ $latestSubscription->id }}' />
+
+    {{-- 1: pauseSubscription --}}
+    <livewire:customer-portal.customer-general.components.customer-general-pause-subscription
+        id='{{ $latestSubscription->id }}' key='pause-{{ $latestSubscription->id }}' />
+
+
+
+
+
+
+    {{-- 2: un-pauseSubscription --}}
+    <livewire:customer-portal.customer-general.components.customer-general-resume-subscription
+        id='{{ $latestSubscription->id }}' key='un-pause-{{ $latestSubscription->id }}' />
+
+
+
 
 
 
@@ -1044,6 +1104,8 @@
 
     @endsection
     {{-- endSection --}}
+
+
 
 
 

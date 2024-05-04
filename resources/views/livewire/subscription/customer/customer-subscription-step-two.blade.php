@@ -312,8 +312,7 @@
                                                             <label class="form-label form--label">Start Date</label>
                                                             <input type="date" required class="form--input mb-0"
                                                                 wire:model='instance.startDate'
-                                                                wire:loading.class='disabled'
-                                                                min='{{ $globalCurrentDate }}' />
+                                                                wire:loading.class='disabled' />
                                                         </div>
 
 

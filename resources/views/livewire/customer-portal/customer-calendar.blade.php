@@ -67,7 +67,7 @@
 
             {{-- left-right actions --}}
             <div class="col-4 mb-5 d-none d-sm-block">
-                <div class="btn-group btn--swtich-group mb-0" role="group" style="margin-bottom: 10px">
+                <div class="btn-group btn--swtich-group mb-0 invisible" role="group" style="margin-bottom: 10px">
 
                     {{-- left --}}
                     <button class="btn btn--switch-view fw-bold" type="button" disabled>

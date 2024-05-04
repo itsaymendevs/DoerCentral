@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Customers\Manage\SingleCustomer\Components;
 use App\Livewire\Forms\CustomerSubscriptionShortenForm;
 use App\Models\Customer;
 use App\Models\CustomerSubscription;
+use App\Models\CustomerSubscriptionDelivery;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -96,6 +97,43 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
+
+
+        // :: check if shortenValid
+        $hasPendingDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $this->instance->customerSubscriptionId)
+            ->where('deliveryDate', '>=', $this->instance->untilDate)
+            ->where('deliveryDate', '<=', $this->instance->fromDate)
+            ->where('status', 'Pending')
+            ->count();
+
+
+
+
+        if ($hasPendingDays == 0) {
+
+            // :: return - noDeliveries
+            $this->makeAlert('info', 'No pending delivery has been found');
+            return false;
+
+
+        } // end if
+
+
+
+
+        // -------------------------------
+        // -------------------------------
+
+
+
+
+
+
+
+
+
+
+
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'customers/subscriptions/shortens/');
@@ -126,11 +164,6 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-
-
-
-
-    // -----------------------------------------------------------
 
 
 

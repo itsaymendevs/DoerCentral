@@ -21,7 +21,9 @@ use App\Models\CustomerWallet;
 use App\Models\CustomerWalletDeposit;
 use App\Models\MealType;
 use App\Models\PlanBundleRange;
+use App\Traits\CalendarTrait;
 use App\Traits\HelperTrait;
+use App\Traits\MenuCalendarTrait;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,6 +34,7 @@ class CustomerController extends Controller
 
 
     use HelperTrait;
+    use MenuCalendarTrait;
 
 
 
@@ -1445,6 +1448,39 @@ class CustomerController extends Controller
 
 
 
+        // :: check if shortenValid
+        $hasPendingDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)
+            ->where('deliveryDate', '>=', $request->untilDate)
+            ->where('deliveryDate', '<=', $request->fromDate)
+            ->where('status', 'Pending')
+            ->count();
+
+
+
+        // :: noPendingDelivery
+        if ($hasPendingDays == 0) {
+
+
+            return response()->json(['message' => 'No Pending delivery has been found'], 200);
+
+
+        } // end if
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+
+
 
 
 
@@ -1543,7 +1579,7 @@ class CustomerController extends Controller
 
 
         // 2.2: updateSubscription
-        $subscription->untilDate = $shorten->untilDate;
+        $subscription->untilDate = date('Y-m-d', strtotime($shorten->untilDate . ' -1 day +4 hours'));
 
         $subscription->save();
 
@@ -1555,6 +1591,13 @@ class CustomerController extends Controller
 
 
         return response()->json(['message' => 'Subscription has been shortened'], 200);
+
+
+
+
+
+
+
 
 
 

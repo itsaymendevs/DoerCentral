@@ -104,12 +104,12 @@
                     {{-- 1: shortenSubscription --}}
 
                     {{-- :: restriction inline - shorten --}}
-
                     <div class="col-6 mb-3">
                         <button
                             class="btn btn--scheme btn--remove w-100 align-items-center d-flex px-2 fs-12 justify-content-center scalemix--3"
                             type="button" data-bs-toggle="modal" data-bs-target="#shorten-subscription"
-                            @if($latestSubscription->untilDate < $allowedShortenDate) disabled @endif>
+                            @if($latestSubscription->untilDate <= $globalCurrentDate || $latestSubscription->untilDate
+                                == $latestSubscription->startDate) disabled @endif>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                     viewBox="0 0 16 16" class="bi bi-dash-lg fs-6 me-2">
                                     <path fill-rule="evenodd"
@@ -643,6 +643,11 @@
 
 
                     </div>
+
+
+
+
+
 
 
 

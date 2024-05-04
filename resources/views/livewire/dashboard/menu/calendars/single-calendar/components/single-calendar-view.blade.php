@@ -100,7 +100,10 @@
                         {{-- :: loop - weekDates --}}
                         @foreach ($weekDates as $weekDate)
 
-                        <th colspan="">{{ date('l', strtotime($weekDate)) }}</th>
+                        <th colspan="">{{ date('l', strtotime($weekDate)) }}
+                            <br>
+                            <span class='fs-10 text-dark fw-semibold'>({{ date('d / m', strtotime($weekDate)) }})</span>
+                        </th>
 
                         @endforeach
                         {{-- end loop --}}

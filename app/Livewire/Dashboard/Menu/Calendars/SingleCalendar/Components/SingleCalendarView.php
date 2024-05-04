@@ -114,6 +114,7 @@ class SingleCalendarView extends Component
         $scheduleMeals = MenuCalendarScheduleMeal::where('menuCalendarId', $this->menuCalendarId)
             ->where('scheduleDate', '>=', $this->searchFromDate)
             ->where('scheduleDate', '<=', end($weekDates))
+            ->orderBy('mealTypeId')
             ->orderBy('scheduleDate')
             ->get();
 

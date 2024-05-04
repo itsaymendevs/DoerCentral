@@ -45,18 +45,34 @@
 
                         {{-- name --}}
                         <h5 class="fw-normal d-flex align-items-center mb-3">
-                            Good Morning
-                            <span class="fw-semibold ms-2" data-aos='zoom-out' data-aos-delay='200' wire:ignore.self>{{
-                                $customer->firstName }}</span>
+                            Welcome Back
+                            <span class="fw-semibold ms-2 text-orange" data-aos='zoom-out' data-aos-delay='200'
+                                wire:ignore.self>{{
+                                $customer->firstName }}!</span>
                         </h5>
 
 
                         {{-- location --}}
-                        <h6 class="fw-semibold d-flex align-items-center ">
+                        <h6 class="fw-normal d-flex align-items-center">
                             <img class="me-2" src="{{ asset('assets/img/App/pin.png') }}" style="width: 16px" />
-                            {{ $customerAddress ? "{$customerAddress->city->name}, {$customerAddress->district->name}" :
-                            'No Deliveries Today!' }}
+
+                            {{-- :: hasDelivery --}}
+                            @if ($customerAddress)
+
+                            {{ "$customerAddress->city->name, $customerAddress->district->name" }}
+
+                            @else
+
+                            {{ "No Scheduled Delivery For Today" }}
+
+                            @endif
+                            {{-- end if --}}
+
+
+
                         </h6>
+
+
 
                     </div>
 
@@ -213,7 +229,8 @@
 
 
                             {{-- calories --}}
-                            <div class="col-3 col-sm-auto" data-aos='slide-left' data-aos-delay='100' wire:ignore.self>
+                            <div class="col-auto col-sm-auto px-1" data-aos='slide-left' data-aos-delay='100'
+                                wire:ignore.self>
                                 <div class="item--box macros for--calories">
                                     <p class="text-center fs-15 mb-0">
                                         <span class="fs-5 fw-bold  d-block">{{ $totalCalories }}</span><span
@@ -227,7 +244,8 @@
 
 
                             {{-- carbs --}}
-                            <div class="col-3 col-sm-auto" data-aos='slide-left' data-aos-delay='200' wire:ignore.self>
+                            <div class="col-auto col-sm-auto px-1" data-aos='slide-left' data-aos-delay='200'
+                                wire:ignore.self>
                                 <div class="item--box macros for--carbs">
                                     <p class="text-center fs-15 mb-0">
                                         <span class="fs-5 fw-bold  d-block">{{ $totalCarbs }}</span>
@@ -241,7 +259,8 @@
 
 
                             {{-- proteins --}}
-                            <div class="col-3 col-sm-auto" data-aos='slide-left' data-aos-delay='300' wire:ignore.self>
+                            <div class="col-auto col-sm-auto px-1" data-aos='slide-left' data-aos-delay='300'
+                                wire:ignore.self>
                                 <div class="item--box macros for--proteins">
                                     <p class="text-center  mb-0">
                                         <span class="fs-5 fw-bold  d-block">{{ $totalProteins }}</span><span
@@ -256,7 +275,8 @@
 
 
                             {{-- fats --}}
-                            <div class=" col-3 col-sm-auto" data-aos='slide-left' data-aos-delay='400' wire:ignore.self>
+                            <div class="col-auto col-sm-auto px-1" data-aos='slide-left' data-aos-delay='400'
+                                wire:ignore.self>
                                 <div class="item--box macros for--fats">
                                     <p class="text-center fs-15 mb-0">
                                         <span class="fs-5 fw-bold  d-block">{{ $totalFats }}</span><span
@@ -407,6 +427,55 @@
 
                                 @endforeach
                                 {{-- end loop - today meals --}}
+
+
+
+
+
+
+
+                                {{-- fallback --}}
+
+
+
+                                @if (empty($scheduleMeals))
+
+
+                                {{-- fallback --}}
+                                <div class="swiper-slide">
+
+                                    <img src="{{ asset('assets/img/App/fallback.png') }}" alt="" loading='lazy'
+                                        style="height: 260px;">
+                                    <div class="swiper-lazy-preloader"></div>
+
+                                </div>
+
+
+
+                                {{-- fallback --}}
+                                <div class="swiper-slide">
+
+                                    <img src="{{ asset('assets/img/App/fallback.png') }}" alt="" loading='lazy'
+                                        style="height: 260px;">
+                                    <div class="swiper-lazy-preloader"></div>
+
+                                </div>
+
+
+
+                                {{-- fallback --}}
+                                <div class="swiper-slide">
+
+                                    <img src="{{ asset('assets/img/App/fallback.png') }}" alt="" loading='lazy'
+                                        style="height: 260px;">
+                                    <div class="swiper-lazy-preloader"></div>
+
+                                </div>
+
+
+
+                                @endif
+                                {{-- end if - fallback --}}
 
 
 

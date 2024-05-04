@@ -207,17 +207,16 @@
 
 
                     {{-- macros --}}
-                    <div class="col-12 col-md-5 col-lg-6 col-xl-7 align-self-end mt-3 mt-md-0 ">
+                    <div class="col-12 col-md-12 align-self-end mt-3 mt-md-0 ">
                         <div class="row align-items-end justify-content-center">
 
 
 
                             {{-- calories --}}
-                            <div class="col-auto col-md-12 col-lg-4" data-aos='slide-left' data-aos-delay='100'
-                                wire:ignore.self>
+                            <div class="col-3 col-sm-auto" data-aos='slide-left' data-aos-delay='100' wire:ignore.self>
                                 <div class="item--box macros for--calories">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-5 fw-bold  d-block">1200</span><span
+                                        <span class="fs-5 fw-bold  d-block">{{ $totalCalories }}</span><span
                                             class="fs-12 d-block fw-bold mt-3">Cals</span>
                                     </p>
                                 </div>
@@ -228,11 +227,10 @@
 
 
                             {{-- carbs --}}
-                            <div class="col-auto col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='200'
-                                wire:ignore.self>
+                            <div class="col-3 col-sm-auto" data-aos='slide-left' data-aos-delay='200' wire:ignore.self>
                                 <div class="item--box macros for--carbs">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-5 fw-bold  d-block">700</span>
+                                        <span class="fs-5 fw-bold  d-block">{{ $totalCarbs }}</span>
                                         <span class="fs-12 d-block fw-bold  mt-3">Carbs</span>
                                     </p>
                                 </div>
@@ -243,11 +241,10 @@
 
 
                             {{-- proteins --}}
-                            <div class="col-auto col-md-12 col-lg-4" data-aos='slide-left' data-aos-delay='300'
-                                wire:ignore.self>
+                            <div class="col-3 col-sm-auto" data-aos='slide-left' data-aos-delay='300' wire:ignore.self>
                                 <div class="item--box macros for--proteins">
                                     <p class="text-center  mb-0">
-                                        <span class="fs-5 fw-bold  d-block">240</span><span
+                                        <span class="fs-5 fw-bold  d-block">{{ $totalProteins }}</span><span
                                             class="fs-12 d-block fw-bold mt-3">Proteins</span>
                                     </p>
                                 </div>
@@ -259,11 +256,10 @@
 
 
                             {{-- fats --}}
-                            <div class=" col-auto col-md-6 col-lg-4" data-aos='slide-left' data-aos-delay='400'
-                                wire:ignore.self>
+                            <div class=" col-3 col-sm-auto" data-aos='slide-left' data-aos-delay='400' wire:ignore.self>
                                 <div class="item--box macros for--fats">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-5 fw-bold  d-block">80</span><span
+                                        <span class="fs-5 fw-bold  d-block">{{ $totalFats }}</span><span
                                             class="fs-12 d-block fw-bold  mt-3">Fat</span>
                                     </p>
                                 </div>
@@ -312,10 +308,10 @@
 
 
                             {{-- menuLink --}}
-                            <button class="btn btn--scheme btn--scheme-2 fs-13 px-4 scale--self-05 fw-semibold"
-                                type="button">
+                            <a class="btn btn--scheme btn--scheme-2 fs-13 px-4 scale--self-05 fw-semibold"
+                                href="{{ route('portals.customer.menu') }}">
                                 Manage
-                            </button>
+                            </a>
                         </div>
                     </div>
 
@@ -342,7 +338,7 @@
 
 
                                 {{-- loop - today meals --}}
-                                @foreach ($todayMeals as $meal)
+                                @foreach ($scheduleMeals ?? [] as $scheduleMeal)
 
 
                                 <div class="swiper-slide">
@@ -350,14 +346,15 @@
 
                                     {{-- name - type --}}
                                     <p class='swiper--caption for-meals position-relative '>
-                                        <span class='truncate-text-1l'>{{ $meal->name }}</span>
-                                        <span class='fs-10 text-theme-secondary d-block'>{{ 'Breakfast' }}</span>
+                                        <span class='truncate-text-1l'>{{ $scheduleMeal?->meal?->name }}</span>
+                                        <span class='fs-10 text-theme-secondary d-block'>{{
+                                            $scheduleMeal->mealType->name }}</span>
                                     </p>
 
 
 
                                     {{-- image --}}
-                                    <img src="{{ asset('storage/menu/meals/' . ($meal->imageFile ?? $defaultPlate)) }}"
+                                    <img src="{{ asset('storage/menu/meals/' . ($scheduleMeal?->meal?->imageFile ?? $defaultPlate)) }}"
                                         alt="" loading='lazy'>
                                     <div class="swiper-lazy-preloader"></div>
 
@@ -374,7 +371,8 @@
 
 
                                         {{-- calories --}}
-                                        <span class='d-flex flex-column align-items-center fw-semibold '>210
+                                        <span class='d-flex flex-column align-items-center fw-semibold '>{{
+                                            $scheduleMeal?->mealSize()?->afterCookCalories }}
                                             <span
                                                 class='d-block fs-10 fw-bold text-uppercase text-theme-secondary'>Cal</span>
                                         </span>
@@ -382,21 +380,24 @@
 
 
                                         {{-- proteins --}}
-                                        <span class='d-flex flex-column align-items-center fw-semibold'>210
+                                        <span class='d-flex flex-column align-items-center fw-semibold'>{{
+                                            $scheduleMeal?->mealSize()?->afterCookProteins }}
                                             <span
                                                 class='d-block fs-10 fw-bold text-uppercase text-theme-secondary'>P</span>
                                         </span>
 
 
                                         {{-- carbs --}}
-                                        <span class='d-flex flex-column align-items-center fw-semibold'>210
+                                        <span class='d-flex flex-column align-items-center fw-semibold'>{{
+                                            $scheduleMeal?->mealSize()?->afterCookCarbs }}
                                             <span
                                                 class='d-block fs-10 fw-bold text-uppercase text-theme-secondary'>C</span>
                                         </span>
 
 
-                                        {{-- carbs --}}
-                                        <span class='d-flex flex-column align-items-center fw-semibold'>210
+                                        {{-- fats --}}
+                                        <span class='d-flex flex-column align-items-center fw-semibold'>{{
+                                            $scheduleMeal?->mealSize()?->afterCookFats }}
                                             <span
                                                 class='d-block fs-10 fw-bold text-uppercase text-theme-secondary'>F</span>
                                         </span>

@@ -111,7 +111,7 @@
 
         {{-- locationAddress --}}
         <div class="col-12 col-lg-9">
-            <div class="input--with-label mb-4">
+            <div class="input--with-label journey mb-4">
                 <label class="form-label form--label mb-0">Address</label>
                 <input class="form-control form--input text-start" type="text" required
                     wire:model='instance.locationAddress' />
@@ -135,7 +135,7 @@
 
         {{-- title / name --}}
         <div class="col-12 col-lg-3">
-            <div class="input--with-label mb-4">
+            <div class="input--with-label journey mb-4">
                 <label class="form-label form--label mb-0">Name</label>
                 <input class="form-control form--input text-start" type="text" required wire:model='instance.name' />
             </div>
@@ -152,7 +152,7 @@
 
         {{-- apartment --}}
         <div class="col-12 col-lg-3">
-            <div class="input--with-label mb-4">
+            <div class="input--with-label journey mb-4">
                 <label class="form-label form--label mb-0">Apart</label>
                 <input class="form-control form--input text-start" type="text" wire:model='instance.apartment' />
             </div>
@@ -164,7 +164,7 @@
 
         {{-- floor --}}
         <div class="col-12 col-lg-3">
-            <div class="input--with-label mb-4">
+            <div class="input--with-label journey mb-4">
                 <label class="form-label form--label mb-0">Floor</label>
                 <input class="form-control form--input text-start" type="text" wire:model='instance.floor' />
             </div>
@@ -295,8 +295,7 @@
         {{-- submitButton --}}
         <div class="col-8 col-md-4 text-center">
             <button wire:loading.attr='disabled'
-                class="btn btn--scheme btn--scheme-2 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center"
-                style="border: 1px dashed var(--color-scheme-3)">
+                class="btn btn--scheme btn--scheme-1 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center">
                 Update
             </button>
         </div>

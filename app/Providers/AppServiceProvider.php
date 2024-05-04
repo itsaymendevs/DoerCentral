@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\CustomerSubscriptionSetting;
+use App\Models\Profile;
 use App\Models\VersionPermission;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\View;
@@ -55,6 +56,26 @@ class AppServiceProvider extends ServiceProvider
         View::share('globalSNCounter', 1);
 
 
+
+
+
+
+
+
+
+        // ------------------------------------------------
+        // ------------------------------------------------
+
+
+
+
+
+
+
+        // 1.5: globalProfile
+        $profile = Profile::first();
+
+        View::share('globalProfile', $profile);
 
 
 
@@ -117,6 +138,7 @@ class AppServiceProvider extends ServiceProvider
         // :: allowedCalendarMigrationDate - allowedMealSelectionDate
         View::share('allowedCalendarMigrationDate', $this->getDateByDays($subscriptionSettings->changeCalendarRestriction));
         View::share('allowedMealSelectionDate', $this->getDateByDays($subscriptionSettings->mealSelectionRestriction));
+
 
 
 

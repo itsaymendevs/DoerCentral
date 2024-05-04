@@ -17,18 +17,15 @@
                     <div class="text-end"></div>
 
                     {{-- title --}}
-                    <img data-aos="fade-down" data-aos-duration="800" data-aos-delay="600" data-aos-once="true"
-                        class="w-100 of-contain pb-1 mt-2" src="{{ asset('assets/img/Logo/doer.png') }}"
-                        style="height: 80px" />
+                    <div class='text-center'>
+                        <img data-aos="fade-down" data-aos-duration="800" data-aos-delay="600" data-aos-once="true"
+                            class="of-contain mb-2 mt-2 mx-auto"
+                            src="{{ asset('assets/img/Clients/' . $globalProfile->imageFile) }}"
+                            style="height: 80px; width: 200px;" />
+                    </div>
 
 
 
-                    {{-- :: Aleens --}}
-                    {{-- <div class='logo--wrapper for-login mb-3' data-aos="fade-down" data-aos-duration="800"
-                        data-aos-delay="600" data-aos-once="true">
-                        <img src="{{ asset('assets/img/App/Clients/logo.png') }}" width="73" height="41">
-                        <span class='text-uppercase'>Nutritious meal plan</span>
-                    </div> --}}
 
 
                     {{-- email / password --}}

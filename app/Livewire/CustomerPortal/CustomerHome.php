@@ -46,7 +46,7 @@ class CustomerHome extends Component
         // :: getCustomerAddress
         $this->customerAddress = $this->customer->addressByDay($this->getCurrentDate());
 
-
+        //
 
 
 
@@ -87,6 +87,7 @@ class CustomerHome extends Component
 
         // 1: dependencies
         $blogs = Blog::where('isForWebsite', true)->orderBy('publishDate', 'desc')->get();
+        $totalCalories = $totalProteins = $totalCarbs = $totalFats = 0;
 
 
 
@@ -104,14 +105,32 @@ class CustomerHome extends Component
 
 
         $scheduleMeals = $schedule?->meals;
-        $scheduleMealsArray = $schedule?->meals?->whereNotNull('mealId')?->pluck('mealId')?->toArray() ?? [];
 
 
 
 
-        // 2.2: todayMeals
-        $todayMeals = Meal::whereIn('id', $scheduleMealsArray)->get();
-        // $todayMeals = Meal::whereNotNull('imageFile')->take(10)->get();
+
+
+
+
+
+        // 2.2: getTotalMacros
+        foreach ($scheduleMeals ?? [] as $scheduleMeal) {
+
+
+
+            // :: sumAll
+            $totalCalories += $scheduleMeal?->mealSize()?->afterCookCalories ?? 0;
+            $totalProteins += $scheduleMeal?->mealSize()?->afterCookProteins ?? 0;
+            $totalCarbs += $scheduleMeal?->mealSize()?->afterCookCarbs ?? 0;
+            $totalFats += $scheduleMeal?->mealSize()?->afterCookFats ?? 0;
+
+
+        } // end loop
+
+
+
+
 
 
 
@@ -124,7 +143,7 @@ class CustomerHome extends Component
 
 
 
-        return view('livewire.customer-portal.customer-home', compact('todayMeals', 'blogs', 'scheduleMeals'));
+        return view('livewire.customer-portal.customer-home', compact('blogs', 'scheduleMeals', 'totalCalories', 'totalProteins', 'totalCarbs', 'totalFats'));
 
 
     } // end function

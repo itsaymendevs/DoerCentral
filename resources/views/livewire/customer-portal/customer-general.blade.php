@@ -456,7 +456,7 @@
 
 
                 {{-- image (DESKTOP) --}}
-                <img class="w-100 of-contain d-none d-md-block"
+                <img class="w-100 of-contain d-none d-md-none"
                     src='{{ asset("assets/img/Customers/{$customer->gender}.png") }}' style="height: 250px" />
 
 
@@ -464,7 +464,7 @@
 
 
                 {{-- subscriptionActions --}}
-                <div class="d-flex align-items-center justify-content-center mb-md-2">
+                <div class="d-flex align-items-center justify-content-center mb-md-2 d-none">
 
 
                     {{-- 1: pause --}}
@@ -561,7 +561,7 @@
 
 
                 {{-- wrapper (DESKTOP) --}}
-                <div class="mt-1 d-none d-md-block">
+                <div class="mt-1  d-block">
                     <hr class="w-75 mx-auto mb-4" />
                     <h6 class="fw-normal d-flex align-items-center justify-content-center mb-2">
                         Wallet<br />Balance
@@ -958,9 +958,8 @@
                 <div class="row d-none d-xl-block">
                     <div class="col-12">
                         <button
-                            class="btn btn--scheme btn--scheme-2 w-100 py-2 d-inline-flex align-items-center mx-1 justify-content-center shrink--self fs-15"
-                            style="border: 1px solid var(--color-theme-secondary)" wire:loading.attr='disabled'
-                            wire:target='update'>
+                            class="btn btn--scheme btn--scheme-1 w-100 py-2 d-inline-flex align-items-center mx-1 justify-content-center shrink--self fs-15 mb-3"
+                            wire:loading.attr='disabled' wire:target='update'>
                             Update Profile
                         </button>
                     </div>

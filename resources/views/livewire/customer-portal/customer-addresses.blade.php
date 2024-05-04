@@ -29,7 +29,7 @@
             {{-- newButton --}}
             <div class="col-8">
                 <button
-                    class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center fs-xs-13"
+                    class="btn btn--scheme btn--scheme-1 px-3 scalemix--3 py-2 d-inline-flex align-items-center fs-xs-13"
                     type="button" data-bs-target="#new-address" data-bs-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-plus-circle-dotted fs-5 me-2">
@@ -47,7 +47,7 @@
             {{-- counter --}}
             <div class="col-4 text-end">
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
-                    class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
+                    class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-1 px-3 rounded-1 mb-0 py-1"
                     title="Number of Addresses">
                     {{ $addresses->count() }}
                 </h3>
@@ -94,7 +94,7 @@
 
 
                     {{-- navLinks --}}
-                    <ul class="nav nav-tabs" role="tablist">
+                    <ul class="nav nav-tabs address--nav" role="tablist">
 
 
                         {{-- loop - addresses --}}

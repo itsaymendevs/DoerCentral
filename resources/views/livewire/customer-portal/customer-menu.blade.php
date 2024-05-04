@@ -53,7 +53,7 @@
 
             {{-- skip --}}
             <div class="col-12 col-sm-5 col-md-4">
-                <div class="text-center text-sm-end text-md-center mb-4">
+                <div class="text-center text-sm-end text-md-center mb-4 d-none">
 
 
                     {{-- A: skip --}}
@@ -438,7 +438,8 @@
 
                                                     {{-- 1: calories --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-calories sm">
                                                             <h6 class="fs-12">CA</h6>
                                                             <p class="fs-12">
                                                                 {{ $subscriptionScheduleMeal?->meal
@@ -456,7 +457,8 @@
 
                                                     {{-- 2: proteins --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-proteins sm">
                                                             <h6 class="fs-12">P</h6>
                                                             <p class="fs-12">
                                                                 {{ $subscriptionScheduleMeal?->meal
@@ -474,7 +476,8 @@
 
                                                     {{-- carbs --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-carbs sm">
                                                             <h6 class="fs-12">C</h6>
                                                             <p class="fs-12">
                                                                 {{ $subscriptionScheduleMeal?->meal
@@ -489,7 +492,8 @@
 
                                                     {{-- fats --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-fats sm">
                                                             <h6 class="fs-12">F</h6>
                                                             <p class="fs-12">
                                                                 {{ $subscriptionScheduleMeal?->meal
@@ -731,7 +735,8 @@
 
                                                     {{-- 1: calories --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-calories sm">
                                                             <h6 class="fs-12">CA</h6>
                                                             <p class="fs-12">
                                                                 {{ $calendarScheduleMeal?->meal
@@ -749,7 +754,8 @@
 
                                                     {{-- 2: proteins --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-proteins sm">
                                                             <h6 class="fs-12">P</h6>
                                                             <p class="fs-12">
                                                                 {{ $calendarScheduleMeal?->meal
@@ -767,7 +773,8 @@
 
                                                     {{-- carbs --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-carbs sm">
                                                             <h6 class="fs-12">C</h6>
                                                             <p class="fs-12">
                                                                 {{ $calendarScheduleMeal?->meal
@@ -782,7 +789,8 @@
 
                                                     {{-- fats --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-fats sm">
                                                             <h6 class="fs-12">F</h6>
                                                             <p class="fs-12">
                                                                 {{ $calendarScheduleMeal?->meal
@@ -1053,7 +1061,8 @@
 
                                                     {{-- 1: calories --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-calories sm">
                                                             <h6 class="fs-12">CA</h6>
                                                             <p class="fs-12">
                                                                 {{ $subscriptionScheduleReplacement?->replacement
@@ -1071,7 +1080,8 @@
 
                                                     {{-- 2: proteins --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-proteins sm">
                                                             <h6 class="fs-12">P</h6>
                                                             <p class="fs-12">
                                                                 {{ $subscriptionScheduleReplacement?->replacement
@@ -1089,7 +1099,8 @@
 
                                                     {{-- carbs --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-carbs sm">
                                                             <h6 class="fs-12">C</h6>
                                                             <p class="fs-12">
                                                                 {{ $subscriptionScheduleReplacement?->replacement
@@ -1104,7 +1115,8 @@
 
                                                     {{-- fats --}}
                                                     <div class="col-3 text-end px-2">
-                                                        <div class="overview--box shrink--self macros-version sm">
+                                                        <div
+                                                            class="overview--box shrink--self macros-version for-fats sm">
                                                             <h6 class="fs-12">F</h6>
                                                             <p class="fs-12">
                                                                 {{ $subscriptionScheduleReplacement?->replacement

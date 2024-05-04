@@ -92,13 +92,57 @@
     color: var(--color-theme);
 }
 
+.btn--scheme-1 {
+    color: white !important;
+}
+
 .text-gold {
     color: var(--color-theme-heading);
 }
 
-.submenu--group .btn.active {
-    /* background-color: var(--color-theme-heading); */
+.badge--scheme-1 {
+    background-color: var(--color-scheme-1);
 }
+
+.submenu--group .btn {
+    border-color: var(--color-theme-alternative) !important;
+}
+
+.submenu--group .btn.active {
+    background-color: var(--color-theme-alternative) !important;
+    color: white !important;
+}
+
+.btn--remove {
+    color: white !important;
+}
+
+.btn.disabled,
+.btn:disabled,
+fieldset:disabled .btn {
+    background-color: whitesmoke !important;
+}
+
+.hr--title .form--label {
+    color: var(--color-theme);
+}
+
+::-webkit-scrollbar {
+    height: 4px;
+    background: inherit;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f3f3f3 !important;
+    -webkit-border-radius: 2px !important;
+    -webkit-box-shadow: none;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
 /* --------------------------------------------------- */
 /* --------------------------------------------------- */
 
@@ -112,6 +156,7 @@
 }
 .item--box.macros {
     border-radius: 300px;
+    margin: auto;
     padding: 30px 0px;
     width: 70px;
     border: 4px solid transparent;
@@ -257,4 +302,79 @@
     border: 2px solid #0000000d;
     box-shadow: 0px 2px 3px 0px #0000000f;
     border-radius: var(--card-radius);
+}
+
+.overview--box.macros-version {
+    border-radius: 300px;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 50px;
+    background-color: transparent;
+    border: 3px solid #000;
+}
+
+.overview--box.macros-version p {
+    border-radius: 0px 0px 300px 300px;
+    background-color: transparent;
+}
+
+.overview--box.macros-version.for-calories {
+    border-color: var(--color-theme-1);
+}
+.overview--box.macros-version.for-calories p {
+    color: var(--color-theme-1);
+}
+
+.overview--box.macros-version.for-carbs {
+    border-color: var(--color-theme-2);
+}
+.overview--box.macros-version.for-carbs p {
+    color: var(--color-theme-2);
+}
+
+.overview--box.macros-version.for-proteins {
+    border-color: var(--color-theme-3);
+}
+.overview--box.macros-version.for-proteins p {
+    color: var(--color-theme-3);
+}
+
+.overview--box.macros-version.for-fats {
+    border-color: var(--color-theme-4);
+}
+.overview--box.macros-version.for-fats p {
+    color: var(--color-theme-4);
+}
+
+.badge--warning {
+    background-color: var(--color-theme-secondary);
+}
+
+/* side-menu */
+.sidebar--menu {
+    background-color: white !important;
+}
+
+.sidebar--menu .btn--scheme {
+    border-bottom-color: var(--color-theme-alternative) !important;
+    color: #000;
+}
+
+.sidebar--menu .btn--close svg {
+    fill: white !important;
+}
+
+/* calendar */
+.tr--ingredient {
+    background-color: var(--color-theme-1) !important;
+}
+
+.underline-gold {
+    text-decoration: underline var(--color-theme-1);
+}
+
+/* addresses */
+.tabs--wrap .nav-tabs.address--nav {
+    background-color: whitesmoke !important;
 }

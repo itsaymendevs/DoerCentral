@@ -389,7 +389,7 @@ trait HelperTrait
 
 
         // 1: uploadFile - makeFileName
-        $fileName = date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . $instanceFile->getClientOriginalName();
+        $fileName = date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
         $instanceFile->storeAs($path, $fileName, 'public');
 
 
@@ -432,7 +432,7 @@ trait HelperTrait
 
 
         // 2: uploadFile - makeFileName
-        $fileName = date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . $instanceFile->getClientOriginalName();
+        $fileName = date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
         $instanceFile->storeAs($path, $fileName, 'public');
 
 

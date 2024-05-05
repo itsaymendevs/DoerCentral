@@ -68,7 +68,7 @@
         <link href="{{ asset('assets/css/kitchen.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/simple-animate.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/swiper.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/loader.css') }}?id=554" rel="stylesheet">
 
 
 
@@ -224,7 +224,7 @@
         <script src="{{ asset('assets/js/print.min.js') }}"></script>
         <script src="{{ asset('assets/js/select2.min.js') }}"></script>
         <script src="{{ asset('assets/js/bs-init.js') }}"></script>
-        <script src="{{ asset('assets/js/init.js') }}"></script>
+        <script src="{{ asset('assets/js/init.js') }}?id=331"></script>
         <script src="{{ asset('assets/js/init-swiper.js') }}"></script>
         <script src="{{ asset('assets/js/switches.js') }}"></script>
         <script src="{{ asset('assets/js/range-input.js') }}"></script>

@@ -119,7 +119,7 @@ class UsersEdit extends Component
 
         // 1: replaceFile
         if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'extra/management/users');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/management/users', $this->instance->imageFileName, 'USR');
 
 
 

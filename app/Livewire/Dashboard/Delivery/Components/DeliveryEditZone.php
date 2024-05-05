@@ -113,7 +113,7 @@ class DeliveryEditZone extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'delivery/zones');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'delivery/zones', $this->instance->imageFileName, 'ZON');
 
 
 

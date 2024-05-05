@@ -37,7 +37,7 @@ class InventoryCreateIngredient extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'inventory/ingredients/');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'inventory/ingredients', 'ING');
 
 
 

@@ -500,7 +500,7 @@
                         <label class="form-label form--label">Padding Left
                             <small class="ms-1 fw-semibold text-gold fs-9">(MM)</small>
                         </label>
-                        <input type="number" step='0.1' max='2' class="form--input mb-4"
+                        <input type="number" step='0.1' class="form--input mb-4"
                             wire:model.live='instance.paddingLeft' />
                     </div>
 
@@ -511,7 +511,7 @@
                         <label class="form-label form--label">Right
                             <small class="ms-1 fw-semibold text-gold fs-9">(MM)</small>
                         </label>
-                        <input type="number" step='0.1' max='2' class="form--input mb-4"
+                        <input type="number" step='0.1' class="form--input mb-4"
                             wire:model.live='instance.paddingRight' />
                     </div>
 
@@ -523,7 +523,7 @@
                         <label class="form-label form--label">Top
                             <small class="ms-1 fw-semibold text-gold fs-9">(MM)</small>
                         </label>
-                        <input type="number" step='0.1' max='2' class="form--input mb-4"
+                        <input type="number" step='0.1' class="form--input mb-4"
                             wire:model.live='instance.paddingTop' />
                     </div>
 
@@ -535,7 +535,7 @@
                         <label class="form-label form--label">Bottom
                             <small class="ms-1 fw-semibold text-gold fs-9">(MM)</small>
                         </label>
-                        <input type="number" step='0.1' max='2' class="form--input mb-4"
+                        <input type="number" step='0.1' class="form--input mb-4"
                             wire:model.live='instance.paddingBottom' />
                     </div>
 

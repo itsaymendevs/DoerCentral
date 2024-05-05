@@ -418,12 +418,12 @@ trait HelperTrait
 
 
 
-    protected function uploadFile($instanceFile, $path)
+    protected function uploadFile($instanceFile, $path, $key = 'ITM')
     {
 
 
         // 1: uploadFile - makeFileName
-        $fileName = date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
+        $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
         $instanceFile->storeAs($path, $fileName, 'public');
 
 
@@ -456,17 +456,21 @@ trait HelperTrait
 
 
 
-    protected function replaceFile($instanceFile, $fileName, $path, $key = 'RG')
+    protected function replaceFile($instanceFile, $path, $fileName, $key = 'ITM')
     {
 
 
         // 1: removeFile
-        Storage::disk('public')->delete($path . '/' . $fileName);
+        if (! empty($fileName))
+            Storage::disk('public')->delete($path . '/' . $fileName);
+
+
+
 
 
 
         // 2: uploadFile - makeFileName
-        $fileName = date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
+        $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
         $instanceFile->storeAs($path, $fileName, 'public');
 
 
@@ -504,7 +508,10 @@ trait HelperTrait
 
 
         // 1: removeFile
-        Storage::disk('public')->delete($path . '/' . $fileName);
+        if (! empty($fileName))
+            Storage::disk('public')->delete($path . '/' . $fileName);
+
+
 
         return true;
 

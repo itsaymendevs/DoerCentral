@@ -35,7 +35,7 @@ class ContainersCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'kitchen/containers');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'kitchen/containers', 'CON');
 
 
 

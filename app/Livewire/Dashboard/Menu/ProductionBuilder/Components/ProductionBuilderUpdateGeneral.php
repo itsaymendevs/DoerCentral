@@ -154,10 +154,18 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
 
+        // :: getType
+        $type = Type::find($this->instance?->typeId)?->name ?? 'MEAL';
+
+
+
+
+
+
         // 1: uploadFile
         if ($this->instance->imageFile && $this->instance->imageFile != $this->instance->imageFileName) {
 
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/meals');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/meals', $this->instance->imageFileName, strtoupper($type));
 
         } // end if
 
@@ -166,7 +174,7 @@ class ProductionBuilderUpdateGeneral extends Component
         if ($this->instance->secondImageFile
             && $this->instance->secondImageFile != $this->instance->secondImageFileName) {
 
-            $this->instance->secondImageFileName = $this->uploadFile($this->instance->secondImageFile, 'menu/meals');
+            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'menu/meals', $this->instance->secondImageFileName, strtoupper($type));
 
         } // end if
 
@@ -176,7 +184,7 @@ class ProductionBuilderUpdateGeneral extends Component
         if ($this->instance->thirdImageFile
             && $this->instance->thirdImageFile != $this->instance->thirdImageFileName) {
 
-            $this->instance->thirdImageFileName = $this->uploadFile($this->instance->thirdImageFile, 'menu/meals');
+            $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'menu/meals', $this->instance->thirdImageFileName, strtoupper($type));
 
         } // end if
 
@@ -185,7 +193,7 @@ class ProductionBuilderUpdateGeneral extends Component
         if ($this->instance->fourthImageFile
             && $this->instance->fourthImageFile != $this->instance->fourthImageFileName) {
 
-            $this->instance->fourthImageFileName = $this->uploadFile($this->instance->fourthImageFile, 'menu/meals');
+            $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'menu/meals', $this->instance->fourthImageFileName, strtoupper($type));
 
         } // end if
 

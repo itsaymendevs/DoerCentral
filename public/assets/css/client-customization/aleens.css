@@ -372,7 +372,7 @@ fieldset:disabled .btn {
     padding-bottom: 10px;
     width: 45px;
     background-color: transparent;
-    border: 3px dashed #000;
+    border: 2px dashed #000;
 }
 
 .overview--box.macros-version p {

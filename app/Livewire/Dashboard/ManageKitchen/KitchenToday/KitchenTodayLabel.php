@@ -59,7 +59,7 @@ class KitchenTodayLabel extends Component
 
 
         // :: dispatchEvent
-        $this->dispatch('labelPrint', $scheduleMealsByMeal);
+        $this->dispatch('labelPrint', $scheduleMealsByMeal, $this->searchScheduleDate);
 
 
     } // end function
@@ -67,6 +67,56 @@ class KitchenTodayLabel extends Component
 
 
 
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+    public function labelPrintAll()
+    {
+
+
+
+        // 1: dependencies
+        $mealTypes = MealType::all();
+
+
+
+
+
+
+        // 2: getSchedules - meals
+        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->searchScheduleDate)
+            ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
+
+
+
+
+        $scheduleMeals = CustomerSubscriptionScheduleMeal::whereNotNull('mealId')
+            ->whereIn('subscriptionScheduleId', $schedules)
+            ->whereIn('mealTypeId', $this->searchMealType ? [$this->searchMealType] : $mealTypes->pluck('id')->toArray())
+            ->orderBy('mealId')
+            ->get();
+
+
+
+
+
+
+
+        // :: dispatchEvent
+        $this->dispatch('labelPrint', $scheduleMeals, $this->searchScheduleDate);
+
+
+    } // end function
 
 
 

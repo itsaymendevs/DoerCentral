@@ -69,11 +69,11 @@ class BlogsViewCreateSection extends Component
 
         // 1: uploadFile
         if ($this->instance->sideImageFile)
-            $this->instance->sideImageFileName = $this->uploadFile($this->instance->sideImageFile, 'extra/blogs/sections');
+            $this->instance->sideImageFileName = $this->uploadFile($this->instance->sideImageFile, 'extra/blogs/sections', 'BLG-SIDE');
 
 
         if ($this->instance->bottomImageFile)
-            $this->instance->bottomImageFileName = $this->uploadFile($this->instance->bottomImageFile, 'extra/blogs/sections');
+            $this->instance->bottomImageFileName = $this->uploadFile($this->instance->bottomImageFile, 'extra/blogs/sections', 'BLG-BOTTOM');
 
 
 

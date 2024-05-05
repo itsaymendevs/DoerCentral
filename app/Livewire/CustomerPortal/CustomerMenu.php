@@ -334,7 +334,33 @@ class CustomerMenu extends Component
 
 
 
+
     public function skipScheduleDay()
+    {
+
+
+        // 1: confirmationBox
+        $this->makeAlert('question', 'Skip schedule for today?', 'confirmScheduleSkip');
+
+
+
+    } // end function
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+    #[On('confirmScheduleSkip')]
+    public function confirmSkipScheduleDay()
     {
 
 
@@ -376,6 +402,37 @@ class CustomerMenu extends Component
 
 
 
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function unSkipScheduleDay()
+    {
+
+
+        // 1: confirmationBox
+        $this->makeAlert('question', 'Undo skip for today?', 'confirmScheduleUnSkip');
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
 
 
     // -----------------------------------------------------------
@@ -385,8 +442,8 @@ class CustomerMenu extends Component
 
 
 
-
-    public function unSkipScheduleDay()
+    #[On('confirmScheduleUnSkip')]
+    public function confirmUnSkipScheduleDay()
     {
 
 

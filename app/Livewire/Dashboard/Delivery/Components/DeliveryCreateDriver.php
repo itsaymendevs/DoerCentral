@@ -30,10 +30,10 @@ class DeliveryCreateDriver extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'delivery/drivers/profiles/');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'delivery/drivers/profiles', 'PRO');
 
         if ($this->instance->licenseFile)
-            $this->instance->licenseFileName = $this->uploadFile($this->instance->licenseFile, 'delivery/drivers/licenses');
+            $this->instance->licenseFileName = $this->uploadFile($this->instance->licenseFile, 'delivery/drivers/licenses', 'LIC');
 
 
 

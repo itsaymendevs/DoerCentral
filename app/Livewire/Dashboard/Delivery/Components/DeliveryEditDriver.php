@@ -90,14 +90,14 @@ class DeliveryEditDriver extends Component
         // 1: uploadFileFiles
         if ($this->instance->imageFile != $this->instance->imageFileName) {
 
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'delivery/drivers/profiles/');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'delivery/drivers/profiles', $this->instance->imageFileName, 'PRO');
 
         } // end if
 
 
         if ($this->instance->licenseFile != $this->instance->licenseFileName) {
 
-            $this->instance->licenseFileName = $this->uploadFile($this->instance->licenseFile, 'delivery/drivers/licenses');
+            $this->instance->licenseFileName = $this->replaceFile($this->instance->licenseFile, 'delivery/drivers/licenses', $this->instance->licenseFileName, 'LIC');
 
         } // end if
 

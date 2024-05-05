@@ -114,11 +114,11 @@ class BlogsView extends Component
 
         // 1: replaceFiles
         if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'extra/blogs');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/blogs', $this->instance->imageFileName, 'BLG');
 
 
         if ($this->instance->headerImageFile != $this->instance->headerImageFileName)
-            $this->instance->headerImageFileName = $this->uploadFile($this->instance->headerImageFile, 'extra/blogs');
+            $this->instance->headerImageFileName = $this->replaceFile($this->instance->headerImageFile, 'extra/blogs', $this->instance->headerImageFileName, 'BLG-HEADER');
 
 
 

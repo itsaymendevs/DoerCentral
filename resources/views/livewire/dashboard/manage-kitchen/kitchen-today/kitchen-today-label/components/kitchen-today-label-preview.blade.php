@@ -32,8 +32,8 @@
                 <div class="d-block text-center">
 
                     <button
-                        class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-4 fs-13 justify-content-center fw-semibold mb-2 print--btn"
-                        data-print='#label--paper' type="button">
+                        class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-4 fs-13 justify-content-center fw-semibold mb-2 print--labels"
+                        data-print='label--paper' type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
                             <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
@@ -83,6 +83,9 @@
 
 
 
+
+
+
                         {{-- :: checkLabel --}}
                         @if (!empty($scheduleMeal?->meal?->label))
 
@@ -90,12 +93,20 @@
 
 
 
+                        {{-- :: notRounded --}}
+                        {{-- @if ($scheduleMeal?->meal?->label?->name != 'Rounded Label') --}}
+
+
+
+
 
 
                         {{-- :: mealLabel --}}
-                        <div class="d-inline-flex justify-content-around align-items-center text-start"
+                        <div class="d-inline-flex justify-content-around align-items-center text-start printable-schedule-meal
+                        @if (env('APP_CLIENT') == 'Aleens' && $scheduleMeal?->meal?->label?->name == 'Rounded Label') isRounded @endif"
                             key='printable-schedule-meal-{{ $scheduleMeal->id }}'>
-                            <div class="sticker--label-layout sticky--div px-0 py-0">
+                            <div class="sticker--label-layout sticky--div px-0 py-0"
+                                id='label--paper-{{ $scheduleMeal->id }}'>
 
 
 
@@ -106,6 +117,7 @@
                                 {{-- 1:: Aleens Special Prinout --}}
 
                                 @if (env('APP_CLIENT') == 'Aleens')
+
 
 
 
@@ -180,12 +192,12 @@
 
 
                                         {{-- rightSection / bottomSection --}}
-                                        <div class='text-start @if (!$scheduleMeal?->meal?->label?->isVertical) ps-3 @endif'
+                                        <div class='text-start nutrition-tag @if (!$scheduleMeal?->meal?->label?->isVertical) ps-3 @endif'
                                             style="border-color: transparent">
 
 
                                             {{-- subtitle --}}
-                                            <h4 class='fw-normal sticker--label-general-tag mb-1 fw-semibold fs-11'>Your
+                                            <h4 class='fw-normal sticker--label-general-tag mb-1 fw-semibold fs-10'>Your
                                                 Nutritious {{ $scheduleMeal?->mealType?->name }}
                                             </h4>
 
@@ -246,15 +258,15 @@
 
 
                                             <div>
-                                                <h4 class='fw-normal sticker--label-production mb-3 invisible'>
+                                                <h4 class='fw-normal sticker--label-production mb-2 invisible'>
                                                     {{ $scheduleMeal?->meal?->label?->isVertical ? 'Prod.' : 'Prod.
                                                     Date' }}
                                                 </h4>
 
-                                                <h4 class='fw-semibold sticker--label-production mb-3'>
+                                                <h4 class='fw-semibold sticker--label-production mb-2'>
                                                     {{ $scheduleMeal?->meal?->label?->isVertical ?
-                                                    date('d.m.Y', strtotime($globalCurrentDate)) :
-                                                    date('d . m . Y', strtotime($globalCurrentDate)) }}
+                                                    date('d.m.Y', strtotime($searchScheduleDate)) :
+                                                    date('d . m . Y', strtotime($searchScheduleDate)) }}
                                                 </h4>
                                             </div>
 
@@ -282,13 +294,11 @@
                                                     {{ $scheduleMeal?->meal?->label?->isVertical ?
                                                     date('d.m.Y',
                                                     strtotime($scheduleMeal->schedule->scheduleDate .
-                                                    "+{$scheduleMeal?->meal?->validity}
-                                                    day"))
+                                                    "+{$scheduleMeal?->meal?->validity} days"))
                                                     :
                                                     date('d . m . Y',
                                                     strtotime($scheduleMeal->schedule->scheduleDate .
-                                                    "+{$scheduleMeal?->meal?->validity}
-                                                    day"))
+                                                    "+{$scheduleMeal?->meal?->validity} days"))
                                                     }}
                                                 </h4>
                                             </div>
@@ -455,9 +465,6 @@
 
                                 </div>
                                 {{-- endSticker --}}
-
-
-
 
 
 
@@ -638,8 +645,8 @@
 
                                                 <h4 class='fw-semibold sticker--label-production mb-3'>
                                                     {{ $scheduleMeal?->meal?->label?->isVertical ?
-                                                    date('d.m.Y', strtotime($globalCurrentDate)) :
-                                                    date('d . m . Y', strtotime($globalCurrentDate)) }}
+                                                    date('d.m.Y', strtotime($searchScheduleDate)) :
+                                                    date('d . m . Y', strtotime($searchScheduleDate)) }}
                                                 </h4>
                                             </div>
 
@@ -666,13 +673,11 @@
                                                     {{ $scheduleMeal?->meal?->label?->isVertical ?
                                                     date('d.m.Y',
                                                     strtotime($scheduleMeal->schedule->scheduleDate .
-                                                    "+{$scheduleMeal?->meal?->validity}
-                                                    day"))
+                                                    "+{$scheduleMeal?->meal?->validity} days"))
                                                     :
                                                     date('d . m . Y',
                                                     strtotime($scheduleMeal->schedule->scheduleDate .
-                                                    "+{$scheduleMeal?->meal?->validity}
-                                                    day"))
+                                                    "+{$scheduleMeal?->meal?->validity} days"))
                                                     }}
                                                 </h4>
                                             </div>
@@ -854,12 +859,20 @@
 
 
 
+                        {{-- @endif --}}
+                        {{-- end if - noRounded --}}
+
+
+
+
 
 
                         {{-- ------------------------------------------- --}}
                         {{-- ------------------------------------------- --}}
                         {{-- ------------------------------------------- --}}
                         {{-- ------------------------------------------- --}}
+
+
 
 
 
@@ -880,6 +893,9 @@
                             <h5>{{ $scheduleMeal?->meal?->name }}</h5>
                             <p class="fs-14 text-gold mb-0">Label is not assigned</p>
                         </div>
+
+
+
 
 
 

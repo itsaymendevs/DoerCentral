@@ -147,7 +147,7 @@ class SingleCustomerExtendSubscription extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'customers/subscriptions/extends/');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'customers/subscriptions/extends', 'EXT');
 
 
 

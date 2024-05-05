@@ -14,7 +14,7 @@ class KitchenTodayLabelPreview extends Component
 
     // :: variables
     public $scheduleMeals;
-
+    public $searchScheduleDate = '';
 
 
 
@@ -22,11 +22,13 @@ class KitchenTodayLabelPreview extends Component
 
 
     #[On('labelPrint')]
-    public function remount($scheduleMealsByMeal)
+    public function remount($scheduleMealsByMeal, $searchScheduleDate)
     {
 
 
         // :: params
+        $this->searchScheduleDate = $searchScheduleDate;
+
         $this->scheduleMeals = CustomerSubscriptionScheduleMeal::whereIn('id', collect($scheduleMealsByMeal)?->pluck('id')?->toArray() ?? [])->get();
 
 

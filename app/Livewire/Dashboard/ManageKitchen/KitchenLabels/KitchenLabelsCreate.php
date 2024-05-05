@@ -93,13 +93,13 @@ class KitchenLabelsCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'kitchen/labels');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'kitchen/labels', 'LB');
 
 
 
 
         if ($this->instance->footerImageFile)
-            $this->instance->footerImageFileName = $this->uploadFile($this->instance->footerImageFile, 'kitchen/labels/footers');
+            $this->instance->footerImageFileName = $this->uploadFile($this->instance->footerImageFile, 'kitchen/labels/footers', 'LB-FOOTER');
 
 
 

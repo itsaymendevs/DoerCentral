@@ -96,8 +96,29 @@
 
 
 
-            {{-- counter --}}
+            {{-- counter / printAll --}}
             <div class="col-4 text-end">
+
+
+
+                {{-- printAll - basedOnType --}}
+                <button
+                    class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold mb-2 me-2"
+                    type="button" data-bs-toggle='modal' data-bs-target='#label-print' wire:click='labelPrintAll()'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                        viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
+                        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
+                        <path
+                            d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z">
+                        </path>
+                    </svg>Print All
+                </button>
+
+
+
+
+
+
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
                     title="Number of Meals">
@@ -145,6 +166,12 @@
 
     {{-- labelsContainer --}}
     <div class="container-fluid">
+
+
+
+
+
+
         <div class="row mt-4 pt-4 align-items-start">
 
 
@@ -382,8 +409,8 @@
 
                                         <h4 class='fw-semibold sticker--label-production mb-3'>
                                             {{ $scheduleMeal?->meal?->label?->isVertical ?
-                                            date('d.m.Y', strtotime($globalCurrentDate)) :
-                                            date('d . m . Y', strtotime($globalCurrentDate)) }}
+                                            date('d.m.Y', strtotime($searchScheduleDate)) :
+                                            date('d . m . Y', strtotime($searchScheduleDate)) }}
                                         </h4>
                                     </div>
 
@@ -409,10 +436,10 @@
                                         <h4 class='fw-semibold sticker--label-expiry mb-0'>
                                             {{ $scheduleMeal?->meal?->label?->isVertical ?
                                             date('d.m.Y',
-                                            strtotime($searchScheduleDate . "+{$scheduleMeal?->meal?->validity} day"))
+                                            strtotime($searchScheduleDate . "+{$scheduleMeal?->meal?->validity} days"))
                                             :
                                             date('d . m . Y',
-                                            strtotime($searchScheduleDate . "+{$scheduleMeal?->meal?->validity} day"))
+                                            strtotime($searchScheduleDate . "+{$scheduleMeal?->meal?->validity} days"))
                                             }}
                                         </h4>
                                     </div>

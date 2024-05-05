@@ -136,7 +136,7 @@ class SingleCustomerShortenSubscription extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'customers/subscriptions/shortens/');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'customers/subscriptions/shortens', 'SHO');
 
 
 

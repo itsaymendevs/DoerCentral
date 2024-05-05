@@ -84,7 +84,7 @@ class KitchenDeliveryExport implements FromCollection, WithHeadings
         // :: combineRows - dependencies
         $combineRows = array();
 
-        $counter = 0;
+        $counter = 1;
 
 
 

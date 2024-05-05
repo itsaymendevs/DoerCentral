@@ -56,7 +56,7 @@
                             {{-- :: hasDelivery --}}
                             @if ($customerAddress)
 
-                            {{ "$customerAddress->city->name, $customerAddress->district->name" }}
+                            {{ $customerAddress->city->name . ', ' . $customerAddress->district->name }}
 
                             @else
 
@@ -230,8 +230,8 @@
                                 wire:ignore.self>
                                 <div class="item--box macros for--calories">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-5 fw-bold  d-block">{{ $totalCalories }}</span><span
-                                            class="fs-12 d-block fw-bold mt-3">Cals</span>
+                                        <span class="fs-18 fw-bold  d-block">{{ $totalCalories }}</span><span
+                                            class="fs-12 d-block fw-bold mt-3">CAL</span>
                                     </p>
                                 </div>
                             </div>
@@ -245,8 +245,8 @@
                                 wire:ignore.self>
                                 <div class="item--box macros for--carbs">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-5 fw-bold  d-block">{{ $totalCarbs }}</span>
-                                        <span class="fs-12 d-block fw-bold  mt-3">Carbs</span>
+                                        <span class="fs-18 fw-bold  d-block">{{ $totalCarbs }}</span>
+                                        <span class="fs-12 d-block fw-bold  mt-3">CARB</span>
                                     </p>
                                 </div>
                             </div>
@@ -260,8 +260,8 @@
                                 wire:ignore.self>
                                 <div class="item--box macros for--proteins">
                                     <p class="text-center  mb-0">
-                                        <span class="fs-5 fw-bold  d-block">{{ $totalProteins }}</span><span
-                                            class="fs-12 d-block fw-bold mt-3">Proteins</span>
+                                        <span class="fs-18 fw-bold  d-block">{{ $totalProteins }}</span><span
+                                            class="fs-12 d-block fw-bold mt-3">PROTEIN</span>
                                     </p>
                                 </div>
                             </div>
@@ -276,8 +276,8 @@
                                 wire:ignore.self>
                                 <div class="item--box macros for--fats">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-5 fw-bold  d-block">{{ $totalFats }}</span><span
-                                            class="fs-12 d-block fw-bold  mt-3">Fat</span>
+                                        <span class="fs-18 fw-bold  d-block">{{ $totalFats }}</span><span
+                                            class="fs-12 d-block fw-bold  mt-3">FAT</span>
                                     </p>
                                 </div>
                             </div>

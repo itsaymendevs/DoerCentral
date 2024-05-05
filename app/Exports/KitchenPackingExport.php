@@ -126,7 +126,7 @@ class KitchenPackingExport implements FromCollection, WithHeadings
         // :: combineRows - dependencies
         $combineRows = array();
 
-        $counter = 0;
+        $counter = 1;
         $mealTypes = MealType::all();
         $bag = Bag::whereIn('name', ['Cool Bag', 'Cooler Bag'])->first();
 

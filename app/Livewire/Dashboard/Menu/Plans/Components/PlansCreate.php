@@ -33,7 +33,7 @@ class PlansCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans', 'PLN');
 
 
 

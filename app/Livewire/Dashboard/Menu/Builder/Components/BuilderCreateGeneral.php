@@ -32,22 +32,26 @@ class BuilderCreateGeneral extends Component
     {
 
 
+        // :: getType
+        $type = Type::find($this->instance?->typeId)?->name ?? 'MEAL';
+
+
 
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/meals');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/meals', strtoupper($type));
 
 
         if ($this->instance->secondImageFile)
-            $this->instance->secondImageFileName = $this->uploadFile($this->instance->secondImageFile, 'menu/meals');
+            $this->instance->secondImageFileName = $this->uploadFile($this->instance->secondImageFile, 'menu/meals', strtoupper($type));
 
         if ($this->instance->thirdImageFile)
-            $this->instance->thirdImageFileName = $this->uploadFile($this->instance->thirdImageFile, 'menu/meals');
+            $this->instance->thirdImageFileName = $this->uploadFile($this->instance->thirdImageFile, 'menu/meals', strtoupper($type));
 
 
         if ($this->instance->fourthImageFile)
-            $this->instance->fourthImageFileName = $this->uploadFile($this->instance->fourthImageFile, 'menu/meals');
+            $this->instance->fourthImageFileName = $this->uploadFile($this->instance->fourthImageFile, 'menu/meals', strtoupper($type));
 
 
 

@@ -119,11 +119,11 @@ class BlogsViewEditSection extends Component
 
         // 1: replaceFiles
         if ($this->instance->sideImageFile != $this->instance->sideImageFileName)
-            $this->instance->sideImageFileName = $this->uploadFile($this->instance->sideImageFile, 'extra/blogs/sections');
+            $this->instance->sideImageFileName = $this->replaceFile($this->instance->sideImageFile, 'extra/blogs/sections', $this->instance->sideImageFileName, 'BLG-SIDE');
 
 
         if ($this->instance->bottomImageFile != $this->instance->bottomImageFileName)
-            $this->instance->bottomImageFileName = $this->uploadFile($this->instance->bottomImageFile, 'extra/blogs/sections');
+            $this->instance->bottomImageFileName = $this->replaceFile($this->instance->bottomImageFile, 'extra/blogs/sections', $this->instance->bottomImageFileName, 'BLG-BOTTOM');
 
 
 

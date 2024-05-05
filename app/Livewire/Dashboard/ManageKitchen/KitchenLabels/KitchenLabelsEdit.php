@@ -105,12 +105,12 @@ class KitchenLabelsEdit extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'kitchen/labels');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'kitchen/labels', $this->instance->imageFileName, 'LB');
 
 
 
         if ($this->instance->footerImageFile != $this->instance->footerImageFileName)
-            $this->instance->footerImageFileName = $this->uploadFile($this->instance->footerImageFile, 'kitchen/labels/footers');
+            $this->instance->footerImageFileName = $this->replaceFile($this->instance->footerImageFile, 'kitchen/labels/footers', $this->instance->footerImageFileName, 'LB-FOOTER');
 
 
 

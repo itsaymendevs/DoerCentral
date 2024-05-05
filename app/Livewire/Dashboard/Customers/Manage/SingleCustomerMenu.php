@@ -373,7 +373,9 @@ class SingleCustomerMenu extends Component
             ->where('fromDate', '>=', $this->scheduleDate)
             ->where('untilDate', '<=', $this->scheduleDate)
             ->where('isCanceled', false)
+            ->latest()
             ->first();
+
 
 
 

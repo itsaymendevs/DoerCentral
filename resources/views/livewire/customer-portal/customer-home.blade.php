@@ -7,9 +7,6 @@
 
 
 
-
-
-
         {{-- :: SubMenu --}}
         <livewire:customer-portal.components.sub-menu id='{{ $customer->id }}' />
 

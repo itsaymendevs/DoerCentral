@@ -370,9 +370,9 @@ fieldset:disabled .btn {
     margin: auto;
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 50px;
+    width: 45px;
     background-color: transparent;
-    border: 3px solid #000;
+    border: 3px dashed #000;
 }
 
 .overview--box.macros-version p {
@@ -380,6 +380,9 @@ fieldset:disabled .btn {
     background-color: transparent;
 }
 
+.overview--box.macros-version h6 {
+    border-bottom: none;
+}
 .overview--box.macros-version.for-calories {
     border-color: var(--color-theme-1);
 }
@@ -433,11 +436,15 @@ fieldset:disabled .btn {
 
 /* calendar */
 .tr--ingredient {
-    background-color: var(--color-theme-1) !important;
+    background-color: #009f4d40 !important;
 }
 
 .underline-gold {
     text-decoration: underline var(--color-theme-1);
+}
+
+.underline-green {
+    text-decoration: underline #009f4d40;
 }
 
 /* addresses */

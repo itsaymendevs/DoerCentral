@@ -21,7 +21,7 @@
 
 
         {{-- mainRow --}}
-        <div class="row align-items-end pt-2 row mb-5">
+        <div class="row align-items-end justify-content-center  pt-2  mb-5">
 
 
 
@@ -62,16 +62,16 @@
 
 
             {{-- upcomingSubscription --}}
+
+
+            {{-- A: hasUpcomingSubscription --}}
+            @if ($hasUpcomingSubscription)
+
+
+
             <div class="col-12 col-sm-6 col-md-6 mb-2 mb-sm-4">
                 <div class="text-center">
 
-
-
-
-
-
-                    {{-- A: hasUpcomingSubscription --}}
-                    @if ($hasUpcomingSubscription)
 
 
 
@@ -118,17 +118,15 @@
 
 
 
-
-
-                    @endif
-                    {{-- end if - upcomingSubscription --}}
-
-
                 </div>
             </div>
             {{-- endCol --}}
 
 
+
+
+            @endif
+            {{-- end if - upcomingSubscription --}}
 
 
 
@@ -159,7 +157,7 @@
 
 
 
-                <div class="text-center text-sm-end text-md-center mb-4">
+                <div class="text-center  text-md-center mb-4">
 
 
 

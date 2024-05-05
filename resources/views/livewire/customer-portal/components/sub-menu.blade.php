@@ -10,7 +10,7 @@
 
 
             {{-- home --}}
-            <a wire:navigate class="btn fs-13 px-3
+            <a class="btn fs-13 px-3
             @if (Request::is('portals/customer/home')) active @endif" role="button"
                 href="{{ route('portals.customer.home') }}">Home</a>
 
@@ -18,7 +18,7 @@
 
 
             {{-- general --}}
-            <a wire:navigate class="btn fs-13 px-3
+            <a class="btn fs-13 px-3
             @if (Request::is('portals/customer/general')) active @endif" role="button"
                 href="{{ route('portals.customer.general') }}">General</a>
 
@@ -26,7 +26,7 @@
 
 
             {{-- Menu --}}
-            <a wire:navigate class="btn fs-13 px-3
+            <a class="btn fs-13 px-3
             @if (Request::is('portals/customer/menu')) active @endif" role="button"
                 href="{{ route('portals.customer.menu') }}">Menu</a>
 
@@ -35,7 +35,7 @@
 
 
             {{-- delivery --}}
-            <a wire:navigate class="btn fs-13 px-3
+            <a class="btn fs-13 px-3
             @if (Request::is('portals/customer/delivery')) active @endif" role="button"
                 href="{{ route('portals.customer.delivery') }}">Delivery</a>
 
@@ -51,7 +51,7 @@
 
 
             {{-- calendar --}}
-            <a wire:navigate class="btn fs-13 px-3
+            <a class="btn fs-13 px-3
             @if (Request::is('portals/customer/calendar')) active @endif" role="button"
                 href="{{ route('portals.customer.calendar') }}">Calendar</a>
 

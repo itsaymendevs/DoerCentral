@@ -20,8 +20,12 @@
 
 
 
+        {{-- :: FOR DESKTOP --}}
+
+
+
         {{-- mainRow --}}
-        <div class="row align-items-end pt-2">
+        <div class="row align-items-end pt-2 d-none d-lg-block">
 
 
             {{-- filter --}}
@@ -67,7 +71,7 @@
 
             {{-- left-right actions --}}
             <div class="col-4 mb-5 d-none d-sm-block">
-                <div class="btn-group btn--swtich-group mb-0 invisible" role="group" style="margin-bottom: 10px">
+                <div class="btn-group btn--swtich-group mb-0 d-none" role="group" style="margin-bottom: 10px">
 
                     {{-- left --}}
                     <button class="btn btn--switch-view fw-bold" type="button" disabled>
@@ -123,7 +127,12 @@
                                 {{-- :: loop - weekDates --}}
                                 @foreach ($weekDates as $weekDate)
 
-                                <th colspan="" class='mobile'>{{ date('l', strtotime($weekDate)) }}</th>
+                                <th colspan="" class='mobile'>{{ date('l', strtotime($weekDate)) }}
+                                    <br>
+                                    <span class='fs-10 text-dark fw-semibold'>
+                                        ({{ date('d / m', strtotime($weekDate)) }})
+                                    </span>
+                                </th>
 
                                 @endforeach
                                 {{-- end loop --}}
@@ -159,7 +168,7 @@
 
 
                                 {{-- 1: common - mealType --}}
-                                <td class="fw-bold fs-13 underline-gold py-3">
+                                <td class="fw-bold fs-13  py-3">
                                     {{ $mealType->name }}
                                 </td>
 
@@ -256,6 +265,218 @@
 
         </div>
         {{-- endRow --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {{-- ----------------------------------------- --}}
+        {{-- ----------------------------------------- --}}
+        {{-- ----------------------------------------- --}}
+        {{-- ----------------------------------------- --}}
+        {{-- ----------------------------------------- --}}
+        {{-- ----------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+        {{-- :: FOR MOBILE --}}
+
+
+
+
+        {{-- mainRow --}}
+        <div class="row align-items-end pt-2 d-block d-lg-none">
+
+
+            {{-- filter --}}
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4 mb-5">
+                <div class="d-flex align-items-center justify-content-between mb-1 hr--title">
+                    <hr style="width: 65%" />
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Schedule Date</label>
+                </div>
+
+
+                {{-- scheduleDate --}}
+                <input type="date" class="form--input mb-0" wire:model.live='searchScheduleDate'
+                    wire:loading.class='disabled' />
+
+            </div>
+            {{-- endFilters --}}
+
+
+
+
+
+
+
+
+
+            {{-- ---------------------------------------------------- --}}
+            {{-- ---------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+            {{-- calendarView --}}
+            <div class="col-12 mb-5">
+                <div class="table-responsive memoir--table w-100 calendar--table mobile">
+                    <table class="table table-bordered pb-3 " id="memoir--table">
+
+
+                        {{-- tableHead --}}
+                        <thead>
+                            <tr>
+                                <th class="th--md" style="min-width: 105px;"></th>
+
+                                <th colspan="" class='mobile'>{{ date('l', strtotime($searchScheduleDate)) }}</th>
+
+                            </tr>
+                        </thead>
+
+
+
+
+                        {{-- ------------------------------------------ --}}
+                        {{-- ------------------------------------------ --}}
+
+
+
+
+
+
+
+
+                        {{-- tableBody --}}
+                        <tbody>
+
+
+
+
+                            {{-- :: mealTypes --}}
+                            @foreach ($mealTypes ?? [] as $mealType)
+                            <tr key='mealType-{{ $mealType->id }}'>
+
+
+
+
+                                {{-- 1: common - mealType --}}
+                                <td class="fw-bold fs-13 py-3">
+                                    {{ $mealType->name }}
+                                </td>
+
+
+
+
+
+
+
+                                {{-- 2: scheduleDate --}}
+                                <td key='weekDay-{{ $mealType->id }}'>
+
+
+                                    {{-- loop - schedules by searchScheduleDate --}}
+                                    @foreach ($schedulesForMobile as $schedule)
+
+
+
+                                    {{-- loop - scheduleMeals --}}
+                                    @foreach ($schedule?->meals?->where('mealTypeId', $mealType->id) as $scheduleMeal)
+
+
+
+
+                                    {{-- meal-exists --}}
+                                    @if ($scheduleMeal?->meal)
+
+
+
+                                    <p class="calendar--table-meal tr--ingredient mb-0"
+                                        key='scheduleMeal-{{ $scheduleMeal->meal->id }}'>
+                                        {{ $scheduleMeal->meal->name }}
+                                    </p>
+
+
+
+                                    @endif
+                                    {{-- end if --}}
+
+
+
+
+
+                                    @endforeach
+                                    {{-- end loop - scheduleMeals --}}
+
+
+
+
+
+                                    @endforeach
+                                    {{-- end loop - schedules --}}
+
+
+
+
+
+                                </td>
+                                {{-- endTD --}}
+
+
+
+
+                            </tr>
+                            @endforeach
+                            {{-- end loop - mealTypes --}}
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        {{-- endRow --}}
+
 
 
 

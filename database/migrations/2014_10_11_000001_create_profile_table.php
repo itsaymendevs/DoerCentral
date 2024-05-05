@@ -17,6 +17,7 @@ return new class extends Migration {
             // 1: general
             $table->string('name', 255)->nullable();
             $table->text('imageFile')->nullable();
+            $table->text('preloaderImageFile')->nullable();
 
 
             // 1.2: client - server (DOER)

@@ -4,7 +4,7 @@
 
 
     {{-- 1: home --}}
-    <a wire:navigate class="btn btn--scheme fs-13
+    <a class="btn btn--scheme fs-13
     @if (Request::is('portals/customer/home')) active @endif" role="button"
         href="{{ route('portals.customer.home') }}">
         <img src="{{asset('assets/img/App/home.png')}}" /></a>
@@ -16,7 +16,7 @@
 
 
     {{-- 2: journey --}}
-    <a wire:navigate class="btn btn--scheme fs-13
+    <a class="btn btn--scheme fs-13
     @if (Request::is('portals/customer/general')) active @endif" role="button"
         href="{{ route('portals.customer.general') }}">
         <img src="{{asset('assets/img/App/journey.png')}}" /></a>

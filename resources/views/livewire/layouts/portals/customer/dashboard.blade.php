@@ -68,6 +68,7 @@
         <link href="{{ asset('assets/css/kitchen.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/simple-animate.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/swiper.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet">
 
 
 
@@ -127,6 +128,26 @@
 
 
 
+        {{-- loader --}}
+        <livewire:loaders.regular-loader />
+
+
+
+
+
+
+
+
+        {{-- -------------------------------------- --}}
+        {{-- -------------------------------------- --}}
+
+
+
+
+
+
+
+
 
 
 
@@ -160,7 +181,6 @@
 
             {{-- navbar --}}
             <livewire:components.portals.customer.navbar />
-
 
 
 

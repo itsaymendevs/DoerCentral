@@ -71,11 +71,37 @@
                                     <div class="d-flex align-items-center justify-content-center mb-1 mt-1">
 
 
-                                        {{-- selectPlan --}}
+                                        {{-- regularCustomer --}}
+                                        @if (empty($renewEmail))
+
+
                                         <button class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
                                             wire:click="determine({{ $plan->id }})" type="button"
                                             data-bs-target="#determine-customer" data-bs-toggle="modal">
                                             Select Plan</button>
+
+
+
+
+                                        {{-- B: renewCustomer --}}
+                                        @else
+
+                                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                            wire:click="prepExistingCustomer({{ $plan->id }})"
+                                            wire:loading.attr='disabled'>
+                                            Select Plan</button>
+
+
+
+
+                                        @endif
+                                        {{-- end if --}}
+
+
+
+
+
+
 
 
                                         {{-- view --}}

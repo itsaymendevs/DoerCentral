@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'lazy_placeholder' => null,
+    'lazy_placeholder' => 'livewire.loaders.logo-loader',
 
     /*
     |---------------------------------------------------------------------------
@@ -128,6 +128,7 @@ return [
 
     'navigate' => [
         'show_progress_bar' => true,
+        'progress_bar_color' => '#ffc107',
     ],
 
     /*

@@ -6,6 +6,7 @@ use App\Models\MealIngredient;
 use App\Models\MealPart;
 use Livewire\Component;
 
+
 class Promos extends Component
 {
     public function render()

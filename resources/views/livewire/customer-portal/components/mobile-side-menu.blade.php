@@ -18,14 +18,23 @@
 
 
     {{-- 2: delivery --}}
-    <a wire:navigate class="btn btn--scheme" href="{{ route('portals.customer.delivery') }}">Delivery</a>
+    <a class="btn btn--scheme" href="{{ route('portals.customer.delivery') }}">Delivery</a>
 
 
     {{-- 3: calendar --}}
-    <a wire:navigate class="btn btn--scheme" href="{{ route('portals.customer.calendar') }}">Calendar</a>
+    <a class="btn btn--scheme" href="{{ route('portals.customer.calendar') }}">Calendar</a>
 
 
 
     {{-- 4: address --}}
     <a class="btn btn--scheme" href="{{ route('portals.customer.address') }}">Manage Address</a>
+
+
+
+
+    {{-- 5: logout --}}
+    <a class="btn btn--scheme" href="{{ route('portals.customer.login') }}"
+        style="border-bottom-color: var(--bs-danger) !important;">Logout</a>
+
+
 </div>

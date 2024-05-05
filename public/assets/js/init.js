@@ -1,10 +1,12 @@
 $(document).ready(function () {
     $("img").addClass("no-blur");
+    $("#preloader").fadeOut("400");
 });
 
 document.addEventListener("livewire:navigated", function () {
     $(document).ready(function () {
         $("img").addClass("no-blur");
+        $("#preloader").fadeOut("400");
     });
 });
 

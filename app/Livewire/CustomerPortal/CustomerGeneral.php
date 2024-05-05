@@ -56,12 +56,14 @@ class CustomerGeneral extends Component
 
 
         // 1.2: makeSession - redirectStepOne
-        Session::put('renewCustomer', $instance);
+        Session::flash('renewCustomer', $instance);
 
 
 
 
         // return $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
+
 
 
 

@@ -2,8 +2,11 @@
 
 namespace App\Livewire\Layouts;
 
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
+
+#[Lazy]
 class Dashboard extends Component
 {
 

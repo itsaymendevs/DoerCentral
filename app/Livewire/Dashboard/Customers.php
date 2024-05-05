@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use stdClass;
 
 class Customers extends Component
 {
@@ -25,7 +26,6 @@ class Customers extends Component
     public $searchPlan, $searchStatus;
     public $removeId;
 
-    public CustomerSubscriptionForm $subscriptionInstance;
 
 
 
@@ -96,44 +96,20 @@ class Customers extends Component
 
 
 
-        // 1.2: flag - getBasicInformation (extra: planId)
-        $this->subscriptionInstance->planId = $customer?->latestSubscription()?->planId;
-        $this->subscriptionInstance->isExistingCustomer = true;
-
-
-        $this->subscriptionInstance->firstName = $customer->firstName;
-        $this->subscriptionInstance->lastName = $customer->lastName;
-        $this->subscriptionInstance->email = $customer->email;
-
-
-
-
-        // 1.4: get initStartDate
-        $this->subscriptionInstance->initStartDate = $customer?->latestSubscription()?->untilDate ?
-            date('Y-m-d', strtotime($customer?->latestSubscription()?->untilDate . ' +1 day')) : null;
+        // 1.2: make instance
+        $instance = new stdClass();
+        $instance->email = $customer->email;
 
 
 
 
 
 
-        // 1.5: resetVars
-        $this->subscriptionInstance->deliveryDays = [];
+        // 1.3: makeSession - redirectStepOne
+        Session::flash('renewCustomer', $instance);
 
 
-
-
-
-
-
-
-        // 1.5: makeSession - redirectStepTwo
-        Session::put('customer', $this->subscriptionInstance);
-
-
-
-
-        return $this->redirect(route('subscription.customerStepTwo', [$this->subscriptionInstance->planId]), navigate: true);
+        return $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
 

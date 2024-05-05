@@ -24,7 +24,7 @@ class CustomerCalendar extends Component
 
     // :: variables
     public $customer, $subscription;
-    public $searchFromDate = '';
+    public $searchFromDate = '', $searchScheduleDate = '';
 
 
 
@@ -136,8 +136,10 @@ class CustomerCalendar extends Component
 
 
 
-        // 1.2: fromDate - weekDates
+        // 1.2: fromDate [scheduleDate For-Mobile] - weekDates
         $this->searchFromDate == '' ? $this->searchFromDate = $this->getCurrentDate() : null;
+        $this->searchScheduleDate == '' ? $this->searchScheduleDate = $this->getCurrentDate() : null;
+
         $weekDates = $this->getWeekDates($this->searchFromDate);
 
 
@@ -159,6 +161,11 @@ class CustomerCalendar extends Component
 
 
 
+        // :: extra - forMobile
+        $schedulesForMobile = CustomerSubscriptionSchedule::where('customerSubscriptionId', $this->subscription->id)
+            ->where('scheduleDate', $this->searchScheduleDate)
+            ->get();
+
 
 
 
@@ -173,7 +180,7 @@ class CustomerCalendar extends Component
 
 
 
-        return view('livewire.customer-portal.customer-calendar', compact('weeks', 'schedules', 'weekDates', 'mealTypes'));
+        return view('livewire.customer-portal.customer-calendar', compact('weeks', 'schedules', 'schedulesForMobile', 'weekDates', 'mealTypes'));
 
 
 

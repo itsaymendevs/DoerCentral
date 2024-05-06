@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\InventoryExtraController;
 use App\Http\Controllers\Api\KitchenController;
 use App\Http\Controllers\Api\KitchenTodayController;
+use App\Http\Controllers\Api\LeadSubscriptionController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\ManagementController;
 use App\Http\Controllers\Api\MenuCalendarController;
@@ -1373,6 +1374,12 @@ Route::post('/dashboard/extra/management/users/remove', [ManagementController::c
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // ** -------------------- SUBSCRIPTION - CUSTOMER ----------------------- **
+
+
+
+// :: subscription - lead - store
+Route::post('/subscription/lead/store', [LeadSubscriptionController::class, 'storeLead']);
+
 
 
 

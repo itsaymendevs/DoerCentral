@@ -188,7 +188,6 @@
         height: 100vh !important;
         width: 100vw !important;
         align-items: end !important;
-        transform: rotateX(180deg) rotateY(180deg) !important;
     }
 
     #label--paper .isRounded {

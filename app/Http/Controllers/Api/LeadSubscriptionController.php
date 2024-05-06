@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\CustomerSubscriptionEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Lead;
+use App\Models\Notification;
 use App\Traits\HelperTrait;
 use App\Traits\MenuCalendarTrait;
 use Illuminate\Http\Request;
@@ -45,8 +47,39 @@ class LeadSubscriptionController extends Controller
 
 
 
-        // 1: phase - storeGeneralInformation
-        $lead = $this->storeRawInformation($lead, $request);
+        // 1: phase - storeGeneral
+        $lead = $this->storeGeneral($lead, $request);
+
+
+
+
+        // 2: phase - storeAllergyAndExclude
+        $lead = $this->storeAllergyAndExclude($lead, $request);
+
+
+
+
+
+        // 3: phase - storeAddresses
+        $lead = $this->storeAddresses($lead, $request);
+
+
+
+
+
+
+        // 4: phase - storeSubscription
+        $lead = $this->storeSubscription($lead, $request);
+
+
+
+
+
+
+        // 5: phase - storeTypes - mealTypes
+        $lead = $this->storeTypes($lead, $request);
+
+
 
 
 
@@ -59,6 +92,9 @@ class LeadSubscriptionController extends Controller
 
 
 
+
+
+
     } // end function
 
 
@@ -86,127 +122,38 @@ class LeadSubscriptionController extends Controller
 
 
 
-    public function storeGeneral($customer, $request)
+    public function storeGeneral($lead, $request)
     {
 
 
 
         // 1: general
-        $customer->firstName = $request->firstName;
-        $customer->lastName = $request->lastName;
+        $lead->firstName = $request->firstName;
+        $lead->lastName = $request->lastName;
 
-        $customer->email = $request->email;
-        $customer->gender = $request?->gender ?? 'Male';
-        $customer->phone = $request->phone ?? null;
-        $customer->whatsapp = $request->whatsapp ?? null;
-        $customer->password = Hash::make($request->password ?? '123456');
+        $lead->email = $request->email;
+        $lead->gender = $request?->gender ?? 'Male';
+        $lead->phone = $request->phone ?? null;
+        $lead->whatsapp = $request->whatsapp ?? null;
 
 
 
-        $customer->save();
 
+        // 1.2: existing
+        $lead->isExistingCustomer = $request->isExistingCustomer ?? false;
 
 
 
 
+        $lead->save();
 
-        // ------------------------
-        // ------------------------
 
 
 
 
 
-
-
-        // 2: createWallet
-        $customerWallet = new CustomerWallet();
-
-        $customerWallet->balance = 0;
-        $customerWallet->customerId = $customer->id;
-
-
-        $customerWallet->save();
-
-
-
-
-
-
-
-        return $customer;
-
-
-
-    } // end function
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // --------------------------------------------------------------------------------------------
-    // --------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-    public function storeAllergyAndExclude($customer, $request)
-    {
-
-
-
-        // 1: allergy
-        foreach ($request->allergyLists ?? [] as $allergyList) {
-
-
-            // :: create
-            $customerAllergy = new CustomerAllergy();
-
-            $customerAllergy->customerId = $customer->id;
-            $customerAllergy->allergyId = $allergyList;
-
-            $customerAllergy->save();
-
-        } // end loop
-
-
-
-
-
-
-
-
-
-        // 2: exclude
-        foreach ($request->excludeLists ?? [] as $excludeList) {
-
-
-            // :: create
-            $customerExclude = new CustomerExclude();
-
-            $customerExclude->customerId = $customer->id;
-            $customerExclude->excludeId = $excludeList;
-
-            $customerExclude->save();
-
-        } // end loop
-
+        // :: return
+        return $lead;
 
 
 
@@ -239,37 +186,75 @@ class LeadSubscriptionController extends Controller
 
 
 
-
-    public function storeAddresses($customer, $request)
+    public function storeAllergyAndExclude($lead, $request)
     {
 
 
 
-        // 1: create
-        $customerAddress = new CustomerAddress();
+        // 1: allergy - exclude
+        $lead->allergyLists = $request->allergyLists ? implode('_', $request->allergyLists) : null;
+        $lead->excludeLists = $request->excludeLists ? implode('_', $request->excludeLists) : null;
 
+
+        $lead->save();
+
+
+
+
+        // :: return
+        return $lead;
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function storeAddresses($lead, $request)
+    {
+
+
+
+        // 1: store
 
 
         // :: general
-        $customerAddress->name = 'Home';
-        $customerAddress->locationAddress = $request->locationAddress;
-        $customerAddress->apartment = $request->apartment ?? null;
-        $customerAddress->floor = $request->floor ?? null;
+        $lead->locationAddress = $request->locationAddress;
+        $lead->apartment = $request->apartment ?? null;
+        $lead->floor = $request->floor ?? null;
 
 
 
 
         // :: city - district - deliveryTime - customer
-        $customerAddress->cityId = $request->cityId;
-        $customerAddress->cityDistrictId = $request->cityDistrictId;
-        $customerAddress->deliveryTimeId = $request->cityDeliveryTimeId;
-        $customerAddress->customerId = $customer->id;
-
-
-
-
-        $customerAddress->save();
-
+        $lead->cityId = $request->cityId;
+        $lead->cityDistrictId = $request->cityDistrictId;
+        $lead->deliveryTimeId = $request->cityDeliveryTimeId;
 
 
 
@@ -288,40 +273,18 @@ class LeadSubscriptionController extends Controller
 
 
         // 2: deliveryDays
-        foreach ($request->deliveryDays ?? [] as $weekDay => $isChecked) {
+        $lead->deliveryDays = $request->deliveryDays ? serialize($request->deliveryDays) : null;
 
 
-
-            // :: ifChecked
-            if (boolval($isChecked)) {
-
-
-
-                // 2.1: create
-                $customerDeliveryDay = new CustomerDeliveryDay();
-
-
-
-                // :: general
-                $customerDeliveryDay->weekDay = $weekDay;
-
-
-                // :: customer - customerAddress
-                $customerDeliveryDay->customerAddressId = $customerAddress->id;
-                $customerDeliveryDay->customerId = $customer->id;
-
-
-                $customerDeliveryDay->save();
-
-
-            } // end if
-
-        } // end loop
+        $lead->save();
 
 
 
 
 
+
+        // :: return
+        return $lead;
 
 
 
@@ -356,59 +319,23 @@ class LeadSubscriptionController extends Controller
 
 
 
-    public function storeSubscription($customer, $request)
+    public function storeSubscription($lead, $request)
     {
 
 
 
-        // 1: create
-        $subscription = new CustomerSubscription();
-
-
-
-        // 1.2: general
-        $subscription->startDate = $request->startDate;
-        $subscription->planDays = intval($request->planDays);
-
-
-
-        // 1.2.2: planDeliveryDays
-        foreach ($request->deliveryDays ?? [] as $weekDay => $isChecked) {
-
-            boolval($isChecked) ?
-                $subscription->planDeliveryDays = ($subscription->planDeliveryDays ?? '') . $weekDay . '_'
-                : null;
-
-        } // end loop
-
-
-
-
-        // :: removeLastComma
-        $subscription->planDeliveryDays = rtrim($subscription->planDeliveryDays, '_');
-
-
-
-
-
-
+        // 1: general
+        $lead->startDate = $request->startDate;
+        $lead->planDays = intval($request->planDays);
 
 
 
 
 
         // 1.3: planInformation
-        $subscription->planId = $request->planId;
-        $subscription->planBundleId = $request->planBundleId;
-        $subscription->planRangeId = $request->bundleRangeId; // :: rangeId / planRangeId
-
-
-
-
-
-        // 1.3.5: planCalendar
-        $subscription->menuCalendarId = Plan::find($request->planId)->defaultCalendar()?->menuCalendarId ?? null;
-
+        $lead->planId = $request->planId;
+        $lead->planBundleId = $request->planBundleId;
+        $lead->planRangeId = $request->bundleRangeId; // :: rangeId / planRangeId
 
 
 
@@ -417,10 +344,8 @@ class LeadSubscriptionController extends Controller
 
 
         // 1.4: bagInformation
-        $bag = Bag::where('name', $request->bag)->first();
-
-        $subscription->bagId = $bag->id;
-        $subscription->bagPrice = $bag->price;
+        $lead->bag = $request->bag;
+        $lead->bagPrice = $request->bagPrice;
 
 
 
@@ -431,23 +356,8 @@ class LeadSubscriptionController extends Controller
 
 
         // 1.5: promoCodeInformation
-
-
-        // :: exists
-        if ($request->promoCodeDiscountPrice) {
-
-
-            // :: getPromoCode
-            $promoCode = PromoCode::where('code', $request->promoCode)->first();
-
-
-            $subscription->promoCode = $promoCode->code;
-            $subscription->promoCodeDiscountPrice = $request->promoCodeDiscountPrice;
-            $subscription->promoCodeId = $promoCode->id;
-
-
-        } // end if
-
+        $lead->promoCode = $request->promoCode;
+        $lead->promoCodeDiscountPrice = $request->promoCodeDiscountPrice;
 
 
 
@@ -459,9 +369,10 @@ class LeadSubscriptionController extends Controller
 
 
         // 1.6: CheckoutPrices
-        $subscription->planPrice = round(doubleval($request->totalBundleRangePrice), 2);
-        $subscription->totalPrice = round(doubleval($request->totalPrice), 2);
-        $subscription->totalCheckoutPrice = round(doubleval($request->totalCheckoutPrice), 2);
+        $lead->totalBundleRangePrice = round(doubleval($request->totalBundleRangePrice), 2);
+        $lead->planPrice = round(doubleval($request->totalBundleRangePrice), 2);
+        $lead->totalPrice = round(doubleval($request->totalPrice), 2);
+        $lead->totalCheckoutPrice = round(doubleval($request->totalCheckoutPrice), 2);
 
 
 
@@ -486,44 +397,15 @@ class LeadSubscriptionController extends Controller
 
 
         // 1.7 : paymentInformation
-        $subscription->paymentMethodId = $request->paymentMethodId ?? null;
-        $subscription->isPaymentDone = boolval($request->isPaymentDone);
+        $lead->paymentMethodId = $request->paymentMethodId ?? null;
+        $lead->paymentURL = $request->paymentURL ?? null;
+        $lead->paymentReference = $request->paymentReference ?? null;
+
+        $lead->isPaymentDone = boolval($request->isPaymentDone);
 
 
 
-
-
-
-        // 1.8: customer
-        $subscription->customerId = $customer->id;
-
-
-        $subscription->save();
-
-
-
-
-
-
-
-
-
-
-        // -------------------------------------
-        // -------------------------------------
-
-
-
-
-
-
-
-        // 1.9: deliveryInformation
-
-
-
-        // :: side-phase - storeDelivery
-        $this->storeDelivery($subscription, $customer, $request);
+        $lead->save();
 
 
 
@@ -533,7 +415,7 @@ class LeadSubscriptionController extends Controller
 
 
         // :: return
-        return $subscription;
+        return $lead;
 
 
     } // end function
@@ -550,6 +432,15 @@ class LeadSubscriptionController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
     // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
 
@@ -563,424 +454,23 @@ class LeadSubscriptionController extends Controller
 
 
 
-    public function storeDelivery($subscription, $customer, $request)
+    public function storeTypes($lead, $request)
     {
 
 
 
-        // :: root
-        $dateCounter = 0;
-        $deliveryCounter = 0;
-        $deliveryTotalCounter = intval($request->planDays);
-        $deliveryWeekDays = CustomerDeliveryDay::where('customerId', $customer->id)
-            ->get()->pluck('weekDay')->toArray();
 
+        // 1: bundleTypes
+        $lead->bundleTypes = $request->bundleTypes ? serialize($request->bundleTypes) : null;
 
 
+        $lead->save();
 
 
 
 
-        // :: loop
-        while (true) {
-
-
-
-
-            // 1: getDeliveryDate - deliveryAsWeekDay
-            $deliveryDate = date('Y-m-d', strtotime($subscription->startDate . "+{$dateCounter} days"));
-
-            $deliveryAsWeekDay = date('l', strtotime($deliveryDate));
-
-
-
-
-
-
-            // :: ifExists
-            if (in_array($deliveryAsWeekDay, $deliveryWeekDays)) {
-
-
-
-
-                // 1.2: create
-                $subscriptionDelivery = new CustomerSubscriptionDelivery();
-
-
-
-                // 1.2.1: general
-                $subscriptionDelivery->deliveryDate = $deliveryDate;
-
-
-                // 1.2.2: status - bagCollected - remarks
-                $subscriptionDelivery->status = $deliveryDate >= $this->getCurrentDate() ? 'Pending' : 'Completed';
-                $subscriptionDelivery->isBagCollected = $deliveryDate >= $this->getCurrentDate() ? false : true;
-                $subscriptionDelivery->remarks = $deliveryDate >= $this->getCurrentDate() ? null : 'Customer was migrated';
-
-
-
-
-
-                // 1.2.2: customer - customerSubscription
-                $subscriptionDelivery->customerId = $customer->id;
-                $subscriptionDelivery->planId = $subscription->planId;
-                $subscriptionDelivery->customerSubscriptionId = $subscription->id;
-
-
-
-
-                // 1.2.3: Save + increaseCounter - checkIfDone
-                $deliveryCounter++;
-                $subscriptionDelivery->save();
-
-
-
-
-
-
-
-
-                // ---------------------------------------------
-                // ---------------------------------------------
-
-
-
-
-
-
-
-                // 1.9.5: scheduleInformation
-
-
-
-                // :: side-phase - storeSchedule - Meals
-                $this->storeSchedule($subscription, $customer, $request, $subscriptionDelivery);
-
-
-
-
-
-
-
-
-
-                // ---------------------------------------------
-                // ---------------------------------------------
-
-
-
-
-
-                // :: checkIfDone - save untilDate
-                if ($deliveryCounter == $deliveryTotalCounter) {
-
-
-                    $subscription->untilDate = $deliveryDate;
-                    $subscription->save();
-
-                    break;
-
-                } // end if
-
-
-
-
-            } // end if
-
-
-
-
-
-
-
-            // :: increaseCounter
-            $dateCounter++;
-
-
-
-        } // end loop
-
-
-
-
-
-
-    } // end function
-
-
-
-
-
-
-
-
-
-
-
-
-    // --------------------------------------------------------------------------------------------
-    // --------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function storeSchedule($subscription, $customer, $request, $subscriptionDelivery)
-    {
-
-
-
-        // :: getCalendarSchedule
-        $calendarSchedule = $subscription?->calendar?->scheduleByDate($subscriptionDelivery->deliveryDate) ?? null;
-
-
-
-
-
-
-
-
-        // 1: create schedule
-        $schedule = new CustomerSubscriptionSchedule();
-
-
-
-
-        // 1.2: general
-        $schedule->status = $subscriptionDelivery->deliveryDate >= $this->getCurrentDate() ? 'Pending' : 'Completed';
-        $schedule->scheduleDate = $subscriptionDelivery->deliveryDate;
-
-
-
-
-
-        // 1.3: calendarSchedule - subscriptionDelivery
-        $schedule->menuCalendarScheduleId = $calendarSchedule?->id ?? null;
-        $schedule->customerSubscriptionDeliveryId = $subscriptionDelivery->id;
-
-
-
-        // 1.3: customer - customerSubscription
-        $schedule->customerId = $customer->id;
-        $schedule->planId = $subscription->planId;
-        $schedule->customerSubscriptionId = $subscription->id;
-
-
-
-        $schedule->save();
-
-
-
-
-
-
-
-
-
-
-        // ---------------------------------------------
-        // ---------------------------------------------
-
-
-
-
-
-
-
-        // :: loop - mealTypes - checkQuantity
-        foreach ($request->bundleTypes ?? [] as $mealTypeId => $quantity) {
-
-            if ($quantity > 0) {
-
-
-
-
-                // 2: create
-                $scheduleMeal = new CustomerSubscriptionScheduleMeal();
-
-
-                // 2.2: general
-                $scheduleMeal->cookStatus = $subscriptionDelivery->deliveryDate >= $this->getCurrentDate() ? 'Pending' : 'Packed';
-                $scheduleMeal->mealTypeId = $mealTypeId;
-
-
-
-
-
-                // 2.3: subscriptionSchedule - customer - customerSubscription
-                $scheduleMeal->subscriptionScheduleId = $schedule?->id ?? null;
-
-                $scheduleMeal->customerId = $customer->id;
-                $scheduleMeal->planId = $subscription->planId;
-                $scheduleMeal->customerSubscriptionId = $subscription->id;
-
-
-
-
-
-                // 2.4:  getMeal - CalendarSchedule (HELPER IN MenuCalendarTrait)
-                $scheduleMeal->mealId = $calendarSchedule ? $this->getScheduleMeal($subscription, $calendarSchedule, $mealTypeId) ?? null : null;
-
-
-
-
-
-
-
-                // ---------------------------------------
-                // ---------------------------------------
-
-
-
-
-
-
-
-                // 2.5: bundleRangeType - price - size
-                $planBundleRange = PlanBundleRange::where('planBundleId', $subscription?->planBundleId)
-                    ->where('planRangeId', $subscription?->planRangeId)
-                    ->where('isForWebsite', true)
-                    ->first();
-
-
-
-
-
-                // 2.5.1: getBundleRangeType
-                $bundleRangeType = $planBundleRange?->typeByMealType($mealTypeId) ?? null;
-
-
-
-
-                // 2.5.2: bundleRangeType - price - size
-                $scheduleMeal->sizeId = $bundleRangeType?->sizeId ?? null;
-                $scheduleMeal->sizePrice = $bundleRangeType?->price ?? null;
-                $scheduleMeal->sizeCalories = $bundleRangeType?->calories ?? null;
-
-                $scheduleMeal->bundleRangeTypeId = $bundleRangeType?->id ?? null;
-
-
-
-
-
-
-
-                $scheduleMeal->save();
-
-
-
-
-
-
-
-            } // end if
-
-
-        } // end loop
-
-
-
-
-
-    } // end function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // --------------------------------------------------------------------------------------------
-    // --------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-    public function storeTypes($subscription, $customer, $request)
-    {
-
-
-
-        // :: loop - bundleTypes - mealTypes
-        foreach ($request->bundleTypes ?? [] as $mealTypeId => $quantity) {
-
-
-
-            // :: checkQuantity
-            if ($quantity > 0) {
-
-
-
-                // :: getMealType
-                $mealType = MealType::find($mealTypeId);
-
-
-
-
-
-                // 1: create
-                $subscriptionType = new CustomerSubscriptionType();
-
-
-
-                // 1.2: general
-                $subscriptionType->quantity = $quantity;
-                $subscriptionType->mealTypeId = $mealType->id;
-                $subscriptionType->typeId = $mealType->type->id;
-
-
-
-
-                // 1.3: customer - customerSubscription
-                $subscriptionType->customerId = $customer->id;
-                $subscriptionType->customerSubscriptionId = $subscription->id;
-
-
-
-                $subscriptionType->save();
-
-
-
-
-            } // end if
-
-
-
-        } // end loop
-
-
-
+        // :: return
+        return $lead;
 
 
     } // end function
@@ -1012,8 +502,10 @@ class LeadSubscriptionController extends Controller
 
 
 
-    public function storeNotification($subscription)
+    public function storeNotification($lead)
     {
+
+
 
 
 
@@ -1023,15 +515,15 @@ class LeadSubscriptionController extends Controller
 
         // 1.2: general
         $notification->date = $this->getCurrentDate();
-        $notification->title = 'New Subscription';
-        $notification->content = "{$subscription->customer->firstName} {$subscription->customer->lastName} has subscribed to {$subscription->plan->name}";
+        $notification->title = 'New Lead';
+        $notification->content = "{$lead->firstName} {$lead->lastName} has subscribed to {$lead->plan->name}";
 
 
 
 
         // 1.3: route
-        $notification->routeLink = "dashboard.singleCustomer";
-        $notification->routePayload = $subscription->customer->id;
+        $notification->routeLink = "dashboard.leads";
+        $notification->routePayload = $lead->id;
 
 
 
@@ -1063,7 +555,7 @@ class LeadSubscriptionController extends Controller
 
 
         // 2: makePusherEvent
-        event(new CustomerSubscriptionEvent($subscription->customer->fullName(), $subscription->plan->name));
+        event(new CustomerSubscriptionEvent($lead->fullName(), $lead->plan->name));
 
 
 
@@ -1072,6 +564,133 @@ class LeadSubscriptionController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function convertLead(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // :: createLead
+        $lead = Lead::find($request->id);
+
+
+
+
+        // 1: updatePayment
+        $lead->isPaymentDone = true;
+        $lead->save();
+
+
+
+
+
+
+
+
+
+        // 2: restructureToCustomer
+        $lead->bundleTypes = unserialize($lead->bundleTypes);
+        $lead->deliveryDays = unserialize($lead->deliveryDays);
+        $lead->allergyList = explode('_', $lead->allergyList);
+        $lead->excludeLists = explode('_', $lead->excludeLists);
+
+
+
+
+
+        // -----------------------------------------------------
+        // -----------------------------------------------------
+
+
+
+
+
+
+
+        // 3: createCustomer
+
+
+
+
+        // 3.1: regular - existing
+        if (! $lead->isExistingCustomer) {
+
+
+            $response = $this->makeRequest('subscription/customer/store', $lead);
+
+
+
+        } else {
+
+
+            $response = $this->makeRequest('subscription/customer/existing/store', $lead);
+
+
+        } // end if
+
+
+
+
+
+
+
+
+
+
+        // :: prepResponse
+        return response()->json(['message' => 'Thanks for your subscription, enjoy your meals!'], 200);
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
 
 
 

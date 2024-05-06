@@ -1377,8 +1377,9 @@ Route::post('/dashboard/extra/management/users/remove', [ManagementController::c
 
 
 
-// :: subscription - lead - store
+// :: subscription - lead - store - convert
 Route::post('/subscription/lead/store', [LeadSubscriptionController::class, 'storeLead']);
+Route::post('/subscription/lead/convert', [LeadSubscriptionController::class, 'convertLead']);
 
 
 

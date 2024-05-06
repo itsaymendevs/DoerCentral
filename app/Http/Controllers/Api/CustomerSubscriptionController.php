@@ -547,8 +547,10 @@ class CustomerSubscriptionController extends Controller
 
 
         // 1.7 : paymentInformation
-        $subscription->paymentMethodId = $request->paymentMethodId ?? null;
+        $subscription->paymentURL = $request?->paymentURL ?? null;
         $subscription->isPaymentDone = boolval($request->isPaymentDone);
+        $subscription->paymentMethodId = $request->paymentMethodId ?? null;
+        $subscription->paymentReference = $request?->paymentReference ?? null;
 
 
 

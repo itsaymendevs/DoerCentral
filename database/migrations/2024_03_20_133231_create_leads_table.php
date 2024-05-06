@@ -16,7 +16,6 @@ return new class extends Migration {
 
 
             // 1: general
-            $table->text('token')->nullable();
             $table->text('email')->nullable();
 
             $table->string('gender', 100)->nullable();
@@ -75,6 +74,7 @@ return new class extends Migration {
             $table->date('startDate')->nullable();
             $table->integer('planDays')->nullable();
             $table->text('deliveryDays')->nullable();
+            $table->text('planDeliveryDays')->nullable();
 
 
 
@@ -108,9 +108,12 @@ return new class extends Migration {
 
 
 
+
             // 2.2: promoCode - promoCodeDiscountPrice
             $table->string('promoCode', 100)->nullable();
             $table->double('promoCodeDiscountPrice', 15)->nullable()->default(0);
+
+
 
 
 
@@ -151,9 +154,8 @@ return new class extends Migration {
             // 2.3: bundleTypes - bag - initialPrices
             $table->string('bundleTypes', 255)->nullable();
 
-            $table->double('bundleRangePricePerDay', 15)->nullable();
             $table->double('totalBundleRangePrice', 15)->nullable();
-
+            $table->double('planPrice', 15)->nullable();
             $table->double('totalPrice', 15)->nullable();
             $table->double('totalCheckoutPrice', 15)->nullable();
 

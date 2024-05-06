@@ -50,8 +50,8 @@ return new class extends Migration {
             $table->foreign('cityDistrictId')->references('id')->on('city_districts')->onDelete('set null');
 
 
-            $table->bigInteger('deliveryTimeId')->unsigned()->nullable();
-            $table->foreign('deliveryTimeId')->references('id')->on('city_delivery_times')->onDelete('set null');
+            $table->bigInteger('cityDeliveryTimeId')->unsigned()->nullable();
+            $table->foreign('cityDeliveryTimeId')->references('id')->on('city_delivery_times')->onDelete('set null');
 
 
 
@@ -74,7 +74,7 @@ return new class extends Migration {
             $table->date('startDate')->nullable();
             $table->integer('planDays')->nullable();
             $table->text('deliveryDays')->nullable();
-            $table->text('planDeliveryDays')->nullable();
+
 
 
 

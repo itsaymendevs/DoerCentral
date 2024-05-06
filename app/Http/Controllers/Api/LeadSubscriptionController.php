@@ -9,6 +9,7 @@ use App\Models\Notification;
 use App\Traits\HelperTrait;
 use App\Traits\MenuCalendarTrait;
 use Illuminate\Http\Request;
+use stdClass;
 
 class LeadSubscriptionController extends Controller
 {
@@ -254,7 +255,7 @@ class LeadSubscriptionController extends Controller
         // :: city - district - deliveryTime - customer
         $lead->cityId = $request->cityId;
         $lead->cityDistrictId = $request->cityDistrictId;
-        $lead->deliveryTimeId = $request->cityDeliveryTimeId;
+        $lead->cityDeliveryTimeId = $request->cityDeliveryTimeId;
 
 
 
@@ -630,42 +631,15 @@ class LeadSubscriptionController extends Controller
         // 2: restructureToCustomer
         $lead->bundleTypes = unserialize($lead->bundleTypes);
         $lead->deliveryDays = unserialize($lead->deliveryDays);
-        $lead->allergyList = explode('_', $lead->allergyList);
-        $lead->excludeLists = explode('_', $lead->excludeLists);
+        $lead->allergyLists = $lead?->allergyLists ? explode('_', $lead->allergyLists) : null;
+        $lead->excludeLists = $lead?->excludeLists ? explode('_', $lead->excludeLists) : null;
 
 
 
 
 
-        // -----------------------------------------------------
-        // -----------------------------------------------------
-
-
-
-
-
-
-
-        // 3: createCustomer
-
-
-
-
-        // 3.1: regular - existing
-        if (! $lead->isExistingCustomer) {
-
-
-            $response = $this->makeRequest('subscription/customer/store', $lead);
-
-
-
-        } else {
-
-
-            $response = $this->makeRequest('subscription/customer/existing/store', $lead);
-
-
-        } // end if
+        // :: renaming
+        $lead->bundleRangeId = $lead->planBundleId;
 
 
 
@@ -677,8 +651,11 @@ class LeadSubscriptionController extends Controller
 
 
         // :: prepResponse
-        return response()->json(['message' => 'Thanks for your subscription, enjoy your meals!'], 200);
+        $response = new stdClass();
+        $response->lead = $lead;
 
+
+        return response()->json($response, 200);
 
 
 

@@ -78,9 +78,20 @@
 
 
                     {{-- customers --}}
+
+                    {{-- :: rolePermission - customers --}}
+
+                    {{-- @if (session('globalUser')->checkPermission('Customers')) --}}
+
+
                     <a class="btn  navbar--menu-button
                     @if (Request::is('dashboard/customers', 'dashboard/customers/*', 'dashboard/customers/SOA')) active @endif"
                         href="{{ route('dashboard.customers') }}" wire:navigate>Customers</a>
+
+
+
+                    {{-- @endif --}}
+                    {{-- end if - rolePermission --}}
 
 
 

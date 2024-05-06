@@ -140,6 +140,30 @@ class Customer extends Authenticatable
 
 
 
+
+    public function hasUpcomingSubscription()
+    {
+
+
+
+        // :: determine hasUpcomingSubscription
+        $hasUpcomingSubscription = ($this->currentSubscription()?->id != $this->latestSubscription()?->id) ? true : false;
+
+
+        return $hasUpcomingSubscription;
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
     // ---------------------------------------------------
     // ---------------------------------------------------
 

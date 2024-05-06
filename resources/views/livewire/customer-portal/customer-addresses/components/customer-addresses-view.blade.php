@@ -295,7 +295,7 @@
         {{-- submitButton --}}
         <div class="col-8 col-md-4 text-center">
             <button wire:loading.attr='disabled'
-                class="btn btn--scheme btn--scheme-1 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center">
+                class="btn btn--scheme btn--scheme-1 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center disabled">
                 Update
             </button>
         </div>

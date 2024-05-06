@@ -556,9 +556,11 @@
 
                     {{-- 2: renew --}}
                     <div class='mx-2'>
-                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32 "
-                            data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="Re-New"
-                            wire:click='reNew({{ $customer->id }})'>
+
+                        {{-- :: rule - twoSubscription --}}
+                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32
+                        @if ($customer->hasUpcomingSubscription()) disabled @endif" data-bs-toggle="tooltip"
+                            data-bss-tooltip="" type="button" title="Re-New" wire:click='reNew({{ $customer->id }})'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise fs-5">
                                 <path fill-rule="evenodd"

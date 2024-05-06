@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Models\User;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -49,10 +51,20 @@ class Login extends Component
         if (! empty($response?->token)) {
 
 
+
+            // 1.3: getGlobalUser
+            $user = User::find($response->userId);
+
+
+
+
             // 1.2: makeSessions
             Session::put('token', $response->token);
             Session::put('userId', $response->userId);
             Session::put('userName', $response->userName);
+            Session::put('globalUser', $user);
+
+
 
 
 
@@ -69,8 +81,9 @@ class Login extends Component
 
 
 
-            // 1.3: determine APP_TYPE
 
+
+            // 1.4: determine APP_TYPE
 
             if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH')
                 return $this->redirect(route('dashboard.menuPlans'), navigate: false);
@@ -113,7 +126,7 @@ class Login extends Component
 
 
         // :: removeSessions
-        Session::forget('token');
+        Session::forget(['token', 'userId', 'userName', 'globalUser']);
 
         return view('livewire.login');
 

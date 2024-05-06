@@ -320,8 +320,8 @@
 
 
                                         {{-- 2: re-new --}}
-                                        <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
+                                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32
+                                            @if ($customer->hasUpcomingSubscription()) disabled @endif"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             type="button" title="Re-New" wire:click='reNew({{ $customer->id }})'
                                             wire:loading.attr='disabled'><svg xmlns="http://www.w3.org/2000/svg"
@@ -617,8 +617,8 @@
 
 
                                         {{-- 2: re-new --}}
-                                        <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32 "
+                                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32
+                                            @if ($customer->hasUpcomingSubscription()) disabled @endif"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             type="button" title="Re-New" wire:click='reNew({{ $customer->id }})'
                                             wire:loading.attr='disabled'><svg xmlns="http://www.w3.org/2000/svg"

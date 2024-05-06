@@ -228,7 +228,6 @@ class Customers extends Component
 
 
 
-
         // ---------------------------------
         // ---------------------------------
 
@@ -240,8 +239,15 @@ class Customers extends Component
         // 1.2: customers - makeFilter
         $customersRaw = Customer::where('firstName', 'LIKE', '%' . $this->searchCustomer . '%')
             ->orWhere('lastName', 'LIKE', '%' . $this->searchCustomer . '%')
-            ->whereHas('subscriptions')
+            ->orWhere('email', 'LIKE', '%' . $this->searchCustomer . '%')
             ->get();
+
+
+
+
+
+
+
 
 
 

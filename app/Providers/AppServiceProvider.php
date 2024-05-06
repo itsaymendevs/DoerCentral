@@ -4,8 +4,11 @@ namespace App\Providers;
 
 use App\Models\CustomerSubscriptionSetting;
 use App\Models\Profile;
+use App\Models\RolePermission;
+use App\Models\User;
 use App\Models\VersionPermission;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -84,9 +87,6 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-
-
-
         // ------------------------------------------------
         // ------------------------------------------------
 
@@ -108,6 +108,8 @@ class AppServiceProvider extends ServiceProvider
 
 
 
+
+
         // ------------------------------------------------
         // ------------------------------------------------
 
@@ -117,7 +119,7 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-        // 2.1: subscriptionSettings
+        // 3: subscriptionSettings
         $subscriptionSettings = CustomerSubscriptionSetting::first();
 
         View::share('subscriptionSettings', $subscriptionSettings);

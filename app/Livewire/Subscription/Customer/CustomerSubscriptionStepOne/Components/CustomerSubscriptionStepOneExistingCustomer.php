@@ -67,6 +67,34 @@ class CustomerSubscriptionStepOneExistingCustomer extends Component
 
 
 
+            // :: check hasUpcomingSubscription
+            if ($customer->hasUpcomingSubscription()) {
+
+
+                // :: halt
+                $this->makeAlert('info', 'Customer already has upcoming subscription');
+                return false;
+
+
+            } // end if
+
+
+
+
+
+
+
+
+
+            // ----------------------------------------------
+            // ----------------------------------------------
+
+
+
+
+            // :: continue
+
+
             // 1.3: flag - getBasicInformation
             $this->instance->isExistingCustomer = true;
 

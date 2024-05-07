@@ -32,6 +32,36 @@ return new class extends Migration {
 
 
 
+
+            // ----------------------------------
+            // ----------------------------------
+
+
+
+
+
+
+
+
+            // 0: dashboardModule
+            $table->boolean('DashboardModuleHasRevenue')->nullable()->default(1);
+            $table->boolean('DashboardModuleHasRevenuePerPlan')->nullable()->default(1);
+            $table->boolean('DashboardModuleHasCustomersPerPlan')->nullable()->default(1);
+
+
+            $table->boolean('DashboardModuleHasUnassignedMeals')->nullable()->default(1);
+            $table->boolean('DashboardModuleHasSoonExpiringCustomers')->nullable()->default(1);
+            $table->boolean('DashboardModuleHasLatestSubscribers')->nullable()->default(1);
+
+
+
+
+
+
+
+
+
+
             // ----------------------------------
             // ----------------------------------
 

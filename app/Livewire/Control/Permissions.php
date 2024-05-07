@@ -54,10 +54,28 @@ class Permissions extends Component
         // 1: displayTitles
         $displayTitles = [
 
-            // 1.1: general
+            // 1: general
             'hasAdminView' => 'Admin View',
             'hasMasterView' => 'Master View',
             'isProcessing' => 'Hide On-going Functions',
+
+
+
+
+
+
+            // 1.1: dashboard
+            'DashboardModuleHasRevenue' => 'Revenue',
+            'DashboardModuleHasRevenuePerPlan' => 'Plans Revenue',
+            'DashboardModuleHasCustomersPerPlan' => 'Customers Per Plan',
+            'DashboardModuleHasUnassignedMeals' => 'Unassigned Meals',
+            'DashboardModuleHasSoonExpiringCustomers' => 'Soon Expiring',
+            'DashboardModuleHasLatestSubscribers' => 'Latest Subscribers',
+
+
+
+
+
 
 
             // 1.2: customer
@@ -164,8 +182,16 @@ class Permissions extends Component
 
 
 
-        // 2.1: general
+        // :: general
         $generalPermissions = VersionPermission::get(['hasAdminView', 'hasMasterView', 'isProcessing'])->first()->toArray();
+
+
+
+
+        // 2.1: dashboard
+        $dashboardPermissions = VersionPermission::get(['DashboardModuleHasRevenue', 'DashboardModuleHasRevenuePerPlan', 'DashboardModuleHasCustomersPerPlan', 'DashboardModuleHasUnassignedMeals', 'DashboardModuleHasSoonExpiringCustomers', 'DashboardModuleHasLatestSubscribers'])->first()->toArray();
+
+
 
 
 
@@ -222,7 +248,7 @@ class Permissions extends Component
 
 
 
-        return view('livewire.control.permissions', compact('generalPermissions', 'calendarSettingPermissions', 'customerPermissions', 'kitchenPermissions', 'inventoryPermissions', 'salesPermissions', 'planBuilderPermissions', 'extraPermissions', 'displayTitles'));
+        return view('livewire.control.permissions', compact('generalPermissions', 'dashboardPermissions', 'calendarSettingPermissions', 'customerPermissions', 'kitchenPermissions', 'inventoryPermissions', 'salesPermissions', 'planBuilderPermissions', 'extraPermissions', 'displayTitles'));
 
 
 

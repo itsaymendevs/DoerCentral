@@ -98,6 +98,14 @@
 
 
 
+
+
+
+
+
+
+
+
                     {{-- ---------------------------------------------- --}}
                     {{-- ---------------------------------------------- --}}
                     {{-- ---------------------------------------------- --}}
@@ -370,7 +378,95 @@
 
 
 
-                    {{-- 5: customers --}}
+
+
+
+                    {{-- 5: dashboard --}}
+                    <div class="table-responsive memoir--table w-100">
+                        <table class="table table-bordered" id="memoir--table">
+
+
+                            {{-- thead--}}
+                            <thead>
+                                <tr>
+                                    <th class="text-start th--sm ps-3">Dashboard</th>
+                                    <th class="th--xs">Enabled</th>
+                                </tr>
+                            </thead>
+
+
+
+
+                            {{-- ---------------------- --}}
+                            {{-- ---------------------- --}}
+
+
+
+
+
+
+                            {{-- tbody --}}
+                            <tbody>
+
+
+                                {{-- loop - dashboard --}}
+                                @foreach ($dashboardPermissions ?? [] as $key => $dashboardPermission)
+                                <tr>
+
+
+
+
+                                    {{-- name --}}
+                                    <td class="text-start fw-semibold ps-3 fs-14">
+                                        {{ $displayTitles[$key] }}
+                                    </td>
+
+
+                                    {{-- toggleBox --}}
+                                    <td class="fw-bold">
+                                        <div class="form-check form-switch form-check-inline input--switch">
+                                            <input class="form-check-input" type="checkbox" @if($dashboardPermission)
+                                                checked @endif id="formCheck-{{ $globalSNCounter++ }}"
+                                                wire:change="update('{{ $key }}')" wire:loading.attr='disabled'
+                                                wire:target='update' />
+                                            <label class="form-check-label d-none" for="formCheck-1">Label</label>
+                                        </div>
+                                    </td>
+
+
+
+
+                                </tr>
+                                @endforeach
+                                {{-- end loop --}}
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    {{-- endCol --}}
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------------- --}}
+                    {{-- ---------------------------------------------- --}}
+                    {{-- ---------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+                    {{-- 5.5: customers --}}
                     <div class="table-responsive memoir--table w-100">
                         <table class="table table-bordered" id="memoir--table">
 

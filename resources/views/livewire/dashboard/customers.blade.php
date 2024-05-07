@@ -523,6 +523,7 @@
                                 <th class="th--md">Customer</th>
                                 <th class="th--md">Plan</th>
                                 <th class="th--sm">Status</th>
+                                <th class="th--sm">Subscription End</th>
                                 <th class="th--sm"></th>
                             </tr>
                         </thead>
@@ -585,6 +586,22 @@
                                 </td>
 
 
+
+
+
+
+                                {{-- ------------------------- --}}
+                                {{-- ------------------------- --}}
+
+
+
+
+
+
+                                {{-- untilDate --}}
+                                <td class="fs-14">
+                                    {{ date('d / m / Y', strtotime($customer->currentSubscription()->untilDate)) }}
+                                </td>
 
 
 

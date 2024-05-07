@@ -167,7 +167,8 @@ class Users extends Component
 
 
         // 1: dependencies
-        $users = User::where('name', 'LIKE', '%' . $this->searchUser . '%')->get();
+        // ** 1st for Admin
+        $users = User::where('id', '!=', 1)->where('name', 'LIKE', '%' . $this->searchUser . '%')->get();
 
 
 

@@ -74,7 +74,7 @@
         <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/checkout.css') }}" rel="stylesheet">
-
+        <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
 
 
 
@@ -94,8 +94,10 @@
 
 
 
+
         {{-- head --}}
         @yield('head')
+
 
 
     </head>

@@ -116,7 +116,42 @@
 
 
                                     {{-- wrapper --}}
-                                    <div class="d-flex justify-content-around">
+                                    <div class="d-flex flex-column justify-content-around">
+
+
+
+                                        {{-- isActive --}}
+                                        <p class="text-center fs-13 fw-bold text-danger mb-3">
+
+
+                                            {{-- A: isActive --}}
+                                            @if ($user->isActive)
+
+
+
+                                            <span class="fw-bold badge badge--scheme-3 fs-11 py-1 px-3">Active</span>
+
+
+
+                                            {{-- B: notActive --}}
+                                            @else
+
+
+                                            <span class="fw-bold badge badge--remove fs-11 py-1 px-3">Inactive</span>
+
+
+                                            @endif
+                                            {{-- end if --}}
+
+                                        </p>
+
+
+
+
+
+
+
+
 
 
 
@@ -150,41 +185,6 @@
 
 
 
-
-                                        {{-- isActive --}}
-                                        <p class="text-center fs-13 fw-bold text-danger mb-0">
-
-
-
-                                            {{-- A: isActive --}}
-                                            @if ($user->isActive)
-
-
-                                            <button
-                                                class="btn btn--raw-icon fs-14 d-inline-flex align-items-center justify-content-center scale--3 w-auto fw-semibold">
-                                                Enabled
-                                            </button>
-
-
-
-
-                                            {{-- B: notActive --}}
-                                            @else
-
-
-
-                                            <button
-                                                class="btn btn--raw-icon fs-14 text-danger d-inline-flex align-items-center justify-content-center scale--3 w-auto fw-semibold"
-                                                data-bs-toggle="tooltip" data-bss-tooltip="" type="button"
-                                                title="Restricted Access">
-                                                Disabled
-                                            </button>
-
-
-
-                                            @endif
-
-                                        </p>
                                     </div>
                                 </div>
                                 {{-- endCol --}}

@@ -56,7 +56,7 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
         // :: createCustomer
-        $customer = Customer::where('email', $request->email)->first();
+        $customer = Customer::where('email', $request->email)->latest()->first();
 
 
 
@@ -189,9 +189,26 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
 
+        // :: convertToArray
+        $deliveryDaysInArray = [];
+
+
+        if (! is_array($request?->deliveryDays)) {
+
+            $deliveryDaysInArray = (array) $request->deliveryDays;
+
+        } // end if
+
+
+
+
+
+
+
+
 
         // A: planDeliveryDays
-        if (count($request?->deliveryDays ?? []) > 0) {
+        if (count($deliveryDaysInArray ?? []) > 0) {
 
 
 
@@ -329,9 +346,10 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
         // 1.7 : paymentInformation
-        $subscription->paymentMethodId = $request->paymentMethodId ?? null;
+        $subscription->paymentURL = $request?->paymentURL ?? null;
         $subscription->isPaymentDone = boolval($request->isPaymentDone);
-
+        $subscription->paymentMethodId = $request->paymentMethodId ?? null;
+        $subscription->paymentReference = $request?->paymentReference ?? null;
 
 
 

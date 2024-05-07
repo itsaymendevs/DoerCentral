@@ -72,7 +72,11 @@
 
 
                     {{-- dashboard --}}
-                    <button class="btn navbar--menu-button" type="button">Dashboard</button>
+                    <a wire:navigate href="{{ route('dashboard.home') }}" class="btn navbar--menu-button
+                        @if (Request::is('dashboard')) active @endif">Dashboard</a>
+
+
+
 
 
 

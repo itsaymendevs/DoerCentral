@@ -35,6 +35,19 @@ class CustomerSubscriptionScheduleMeal extends Model
 
 
 
+    public function plan()
+    {
+
+        return $this->belongsTo(Plan::class, 'planId');
+
+    } // end function
+
+
+
+
+
+
+
     public function schedule()
     {
 

@@ -99,10 +99,12 @@ class CustomerSubscriptionStepOneExistingCustomer extends Component
             $this->instance->isExistingCustomer = true;
 
 
+
             $this->instance->firstName = $customer->firstName;
             $this->instance->lastName = $customer->lastName;
             $this->instance->email = $customer->email;
-
+            $this->instance->phone = $customer->phone;
+            $this->instance->whatsapp = $customer->whatsapp;
 
 
 

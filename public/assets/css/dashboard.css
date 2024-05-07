@@ -1,0 +1,4 @@
+.dashboard--wrapper .overview--box h6 {
+    background-color: var(--bg-theme-secondary);
+    border-radius: var(--radius) var(--radius) 0px 0px;
+}

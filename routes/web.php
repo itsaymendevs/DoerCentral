@@ -20,6 +20,7 @@ use App\Livewire\Dashboard\Customers\CustomersStateOfAccount;
 use App\Livewire\Dashboard\Delivery;
 use App\Livewire\Dashboard\Extra\Management\Roles;
 use App\Livewire\Dashboard\Extra\Management\Users;
+use App\Livewire\Dashboard\Home;
 use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\ManageKitchen\KitchenContainers;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels;
@@ -201,6 +202,26 @@ Route::middleware(['auth.user'])->group(function () {
 
     // :: CLIENT ROUTES
     if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
+
+
+
+
+
+
+
+
+        // 1: home
+        Route::get('dashboard', Home::class)->name('dashboard.home');
+
+
+
+
+
+
+
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 

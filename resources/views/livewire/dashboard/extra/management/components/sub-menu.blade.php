@@ -18,9 +18,20 @@
 
 
     {{-- 2: departments --}}
+
+
+    {{-- :: permission - hasDepartments --}}
+    @if ($versionPermission->extraModuleHasDepartments)
+
+
     <a wire:navigate
         class="btn fs-13 @if (Request::is('dashboard/extra/management/departments', 'dashboard/extra/management/departments/*')) active @endif"
         role="button" href="{{ route('dashboard.management.roles') }}" role=" button">Departments</a>
+
+
+    @endif
+    {{-- end if - permission --}}
+
 
 
 

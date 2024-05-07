@@ -214,20 +214,48 @@
 
 
                             {{-- management --}}
+
+
+
+                            {{-- :: permission - hasManagement --}}
+                            @if ($versionPermission->extraModuleHasManagement)
+
+
+
+
                             <a wire:navigate href="{{ route('dashboard.management.users') }}"
                                 class="dropdown-item fw-semibold
                                @if (Request::is('dashboard/extra/management', 'dashboard/extra/management/*')) active @endif">Management</a>
 
 
 
+                            @endif
+                            {{-- end if - permission --}}
+
+
+
+
+
+
+
+
 
 
                             {{-- app & website --}}
+
+                            {{-- :: permission - hasWebsite --}}
+                            @if ($versionPermission->extraModuleHasWebsite)
+
+
+
                             <a wire:navigate href="{{ route('dashboard.blogs') }}"
                                 class="dropdown-item fw-semibold
                                 @if (Request::is('dashboard/extra/blogs', 'dashboard/extra/blogs/*')) active @endif">App
                                 &amp; Website</a>
 
+
+                            @endif
+                            {{-- end if - permission --}}
 
 
 

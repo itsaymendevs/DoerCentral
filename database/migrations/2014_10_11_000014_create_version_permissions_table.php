@@ -254,6 +254,18 @@ return new class extends Migration {
 
 
 
+            // 7.2: management - website
+            $table->boolean('extraModuleHasManagement')->nullable()->default(1);
+            $table->boolean('extraModuleHasWebsite')->nullable()->default(1);
+
+
+            // 7.3: blogs - banners
+            $table->boolean('extraModuleHasDepartments')->nullable()->default(1);
+            $table->boolean('extraModuleHasBlogs')->nullable()->default(1);
+            $table->boolean('extraModuleHasBanners')->nullable()->default(1);
+
+
+
 
 
 

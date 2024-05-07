@@ -136,6 +136,11 @@ class Permissions extends Component
 
             // 1.8: extra
             'extraModuleHasModule' => 'Extra Module',
+            'extraModuleHasManagement' => 'Management',
+            'extraModuleHasDepartments' => 'Departments',
+            'extraModuleHasWebsite' => 'App & Website',
+            'extraModuleHasBlogs' => 'Website Blogs',
+            'extraModuleHasBanners' => 'Website Banners',
 
         ];
 
@@ -211,7 +216,7 @@ class Permissions extends Component
 
 
         // 2.8: extra
-        $extraPermissions = VersionPermission::get(['extraModuleHasModule'])->first()->toArray();
+        $extraPermissions = VersionPermission::get(['extraModuleHasModule', 'extraModuleHasManagement', 'extraModuleHasDepartments', 'extraModuleHasWebsite', 'extraModuleHasBlogs', 'extraModuleHasBanners'])->first()->toArray();
 
 
 

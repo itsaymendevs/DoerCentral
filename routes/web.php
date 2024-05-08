@@ -18,6 +18,7 @@ use App\Livewire\Dashboard\Customers\Manage\SingleCustomerHistory;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerMenu;
 use App\Livewire\Dashboard\Customers\CustomersStateOfAccount;
 use App\Livewire\Dashboard\Delivery;
+use App\Livewire\Dashboard\Extra\Management\ActivityLog;
 use App\Livewire\Dashboard\Extra\Management\Roles;
 use App\Livewire\Dashboard\Extra\Management\Users;
 use App\Livewire\Dashboard\Home;
@@ -816,15 +817,38 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 17: extra - management- roles - create - edit - remove
+        // 17: extra - management- users - create - edit - remove
+        Route::get('dashboard/extra/management/users', Users::class)->name('dashboard.management.users');
+
+
+
+
+
+
+        // ---------
+
+
+
+
+
+
+        // 17.2: extra - management- roles - create - edit - remove
         Route::get('dashboard/extra/management/departments', Roles::class)->name('dashboard.management.roles');
 
 
 
 
-        // 17.5: extra - management- users - create - edit - remove
-        Route::get('dashboard/extra/management/users', Users::class)->name('dashboard.management.users');
 
+
+
+        // ---------
+
+
+
+
+
+        // 17.3: extra - management- activity
+        Route::get('dashboard/extra/management/activity', ActivityLog::class)->name('dashboard.management.activity');
 
 
 

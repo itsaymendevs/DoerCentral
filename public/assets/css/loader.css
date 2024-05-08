@@ -18,7 +18,7 @@
 }
 
 .preloader--bg {
-    background: linear-gradient(270deg, #1f1f1f, #ffffff);
+    background: linear-gradient(270deg, #1f1f1f, #1d1e24);
     background-size: 400% 400%;
 
     -webkit-animation: loader-gradient 6s ease infinite;

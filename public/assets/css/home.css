@@ -276,3 +276,64 @@
     height: 16px;
     width: 55px;
 }
+
+/* clock */
+
+#container-clock {
+    height: 350px;
+    width: 100%;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+    margin: 0;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #000;
+}
+
+.highcharts-data-table tr:hover {
+    background: #000;
+}
+
+.highcharts-background {
+    fill: transparent !important;
+}
+
+.highcharts-exporting-group {
+    display: none !important;
+}
+
+.clock--caption {
+    color: black !important;
+    fill: black !important;
+}

@@ -9,6 +9,13 @@
 
 
 
+        {{-- clockScripts --}}
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
 
 
         @endsection
@@ -53,28 +60,8 @@
 
 
 
-
-        {{-- overviewRow --}}
-        <div class="row align-items-center justify-content-center mb-3 dashboard--wrapper">
-
-
-
-
-
-
-
-
-            {{-- :: permission - hasCustomerRevenue--}}
-            @if ($versionPermission->DashboardModuleHasRevenue)
-
-
-
-
-
-            {{-- subtitle --}}
-            <div class="col-12 mb-2 text-center">
-                <h3>Revenue</h3>
-            </div>
+        {{-- topRow --}}
+        <div class="row mb-5 pb-5">
 
 
 
@@ -83,43 +70,11 @@
 
 
 
-
-
-
-
-            {{-- overviewBoxes --}}
-
-
-            {{-- total --}}
-            <div class="col text-end" wire:ignore.self>
-                <div class="overview--box shrink--self">
-                    <h6 class='fs-13'>Total</h6>
-                    <p class="truncate-text-1l">{{ number_format($subscriptions?->sum('totalCheckoutPrice')) }}</p>
-                </div>
-            </div>
-
-
-
-            {{-- includingBag --}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100"
-                data-aos-once="true" wire:ignore.self>
-                <div class="overview--box shrink--self">
-                    <h6 class='fs-13'>Total Inc. bag</h6>
-                    <p class="truncate-text-1l">{{ number_format($subscriptions?->sum('planPrice')) }}</p>
-                </div>
-            </div>
-
-
-
-
-
-
-            {{-- today's total --}}
-            <div class="col text-end" data-aos="fade-up" d ata-aos-duration="600" data-aos-delay="200"
-                data-aos-once="true" wire:ignore.self>
-                <div class="overview--box shrink--self">
-                    <h6 class='fs-13'>Today's Total</h6>
-                    <p class="truncate-text-1l">{{ number_format($todaySubscriptions->sum('totalCheckoutPrice')) }}</p>
+            {{-- chartTwo --}}
+            <div class="col-8 text-end mb-5" data-aos="fade" data-aos-duration="700" data-aos-delay="300"
+                data-aos-once="true" wire:ignore>
+                <div style="position: relative; height:350px;" class='w-100 d-flex align-items-end'>
+                    <canvas id="chart--2"></canvas>
                 </div>
             </div>
 
@@ -129,276 +84,503 @@
 
 
 
-            {{-- today's total inc. bag --}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300"
-                data-aos-once="true" wire:ignore.self>
-                <div class="overview--box shrink--self">
-                    <h6 class='fs-13'>Today's Inc. Bag</h6>
-                    <p class="truncate-text-1l">{{ number_format($todaySubscriptions->sum('planPrice')) }}</p>
+            {{-- --------------------------- --}}
+            {{-- --------------------------- --}}
+
+
+
+
+
+
+
+
+            {{-- clockCol --}}
+            <div class="col-4 d-flex justify-content-end no-events">
+
+
+                <figure class="highcharts-figure w-100" wire:ignore>
+                    <div id="container-clock"></div>
+                </figure>
+
+
+            </div>
+
+
+
+
+
+
+            {{-- ------------------------------------ --}}
+            {{-- ------------------------------------ --}}
+
+
+
+
+
+
+
+
+
+
+
+            <div class="col-12">
+
+
+                {{-- tabsWrap --}}
+                <div class="tabs--wrap">
+
+
+                    {{-- tabLinks --}}
+                    <ul class="nav nav-tabs  justify-content-center" data-aos="flip-up" data-aos-duration="600"
+                        data-aos-delay="200" data-aos-once="true" role="tablist" wire:ignore.self>
+
+
+
+                        {{-- unAssignedMeals --}}
+
+
+                        {{-- :: permission - hasCustomerRevenue--}}
+                        @if ($versionPermission->DashboardModuleHasRevenue)
+
+
+
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#tab-10" role="tab">Revenue</a>
+                        </li>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+                        {{-- :: permission - hasCustomerRevenuePerPlan--}}
+                        @if ($versionPermission->DashboardModuleHasRevenuePerPlan)
+
+
+
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-11" role="tab">Plans Revenue</a>
+                        </li>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+
+
+
+                        {{-- :: permission - hasCustomerPerPlan --}}
+                        @if ($versionPermission->DashboardModuleHasCustomersPerPlan)
+
+
+
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-12" role="tab">Customers Per Plan</a>
+                        </li>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+                    </ul>
+                    {{-- endLinks --}}
+
+
+
+
+
+
+                    {{-- ------------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+                    {{-- tabContent --}}
+                    <div class="tab-content mt-2">
+
+
+
+
+
+
+                        {{-- :: permission - hasCustomerRevenue--}}
+                        @if ($versionPermission->DashboardModuleHasRevenue)
+
+
+
+
+
+
+                        {{-- 1: revenueTab --}}
+                        <div class="tab-pane fade show active no--card" id="tab-10" role="tabpanel">
+
+
+
+                            {{-- tableRow --}}
+                            <div class="row dashboard--wrapper justify-content-center">
+
+
+
+
+                                {{-- overviewBoxes --}}
+
+
+                                {{-- total --}}
+                                <div class="col text-end" wire:ignore.self>
+                                    <div class="overview--box shrink--self">
+                                        <h6 class='fs-13'>Total</h6>
+                                        <p class="truncate-text-1l">{{
+                                            number_format($subscriptions?->sum('totalCheckoutPrice')) }}</p>
+                                    </div>
+                                </div>
+
+
+
+                                {{-- includingBag --}}
+                                <div class="col text-end" data-aos="fade-up" data-aos-duration="600"
+                                    data-aos-delay="100" data-aos-once="true" wire:ignore.self>
+                                    <div class="overview--box shrink--self">
+                                        <h6 class='fs-13'>Total Inc. bag</h6>
+                                        <p class="truncate-text-1l">{{ number_format($subscriptions?->sum('planPrice'))
+                                            }}</p>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                {{-- today's total --}}
+                                <div class="col text-end" data-aos="fade-up" d ata-aos-duration="600"
+                                    data-aos-delay="200" data-aos-once="true" wire:ignore.self>
+                                    <div class="overview--box shrink--self">
+                                        <h6 class='fs-13'>Today's Total</h6>
+                                        <p class="truncate-text-1l">{{
+                                            number_format($todaySubscriptions->sum('totalCheckoutPrice')) }}</p>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                {{-- today's total inc. bag --}}
+                                <div class="col text-end" data-aos="fade-up" data-aos-duration="600"
+                                    data-aos-delay="300" data-aos-once="true" wire:ignore.self>
+                                    <div class="overview--box shrink--self">
+                                        <h6 class='fs-13'>Today's Inc. Bag</h6>
+                                        <p class="truncate-text-1l">{{
+                                            number_format($todaySubscriptions->sum('planPrice')) }}</p>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                {{-- bag --}}
+                                <div class="col text-end" data-aos="fade-up" data-aos-duration="600"
+                                    data-aos-delay="400" data-aos-once="true" wire:ignore.self>
+                                    <div class="overview--box shrink--self">
+                                        <h6 class='fs-13'>Bags Total</h6>
+                                        <p class="truncate-text-1l">-</p>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                {{-- bags Refunded--}}
+                                <div class="col text-end" data-aos="fade-up" data-aos-duration="600"
+                                    data-aos-delay="500" data-aos-once="true" wire:ignore.self>
+                                    <div class="overview--box shrink--self">
+                                        <h6 class='fs-13'>Bags Refunded</h6>
+                                        <p class="truncate-text-1l">-</p>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                {{-- bags balance--}}
+                                <div class="col text-end" data-aos="fade-up" data-aos-duration="600"
+                                    data-aos-delay="600" data-aos-once="true" wire:ignore.self>
+                                    <div class="overview--box shrink--self">
+                                        <h6 class='fs-13'>Bags Balance</h6>
+                                        <p class="truncate-text-1l">-</p>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                            {{-- endRow --}}
+
+
+
+                        </div>
+                        {{-- endTab --}}
+
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+                        {{-- ----------------------------------------------------- --}}
+                        {{-- ----------------------------------------------------- --}}
+                        {{-- ----------------------------------------------------- --}}
+                        {{-- ----------------------------------------------------- --}}
+
+
+
+
+
+
+                        {{-- ** RESET GLOBAL SN --}}
+                        @php $globalSNCounter = 1; @endphp
+
+
+
+
+                        {{-- :: permission - hasCustomerRevenuePerPlan--}}
+                        @if ($versionPermission->DashboardModuleHasRevenuePerPlan)
+
+
+
+
+
+                        {{-- 2: planRevenueTab --}}
+                        <div class="tab-pane fade no--card" id="tab-11" role="tabpanel">
+
+
+
+                            {{-- tableRow --}}
+                            <div class="row  dashboard--wrapper justify-content-center">
+
+
+
+
+
+                                {{-- overviewBoxes --}}
+
+
+                                {{-- total --}}
+                                <div class="col-2 text-end mb-4" wire:ignore.self>
+                                    <div class="overview--box shrink--self ">
+                                        <h6 class='fs-13'>Total</h6>
+                                        <p class="truncate-text-1l">{{
+                                            number_format($subscriptions?->sum('totalCheckoutPrice')) }}</p>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                {{-- loop - plans --}}
+                                @foreach ($plans ?? [] as $key => $plan)
+
+
+
+                                <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600"
+                                    data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
+                                    <div class="overview--box shrink--self">
+                                        <h6 class="fs-13" style="">{{ $plan->name }}</h6>
+                                        <p class="truncate-text-1l">{{
+                                            number_format($plan?->subscriptions?->sum('totalCheckoutPrice') ?? 0)
+                                            }}</p>
+                                    </div>
+                                </div>
+
+
+
+                                @endforeach
+                                {{-- end loop - plans --}}
+
+
+
+
+
+
+
+                            </div>
+                            {{-- endRow --}}
+
+
+
+                        </div>
+                        {{-- endTab --}}
+
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+                        {{-- ----------------------------------------------------- --}}
+                        {{-- ----------------------------------------------------- --}}
+                        {{-- ----------------------------------------------------- --}}
+                        {{-- ----------------------------------------------------- --}}
+
+
+
+
+
+
+                        {{-- ** RESET GLOBAL SN --}}
+                        @php $globalSNCounter = 1; @endphp
+
+
+
+
+                        {{-- :: permission - hasCustomerPerPlan --}}
+                        @if ($versionPermission->DashboardModuleHasCustomersPerPlan)
+
+
+
+
+
+                        {{-- 3: customerRevenueTab --}}
+                        <div class="tab-pane fade no--card" id="tab-12" role="tabpanel">
+
+
+
+                            {{-- tableRow --}}
+                            <div class="row  dashboard--wrapper justify-content-center">
+
+
+
+                                {{-- overviewBoxes --}}
+
+
+                                {{-- total --}}
+                                <div class="col-2 text-end mb-4" wire:ignore.self>
+                                    <div class="overview--box shrink--self ">
+                                        <h6 class='fs-13'>Total</h6>
+                                        <p class="truncate-text-1l">
+                                            {{ number_format($subscriptions->where('startDate', '<=',
+                                                $globalCurrentDate)?->where('untilDate', '>=',
+                                                $globalCurrentDate)?->count() ?? 0) }}</p>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                {{-- loop - plans --}}
+                                @foreach ($plans ?? [] as $key => $plan)
+
+
+
+                                <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600"
+                                    data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
+                                    <div class="overview--box shrink--self">
+                                        <h6 class="fs-13" style="">{{ $plan?->name }}</h6>
+                                        <p class="truncate-text-1l">{{ number_format($plan?->customers()?->count() ?? 0)
+                                            }}</p>
+                                    </div>
+                                </div>
+
+
+
+                                @endforeach
+                                {{-- end loop - plans --}}
+
+
+
+
+
+
+                            </div>
+                            {{-- endRow --}}
+
+
+
+                        </div>
+                        {{-- endTab --}}
+
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+                    </div>
                 </div>
+                {{-- end tabsWrap --}}
+
+
             </div>
-
-
-
-
-
-
-            {{-- bag --}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400"
-                data-aos-once="true" wire:ignore.self>
-                <div class="overview--box shrink--self">
-                    <h6 class='fs-13'>Bags Total</h6>
-                    <p class="truncate-text-1l">-</p>
-                </div>
-            </div>
-
-
-
-
-
-            {{-- bags Refunded--}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500"
-                data-aos-once="true" wire:ignore.self>
-                <div class="overview--box shrink--self">
-                    <h6 class='fs-13'>Bags Refunded</h6>
-                    <p class="truncate-text-1l">-</p>
-                </div>
-            </div>
-
-
-
-
-
-            {{-- bags balance--}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600"
-                data-aos-once="true" wire:ignore.self>
-                <div class="overview--box shrink--self">
-                    <h6 class='fs-13'>Bags Balance</h6>
-                    <p class="truncate-text-1l">-</p>
-                </div>
-            </div>
-
-
-
-
-
-
-
-            {{-- empty --}}
-            <div class="col-12 mb-5 pb-3"></div>
-
-
-
-
-
-
-
-            @endif
-            {{-- end if - permission --}}
-
-
-
-
-
-
-
-
-            {{-- ----------------------------------------- --}}
-            {{-- ----------------------------------------- --}}
-
-
-
-
-
-
-
-
-            {{-- :: permission - hasCustomerRevenuePerPlan--}}
-            @if ($versionPermission->DashboardModuleHasRevenuePerPlan)
-
-
-
-
-
-
-
-            {{-- subtitle --}}
-            <div class="col-12 mb-2 text-center">
-                <h3>Revenue Per Plan</h3>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-            {{-- overviewBoxes --}}
-
-
-            {{-- total --}}
-            <div class="col-2 text-end mb-4" wire:ignore.self>
-                <div class="overview--box shrink--self ">
-                    <h6 class='fs-13'>Total</h6>
-                    <p class="truncate-text-1l">{{ number_format($subscriptions?->sum('totalCheckoutPrice')) }}</p>
-                </div>
-            </div>
-
-
-
-
-
-
-
-            {{-- loop - plans --}}
-            @foreach ($plans ?? [] as $key => $plan)
-
-
-
-            <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600"
-                data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
-                <div class="overview--box shrink--self">
-                    <h6 class="fs-13" style="">{{ $plan->name }}</h6>
-                    <p class="truncate-text-1l">{{ number_format($plan?->subscriptions?->sum('totalCheckoutPrice') ?? 0)
-                        }}</p>
-                </div>
-            </div>
-
-
-
-            @endforeach
-            {{-- end loop - plans --}}
-
-
-
-
-
-
-
-
-
-            {{-- empty --}}
-            <div class="col-12 mb-5 pb-3"></div>
-
-
-
-
-
-
-            @endif
-            {{-- end if - permission --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {{-- ----------------------------------------- --}}
-            {{-- ----------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-            {{-- :: permission - hasCustomerPerPlan --}}
-            @if ($versionPermission->DashboardModuleHasCustomersPerPlan)
-
-
-
-
-
-            {{-- subtitle --}}
-            <div class="col-12 mb-2 text-center">
-                <h3>Customers Per Plan</h3>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-            {{-- overviewBoxes --}}
-
-
-            {{-- total --}}
-            <div class="col-2 text-end mb-4" wire:ignore.self>
-                <div class="overview--box shrink--self ">
-                    <h6 class='fs-13'>Total</h6>
-                    <p class="truncate-text-1l">{{ number_format($subscriptions->where('startDate', '<=',
-                            $globalCurrentDate)?->where('untilDate', '>=', $globalCurrentDate)?->count() ?? 0) }}</p>
-                </div>
-            </div>
-
-
-
-
-
-
-
-            {{-- loop - plans --}}
-            @foreach ($plans ?? [] as $key => $plan)
-
-
-
-            <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600"
-                data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
-                <div class="overview--box shrink--self">
-                    <h6 class="fs-13" style="">{{ $plan?->name }}</h6>
-                    <p class="truncate-text-1l">{{ number_format($plan?->customers()?->count() ?? 0) }}</p>
-                </div>
-            </div>
-
-
-
-            @endforeach
-            {{-- end loop - plans --}}
-
-
-
-
-
-
-
-
-
-            {{-- empty --}}
-            <div class="col-12 mb-5 pb-3"></div>
-
-
-
-
-
-            @endif
-            {{-- end if - permission --}}
-
-
-
-
         </div>
         {{-- endRow --}}
+
+
+
+
+
 
 
 
@@ -430,7 +612,7 @@
 
 
         {{-- bottomRow --}}
-        <div class="row mb-5 pb-5">
+        <div class="row mb-5">
             <div class="col-12">
 
 
@@ -552,7 +734,7 @@
 
 
                             {{-- tableRow --}}
-                            <div class="row mb-5 pb-3">
+                            <div class="row">
                                 <div class="col-12 " data-view="table">
                                     <div class="table-responsive memoir--table w-100">
                                         <table class="table table-bordered" id="memoir--table">
@@ -745,7 +927,7 @@
 
 
                             {{-- tableRow --}}
-                            <div class="row mb-5 pb-3">
+                            <div class="row">
                                 <div class="col-12 " data-view="table">
                                     <div class="table-responsive memoir--table w-100">
                                         <table class="table table-bordered" id="memoir--table">
@@ -914,7 +1096,7 @@
 
 
                             {{-- tableRow --}}
-                            <div class="row mb-5 pb-3">
+                            <div class="row">
                                 <div class="col-12 " data-view="table">
                                     <div class="table-responsive memoir--table w-100">
                                         <table class="table table-bordered" id="memoir--table">
@@ -1085,6 +1267,186 @@
 
 
 
+
+
+
+
+
+        {{-- ------------------------------------------------- --}}
+        {{-- ------------------------------------------------- --}}
+
+
+
+
+
+        <div class="row">
+
+
+            {{-- chartOne --}}
+            <div class="col-7 text-center mb-5" data-aos="fade" data-aos-duration="700" data-aos-delay="300"
+                data-aos-once="true" wire:ignore>
+                <div style="position: relative; height:400px; width: 100%;">
+                    <canvas id="chart--1"></canvas>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            {{-- countersCol --}}
+            <div class="col-5">
+                <div class="row">
+
+
+
+                    {{-- subheading --}}
+                    <div class="d-flex align-items-center justify-content-between mb-4" data-aos="fade-up"
+                        data-aos-duration="600" data-aos-delay="100" data-aos-once="true" wire:ignore>
+                        <hr style="width: 55%">
+                        <label class="form-label form--label px-3 w-50 justify-content-center mb-0 fs-15">Delivery
+                            Details</label>
+                    </div>
+
+
+
+
+
+                    {{-- Delivery --}}
+                    <div class="col-4 text-end" wire:ignore.self>
+                        <div class="overview--box shrink--self">
+                            <h6 class='fs-13'>Counter</h6>
+                            <p class="truncate-text-1l">-</p>
+                        </div>
+                    </div>
+
+
+
+
+
+                    {{-- Delivery --}}
+                    <div class="col-4 text-end" wire:ignore.self>
+                        <div class="overview--box shrink--self">
+                            <h6 class='fs-13'>Counter</h6>
+                            <p class="truncate-text-1l">-</p>
+                        </div>
+                    </div>
+
+
+
+                    {{-- Delivery --}}
+                    <div class="col-4 text-end" wire:ignore.self>
+                        <div class="overview--box shrink--self">
+                            <h6 class='fs-13'>Counter</h6>
+                            <p class="truncate-text-1l">-</p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- separator --}}
+                    <div class="col-12 mb-4"></div>
+
+
+                    {{-- ------------------------- --}}
+                    {{-- ------------------------- --}}
+
+
+
+
+
+                    {{-- Delivery --}}
+                    <div class="col-4 text-end" wire:ignore.self>
+                        <div class="overview--box shrink--self">
+                            <h6 class='fs-13'>Counter</h6>
+                            <p class="truncate-text-1l">-</p>
+                        </div>
+                    </div>
+
+
+
+
+
+                    {{-- Delivery --}}
+                    <div class="col-4 text-end" wire:ignore.self>
+                        <div class="overview--box shrink--self">
+                            <h6 class='fs-13'>Counter</h6>
+                            <p class="truncate-text-1l">-</p>
+                        </div>
+                    </div>
+
+
+
+                    {{-- Delivery --}}
+                    <div class="col-4 text-end" wire:ignore.self>
+                        <div class="overview--box shrink--self">
+                            <h6 class='fs-13'>Counter</h6>
+                            <p class="truncate-text-1l">-</p>
+                        </div>
+                    </div>
+
+
+
+
+
+                    {{-- separator --}}
+                    <div class="col-12 mb-4"></div>
+
+
+
+
+                    {{-- ------------------------- --}}
+                    {{-- ------------------------- --}}
+
+
+
+
+                    {{-- Delivery --}}
+                    <div class="col-4 text-end" wire:ignore.self>
+                        <div class="overview--box shrink--self">
+                            <h6 class='fs-13'>Counter</h6>
+                            <p class="truncate-text-1l">-</p>
+                        </div>
+                    </div>
+
+
+
+
+
+                    {{-- Delivery --}}
+                    <div class="col-4 text-end" wire:ignore.self>
+                        <div class="overview--box shrink--self">
+                            <h6 class='fs-13'>Counter</h6>
+                            <p class="truncate-text-1l">-</p>
+                        </div>
+                    </div>
+
+
+
+                    {{-- Delivery --}}
+                    <div class="col-4 text-end" wire:ignore.self>
+                        <div class="overview--box shrink--self">
+                            <h6 class='fs-13'>Counter</h6>
+                            <p class="truncate-text-1l">-</p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
     </div>
     {{-- endContainer --}}
 
@@ -1115,8 +1477,14 @@
 
 
 
-    <script src="{{ asset('assets/js/utils.js') }}"></script>
+    <script src="{{ asset('assets/js/init-clock.js') }}"></script>
 
+
+
+
+    {{-- chartjs --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('assets/js/init-chart.js') }}"></script>
 
 
     @endsection

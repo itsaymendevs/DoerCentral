@@ -154,6 +154,9 @@
 
 
 
+
+
+
                                 {{-- 2: remove --}}
                                 <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
                                     type="button" wire:click='remove({{ $driver->id }})' wire:loading.attr='disabled'>
@@ -167,6 +170,9 @@
                                         </path>
                                     </svg>
                                 </button>
+
+
+
 
 
                             </div>

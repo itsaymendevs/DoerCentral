@@ -408,6 +408,8 @@
 
 
 
+
+
                                         {{-- 5: remove --}}
                                         <button class="btn btn--scheme btn--remove fs-12 px-2 mx-1 scale--self-05 h-32"
                                             wire:loading.attr='disabled' type="button"
@@ -422,6 +424,9 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
+
 
 
                                     </div>

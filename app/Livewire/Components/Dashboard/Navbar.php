@@ -16,7 +16,6 @@ class Navbar extends Component
         $user = User::find(session('userId'));
 
 
-
         return view('livewire.components.dashboard.navbar', compact('user'));
 
 

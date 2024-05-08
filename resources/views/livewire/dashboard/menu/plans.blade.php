@@ -164,6 +164,9 @@
                                             </svg>
                                         </button>
                                     </p>
+
+
+
                                 </div>
                                 {{-- endCol --}}
 
@@ -188,6 +191,8 @@
 
 
 
+
+
                                         {{-- 2: editButton --}}
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-1 scale--self-05 h-32"
@@ -201,6 +206,8 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
 
 
 
@@ -264,10 +271,8 @@
 
 
 
-
                                         @endif
                                         {{-- end if - permission --}}
-
 
 
 
@@ -292,6 +297,7 @@
                                                 </path>
                                             </svg>
                                         </button>
+
 
 
 

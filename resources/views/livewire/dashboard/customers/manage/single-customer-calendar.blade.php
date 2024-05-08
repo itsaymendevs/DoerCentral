@@ -111,7 +111,7 @@
 
             {{-- calendarView --}}
             <div class="col-12">
-                <div class="table-responsive memoir--table w-100 calendar--table">
+                <div class="table-responsive memoir--table w-100 vertical calendar--table">
                     <table class="table table-bordered" id="memoir--table">
 
 

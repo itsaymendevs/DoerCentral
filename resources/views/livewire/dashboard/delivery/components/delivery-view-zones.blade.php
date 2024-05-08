@@ -113,6 +113,8 @@
                                     wire:click='edit({{ $zone->id }})'>Edit</button>
 
 
+
+
                                 {{-- 2: remove --}}
                                 <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
                                     type="button" wire:click='remove({{ $zone->id }})'><svg class="bi bi-trash fs-5"
@@ -126,6 +128,11 @@
                                         </path>
                                     </svg>
                                 </button>
+
+
+
+
+
                             </div>
                         </div>
                         {{-- endActions --}}

@@ -131,8 +131,15 @@
                                         </button>
                                     </p>
 
+
+
+
+
                                 </div>
                                 {{-- end midCol --}}
+
+
+
 
 
 
@@ -149,6 +156,7 @@
                                         <button class="btn btn--scheme btn--scheme-2 fs-12 px-3 mx-1 scale--self-05"
                                             type="button" wire:click='manage({{ $bundle->id }})'
                                             data-bs-target="#manage-bundle" data-bs-toggle="modal">Manage</button>
+
 
 
 
@@ -226,7 +234,6 @@
 
 
 
-
                                         {{-- 3: migrate --}}
                                         <div data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
                                             title="Migrate">
@@ -272,6 +279,11 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
+
+
+
                                     </div>
                                 </div>
                                 {{-- endActions --}}

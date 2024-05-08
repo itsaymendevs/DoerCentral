@@ -176,6 +176,12 @@
 
 
 
+
+
+
+
+
+
                                         {{-- preview --}}
                                         <a href="{{ route('dashboard.menuSingleCalendar', $planCalendar->calendar->id) }}#tab-2"
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32"

@@ -172,6 +172,7 @@
 
 
 
+
                                 {{-- removeButton --}}
                                 <button class="btn btn--raw-icon inline remove scale--3" type="button"
                                     wire:click='remove({{ $deliveryTime->id }})' wire:loading.attr='disabled'>
@@ -182,10 +183,12 @@
                                         </path>
                                     </svg>
                                 </button>
+
+
+
+
                             </div>
                         </td>
-
-
                     </tr>
                     @endforeach
                     {{-- end loop --}}

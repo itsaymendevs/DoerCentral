@@ -76,6 +76,8 @@ class Bundles extends Component
     {
 
 
+
+
         // 1: dispatchId
         $this->dispatch('migrateBundle', $id);
 

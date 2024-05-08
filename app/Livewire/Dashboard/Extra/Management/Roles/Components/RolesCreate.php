@@ -30,6 +30,26 @@ class RolesCreate extends Component
 
 
 
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Add Actions')) {
+
+            $this->makeAlert('info', 'Adding is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
 
         // 1: filter
         $this->instance->permissions = array_filter($this->instance->permissions ?? [], function ($item) {

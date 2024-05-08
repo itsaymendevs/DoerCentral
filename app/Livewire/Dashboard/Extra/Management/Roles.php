@@ -150,6 +150,7 @@ class Roles extends Component
 
 
         // 1: dependencies
+        // ** 1st for Admin
         $roles = Role::where('name', 'LIKE', '%' . $this->searchRole . '%')->get();
 
 

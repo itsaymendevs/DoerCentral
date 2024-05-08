@@ -29,6 +29,28 @@ class SettingsManageTags extends Component
     {
 
 
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Add Actions')) {
+
+            $this->makeAlert('info', 'Adding is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
         // :: validate
         $this->instance->validate();
 

@@ -99,6 +99,26 @@ class SingleCustomerAddressesCreate extends Component
 
 
 
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Add Actions')) {
+
+            $this->makeAlert('info', 'Adding is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/customers/addresses/store', $this->instance);
 

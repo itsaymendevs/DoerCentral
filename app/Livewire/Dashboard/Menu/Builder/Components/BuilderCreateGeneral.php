@@ -32,6 +32,27 @@ class BuilderCreateGeneral extends Component
     {
 
 
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Add Actions')) {
+
+            $this->makeAlert('info', 'Adding is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
         // :: getType
         $type = Type::find($this->instance?->typeId)?->name ?? 'MEAL';
 

@@ -30,6 +30,26 @@ class DeliveryCreateZone extends Component
 
 
 
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Add Actions')) {
+
+            $this->makeAlert('info', 'Adding is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'delivery/zones', 'ZON');

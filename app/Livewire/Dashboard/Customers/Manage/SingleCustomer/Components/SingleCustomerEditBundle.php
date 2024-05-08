@@ -79,6 +79,29 @@ class SingleCustomerEditBundle extends Component
     {
 
 
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+
+
 
         // 1: validate requiredTypes with currentBundleTypes
         $types = Type::all();

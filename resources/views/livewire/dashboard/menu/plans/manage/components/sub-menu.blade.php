@@ -37,7 +37,7 @@
 
 
 
-            {{-- :: rolePermission - edit --}}
+            {{-- :: rangeSizes --}}
             <a class="btn  @if (Request::is('dashboard/menu/plans/' . $id . '/range-sizes')) active @endif"
                 role="button" href="{{ route('dashboard.menuPlanRangeSizes', [$id]) }}">Range Sizes</a>
 

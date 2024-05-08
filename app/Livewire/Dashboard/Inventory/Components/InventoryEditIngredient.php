@@ -92,6 +92,27 @@ class InventoryEditIngredient extends Component
 
 
 
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
 
         // 1: uploadFileFiles
         if ($this->instance->imageFile != $this->instance->imageFileName) {

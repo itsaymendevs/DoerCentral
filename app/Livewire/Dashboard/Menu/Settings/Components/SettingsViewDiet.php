@@ -55,6 +55,27 @@ class SettingsViewDiet extends Component
     public function update()
     {
 
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
         // :: validate
         $this->instance->validate();
 
@@ -96,6 +117,27 @@ class SettingsViewDiet extends Component
 
     public function remove($id)
     {
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Remove Actions')) {
+
+            $this->makeAlert('info', 'Deletion is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
 
 
         // 1: params - confirmationBox

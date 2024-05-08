@@ -131,6 +131,27 @@ class ProductionBuilderManagePackings extends Component
 
 
 
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
         // :: create instance
         $instance = new stdClass();
         $instance->id = $id;
@@ -173,6 +194,26 @@ class ProductionBuilderManagePackings extends Component
 
     public function updateServing()
     {
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
 
 
 

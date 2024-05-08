@@ -173,6 +173,7 @@ class CustomerAddressesView extends Component
     {
 
 
+
         // 1: params - confirmationBox
         $this->removeId = $id;
 

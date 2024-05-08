@@ -154,6 +154,27 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
 
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
         // :: getType
         $type = Type::find($this->instance?->typeId)?->name ?? 'MEAL';
 

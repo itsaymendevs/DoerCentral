@@ -60,6 +60,28 @@ class DeliveryViewHoliday extends Component
     {
 
 
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/delivery/holidays/update', $this->instance);
 
@@ -91,6 +113,28 @@ class DeliveryViewHoliday extends Component
 
     public function toggleActive($id)
     {
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
 
 
 

@@ -111,6 +111,27 @@ class SingleCustomer extends Component
 
 
 
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
 
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/customers/update', $this->instance);

@@ -262,6 +262,25 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
 
 
         // :: create instance
@@ -324,6 +343,26 @@ class ProductionBuilderManageIngredients extends Component
 
     public function update($instanceId, $instanceType)
     {
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
 
 
         // :: create instance - clone
@@ -426,6 +465,27 @@ class ProductionBuilderManageIngredients extends Component
 
     public function updateType($instanceId, $instanceType)
     {
+
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
 
 
 

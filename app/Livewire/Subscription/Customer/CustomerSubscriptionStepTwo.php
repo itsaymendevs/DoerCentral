@@ -254,6 +254,7 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
+
         // 1: getDiscountRaw
         $discount = PlanBundleDay::where('planBundleId', $this->instance->planBundleId)
             ->where('days', $this->instance?->planDays ?? 0)?->first()?->discount ?? 0;

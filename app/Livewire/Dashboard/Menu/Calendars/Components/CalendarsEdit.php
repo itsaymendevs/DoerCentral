@@ -82,6 +82,28 @@ class CalendarsEdit extends Component
 
 
 
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
         // 1: uploadFile
         if ($this->instance->imageFile != $this->instance->imageFileName)
             $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/calendars', $this->instance->imageFileName, 'CLN');

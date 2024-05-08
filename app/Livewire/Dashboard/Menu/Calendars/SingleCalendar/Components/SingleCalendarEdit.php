@@ -193,6 +193,28 @@ class SingleCalendarEdit extends Component
 
 
 
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/calendars/schedules/meals/update', $this->instance);
 
@@ -327,6 +349,28 @@ class SingleCalendarEdit extends Component
 
     public function toggle($mealTypeId, $mealId, $isDefaultGroup)
     {
+
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
 
 
 

@@ -54,6 +54,26 @@ class DeliveryViewDrivers extends Component
     {
 
 
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Remove Actions')) {
+
+            $this->makeAlert('info', 'Deletion is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
         // 1: params - confirmationBox
         $this->removeId = $id;
 

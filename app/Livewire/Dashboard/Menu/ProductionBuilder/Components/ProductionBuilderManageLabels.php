@@ -60,6 +60,28 @@ class ProductionBuilderManageLabels extends Component
     {
 
 
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
         // :: create instance
         $instance = new stdClass();
         $instance->id = $this->meal->id;
@@ -108,6 +130,28 @@ class ProductionBuilderManageLabels extends Component
 
     public function toggleCutlery()
     {
+
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
 
 
 

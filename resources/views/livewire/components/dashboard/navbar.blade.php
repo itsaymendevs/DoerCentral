@@ -66,14 +66,10 @@
 
 
 
-
-
-
-
-
                     {{-- dashboard --}}
                     <a wire:navigate href="{{ route('dashboard.home') }}" class="btn navbar--menu-button
                         @if (Request::is('dashboard')) active @endif">Dashboard</a>
+
 
 
 
@@ -85,7 +81,7 @@
 
                     {{-- :: rolePermission - customers --}}
 
-                    {{-- @if (session('globalUser')->checkPermission('Customers')) --}}
+                    @if ($user->checkPermission('Customers'))
 
 
                     <a class="btn  navbar--menu-button
@@ -94,7 +90,7 @@
 
 
 
-                    {{-- @endif --}}
+                    @endif
                     {{-- end if - rolePermission --}}
 
 
@@ -104,10 +100,27 @@
 
 
 
+
+
                     {{-- menu --}}
+
+                    {{-- :: rolePermission - menu --}}
+
+                    @if ($user->checkPermission('Menu'))
+
+
                     <a class="btn navbar--menu-button
                     @if (Request::is('dashboard/menu', 'dashboard/menu/*')) active @endif"
                         href="{{ route('dashboard.menuPlans') }}" wire:navigate>Menu</a>
+
+
+
+                    @endif
+                    {{-- end if - rolePermission --}}
+
+
+
+
 
 
 
@@ -115,9 +128,21 @@
 
 
                     {{-- kitchen --}}
+
+                    {{-- :: rolePermission - kitchen --}}
+
+                    @if ($user->checkPermission('Kitchen'))
+
+
                     <a wire:navigate href="{{ route('dashboard.kitchenTodayProduction') }}" class="btn navbar--menu-button
                         @if (Request::is('dashboard/kitchen', 'dashboard/kitchen/*')) active @endif"
                         type="button">Kitchen</a>
+
+
+                    @endif
+                    {{-- end if - rolePermission --}}
+
+
 
 
 
@@ -126,9 +151,23 @@
 
 
                     {{-- inventory --}}
+
+                    {{-- :: rolePermission - inventory --}}
+
+                    @if ($user->checkPermission('Inventory'))
+
+
                     <a class="btn navbar--menu-button
                     @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
                         href="{{ route('dashboard.inventory') }}">Inventory</a>
+
+
+                    @endif
+                    {{-- end if - rolePermission --}}
+
+
+
+
 
 
 
@@ -136,9 +175,23 @@
 
 
                     {{-- delivery --}}
+
+                    {{-- :: rolePermission - delivery --}}
+
+                    @if ($user->checkPermission('Delivery'))
+
+
                     <a class="btn navbar--menu-button
                     @if (Request::is('dashboard/delivery', 'dashboard/delivery/*')) active @endif"
                         href="{{ route('dashboard.delivery') }}" wire:navigate>Delivery</a>
+
+
+
+
+                    @endif
+                    {{-- end if - rolePermission --}}
+
+
 
 
 
@@ -149,6 +202,13 @@
 
 
                     {{-- sales & marketing --}}
+
+                    {{-- :: rolePermission - sales --}}
+
+                    @if ($user->checkPermission('Sales'))
+
+
+
                     <div class="btn-group navbar--split">
                         <button class="btn navbar--menu-button
                         @if ($versionPermission->isProcessing) no-events @endif
@@ -176,6 +236,9 @@
 
 
 
+                    @endif
+                    {{-- end if - rolePermission --}}
+
 
 
 
@@ -188,6 +251,15 @@
 
 
                     {{-- extra --}}
+
+
+                    {{-- :: rolePermission - Extra --}}
+
+                    @if ($user->checkPermission('Extra'))
+
+
+
+
 
 
                     {{-- :: permission - hasExtraModule --}}
@@ -274,6 +346,12 @@
                     @endif
                     {{-- end if - permission --}}
 
+
+
+
+
+                    @endif
+                    {{-- end if - rolePermission --}}
 
 
                     {{-- endExtra --}}

@@ -10,6 +10,17 @@ class Navbar extends Component
     public function render()
     {
 
-        return view('livewire.components.dashboard.navbar');
-    }
-}
+
+
+        // 1: dependencies
+        $user = User::find(session('userId'));
+
+
+
+        return view('livewire.components.dashboard.navbar', compact('user'));
+
+
+    } // end function
+
+
+} // end class

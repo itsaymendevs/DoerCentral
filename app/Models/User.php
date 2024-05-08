@@ -10,69 +10,67 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-   use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
 
-   protected $fillable = [
-      'name',
-      'email',
-      'password',
-   ];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
 
-   protected $hidden = [
-      'password',
-      'remember_token',
-   ];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
 
-   protected $casts = [
-      'email_verified_at' => 'datetime',
-   ];
-
-
-
-   // --------------------------------------
-   // --------------------------------------
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
 
 
-
-   public function role()
-   {
-
-      return $this->belongsTo(Role::class, 'roleId');
-
-   } // end function
+    // --------------------------------------
+    // --------------------------------------
 
 
 
 
+    public function role()
+    {
 
+        return $this->belongsTo(Role::class, 'roleId');
 
-   // --------------------------------------
-   // --------------------------------------
+    } // end function
 
 
 
 
 
 
-   public function checkPermission($name)
-   {
-
-      // 1: getPermissions
-      $rolePermissions = $this->role()->permissions;
-
-      // ?->permissions?->pluck('permissionId')?->toArray() ?? [];
-      // :: checkFound
-      $isFound = Permission::whereIn('id', $rolePermissions)->count();
+    // --------------------------------------
+    // --------------------------------------
 
 
-      return $isFound > 0 ? true : false;
 
 
-   } // end if
+
+
+    public function checkPermission($name)
+    {
+
+        // 1: getPermissions
+        $rolePermissions = $this->role()?->first()?->permissions?->pluck('permissionId')?->toArray() ?? [];
+
+        $isFound = Permission::whereIn('id', $rolePermissions)->where('name', $name)->count();
+
+
+        return $isFound > 0 ? true : false;
+
+
+    } // end if
 
 
 

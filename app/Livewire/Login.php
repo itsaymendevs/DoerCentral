@@ -86,7 +86,7 @@ class Login extends Component
             // 1.4: determine APP_TYPE
 
             if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH')
-                return $this->redirect(route('dashboard.menuPlans'), navigate: false);
+                return $this->redirect(route('dashboard.home'), navigate: false);
             else
                 return $this->redirect(route('dashboard.control.permissions'), navigate: false);
 

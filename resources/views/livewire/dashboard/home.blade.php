@@ -25,7 +25,8 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.home.components.sub-menu key='1' />
+        {{--
+        <livewire:dashboard.home.components.sub-menu key='1' /> --}}
 
 
 

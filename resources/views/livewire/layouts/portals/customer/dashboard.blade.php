@@ -74,9 +74,16 @@
 
         {{-- :: special --}}
         <link href="{{ asset('assets/css/mobile-responsive.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/client-customization/aleens.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/portals/customer.css') }}" rel="stylesheet">
 
+
+
+
+        {{-- customization --}}
+
+        @if (env('APP_CLIENT') == 'Aleens')
+        <link href="{{ asset('assets/css/client-customization/aleens.css') }}" rel="stylesheet">
+        @endif
 
 
 

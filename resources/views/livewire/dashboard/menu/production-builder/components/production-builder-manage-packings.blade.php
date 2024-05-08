@@ -34,14 +34,14 @@
                     {{-- input --}}
                     <input class="form-check-input pointer" type="checkbox"
                         wire:change='toggleTag({{ $servingInstruction->id }})' wire:loading.attr='disabled'
-                        id="serving-instruction-{{ $servingInstruction->id }}" @if ($servingInstruction->isActive)
+                        id="serving-instruction-{{ $servingInstruction->id }}" @if ($servingInstruction?->isActive)
                     checked
                     @endif />
 
 
                     {{-- label --}}
-                    <label class="form-check-label fs-14" for="serving-instruction-{{ $servingInstruction->id }}">
-                        {{ $servingInstruction->instruction->name }}</label>
+                    <label class="form-check-label fs-14" for="serving-instruction-{{ $servingInstruction?->id }}">
+                        {{ $servingInstruction?->instruction?->name }}</label>
 
 
 

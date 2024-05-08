@@ -53,8 +53,12 @@
 
 
 
-        {{-- :: special --}}
+        {{-- :: customization --}}
+
+        @if (env('APP_CLIENT') == 'Aleens')
         <link href="{{ asset('assets/css/client-customization/aleens.css') }}" rel="stylesheet">
+        @endif
+
 
 
 

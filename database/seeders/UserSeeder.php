@@ -14,8 +14,8 @@ class UserSeeder extends Seeder
 
         // ::root
         $user = ['Doer', 'admin@doer.ae', 'doer@123', '9715590100', 1];
-        $userAleens = ['Aleens', 'admin@aleens.ae', 'aleens@123', '9715590100', 1];
-        $userAleens = ['Aleens', 'admin-1@aleens.ae', 'aleens@doer123', '9715590100', 1];
+        $userAleens = ['Aleens', 'admin@aleens.ae12', 'chef@123', '9715590100', 1];
+        // $userAleens = ['Aleens', 'admin-1@aleens.ae', 'aleens@doer123', '9715590100', 1];
         $userBeHealthy = ['BeHealthy', 'admin@behealthy.ae', 'behealthy@123', '9715590100', 1];
         $userHealthybite = ['Healthybite', 'admin@healthybite.ae', 'healthybite@123', '9715590100', 1];
         $userRealmeal = ['RealMeal', 'admin@realmeal.ae', 'realmeal@123', '9715590100', 1];

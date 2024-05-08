@@ -62,6 +62,14 @@
 
 
 
+
+            {{-- :: permission - hasCustomerRevenue--}}
+            @if ($versionPermission->DashboardModuleHasRevenue)
+
+
+
+
+
             {{-- subtitle --}}
             <div class="col-12 mb-2 text-center">
                 <h3>Revenue</h3>
@@ -82,8 +90,7 @@
 
 
             {{-- total --}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
-                data-aos-once="true" wire:ignore.self>
+            <div class="col text-end" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6 class='fs-13'>Total</h6>
                     <p class="truncate-text-1l">{{ number_format($subscriptions?->sum('totalCheckoutPrice')) }}</p>
@@ -93,7 +100,7 @@
 
 
             {{-- includingBag --}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
+            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6 class='fs-13'>Total Inc. bag</h6>
@@ -107,7 +114,7 @@
 
 
             {{-- today's total --}}
-            <div class="col text-end" data-aos="fade-up" d ata-aos-duration="600" data-aos-delay="800"
+            <div class="col text-end" data-aos="fade-up" d ata-aos-duration="600" data-aos-delay="200"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6 class='fs-13'>Today's Total</h6>
@@ -122,7 +129,7 @@
 
 
             {{-- today's total inc. bag --}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
+            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6 class='fs-13'>Today's Inc. Bag</h6>
@@ -136,7 +143,7 @@
 
 
             {{-- bag --}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
+            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6 class='fs-13'>Bags Total</h6>
@@ -149,7 +156,7 @@
 
 
             {{-- bags Refunded--}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
+            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6 class='fs-13'>Bags Refunded</h6>
@@ -162,7 +169,7 @@
 
 
             {{-- bags balance--}}
-            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
+            <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6 class='fs-13'>Bags Balance</h6>
@@ -176,11 +183,37 @@
 
 
 
+            {{-- empty --}}
+            <div class="col-12 mb-5 pb-3"></div>
+
+
+
+
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
+
+
+
 
             {{-- ----------------------------------------- --}}
             {{-- ----------------------------------------- --}}
 
 
+
+
+
+
+
+
+            {{-- :: permission - hasCustomerRevenuePerPlan--}}
+            @if ($versionPermission->DashboardModuleHasRevenuePerPlan)
 
 
 
@@ -189,7 +222,7 @@
 
 
             {{-- subtitle --}}
-            <div class="col-12 mb-2 text-center mt-5 pt-3">
+            <div class="col-12 mb-2 text-center">
                 <h3>Revenue Per Plan</h3>
             </div>
 
@@ -208,8 +241,7 @@
 
 
             {{-- total --}}
-            <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
-                data-aos-once="true" wire:ignore.self>
+            <div class="col-2 text-end mb-4" wire:ignore.self>
                 <div class="overview--box shrink--self ">
                     <h6 class='fs-13'>Total</h6>
                     <p class="truncate-text-1l">{{ number_format($subscriptions?->sum('totalCheckoutPrice')) }}</p>
@@ -223,12 +255,12 @@
 
 
             {{-- loop - plans --}}
-            @foreach ($plans ?? [] as $plan)
+            @foreach ($plans ?? [] as $key => $plan)
 
 
 
-            <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
-                data-aos-once="true" wire:ignore.self>
+            <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600"
+                data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6 class="fs-13" style="">{{ $plan->name }}</h6>
                     <p class="truncate-text-1l">{{ number_format($plan?->subscriptions?->sum('totalCheckoutPrice') ?? 0)
@@ -249,6 +281,25 @@
 
 
 
+            {{-- empty --}}
+            <div class="col-12 mb-5 pb-3"></div>
+
+
+
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -260,13 +311,20 @@
 
 
 
+
+
+
+
+
+            {{-- :: permission - hasCustomerPerPlan --}}
+            @if ($versionPermission->DashboardModuleHasCustomersPerPlan)
 
 
 
 
 
             {{-- subtitle --}}
-            <div class="col-12 mb-2 text-center mt-5 pt-3">
+            <div class="col-12 mb-2 text-center">
                 <h3>Customers Per Plan</h3>
             </div>
 
@@ -285,8 +343,7 @@
 
 
             {{-- total --}}
-            <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
-                data-aos-once="true" wire:ignore.self>
+            <div class="col-2 text-end mb-4" wire:ignore.self>
                 <div class="overview--box shrink--self ">
                     <h6 class='fs-13'>Total</h6>
                     <p class="truncate-text-1l">{{ number_format($subscriptions->where('startDate', '<=',
@@ -301,12 +358,12 @@
 
 
             {{-- loop - plans --}}
-            @foreach ($plans ?? [] as $plan)
+            @foreach ($plans ?? [] as $key => $plan)
 
 
 
-            <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800"
-                data-aos-once="true" wire:ignore.self>
+            <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600"
+                data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self">
                     <h6 class="fs-13" style="">{{ $plan?->name }}</h6>
                     <p class="truncate-text-1l">{{ number_format($plan?->customers()?->count() ?? 0) }}</p>
@@ -322,6 +379,19 @@
 
 
 
+
+
+
+
+            {{-- empty --}}
+            <div class="col-12 mb-5 pb-3"></div>
+
+
+
+
+
+            @endif
+            {{-- end if - permission --}}
 
 
 
@@ -347,10 +417,19 @@
 
 
 
+        {{-- :: permission - allFunctionsHidden --}}
+        @if ($versionPermission->DashboardModuleHasUnassignedMeals ||
+        $versionPermission->DashboardModuleHasSoonExpiringCustomers ||
+        $versionPermission->DashboardModuleHasLatestSubscribers)
 
 
 
-        <div class="row my-5">
+
+
+
+
+        {{-- bottomRow --}}
+        <div class="row mb-5 pb-5">
             <div class="col-12">
 
 
@@ -360,31 +439,75 @@
 
                     {{-- tabLinks --}}
                     <ul class="nav nav-tabs mb-4 justify-content-center" data-aos="flip-up" data-aos-duration="600"
-                        data-aos-delay="800" data-aos-once="true" role="tablist">
+                        data-aos-delay="200" data-aos-once="true" role="tablist" wire:ignore.self>
 
 
 
-                        {{-- delivery --}}
+                        {{-- unAssignedMeals --}}
+
+
+                        {{-- :: permission - hasUnassignedMeals --}}
+                        @if ($versionPermission->DashboardModuleHasUnassignedMeals)
+
+
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" data-bs-toggle="tab" href="#tab-1" role="tab">Unassigned</a>
                         </li>
 
 
+                        @endif
+                        {{-- end if - permission --}}
 
-                        {{-- cityTime / charges --}}
+
+
+
+
+
+
+
+                        {{-- soonExpiring --}}
+
+                        {{-- :: permission - hasSoonExpiringCustomers --}}
+                        @if ($versionPermission->DashboardModuleHasSoonExpiringCustomers)
+
+
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" data-bs-toggle="tab" href="#tab-2" role="tab">Soon Expiring</a>
                         </li>
 
 
+                        @endif
+                        {{-- end if - permission --}}
 
 
 
-                        {{-- cityTime / charges --}}
+
+
+
+
+
+
+
+
+                        {{-- latestSubscribers --}}
+
+                        {{-- :: permission - hasLatestSubcribers --}}
+                        @if ($versionPermission->DashboardModuleHasLatestSubscribers)
+
+
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" data-bs-toggle="tab" href="#tab-3" role="tab">Latest
                                 Subscribers</a>
                         </li>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
 
 
 
@@ -413,7 +536,16 @@
 
 
 
-                        {{-- 1: allergnCustomers --}}
+
+                        {{-- :: permission - hasUnassignedMeals --}}
+                        @if ($versionPermission->DashboardModuleHasUnassignedMeals)
+
+
+
+
+
+
+                        {{-- 1: unAssignedMeals --}}
                         <div class="tab-pane fade show active no--card" id="tab-1" role="tabpanel">
 
 
@@ -537,10 +669,8 @@
                                                     {{-- action --}}
                                                     <td>
                                                         <a wire:navigate
-                                                            class="btn btn--scheme btn--theme fs-12 px-2 py-1 mx-1 scale--self-05 h-32"
-                                                            href="{{ route('dashboard.singleCustomerMenu', [$commonCustomer]) }}">
-                                                            Manage
-                                                        </a>
+                                                            class="btn btn--scheme btn-outline-warning fs-12 px-2 py-1 mx-1 scale--self-05"
+                                                            href="{{ route('dashboard.singleCustomerMenu', [$commonCustomer]) }}">Manage</a>
                                                     </td>
 
 
@@ -571,6 +701,13 @@
 
 
 
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
 
 
 
@@ -593,9 +730,14 @@
 
 
 
+                        {{-- :: permission - hasSoonExpiringCustomers --}}
+                        @if ($versionPermission->DashboardModuleHasSoonExpiringCustomers)
 
 
-                        {{-- 2: expringSoon Customers Tab --}}
+
+
+
+                        {{-- 2: soonExpiring Customers Tab --}}
                         <div class="tab-pane fade no--card" id="tab-2" role="tabpanel">
 
 
@@ -682,7 +824,7 @@
                                                     {{-- actions [manage] --}}
                                                     <td>
                                                         <a wire:navigate
-                                                            class="btn btn--scheme btn--theme fs-12 px-2 py-1 mx-1 scale--self-05 h-32"
+                                                            class="btn btn--scheme btn-outline-warning fs-12 px-2 py-1 mx-1 scale--self-05"
                                                             href="{{ route('dashboard.singleCustomer', [$subscription->customer->id]) }}">
                                                             Manage
                                                         </a>
@@ -738,6 +880,8 @@
 
 
 
+                        @endif
+                        {{-- end if - permission --}}
 
 
 
@@ -751,6 +895,13 @@
 
 
 
+
+
+
+
+
+                        {{-- :: permission - hasLatestSubcribers --}}
+                        @if ($versionPermission->DashboardModuleHasLatestSubscribers)
 
 
 
@@ -847,7 +998,7 @@
                                                     <td>
                                                         {{-- 1: manage --}}
                                                         <a wire:navigate
-                                                            class="btn btn--scheme btn--theme fs-12 px-2 py-1 mx-1 scale--self-05 h-32"
+                                                            class="btn btn--scheme btn-outline-warning fs-12 px-2 py-1 mx-1 scale--self-05"
                                                             href="{{ route('dashboard.singleCustomer', [$subscription->customer->id]) }}">
                                                             Manage
                                                         </a>
@@ -903,8 +1054,8 @@
 
 
 
-
-
+                        @endif
+                        {{-- end if - permission --}}
 
 
 
@@ -915,15 +1066,19 @@
                 {{-- end tabsWrap --}}
 
 
-
-
-
-
             </div>
         </div>
         {{-- endRow --}}
 
 
+
+
+
+
+
+
+        @endif
+        {{-- end if - permission --}}
 
 
 

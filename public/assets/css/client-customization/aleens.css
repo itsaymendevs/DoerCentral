@@ -469,3 +469,14 @@ fieldset:disabled .btn {
 .btn--scheme-outline-2:focus svg {
     fill: white;
 }
+
+/* --------------------- */
+/* preloader */
+.preloader--bg {
+    background: linear-gradient(270deg, #c1f2b0, #ffffff);
+    background-size: 400% 400%;
+
+    -webkit-animation: loader-gradient 6s ease infinite;
+    -moz-animation: loader-gradient 6s ease infinite;
+    animation: loader-gradient 6s ease infinite;
+}

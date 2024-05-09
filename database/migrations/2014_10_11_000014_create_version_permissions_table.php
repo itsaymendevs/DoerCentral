@@ -55,6 +55,13 @@ return new class extends Migration {
 
 
 
+            // 0.2: charts
+            $table->boolean('DashboardModuleHasClock')->nullable()->default(1);
+            $table->boolean('DashboardModuleHasItemChart')->nullable()->default(1);
+            $table->boolean('DashboardModuleHasDeliveryChart')->nullable()->default(1);
+            $table->boolean('DashboardModuleHasDeliveryDetails')->nullable()->default(1);
+
+
 
 
 

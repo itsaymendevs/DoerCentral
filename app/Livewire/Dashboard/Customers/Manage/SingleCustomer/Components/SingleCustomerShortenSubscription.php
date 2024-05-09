@@ -6,6 +6,7 @@ use App\Livewire\Forms\CustomerSubscriptionShortenForm;
 use App\Models\Customer;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -15,6 +16,7 @@ class SingleCustomerShortenSubscription extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
 
 
@@ -161,6 +163,12 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
+
+
+
+
+        // ### log - activity ###
+        $this->storeActivity('Customers', "Shortened subscription for {$this->subscription->customer->fullName()} to " . date('d / m / Y', strtotime($this->instance->untilDate)));
 
 
 

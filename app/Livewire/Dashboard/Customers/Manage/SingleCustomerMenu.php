@@ -6,9 +6,11 @@ use App\Models\Customer;
 use App\Models\CustomerSubscriptionPause;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleReplacement;
+use App\Models\Meal;
 use App\Models\MealType;
 use App\Models\MenuCalendar;
 use App\Models\MenuCalendarScheduleMeal;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
@@ -20,7 +22,7 @@ class SingleCustomerMenu extends Component
 
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
 
@@ -321,6 +323,13 @@ class SingleCustomerMenu extends Component
 
 
 
+        // ### log - activity ###
+        $this->storeActivity('Customers', "Skipped Schedule for {$this->subscription->customer->fullName()} on " . date('d / m / Y', strtotime($instance->scheduleDate)));
+
+
+
+
+
 
         // 1.2: makeRequest
         $response = $this->makeRequest('dashboard/customers/menu/schedule/skip', $instance);
@@ -391,6 +400,13 @@ class SingleCustomerMenu extends Component
 
             $instance->id = $pause->id;
             $instance->customerSubscriptionId = $this->subscription->id;
+
+
+
+
+
+            // ### log - activity ###
+            $this->storeActivity('Customers', "Resumed Schedule for {$this->subscription->customer->fullName()} on " . date('d / m / Y', strtotime($this->scheduleDate)));
 
 
 
@@ -588,6 +604,22 @@ class SingleCustomerMenu extends Component
         $instance->mealTypeId = $mealTypeId;
         $instance->scheduleDate = $this->scheduleDate;
         $instance->customerSubscriptionId = $this->subscription->id;
+
+
+
+
+
+
+        // ### log - activity ###
+        $meal = Meal::find($mealId);
+        $mealType = MealType::find($mealTypeId);
+
+
+        $this->storeActivity('Customers', "Replaced {$mealType?->name} to {$meal->name} for {$this->subscription->customer->fullName()} on " . date('d / m / Y', strtotime($instance->scheduleDate)));
+
+
+
+
 
 
 

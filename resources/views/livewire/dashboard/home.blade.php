@@ -61,7 +61,7 @@
 
 
         {{-- topRow --}}
-        <div class="row mb-5 pb-5">
+        <div class="row mb-5 pb-5 justify-content-start">
 
 
 
@@ -71,6 +71,12 @@
 
 
             {{-- chartTwo --}}
+
+            {{-- :: permission - hasItemChart --}}
+            @if ($versionPermission->DashboardModuleHasItemChart)
+
+
+
             <div class="col-8 text-end mb-5" data-aos="fade" data-aos-duration="700" data-aos-delay="300"
                 data-aos-once="true" wire:ignore>
                 <div style="position: relative; height:350px;" class='w-100 d-flex align-items-end'>
@@ -78,6 +84,9 @@
                 </div>
             </div>
 
+
+            @endif
+            {{-- end if - permission --}}
 
 
 
@@ -95,7 +104,13 @@
 
 
             {{-- clockCol --}}
-            <div class="col-4 d-flex justify-content-end no-events">
+
+            {{-- :: permission - hasClock --}}
+            @if ($versionPermission->DashboardModuleHasClock)
+
+
+
+            <div class="col-4 d-flex justify-content-end no-events mb-5">
 
 
                 <figure class="highcharts-figure w-100" wire:ignore>
@@ -106,7 +121,18 @@
             </div>
 
 
+            @endif
+            {{-- end if - permission --}}
 
+
+
+
+
+
+
+
+            {{-- empty --}}
+            <div class="col-12"></div>
 
 
 
@@ -123,6 +149,19 @@
 
 
 
+            {{-- :: permission - allFunctionsHidden --}}
+            @if ($versionPermission->DashboardModuleHasRevenue ||
+            $versionPermission->DashboardModuleHasRevenuePerPlan ||
+            $versionPermission->DashboardModuleHasCustomersPerPlan)
+
+
+
+
+
+
+
+
+            {{-- midRow --}}
             <div class="col-12">
 
 
@@ -574,6 +613,18 @@
 
 
             </div>
+
+
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
+
         </div>
         {{-- endRow --}}
 
@@ -1279,16 +1330,31 @@
 
 
 
-        <div class="row">
+        <div class="row mb-5">
 
 
             {{-- chartOne --}}
-            <div class="col-7 text-center mb-5" data-aos="fade" data-aos-duration="700" data-aos-delay="300"
+
+            {{-- :: permission - hasDeliveryChart --}}
+            @if ($versionPermission->DashboardModuleHasDeliveryChart)
+
+
+
+            <div class="col-7 text-center" data-aos="fade" data-aos-duration="700" data-aos-delay="300"
                 data-aos-once="true" wire:ignore>
                 <div style="position: relative; height:400px; width: 100%;">
                     <canvas id="chart--1"></canvas>
                 </div>
             </div>
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
 
 
 
@@ -1298,6 +1364,13 @@
 
 
             {{-- countersCol --}}
+
+
+            {{-- :: permission - hasDeliveryDetails --}}
+            @if ($versionPermission->DashboardModuleHasDeliveryDetails)
+
+
+
             <div class="col-5">
                 <div class="row">
 
@@ -1442,6 +1515,11 @@
                 </div>
             </div>
 
+
+
+
+            @endif
+            {{-- end if - permission --}}
 
 
         </div>

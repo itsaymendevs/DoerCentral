@@ -67,7 +67,7 @@
                                 <th class="th--xs"></th>
                                 <th class="th--md">User</th>
                                 <th class="th--md">Module</th>
-                                <th class="th--xl">Description</th>
+                                <th class="th--lg">Description</th>
                                 <th class="th--md">DateTime</th>
                             </tr>
                         </thead>

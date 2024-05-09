@@ -65,14 +65,16 @@ class Permissions extends Component
 
 
             // 1.1: dashboard
+            'DashboardModuleHasClock' => 'Clock',
             'DashboardModuleHasRevenue' => 'Revenue',
             'DashboardModuleHasRevenuePerPlan' => 'Plans Revenue',
             'DashboardModuleHasCustomersPerPlan' => 'Customers Per Plan',
             'DashboardModuleHasUnassignedMeals' => 'Unassigned Meals',
             'DashboardModuleHasSoonExpiringCustomers' => 'Soon Expiring',
             'DashboardModuleHasLatestSubscribers' => 'Latest Subscribers',
-
-
+            'DashboardModuleHasDeliveryDetails' => 'Delivery Details',
+            'DashboardModuleHasItemChart' => 'Item Chart',
+            'DashboardModuleHasDeliveryChart' => 'Delivery Chart',
 
 
 
@@ -189,7 +191,7 @@ class Permissions extends Component
 
 
         // 2.1: dashboard
-        $dashboardPermissions = VersionPermission::get(['DashboardModuleHasRevenue', 'DashboardModuleHasRevenuePerPlan', 'DashboardModuleHasCustomersPerPlan', 'DashboardModuleHasUnassignedMeals', 'DashboardModuleHasSoonExpiringCustomers', 'DashboardModuleHasLatestSubscribers'])->first()->toArray();
+        $dashboardPermissions = VersionPermission::get(['DashboardModuleHasClock', 'DashboardModuleHasRevenue', 'DashboardModuleHasRevenuePerPlan', 'DashboardModuleHasCustomersPerPlan', 'DashboardModuleHasUnassignedMeals', 'DashboardModuleHasSoonExpiringCustomers', 'DashboardModuleHasLatestSubscribers', 'DashboardModuleHasDeliveryDetails', 'DashboardModuleHasItemChart', 'DashboardModuleHasDeliveryChart'])->first()->toArray();
 
 
 

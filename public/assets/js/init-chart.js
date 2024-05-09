@@ -5,7 +5,7 @@ const ctx = document.getElementById("chart--1");
 const data = {
     datasets: [
         {
-            label: "Customer's Renew",
+            label: "180 DELIVERIES",
             data: [
                 {
                     x: 20,

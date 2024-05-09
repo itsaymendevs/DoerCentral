@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Customers\Manage\SingleCustomer\Components;
 use App\Livewire\Forms\CustomerWalletDepositForm;
 use App\Models\Customer;
 use App\Models\CustomerWalletDeposit;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -13,96 +14,99 @@ class SingleCustomerManageWallet extends Component
 {
 
 
-    use HelperTrait;
+   use HelperTrait;
+   use ActivityTrait;
 
 
-    // :: variables
-    public CustomerWalletDepositForm $instance;
-    public $id;
 
+   // :: variables
+   public CustomerWalletDepositForm $instance;
+   public $id;
 
 
 
 
 
-    public function mount($id)
-    {
 
+   public function mount($id)
+   {
 
-        // :: getCustomer
-        $customer = Customer::find($id);
 
-        $this->instance->customerId = $customer->id;
-        $this->instance->walletId = $customer->wallet->id;
+      // :: getCustomer
+      $customer = Customer::find($id);
 
+      $this->instance->customerId = $customer->id;
+      $this->instance->walletId = $customer->wallet->id;
 
 
 
-    } // end function
 
+   } // end function
 
 
 
 
 
 
-    // -----------------------------------------------------------
 
+   // -----------------------------------------------------------
 
 
 
 
 
 
-    public function store()
-    {
 
+   public function store()
+   {
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            return false;
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-        } // end if
+         return false;
 
+      } // end if
 
 
 
 
-        // --------------------------------------
-        // --------------------------------------
 
+      // --------------------------------------
+      // --------------------------------------
 
 
 
 
 
-        // 1: makeRequest
-        $response = $this->makeRequest('dashboard/customers/wallet/deposits/store', $this->instance);
 
+      // ### log - activity ###
+      $customer = Customer::find($this->instance->customerId);
 
+      $this->storeActivity('Customers', "Deposited {$this->instance->amount} AED to {$customer->fullName()} wallet");
 
-        // 1.2: reset - alert - refresh
-        $this->instance->reset('amount', 'remarks');
-        $this->dispatch('refreshWalletViews');
 
-        $this->makeAlert('success', $response?->message);
 
 
 
-    } // end function
 
 
+      // 1: makeRequest
+      $response = $this->makeRequest('dashboard/customers/wallet/deposits/store', $this->instance);
 
 
 
+      // 1.2: reset - alert - refresh
+      $this->instance->reset('amount', 'remarks');
+      $this->dispatch('refreshWalletViews');
 
+      $this->makeAlert('success', $response?->message);
 
-    // -----------------------------------------------------------
 
 
+   } // end function
 
 
 
@@ -110,27 +114,37 @@ class SingleCustomerManageWallet extends Component
 
 
 
-    #[On('refreshWalletViews')]
-    public function render()
-    {
+   // -----------------------------------------------------------
 
 
-        // 1: dependencies
-        $deposits = CustomerWalletDeposit::where('customerId', $this->id)->get();
 
 
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
 
 
+   #[On('refreshWalletViews')]
+   public function render()
+   {
 
-        return view('livewire.dashboard.customers.manage.single-customer.components.single-customer-manage-wallet', compact('deposits'));
 
+      // 1: dependencies
+      $deposits = CustomerWalletDeposit::where('customerId', $this->id)->get();
 
-    } // end function
+
+
+
+
+      // :: initTooltips
+      $this->dispatch('initTooltips');
+
+
+
+      return view('livewire.dashboard.customers.manage.single-customer.components.single-customer-manage-wallet', compact('deposits'));
+
+
+   } // end function
 
 
 

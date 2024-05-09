@@ -5,44 +5,10 @@
 
 
 
-            {{-- leftCol --}}
-            <div class="col-12 col-xl-12 text-center">
 
-
-                {{-- heading --}}
-                <h3 data-aos="fade" data-aos-duration="600" data-aos-delay="800" data-aos-once="true"
-                    class="mb-4 mb-md-4 fw-semibold pb-lg-4" wire:ignore>
-                    Thanks for choosing Doer<br />Enjoy your meals!
-
-                    {{-- icon --}}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                        viewBox="0 0 16 16" class="bi bi-stars ms-2" style="fill: var(--bs-yellow)">
-                        <path
-                            d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z">
-                        </path>
-                    </svg>
-                </h3>
-            </div>
-            {{-- endColumn --}}
-
-
-
-
-
-
-
-            {{-- ---------------------------------------------- --}}
-            {{-- ---------------------------------------------- --}}
-
-
-
-
-
-
-
-
-            {{-- bottomCol --}}
-            <div class="col-12" data-aos="fade" data-aos-duration="600" data-aos-delay="800" data-aos-once="true">
+            {{-- singleInvoice --}}
+            <div class="col-12 col-lg-12 col-xl-10 mb-4" data-aos="fade" data-aos-duration="600" data-aos-delay="800"
+                data-aos-once="true">
 
 
 
@@ -57,8 +23,8 @@
                     {{-- 1: download / capture --}}
                     <button
                         class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-4 fs-13 justify-content-center fw-semibold mb-2 download--btn me-2"
-                        data-download='#invoice--1' type="button" data-bs-target="#extend-subscription"
-                        data-bs-toggle="modal">
+                        data-download='#invoice--{{ $subscription->id }}' type="button"
+                        data-bs-target="#extend-subscription" data-bs-toggle="modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             class="bi bi-download fs-6 me-2" viewBox="0 0 16 16">
                             <path
@@ -76,8 +42,7 @@
                     {{-- 2: print --}}
                     <button
                         class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-4 fs-13 justify-content-center fw-semibold mb-2 print--btn"
-                        data-print='#invoice--1' type="button" data-bs-target="#extend-subscription"
-                        data-bs-toggle="modal">
+                        data-print='#invoice--{{ $subscription->id }}' type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
                             <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
@@ -90,6 +55,9 @@
 
 
 
+
+
+
                 </div>
                 {{-- endActions --}}
 
@@ -98,9 +66,12 @@
 
 
 
+                {{-- ------------------------------------- --}}
+                {{-- ------------------------------------- --}}
 
-                {{-- ------------------------------------- --}}
-                {{-- ------------------------------------- --}}
+
+
+
 
 
 
@@ -109,99 +80,270 @@
 
 
                 {{-- invoiceWrapper --}}
-                <div class="text-start overview--card client-version mb-5 w-100 flex-row subscription--side-invoice"
-                    id='invoice--1'>
+                <div id='invoice--{{ $subscription->id }}'
+                    class="text-start overview--card client-version mb-0 w-100 flex-row subscription--side-invoice">
                     <div class="row align-items-end w-100">
 
 
 
+
                         {{-- topCol --}}
-                        <div class="col-12 order-first">
-                            <div class="row align-items-center">
+                        <div class="col-12">
 
 
-                                {{-- title --}}
+
+                            {{-- row --}}
+                            <div class="row align-items-center mb-4 pb-3"
+                                style="border-bottom: 1px solid var(--bs-border-color-translucent);">
                                 <div class="col-12 col-sm-6 text-center text-sm-start">
-                                    <h1 class="display-4 fw-bold mb-4 mt-0">Invoice</h1>
+
+
+                                    {{-- paymentReference --}}
+                                    <h5 class="fw-bold mb-2 mt-0">Invoice No.<span
+                                            class="ms-2 text-gold fs-15 fw-semibold">#INV-{{
+                                            $subscription?->paymentReference ?? '000000' }}</span>
+                                    </h5>
+
+
+                                    {{-- orderDate --}}
+                                    <h6 class="fw-semibold mb-0 mt-0 fs-14">
+                                        Order Date.<span class="ms-2">{{ date('d / m / Y',
+                                            strtotime($subscription->created_at)) }}</span>
+                                    </h6>
                                 </div>
 
 
-                                {{-- logo --}}
+
+                                {{-- profileLogo --}}
                                 <div class="col-12 col-sm-6 text-center text-sm-end">
-                                    <img class="mb-3 of-contain" src="{{ asset('assets/img/Logo/doer.png') }}"
-                                        style="height: 55px" />
+                                    <img class="of-contain"
+                                        src="{{ asset('assets/img/Clients/' . $globalProfile->imageFile) }}"
+                                        style="max-height: 80px; width: 200px; object-fit:contain !important;" />
+                                </div>
+                            </div>
+                            {{-- endRow --}}
+
+
+
+
+
+
+
+
+
+                            {{-- row --}}
+                            <div class="row align-items-start mb-3">
+
+
+                                {{-- planDays --}}
+                                <div class="col-12 col-sm-6 text-center text-sm-start mb-4">
+                                    <div class="invoice--box">
+                                        <h6 class="fw-semibold">Plan Duration</h6>
+                                        <h4 class="mb-0">
+                                            <span class="fw-bold text-gold">{{
+                                                $subscription->planDays }}
+                                                Days</span>
+                                        </h4>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                {{-- profileInformation --}}
+                                <div class="col-12 col-sm-6 text-center text-sm-end mb-4">
+
+
+                                    {{-- name --}}
+                                    <h5 class="mb-2 mt-0 fw-semibold">Aleens</h5>
+
+
+                                    {{-- address --}}
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        {{ $globalProfile->locationAddress }}
+                                    </h6>
+
+                                    {{-- city - district --}}
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        {{ $globalProfile->city->name }}, {{
+                                        $globalProfile->district->name }}
+                                    </h6>
+
+
+                                    {{-- number --}}
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        {{ $globalProfile->phone }}
+                                    </h6>
+
+
+                                    {{-- email --}}
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        {{ $globalProfile->email }}
+                                    </h6>
+                                </div>
+
+
+
+
+
+
+
+                                {{-- billTo --}}
+                                <div class="col-4">
+                                    <h5 class="mb-2 mt-0 fw-bold">BILL TO</h5>
+
+
+
+                                    {{-- customer - phone - email --}}
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        {{ $subscription->customer->fullName() }}
+                                    </h6>
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        +971 {{ $subscription->customer->phone }}
+                                    </h6>
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        {{ $subscription->customer->email }}
+                                    </h6>
+                                </div>
+
+
+
+
+
+
+                                {{-- ** getAddress ** --}}
+                                @php $customerAddress = $subscription->customer->addresses->first();
+                                @endphp
+
+
+
+
+
+
+
+                                {{-- location --}}
+                                <div class="col-4">
+                                    <h5 class="mb-2 mt-0 fw-bold">Location</h5>
+
+
+                                    {{-- locationAddress --}}
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        {{ $customerAddress?->locationAddress }}
+                                    </h6>
+
+
+                                    {{-- city - district --}}
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        {{ $customerAddress?->city?->name }}, {{
+                                        $customerAddress?->district?->name }}
+                                    </h6>
+
+
+                                    {{-- apartment - floor --}}
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        Apartment. {{ $customerAddress?->apartment }}{{
+                                        $customerAddress?->floor ? ' - Floor. ' .
+                                        $customerAddress?->floor : '' }}
+                                    </h6>
+                                </div>
+
+
+
+
+                                {{-- plan - bundle --}}
+                                <div class="col-12 col-sm-4 mb-4">
+                                    <div class="invoice--box mx-auto me-0">
+                                        <h6 class="fw-semibold">{{ $subscription->plan->name }}</h6>
+                                        <h5 class="mb-0 text-center">
+                                            <span class="fw-bold text-gold">
+                                                {{ $subscription->range->caloriesRange
+                                                }}<br />CALS</span>
+                                        </h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        {{-- end topCol --}}
 
 
 
 
 
-                        {{-- ------------------ --}}
-                        {{-- ------------------ --}}
+
+                        {{-- ------------------------------------------ --}}
+                        {{-- ------------------------------------------ --}}
 
 
 
 
 
-                        {{-- leftCol --}}
-                        <div class="col-12 col-lg-6 order-3 order-lg-2">
 
 
-                            {{-- date / serial --}}
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <p class="fs-6 w-50 pe-3 mb-0 text-gold"># 104050</p>
-                                <p class="fs-6 mb-0 w-50 text-end fw-bold">
-                                    {{ date('d / m / Y', strtotime($subscription->created_at)) }}
-                                </p>
-                            </div>
+                        {{-- midCol --}}
+                        <div class="col-12">
+                            <div style="border-top: 2px solid var(--color-scheme-dark-1);
+                                    border-radius: 1px;">
 
 
 
 
-
-                            {{-- tableOfContent --}}
-                            <div style=" border-top: 2px solid var(--color-scheme-dark-1); border-radius: 1px;">
+                                {{-- tableRow --}}
                                 <div class="row">
 
 
-                                    {{-- 1: plan / coupon / bagPrice / empty --}}
-                                    <div class="col-6 col-sm-4 pt-2"
-                                        style="border-right: 2px solid var(--color-scheme-dark-1);">
-                                        <p class="text-center w-100 fs-13 mt-2 mb-4">Item</p>
-                                        <p class="text-center mb-3 fw-bold">{{ $subscription?->plan?->name }}</p>
+
+
+                                    {{-- 1: items --}}
+                                    <div class="col-4" style="border-right: 2px solid var(--color-scheme-dark-1);">
+                                        <p class="text-center w-100 mt-2
+                                                mb-4 pb-2 border-bottom fw-semibold">ITEM</p>
+
+
+
+
+                                        {{-- plan - coupon - Cool Bag --}}
+                                        <p class="text-center mb-3 fw-bold">{{
+                                            $subscription->plan->name}}</p>
+
+
 
 
                                         {{-- :: checkCoupon --}}
                                         @if ($subscription?->promoCodeId)
 
-                                        <p class="text-center mb-3 fw-bold">Coupon</p>
+                                        <p class="text-center mb-3 fw-bold">{{
+                                            $subscription->promoCode->name }}</p>
 
                                         @endif
-                                        {{-- end if - --}}
+                                        {{-- end if --}}
 
 
-                                        <p class="text-center mb-3 fw-bold">{{ $subscription?->bag?->name }}</p>
-                                        <p class="text-center mb-3 fw-bold"></p>
+
+
+                                        <p class="text-center mb-0 fw-bolder">{{
+                                            $subscription?->bag->name }}</p>
                                     </div>
 
 
 
 
-
-
-                                    {{-- ------------------------- --}}
-                                    {{-- ------------------------- --}}
+                                    {{-- --------------------------- --}}
+                                    {{-- --------------------------- --}}
 
 
 
 
                                     {{-- 2: QTY --}}
-                                    <div class="col-6 col-sm-4 pt-2 d-none d-sm-block"
-                                        style="border-right: 2px solid var(--color-scheme-dark-1);">
-                                        <p class="text-center w-100 fs-13 mt-2 mb-4">QTY</p>
+                                    <div class="col-2" style="border-right: 2px solid var(--color-scheme-dark-1);">
+                                        <p class="text-center w-100 mt-2 mb-4
+                                                pb-2 border-bottom fw-semibold">QTY</p>
+
+
+
+                                        {{-- quantity --}}
                                         <p class="text-center mb-3 fw-bold">x1</p>
+
 
 
                                         {{-- :: checkCoupon --}}
@@ -210,67 +352,131 @@
                                         <p class="text-center mb-3 fw-bold">x1</p>
 
                                         @endif
-                                        {{-- end if - --}}
+                                        {{-- end if --}}
 
 
-                                        <p class="text-center mb-3 fw-bold">x1</p>
+                                        <p class="text-center mb-0 fw-bold">x1</p>
                                     </div>
 
 
 
 
 
-
-                                    {{-- ------------------------- --}}
-                                    {{-- ------------------------- --}}
-
+                                    {{-- --------------------------- --}}
+                                    {{-- --------------------------- --}}
 
 
 
 
 
 
+                                    {{-- 3: VAT --}}
+                                    <div class="col-2" style="border-right: 2px solid var(--color-scheme-dark-1);">
+                                        <p class="text-center w-100 mt-2
+                                                mb-4 pb-2 border-bottom fw-semibold">TAX</p>
+                                        <p class="text-center mb-3 fw-bold">%0</p>
+                                        <p class="text-center mb-3 fw-bold">%0</p>
+                                        <p class="text-center mb-0 fw-bold">%0</p>
+                                    </div>
 
-                                    {{-- 3: planPrice - coupon - bagPrice - totalPrice --}}
-                                    <div class="col-6 col-sm-4 pt-2">
-                                        <p class="text-center w-100 fs-13 mt-2 mb-4">Total<small
-                                                class="fw-semibold text-gold fs-10 ms-1">(AED)</small></p>
+
+
+
+
+                                    {{-- --------------------------- --}}
+                                    {{-- --------------------------- --}}
+
+
+
+
+
+                                    {{-- 4: prices --}}
+                                    <div class="col-4">
+                                        <p class="text-center w-100 mt-2 mb-4
+                                                 pb-2 border-bottom fw-semibold">PRICE<small
+                                                class="fw-semibold text-gold fs-10 ms-1">(AED)</small>
+                                        </p>
+
+
+                                        {{-- plan - promoCode - coolBag --}}
 
 
                                         {{-- planPrice --}}
-                                        <p class="text-center mb-3 fw-bold">{{ $subscription?->planPrice ?? 0 }}</p>
+                                        <p class="text-center mb-3 fw-bold">{{
+                                            $subscription?->planPrice ?? 0 }}</p>
+
 
 
 
                                         {{-- :: checkCoupon --}}
                                         @if ($subscription?->promoCodeId)
 
-                                        <p class="text-center mb-3 fw-bold">
-                                            {{ $subscription?->promoCodeDiscountPrice ?? 0 }}</p>
+                                        <p class="text-center mb-3 fw-bold">{{
+                                            $subscription?->promoCodeDiscountPrice ?? 0 }}</p>
 
                                         @endif
-                                        {{-- end if - --}}
+                                        {{-- end if --}}
 
 
 
-                                        {{-- bagPrice - totalCheckoutPrice --}}
-                                        <p class="text-center mb-3 fw-bold">{{ $subscription?->bagPrice ?? 0 }}</p>
-                                        <p class="fs-4 text-center mb-0 fw-bold">
-                                            {{ $subscription?->totalCheckoutPrice?? 0 }}
-                                        </p>
 
+                                        {{-- bagPrice --}}
+                                        <p class="text-center mb-0 fw-bold">{{
+                                            $subscription?->bagPrice
+                                            ?? 0 }}</p>
 
 
                                     </div>
                                 </div>
                             </div>
-                            {{-- end tableOfContetn --}}
-
-
-
-
                         </div>
-                        {{-- end leftCol --}}
+                        {{-- endCol --}}
+
+
+
+
+
+
+                        {{-- -------------------------------- --}}
+                        {{-- -------------------------------- --}}
+
+
+
+
+
+
+                        {{-- totalCol --}}
+                        <div class="col-12 mt-4">
+                            <div class="row align-items-center">
+
+
+
+                                {{-- payment - HIDDEN --}}
+                                <div class="col-6 invisible1">
+                                    <h6 class="mb-2 mt-0 fw-bold invisible">
+                                        Payment
+                                    </h6>
+                                </div>
+
+
+
+                                {{-- totalCheckoutPrice --}}
+                                <div class="col-2 text-center">
+                                    <h6 class="mb-2 mt-0 fw-bold">Total Amount</h6>
+                                </div>
+                                <div class="col-4">
+                                    <h4 class="text-center mb-2 mt-0 fw-bold">
+                                        {{ $subscription?->totalCheckoutPrice?? 0 }}
+                                    </h4>
+                                </div>
+
+
+
+
+
+
+                                {{-- ------------------------------ --}}
+                                {{-- ------------------------------ --}}
 
 
 
@@ -278,75 +484,36 @@
 
 
 
-                        {{-- ------------------ --}}
-                        {{-- ------------------ --}}
+
+
+                                {{-- noteFromAdmin --}}
+                                <div class="col-11 mt-3 mb-2 d-none">
+                                    <h6 class="mb-2 mt-0 fw-bold d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            fill="currentColor" viewBox="0 0 16 16" class="bi bi-info-circle fs-6 me-2">
+                                            <path
+                                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z">
+                                            </path>
+                                            <path
+                                                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z">
+                                            </path>
+                                        </svg>Note
+                                    </h6>
+                                    <h6 class="mb-1 text--white-dim fs-15">
+                                        Lorem ipsum, dolor sit amet consectetur
+                                        adipisicing elit. Dolorem quod voluptatum
+                                        inventore doloribus at. Consequatur.<br />
+                                    </h6>
+                                </div>
+                                {{-- endCol --}}
 
 
 
-
-
-
-
-                        {{-- ** getAddress ** --}}
-                        @php $customerAddress = $customer->addresses->first(); @endphp
-
-
-
-
-
-                        {{-- rightCol - personalInformatino --}}
-                        <div class="col-12 col-lg-6 text-center text-lg-start order-2 order-lg-2 mb-5 mb-lg-0">
-                            <div class="invoice--right-section">
-                                <h6 class="fw-normal mb-1">Bill To</h6>
-
-
-                                {{-- name --}}
-                                <h6 class="fw-semibold text-gold mb-4">{{ $customer?->fullName() }}</h6>
-
-                                {{-- city - district - address --}}
-                                <h6 class="fw-normal mb-1">{{ $customerAddress?->city?->name }} - {{
-                                    $customerAddress?->district?->name }}</h6>
-                                <h6 class="fw-normal mb-1">{{ $customerAddress?->locationAddress }}</h6>
-
-
-                                {{-- apartment - floor --}}
-                                <h6 class="fw-normal mb-3">Apartment. {{ $customerAddress?->apartment }}{{
-                                    $customerAddress?->floor ? ' - Floor. ' . $customerAddress?->floor : '' }}</h6>
-
-
-                                {{-- phone - email --}}
-                                <h6 class="fw-normal mb-1">+971 {{ $customer?->phone }}</h6>
-                                <h6 class="fw-normal mb-1">{{ $customer?->email }}</h6>
                             </div>
                         </div>
-                        {{-- end rightCol --}}
                     </div>
                 </div>
-                {{-- end invoiceWrapper --}}
 
-
-
-
-
-
-
-
-
-
-                {{-- -------------------------- --}}
-                {{-- -------------------------- --}}
-
-
-
-
-                {{-- :: returnButton --}}
-                <div class="d-block text-center">
-                    <a href="{{ route('subscription.customerStepOne') }}"
-                        class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-5 fw-semibold justify-content-center shrink--self w-100"
-                        style="border: 1px dashed var(--color-scheme-3); max-width: 200px">
-                        Continue
-                    </a>
-                </div>
 
 
 
@@ -354,7 +521,6 @@
 
 
             </div>
-            {{-- endCol --}}
 
 
 
@@ -362,8 +528,29 @@
 
 
 
-            {{-- ----------------------------------------------- --}}
-            {{-- ----------------------------------------------- --}}
+            {{-- -------------------------- --}}
+            {{-- -------------------------- --}}
+
+
+
+
+
+
+
+            {{-- :: returnButton --}}
+            <div class="col-12">
+
+
+                <div class="d-block text-center">
+                    <a href="{{ route('subscription.customerStepOne') }}"
+                        class="btn btn--scheme btn--scheme-2 px-2 py-2 d-inline-flex align-items-center fs-14 mb-5 fw-semibold justify-content-center shrink--self w-100"
+                        style="border: 1px dashed var(--color-scheme-3); max-width: 200px">
+                        Continue
+                    </a>
+                </div>
+            </div>
+
+
 
 
 

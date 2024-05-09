@@ -72,8 +72,8 @@ class CustomerSubscriptionStepSix extends Component
 
 
         // 1: get instance
-        $this->plan = Plan::find($id);
-        $this->customer = Customer::where('email', session('customerInvoice')->{'email'})->first();
+        // $this->plan = Plan::find($id);
+        $this->customer = Customer::where('email', session('customerInvoice')->{'email'})->latest()->first();
         $this->subscription = $this->customer->latestSubscription();
 
 

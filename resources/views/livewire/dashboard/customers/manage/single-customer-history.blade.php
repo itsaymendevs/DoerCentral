@@ -129,7 +129,7 @@
 
                         {{-- 2: invoicesTab --}}
                         <div class="tab-pane fade show active no--card" role="tabpanel" id="tab-2">
-                            <div class="row">
+                            <div class="row justify-content-center">
 
 
 
@@ -338,7 +338,7 @@
                                                             {{ $invoice->customer->fullName() }}
                                                         </h6>
                                                         <h6 class="mb-1 text--white-dim fs-15">
-                                                            {{ $invoice->customer->phone }}
+                                                            +971 {{ $invoice->customer->phone }}
                                                         </h6>
                                                         <h6 class="mb-1 text--white-dim fs-15">
                                                             {{ $invoice->customer->email }}

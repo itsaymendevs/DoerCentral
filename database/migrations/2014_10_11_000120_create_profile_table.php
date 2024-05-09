@@ -16,6 +16,10 @@ return new class extends Migration {
 
             // 1: general
             $table->string('name', 255)->nullable();
+            $table->string('email', 255)->nullable();
+            $table->string('phone', 100)->nullable();
+            $table->string('locationAddress', 255)->nullable();
+
             $table->text('imageFile')->nullable();
             $table->text('preloaderImageFile')->nullable();
 
@@ -29,6 +33,18 @@ return new class extends Migration {
             // 1.3: website - application
             $table->text('websiteURL')->nullable();
             $table->text('applicationURL')->nullable();
+
+
+
+
+            // 1.4: city - district
+            $table->bigInteger('cityId')->unsigned()->nullable();
+            $table->foreign('cityId')->references('id')->on('cities')->onDelete('set null');
+
+
+            $table->bigInteger('cityDistrictId')->unsigned()->nullable();
+            $table->foreign('cityDistrictId')->references('id')->on('city_districts')->onDelete('set null');
+
 
 
 

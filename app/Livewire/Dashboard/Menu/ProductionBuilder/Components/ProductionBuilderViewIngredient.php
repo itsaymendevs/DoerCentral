@@ -3,8 +3,11 @@
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Livewire\Forms\MealPartDetailForm;
+use App\Models\Meal;
 use App\Models\MealIngredient;
 use App\Models\MealPart;
+use App\Models\Type;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -16,7 +19,7 @@ class ProductionBuilderViewIngredient extends Component
 
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -152,6 +155,29 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
+        // ## log - activity ##
+        // $meal = Meal::find($this->instance->mealId);
+        // $this->instance->typeId == 'Ingredient' ? $type = 'Ingredient' :
+        //     $type = Type::find($this->instance->typeId)->name;
+
+
+        // $this->storeActivity('Menu', "Updated {$type} details in {$meal->name}");
+
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+
 
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/builder/ingredients/details/update', $this->instance);
@@ -225,6 +251,20 @@ class ProductionBuilderViewIngredient extends Component
         if ($this->removeId) {
 
 
+
+            // ## log - activity ##
+            // $meal = Meal::find($this->instance->mealId);
+            // $this->instance->typeId == 'Ingredient' ? $type = 'Ingredient' :
+            //     $type = Type::find($this->instance->typeId)->name;
+
+
+            // $this->storeActivity('Menu', "Removed {$type} from {$meal->name}");
+
+
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/builder/ingredients/remove', $instance);
             $this->makeAlert('info', $response->message);
 

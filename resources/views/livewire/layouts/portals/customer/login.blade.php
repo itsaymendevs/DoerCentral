@@ -118,6 +118,7 @@
         <script src="{{ asset('assets/js/aos.min.js') }}"></script>
         <script src="{{ asset('assets/js/bs-init.js') }}"></script>
         <script src="{{ asset('assets/js/switches.js') }}"></script>
+        <script src="{{ asset('assets/js/preview-password.js') }}"></script>
 
 
 

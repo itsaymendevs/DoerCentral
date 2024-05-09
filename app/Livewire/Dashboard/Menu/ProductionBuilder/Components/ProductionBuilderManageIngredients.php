@@ -9,6 +9,7 @@ use App\Models\MealPart;
 use App\Models\MealSize;
 use App\Models\Type;
 use App\Models\VersionPermission;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -18,7 +19,7 @@ class ProductionBuilderManageIngredients extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
 
@@ -206,6 +207,15 @@ class ProductionBuilderManageIngredients extends Component
         if ($typeId) {
 
 
+
+            // ## log - activity ##
+            ($typeId == 'Ingredient') ? $type = 'Ingredient' : $type = Type::find($typeId)->name;
+
+            $this->storeActivity('Menu', "Appended {$type} to {$this->meal->name}");
+
+
+
+
             // 1: makeRequest
             $response = $this->makeRequest('dashboard/menu/builder/ingredients/store', $instance);
 
@@ -224,9 +234,6 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-
-            // :: resetPage / openTab - redirectRoute - alert
-            // return $this->redirect(route('dashboard.menuProductionBuilder', [$this->meal->id]) . '#tab-2', navigate: true);
 
 
 

@@ -94,6 +94,13 @@ class LoginCustomerPortal extends Component
         // :: removeSessions
         Session::forget(['customerPortalToken', 'customerId', 'customerName']);
 
+
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
+
         return view('livewire.login-customer-portal');
 
 

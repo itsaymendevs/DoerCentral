@@ -128,6 +128,11 @@ class Login extends Component
         // :: removeSessions
         Session::forget(['token', 'userId', 'userName', 'globalUser']);
 
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
         return view('livewire.login');
 
     } // end function

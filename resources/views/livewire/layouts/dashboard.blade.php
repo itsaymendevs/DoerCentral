@@ -215,6 +215,7 @@
         <script src="{{ asset('assets/js/file-preview.js') }}"></script>
         <script src="{{ asset('assets/js/button-checkbox.js') }}"></script>
         <script src="{{ asset('assets/js/html2canvas.js') }}"></script>
+        <script src="{{ asset('assets/js/preview-password.js') }}"></script>
 
 
 

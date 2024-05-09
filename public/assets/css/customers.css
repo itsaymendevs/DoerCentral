@@ -154,3 +154,25 @@
     display: block;
     border: 2px solid var(--input-border-color);
 }
+
+/* invoice */
+
+/* box */
+
+.invoice--box {
+    display: flex;
+    flex-direction: column;
+    max-width: 160px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px;
+    border: 2px solid var(--color-scheme-dark-1);
+    border-radius: var(--radius);
+    height: 135px;
+}
+
+/* secondary invoice color */
+
+.text--white-dim {
+    color: var(--color-theme-heading);
+}

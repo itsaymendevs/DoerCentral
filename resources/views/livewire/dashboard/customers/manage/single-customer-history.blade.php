@@ -134,11 +134,19 @@
 
 
 
+
+
                                 {{-- loop - invoices --}}
                                 @foreach ($invoices as $invoice)
 
 
-                                <div class="col-12">
+
+
+
+
+                                {{-- singleInvoice --}}
+                                <div class="col-12 col-lg-12 col-xl-11">
+
 
 
 
@@ -205,104 +213,277 @@
 
 
 
+
+
+
+
                                     {{-- invoiceWrapper --}}
-                                    <div class="text-start overview--card client-version mb-5 w-100 flex-row subscription--side-invoice"
-                                        id='invoice--{{ $invoice->id }}'>
+                                    <div id='invoice--{{ $invoice->id }}'
+                                        class="text-start overview--card client-version mb-0 w-100 flex-row subscription--side-invoice">
                                         <div class="row align-items-end w-100">
 
 
 
+
                                             {{-- topCol --}}
-                                            <div class="col-12 order-first">
-                                                <div class="row align-items-center">
+                                            <div class="col-12">
 
 
-                                                    {{-- title --}}
+
+                                                {{-- row --}}
+                                                <div class="row align-items-center mb-4 pb-3"
+                                                    style="border-bottom: 1px solid var(--bs-border-color-translucent);">
                                                     <div class="col-12 col-sm-6 text-center text-sm-start">
-                                                        <h1 class="display-4 fw-bold mb-4 mt-0">Invoice</h1>
+
+
+                                                        {{-- paymentReference --}}
+                                                        <h5 class="fw-bold mb-2 mt-0">Invoice No.<span
+                                                                class="ms-2 text-gold fs-15 fw-semibold">#INV-{{
+                                                                $invoice?->paymentReference ?? '000000' }}</span>
+                                                        </h5>
+
+
+                                                        {{-- orderDate --}}
+                                                        <h6 class="fw-semibold mb-0 mt-0 fs-14">
+                                                            Order Date.<span class="ms-2">{{ date('d / m / Y',
+                                                                strtotime($invoice->created_at)) }}</span>
+                                                        </h6>
                                                     </div>
 
 
-                                                    {{-- logo --}}
+
+                                                    {{-- profileLogo --}}
                                                     <div class="col-12 col-sm-6 text-center text-sm-end">
-                                                        <img class="mb-3 of-contain"
-                                                            src="{{ asset('assets/img/Logo/doer.png') }}"
-                                                            style="height: 55px" />
+                                                        <img class="of-contain"
+                                                            src="{{ asset('assets/img/Clients/' . $globalProfile->imageFile) }}"
+                                                            style="max-height: 80px; width: 200px; object-fit:contain !important;" />
+                                                    </div>
+                                                </div>
+                                                {{-- endRow --}}
+
+
+
+
+
+
+
+
+
+                                                {{-- row --}}
+                                                <div class="row align-items-start mb-3">
+
+
+                                                    {{-- planDays --}}
+                                                    <div class="col-12 col-sm-6 text-center text-sm-start mb-4">
+                                                        <div class="invoice--box">
+                                                            <h6 class="fw-semibold">Plan Duration</h6>
+                                                            <h4 class="mb-0">
+                                                                <span class="fw-bold text-gold">{{
+                                                                    $invoice->planDays }}
+                                                                    Days</span>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    {{-- profileInformation --}}
+                                                    <div class="col-12 col-sm-6 text-center text-sm-end mb-4">
+
+
+                                                        {{-- name --}}
+                                                        <h5 class="mb-2 mt-0 fw-semibold">Aleens</h5>
+
+
+                                                        {{-- address --}}
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            {{ $globalProfile->locationAddress }}
+                                                        </h6>
+
+                                                        {{-- city - district --}}
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            {{ $globalProfile->city->name }}, {{
+                                                            $globalProfile->district->name }}
+                                                        </h6>
+
+
+                                                        {{-- number --}}
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            {{ $globalProfile->phone }}
+                                                        </h6>
+
+
+                                                        {{-- email --}}
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            {{ $globalProfile->email }}
+                                                        </h6>
+                                                    </div>
+
+
+
+
+
+
+
+                                                    {{-- billTo --}}
+                                                    <div class="col-4">
+                                                        <h5 class="mb-2 mt-0 fw-bold">BILL TO</h5>
+
+
+
+                                                        {{-- customer - phone - email --}}
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            {{ $invoice->customer->fullName() }}
+                                                        </h6>
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            {{ $invoice->customer->phone }}
+                                                        </h6>
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            {{ $invoice->customer->email }}
+                                                        </h6>
+                                                    </div>
+
+
+
+
+
+
+                                                    {{-- ** getAddress ** --}}
+                                                    @php $customerAddress = $invoice->customer->addresses->first();
+                                                    @endphp
+
+
+
+
+
+
+
+                                                    {{-- location --}}
+                                                    <div class="col-4">
+                                                        <h5 class="mb-2 mt-0 fw-bold">Location</h5>
+
+
+                                                        {{-- locationAddress --}}
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            {{ $customerAddress?->locationAddress }}
+                                                        </h6>
+
+
+                                                        {{-- city - district --}}
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            {{ $customerAddress?->city?->name }}, {{
+                                                            $customerAddress?->district?->name }}
+                                                        </h6>
+
+
+                                                        {{-- apartment - floor --}}
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            Apartment. {{ $customerAddress?->apartment }}{{
+                                                            $customerAddress?->floor ? ' - Floor. ' .
+                                                            $customerAddress?->floor : '' }}
+                                                        </h6>
+                                                    </div>
+
+
+
+
+                                                    {{-- plan - bundle --}}
+                                                    <div class="col-12 col-sm-4 mb-4">
+                                                        <div class="invoice--box mx-auto me-0">
+                                                            <h6 class="fw-semibold">{{ $invoice->plan->name }}</h6>
+                                                            <h5 class="mb-0 text-center">
+                                                                <span class="fw-bold text-gold">
+                                                                    {{ $invoice->range->caloriesRange
+                                                                    }}<br />CALS</span>
+                                                            </h5>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            {{-- end topCol --}}
 
 
 
 
 
-                                            {{-- ------------------ --}}
-                                            {{-- ------------------ --}}
+
+                                            {{-- ------------------------------------------ --}}
+                                            {{-- ------------------------------------------ --}}
 
 
 
 
 
-                                            {{-- leftCol --}}
-                                            <div class="col-12 col-lg-6 order-3 order-lg-2">
 
 
-                                                {{-- date / serial --}}
-                                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                                    <p class="fs-6 w-50 pe-3 mb-0 text-gold"># 104050</p>
-                                                    <p class="fs-6 mb-0 w-50 text-end fw-bold">
-                                                        {{ date('d / m / Y', strtotime($invoice->created_at)) }}
-                                                    </p>
-                                                </div>
+                                            {{-- midCol --}}
+                                            <div class="col-12">
+                                                <div style="border-top: 2px solid var(--color-scheme-dark-1);
+                                                    border-radius: 1px;">
 
 
 
 
-
-                                                {{-- tableOfContent --}}
-                                                <div
-                                                    style=" border-top: 2px solid var(--color-scheme-dark-1); border-radius: 1px;">
+                                                    {{-- tableRow --}}
                                                     <div class="row">
 
 
-                                                        {{-- 1: plan / coupon / bagPrice / empty --}}
-                                                        <div class="col-6 col-sm-4 pt-2"
+
+
+                                                        {{-- 1: items --}}
+                                                        <div class="col-4"
                                                             style="border-right: 2px solid var(--color-scheme-dark-1);">
-                                                            <p class="text-center w-100 fs-13 mt-2 mb-4">Item</p>
+                                                            <p class="text-center w-100 mt-2
+                                                                mb-4 pb-2 border-bottom fw-semibold">ITEM</p>
+
+
+
+
+                                                            {{-- plan - coupon - Cool Bag --}}
                                                             <p class="text-center mb-3 fw-bold">{{
-                                                                $invoice?->plan?->name }}</p>
+                                                                $invoice->plan->name}}</p>
+
+
 
 
                                                             {{-- :: checkCoupon --}}
                                                             @if ($invoice?->promoCodeId)
 
-                                                            <p class="text-center mb-3 fw-bold">Coupon</p>
+                                                            <p class="text-center mb-3 fw-bold">{{
+                                                                $invoice->promoCode->name }}</p>
 
                                                             @endif
-                                                            {{-- end if - --}}
+                                                            {{-- end if --}}
 
 
-                                                            <p class="text-center mb-3 fw-bold">{{
-                                                                $invoice?->bag?->name }}</p>
-                                                            <p class="text-center mb-3 fw-bold"></p>
+
+
+                                                            <p class="text-center mb-0 fw-bolder">{{
+                                                                $invoice?->bag->name }}</p>
                                                         </div>
 
 
 
 
-
-
-                                                        {{-- ------------------------- --}}
-                                                        {{-- ------------------------- --}}
+                                                        {{-- --------------------------- --}}
+                                                        {{-- --------------------------- --}}
 
 
 
 
                                                         {{-- 2: QTY --}}
-                                                        <div class="col-6 col-sm-4 pt-2 d-none d-sm-block"
+                                                        <div class="col-2"
                                                             style="border-right: 2px solid var(--color-scheme-dark-1);">
-                                                            <p class="text-center w-100 fs-13 mt-2 mb-4">QTY</p>
+                                                            <p class="text-center w-100 mt-2 mb-4
+                                                                pb-2 border-bottom fw-semibold">QTY</p>
+
+
+
+                                                            {{-- quantity --}}
                                                             <p class="text-center mb-3 fw-bold">x1</p>
+
 
 
                                                             {{-- :: checkCoupon --}}
@@ -311,32 +492,54 @@
                                                             <p class="text-center mb-3 fw-bold">x1</p>
 
                                                             @endif
-                                                            {{-- end if - --}}
+                                                            {{-- end if --}}
 
 
-                                                            <p class="text-center mb-3 fw-bold">x1</p>
+                                                            <p class="text-center mb-0 fw-bold">x1</p>
                                                         </div>
 
 
 
 
 
-
-                                                        {{-- ------------------------- --}}
-                                                        {{-- ------------------------- --}}
-
+                                                        {{-- --------------------------- --}}
+                                                        {{-- --------------------------- --}}
 
 
 
 
 
 
+                                                        {{-- 3: VAT --}}
+                                                        <div class="col-2"
+                                                            style="border-right: 2px solid var(--color-scheme-dark-1);">
+                                                            <p class="text-center w-100 mt-2
+                                                                mb-4 pb-2 border-bottom fw-semibold">TAX</p>
+                                                            <p class="text-center mb-3 fw-bold">%0</p>
+                                                            <p class="text-center mb-3 fw-bold">%0</p>
+                                                            <p class="text-center mb-0 fw-bold">%0</p>
+                                                        </div>
 
-                                                        {{-- 3: planPrice - coupon - bagPrice - totalPrice --}}
-                                                        <div class="col-6 col-sm-4 pt-2">
-                                                            <p class="text-center w-100 fs-13 mt-2 mb-4">Total<small
+
+
+
+
+                                                        {{-- --------------------------- --}}
+                                                        {{-- --------------------------- --}}
+
+
+
+
+
+                                                        {{-- 4: prices --}}
+                                                        <div class="col-4">
+                                                            <p class="text-center w-100 mt-2 mb-4
+                                                                 pb-2 border-bottom fw-semibold">PRICE<small
                                                                     class="fw-semibold text-gold fs-10 ms-1">(AED)</small>
                                                             </p>
+
+
+                                                            {{-- plan - promoCode - coolBag --}}
 
 
                                                             {{-- planPrice --}}
@@ -345,36 +548,76 @@
 
 
 
+
                                                             {{-- :: checkCoupon --}}
                                                             @if ($invoice?->promoCodeId)
 
-                                                            <p class="text-center mb-3 fw-bold">
-                                                                {{ $invoice?->promoCodeDiscountPrice ?? 0 }}</p>
+                                                            <p class="text-center mb-3 fw-bold">{{
+                                                                $invoice?->promoCodeDiscountPrice ?? 0 }}</p>
 
                                                             @endif
-                                                            {{-- end if - --}}
+                                                            {{-- end if --}}
 
 
 
-                                                            {{-- bagPrice - totalCheckoutPrice --}}
-                                                            <p class="text-center mb-3 fw-bold">{{
-                                                                $invoice?->bagPrice ?? 0 }}</p>
-                                                            <p class="fs-4 text-center mb-0 fw-bold">
-                                                                {{ $invoice?->totalCheckoutPrice?? 0 }}
-                                                            </p>
 
+                                                            {{-- bagPrice --}}
+                                                            <p class="text-center mb-0 fw-bold">{{
+                                                                $invoice?->bagPrice
+                                                                ?? 0 }}</p>
 
 
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {{-- end tableOfContetn --}}
-
-
-
-
                                             </div>
-                                            {{-- end leftCol --}}
+                                            {{-- endCol --}}
+
+
+
+
+
+
+                                            {{-- -------------------------------- --}}
+                                            {{-- -------------------------------- --}}
+
+
+
+
+
+
+                                            {{-- totalCol --}}
+                                            <div class="col-12 mt-4">
+                                                <div class="row align-items-center">
+
+
+
+                                                    {{-- payment - HIDDEN --}}
+                                                    <div class="col-6 invisible1">
+                                                        <h6 class="mb-2 mt-0 fw-bold invisible">
+                                                            Payment
+                                                        </h6>
+                                                    </div>
+
+
+
+                                                    {{-- totalCheckoutPrice --}}
+                                                    <div class="col-2 text-center">
+                                                        <h6 class="mb-2 mt-0 fw-bold">Total Amount</h6>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h4 class="text-center mb-2 mt-0 fw-bold">
+                                                            {{ $invoice?->totalCheckoutPrice?? 0 }}
+                                                        </h4>
+                                                    </div>
+
+
+
+
+
+
+                                                    {{-- ------------------------------ --}}
+                                                    {{-- ------------------------------ --}}
 
 
 
@@ -382,66 +625,59 @@
 
 
 
-                                            {{-- ------------------ --}}
-                                            {{-- ------------------ --}}
+
+
+                                                    {{-- noteFromAdmin --}}
+                                                    <div class="col-11 mt-3 mb-2 d-none">
+                                                        <h6 class="mb-2 mt-0 fw-bold d-flex align-items-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                                                                height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                                                class="bi bi-info-circle fs-6 me-2">
+                                                                <path
+                                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z">
+                                                                </path>
+                                                                <path
+                                                                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z">
+                                                                </path>
+                                                            </svg>Note
+                                                        </h6>
+                                                        <h6 class="mb-1 text--white-dim fs-15">
+                                                            Lorem ipsum, dolor sit amet consectetur
+                                                            adipisicing elit. Dolorem quod voluptatum
+                                                            inventore doloribus at. Consequatur.<br />
+                                                        </h6>
+                                                    </div>
+                                                    {{-- endCol --}}
 
 
 
-
-
-
-
-                                            {{-- ** getAddress ** --}}
-                                            @php $customerAddress = $customer->addresses->first(); @endphp
-
-
-
-
-
-                                            {{-- rightCol - personalInformatino --}}
-                                            <div
-                                                class="col-12 col-lg-6 text-center text-lg-start order-2 order-lg-2 mb-5 mb-lg-0">
-                                                <div class="invoice--right-section">
-                                                    <h6 class="fw-normal mb-1">Bill To</h6>
-
-
-                                                    {{-- name --}}
-                                                    <h6 class="fw-semibold text-gold mb-4">{{ $customer?->fullName() }}
-                                                    </h6>
-
-                                                    {{-- city - district - address --}}
-                                                    <h6 class="fw-normal mb-1">{{ $customerAddress?->city?->name }} - {{
-                                                        $customerAddress?->district?->name }}</h6>
-                                                    <h6 class="fw-normal mb-1">{{ $customerAddress?->locationAddress }}
-                                                    </h6>
-
-
-                                                    {{-- apartment - floor --}}
-                                                    <h6 class="fw-normal mb-3">Apartment. {{
-                                                        $customerAddress?->apartment }}{{
-                                                        $customerAddress?->floor ? ' - Floor. ' .
-                                                        $customerAddress?->floor : '' }}</h6>
-
-
-                                                    {{-- phone - email --}}
-                                                    <h6 class="fw-normal mb-1">+971 {{ $customer?->phone }}</h6>
-                                                    <h6 class="fw-normal mb-1">{{ $customer?->email }}</h6>
                                                 </div>
                                             </div>
-                                            {{-- end rightCol --}}
                                         </div>
                                     </div>
-                                    {{-- end invoiceWrapper --}}
+
+
+
 
 
 
 
                                 </div>
+                                {{-- endCol - singleInvoice --}}
+
+
+
+
+
+
+
+                                {{-- separator --}}
+                                <div class="col-12 mb-5"></div>
+
 
 
                                 @endforeach
                                 {{-- end loop - invoices --}}
-
 
 
 

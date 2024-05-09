@@ -25,11 +25,19 @@ class ProfileSeeder extends Seeder
         for ($i = 0; $i < count($profiles); $i++) {
             Profile::create([
                 'name' => $profiles[$i]['name'],
+                'email' => $profiles[$i]['email'],
+                'phone' => $profiles[$i]['phone'],
+
+                'locationAddress' => $profiles[$i]['locationAddress'],
                 'imageFile' => $profiles[$i]['imageFile'],
                 'clientURL' => $profiles[$i]['clientURL'],
                 'serverURL' => $profiles[$i]['serverURL'],
                 'websiteURL' => $profiles[$i]['websiteURL'],
                 'applicationURL' => $profiles[$i]['applicationURL'],
+
+                'cityId' => $profiles[$i]['cityId'],
+                'cityDistrictId' => $profiles[$i]['cityDistrictId'],
+
             ]);
         } // end loop
 

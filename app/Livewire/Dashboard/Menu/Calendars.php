@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu;
 
 use App\Models\MenuCalendar;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -10,6 +11,7 @@ use Livewire\Component;
 class Calendars extends Component
 {
     use HelperTrait;
+    use ActivityTrait;
 
 
     // ::variables
@@ -108,11 +110,18 @@ class Calendars extends Component
             $calendar = MenuCalendar::find($this->removeId);
             $this->removeFile($calendar->imageFile, 'menu/calendars');
 
+
+
+
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Removed calendar {$calendar->name}");
+
+
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/calendars/remove', $this->removeId);
-
-
-
-
             $this->makeAlert('info', $response->message);
 
         } // end if

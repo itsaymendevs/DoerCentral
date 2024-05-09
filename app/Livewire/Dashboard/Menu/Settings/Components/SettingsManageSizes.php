@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Settings\Components;
 
 use App\Livewire\Forms\SizeForm;
 use App\Models\Size;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -13,7 +14,7 @@ class SettingsManageSizes extends Component
 
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -53,6 +54,11 @@ class SettingsManageSizes extends Component
         // :: validate
         $this->instance->validate();
 
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Created size {$this->instance->name}");
 
 
 

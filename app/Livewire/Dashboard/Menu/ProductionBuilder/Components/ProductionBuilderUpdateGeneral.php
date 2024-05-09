@@ -8,6 +8,7 @@ use App\Models\Diet;
 use App\Models\Meal;
 use App\Models\Tag;
 use App\Models\Type;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -18,6 +19,7 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
 
 
@@ -221,6 +223,14 @@ class ProductionBuilderUpdateGeneral extends Component
 
 
 
+
+
+
+
+        // ## log - activity ##
+        $typeOfMeal = ucwords($type);
+        $meal = Meal::find($this->instance->id);
+        $this->storeActivity('Menu', "Updated {$typeOfMeal} general information - {$this->instance->name}");
 
 
 

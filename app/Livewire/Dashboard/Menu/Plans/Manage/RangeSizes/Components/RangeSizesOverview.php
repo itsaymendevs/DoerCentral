@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Manage\RangeSizes\Components;
 
 use App\Livewire\Forms\PlanBundleRangeForm;
 use App\Models\PlanBundleRange;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,7 +13,7 @@ class RangeSizesOverview extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
     // :: variables
     public PlanBundleRangeForm $instance;
@@ -107,6 +108,15 @@ class RangeSizesOverview extends Component
 
         // :: validate
         $this->instance->validate();
+
+
+
+
+        // ## log - activity ##
+        $planBundleRange = PlanBundleRange::find($this->instance->id);
+
+        $this->storeActivity('Menu', "Toggled Hide bundle-range for {$planBundleRange->bundle->name} / {$planBundleRange->range->name}");
+
 
 
 

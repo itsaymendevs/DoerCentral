@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Settings\Components;
 
 use App\Livewire\Forms\DietForm;
 use App\Models\Diet;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,7 +13,7 @@ class SettingsManageDiets extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -51,6 +52,13 @@ class SettingsManageDiets extends Component
 
         // :: validate
         $this->instance->validate();
+
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Created diet {$this->instance->name}");
+
 
 
 

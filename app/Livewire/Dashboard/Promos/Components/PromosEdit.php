@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Promos\Components;
 use App\Livewire\Forms\PromoCodeForm;
 use App\Models\Plan;
 use App\Models\PromoCode;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -13,7 +14,7 @@ class PromosEdit extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
 
@@ -87,6 +88,12 @@ class PromosEdit extends Component
 
         // :: validate
         $this->instance->validate();
+
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Updated promo {$this->instance->name}");
 
 
 

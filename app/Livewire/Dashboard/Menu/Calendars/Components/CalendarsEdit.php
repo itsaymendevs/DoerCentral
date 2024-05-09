@@ -6,6 +6,7 @@ use App\Livewire\Forms\MenuCalendarForm;
 use App\Models\Diet;
 use App\Models\MenuCalendar;
 use App\Models\Plan;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -16,6 +17,7 @@ class CalendarsEdit extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
 
 
@@ -110,6 +112,11 @@ class CalendarsEdit extends Component
 
 
 
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Updated Calendar {$this->instance->name}");
 
 
 

@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Components;
 use App\Livewire\Forms\PlanRangeForm;
 use App\Models\Plan;
 use App\Models\PlanRange;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -14,6 +15,9 @@ class PlansManageRanges extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
+
+
 
     // ::variables
     public PlanRangeForm $instance;
@@ -83,6 +87,12 @@ class PlansManageRanges extends Component
 
         // :: validate
         $this->instance->validate();
+
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Created range {$this->instance->name}");
 
 
 

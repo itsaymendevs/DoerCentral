@@ -5,9 +5,11 @@ namespace App\Livewire\Dashboard\Menu\Calendars\SingleCalendar\Components;
 use App\Livewire\Forms\MenuCalendarScheduleForm;
 use App\Models\Meal;
 use App\Models\MealType;
+use App\Models\MenuCalendar;
 use App\Models\MenuCalendarSchedule;
 use App\Models\MenuCalendarScheduleMeal;
 use App\Models\Type;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
@@ -19,6 +21,7 @@ class SingleCalendarEdit extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
     use WithPagination;
 
 
@@ -206,8 +209,18 @@ class SingleCalendarEdit extends Component
 
 
 
+
         // --------------------------------------
         // --------------------------------------
+
+
+
+
+
+        // ## log - activity ##
+        $menuCalendar = MenuCalendar::find($this->instance->menuCalendarId);
+
+        $this->storeActivity('Menu', "Updated calendar {$menuCalendar->name} schedule on " . date('d / m / Y', strtotime($this->instance->scheduleDate)));
 
 
 

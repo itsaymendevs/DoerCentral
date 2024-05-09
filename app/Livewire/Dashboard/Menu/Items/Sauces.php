@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Items;
 
 use App\Models\Meal;
 use App\Models\Type;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,6 +13,7 @@ use Livewire\WithPagination;
 class Sauces extends Component
 {
     use HelperTrait;
+    use ActivityTrait;
     use WithPagination;
 
 
@@ -96,6 +98,11 @@ class Sauces extends Component
 
             $sauce->thirdImageFile ? $this->removeFile($sauce->thirdImageFile, 'menu/meals') : null;
             $sauce->fourthImageFile ? $this->removeFile($sauce->fourthImageFile, 'menu/meals') : null;
+
+
+
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Removed sauce {$sauce->name}");
 
 
 

@@ -122,7 +122,7 @@
 
 
                                 {{-- dateTime --}}
-                                <td class="fs-13">{{ date('d / m / Y - h:m:i A', strtotime($log->dateTime)) }}</td>
+                                <td class="fs-13">{{ date('d / m / Y - h:i:s A', strtotime($log->dateTime)) }}</td>
 
 
 

@@ -6,6 +6,7 @@ use App\Livewire\Forms\PlanBundleForm;
 use App\Models\MealType;
 use App\Models\PlanBundle;
 use App\Models\Type;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -15,6 +16,7 @@ class BundlesEdit extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
 
 
@@ -110,6 +112,12 @@ class BundlesEdit extends Component
         } // end if
 
 
+
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Updated bundle {$this->instance->name}");
 
 
 

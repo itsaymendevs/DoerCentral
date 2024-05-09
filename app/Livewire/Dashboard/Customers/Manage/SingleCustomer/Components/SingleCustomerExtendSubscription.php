@@ -176,7 +176,7 @@ class SingleCustomerExtendSubscription extends Component
 
 
 
-      // ### log - activity ###
+      // ## log - activity ##
       $this->storeActivity('Customers', "Extended subscription for {$this->subscription->customer->fullName()} for {$this->instance->extendDays} days");
 
 

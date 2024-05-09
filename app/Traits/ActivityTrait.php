@@ -47,7 +47,7 @@ trait ActivityTrait
         // 1.2: general
         $activity->userId = session('userId') ?? null;
         $activity->name = session('userName') ?? null;
-        $activity->dateTime = date('Y-m-d H:i:s', strtotime('+4 hours'));
+        $activity->dateTime = date('Y-m-d h:i:s', strtotime('+4 hours'));
 
 
 

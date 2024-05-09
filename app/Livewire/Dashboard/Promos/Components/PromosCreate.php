@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Promos\Components;
 
 use App\Livewire\Forms\PromoCodeForm;
 use App\Models\Plan;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -14,7 +15,7 @@ class PromosCreate extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
     // :: variables
     public PromoCodeForm $instance;
@@ -55,6 +56,12 @@ class PromosCreate extends Component
 
         // :: validate
         $this->instance->validate();
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Created promo {$this->instance->name}");
+
 
 
 

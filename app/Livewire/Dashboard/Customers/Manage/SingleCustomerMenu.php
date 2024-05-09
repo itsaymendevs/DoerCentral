@@ -323,7 +323,7 @@ class SingleCustomerMenu extends Component
 
 
 
-        // ### log - activity ###
+        // ## log - activity ##
         $this->storeActivity('Customers', "Skipped Schedule for {$this->subscription->customer->fullName()} on " . date('d / m / Y', strtotime($instance->scheduleDate)));
 
 
@@ -405,7 +405,7 @@ class SingleCustomerMenu extends Component
 
 
 
-            // ### log - activity ###
+            // ## log - activity ##
             $this->storeActivity('Customers', "Resumed Schedule for {$this->subscription->customer->fullName()} on " . date('d / m / Y', strtotime($this->scheduleDate)));
 
 
@@ -610,7 +610,7 @@ class SingleCustomerMenu extends Component
 
 
 
-        // ### log - activity ###
+        // ## log - activity ##
         $meal = Meal::find($mealId);
         $mealType = MealType::find($mealTypeId);
 

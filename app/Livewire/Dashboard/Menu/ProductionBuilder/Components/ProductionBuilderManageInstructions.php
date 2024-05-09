@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Models\Meal;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -13,7 +14,7 @@ class ProductionBuilderManageInstructions extends Component
 
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -85,6 +86,15 @@ class ProductionBuilderManageInstructions extends Component
 
         // :: notEmpty
         if ($this->instruction) {
+
+
+
+
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Created instruction for {$this->meal->name}");
+
+
+
 
 
             // 1: makeRequest

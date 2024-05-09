@@ -7,6 +7,7 @@ use App\Models\Cuisine;
 use App\Models\Diet;
 use App\Models\Tag;
 use App\Models\Type;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,6 +17,7 @@ class BuilderCreateGeneral extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
 
 
@@ -74,6 +76,16 @@ class BuilderCreateGeneral extends Component
         if ($this->instance->fourthImageFile)
             $this->instance->fourthImageFileName = $this->uploadFile($this->instance->fourthImageFile, 'menu/meals', strtoupper($type));
 
+
+
+
+
+
+
+
+        // ## log - activity ##
+        $typeOfMeal = ucwords($type);
+        $this->storeActivity('Menu', "Created {$typeOfMeal} - {$this->instance->name}");
 
 
 

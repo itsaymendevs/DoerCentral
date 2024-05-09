@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Livewire\Forms\MealPackingForm;
 use App\Models\MealPacking;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -11,7 +12,7 @@ use Livewire\Component;
 class ProductionBuilderViewPacking extends Component
 {
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -88,8 +89,22 @@ class ProductionBuilderViewPacking extends Component
         // 1: remove
         if ($this->removeId) {
 
+
+
+
+            // ## log - activity ##
+            $packing = MealPacking::find($this->removeId);
+
+            $this->storeActivity('Menu', "Removed packing {$packing->name} for {$packing->meal->name}");
+
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/builder/packings/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
+
+
 
         } // end if
 

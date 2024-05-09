@@ -51,12 +51,12 @@
             <table class="table table-bordered" id="memoir--table">
                 <thead>
                     <tr>
-                        <th class="th--sm">Name</th>
+                        <th class="th--lg">Name</th>
                         <th class="th--md">Code</th>
                         <th class="th--md">Amount</th>
-                        <th class="th--sm">Limit</th>
-                        <th class="th--sm">Used</th>
-                        <th class="th--md">Status</th>
+                        <th class="th--xs">Limit</th>
+                        <th class="th--xs">Used</th>
+                        <th class="th--sm">Status</th>
 
 
 
@@ -64,15 +64,15 @@
                         @if ($versionPermission->salesModuleHasPromoTogglers)
 
 
-                        <th class="th--md">Active?</th>
-                        <th class="th--md">For Website?</th>
+                        <th class="th--sm">Active?</th>
+                        <th class="th--sm">For Website?</th>
 
                         @endif
                         {{-- end if - permission --}}
 
 
 
-                        <th class="th--sm"></th>
+                        <th class="th--xs"></th>
                     </tr>
                 </thead>
 

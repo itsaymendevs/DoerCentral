@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu\Plans\Manage;
 
 use App\Models\MenuCalendarPlan;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -11,7 +12,7 @@ class Calendars extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -72,12 +73,21 @@ class Calendars extends Component
 
 
         // 1: check if default exists
-        $exists = MenuCalendarPlan::where('planId', $this->id)->where('isDefault', true)->first();
+        $calendarPlan = MenuCalendarPlan::where('planId', $this->id)->where('isDefault', true)->first();
 
 
 
         // 1.2: makeDefault
-        if (! $exists) {
+        if (! $calendarPlan) {
+
+
+
+            // ## log - activity ##
+            $plan = $calendarPlan->plan->name;
+
+            $this->storeActivity('Menu', "Updated calendar for plan {$plan->name}");
+
+
 
 
 

@@ -6,6 +6,7 @@ use App\Livewire\Forms\MealForm;
 use App\Models\Meal;
 use App\Models\MealType;
 use App\Models\Type;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -14,7 +15,7 @@ class ProductionBuilderUpdateTypes extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
 
@@ -116,6 +117,11 @@ class ProductionBuilderUpdateTypes extends Component
         // --------------------------------------
 
 
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Updated types for {$this->meal->name}");
 
 
 

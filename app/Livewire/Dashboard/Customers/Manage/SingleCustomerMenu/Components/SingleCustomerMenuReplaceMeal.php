@@ -205,7 +205,7 @@ class SingleCustomerMenuReplaceMeal extends Component
 
 
 
-         // ### log - activity ###
+         // ## log - activity ##
          $this->storeActivity('Customers', "Replaced {$this->mealType?->name} to {$this->scheduleMeal->meal->name} for {$this->subscription->customer->fullName()} on " . date('d / m / Y', strtotime($instance->scheduleDate)));
 
 

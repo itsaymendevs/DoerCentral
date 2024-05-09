@@ -503,7 +503,7 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
 
-      // ### log - activity ###
+      // ## log - activity ##
       $this->storeActivity('Customers', "Renew subscription for {$this->instance->firstName} {$this->instance->lastName}");
 
 

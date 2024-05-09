@@ -82,7 +82,7 @@ class SingleCustomerManageWallet extends Component
 
 
 
-      // ### log - activity ###
+      // ## log - activity ##
       $customer = Customer::find($this->instance->customerId);
 
       $this->storeActivity('Customers', "Deposited {$this->instance->amount} AED to {$customer->fullName()} wallet");

@@ -17,7 +17,7 @@ return new class extends Migration {
 
             // 1: general
             $table->string('name', 255)->nullable();
-            $table->date('dateTime')->nullable();
+            $table->dateTime('dateTime')->nullable();
 
 
 

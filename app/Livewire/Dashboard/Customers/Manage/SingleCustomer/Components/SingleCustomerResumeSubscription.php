@@ -108,7 +108,7 @@ class SingleCustomerResumeSubscription extends Component
 
 
 
-         // ### log - activity ###
+         // ## log - activity ##
          $this->storeActivity('Customers', "Resumed subscription for {$this->subscription->customer->fullName()}");
 
 

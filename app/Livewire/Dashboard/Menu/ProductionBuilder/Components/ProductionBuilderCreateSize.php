@@ -6,6 +6,7 @@ use App\Livewire\Forms\MealForm;
 use App\Models\Meal;
 use App\Models\MealSize;
 use App\Models\Size;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -16,7 +17,7 @@ class ProductionBuilderCreateSize extends Component
 
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -104,6 +105,20 @@ class ProductionBuilderCreateSize extends Component
 
 
 
+
+                // ## log - activity ##
+                $size = Size::find($this->size);
+
+                $this->storeActivity('Menu', "Assigned size {$size->name} for {$this->meal->name}");
+
+
+
+
+
+
+
+
+                // 1.2: makeRequest
                 $response = $this->makeRequest('dashboard/menu/builder/sizes/store', $instance);
 
 

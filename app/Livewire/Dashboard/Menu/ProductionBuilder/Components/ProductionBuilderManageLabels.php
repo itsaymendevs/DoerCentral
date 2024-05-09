@@ -164,6 +164,8 @@ class ProductionBuilderManageLabels extends Component
 
 
 
+
+
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/builder/cutlery/toggle', $instance);
 

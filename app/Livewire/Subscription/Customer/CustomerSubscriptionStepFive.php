@@ -20,59 +20,54 @@ use Livewire\Component;
 class CustomerSubscriptionStepFive extends Component
 {
 
-   use HelperTrait;
-   use StripeTrait;
-   use ActivityTrait;
+    use HelperTrait;
+    use StripeTrait;
+    use ActivityTrait;
 
 
 
-   // :: variables
-   public CustomerSubscriptionForm $instance;
-   public StripePaymentForm $payment;
+    // :: variables
+    public CustomerSubscriptionForm $instance;
+    public StripePaymentForm $payment;
 
-   public $plan, $paymentMethod, $isPaymentSkipped, $promoCodes;
-   public $isCouponApplied = false;
-
-
-
-
+    public $plan, $paymentMethod, $isPaymentSkipped, $promoCodes;
+    public $isCouponApplied = false;
 
 
 
 
 
 
-   public function mount($id)
-   {
 
 
 
-      // :: checkSession - existing
-      if (session('customer')?->{'isExistingCustomer'}) {
 
-
-         // :: redirectBack
-         return $this->redirect(route('subscription.customerStepOne'), navigate: true);
+    public function mount($id)
+    {
 
 
 
-      } else {
+        // :: checkSession - existing
+        if (session('customer')?->{'isExistingCustomer'}) {
 
 
-         // :: redirectBack
-         if (session('customer') && session('customer')->{'deliveryDays'})
-            $this->instance = session('customer');
-         else
+            // :: redirectBack
             return $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
 
-      } // end if
+        } else {
 
 
+            // :: redirectBack
+            if (session('customer') && session('customer')->{'deliveryDays'})
+                $this->instance = session('customer');
+            else
+                return $this->redirect(route('subscription.customerStepOne'), navigate: true);
 
 
 
+        } // end if
 
 
 
@@ -81,274 +76,274 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-      // --------------------------------------------
-      // --------------------------------------------
 
 
 
 
 
+        // --------------------------------------------
+        // --------------------------------------------
 
 
-      // 1: get instance
-      $this->plan = Plan::find($id);
 
 
 
 
 
+        // 1: get instance
+        $this->plan = Plan::find($id);
 
 
 
 
-      // 2: getPromoCodes
-      $planPromoCodes = PromoCodePlan::where('planId', $this->plan->id)
-         ->get()?->pluck('promoCodeId')->toArray() ?? [];
 
 
 
-      $this->promoCodes = PromoCode::where('isActive', true)
-         ->whereIn('id', $planPromoCodes)
-         ->whereColumn('currentUsage', '<', 'limit')
-         ->get()
-         ->pluck('code')
-         ->toArray() ?? [];
 
 
+        // 2: getPromoCodes
+        $planPromoCodes = PromoCodePlan::where('planId', $this->plan->id)
+            ->get()?->pluck('promoCodeId')->toArray() ?? [];
 
 
 
+        $this->promoCodes = PromoCode::where('isActive', true)
+            ->whereIn('id', $planPromoCodes)
+            ->whereColumn('currentUsage', '<', 'limit')
+            ->get()
+            ->pluck('code')
+            ->toArray() ?? [];
 
-      // 2.1: getPaymentMethod
-      $this->paymentMethod = CustomerSubscriptionSetting::all()->first()?->paymentMethod ?? null;
-      $this->isPaymentSkipped = CustomerSubscriptionSetting::all()->first()?->isPaymentSkipped;
 
 
 
 
 
+        // 2.1: getPaymentMethod
+        $this->paymentMethod = CustomerSubscriptionSetting::all()->first()?->paymentMethod ?? null;
+        $this->isPaymentSkipped = CustomerSubscriptionSetting::all()->first()?->isPaymentSkipped;
 
 
 
-      // 3: calculateTotalPrice
-      $this->instance->totalPrice = $this->instance->totalBundleRangePrice + $this->instance->bagPrice;
-      $this->instance->totalCheckoutPrice = $this->instance->totalBundleRangePrice + $this->instance->bagPrice;
 
 
 
 
 
+        // 3: calculateTotalPrice
+        $this->instance->totalPrice = $this->instance->totalBundleRangePrice + $this->instance->bagPrice;
+        $this->instance->totalCheckoutPrice = $this->instance->totalBundleRangePrice + $this->instance->bagPrice;
 
 
-   } // end function
 
 
 
 
 
+    } // end function
 
 
 
 
-   // --------------------------------------------------------------
 
 
 
 
 
+    // --------------------------------------------------------------
 
 
 
 
-   public function checkPromoCode()
-   {
 
 
 
-      // 1: checkPromoCode
-      if (in_array($this->instance->promoCode, $this->promoCodes)) {
 
 
+    public function checkPromoCode()
+    {
 
 
-         // 1: getPromoCode
-         $promoCode = PromoCode::where('code', $this->instance->promoCode)->first();
 
+        // 1: checkPromoCode
+        if (in_array($this->instance->promoCode, $this->promoCodes)) {
 
 
 
-         // 1.2: byPercentage
-         if ($promoCode->percentage) {
 
+            // 1: getPromoCode
+            $promoCode = PromoCode::where('code', $this->instance->promoCode)->first();
 
-            $this->instance->promoCodeDiscountPrice = $this->instance->totalBundleRangePrice * ($promoCode->percentage / 100);
 
 
-            // 1.2: byAmount
-         } else {
 
-            $this->instance->promoCodeDiscountPrice = $promoCode->cashAmount;
+            // 1.2: byPercentage
+            if ($promoCode->percentage) {
 
-         } // end if
 
+                $this->instance->promoCodeDiscountPrice = $this->instance->totalBundleRangePrice * ($promoCode->percentage / 100);
 
 
+                // 1.2: byAmount
+            } else {
 
+                $this->instance->promoCodeDiscountPrice = $promoCode->cashAmount;
 
+            } // end if
 
 
 
-         // -------------------------------
-         // -------------------------------
 
 
 
 
 
+            // -------------------------------
+            // -------------------------------
 
 
-         // :: calculateTotalPrice
-         $this->instance->totalCheckoutPrice = round(($this->instance->totalBundleRangePrice - $this->instance->promoCodeDiscountPrice) + $this->instance->bagPrice, 2);
 
 
-         // :: validCoupon
-         $this->isCouponApplied = true;
 
 
 
+            // :: calculateTotalPrice
+            $this->instance->totalCheckoutPrice = round(($this->instance->totalBundleRangePrice - $this->instance->promoCodeDiscountPrice) + $this->instance->bagPrice, 2);
 
 
+            // :: validCoupon
+            $this->isCouponApplied = true;
 
-         // 1.2: invalidCoupon
-      } else {
 
 
 
 
 
+            // 1.2: invalidCoupon
+        } else {
 
 
-         // :: resetDiscount - totalCheckoutPrice
-         $this->instance->promoCodeDiscountPrice = null;
-         $this->instance->totalCheckoutPrice = $this->instance->totalPrice;
 
 
 
-         // :: invalidCoupon
-         $this->isCouponApplied = false;
 
 
-      } // end if
+            // :: resetDiscount - totalCheckoutPrice
+            $this->instance->promoCodeDiscountPrice = null;
+            $this->instance->totalCheckoutPrice = $this->instance->totalPrice;
 
 
 
+            // :: invalidCoupon
+            $this->isCouponApplied = false;
 
 
-   } // end function
+        } // end if
 
 
 
 
 
+    } // end function
 
 
 
 
 
 
-   // --------------------------------------------------------------
 
 
 
 
 
+    // --------------------------------------------------------------
 
 
 
 
 
 
-   public function convertExpiry()
-   {
 
 
-      // 1: getMonth - Year
-      $this->payment->cardExpiryYear = date('Y', strtotime($this->payment->cardExpiry));
-      $this->payment->cardExpiryMonth = date('m', strtotime($this->payment->cardExpiry));
 
 
 
-   } // end function
+    public function convertExpiry()
+    {
 
 
+        // 1: getMonth - Year
+        $this->payment->cardExpiryYear = date('Y', strtotime($this->payment->cardExpiry));
+        $this->payment->cardExpiryMonth = date('m', strtotime($this->payment->cardExpiry));
 
 
 
+    } // end function
 
 
 
 
-   // --------------------------------------------------------------
 
 
 
 
 
+    // --------------------------------------------------------------
 
 
 
 
-   public function continue()
-   {
 
 
 
 
 
+    public function continue()
+    {
 
-      // A: check if paymentNotSkipped
-      if (! $this->isPaymentSkipped) {
 
 
 
 
 
-         // :: makePayment
-         $this->instance->paymentMethodId = $this->paymentMethod->id ?? null;
+        // A: check if paymentNotSkipped
+        if (! $this->isPaymentSkipped) {
 
 
 
 
 
+            // :: makePayment
+            $this->instance->paymentMethodId = $this->paymentMethod->id ?? null;
 
-         // 1.5: Stripe
-         if ($this->paymentMethod->name == 'Stripe') {
 
-            $this->instance->isPaymentDone = $this->makeStripePayment($this->payment);
 
-         } // end if
 
 
 
+            // 1.5: Stripe
+            if ($this->paymentMethod->name == 'Stripe') {
 
+                $this->instance->isPaymentDone = $this->makeStripePayment($this->payment);
 
+            } // end if
 
 
 
 
-         // :: checkPaymentDone
-         if (! $this->instance->isPaymentDone) {
 
-            $this->makeAlert('info', 'Payment Failed');
 
-            return false;
 
-         } // end if
 
 
+            // :: checkPaymentDone
+            if (! $this->instance->isPaymentDone) {
 
+                $this->makeAlert('info', 'Payment Failed');
 
+                return false;
 
+            } // end if
 
 
 
@@ -357,105 +352,110 @@ class CustomerSubscriptionStepFive extends Component
 
 
 
-         // B: markPaymentDone
-      } else {
 
 
-         $this->instance->isPaymentDone = true;
 
 
-      } // end if
 
+            // B: markPaymentDone
+        } else {
 
 
+            $this->instance->isPaymentDone = true;
 
 
+        } // end if
 
 
 
-      // ----------------------------------------
-      // ----------------------------------------
 
 
 
 
 
+        // ----------------------------------------
+        // ----------------------------------------
 
 
-      // :: continue
 
 
 
-      // 2: makeSession
-      Session::put('customer', $this->instance);
 
 
+        // :: continue
 
 
-      // ### log - activity ###
-      $this->storeActivity('Customers', "Added {$this->instance->firstName} {$this->instance->lastName} as new subscriber");
 
+        // 2: makeSession
+        Session::put('customer', $this->instance);
 
 
 
 
+        // ## log - activity ##
+        $this->storeActivity('Customers', "Created {$this->instance->firstName} {$this->instance->lastName} as new subscriber");
 
-      // 2.1: makeRequest
-      $response = $this->makeRequest('subscription/customer/store', $this->instance);
 
 
 
 
 
+        // 2.1: makeRequest
+        $response = $this->makeRequest('subscription/customer/store', $this->instance);
 
-      // :: redirectToCheckout
-      return $this->redirect(route('subscription.customerStepSix', [$this->plan->id]), navigate: true);
 
 
 
 
-   } // end function
 
+        // :: redirectToCheckout
+        return $this->redirect(route('subscription.customerStepSix', [$this->plan->id]), navigate: true);
 
 
 
 
+    } // end function
 
 
 
 
 
 
-   // --------------------------------------------------------------
 
 
 
 
 
+    // --------------------------------------------------------------
 
 
-   public function render()
-   {
 
 
-      // 1: dependencies
-      $expiryYears = [];
 
-      for ($i = 0; $i <= 10; $i++)
-         array_push($expiryYears, date('Y', strtotime('+' . $i . 'year')));
 
 
+    public function render()
+    {
 
 
-      // :: initTooltips
-      $this->dispatch('initTooltips');
+        // 1: dependencies
+        $expiryYears = [];
 
+        for ($i = 0; $i <= 10; $i++)
+            array_push($expiryYears, date('Y', strtotime('+' . $i . 'year')));
 
 
-      return view('livewire.subscription.customer.customer-subscription-step-five', compact('expiryYears'));
 
 
-   } // end function
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
+
+        return view('livewire.subscription.customer.customer-subscription-step-five', compact('expiryYears'));
+
+
+    } // end function
 
 
 

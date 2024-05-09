@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Components;
 
 use App\Livewire\Forms\PlanRangeForm;
 use App\Models\PlanRange;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,7 +13,7 @@ class PlansViewRanges extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
 
@@ -140,6 +141,13 @@ class PlansViewRanges extends Component
 
 
 
+        // ## log - activity ##
+        $range = PlanRange::find($id);
+        $this->storeActivity('Menu', "Toggled hide for range {$range->name}");
+
+
+
+
 
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/plans/ranges/toggle', $id);
@@ -200,6 +208,16 @@ class PlansViewRanges extends Component
         // 1: remove
         if ($this->removeId) {
 
+
+
+            // ## log - activity ##
+            $range = PlanRange::find($this->removeId);
+
+            $this->storeActivity('Menu', "Removed range {$range->name}");
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/plans/ranges/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
 

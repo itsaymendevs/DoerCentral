@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Settings\Components;
 
 use App\Livewire\Forms\SizeForm;
 use App\Models\Size;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -14,7 +15,7 @@ class SettingsViewSize extends Component
 
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
 
@@ -81,6 +82,11 @@ class SettingsViewSize extends Component
 
         // :: validate
         $this->instance->validate();
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Updated Size {$this->instance->name}");
 
 
 
@@ -174,6 +180,14 @@ class SettingsViewSize extends Component
         if ($this->removeId) {
 
 
+
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Removed Size {$this->instance->name}");
+
+
+
+
+            // 1.1: makeRequest
             $response = $this->makeRequest('dashboard/menu/settings/sizes/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
 

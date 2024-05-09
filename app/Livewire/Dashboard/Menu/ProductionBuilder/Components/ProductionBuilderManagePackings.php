@@ -8,6 +8,7 @@ use App\Models\Meal;
 use App\Models\MealPacking;
 use App\Models\MealServing;
 use App\Models\MealServingInstruction;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -16,7 +17,7 @@ use stdClass;
 class ProductionBuilderManagePackings extends Component
 {
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -110,6 +111,15 @@ class ProductionBuilderManagePackings extends Component
 
 
 
+        // ## log - activity ##
+        $meal = Meal::find($this->instance->mealId);
+
+        $this->storeActivity('Menu', "Created packing {$this->instance->name} for {$meal->name}");
+
+
+
+
+
 
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/builder/packings/store', $this->instance);
@@ -179,6 +189,12 @@ class ProductionBuilderManagePackings extends Component
 
 
 
+
+
+        // ## log - activity ##
+        $meal = Meal::find($this->instance->mealId);
+
+        $this->storeActivity('Menu', "Toggled tag for {$meal->name}");
 
 
 

@@ -15,15 +15,15 @@ class SingleCustomerPauseSubscription extends Component
 {
 
 
-    use HelperTrait;
-    use ActivityTrait;
+   use HelperTrait;
+   use ActivityTrait;
 
 
 
 
-    // :: variables
-    public CustomerSubscriptionPauseForm $instance;
-    public $subscription;
+   // :: variables
+   public CustomerSubscriptionPauseForm $instance;
+   public $subscription;
 
 
 
@@ -31,21 +31,21 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-    public function mount($id)
-    {
+   public function mount($id)
+   {
 
 
-        // :: getSubscription - customer
-        $this->subscription = CustomerSubscription::find($id);
+      // :: getSubscription - customer
+      $this->subscription = CustomerSubscription::find($id);
 
 
-        $this->instance->customerId = $this->subscription->customerId;
-        $this->instance->customerSubscriptionId = $this->subscription->id;
+      $this->instance->customerId = $this->subscription->customerId;
+      $this->instance->customerSubscriptionId = $this->subscription->id;
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -53,7 +53,7 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -61,35 +61,35 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-    public function pause()
-    {
+   public function pause()
+   {
 
-        // :: validation
-        $this->instance->validate();
+      // :: validation
+      $this->instance->validate();
 
 
 
 
 
 
-        // 1: checkPauseDays
-        $pauseDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $this->subscription->id)
-            ->where('deliveryDate', '>=', $this->instance->fromDate)
-            ->where('deliveryDate', '<=', $this->instance->untilDate)
-            ->where('status', 'Pending')
-            ->count();
+      // 1: checkPauseDays
+      $pauseDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $this->subscription->id)
+         ->where('deliveryDate', '>=', $this->instance->fromDate)
+         ->where('deliveryDate', '<=', $this->instance->untilDate)
+         ->where('status', 'Pending')
+         ->count();
 
 
 
 
-        // :: valid
-        if ($pauseDays > 0) {
+      // :: valid
+      if ($pauseDays > 0) {
 
 
 
 
-            // ### log - activity ###
-            $this->storeActivity('Customers', "Paused subscription for {$this->subscription->customer->fullName()} from " . date('d / m / Y', strtotime($this->instance->fromDate)) . " until " . date('d / m / Y', strtotime($this->instance->untilDate)));
+         // ## log - activity ##
+         $this->storeActivity('Customers', "Paused subscription for {$this->subscription->customer->fullName()} from " . date('d / m / Y', strtotime($this->instance->fromDate)) . " until " . date('d / m / Y', strtotime($this->instance->untilDate)));
 
 
 
@@ -97,20 +97,20 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-            // 2: makeRequest
-            $response = $this->makeRequest('dashboard/customers/subscription/pause', $this->instance);
+         // 2: makeRequest
+         $response = $this->makeRequest('dashboard/customers/subscription/pause', $this->instance);
 
 
 
-            // :: resetForm
-            $this->instance->reset('type', 'fromDate', 'untilDate', 'remarks');
-            $this->dispatch('resetSelect');
-            $this->dispatch('closeModal', modal: '#pause-subscription .btn--close');
-            $this->dispatch('refreshWalletViews');
-            $this->dispatch('refreshPauseViews');
+         // :: resetForm
+         $this->instance->reset('type', 'fromDate', 'untilDate', 'remarks');
+         $this->dispatch('resetSelect');
+         $this->dispatch('closeModal', modal: '#pause-subscription .btn--close');
+         $this->dispatch('refreshWalletViews');
+         $this->dispatch('refreshPauseViews');
 
 
-            $this->makeAlert('success', $response->message);
+         $this->makeAlert('success', $response->message);
 
 
 
@@ -118,21 +118,21 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-            // :: invalid - noPendingDeliveries
-        } else {
+         // :: invalid - noPendingDeliveries
+      } else {
 
 
 
 
-            $this->makeAlert('info', 'No pending deliveries to pause, please review the schedule');
+         $this->makeAlert('info', 'No pending deliveries to pause, please review the schedule');
 
 
-        } // end if
+      } // end if
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -140,7 +140,7 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -150,22 +150,22 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
 
-        // 1: dependencies
-        $types = [];
-        $versionPermission = VersionPermission::first();
+      // 1: dependencies
+      $types = [];
+      $versionPermission = VersionPermission::first();
 
 
 
 
 
-        // :: permission - hasWallet
-        if ($versionPermission->customerModuleHasWallet)
-            $types = ['Refund Wallet'];
+      // :: permission - hasWallet
+      if ($versionPermission->customerModuleHasWallet)
+         $types = ['Refund Wallet'];
 
 
 
@@ -173,16 +173,16 @@ class SingleCustomerPauseSubscription extends Component
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
 
-        return view('livewire.dashboard.customers.manage.single-customer.components.single-customer-pause-subscription', compact('types'));
+      return view('livewire.dashboard.customers.manage.single-customer.components.single-customer-pause-subscription', compact('types'));
 
 
 
-    } // end function
+   } // end function
 
 
 

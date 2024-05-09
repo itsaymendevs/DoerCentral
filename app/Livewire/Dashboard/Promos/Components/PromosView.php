@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Promos\Components;
 
 use App\Models\PromoCode;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,6 +13,7 @@ class PromosView extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
 
 
     // :: filter - remove
@@ -69,6 +71,14 @@ class PromosView extends Component
 
 
 
+        // ## log - activity ##
+        $promoCode = PromoCode::find($id);
+
+        $this->storeActivity('Menu', "Toggled hide for promo {$promoCode->name}");
+
+
+
+
 
 
         // 1: makeRequest
@@ -117,6 +127,12 @@ class PromosView extends Component
         // --------------------------------------
         // --------------------------------------
 
+
+
+        // ## log - activity ##
+        $promoCode = PromoCode::find($id);
+
+        $this->storeActivity('Menu', "Toggled hide [website] for promo {$promoCode->name}");
 
 
 
@@ -201,8 +217,20 @@ class PromosView extends Component
         // 1: remove
         if ($this->removeId) {
 
+
+
+            // ## log - activity ##
+            $promoCode = PromoCode::find($this->removeId);
+
+            $this->storeActivity('Menu', "Removed promo {$promoCode->name}");
+
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/promo/promoCodes/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
+
 
         } // end if
 

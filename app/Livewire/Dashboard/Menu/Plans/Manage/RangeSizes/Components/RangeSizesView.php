@@ -3,7 +3,9 @@
 namespace App\Livewire\Dashboard\Menu\Plans\Manage\RangeSizes\Components;
 
 use App\Livewire\Forms\PlanBundleRangeTypeForm;
+use App\Models\PlanBundleRangeType;
 use App\Models\Size;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,6 +14,7 @@ class RangeSizesView extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
 
 
     // :: variables
@@ -138,6 +141,15 @@ class RangeSizesView extends Component
 
         // :: validate
         $this->instance->validate();
+
+
+
+        // ## log - activity ##
+        $planBundleRangeType = PlanBundleRangeType::find($this->instance->id);
+
+        $this->storeActivity('Menu', "Updated bundle-range size for {$planBundleRangeType->bundleRange->bundle->name} / {$planBundleRangeType->bundleRange->range->name}  / {$this->instance->mealTypeName}");
+
+
 
 
 

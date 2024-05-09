@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Components;
 
 use App\Livewire\Forms\PlanForm;
 use App\Models\Plan;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -13,8 +14,8 @@ class PlansEdit extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
-
 
 
     // :: variables
@@ -109,6 +110,9 @@ class PlansEdit extends Component
 
 
 
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Updated plan {$this->instance->name}");
 
 
 

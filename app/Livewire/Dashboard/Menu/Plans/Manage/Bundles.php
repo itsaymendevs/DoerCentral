@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Manage;
 
 use App\Models\MealType;
 use App\Models\PlanBundle;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,7 +13,7 @@ class Bundles extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -154,6 +155,13 @@ class Bundles extends Component
 
 
 
+        // ## log - activity ##
+        $bundle = PlanBundle::find($id);
+
+        $this->storeActivity('Menu', "Toggled hide for bundle {$bundle->name}");
+
+
+
 
 
         // 1: makeRequest
@@ -238,6 +246,18 @@ class Bundles extends Component
         // 1: remove
         if ($this->removeId) {
 
+
+
+            // ## log - activity ##
+            $bundle = PlanBundle::find($this->removeId);
+
+            $this->storeActivity('Menu', "Removed bundle {$bundle->name}");
+
+
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/plans/bundles/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
 

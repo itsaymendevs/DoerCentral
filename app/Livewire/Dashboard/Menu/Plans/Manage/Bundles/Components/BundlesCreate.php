@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Manage\Bundles\Components;
 use App\Livewire\Forms\PlanBundleForm;
 use App\Models\MealType;
 use App\Models\Type;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -13,6 +14,7 @@ class BundlesCreate extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
 
 
@@ -92,6 +94,15 @@ class BundlesCreate extends Component
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans/bundles', 'BUN');
+
+
+
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Created bundle {$this->instance->name}");
+
 
 
 

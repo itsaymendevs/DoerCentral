@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu;
 
 use App\Models\Plan;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,6 +13,8 @@ class Plans extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
+
 
     // ::variables
     public $removeId;
@@ -88,6 +91,15 @@ class Plans extends Component
 
         // --------------------------------------
         // --------------------------------------
+
+
+
+
+
+        // ## log - activity ##
+        $plan = Plan::find($id);
+
+        $this->storeActivity('Menu', "Toggled hide for {$plan->name}");
 
 
 
@@ -175,14 +187,28 @@ class Plans extends Component
         if ($this->removeId) {
 
 
+
+
+
+
             // :: get instance - removeFile
             $plan = Plan::find($this->removeId);
 
             $this->removeFile($plan->imageFile, 'menu/plans');
+
+
+
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Remove plan {$plan->name}");
+
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/plans/remove', $this->removeId);
-
-
             $this->makeAlert('info', $response->message);
+
+
 
         } // end if
 

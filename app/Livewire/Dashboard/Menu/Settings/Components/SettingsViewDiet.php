@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Settings\Components;
 
 use App\Livewire\Forms\DietForm;
 use App\Models\Diet;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,7 +13,7 @@ class SettingsViewDiet extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
 
@@ -78,6 +79,13 @@ class SettingsViewDiet extends Component
 
         // :: validate
         $this->instance->validate();
+
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Updated diet {$this->instance->name}");
+
 
 
 
@@ -171,6 +179,15 @@ class SettingsViewDiet extends Component
         if ($this->removeId) {
 
 
+
+
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Removed diet {$this->instance->name}");
+
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/settings/diets/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
 

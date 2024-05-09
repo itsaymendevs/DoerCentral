@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Menu\Calendars\Components;
 use App\Livewire\Forms\MenuCalendarForm;
 use App\Models\Diet;
 use App\Models\Plan;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -13,6 +14,7 @@ class CalendarsCreate extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
 
 
@@ -60,6 +62,11 @@ class CalendarsCreate extends Component
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/calendars', 'CLN');
 
 
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Created calendar {$this->instance->name}");
 
 
 

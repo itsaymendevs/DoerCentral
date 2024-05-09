@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Manage\Bundles\Components;
 
 use App\Livewire\Forms\PlanBundleDayForm;
 use App\Models\PlanBundleDay;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,7 +13,7 @@ class BundlesViewDay extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
 
@@ -152,8 +153,20 @@ class BundlesViewDay extends Component
         // 1: remove
         if ($this->removeId) {
 
+
+
+            // ## log - activity ##
+            $bundleDay = PlanBundleDay::find($this->removeId);
+
+            $this->storeActivity('Menu', "Removed bundle-duration with days of {$bundleDay->days}");
+
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/plans/bundles/days/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
+
 
         } // end if
 

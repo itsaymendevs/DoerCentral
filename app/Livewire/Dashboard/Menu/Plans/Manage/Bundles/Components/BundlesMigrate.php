@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Plans\Manage\Bundles\Components;
 
 use App\Models\Plan;
 use App\Models\PlanBundle;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
@@ -14,6 +15,7 @@ class BundlesMigrate extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
 
 
 
@@ -119,6 +121,12 @@ class BundlesMigrate extends Component
             // -------------------------------------
 
 
+
+
+
+
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Migrated bundle {$this->bundle->name}");
 
 
 

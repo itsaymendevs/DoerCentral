@@ -6,6 +6,7 @@ use App\Livewire\Forms\PlanBundleDayForm;
 use App\Models\PlanBundle;
 use App\Models\PlanBundleDay;
 use App\Models\PlanBundleRangePrice;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -16,6 +17,7 @@ class BundlesManageDays extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
 
 
@@ -92,6 +94,18 @@ class BundlesManageDays extends Component
 
 
 
+
+
+        // ## log - activity ##
+        $bundleRangePrice = PlanBundleRangePrice::find($id);
+
+        $this->storeActivity('Menu', "Updated bundle-range price for {$bundleRangePrice->bundle->name} / {$bundleRangePrice->range->name} to {$instance->pricePerDay}");
+
+
+
+
+
+
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/plans/bundles/ranges/prices/update', $instance);
 
@@ -147,6 +161,13 @@ class BundlesManageDays extends Component
 
         // :: validate
         $this->instance->validate();
+
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Created bundle-duration with days of {$this->instance->days}");
+
 
 
 

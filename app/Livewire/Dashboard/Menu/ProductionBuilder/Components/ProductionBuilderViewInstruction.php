@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Models\Meal;
 use App\Models\MealInstruction;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -13,7 +14,7 @@ class ProductionBuilderViewInstruction extends Component
 {
 
     use HelperTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -88,6 +89,13 @@ class ProductionBuilderViewInstruction extends Component
         if ($this->instruction) {
 
 
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Updated instruction for {$this->mealInstruction->meal->name}");
+
+
+
+
+
             // 1: makeRequest
             $response = $this->makeRequest('dashboard/menu/builder/instructions/update', $instance);
 
@@ -155,6 +163,14 @@ class ProductionBuilderViewInstruction extends Component
         // 1: remove
         if ($this->removeId) {
 
+
+
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Removed instruction for {$this->mealInstruction->meal->name}");
+
+
+
+            // 1.2: makeInstruction
             $response = $this->makeRequest('dashboard/menu/builder/instructions/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
 

@@ -15,16 +15,16 @@ class SingleCustomerShortenSubscription extends Component
 {
 
 
-    use HelperTrait;
-    use ActivityTrait;
-    use WithFileUploads;
+   use HelperTrait;
+   use ActivityTrait;
+   use WithFileUploads;
 
 
 
 
-    // :: variables
-    public CustomerSubscriptionShortenForm $instance;
-    public $subscription;
+   // :: variables
+   public CustomerSubscriptionShortenForm $instance;
+   public $subscription;
 
 
 
@@ -32,33 +32,33 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-    public function mount($id)
-    {
+   public function mount($id)
+   {
 
 
-        // 1: getLatestSubscription
-        $this->subscription = CustomerSubscription::find($id);
+      // 1: getLatestSubscription
+      $this->subscription = CustomerSubscription::find($id);
 
 
 
 
 
-        // 1.2: clone instance
-        $this->instance->customerId = $this->subscription->customerId;
-        $this->instance->customerSubscriptionId = $this->subscription->id;
+      // 1.2: clone instance
+      $this->instance->customerId = $this->subscription->customerId;
+      $this->instance->customerSubscriptionId = $this->subscription->id;
 
 
 
 
 
-        // -------------------------------------
-        // -------------------------------------
+      // -------------------------------------
+      // -------------------------------------
 
 
 
 
-        // :: 1.3: getFromDate
-        $this->instance->fromDate = $this->subscription->untilDate;
+      // :: 1.3: getFromDate
+      $this->instance->fromDate = $this->subscription->untilDate;
 
 
 
@@ -66,7 +66,7 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -76,7 +76,7 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -87,26 +87,26 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-    public function store()
-    {
+   public function store()
+   {
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
@@ -114,38 +114,38 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-        // :: validation
-        $this->instance->validate();
+      // :: validation
+      $this->instance->validate();
 
 
 
 
 
 
-        // :: check if shortenValid
-        $hasPendingDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $this->instance->customerSubscriptionId)
-            ->where('deliveryDate', '>=', $this->instance->untilDate)
-            ->where('deliveryDate', '<=', $this->instance->fromDate)
-            ->where('status', 'Pending')
-            ->count();
+      // :: check if shortenValid
+      $hasPendingDays = CustomerSubscriptionDelivery::where('customerSubscriptionId', $this->instance->customerSubscriptionId)
+         ->where('deliveryDate', '>=', $this->instance->untilDate)
+         ->where('deliveryDate', '<=', $this->instance->fromDate)
+         ->where('status', 'Pending')
+         ->count();
 
 
 
 
-        if ($hasPendingDays == 0) {
+      if ($hasPendingDays == 0) {
 
-            // :: return - noDeliveries
-            $this->makeAlert('info', 'No pending delivery has been found');
-            return false;
+         // :: return - noDeliveries
+         $this->makeAlert('info', 'No pending delivery has been found');
+         return false;
 
 
-        } // end if
+      } // end if
 
 
 
 
-        // -------------------------------
-        // -------------------------------
+      // -------------------------------
+      // -------------------------------
 
 
 
@@ -157,9 +157,9 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-        // 1: uploadFile
-        if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'customers/subscriptions/shortens', 'SHO');
+      // 1: uploadFile
+      if ($this->instance->imageFile)
+         $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'customers/subscriptions/shortens', 'SHO');
 
 
 
@@ -167,29 +167,29 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-        // ### log - activity ###
-        $this->storeActivity('Customers', "Shortened subscription for {$this->subscription->customer->fullName()} to " . date('d / m / Y', strtotime($this->instance->untilDate)));
+      // ## log - activity ##
+      $this->storeActivity('Customers', "Shortened subscription for {$this->subscription->customer->fullName()} to " . date('d / m / Y', strtotime($this->instance->untilDate)));
 
 
 
 
-        // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/customers/subscription/shorten', $this->instance);
+      // 1.2: makeRequest
+      $response = $this->makeRequest('dashboard/customers/subscription/shorten', $this->instance);
 
 
 
 
 
 
-        // :: alert - refreshPage
-        $this->makeAlert('success', $response?->message);
+      // :: alert - refreshPage
+      $this->makeAlert('success', $response?->message);
 
-        return $this->redirect(route('dashboard.singleCustomer', [$this->instance->customerId]), navigate: true);
+      return $this->redirect(route('dashboard.singleCustomer', [$this->instance->customerId]), navigate: true);
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -200,7 +200,7 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -210,26 +210,26 @@ class SingleCustomerShortenSubscription extends Component
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
-        // 1: dependencies
-        $reasons = ['Delivery Missed', 'Not Interested', 'Other'];
+      // 1: dependencies
+      $reasons = ['Delivery Missed', 'Not Interested', 'Other'];
 
 
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
 
-        return view('livewire.dashboard.customers.manage.single-customer.components.single-customer-shorten-subscription', compact('reasons'));
+      return view('livewire.dashboard.customers.manage.single-customer.components.single-customer-shorten-subscription', compact('reasons'));
 
 
-    } // end function
+   } // end function
 
 
 

@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\Items;
 
 use App\Models\Meal;
 use App\Models\Type;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -14,6 +15,7 @@ class SubRecipes extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
     use WithPagination;
 
 
@@ -100,6 +102,10 @@ class SubRecipes extends Component
             $subRecipe->thirdImageFile ? $this->removeFile($subRecipe->thirdImageFile, 'menu/meals') : null;
             $subRecipe->fourthImageFile ? $this->removeFile($subRecipe->fourthImageFile, 'menu/meals') : null;
 
+
+
+            // ## log - activity ##
+            $this->storeActivity('Menu', "Removed sub-recipe {$subRecipe->name}");
 
 
 

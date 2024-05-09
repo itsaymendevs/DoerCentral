@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu\Plans\Components;
 
 use App\Livewire\Forms\PlanForm;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -11,6 +12,7 @@ class PlansCreate extends Component
 {
 
     use HelperTrait;
+    use ActivityTrait;
     use WithFileUploads;
 
 
@@ -57,6 +59,12 @@ class PlansCreate extends Component
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans', 'PLN');
 
 
+
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Created plan {$this->instance->name}");
 
 
 

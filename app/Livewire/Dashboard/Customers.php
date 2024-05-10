@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Models\Customer;
 use App\Models\Plan;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
@@ -17,6 +18,7 @@ class Customers extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
     use WithPagination;
 
 
@@ -190,6 +192,18 @@ class Customers extends Component
         if ($this->removeId) {
 
 
+
+
+            // ## log - activity ##
+            $customer = Customer::find($this->removeId);
+
+            $this->storeActivity('Customers', "Removed customer {$customer->fullName()}");
+
+
+
+
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/customers/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
 

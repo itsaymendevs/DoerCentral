@@ -6,6 +6,7 @@ use App\Livewire\Forms\CustomerSubscriptionPauseForm;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\VersionPermission;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -16,7 +17,7 @@ class CustomersPauseSubscription extends Component
 
 
     use HelperTrait;
-
+    use ActivityTrait;
 
     // :: variables
     public CustomerSubscriptionPauseForm $instance;
@@ -88,6 +89,19 @@ class CustomersPauseSubscription extends Component
 
         // :: valid
         if ($pauseDays > 0) {
+
+
+
+
+            // ## log - activity ##
+            $subscription = CustomerSubscription::find($this->subscription->id);
+
+            $this->storeActivity('Customers', "Paused subscription for {$subscription->customer->fullName()} from " . date('d / m / Y', strtotime($this->instance->fromDate)) . " until " . date('d / m / Y', strtotime($this->instance->untilDate)));
+
+
+
+
+
 
 
 

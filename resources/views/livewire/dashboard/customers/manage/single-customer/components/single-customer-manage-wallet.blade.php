@@ -129,7 +129,7 @@
 
                                             {{-- remarks - depositDate --}}
                                             <td>{{ $deposit->remarks }}</td>
-                                            <td>{{ date('Y-m-d', strtotime($deposit->depositDate)) }}</td>
+                                            <td>{{ date('d / m / Y', strtotime($deposit->depositDate)) }}</td>
 
 
                                         </tr>

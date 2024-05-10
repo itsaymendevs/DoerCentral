@@ -110,7 +110,6 @@ class Home extends Component
 
 
 
-
         return view('livewire.dashboard.home', compact('customers', 'subscriptions', 'todaySubscriptions', 'plans', 'unAssignedScheduleMeals', 'cities', 'cityDeliveries', 'todayDeliveries'));
 
 

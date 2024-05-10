@@ -13,7 +13,7 @@
 
     <a wire:navigate class="btn fs-13
     @if (Request::is('dashboard/extra/finance/payment-details')) active @endif" role="button"
-        href="{{ route('dashboard.management.users') }}">Payment Details</a>
+        href="{{ route('dashboard.finance.paymentDetails') }}">Payment Details</a>
 
 
     {{-- end if - permission --}}

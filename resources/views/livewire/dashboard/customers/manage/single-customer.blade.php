@@ -1034,19 +1034,39 @@
                         </h6>
 
                         <h6 class="fw-semibold d-flex align-items-center justify-content-center mb-2 text-gold">
-                            {{ $customer->unCollectedBags() }}
+                            {{ $latestSubscription->unCollectedBags() }}
                         </h6>
                     </div>
 
 
 
 
+                    {{-- ----------------------------------- --}}
+                    {{-- ----------------------------------- --}}
+
+
+
+
+
+
+                    {{-- :: refundBags --}}
                     <div class="col-12 mt-1">
                         <button
-                            class="btn btn--scheme btn--scheme-outline-1 w-100 py-2 d-inline-flex align-items-center mx-1 justify-content-center shrink--self fs-15">
+                            class="btn btn--scheme btn--scheme-outline-1 w-100 py-2 d-inline-flex align-items-center mx-1 justify-content-center shrink--self fs-15"
+                            type='button' data-bs-toggle="modal" data-bs-target='#bag-refunds'>
                             Refund Cool-bag
                         </button>
                     </div>
+
+
+
+
+
+
+                    {{-- ----------------------------------- --}}
+                    {{-- ----------------------------------- --}}
+
+
 
 
 
@@ -1163,6 +1183,17 @@
     {{-- 1: manageWallet --}}
     <livewire:dashboard.customers.manage.single-customer.components.single-customer-manage-wallet
         id='{{ $customer->id }}' key='wallet-{{ $customer->id }}' />
+
+
+
+
+
+
+
+    {{-- 1.5: manageBags --}}
+    <livewire:dashboard.customers.manage.single-customer.components.single-customer-manage-bags id='{{ $customer->id }}'
+        key='manage-bags-{{ $customer->id }}' />
+
 
 
 

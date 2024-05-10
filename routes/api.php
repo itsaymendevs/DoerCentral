@@ -684,6 +684,16 @@ Route::post('/dashboard/customers/subscription/shorten', [CustomerController::cl
 
 
 
+
+
+
+// 6.0.5: customers - bags - refunds - store
+Route::post('/dashboard/customers/bags/refunds/store', [CustomerController::class, 'storeBagRefund']);
+
+
+
+
+
 // ---------------------------------
 // ---------------------------------
 

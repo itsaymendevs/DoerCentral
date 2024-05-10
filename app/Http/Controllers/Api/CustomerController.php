@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\BagRefund;
 use App\Models\Customer;
 use App\Models\CustomerAddress;
 use App\Models\CustomerAllergy;
@@ -311,7 +312,150 @@ class CustomerController extends Controller
 
 
 
+
+
+
+
+
+
+
     // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function storeBagRefund(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // :: getSubscription
+        $subscription = CustomerSubscription::find($request->customerSubscriptionId);
+
+
+
+
+
+
+
+        // 1: create
+        $bagRefund = new BagRefund();
+
+
+        // 1.2: general
+        $bagRefund->refundDate = $this->getCurrentDate();
+        $bagRefund->remarks = "Cool-bag Refunds";
+        $bagRefund->amount = $subscription?->bagPrice ?? 0;
+
+
+        $bagRefund->customerId = $subscription->customer->id;
+        $bagRefund->customerSubscriptionId = $subscription->id;
+
+
+
+        $bagRefund->save();
+
+
+
+
+
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
+
+
+
+        // 2: create
+        $deposit = new CustomerWalletDeposit();
+
+
+        // 1.2: general
+        $deposit->amount = doubleval($bagRefund->amount);
+        $deposit->remarks = "Cool-bag Refunds";
+        $deposit->depositDate = $this->getCurrentDate();
+
+
+
+
+        // 1.3: customer - wallet
+        $deposit->walletId = $subscription->customer->wallet->id;
+        $deposit->customerId = $subscription->customer->id;
+
+
+
+        $deposit->save();
+
+
+
+
+
+
+
+        // ---------------------------
+        // ---------------------------
+
+
+
+
+
+        // 2: increaseBalance
+        $wallet = CustomerWallet::find($subscription->customer->wallet->id);
+
+
+        $wallet->balance += doubleval($bagRefund->amount);
+        $wallet->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Refund has been confirmed'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+
+
 
 
 

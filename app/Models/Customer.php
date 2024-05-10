@@ -284,38 +284,6 @@ class Customer extends Authenticatable
 
 
 
-    // --------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-    public function unCollectedBags()
-    {
-
-
-        // 1: dependencies
-        $todayDate = $this->getCurrentDate();
-
-
-        return $this->deliveries()?->where('isBagCollected', 0)
-                ?->where('deliveryDate', '<', $todayDate)
-                ?->count() ?? 0;
-
-
-
-    } // end function
-
-
-
-
-
 
 
 

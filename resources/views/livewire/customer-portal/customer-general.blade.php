@@ -966,7 +966,7 @@
                         </h6>
 
                         <h6 class="fw-semibold d-flex align-items-center justify-content-center mb-2 text-gold">
-                            {{ $customer->unCollectedBags() }}
+                            {{ $latestSubscription->unCollectedBags() }}
                         </h6>
                     </div>
 

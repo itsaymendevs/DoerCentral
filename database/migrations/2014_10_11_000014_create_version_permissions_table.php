@@ -301,6 +301,8 @@ return new class extends Migration {
 
             // 7.3: blogs - banners
             $table->boolean('extraModuleHasDepartments')->nullable()->default(1);
+            $table->boolean('extraModuleHasActivityLog')->nullable()->default(1);
+
             $table->boolean('extraModuleHasBlogs')->nullable()->default(1);
             $table->boolean('extraModuleHasBanners')->nullable()->default(1);
 

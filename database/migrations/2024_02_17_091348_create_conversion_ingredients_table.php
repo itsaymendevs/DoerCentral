@@ -16,9 +16,8 @@ return new class extends Migration {
 
 
             // 1: general
+            $table->text('groupToken')->nullable();
             $table->double('conversionValue', 15)->unsigned()->nullable()->default(1);
-
-
 
 
             // 2: ingredient - conversion

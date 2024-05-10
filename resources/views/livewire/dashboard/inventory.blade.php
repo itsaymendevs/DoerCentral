@@ -422,7 +422,7 @@
 
 
     {{-- 4: editConversion - Ingredients --}}
-    <livewire:dashboard.inventory.components.inventory-edit-conversion-ingredients />
+    <livewire:dashboard.inventory.components.inventory-edit-conversion-ingredients key={{ now() }} />
 
 
 

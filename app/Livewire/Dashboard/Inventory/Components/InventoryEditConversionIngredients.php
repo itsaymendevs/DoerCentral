@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Inventory\Components;
 
 use App\Livewire\Forms\ConversionForm;
 use App\Models\Conversion;
+use App\Models\ConversionIngredient;
 use App\Models\CookingType;
 use App\Models\Ingredient;
 use App\Traits\HelperTrait;
@@ -43,6 +44,44 @@ class InventoryEditConversionIngredients extends Component
 
 
 
+
+
+
+        // -----------------------------------------
+        // -----------------------------------------
+
+
+
+
+        // 1.2: loop - ingredientsByIngredient
+        foreach ($conversion?->ingredients?->groupBy('groupToken') ?? [] as $commonToken => $conversionIngredientsByIngredient) {
+
+
+
+            // 1.3: loop - ingredients
+            foreach ($conversionIngredientsByIngredient ?? [] as $key => $conversionIngredient) {
+
+
+                $this->instance->ingredients[$commonToken][$conversionIngredient->cookingTypeId] = $conversionIngredient->conversionValue;
+
+
+            } // end loop - ingredients
+
+
+
+        } // end loop - ingredientsByIngredient
+
+
+
+
+
+
+
+        // :: refresh
+        $this->render();
+
+
+
     } // end function
 
 
@@ -51,8 +90,53 @@ class InventoryEditConversionIngredients extends Component
 
 
 
+    // -----------------------------------------------------------
+
+
+
+
+
+    public function append()
+    {
+
+
+
+
+        // 1: create ingredient
+
+
+        // 1.2: cookingTypes
+        $cookingTypes = CookingType::all();
+
+        foreach ($cookingTypes as $cookingType) {
+
+
+            // 1: create ingredient
+            $conversionIngredient = new ConversionIngredient();
+
+            $conversionIngredient->cookingTypeId = $cookingType->id;
+            $conversionIngredient->conversionId = $this->instance->id;
+
+            $conversionIngredient->groupToken = $this->makeGroupToken();
+
+            $conversionIngredient->save();
+
+        } // end loop
+
+
+
+
+
+
+
+    } // end function
+
+
 
     // -----------------------------------------------------------
+
+
+
 
 
 
@@ -134,9 +218,14 @@ class InventoryEditConversionIngredients extends Component
 
 
         // 1: dependencies
-        $ingredients = Ingredient::all();
         $cookingTypes = CookingType::all();
 
+
+
+
+        // 1.2: conversionIngredients - ingredients
+        $conversionIngredients = ConversionIngredient::where('conversionId', $this->instance?->id)?->get();
+        $ingredients = Ingredient::whereNotIn('id', $conversionIngredients?->pluck('ingredientId')?->toArray() ?? [])->get();
 
 
 
@@ -145,10 +234,18 @@ class InventoryEditConversionIngredients extends Component
         $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.inventory.components.inventory-edit-conversion-ingredients', compact('ingredients', 'cookingTypes'));
+
+
+
+        return view('livewire.dashboard.inventory.components.inventory-edit-conversion-ingredients', compact('ingredients', 'cookingTypes', 'conversionIngredients'));
 
 
     } // end function
+
+
+
+
+
 
 
 } // end class

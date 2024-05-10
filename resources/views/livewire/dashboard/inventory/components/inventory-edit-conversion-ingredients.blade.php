@@ -42,7 +42,7 @@
                         <div class="col-2">
                             <button
                                 class="btn btn--scheme btn--scheme-2 px-2 scalemix--3 py-2 d-inline-flex align-items-center fs-14 mb-3 w-100 fw-semibold item--scheme-0"
-                                type="button" wire:loading.attr='disabled' wire:click="append('Ingredient')">
+                                type="button" wire:loading.attr='disabled' wire:click="append()">
                                 <svg class="bi bi-plus-circle-dotted fs-6 me-2" xmlns="http://www.w3.org/2000/svg"
                                     width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                                     <path
@@ -113,73 +113,50 @@
 
 
 
-
-
-
-
                                         {{-- loop - ingredients --}}
-                                        @foreach ($conversionIngredients ?? [] as $conversionIngredient)
+                                        @foreach ($conversionIngredients?->groupBy('groupToken') ?? [] as $commonToken
+                                        => $conversionIngredientsByIngredient)
+
+
+
+                                        {{-- singleRow --}}
+                                        <tr>
+
+
+
+
+                                            <td>111</td>
+
+
+
+
+                                            {{-- loop - cookingTypes --}}
+                                            @foreach ($conversionIngredientsByIngredient ?? [] as $conversionIngredient)
+
+
+                                            <td>
+                                                <input class="form-control form--input px-1" type="number" step="0.01"
+                                                    required=""
+                                                    wire:model="instance.ingredients.{{ $conversionIngredient->commonToken }}.{{ $conversionIngredient->cookingType->id }}">
+                                            </td>
+
+
+
+                                            @endforeach
+                                            {{-- end loop - cookingTypes --}}
 
 
 
 
 
 
+                                        </tr>
+                                        {{-- endRow --}}
 
-
-
-
-
-
-
-
-                                        {{-- loop - cookingTypes --}}
-                                        @foreach ($cookingTypes as $cookingType)
-
-
-                                        <td>
-                                            <input class="form-control form--input px-1" type="number" step="0.01"
-                                                required="" wire:model="instance.converesionValue">
-                                        </td>
 
 
                                         @endforeach
-                                        {{-- end loop - cookingTypes --}}
-
-
-
-
-
-
-
-                                        @endforeach
-                                        {{-- end loop - ingredients --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        {{-- ---------------------------------------- --}}
-                                        {{-- ---------------------------------------- --}}
-                                        {{-- ---------------------------------------- --}}
-
-
-
-
-
-
+                                        {{-- end loop - ingredientsByToken --}}
 
 
 

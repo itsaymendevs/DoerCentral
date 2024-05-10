@@ -69,7 +69,7 @@ class SingleCustomerHistory extends Component
 
         // 1: dependencies
         $invoices = CustomerSubscription::where('customerId', $this->customer->id)
-            ->orderBy('created_at', 'desc')->paginate(5);
+            ->orderBy('created_at', 'desc')->paginate(env('PAGINATE'));
 
 
 

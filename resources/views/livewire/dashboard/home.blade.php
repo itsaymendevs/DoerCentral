@@ -295,7 +295,7 @@
                                 <div class="col text-end" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class='fs-13'>Total</h6>
-                                        <p class="truncate-text-1l">{{
+                                        <p>{{
                                             number_format($subscriptions?->sum('totalCheckoutPrice')) }}</p>
                                     </div>
                                 </div>
@@ -307,8 +307,9 @@
                                     data-aos-delay="100" data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class='fs-13'>Total Inc. bag</h6>
-                                        <p class="truncate-text-1l">{{ number_format($subscriptions?->sum('planPrice'))
-                                            }}</p>
+                                        <p>{{
+                                            number_format($subscriptions?->sum('totalCheckoutPrice') -
+                                            $subscriptions?->sum('bagPrice')) }}</p>
                                     </div>
                                 </div>
 
@@ -322,7 +323,7 @@
                                     data-aos-delay="200" data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class='fs-13'>Today's Total</h6>
-                                        <p class="truncate-text-1l">{{
+                                        <p>{{
                                             number_format($todaySubscriptions->sum('totalCheckoutPrice')) }}</p>
                                     </div>
                                 </div>
@@ -338,8 +339,9 @@
                                     data-aos-delay="300" data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class='fs-13'>Today's Inc. Bag</h6>
-                                        <p class="truncate-text-1l">{{
-                                            number_format($todaySubscriptions->sum('planPrice')) }}</p>
+                                        <p>{{
+                                            number_format($todaySubscriptions->sum('totalCheckoutPrice') -
+                                            $todaySubscriptions->sum('bagPrice')) }}</p>
                                     </div>
                                 </div>
 
@@ -353,7 +355,7 @@
                                     data-aos-delay="400" data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class='fs-13'>Bags Total</h6>
-                                        <p class="truncate-text-1l">-</p>
+                                        <p>{{ number_format($subscriptions?->sum('bagPrice')) }}</p>
                                     </div>
                                 </div>
 
@@ -366,7 +368,7 @@
                                     data-aos-delay="500" data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class='fs-13'>Bags Refunded</h6>
-                                        <p class="truncate-text-1l">-</p>
+                                        <p>{{ number_format($subscriptions?->sum('bagRefund.amount')) }}</p>
                                     </div>
                                 </div>
 
@@ -379,7 +381,8 @@
                                     data-aos-delay="600" data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class='fs-13'>Bags Balance</h6>
-                                        <p class="truncate-text-1l">-</p>
+                                        <p>{{ number_format($subscriptions?->sum('bagPrice') -
+                                            $subscriptions?->sum('bagRefund.amount')) }}</p>
                                     </div>
                                 </div>
 
@@ -450,7 +453,7 @@
                                 <div class="col-2 text-end mb-4" wire:ignore.self>
                                     <div class="overview--box shrink--self ">
                                         <h6 class='fs-13'>Total</h6>
-                                        <p class="truncate-text-1l">{{
+                                        <p>{{
                                             number_format($subscriptions?->sum('totalCheckoutPrice')) }}</p>
                                     </div>
                                 </div>
@@ -470,7 +473,7 @@
                                     data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class="fs-13" style="">{{ $plan->name }}</h6>
-                                        <p class="truncate-text-1l">{{
+                                        <p>{{
                                             number_format($plan?->subscriptions?->sum('totalCheckoutPrice') ?? 0)
                                             }}</p>
                                     </div>
@@ -547,12 +550,12 @@
 
                                 {{-- total --}}
                                 <div class="col-2 text-end mb-4" wire:ignore.self>
-                                    <div class="overview--box shrink--self ">
+                                    <div class="overview--box shrink--self">
                                         <h6 class='fs-13'>Total</h6>
-                                        <p class="truncate-text-1l">
-                                            {{ number_format($subscriptions->where('startDate', '<=',
+                                        <p>{{ number_format($subscriptions->where('startDate', '<=',
                                                 $globalCurrentDate)?->where('untilDate', '>=',
-                                                $globalCurrentDate)?->count() ?? 0) }}</p>
+                                                $globalCurrentDate)?->count() ?? 0) }}
+                                        </p>
                                     </div>
                                 </div>
 
@@ -571,8 +574,7 @@
                                     data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class="fs-13" style="">{{ $plan?->name }}</h6>
-                                        <p class="truncate-text-1l">{{ number_format($plan?->customers()?->count() ?? 0)
-                                            }}</p>
+                                        <p>{{ number_format($plan?->activeCustomers()?->count() ?? 0) }}</p>
                                     </div>
                                 </div>
 
@@ -1555,14 +1557,39 @@
 
 
 
+
+    {{-- clockjs --}}
     <script src="{{ asset('assets/js/init-clock.js') }}"></script>
 
 
 
 
-    {{-- chartjs --}}
+    {{-- chartjs - initChartjs --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script>
+        var cities = @json($cities);
+        var cityDeliveries = @json($cityDeliveries);
+        var todayDeliveriesCount = @json($todayDeliveries->count());
+
+
+
+        // :: prepChart
+        var cityData = [];
+        let citiesOfDeliveries = Object.keys(cityDeliveries);
+        citiesOfDeliveries.forEach((city) => {
+            cityData.push({ x: city, y: cityDeliveries[city], r: 10 });
+        });
+
+    </script>
+
+
     <script src="{{ asset('assets/js/init-chart.js') }}"></script>
+
+
+
+
 
 
     @endsection

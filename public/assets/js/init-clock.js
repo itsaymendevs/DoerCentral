@@ -128,7 +128,7 @@ Highcharts.chart(
                         y: now.seconds,
                         dial: {
                             radius: "100%",
-                            baseWidth: 1,
+                            baseWidth: 2,
                             rearLength: "20%",
                         },
                     },

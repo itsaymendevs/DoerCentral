@@ -313,7 +313,7 @@
                                         @if ($subscription?->promoCodeId)
 
                                         <p class="text-center mb-3 fw-bold">{{
-                                            $subscription->promoCode->name }}</p>
+                                            $subscription->promoCode }}</p>
 
                                         @endif
                                         {{-- end if --}}

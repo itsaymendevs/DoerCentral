@@ -294,6 +294,9 @@ return new class extends Migration {
             // 7.2: management - website
             $table->boolean('extraModuleHasManagement')->nullable()->default(1);
             $table->boolean('extraModuleHasWebsite')->nullable()->default(1);
+            $table->boolean('extraModuleHasFinance')->nullable()->default(1);
+
+
 
 
             // 7.3: blogs - banners
@@ -303,6 +306,9 @@ return new class extends Migration {
 
 
 
+
+            // 7.4: paymentDetails
+            $table->boolean('extraModuleHasPaymentDetails')->nullable()->default(1);
 
 
 

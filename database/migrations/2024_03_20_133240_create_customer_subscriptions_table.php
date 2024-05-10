@@ -105,6 +105,15 @@ return new class extends Migration {
 
 
 
+            // 3.2: deliveryCharge
+            $table->double('deliveryCharge', 15)->nullable()->default(0);
+
+
+
+
+
+
+
             // ----------------------------------------
             // ----------------------------------------
 

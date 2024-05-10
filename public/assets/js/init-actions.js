@@ -1,8 +1,9 @@
 // 1: print
-$(".print--btn").click(function () {
+$(document).on("click", ".print--btn", function () {
     // 1.2: getPrintSection
     section = $(this).attr("data-print");
 
+    console.log("first");
     html2canvas(document.querySelector(section), {
         backgroundColor: "#23262b",
     }).then((canvas) => {
@@ -20,7 +21,7 @@ $(".print--btn").click(function () {
 // --------------------------------------------
 
 // 2: print paper
-$(".print--labels").click(function () {
+$(document).on("click", ".print--labels", function () {
     // 1.2: getPrintSection
     section = $(this).attr("data-print");
     openWindow(section);
@@ -30,7 +31,7 @@ $(".print--labels").click(function () {
 // --------------------------------------------
 
 // 2: download
-$(".download--btn").click(function () {
+$(document).on("click", ".download--btn", function () {
     // 1.2: getDownloadSection
     section = $(this).attr("data-download");
 

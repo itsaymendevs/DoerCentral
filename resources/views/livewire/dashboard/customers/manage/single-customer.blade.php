@@ -1011,7 +1011,7 @@
                     <div class="col-4 text-center">
 
                         <h6 class="fw-normal d-flex align-items-center justify-content-center mb-2">
-                            150 AED<br />Deposit
+                            {{ $latestSubscription?->bagPrice ?? 0 }} AED<br />Deposit
                         </h6>
 
                         <h6 class="fw-semibold d-flex align-items-center justify-content-center mb-2
@@ -1041,6 +1041,12 @@
 
 
 
+                    <div class="col-12 mt-1">
+                        <button
+                            class="btn btn--scheme btn--scheme-outline-1 w-100 py-2 d-inline-flex align-items-center mx-1 justify-content-center shrink--self fs-15">
+                            Refund Cool-bag
+                        </button>
+                    </div>
 
 
 

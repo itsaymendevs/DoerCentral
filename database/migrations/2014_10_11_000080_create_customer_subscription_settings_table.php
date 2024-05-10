@@ -14,8 +14,10 @@ return new class extends Migration {
             $table->id();
 
 
-            // 1: general
+            // 1: delivery
             $table->integer('minimumDeliveryDays')->nullable()->default(1);
+            $table->boolean('hasDeliveryCharge')->nullable()->default(0);
+
 
 
 
@@ -32,7 +34,9 @@ return new class extends Migration {
 
 
 
-            // 1.3: pause - unPause - shorten - skip - mealSelection
+
+
+            // 1.4: pause - unPause - shorten - skip - mealSelection
             $table->integer('pauseRestriction')->nullable()->default(0);
             $table->integer('unPauseRestriction')->nullable()->default(0);
             $table->integer('skipRestriction')->nullable()->default(0);

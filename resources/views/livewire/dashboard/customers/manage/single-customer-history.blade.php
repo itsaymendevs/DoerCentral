@@ -452,7 +452,7 @@
                                                             @if ($invoice?->promoCodeId)
 
                                                             <p class="text-center mb-3 fw-bold">{{
-                                                                $invoice->promoCode->name }}</p>
+                                                                $invoice->promoCode }}</p>
 
                                                             @endif
                                                             {{-- end if --}}

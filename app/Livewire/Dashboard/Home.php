@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard;
 
+use App\Models\City;
 use App\Models\Customer;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
@@ -30,8 +31,8 @@ class Home extends Component
         // 1: dependencies
         $plans = Plan::all();
         $customers = Customer::whereHas('subscriptions')->get();
-        $subscriptions = CustomerSubscription::whereIn('customerId', $customers?->pluck('id')?->toArray() ?? [])->get();
-
+        $subscriptions = CustomerSubscription::with('bagRefund')
+            ->whereIn('customerId', $customers?->pluck('id')?->toArray() ?? [])->get();
 
 
 
@@ -47,42 +48,9 @@ class Home extends Component
 
 
         // 1.2: todaySubscriptions
-        $todaySubscriptions = CustomerSubscription::whereIn('customerId', $customers?->pluck('id')?->toArray() ?? [])->where('created_at', 'LIKE', '%' . date('Y-m-d') . '%')->get();
-
-
-
-
-
-        // 1.2: collectedBags
-        $totalBags = 0;
-        $totalRefundedBags = 0;
-        $totalBagsBalance = 0;
-
-
-
-
-        $subscriptionDeliveries = CustomerSubscriptionDelivery::whereIn('customerId', $customers?->pluck('id')?->toArray() ?? [])->get();
-
-
-        foreach ($subscriptionDeliveries->groupBy('customerSubscriptionId') as $commonSubscription => $subscriptionDelivery) {
-
-
-
-            // :: bagPrice
-            $currentBagPrice = $subscriptionDelivery->first()->subscription->bagPrice;
-
-            // 1.3: totalCollected - totalBags
-            $subscriptionDelivery->first()->isBagCollected ? $totalRefundedBags += doubleval($currentBagPrice) : null;
-            $totalBags += doubleval($currentBagPrice);
-
-
-
-
-        } // end loop
-
-
-
-
+        $todaySubscriptions = CustomerSubscription::with('bagRefund')
+            ->whereIn('customerId', $customers?->pluck('id')?->toArray() ?? [])
+            ->where('created_at', 'LIKE', '%' . $this->getCurrentDate() . '%')->get();
 
 
 
@@ -99,7 +67,7 @@ class Home extends Component
 
 
         // 3: unAssigned scheduleMeals
-        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', '2024-07-11')?->pluck('id')?->toArray() ?? [];
+        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->getNextDate())?->pluck('id')?->toArray() ?? [];
 
         $unAssignedScheduleMeals = CustomerSubscriptionScheduleMeal::whereIn('subscriptionScheduleId', $schedules)?->whereNull('mealId')?->get();
 
@@ -109,12 +77,43 @@ class Home extends Component
 
 
 
+        // ------------------------------------------------
+        // ------------------------------------------------
+
+
+
+
+        // 4: deliveryCharts
+        $cityDeliveries = [];
+        $cities = City::all()->pluck('name')->toArray();
+        $todayDeliveries = CustomerSubscriptionDelivery::where('deliveryDate', $this->getCurrentDate())->get();
 
 
 
 
 
-        return view('livewire.dashboard.home', compact('customers', 'subscriptions', 'todaySubscriptions', 'totalBags', 'totalRefundedBags', 'totalBagsBalance', 'plans', 'unAssignedScheduleMeals'));
+        // 4.1: loop - deliveries
+        foreach ($todayDeliveries ?? [] as $delivery) {
+
+
+            if ($delivery?->customer?->addressByDay($delivery->deliveryDate)?->city?->name)
+                $cityDeliveries[$delivery?->customer?->addressByDay($delivery->deliveryDate)?->city?->name] = ($cityDeliveries[$delivery?->customer?->addressByDay($delivery->deliveryDate)?->city?->name] ?? 0) + 1;
+
+
+        } // end loop - deliveries
+
+
+
+
+
+
+
+
+
+
+        return view('livewire.dashboard.home', compact('customers', 'subscriptions', 'todaySubscriptions', 'plans', 'unAssignedScheduleMeals', 'cities', 'cityDeliveries', 'todayDeliveries'));
+
+
 
 
     } // end function

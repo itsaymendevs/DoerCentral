@@ -3,51 +3,11 @@ const ctx = document.getElementById("chart--1");
 
 // 1.2: data
 const data = {
+    labels: cities,
     datasets: [
         {
-            label: "180 DELIVERIES",
-            data: [
-                {
-                    x: 20,
-                    y: 30,
-                    r: 12,
-                },
-                {
-                    x: 40,
-                    y: 10,
-                    r: 10,
-                },
-                {
-                    x: 50,
-                    y: 20,
-                    r: 20,
-                },
-                {
-                    x: 45,
-                    y: 10,
-                    r: 18,
-                },
-                {
-                    x: 25,
-                    y: 25,
-                    r: 20,
-                },
-                {
-                    x: 35,
-                    y: 35,
-                    r: 20,
-                },
-                {
-                    x: 30,
-                    y: 70,
-                    r: 20,
-                },
-                {
-                    x: 42,
-                    y: 60,
-                    r: 25,
-                },
-            ],
+            label: `${todayDeliveriesCount} • TODAY DELIVERIES`,
+            data: cityData,
             backgroundColor: "rgb(255, 99, 132)",
         },
     ],
@@ -59,10 +19,12 @@ const config = {
     data: data,
     options: {
         scales: {
-            y: {
-                // defining min and max so hiding the dataset does not change scale range
-                min: 0,
-                max: 90,
+            x: {
+                type: "category",
+                labels: cities,
+                ticks: {
+                    padding: 5,
+                },
             },
         },
     },
@@ -92,7 +54,7 @@ const dataTwo = {
     ],
     datasets: [
         {
-            label: "330 ITEMS",
+            label: "330 • ITEMS",
             data: [47, 55, 40, 35, 50, 60, 20, 25, 10],
             fill: false,
             borderColor: "rgb(75, 192, 192)",

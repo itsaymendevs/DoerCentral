@@ -141,6 +141,12 @@ class CustomerSubscription extends Model
 
 
 
+    public function bagRefund()
+    {
+        return $this->hasOne(BagRefund::class, 'customerSubscriptionId');
+
+    } // end function
+
 
 
 

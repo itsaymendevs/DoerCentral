@@ -18,6 +18,7 @@ use App\Livewire\Dashboard\Customers\Manage\SingleCustomerHistory;
 use App\Livewire\Dashboard\Customers\Manage\SingleCustomerMenu;
 use App\Livewire\Dashboard\Customers\CustomersStateOfAccount;
 use App\Livewire\Dashboard\Delivery;
+use App\Livewire\Dashboard\Extra\Finance\PaymentDetails;
 use App\Livewire\Dashboard\Extra\Management\ActivityLog;
 use App\Livewire\Dashboard\Extra\Management\Roles;
 use App\Livewire\Dashboard\Extra\Management\Users;
@@ -849,6 +850,26 @@ Route::middleware(['auth.user'])->group(function () {
 
         // 17.3: extra - management- activity
         Route::get('dashboard/extra/management/activity', ActivityLog::class)->name('dashboard.management.activity');
+
+
+
+
+
+
+
+
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+        // 18: extra - finance- paymentDetails
+        Route::get('dashboard/extra/finance/payment-details', PaymentDetails::class)->name('dashboard.finance.paymentDetails');
 
 
 

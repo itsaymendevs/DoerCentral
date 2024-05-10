@@ -89,7 +89,7 @@ class Plan extends Model
 
 
 
-    public function customers()
+    public function activeCustomers()
     {
 
 

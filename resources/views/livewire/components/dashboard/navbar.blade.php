@@ -50,6 +50,9 @@
 
 
             {{-- ------------------------------------------- --}}
+            {{-- ------------------------------------------- --}}
+
+
 
 
 
@@ -289,6 +292,30 @@
 
 
 
+
+
+                            {{-- finance --}}
+
+                            {{-- :: permission - hasFinance --}}
+                            @if ($versionPermission->extraModuleHasFinance)
+
+
+
+                            <a wire:navigate href="{{ route('dashboard.finance.paymentDetails') }}"
+                                class="dropdown-item fw-semibold
+                                @if (Request::is('dashboard/extra/finance', 'dashboard/extra/finance/*')) active @endif">Finance</a>
+
+
+                            @endif
+                            {{-- end if - permission --}}
+
+
+
+
+
+
+
+
                             {{-- management --}}
 
 
@@ -307,7 +334,6 @@
 
                             @endif
                             {{-- end if - permission --}}
-
 
 
 
@@ -396,6 +422,7 @@
 
             {{-- notificationCol --}}
             <livewire:components.dashboard.navbar-notifications key='navbar-notifications-1' />
+
 
         </div>
     </div>

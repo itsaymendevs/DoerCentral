@@ -541,7 +541,7 @@ i {
 .btn--scheme-outline-1:active {
     background-color: var(--color-scheme-dark-1) !important;
     border-color: var(--color-scheme-dark-1);
-    color: white !important;
+    color: black !important;
 }
 
 /* scheme 2 */

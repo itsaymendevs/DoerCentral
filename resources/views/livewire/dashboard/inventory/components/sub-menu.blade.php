@@ -98,8 +98,8 @@
 
 
             <a wire:navigate class="btn
-            @if (Request::is('dashboard/inventory/settings')) active @endif" role="button"
-                href="{{ route('dashboard.inventory.settings') }}">Settings</a>
+            @if (Request::is('dashboard/inventory/settings', 'dashboard/inventory/settings/*')) active @endif"
+                role="button" href="{{ route('dashboard.inventory.settings') }}">Settings</a>
 
 
 

@@ -194,7 +194,7 @@
 
 
                                 {{-- label --}}
-                                <label class="form-check button--checkbox btn fs-14 p-0 "
+                                <label class="form-check button--checkbox address-checkbox btn fs-14 p-0 "
                                     for="formCheck-modal-{{ $key }}">
                                     {{ $weekDay }}
                                 </label>

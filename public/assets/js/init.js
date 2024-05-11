@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("img").addClass("no-blur");
-    $("#preloader").fadeOut("400");
+    $("#preloader").fadeOut("1500");
 });
 
 document.addEventListener("livewire:navigated", function () {

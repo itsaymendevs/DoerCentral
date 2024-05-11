@@ -350,7 +350,7 @@
 
                                 {{-- name --}}
                                 <div class="col-12">
-                                    <h6 class="text-center fw-bold mt-4 mb-2 truncate-text-1l fs-16 text-heading">{{
+                                    <h6 class="text-center fw-bold mt-4 mb-2 truncate-text-1l fs-13 text-heading">{{
                                         $ingredient->name }}</h6>
                                 </div>
 

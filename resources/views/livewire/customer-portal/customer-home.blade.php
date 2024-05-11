@@ -138,6 +138,14 @@
                                 {{-- loop - banners --}}
 
 
+
+                                {{-- A: Aleens --}}
+                                @if (env('APP_CLIENT') == 'Aleens')
+
+
+
+
+
                                 <div class="swiper-slide">
                                     <img src="{{ asset('storage/extra/banners/banner-1.png') }}" alt="" loading='lazy'>
                                     <div class="swiper-lazy-preloader"></div>
@@ -158,6 +166,43 @@
                                     <img src="{{ asset('storage/extra/banners/banner-3.png') }}" alt="" loading='lazy'>
                                     <div class="swiper-lazy-preloader"></div>
                                 </div>
+
+
+
+
+
+
+
+                                {{-- B: Others --}}
+                                @else
+
+
+
+
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('storage/extra/banners/banner-doer-2.jpg') }}" alt=""
+                                        loading='lazy'>
+                                    <div class="swiper-lazy-preloader"></div>
+                                </div>
+
+
+
+
+
+
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('storage/extra/banners/banner-doer-3.jpg') }}" alt=""
+                                        loading='lazy'>
+                                    <div class="swiper-lazy-preloader"></div>
+                                </div>
+
+
+
+
+
+                                @endif
+                                {{-- end if --}}
+
 
 
 

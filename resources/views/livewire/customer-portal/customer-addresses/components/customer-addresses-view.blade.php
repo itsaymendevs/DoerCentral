@@ -226,7 +226,7 @@
 
 
                 {{-- label --}}
-                <label class="form-check button--checkbox btn fs-14 p-0 @if (in_array($weekDay,
+                <label class="form-check button--checkbox address-checkbox btn fs-14 p-0 @if (in_array($weekDay,
                 $address->deliveryDaysInArray())) active @endif" for="formCheck-{{ $key }}-{{ $address->id }}">
                     {{ $weekDay }}
                 </label>
@@ -295,7 +295,7 @@
         {{-- submitButton --}}
         <div class="col-8 col-md-4 text-center">
             <button wire:loading.attr='disabled'
-                class="btn btn--scheme btn--scheme-1 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center disabled">
+                class="btn btn--scheme btn--scheme-1 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center ">
                 Update
             </button>
         </div>

@@ -25,10 +25,11 @@ use App\Livewire\Dashboard\Extra\Management\ActivityLog;
 use App\Livewire\Dashboard\Extra\Management\Roles;
 use App\Livewire\Dashboard\Extra\Management\Users;
 use App\Livewire\Dashboard\Home;
-use App\Livewire\Dashboard\Inventory;
 use App\Livewire\Dashboard\Inventory\Purchases;
+use App\Livewire\Dashboard\Inventory\Settings\ConversionIngredients;
 use App\Livewire\Dashboard\Inventory\Stock;
 use App\Livewire\Dashboard\Inventory\Suppliers;
+use App\Livewire\Dashboard\Inventory\Settings as InventorySettings;
 use App\Livewire\Dashboard\ManageKitchen\KitchenContainers;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels\KitchenLabelsCreate;
@@ -335,9 +336,14 @@ Route::middleware(['auth.user'])->group(function () {
 
 
         // 4.6: inventory - settings - store - update - remove
-        Route::get('dashboard/inventory/settings', Settings::class)->name('dashboard.inventory.settings');
+        Route::get('dashboard/inventory/settings', InventorySettings::class)->name('dashboard.inventory.settings');
 
 
+
+
+
+        // 4.6.1: inventory - settings - conversions - ingredients
+        Route::get('dashboard/inventory/settings/conversions/{id}', ConversionIngredients::class)->name('dashboard.inventory.settings.conversionIngredients');
 
 
 

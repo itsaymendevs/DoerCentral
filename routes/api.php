@@ -471,6 +471,14 @@ Route::post('/dashboard/inventory/settings/conversions/remove', [InventoryExtraC
 
 
 
+// 3.9.5: inventory - settings - conversions - ingredients - store - update - remove
+Route::post('/dashboard/inventory/settings/conversions/ingredients/store', [InventoryExtraController::class, 'storeConversionIngredient']);
+
+Route::post('/dashboard/inventory/settings/conversions/ingredients/update', [InventoryExtraController::class, 'updateConversionIngredient']);
+
+Route::post('/dashboard/inventory/settings/conversions/ingredients/remove', [InventoryExtraController::class, 'removeConversionIngredient']);
+
+
 
 
 

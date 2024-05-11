@@ -79,11 +79,14 @@
 
 
 
-        {{-- customization --}}
+        {{-- :: customization --}}
+        <link href="{{ asset('assets/css/client-customization/' . strtolower(env('APP_CLIENT')) . '.css') }}"
+            rel="stylesheet">
 
-        @if (env('APP_CLIENT') == 'Aleens')
-        <link href="{{ asset('assets/css/client-customization/aleens.css') }}" rel="stylesheet">
-        @endif
+
+
+
+
 
 
 

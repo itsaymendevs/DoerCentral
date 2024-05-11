@@ -188,6 +188,70 @@ window.addEventListener("initSelect", (event) => {
 
 // -------------------------------------------------------------
 
+// 4.5: initNewSelect
+window.addEventListener("initNewSelect", (event) => {
+    $(document).ready(function () {
+        $(".form--select").each(function () {
+            if (!$(this).hasClass("select2-hidden-accessible")) {
+                setupValue = $(this).attr("value");
+                setupClear = $(this).attr("data-clear") ? true : false;
+                setupPlaceholder = $(this).attr("data-placeholder");
+                setupTrigger = $(this).attr("data-trigger") ? true : false;
+
+                if (setupValue == undefined) {
+                    $(this).select2({
+                        allowClear: setupClear,
+                        placeholder: setupPlaceholder ? setupPlaceholder : "",
+                    });
+                } else {
+                    $(this)
+                        .val(setupValue)
+                        .select2({
+                            allowClear: setupClear,
+                            placeholder: setupPlaceholder
+                                ? setupPlaceholder
+                                : "",
+                        });
+                } // end else
+
+                if (setupTrigger) $(this).trigger("change");
+            } // end if
+        }); // end loop
+
+        $(".form--modal-select").each(function () {
+            if (!$(this).hasClass("select2-hidden-accessible")) {
+                setupValue = $(this).attr("value");
+                setupClear = $(this).attr("data-clear") ? true : false;
+                setupModal = $(this).attr("data-modal");
+                setupPlaceholder = $(this).attr("data-placeholder");
+                setupTrigger = $(this).attr("data-trigger") ? true : false;
+
+                if (setupValue == undefined) {
+                    $(this).select2({
+                        dropdownParent: setupModal,
+                        allowClear: setupClear,
+                        placeholder: setupPlaceholder ? setupPlaceholder : "",
+                    });
+                } else {
+                    $(this)
+                        .val(setupValue)
+                        .select2({
+                            dropdownParent: setupModal,
+                            allowClear: setupClear,
+                            placeholder: setupPlaceholder
+                                ? setupPlaceholder
+                                : "",
+                        });
+                } // end else
+
+                if (setupTrigger) $(this).trigger("change");
+            } // end if
+        }); // end loop
+    });
+});
+
+// -------------------------------------------------------------
+
 // 5: initChildSelect
 window.addEventListener("initChildSelect", (event) => {
     $(document).ready(function () {
@@ -228,6 +292,17 @@ window.addEventListener("resetSelect", (event) => {
     $(document).ready(function () {
         $(".form--modal-select").each(function () {
             $(this).val("").trigger("change");
+        }); // end loop
+    });
+});
+
+// -------------------------------------------------------------
+
+// 5.5: destroyModalSelect
+window.addEventListener("destroyModalSelect", (event) => {
+    $(document).ready(function () {
+        $(".form--modal-select").each(function () {
+            $(this).select2("destroy");
         }); // end loop
     });
 });

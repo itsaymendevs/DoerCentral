@@ -1,0 +1,273 @@
+::-webkit-scrollbar {
+    height: 3px;
+    background: inherit;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 2px !important;
+    -webkit-box-shadow: none;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+.navbar--section {
+    margin-top: 0px;
+}
+.item--box.macros {
+    margin: auto;
+    padding: 30px 0px;
+    width: 70px;
+}
+
+.item--box.macros.for--calories,
+.item--box.macros.for--calories p span:last-of-type {
+    border-color: var(--ingredient-color);
+    color: var(--ingredient-color);
+}
+
+.item--box.macros.for--carbs,
+.item--box.macros.for--carbs p span:last-of-type {
+    border-color: var(--meal-color);
+    color: var(--meal-color);
+}
+
+.item--box.macros.for--proteins,
+.item--box.macros.for--proteins p span:last-of-type {
+    border-color: var(--sauce-color);
+    color: var(--sauce-color);
+}
+
+.item--box.macros.for--fats,
+.item--box.macros.for--fats p span:last-of-type {
+    border-color: var(--snack-color);
+    color: var(--snack-color);
+}
+
+/* logo */
+
+.navbar--hr {
+    border-color: var(--input-border-color-hover);
+}
+.logo--wrapper {
+    width: 120px;
+    margin: auto;
+}
+
+.logo--wrapper img {
+    width: 100%;
+    height: 22px;
+    object-fit: contain;
+}
+.logo--wrapper span {
+    font-size: 7px;
+    font-weight: 500 !important;
+    display: block;
+    text-align: right;
+}
+
+/* :: logo -  login */
+.logo--wrapper.for-login {
+    width: 200px;
+    margin: auto;
+}
+
+.logo--wrapper.for-login img {
+    height: 35px;
+}
+
+.logo--wrapper.for-login span {
+    font-size: 9px;
+    font-weight: 600 !important;
+    margin-right: 16px;
+    letter-spacing: 1px;
+}
+
+/* meals */
+.swiper--caption.for-meals {
+    background-color: #fff;
+}
+
+/* nav-menu */
+
+.mobile--menu .btn:focus,
+.mobile--menu .btn:hover,
+.mobile--menu .btn.active {
+    background-color: var(--color-theme-secondary) !important;
+    border-top: none !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--color-theme-secondary) !important;
+}
+
+/* journey */
+
+/* item-box */
+.item--box.journey:hover,
+.item--box.journey:focus,
+.item--box.journey.active {
+    border: none;
+    background-color: var(--input-bg);
+}
+
+.overview--box.journey {
+    border: 2px dashed #44444447 !important;
+}
+
+.overview--box.journey p {
+    background-color: transparent;
+}
+
+.overview--box:hover,
+.overview--box:focus {
+    background-color: initial;
+    border: 1px solid initial !important;
+}
+
+.form--input.readonly {
+    background-color: var(--color-scheme-2);
+}
+
+.general--right-col {
+    border: 2px dashed #44444447;
+}
+
+/* customer menu */
+
+@media (min-width: 1px) and (max-width: 767px) {
+    .tabs--wrap.for-mobile .nav-tabs li {
+        width: 33%;
+        margin: 0px !important;
+    }
+
+    .tabs--wrap.for-mobile .nav-tabs li {
+        white-space: nowrap;
+    }
+
+    .tabs--wrap.for-mobile .nav-tabs li a {
+        font-size: 12px;
+    }
+
+    .tabs--wrap .nav-tabs li {
+        border-bottom: none;
+    }
+
+    .tabs--wrap.for-mobile .nav-tabs li a.active {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--color-theme-secondary);
+    }
+
+    .menu--title {
+        font-size: 17px !important;
+    }
+
+    .tabs--wrap.for-mobile.for-menu .nav-tabs li {
+        width: auto !important;
+    }
+}
+
+.customer--nav {
+    flex-wrap: nowrap;
+    overflow: auto;
+}
+
+.customer--nav li a.active {
+    transform: scale(1.2) !important;
+}
+
+.menu--calendar-days.active {
+    border-color: var(--color-theme-secondary) !important;
+}
+
+.menu--calendar-days.active span:first-of-type,
+.menu--calendar-days:hover span:first-of-type,
+.menu--calendar-days:focus span:first-of-type {
+    color: var(--color-theme-secondary) !important;
+}
+
+.menu--calendar-days.active,
+.menu--calendar-days:hover,
+.menu--calendar-days:focus {
+    border-color: var(--color-theme-secondary) !important;
+}
+
+.menu--calendar-days.disabled {
+    border-color: #ededed !important;
+}
+
+.overview--box.macros-version {
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 45px;
+    background-color: transparent;
+    border: 2px dashed #000;
+}
+
+.overview--box.macros-version p {
+    border-radius: 0px 0px 300px 300px;
+    background-color: transparent;
+}
+
+.overview--box.macros-version h6 {
+    border-bottom: none;
+}
+.overview--box.macros-version.for-calories {
+    border-color: var(--ingredient-color);
+}
+.overview--box.macros-version.for-calories p {
+    color: var(--ingredient-color);
+}
+
+.overview--box.macros-version.for-carbs {
+    border-color: var(--meal-color);
+}
+.overview--box.macros-version.for-carbs p {
+    color: var(--meal-color);
+}
+
+.overview--box.macros-version.for-proteins {
+    border-color: var(--sauce-color);
+}
+.overview--box.macros-version.for-proteins p {
+    color: var(--sauce-color);
+}
+
+.overview--box.macros-version.for-fats {
+    border-color: var(--snack-color);
+}
+.overview--box.macros-version.for-fats p {
+    color: var(--snack-color);
+}
+
+.overview--box.macros-version.sm h6,
+.overview--box.macros-version.sm p {
+    font-weight: 600 !important;
+}
+
+.badge--warning {
+    background-color: var(--color-theme-secondary);
+}
+
+/* general */
+.table-pauses th {
+    min-width: 130px;
+}
+
+/* --------------------- */
+/* preloader */
+.preloader--bg {
+    background: linear-gradient(270deg, #456660f0, #101010);
+    background-size: 400% 400%;
+
+    -webkit-animation: loader-gradient 6s ease infinite;
+    -moz-animation: loader-gradient 6s ease infinite;
+    animation: loader-gradient 6s ease infinite;
+}

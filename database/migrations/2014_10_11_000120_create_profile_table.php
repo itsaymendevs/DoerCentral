@@ -30,8 +30,9 @@ return new class extends Migration {
 
 
 
-            // 1.3: website - application
+            // 1.3: website - application - plansURL
             $table->text('websiteURL')->nullable();
+            $table->text('plansURL')->nullable();
             $table->text('applicationURL')->nullable();
 
 

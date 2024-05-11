@@ -9,6 +9,7 @@ use App\Models\Customer;
 use App\Models\CustomerWallet;
 use App\Models\Driver;
 use App\Models\Exclude;
+use App\Models\Profile;
 use App\Models\User;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
@@ -41,6 +42,13 @@ class CustomerGeneral extends Component
 
 
 
+    // -----------------------------------------------------------------
+
+
+
+
+
+
 
     public function reNew($id)
     {
@@ -61,7 +69,11 @@ class CustomerGeneral extends Component
 
 
 
-        // return $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
+        // 1.3: getPlansURL
+        $profile = Profile::first();
+
+        return $this->redirect($profile->plansURL, navigate: false);
 
 
 

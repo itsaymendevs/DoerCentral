@@ -182,8 +182,9 @@
 
 
                                                 {{-- :: view purchaseIngredient --}}
-                                                <livewire:dashboard.inventory.components.inventory-view-purchase-ingredient
-                                                    :id='$purchaseIngredient->id' key='{{ $purchaseIngredient->id }}' />
+                                                <livewire:dashboard.inventory.purchases.components.purchases-ingredients-edit
+                                                    id='{{ $purchaseIngredient->id }}'
+                                                    key='purchase-ingredient-{{ $purchaseIngredient->id }}' />
 
 
                                                 @endforeach

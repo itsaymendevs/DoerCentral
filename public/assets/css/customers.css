@@ -176,3 +176,7 @@
 .text--white-dim {
     color: var(--color-theme-heading);
 }
+
+.address-checkbox:last-of-type {
+    margin-right: 0px;
+}

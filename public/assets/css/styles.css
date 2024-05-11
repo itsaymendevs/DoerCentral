@@ -510,6 +510,11 @@ textarea:read-only {
     border: 2px dashed var(--color-blackshade);
 }
 
+.badge--scheme-1 {
+    background-color: var(--color-scheme-1);
+    color: var(--color-body) !important;
+}
+
 .badge--scheme-2 {
     background-color: var(--color-scheme-2);
 }

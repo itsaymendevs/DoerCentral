@@ -647,7 +647,7 @@
                                             {{-- changeButton - inActive --}}
                                             <div class="col-12">
                                                 <div class="d-flex align-items-center justify-content-center mt-3">
-                                                    <button class="btn btn--scheme btn--theme fs-12 mx-1 h-32 w-75
+                                                    <button class="btn btn--scheme btn--scheme-outline-2 disabled fs-12 mx-1 h-32 w-75
                                                     @if ($skipStatus == 'Skipped') disabled @endif" type="button">
                                                         You Will Get This
                                                     </button>

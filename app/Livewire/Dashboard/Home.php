@@ -8,6 +8,7 @@ use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
+use App\Models\MealType;
 use App\Models\Plan;
 use App\Traits\HelperTrait;
 use Livewire\Component;
@@ -83,6 +84,8 @@ class Home extends Component
 
 
 
+
+
         // 4: deliveryCharts
         $cityDeliveries = [];
         $cities = City::all()->pluck('name')->toArray();
@@ -110,7 +113,64 @@ class Home extends Component
 
 
 
-        return view('livewire.dashboard.home', compact('customers', 'subscriptions', 'todaySubscriptions', 'plans', 'unAssignedScheduleMeals', 'cities', 'cityDeliveries', 'todayDeliveries'));
+
+        // ------------------------------------------------
+        // ------------------------------------------------
+
+
+
+
+
+
+        // 5: scheduleMealsChart
+        $scheduleMealsByType = [];
+        $mealTypes = MealType::all()->pluck('shortName')->toArray();
+
+
+        // 5.1: scheduleMeals
+        $todaySchedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->getCurrentDate())
+                ?->pluck('id')?->toArray() ?? [];
+
+        $todayScheduleMeals = CustomerSubscriptionScheduleMeal::orderBy('mealTypeId')
+                ?->whereIn('subscriptionScheduleId', $todaySchedules)->get();
+
+
+
+
+
+
+
+        // 5.2: loop - initValues
+        foreach ($mealTypes as $mealType) {
+
+            $scheduleMealsByType[$mealType] = 0;
+
+        } // end loop
+
+
+
+
+
+
+
+        // 5.3: loop - todayScheduleMeals
+        foreach ($todayScheduleMeals?->groupBy('mealTypeId') ?? [] as $commonMealType => $todayScheduleMealsByType) {
+
+            $scheduleMealsByType[$todayScheduleMealsByType?->first()?->mealType?->shortName] =
+                $todayScheduleMealsByType->count() ?? 0;
+
+        } // end loop - deliveries
+
+
+
+
+
+
+
+
+
+
+        return view('livewire.dashboard.home', compact('customers', 'subscriptions', 'todaySubscriptions', 'plans', 'unAssignedScheduleMeals', 'cities', 'cityDeliveries', 'todayDeliveries', 'mealTypes', 'todayScheduleMeals', 'scheduleMealsByType'));
 
 
 

@@ -1547,13 +1547,18 @@
 
 
 
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
 
-    {{-- -------------------------------------------------- --}}
-    {{-- -------------------------------------------------- --}}
+
+
 
 
 
     @section('scripts')
+
+
+
 
 
 
@@ -1563,12 +1568,26 @@
 
 
 
-
-    {{-- chartjs - initChartjs --}}
+    {{-- chartjs --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
+
+
+
+
+    {{-- --------------------------------------------------- --}}
+    {{-- --------------------------------------------------- --}}
+    {{-- --------------------------------------------------- --}}
+
+
+
+
+
+
+    {{-- prepare --}}
     <script>
+        // 1: chartOne
         var cities = @json($cities);
         var cityDeliveries = @json($cityDeliveries);
         var todayDeliveriesCount = @json($todayDeliveries->count());
@@ -1582,11 +1601,48 @@
             cityData.push({ x: city, y: cityDeliveries[city], r: 10 });
         });
 
+
+
+        // ---------------------------------------------
+        // ---------------------------------------------
+
+
+
+
+        // 2: chartTwo
+        var todayScheduleMealsCount = @json($todayScheduleMeals->count());
+        var scheduleMealsByType = @json($scheduleMealsByType);
+        var mealTypes = @json($mealTypes);
+
+
+        var quantityPerType = [];
+        var scheduleMealTypes = Object.keys(scheduleMealsByType);
+        mealTypes.forEach((scheduleMealType) => {
+            quantityPerType.push(scheduleMealsByType[scheduleMealType]);
+        });
+
+
+        console.log(quantityPerType);
+        console.log(scheduleMealsByType);
+
+
     </script>
 
 
+
+
+
+
+    {{-- initChartjs --}}
     <script src="{{ asset('assets/js/init-chart.js') }}"></script>
 
+
+
+
+
+    {{-- --------------------------------------------------- --}}
+    {{-- --------------------------------------------------- --}}
+    {{-- --------------------------------------------------- --}}
 
 
 
@@ -1594,23 +1650,6 @@
 
     @endsection
     {{-- endSection --}}
-
-
-
-
-
-    {{-- -------------------------------------------------- --}}
-    {{-- -------------------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-
 
 
 

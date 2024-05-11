@@ -41,21 +41,11 @@ const ctxTwo = document.getElementById("chart--2");
 
 // 1.3: data
 const dataTwo = {
-    labels: [
-        "Breakfast",
-        "AM Snack",
-        "Lunch",
-        "Lunch Side",
-        "PM Snack",
-        "Dinner",
-        "Dinner Side",
-        "Snack",
-        "Drink",
-    ],
+    labels: mealTypes,
     datasets: [
         {
-            label: "330 • ITEMS",
-            data: [47, 55, 40, 35, 50, 60, 20, 25, 10],
+            label: `${todayScheduleMealsCount} • ITEMS`,
+            data: quantityPerType,
             fill: false,
             borderColor: "rgb(75, 192, 192)",
         },

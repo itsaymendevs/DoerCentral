@@ -6,6 +6,8 @@ use App\Livewire\CustomerPortal\CustomerAddresses;
 use App\Livewire\CustomerPortal\CustomerCalendar;
 use App\Livewire\CustomerPortal\CustomerDeliveries;
 use App\Livewire\CustomerPortal\CustomerGeneral;
+use App\Livewire\Dashboard\Inventory\Configurations;
+use App\Livewire\Dashboard\Inventory\Ingredients;
 use App\Livewire\CustomerPortal\CustomerHome;
 use App\Livewire\CustomerPortal\CustomerMenu;
 use App\Livewire\Dashboard\Customers;
@@ -24,6 +26,9 @@ use App\Livewire\Dashboard\Extra\Management\Roles;
 use App\Livewire\Dashboard\Extra\Management\Users;
 use App\Livewire\Dashboard\Home;
 use App\Livewire\Dashboard\Inventory;
+use App\Livewire\Dashboard\Inventory\Purchases;
+use App\Livewire\Dashboard\Inventory\Stock;
+use App\Livewire\Dashboard\Inventory\Suppliers;
 use App\Livewire\Dashboard\ManageKitchen\KitchenContainers;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels\KitchenLabelsCreate;
@@ -268,8 +273,71 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 4: Inventory
-        Route::get('dashboard/inventory', Inventory::class)->name('dashboard.inventory');
+        // 4: inventory - ingredients - store - update - remove
+        Route::get('dashboard/inventory/ingredients', Ingredients::class)->name('dashboard.inventory.ingredients');
+
+
+
+
+        // ---------
+
+
+
+
+
+        // 4.2: inventory - suppliers - store - update - remove
+        Route::get('dashboard/inventory/suppliers', Suppliers::class)->name('dashboard.inventory.suppliers');
+
+
+
+
+
+        // ---------
+
+
+
+
+
+        // 4.3: inventory - purchases - store - update - remove
+        Route::get('dashboard/inventory/purchases', Purchases::class)->name('dashboard.inventory.purchases');
+
+
+
+
+        // ---------
+
+
+
+
+        // 4.4: inventory - stock - store - update - remove
+        Route::get('dashboard/inventory/stock', Stock::class)->name('dashboard.inventory.stock');
+
+
+
+
+
+        // ---------
+
+
+
+
+        // 4.5: inventory - config - store - update - remove
+        Route::get('dashboard/inventory/configurations', Configurations::class)->name('dashboard.inventory.configurations');
+
+
+
+
+
+        // ---------
+
+
+
+
+
+        // 4.6: inventory - settings - store - update - remove
+        Route::get('dashboard/inventory/settings', Settings::class)->name('dashboard.inventory.settings');
+
+
 
 
 

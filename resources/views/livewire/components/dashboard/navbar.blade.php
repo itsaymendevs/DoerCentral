@@ -162,7 +162,7 @@
 
                     <a class="btn navbar--menu-button
                     @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
-                        href="{{ route('dashboard.inventory') }}">Inventory</a>
+                        href="{{ route('dashboard.inventory.ingredients') }}">Inventory</a>
 
 
                     @endif

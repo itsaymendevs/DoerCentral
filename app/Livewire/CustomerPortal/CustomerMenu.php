@@ -858,7 +858,6 @@ class CustomerMenu extends Component
         foreach ($mealTypes as $mealType) {
 
 
-            dd($subscriptionScheduleMeals?->where('mealTypeId', $mealType->id));
 
             // 4.1: getSize
             $sizesByMealType[$mealType->id] = $subscriptionScheduleMeals ? $subscriptionScheduleMeals?->where('mealTypeId', $mealType->id)?->first()?->size : null;

@@ -18,8 +18,6 @@
         {{-- size - calories - price --}}
         <div class="col-12 text-center">
 
-
-
             <div class="select--single-wrapper mb-3" wire:loading.class='no-events' wire:ignore>
                 <select class="form-select form--select form--select-{{ $instance?->id }}"
                     data-instance='instance.sizeId' required data-placeholder='Size' value='{{ $instance?->sizeId }}'>

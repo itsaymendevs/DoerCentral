@@ -161,6 +161,7 @@ class RangeSizesView extends Component
 
 
         // :: refreshOverview
+        $this->makeAlert('info', 'Bundle Range has been updated');
         $this->dispatch('refreshBundleOverview');
 
 
@@ -189,7 +190,6 @@ class RangeSizesView extends Component
 
         // 1: dependencies
         $sizes = Size::all();
-
 
 
 

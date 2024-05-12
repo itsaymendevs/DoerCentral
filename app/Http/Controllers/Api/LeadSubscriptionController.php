@@ -639,7 +639,7 @@ class LeadSubscriptionController extends Controller
 
 
         // :: renaming
-        $lead->bundleRangeId = $lead->planBundleId;
+        $lead->bundleRangeId = $lead->planRangeId;
 
 
 

@@ -1604,7 +1604,7 @@ class PlanController extends Controller
 
 
         // 2.1: getSubscriptionSchedules
-        $subscriptionSchedules = CustomerSubscriptionSchedule::where('scheduleDate', '>', $this->getCurrentDate())->get()?->pluck('id')?->toArray() ?? [];
+        $subscriptionSchedules = CustomerSubscriptionSchedule::where('scheduleDate', '>=', $this->getCurrentDate())->get()?->pluck('id')?->toArray() ?? [];
 
 
 

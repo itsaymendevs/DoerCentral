@@ -301,7 +301,14 @@ class ConversionIngredients extends Component
 
 
 
-            $this->render();
+
+
+            // 1.3: remove groupToken
+            return $this->redirect(route('dashboard.inventory.settings.conversionIngredients', [$this->conversion->id]), navigate: false);
+
+
+
+
 
 
         } // end if

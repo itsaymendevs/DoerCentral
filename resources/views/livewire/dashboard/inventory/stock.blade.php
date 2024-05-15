@@ -131,28 +131,36 @@
 
 
                                 {{-- col --}}
-                                <div class="col-12">
+                                <div class="col-12 px-2">
 
 
 
                                     {{-- cooked --}}
-                                    <div class="d-flex align-items-center justify-content-center mb-1 mt-2">
+                                    <div class="d-flex align-items-center justify-content-center mb-2 mt-2">
                                         <span
                                             class="btn--raw-icon fs-12 d-flex align-items-center justify-content-center scale--3 text-heading">Cooked</span>
                                         <button
-                                            class="btn btn--raw-icon d-flex align-items-center justify-content-center scale--3 fw-bold text-danger"
-                                            type="button">0</button>
+                                            class="btn btn--raw-icon d-flex align-items-baseline justify-content-center scale--3 fw-bold text-danger"
+                                            type="button">0
+                                            <span class='fs-9 ms-1 text-heading'>({{
+                                                $stockIngredientsByIngredient?->first()->ingredient->purchaseUnit->name
+                                                }})</span>
+                                        </button>
                                     </div>
 
 
                                     {{-- available --}}
                                     <div class="d-flex align-items-center justify-content-center">
                                         <span
-                                            class="btn--raw-icon fs-12 d-flex align-items-center justify-content-center scale--3 text-heading">Available</span>
+                                            class="btn--raw-icon fs-12 d-flex align-items-center justify-content-center scale--3 text-heading">Current</span>
                                         <button
-                                            class="btn btn--raw-icon d-flex align-items-center justify-content-center scale--3 fw-bold text-warning"
+                                            class="btn btn--raw-icon d-flex align-items-baseline justify-content-center scale--3 fw-bold text-warning"
                                             type="button">
-                                            {{ $stockIngredientsByIngredient->sum('quantity') }}
+                                            {{ $stockIngredientsByIngredient?->sum('quantity') }}
+                                            <span class='fs-9 ms-1 text-heading'>({{
+                                                $stockIngredientsByIngredient?->first()->ingredient->purchaseUnit->name
+                                                }})</span>
+
                                         </button>
                                     </div>
                                 </div>

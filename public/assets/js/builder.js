@@ -35,6 +35,17 @@ window.addEventListener("initCertainSelect", (event) => {
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 
+// 1.5: manualTrigger
+window.addEventListener("reCalculateTotalMacros", (event) => {
+    $(document).ready(function () {
+        targetId = event.detail.id;
+        $(targetId).trigger("change");
+    });
+});
+
+// -------------------------------------------------------------
+// -------------------------------------------------------------
+
 // 2: calculate totalMacros
 $("tbody").on("change", ".ingredient--grams-input", function (event) {
     // 1: getItem
@@ -101,6 +112,7 @@ $("tbody").on("change", ".ingredient--grams-input", function (event) {
         $(`.ingredient--fats-total-input[data-size=${size}]`).val(
             totalRawFats.toFixed(1)
         );
+
         // -------------------------------------------------
         // -------------------------------------------------
         // -------------------------------------------------
@@ -138,7 +150,6 @@ $("tbody").on("change", ".ingredient--grams-input", function (event) {
         );
 
         // ----------------------------------------------
-
         // 1.3: display totalMacros
         $(`.ingredient--afterCookGrams-total-input[data-size=${size}]`).val(
             totalAfterCookGrams.toFixed(1)
@@ -155,7 +166,7 @@ $("tbody").on("change", ".ingredient--grams-input", function (event) {
         $(`.ingredient--afterCookFats-total-input[data-size=${size}]`).val(
             totalAfterCookFats.toFixed(1)
         );
-    }, 3500);
+    }, 1000);
 });
 
 // -------------------------------------------------------------

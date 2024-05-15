@@ -23,6 +23,11 @@ return new class extends Migration {
             $table->double('toPiece', 15)->nullable()->default(1);
 
 
+
+            // 1.3: isForPurchase
+            $table->boolean('isForPurchase')->nullable()->default(false);
+
+
             $table->timestamps();
         });
     }

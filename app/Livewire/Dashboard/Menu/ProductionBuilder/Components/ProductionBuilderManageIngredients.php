@@ -438,7 +438,6 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
-
         // --------------------------
         // --------------------------
 

@@ -5,7 +5,8 @@
     {{-- @if (!$versionPermission->menuModuleHasBuilderPercentage) colspan='2' @endif --}}
     {{-- amount - grams --}}
     <td class="fw-bold">
-        <input class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input"
+        <input id='ingredient--grams-input-{{ $instance->typeId }}-{{ $instance->id }}'
+            class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input"
             data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' required wire:model='instance.amount'
             wire:change='update' wire:loading.attr='readonly' wire:target='remove, update, init' />
     </td>

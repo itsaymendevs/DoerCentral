@@ -131,7 +131,7 @@ class SuppliersIngredients extends Component
 
         // 1: dependencies
         $ingredients = Ingredient::all();
-        $units = Unit::all();
+        $units = Unit::where('isForPurchase', true)->get();
 
 
         // 1.2: supplierIngredients

@@ -20,6 +20,33 @@ class Ingredient extends Model
 
 
 
+
+
+    public function unit()
+    {
+
+        return $this->belongsTo(Unit::class, 'unitId');
+
+    } // end function
+
+
+
+
+
+
+
+    public function purchaseUnit()
+    {
+
+        return $this->belongsTo(Unit::class, 'purchaseUnitId', 'id');
+
+    } // end function
+
+
+
+
+
+
     public function freshMacro()
     {
 

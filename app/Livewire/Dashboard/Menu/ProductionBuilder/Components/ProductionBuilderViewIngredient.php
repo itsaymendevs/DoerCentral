@@ -111,6 +111,9 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
+
+        $this->render();
+
     } // end function
 
 
@@ -329,9 +332,10 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
-            // -----------------------------------------------
-            // -----------------------------------------------
 
+
+            // -----------------------------------------------
+            // -----------------------------------------------
 
 
 
@@ -353,7 +357,6 @@ class ProductionBuilderViewIngredient extends Component
                     // 1.4: updateAfterCook Macros
                     $this->instance->afterCookGrams *= $conversion->conversionValue;
 
-
                     $totalMacros = $this->mealPart->totalMacro($this->instance->afterCookGrams ?? 0);
 
                     $this->instance->afterCookCalories = $totalMacros->calories;
@@ -361,10 +364,14 @@ class ProductionBuilderViewIngredient extends Component
                     $this->instance->afterCookCarbs = $totalMacros->carbs;
                     $this->instance->afterCookFats = $totalMacros->fats;
 
+
                 } // end if - exists
 
 
             } // end if - checkConversion
+
+
+
 
 
         } // end if - partExists
@@ -402,9 +409,13 @@ class ProductionBuilderViewIngredient extends Component
 
 
         // 1: dependencies
-        if (! empty($this->instance->amount))
-            $this->reCalculateMacros();
+        if (! empty($this->instance->amount)) {
 
+            $this->reCalculateMacros();
+            $this->dispatch('reCalculateTotalMacros', id: "#ingredient--grams-input-{$this->instance->typeId}-{$this->instance->id}");
+
+
+        } // end if
 
 
 

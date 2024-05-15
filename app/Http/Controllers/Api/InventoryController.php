@@ -1466,7 +1466,7 @@ class InventoryController extends Controller
         foreach ($purchase->ingredients as $purchaseIngredient) {
 
 
-            // ** NOTE: QUANTITY IS IN GRAMS ONLY IN STOCK!
+            // ** NOTE: QUANTITY IS IN KG ONLY IN STOCK!
             // ** THATS WHY NO UNIT MENTIONED
 
 

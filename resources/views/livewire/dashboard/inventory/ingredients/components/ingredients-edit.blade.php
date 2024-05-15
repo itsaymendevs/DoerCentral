@@ -131,7 +131,7 @@
                                         data-trigger='true' required>
                                         <option value=""></option>
 
-                                        @foreach ($units as $unit)
+                                        @foreach ($units->where('isForPurchase', false) ?? [] as $unit)
                                         <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                         @endforeach
 
@@ -207,7 +207,7 @@
                                         data-instance='instance.purchaseUnitId' required>
                                         <option value=""></option>
 
-                                        @foreach ($units as $unit)
+                                        @foreach ($units->where('isForPurchase', true) ?? [] as $unit)
                                         <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                         @endforeach
 

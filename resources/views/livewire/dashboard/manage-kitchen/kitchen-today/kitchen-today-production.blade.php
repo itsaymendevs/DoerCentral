@@ -796,7 +796,8 @@
                                     @if ($scheduleMealsByMeal?->whereNotNull('remarks')?->count() > 0)
 
 
-                                    <div class="kitchen--size-box mb-2" style="border-color:var(--color-scheme-3)">
+                                    <div class="kitchen--size-box mb-2 btn--remove"
+                                        style="border-color:var(--bs-danger)">
                                         <a href="#!" data-bs-toggle='modal' data-bs-target='#view-remarks'
                                             class='init-link w-100'
                                             wire:click='viewRemarks({{ $scheduleMealsByMeal }})'>

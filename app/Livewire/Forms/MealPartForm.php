@@ -9,11 +9,14 @@ class MealPartForm extends Form
 {
 
 
-   // :: variables
-   #[Validate('required')]
-   public $id = [], $typeId = [], $partId = [], $mealId = [];
+    // :: variables
+    #[Validate('required')]
+    public $id = [], $typeId = [], $partId = [], $mealId = [];
 
 
-   public $partType = [];
+    public $partType = [];
+    public $cookingTypeId = [];
+
+
 
 } // end form

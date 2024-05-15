@@ -42,14 +42,20 @@ $("tbody").on("change", ".ingredient--grams-input", function (event) {
     setTimeout(function () {
         // 1.2: getSize
         size = item.attr("data-size");
-        gramsArray = [];
+        gramsArray = afterCookGramsArray = [];
 
         totalRawGrams =
             totalRawCalories =
             totalRawProteins =
             totalRawCarbs =
             totalRawFats =
+            totalAfterCookGrams =
+            totalAfterCookCalories =
+            totalAfterCookProteins =
+            totalAfterCookCarbs =
+            totalAfterCookFats =
                 0;
+
         $(`.ingredient--grams-input[data-size=${size}]`).each(function () {
             totalRawGrams += parseFloat($(this).val());
             gramsArray.push(parseFloat($(this).val()));
@@ -80,6 +86,9 @@ $("tbody").on("change", ".ingredient--grams-input", function (event) {
         // ----------------------------------------------
 
         // 1.3: display totalMacros
+        $(`.ingredient--grams-total-input[data-size=${size}]`).val(
+            totalRawGrams.toFixed(1)
+        );
         $(`.ingredient--calories-total-input[data-size=${size}]`).val(
             totalRawCalories.toFixed(1)
         );
@@ -92,7 +101,61 @@ $("tbody").on("change", ".ingredient--grams-input", function (event) {
         $(`.ingredient--fats-total-input[data-size=${size}]`).val(
             totalRawFats.toFixed(1)
         );
-    }, 1500);
+        // -------------------------------------------------
+        // -------------------------------------------------
+        // -------------------------------------------------
+        // ------------------ AfterCook ---------------------
+
+        $(`.ingredient--afterCookGrams-input[data-size=${size}]`).each(
+            function () {
+                totalAfterCookGrams += parseFloat($(this).val() ?? 0);
+                afterCookGramsArray.push(parseFloat($(this).val() ?? 0));
+            }
+        );
+
+        $(`.ingredient--afterCookCalories-input[data-size=${size}]`).each(
+            function () {
+                totalAfterCookCalories += parseFloat($(this).val());
+            }
+        );
+
+        $(`.ingredient--afterCookProteins-input[data-size=${size}]`).each(
+            function () {
+                totalAfterCookProteins += parseFloat($(this).val());
+            }
+        );
+
+        $(`.ingredient--afterCookCarbs-input[data-size=${size}]`).each(
+            function () {
+                totalAfterCookCarbs += parseFloat($(this).val());
+            }
+        );
+
+        $(`.ingredient--afterCookFats-input[data-size=${size}]`).each(
+            function () {
+                totalAfterCookFats += parseFloat($(this).val());
+            }
+        );
+
+        // ----------------------------------------------
+
+        // 1.3: display totalMacros
+        $(`.ingredient--afterCookGrams-total-input[data-size=${size}]`).val(
+            totalAfterCookGrams.toFixed(1)
+        );
+        $(`.ingredient--afterCookCalories-total-input[data-size=${size}]`).val(
+            totalAfterCookCalories.toFixed(1)
+        );
+        $(`.ingredient--afterCookProteins-total-input[data-size=${size}]`).val(
+            totalAfterCookProteins.toFixed(1)
+        );
+        $(`.ingredient--afterCookCarbs-total-input[data-size=${size}]`).val(
+            totalAfterCookCarbs.toFixed(1)
+        );
+        $(`.ingredient--afterCookFats-total-input[data-size=${size}]`).val(
+            totalAfterCookFats.toFixed(1)
+        );
+    }, 3500);
 });
 
 // -------------------------------------------------------------
@@ -106,13 +169,18 @@ $(document).ready(function () {
 
         // :: checkIfDifferent
         if (size != previousSize) {
-            gramsArray = [];
+            gramsArray = afterCookGramsArray = [];
 
             totalRawGrams =
                 totalRawCalories =
                 totalRawProteins =
                 totalRawCarbs =
                 totalRawFats =
+                totalAfterCookGrams =
+                totalAfterCookCalories =
+                totalAfterCookProteins =
+                totalAfterCookCarbs =
+                totalAfterCookFats =
                     0;
 
             $(`.ingredient--grams-input[data-size=${size}]`).each(function () {
@@ -151,6 +219,9 @@ $(document).ready(function () {
             // ----------------------------------------------
 
             // 1.3: display totalMacros
+            $(`.ingredient--grams-total-input[data-size=${size}]`).val(
+                totalRawGrams.toFixed(1)
+            );
             $(`.ingredient--calories-total-input[data-size=${size}]`).val(
                 totalRawCalories.toFixed(1)
             );
@@ -162,6 +233,60 @@ $(document).ready(function () {
             );
             $(`.ingredient--fats-total-input[data-size=${size}]`).val(
                 totalRawFats.toFixed(1)
+            );
+            // -------------------------------------------------
+            // -------------------------------------------------
+            // -------------------------------------------------
+            // ------------------ AfterCook ---------------------
+
+            $(`.ingredient--afterCookGrams-input[data-size=${size}]`).each(
+                function () {
+                    totalAfterCookGrams += parseFloat($(this).val() ?? 0);
+                    afterCookGramsArray.push(parseFloat($(this).val() ?? 0));
+                }
+            );
+
+            $(`.ingredient--afterCookCalories-input[data-size=${size}]`).each(
+                function () {
+                    totalAfterCookCalories += parseFloat($(this).val());
+                }
+            );
+
+            $(`.ingredient--afterCookProteins-input[data-size=${size}]`).each(
+                function () {
+                    totalAfterCookProteins += parseFloat($(this).val());
+                }
+            );
+
+            $(`.ingredient--afterCookCarbs-input[data-size=${size}]`).each(
+                function () {
+                    totalAfterCookCarbs += parseFloat($(this).val());
+                }
+            );
+
+            $(`.ingredient--afterCookFats-input[data-size=${size}]`).each(
+                function () {
+                    totalAfterCookFats += parseFloat($(this).val());
+                }
+            );
+
+            // ----------------------------------------------
+
+            // 1.3: display totalMacros
+            $(`.ingredient--afterCookGrams-total-input[data-size=${size}]`).val(
+                totalAfterCookGrams.toFixed(1)
+            );
+            $(
+                `.ingredient--afterCookCalories-total-input[data-size=${size}]`
+            ).val(totalAfterCookCalories.toFixed(1));
+            $(
+                `.ingredient--afterCookProteins-total-input[data-size=${size}]`
+            ).val(totalAfterCookProteins.toFixed(1));
+            $(`.ingredient--afterCookCarbs-total-input[data-size=${size}]`).val(
+                totalAfterCookCarbs.toFixed(1)
+            );
+            $(`.ingredient--afterCookFats-total-input[data-size=${size}]`).val(
+                totalAfterCookFats.toFixed(1)
             );
 
             previousSize = size;

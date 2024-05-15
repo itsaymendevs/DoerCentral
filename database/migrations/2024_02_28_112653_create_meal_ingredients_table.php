@@ -19,6 +19,13 @@ return new class extends Migration {
             $table->foreign('ingredientId')->references('id')->on('ingredients')->onDelete('cascade');
 
 
+
+            // :: cookingType
+            $table->bigInteger('cookingTypeId')->unsigned()->nullable();
+            $table->foreign('cookingTypeId')->references('id')->on('cooking_types')->onDelete('set null');
+
+
+
             $table->string('partType', 100)->nullable();
             $table->double('amount', 15)->nullable()->default(0);
             $table->string('remarks', 255)->nullable();

@@ -1476,6 +1476,7 @@ class BuilderController extends Controller
 
                 $part->ingredientId = $request->partId;
                 $part->partType = $request->partType ?? null;
+                $part->cookingTypeId = $request->cookingTypeId ?? null;
 
                 $part->save();
 

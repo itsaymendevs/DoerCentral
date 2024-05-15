@@ -70,14 +70,14 @@
 
 
     <!-- ingredientsCol -->
-    <div class="col-4">
+    <div class="col-5 px-0">
         <div class="table memoir--table w-100 h-100">
             <table class=" table table-bordered" id="memoir--table">
 
                 {{-- header --}}
                 <thead>
                     <tr>
-                        <th class="th--md" style="opacity: 0" colspan="2">
+                        <th class="th--md" style="opacity: 0" colspan="3">
                             Placeholder
                         </th>
                     </tr>
@@ -93,24 +93,34 @@
 
                     {{-- subtitle --}}
                     <tr>
-                        <td class="fw-bold" style="height: 62px" colspan="2">
-                            After Cook
+                        <td class="fw-bold" style="height: 62px" colspan="3">
+                            After Cook <small class="fw-semibold text-gold fs-10 ms-1">(Manual)</small>
                         </td>
                     </tr>
 
 
                     {{-- fixedSubtitle --}}
                     <tr>
-                        <td class="fw-bold" style="height: 62px" colspan="2">
+                        <td class="fw-bold" style="height: 62px" colspan="3">
                             After Cook<small class="fw-semibold text-gold fs-10 ms-1">(Auto)</small>
                         </td>
                     </tr>
 
 
                     {{-- fixedSubtitle --}}
+                    <tr>
+                        <td class="fw-bold" style="height: 62px" colspan="3">
+                            Raw Macros<small class="fw-semibold text-gold fs-10 ms-1">(Auto)</small>
+                        </td>
+                    </tr>
+
+
+
+                    {{-- fixedSubtitle --}}
                     <tr class="subheader">
-                        <td class="fw-bold">Ingredient</td>
-                        <td class="fw-bold">Type</td>
+                        <td class="fw-bold fs-11"></td>
+                        <td class="fw-bold th--sm fs-11">Type</td>
+                        <td class="fw-bold th--lg fs-11">Cook Type</td>
                     </tr>
 
 
@@ -157,10 +167,10 @@
 
 
                         {{-- coloringTD --}}
-                        <td class="fw-bold tr--ingredient td--overflow" wire:ignore style="max-width: 250px;">
+                        <td class="fw-bold tr--ingredient td--overflow" wire:ignore style="max-width: 270px;">
 
 
-                            <div class="select--single-wrapper builder px-2 mx-auto" wire:loading.class='no-events'
+                            <div class="select--single-wrapper builder mx-auto" wire:loading.class='no-events'
                                 style="width: 100% !important;">
                                 <select class="form-select ingredient--select"
                                     id='ingredient--select-{{ $mealSizeIngredient->id }}'
@@ -202,6 +212,32 @@
                                 </select>
                             </div>
                         </td>
+
+
+
+
+
+
+                        {{-- cookingType --}}
+                        <td class="fw-bold px-0" wire:ignore>
+                            <div class="select--single-wrapper builder mx-auto" wire:loading.class='no-events'
+                                style="width: 155px !important; max-width: 155px !important">
+                                <select class="form-select ingredient--cookingType-select "
+                                    id='ingredient--cookingType-select-{{ $mealSizeIngredient->id }}'
+                                    data-instance='instance.cookingTypeId.{{ $mealSizeIngredient->id }}'
+                                    data-instanceId='{{ $mealSizeIngredient->id }}' data-instanceType='Ingredient'
+                                    required value='{{ $mealSizeIngredient?->cookingTypeId }}'>
+                                    <option value=""></option>
+
+
+                                    @foreach ($cookingTypes as $cookingType)
+                                    <option value="{{ $cookingType->id }}">{{ $cookingType->name }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </td>
+
 
 
                     </tr>
@@ -263,11 +299,11 @@
 
                         {{-- coloringTD --}}
                         <td class="fw-bold tr--{{ strtolower($mealSizePart->type->name) }} td--overflow" wire:ignore
-                            style="max-width: 250px;">
+                            style="max-width: 270px;">
 
 
 
-                            <div class="select--single-wrapper builder px-2 mx-auto" wire:loading.class='no-events'
+                            <div class="select--single-wrapper builder s mx-auto" wire:loading.class='no-events'
                                 style="width: 100%">
                                 <select class="form-select part--select" id='part--select-{{ $mealSizePart->id }}'
                                     data-instance='instanceParts.partId.{{ $mealSizePart->id }}'
@@ -314,6 +350,16 @@
                                 </select>
                             </div>
                         </td>
+
+
+
+
+
+
+
+                        {{-- empty - cookingTypes --}}
+                        <td></td>
+
 
 
                     </tr>
@@ -399,7 +445,7 @@
 
 
     {{-- viewIngredients --}}
-    <div class="col-8 @if ($initSizeId != $mealSize->size->id) d-none @endif" data-instance='mealSizes'
+    <div class="col-7 px-0 @if ($initSizeId != $mealSize->size->id) d-none @endif" data-instance='mealSizes'
         data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
         <div class="table-responsive memoir--table w-100">
             <table class="table table-bordered">
@@ -409,11 +455,25 @@
                 <thead>
                     <tr>
                         <th class="th--sm" colspan="2"></th>
+
+
+
+                        {{-- :: permission - hasPercentage --}}
+                        @if ($versionPermission->menuModuleHasBuilderPercentage)
+
+                        {{-- percentage --}}
+                        <th class="th--xs"></th>
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
                         <th class="th--sm" colspan="1">Calories</th>
                         <th class="th--sm" colspan="1">Protein</th>
                         <th class="th--sm" colspan="1">Carb</th>
                         <th class="th--sm" colspan="1">Fat</th>
-                        <th class="th--lg" colspan="1">Note</th>
+                        <th class="th--sm" colspan="1">Cost</th>
                         <th class="th--xs" colspan="3"></th>
 
                     </tr>
@@ -434,6 +494,28 @@
 
                         {{-- empty --}}
                         <td colspan="2" style="height: 62px"></td>
+
+
+
+
+
+
+
+                        {{-- :: permission - hasPercentage --}}
+                        @if ($versionPermission->menuModuleHasBuilderPercentage)
+
+
+                        {{-- percentage --}}
+                        <td colspan="1" style="height: 62px"></td>
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
 
 
                         {{-- calories --}}
@@ -471,8 +553,15 @@
                         </td>
 
 
-                        {{-- empty --}}
+
+
+                        {{-- empty - cost --}}
                         <td class="scale--3" colspan="1"></td>
+
+
+
+
+                        {{-- empty --}}
                         <td class="scale--3" colspan="3"></td>
                     </tr>
 
@@ -485,12 +574,261 @@
 
 
 
+                    {{-- -------------------------------------------- --}}
+                    {{-- -------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+                    {{-- 2rd Row --}}
+
+
+
 
                     {{-- 1.2: automaticAfterCook For Size --}}
                     <tr>
 
+
+
+
+                        {{-- afterCookGrams --}}
+                        <td colspan="2" style="height: 62px">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookGrams-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+
+
+
+
+                        {{-- :: permission - hasPercentage --}}
+                        @if ($versionPermission->menuModuleHasBuilderPercentage)
+
+
+                        {{-- percentage --}}
+                        <td colspan="1"></td>
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+
+
+
+                        {{-- CA --}}
+                        <td class="fw-bold" colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookCalories-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+
+
+                        {{-- :: permission - hasMacros --}}
+                        @if ($versionPermission->menuModuleHasBuilderMacros)
+
+
+
+
+
+                        {{-- P --}}
+                        <td colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookProteins-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+                        {{-- C --}}
+                        <td class="scale--3" colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookCarbs-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+                        {{-- F --}}
+                        <td class="scale--3" colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookFats-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+
+
+
+                        {{-- HIDDEN --}}
+                        @else
+
+
+
+
+
+                        {{-- P --}}
+                        <td class='invisible' colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookProteins-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+                        {{-- C --}}
+                        <td class="invisible" colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookCarbs-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+                        {{-- F --}}
+                        <td class="invisible" colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookFats-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+                        {{-- cost --}}
+                        <td colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookCost-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+
+
+
                         {{-- empty --}}
-                        <td colspan="2" style="height: 62px"></td>
+                        <td class="scale--3" colspan="3"></td>
+
+
+                    </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- -------------------------------------------- --}}
+                    {{-- -------------------------------------------- --}}
+
+
+
+
+
+
+                    {{-- 3rd Row --}}
+
+
+
+
+                    {{-- 1.2: automaticFresh For Size --}}
+                    <tr>
+
+
+
+                        {{-- Grams --}}
+                        <td colspan="2" style="height: 62px">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--grams-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
+
+
+
+
+
+
+                        {{-- :: permission - hasPercentage --}}
+                        @if ($versionPermission->menuModuleHasBuilderPercentage)
+
+
+                        {{-- percentage --}}
+                        <td colspan="1"></td>
+
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+                        {{-- ---------------------- --}}
+                        {{-- ---------------------- --}}
+
+
+
+
 
 
                         {{-- CA --}}
@@ -599,14 +937,21 @@
 
 
 
+                        {{-- cost --}}
+                        <td colspan="1">
+                            <input
+                                class="form-control form--input form--table-input-sm readonly ingredient--cost-total-input"
+                                data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
+                        </td>
+
 
 
 
 
 
                         {{-- empty --}}
-                        <td class="scale--3" colspan="1"></td>
                         <td class="scale--3" colspan="3"></td>
+
 
                     </tr>
 
@@ -621,6 +966,9 @@
 
 
 
+                    {{-- 4td Row --}}
+
+
 
 
 
@@ -629,22 +977,17 @@
 
 
 
+                        {{-- grams - afterCookGrams - % --}}
+                        <td class="fw-bold fs-11 th--sm">Grams</td>
+                        <td class="fw-bold fs-11 px-1 th--sm">Cooked<small
+                                class="fw-semibold text-gold fs-10 ms-1">(G)</small></td>
 
 
                         {{-- :: permission - hasPercentage --}}
                         @if ($versionPermission->menuModuleHasBuilderPercentage)
 
 
-                        {{-- grams - % --}}
-                        <td class="fw-bold">Grams</td>
-                        <td class="fw-bold">%</td>
-
-
-                        @else
-
-
-                        {{-- grams --}}
-                        <td class="fw-bold" colspan='2'>Grams</td>
+                        <td class="fw-bold fs-11">%</td>
 
 
                         @endif
@@ -662,7 +1005,7 @@
 
 
 
-                        <td class="fw-bold">CA</td>
+                        <td class="fw-bold fs-11">CA</td>
 
 
 
@@ -679,9 +1022,9 @@
                         @if ($versionPermission->menuModuleHasBuilderMacros)
 
 
-                        <td class="fw-bold">P</td>
-                        <td class="fw-bold">C</td>
-                        <td class="fw-bold">F</td>
+                        <td class="fw-bold fs-11">P</td>
+                        <td class="fw-bold fs-11">C</td>
+                        <td class="fw-bold fs-11">F</td>
 
 
 
@@ -700,17 +1043,12 @@
 
 
 
-
                         {{-- ---------------------- --}}
                         {{-- ---------------------- --}}
 
 
-
-
-
-
-                        <td class="fw-bold"></td>
-                        <td class="fw-bold fs-10">Removable</td>
+                        <td class="fw-bold fs-11">Cost</td>
+                        <td class="fw-bold fs-11">Remov.</td>
 
 
 
@@ -726,7 +1064,7 @@
                         @if ($versionPermission->menuModuleHasBuilderReplacements)
 
 
-                        <td class="fw-bold fs-10">Replacement</td>
+                        <td class="fw-bold fs-11">Replace.</td>
 
 
                         @endif
@@ -756,8 +1094,15 @@
 
 
 
+                    {{-- ------------------------------------------------------- --}}
+                    {{-- ------------------------- items ----------------------- --}}
+                    {{-- ------------------------------------------------------- --}}
 
-                    {{-- ------------------------- items --}}
+
+
+
+
+                    {{-- 5th Row --}}
 
 
 
@@ -880,6 +1225,34 @@
             @this.set(instance, selectValue);
             @this.updateType(instanceId, 'Ingredient');
         });
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $('tbody').on('change', `.ingredient--cookingType-select`, function(event) {
+
+
+
+        // 1.1: getValue - instance
+        selectValue = $(this).select2('val');
+        instance = $(this).attr('data-instance');
+        instanceId = $(this).attr('data-instanceId');
+
+        @this.set(instance, selectValue);
+        @this.update(instanceId, 'Ingredient');
+    });
 
     </script>
 

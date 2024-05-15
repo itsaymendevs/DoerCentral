@@ -264,7 +264,7 @@
 
 
             {{-- untilSubscription - dates --}}
-            <div class="col-12">
+            <div class="col-12 mb-2">
                 <div class="d-block overflow-auto pb-3 text-center" style="white-space: nowrap">
 
 
@@ -311,6 +311,69 @@
 
 
 
+
+
+
+
+            {{-- totalMacros --}}
+            <div class="col-12 mb-3">
+                <div class="row justify-content-center align-items-center">
+
+
+                    <div class="col text-end px-2" style="max-width: 150px;">
+                        <div class="overview--box shrink--self macros-version menu-version sm">
+                            <h6 class="fs-12 text-uppercase">Calories</h6>
+                            <p class="fs-14">
+                                {{ $totalCalories }}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="col text-end px-2" style="max-width: 150px;">
+                        <div class="overview--box shrink--self macros-version menu-version sm">
+                            <h6 class="fs-12 text-uppercase">Proteins</h6>
+                            <p class="fs-14">
+                                {{ $totalProteins }}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="col text-end px-2" style="max-width: 150px;">
+                        <div class="overview--box shrink--self macros-version menu-version sm">
+                            <h6 class="fs-12 text-uppercase">Carbohydrates</h6>
+                            <p class="fs-14">
+                                {{ $totalCarbs }}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col text-end px-2" style="max-width: 150px;">
+                        <div class="overview--box shrink--self macros-version menu-version sm">
+                            <h6 class="fs-12 text-uppercase">Fats</h6>
+                            <p class="fs-14">
+                                {{ $totalFats }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {{-- endCol --}}
 
 
 

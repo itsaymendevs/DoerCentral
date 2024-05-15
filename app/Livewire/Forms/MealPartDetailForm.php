@@ -8,12 +8,16 @@ use Livewire\Form;
 class MealPartDetailForm extends Form
 {
 
-   // :: variables
-   #[Validate('required')]
-   public $id, $typeId, $partId, $mealId, $amount, $partType;
+    // :: variables
+    #[Validate('required')]
+    public $id, $typeId, $partId, $cookingTypeId, $mealId, $amount, $partType;
 
 
 
-   public $remarks, $calories, $proteins, $carbs, $fats, $grams, $isRemovable, $isReplacement, $groupToken, $mealSizeId;
+    public $remarks, $calories, $afterCookCalories, $proteins, $afterCookProteins, $carbs, $afterCookCarbs, $fats, $afterCookFats, $grams, $afterCookGrams, $isRemovable, $isReplacement, $groupToken, $mealSizeId;
+
+
+
+
 
 } // end form

@@ -781,9 +781,35 @@
 
 
 
-                                {{-- empty --}}
-                                <td class="text-start"></td>
+                                {{-- allergn and remarks --}}
 
+
+
+
+
+                                <td class="text-start">
+
+
+
+
+                                    {{-- 1: hasRemarks --}}
+                                    @if ($scheduleMealsByMeal?->whereNotNull('remarks')?->count() > 0)
+
+
+                                    <div class="kitchen--size-box mb-2" style="border-color:var(--color-scheme-3)">
+                                        <a href="#!" data-bs-toggle='modal' data-bs-target='#view-remarks'
+                                            class='init-link w-100'
+                                            wire:click='viewRemarks({{ $scheduleMealsByMeal }})'>
+                                            <h1 class="fs-12 my-1 w-100 text-center">View Remarks</h1>
+                                        </a>
+                                    </div>
+
+                                    @endif
+                                    {{-- end if --}}
+
+
+
+                                </td>
 
 
 
@@ -966,6 +992,13 @@
 
     {{-- 1: viewPart - ingredients & otherParts --}}
     <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-part />
+
+
+
+
+    {{-- 2: viewRemarks - customer & remarks --}}
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-remarks />
+
 
 
 

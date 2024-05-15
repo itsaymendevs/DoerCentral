@@ -275,7 +275,7 @@
                                 wire:ignore.self>
                                 <div class="item--box macros for--calories">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-18 fw-bold  d-block">{{ $totalCalories }}</span><span
+                                        <span class="fs-18 fw-bold d-block">{{ $totalCalories }}</span><span
                                             class="fs-12 d-block fw-bold mt-3">CAL</span>
                                     </p>
                                 </div>

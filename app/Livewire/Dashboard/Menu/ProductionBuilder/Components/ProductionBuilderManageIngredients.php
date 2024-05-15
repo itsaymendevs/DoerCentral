@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Livewire\Forms\MealPartForm;
+use App\Models\CookingType;
 use App\Models\Ingredient;
 use App\Models\Meal;
 use App\Models\MealPart;
@@ -24,7 +25,7 @@ class ProductionBuilderManageIngredients extends Component
 
 
     // :: variables
-    public $meal;
+    public $meal, $cookingTypes;
     public MealPartForm $instance;
     public MealPartForm $instanceParts;
 
@@ -53,6 +54,8 @@ class ProductionBuilderManageIngredients extends Component
 
 
 
+        // 3: cookingTypes
+        $this->cookingTypes = CookingType::all();
 
 
 
@@ -83,6 +86,7 @@ class ProductionBuilderManageIngredients extends Component
         // :: initSelect
         $this->dispatch('initCertainSelect', class: '.ingredient--select');
         $this->dispatch('initCertainSelect', class: '.ingredient--type-select');
+        $this->dispatch('initCertainSelect', class: '.ingredient--cookingType-select');
 
         $this->dispatch('initCertainSelect', class: '.part--select');
         $this->dispatch('initCertainSelect', class: '.part--type-select');
@@ -135,8 +139,9 @@ class ProductionBuilderManageIngredients extends Component
 
             $this->instance->id[$mealIngredient->id] = $mealIngredient->id;
             $this->instance->typeId[$mealIngredient->id] = 'Ingredient';
-            $this->instance->partType[$mealIngredient->id] = $mealIngredient->partType; // * MIXED - MAIN - SIDE *
             $this->instance->mealId[$mealIngredient->id] = $mealIngredient->mealId;
+            $this->instance->partType[$mealIngredient->id] = $mealIngredient->partType; // * MIXED - MAIN - SIDE *
+            $this->instance->cookingTypeId[$mealIngredient->id] = $mealIngredient?->cookingTypeId ?? null;
 
 
 
@@ -157,8 +162,9 @@ class ProductionBuilderManageIngredients extends Component
 
             $this->instanceParts->id[$mealPart->id] = $mealPart->id;
             $this->instanceParts->typeId[$mealPart->id] = $mealPart->type->id;
-            $this->instanceParts->partType[$mealPart->id] = $mealPart->partType; // * MIXED - MAIN - SIDE *
             $this->instanceParts->mealId[$mealPart->id] = $mealPart->mealId;
+            $this->instanceParts->partType[$mealPart->id] = $mealPart->partType; // * MIXED - MAIN - SIDE *
+            $this->instanceParts->cookingTypeId[$mealPart->id] = $mealPart?->cookingTypeId ?? null;
 
 
 
@@ -389,8 +395,9 @@ class ProductionBuilderManageIngredients extends Component
 
             $instance->id = $this->instance->id[$instanceId];
             $instance->typeId = $this->instance->typeId[$instanceId];
-            $instance->partType = $this->instance->partType[$instanceId];
             $instance->mealId = $this->instance->mealId[$instanceId];
+            $instance->partType = $this->instance->partType[$instanceId];
+            $instance->cookingTypeId = $this->instance?->cookingTypeId[$instanceId] ?? null;
 
 
 
@@ -404,8 +411,9 @@ class ProductionBuilderManageIngredients extends Component
 
             $instance->id = $this->instanceParts->id[$instanceId];
             $instance->typeId = $this->instanceParts->typeId[$instanceId];
-            $instance->partType = $this->instanceParts->partType[$instanceId];
             $instance->mealId = $this->instanceParts->mealId[$instanceId];
+            $instance->partType = $this->instanceParts->partType[$instanceId];
+            $instance->cookingTypeId = $this->instanceParts?->cookingTypeId[$instanceId] ?? null;
 
 
 
@@ -513,8 +521,9 @@ class ProductionBuilderManageIngredients extends Component
 
             $instance->id = $this->instance->id[$instanceId];
             $instance->typeId = $this->instance->typeId[$instanceId];
-            $instance->partType = $this->instance->partType[$instanceId];
             $instance->mealId = $this->instance->mealId[$instanceId];
+            $instance->partType = $this->instance->partType[$instanceId];
+            $instance->cookingTypeId = $this->instance->cookingTypeId[$instanceId] ?? null;
 
 
 
@@ -528,8 +537,9 @@ class ProductionBuilderManageIngredients extends Component
 
             $instance->id = $this->instanceParts->id[$instanceId];
             $instance->typeId = $this->instanceParts->typeId[$instanceId];
-            $instance->partType = $this->instanceParts->partType[$instanceId];
             $instance->mealId = $this->instanceParts->mealId[$instanceId];
+            $instance->partType = $this->instanceParts->partType[$instanceId];
+            $instance->cookingTypeId = $this->instanceParts->cookingTypeId[$instanceId] ?? null;
 
 
 

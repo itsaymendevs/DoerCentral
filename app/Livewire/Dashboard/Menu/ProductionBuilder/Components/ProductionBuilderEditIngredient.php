@@ -63,8 +63,10 @@ class ProductionBuilderEditIngredient extends Component
         // 1: get details
         $this->instance->id = $id;
         $this->instance->typeId = $typeId;
-        $this->instance->partType = $this->mealPart->partType; // * MIXED - MAIN - SIDE
         $this->instance->mealId = $this->mealPart->mealId;
+        $this->instance->partType = $this->mealPart->partType; // * MIXED - MAIN - SIDE
+        $this->instance->cookingTypeId = $this->mealPart?->cookingTypeId ?? null;
+
 
 
 
@@ -73,6 +75,7 @@ class ProductionBuilderEditIngredient extends Component
         // :: initSelect
         $this->dispatch('initCertainSelect', class: '.ingredient--select');
         $this->dispatch('initCertainSelect', class: '.ingredient--type-select');
+        $this->dispatch('initCertainSelect', class: '.ingredient--cookingType-select');
 
 
 

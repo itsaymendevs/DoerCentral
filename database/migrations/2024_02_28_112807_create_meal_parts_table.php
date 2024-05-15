@@ -25,6 +25,13 @@ return new class extends Migration {
 
 
 
+            // :: cookingType - notUsed
+            $table->bigInteger('cookingTypeId')->unsigned()->nullable();
+            $table->foreign('cookingTypeId')->references('id')->on('cooking_types')->onDelete('set null');
+
+
+
+
             $table->string('partType', 100)->nullable();
             $table->double('amount', 15)->nullable()->default(0);
             $table->string('remarks', 255)->nullable();

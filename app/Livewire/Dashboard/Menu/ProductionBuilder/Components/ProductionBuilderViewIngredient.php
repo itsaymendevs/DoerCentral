@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Livewire\Forms\MealPartDetailForm;
+use App\Models\ConversionIngredient;
 use App\Models\Meal;
 use App\Models\MealIngredient;
 use App\Models\MealPart;
@@ -106,6 +107,7 @@ class ProductionBuilderViewIngredient extends Component
         $this->instance->groupToken = $this->mealPart->groupToken;
         $this->instance->mealId = $this->mealPart->mealId;
         $this->instance->mealSizeId = $this->mealPart->mealSizeId;
+        $this->instance->cookingTypeId = $this->mealPart?->cookingTypeId ?? null;
 
 
 
@@ -177,11 +179,15 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
+        // :: validAmount
+        if (! empty($this->instance->amount)) {
 
 
-        // 1: makeRequest
-        $response = $this->makeRequest('dashboard/menu/builder/ingredients/details/update', $this->instance);
+            // 1: makeRequest
+            $response = $this->makeRequest('dashboard/menu/builder/ingredients/details/update', $this->instance);
 
+
+        } // end if
 
 
     } // end function
@@ -314,17 +320,54 @@ class ProductionBuilderViewIngredient extends Component
 
 
             // 1.2: ingredient - sub-recipe - sauce - snack - side - drink
-            $this->instance->calories = $totalMacros->calories;
+            $this->instance->calories = $this->instance->afterCookCalories = $totalMacros->calories;
+            $this->instance->proteins = $this->instance->afterCookProteins = $totalMacros->proteins;
+            $this->instance->carbs = $this->instance->afterCookCarbs = $totalMacros->carbs;
+            $this->instance->fats = $this->instance->afterCookFats = $totalMacros->fats;
+            $this->instance->grams = $this->instance->afterCookGrams = $this->instance->amount ?? 0;
 
-            $this->instance->proteins = $totalMacros->proteins;
 
-            $this->instance->carbs = $totalMacros->carbs;
 
-            $this->instance->fats = $totalMacros->fats;
 
-            $this->instance->grams = $this->instance->amount ?? 0;
+            // -----------------------------------------------
+            // -----------------------------------------------
 
-        } // end if
+
+
+
+
+
+
+
+            // 1.3: afterCookGrams
+            if ($this->instance->typeId == 'Ingredient' && ! empty($this->instance->partId) && ! empty($this->instance->cookingTypeId)) {
+
+
+                // :: get conversionValue
+                $conversion = ConversionIngredient::where('ingredientId', $this->instance->partId)
+                    ->where('cookingTypeId', $this->instance->cookingTypeId)?->first();
+
+
+                if ($conversion) {
+
+                    // 1.4: updateAfterCook Macros
+                    $this->instance->afterCookGrams *= $conversion->conversionValue;
+
+
+                    $totalMacros = $this->mealPart->totalMacro($this->instance->afterCookGrams ?? 0);
+
+                    $this->instance->afterCookCalories = $totalMacros->calories;
+                    $this->instance->afterCookProteins = $totalMacros->proteins;
+                    $this->instance->afterCookCarbs = $totalMacros->carbs;
+                    $this->instance->afterCookFats = $totalMacros->fats;
+
+                } // end if - exists
+
+
+            } // end if - checkConversion
+
+
+        } // end if - partExists
 
 
 
@@ -359,7 +402,8 @@ class ProductionBuilderViewIngredient extends Component
 
 
         // 1: dependencies
-        $this->reCalculateMacros();
+        if (! empty($this->instance->amount))
+            $this->reCalculateMacros();
 
 
 

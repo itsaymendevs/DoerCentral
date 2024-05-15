@@ -243,6 +243,21 @@
     padding: 7px 0px;
 }
 
+/* menu-version */
+.overview--box.macros-version.menu-version {
+    border: 1px solid var(--bg-tabs);
+}
+
+.overview--box.macros-version.menu-version h6,
+.overview--box.macros-version.menu-version p {
+    padding: 10px 0px;
+    background-color: var(--bg-tabs);
+}
+
+.overview--box.macros-version.menu-version h6 {
+    border-bottom: 2px solid var(--input-border-color);
+}
+
 /* switch card */
 
 .plan--switch-card {

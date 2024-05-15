@@ -77,6 +77,36 @@ class KitchenTodayProduction extends Component
 
 
 
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function viewRemarks($scheduleMealsByMeal)
+    {
+
+
+        // :: dispatchEvent
+        $this->dispatch('viewRemarks', $scheduleMealsByMeal);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
     // -----------------------------------------------------------
 
 

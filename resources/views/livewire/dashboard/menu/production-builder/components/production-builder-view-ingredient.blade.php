@@ -2,12 +2,23 @@
 <tr id='{{ strtolower($instance->typeId) }}-{{ $instance->id }}'>
 
 
-
-    {{-- amount --}}
-    <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderPercentage) colspan='2' @endif>
+    {{-- @if (!$versionPermission->menuModuleHasBuilderPercentage) colspan='2' @endif --}}
+    {{-- amount - grams --}}
+    <td class="fw-bold">
         <input class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input"
             data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' required wire:model='instance.amount'
             wire:change='update' wire:loading.attr='readonly' wire:target='remove, update, init' />
+    </td>
+
+
+
+
+
+    {{-- afterCookGrams - Amount --}}
+    <td class="fw-bold">
+        <input class="form-control form--input form--table-input-xxs px-1 ingredient--afterCookGrams-input readonly"
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' required
+            wire:model='instance.afterCookGrams' readonly="" wire:loading.attr='readonly' />
     </td>
 
 
@@ -40,7 +51,7 @@
 
 
 
-    {{-- ------- macros --}}
+    {{-- ------- macros --------- --}}
 
 
 
@@ -162,11 +173,73 @@
 
 
 
+    {{-- cost --}}
+    <td class="fw-bold">
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--cost-input" type="number"
+            data-size='{{ $instance->mealSizeId }}' step='0.01' readonly="" wire:model='instance.cost'
+            wire:loading.attr='readonly' />
+    </td>
+
+
+
+
+
+
+
+
 
 
 
     {{-- --------------------------------- --}}
     {{-- --------------------------------- --}}
+
+
+
+
+    {{-- :: afterCook Hidden --}}
+
+
+
+    {{-- calories --}}
+    <td class='d-none'>
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--afterCookCalories-input "
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly=""
+            wire:model='instance.afterCookCalories' wire:loading.attr='readonly' />
+
+
+
+
+        {{-- proteins --}}
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--afterCookProteins-input "
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly=""
+            wire:model='instance.afterCookProteins' wire:loading.attr='readonly' />
+
+
+
+        {{-- carbs --}}
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--afterCookCarbs-input "
+            data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly=""
+            wire:model='instance.afterCookCarbs' wire:loading.attr='readonly' />
+
+
+
+
+
+        {{-- fats --}}
+        <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--afterCookFats-input "
+            type="number" data-size='{{ $instance->mealSizeId }}' step='0.01' readonly=""
+            wire:model='instance.afterCookFats' wire:loading.attr='readonly' />
+
+    </td>
+
+
+
+
+
+    {{-- --------------------------------- --}}
+    {{-- --------------------------------- --}}
+
+
 
 
 
@@ -177,11 +250,11 @@
 
 
     {{-- remarks --}}
-    <td class="fw-bold">
+    {{-- <td class="fw-bold">
         <input class="form-control form--input form--table-input-sm px-2" style="max-width: 100%;" type="text"
             wire:model='instance.remarks' wire:change='update' wire:loading.attr='readonly'
             wire:target='remove, update, init' />
-    </td>
+    </td> --}}
 
 
 

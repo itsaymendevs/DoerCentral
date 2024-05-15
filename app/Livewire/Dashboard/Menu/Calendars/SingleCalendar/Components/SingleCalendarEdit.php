@@ -29,7 +29,7 @@ class SingleCalendarEdit extends Component
 
     // :: variables
     public MenuCalendarScheduleForm $instance;
-    public $scheduleMeals;
+    public $scheduleMeals, $totalCalories = 0, $totalProteins = 0, $totalCarbs = 0, $totalFats = 0;
     public $searchMeal = '';
 
 
@@ -74,6 +74,16 @@ class SingleCalendarEdit extends Component
     {
 
 
+        // :: resetTotals
+        $this->totalCalories = $this->totalProteins = $this->totalCarbs = $this->totalFats = 0;
+
+
+
+
+
+
+
+
         // 1: check if schedule exists
         $calendarSchedule = MenuCalendarSchedule::where('menuCalendarId', $this->instance->menuCalendarId)
             ->where('scheduleDate', $this->instance->scheduleDate)
@@ -114,11 +124,11 @@ class SingleCalendarEdit extends Component
 
 
 
-
             // :: reset & cloneMeals
             $this->instance->reset('scheduleMeals');
 
             foreach ($calendarSchedule?->meals as $meal) {
+
 
 
                 // :: create instance
@@ -132,8 +142,21 @@ class SingleCalendarEdit extends Component
                 $instance->menuCalendarScheduleId = $meal->menuCalendarScheduleId;
 
 
-
                 array_push($this->instance->scheduleMeals, $instance);
+
+
+
+
+
+                // :: calculateTotals
+                if ($meal->isDefault) {
+
+                    $this->totalCalories += $meal->meal?->sizes?->first()?->afterCookCalories ?? 0;
+                    $this->totalProteins += $meal->meal?->sizes?->first()?->afterCookProteins ?? 0;
+                    $this->totalCarbs += $meal->meal?->sizes?->first()?->afterCookCarbs ?? 0;
+                    $this->totalFats += $meal->meal?->sizes?->first()?->afterCookFats ?? 0;
+
+                } // end if
 
 
             } // end loop

@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->id();
 
             // 1: general
+            $table->string('brand', 255)->nullable()->default('Regular');
             $table->string('ingredientType', 100)->nullable()->default('Fresh');
 
 

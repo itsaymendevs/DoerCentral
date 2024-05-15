@@ -16,6 +16,7 @@ use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
+use App\Models\CustomerWalletDeposit;
 use App\Models\MealType;
 use App\Models\Notification;
 use App\Models\Plan;
@@ -318,6 +319,71 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
 
+        // 1.5.5: walletDiscount
+
+
+        // :: exists
+        if ($request?->walletDiscountPrice) {
+
+
+
+            // A: getDiscount
+            $subscription->walletDiscountPrice = $request->walletDiscountPrice ?? 0;
+
+
+
+
+            // -----------------------------------
+            // -----------------------------------
+
+
+
+
+
+
+            // 1.5.6: create
+            $deposit = new CustomerWalletDeposit();
+
+
+            // 1: general
+            $deposit->amount = doubleval(($request?->walletDiscountPrice ?? 0) * -1);
+            $deposit->remarks = 'Renew Subscription';
+            $deposit->depositDate = $this->getCurrentDate();
+
+
+
+
+            // 1.2: customer - wallet
+            $deposit->walletId = $customer->wallet->id;
+            $deposit->customerId = $customer->id;
+
+
+            $deposit->save();
+
+
+
+
+
+
+
+            // 2: updateBalance
+            $wallet = CustomerWallet::find($customer->wallet->id);
+
+            $wallet->balance = $wallet->balance - doubleval($request->walletDiscountPrice ?? 0);
+            $wallet->save();
+
+
+
+
+        } // end if
+
+
+
+
+
+
+
+
         // 1.6: CheckoutPrices
         $subscription->planPrice = round(doubleval($request->totalBundleRangePrice), 2);
         $subscription->totalPrice = round(doubleval($request->totalPrice), 2);
@@ -347,8 +413,8 @@ class ExistingCustomerSubscriptionController extends Controller
 
         // 1.7 : paymentInformation
         $subscription->paymentURL = $request?->paymentURL ?? null;
-        $subscription->isPaymentDone = boolval($request->isPaymentDone);
-        $subscription->paymentMethodId = $request->paymentMethodId ?? null;
+        $subscription->isPaymentDone = boolval($request?->isPaymentDone);
+        $subscription->paymentMethodId = $request?->paymentMethodId ?? null;
         $subscription->paymentReference = $request?->paymentReference ?? null;
 
 

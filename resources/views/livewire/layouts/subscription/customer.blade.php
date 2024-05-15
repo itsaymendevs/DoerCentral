@@ -73,14 +73,6 @@
 
 
 
-
-        {{-- :: special --}}
-        <link href="{{ asset('assets/css/client-customization/doer.css') }}" rel="stylesheet">
-
-
-
-
-
         @yield('styles')
 
 

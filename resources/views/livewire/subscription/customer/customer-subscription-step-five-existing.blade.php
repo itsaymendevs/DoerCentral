@@ -48,7 +48,7 @@
 
 
                     {{-- if - walletAmount --}}
-                    @if ($wallet?->balance >= 0 && $wallet?->isActive)
+                    @if ($wallet?->balance > 0 && $wallet?->isActive)
 
 
 

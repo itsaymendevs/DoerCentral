@@ -44,7 +44,7 @@ class Ingredients extends Component
     {
 
         // :: dispatchId
-        $this->dispatch('editIngredientBrands', $id);
+        $this->dispatch('editBrands', $id);
 
     } // end function
 
@@ -222,7 +222,8 @@ class Ingredients extends Component
 
 
         // 1.2.2: finalIngredients
-        $ingredients = Ingredient::whereIn('id', $ingredients?->pluck('id')?->toArray() ?? [])
+        $ingredients = Ingredient::orderBy('created_at', 'desc')
+            ->whereIn('id', $ingredients?->pluck('id')?->toArray() ?? [])
             ->paginate(env('PAGINATE_LG'));
 
 

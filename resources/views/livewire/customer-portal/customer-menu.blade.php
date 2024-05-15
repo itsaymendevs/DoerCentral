@@ -49,6 +49,79 @@
 
 
 
+
+            {{-- ------------------------------------------------ --}}
+            {{-- ------------------------------------------------ --}}
+
+
+
+
+
+
+            {{-- sizeMacros --}}
+            <div class="col-12 mb-4">
+                <div class="row justify-content-center">
+
+
+
+                    {{-- :: AFTERCOOK --}}
+
+                    {{-- 1: calories --}}
+                    <div class="col-auto text-end px-1">
+                        <div class="overview--box shrink--self macros-version for-calories lg">
+                            <h6 class="fs-14 fw-semibold">CA</h6>
+                            <p class="fs-13">{{ $totalCalories }}</p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- 2: proteins --}}
+                    <div class="col-auto text-end px-1">
+                        <div class="overview--box shrink--self macros-version for-proteins lg">
+                            <h6 class="fs-14 fw-semibold">P</h6>
+                            <p class="fs-13">{{ $totalProteins }}</p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- carbs --}}
+                    <div class="col-auto text-end px-1">
+                        <div class="overview--box shrink--self macros-version for-carbs lg">
+                            <h6 class="fs-14 fw-semibold">C</h6>
+                            <p class="fs-13">{{ $totalCarbs }}</p>
+                        </div>
+                    </div>
+
+
+
+                    {{-- fats --}}
+                    <div class="col-auto text-end px-1">
+                        <div class="overview--box shrink--self macros-version for-fats lg">
+                            <h6 class="fs-14 fw-semibold">F</h6>
+                            <p class="fs-13">{{ $totalFats }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- end sizeMacros --}}
+
+
+
+
+
+
+
+
+
+
             {{-- -------------------------------- --}}
             {{-- -------------------------------- --}}
 
@@ -298,6 +371,12 @@
                 </div>
             </div>
             {{-- endDates --}}
+
+
+
+
+
+
 
 
 

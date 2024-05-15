@@ -268,6 +268,15 @@ Route::post('/dashboard/inventory/ingredients/remove', [InventoryController::cla
 
 
 
+// 3.1: inventory - ingredients - storeBrand - update - remove
+Route::post('/dashboard/inventory/ingredients/brands/store', [InventoryExtraController::class, 'storeIngredientBrand']);
+Route::post('/dashboard/inventory/ingredients/brands/update', [InventoryExtraController::class, 'updateIngredientBrand']);
+
+
+Route::post('/dashboard/inventory/ingredients/brands/remove', [InventoryExtraController::class, 'removeIngredientBrand']);
+
+
+
 
 
 // ---------------------------------

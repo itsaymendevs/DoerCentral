@@ -882,13 +882,58 @@ class CustomerMenu extends Component
 
 
 
+
+
+
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+
+
+        // 6: getTotalMacros
+        $totalCalories = $totalProteins = $totalCarbs = $totalFats = 0;
+
+
+        foreach ($subscriptionScheduleMeals ?? [] as $scheduleMeal) {
+
+            // :: sumAll
+            $totalCalories += $scheduleMeal?->mealSize()?->afterCookCalories ?? 0;
+            $totalProteins += $scheduleMeal?->mealSize()?->afterCookProteins ?? 0;
+            $totalCarbs += $scheduleMeal?->mealSize()?->afterCookCarbs ?? 0;
+            $totalFats += $scheduleMeal?->mealSize()?->afterCookFats ?? 0;
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+
+
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 
 
 
 
-        return view('livewire.customer-portal.customer-menu', compact('menuCalendars', 'mealTypes', 'datesUntilSubscription', 'calendarScheduleMeals', 'subscriptionScheduleReplacements', 'subscriptionScheduleMeals', 'sizesByMealType', 'deliveryStatus'));
+        return view('livewire.customer-portal.customer-menu', compact('menuCalendars', 'mealTypes', 'datesUntilSubscription', 'calendarScheduleMeals', 'subscriptionScheduleReplacements', 'subscriptionScheduleMeals', 'sizesByMealType', 'deliveryStatus', 'totalCalories', 'totalProteins', 'totalCarbs', 'totalFats'));
 
 
 

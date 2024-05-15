@@ -103,6 +103,14 @@ return new class extends Migration {
 
 
 
+            // 3.1.5: wallet
+            $table->double('walletDiscountPrice', 15)->nullable();
+
+
+
+
+
+
 
 
             // 3.2: deliveryCharge

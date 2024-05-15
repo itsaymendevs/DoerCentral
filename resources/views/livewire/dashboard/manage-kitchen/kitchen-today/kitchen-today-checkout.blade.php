@@ -167,8 +167,32 @@
 
 
 
+
+
+
             {{-- counter --}}
-            <div class="col-4 text-end">
+            <div class="col-4 d-flex align-items-center justify-content-end">
+
+
+                {{-- switchTypes --}}
+                <div class="form-check form-switch mealType--checkbox py-2 rounded-1 px-4 d-inline-flex me-2 mb-0"
+                    style="background-color: var(--color-scheme-2)">
+
+
+                    {{-- input --}}
+                    <input class="form-check-input pointer" type="checkbox" id="switch-types"
+                        wire:model.live='hideTypes' wire:loading.attr='disabled' />
+
+
+                    {{-- label --}}
+                    <label class="form-check-label border-0 ms-2 me-0 fw-semibold" for="switch-types">Hide Types</label>
+
+                </div>
+
+
+
+
+
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
                     title="Number of Meals">
@@ -308,14 +332,27 @@
 
                         {{-- plan - bundle --}}
                         <div class="single-row">
-                            <h5 class="text-center fs-12 mb-1 w-50">{{ $delivery->subscription->plan->name }}</h5>
-                            <h5 class="text-center fs-12 mb-1 w-50">{{ $delivery->subscription->bundle->name }}</h5>
+
+
+                            <h5 class="text-center fs-12 w-50
+                                @if ($hideTypes) border-bottom-0 mb-0 @else mb-1 @endif">
+                                {{$delivery->subscription->plan->name }}</h5>
+
+
+                            <h5 class="text-center fs-12 w-50
+                                @if ($hideTypes) border-bottom-0 mb-0 @else mb-1 @endif">
+                                {{$delivery->subscription->bundle->name }}</h5>
                         </div>
 
 
 
 
+
+
+
                         {{-- mealTypes --}}
+                        @if (!$hideTypes)
+
                         <div class="single-row">
                             <h5 class="text-center fs-12 mb-0 w-100 border-start-0 border-bottom-0 px-2"
                                 style="line-height: 18px">
@@ -324,6 +361,8 @@
                         </div>
 
 
+                        @endif
+                        {{-- end if - hideTypes --}}
 
 
 

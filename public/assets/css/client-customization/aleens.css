@@ -375,6 +375,13 @@ fieldset:disabled .btn {
     border: 2px dashed #000;
 }
 
+.overview--box.macros-version.lg {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 60px;
+    border-style: solid;
+}
+
 .overview--box.macros-version p {
     border-radius: 0px 0px 300px 300px;
     background-color: transparent;

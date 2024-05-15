@@ -377,7 +377,8 @@
                                         {{-- 1: brands --}}
                                         <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3"
                                             data-bs-toggle="modal" data-bss-tooltip=""
-                                            data-bs-target="#ingredient-brands" type="button">
+                                            data-bs-target="#ingredient-brands" type="button"
+                                            wire:click='editBrands({{ $ingredient->id }})'>
                                             <svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="1em"
                                                 height="1em" fill="currentColor" viewBox="0 0 16 16">
                                                 <path
@@ -411,7 +412,8 @@
 
 
                                         {{-- remove --}}
-                                        <button class="btn btn--scheme btn--remove px-2 py-1 mx-1 text-white scale--3"
+                                        <button
+                                            class="btn btn--scheme btn--remove px-2 py-1 mx-1 text-white scale--3 d-none disabled"
                                             type="button" wire:click="remove({{ $ingredient->id }})"
                                             wire:loading.attr='disabled'>
                                             <svg class="bi bi-trash" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -576,9 +578,9 @@
 
 
                                         {{-- Brands --}}
-                                        <button class="btn btn--raw-icon inline scale--3 px-2
-                                    @if ($versionPermission->isProcessing) disabled @endif" data-bs-toggle="modal"
-                                            data-bss-tooltip="" data-bs-target="#ingredient-brands" type="button">
+                                        <button class="btn btn--raw-icon inline scale--3 px-2" data-bs-toggle="modal"
+                                            data-bss-tooltip="" data-bs-target="#ingredient-brands" type="button"
+                                            wire:click='editBrands({{ $ingredient->id }})'>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-tags">
                                                 <path
@@ -598,8 +600,7 @@
 
 
                                         {{-- edit --}}
-                                        <button class="btn btn--raw-icon inline scale--3 px-2 mx-2
-                                    @if ($versionPermission->isProcessing) disabled @endif"
+                                        <button class="btn btn--raw-icon inline scale--3 px-2 mx-2"
                                             wire:click="edit({{ $ingredient->id }})" wire:loading.attr='disabled'
                                             data-bs-toggle="modal" data-bs-target="#edit-ingredient" type="button">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
@@ -620,7 +621,7 @@
 
 
                                         {{-- remove --}}
-                                        <button class="btn btn--raw-icon inline remove scale--3 px-2
+                                        <button class="btn btn--raw-icon inline remove scale--3 px-2 d-none
                                     @if ($versionPermission->isProcessing) disabled @endif" type="button"
                                             wire:click="remove({{ $ingredient->id }})" wire:loading.attr='disabled'>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
@@ -762,6 +763,11 @@
 
     {{-- 2: editIngredient --}}
     <livewire:dashboard.inventory.ingredients.components.ingredients-edit />
+
+
+
+    {{-- 3: editBrands --}}
+    <livewire:dashboard.inventory.ingredients.components.ingredients-brands />
 
 
 

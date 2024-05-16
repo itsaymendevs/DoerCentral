@@ -59,8 +59,10 @@ use App\Livewire\Dashboard\Promos;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsCreate;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsView;
+use App\Livewire\DriverPortal\DriverHome;
 use App\Livewire\Login;
 use App\Livewire\LoginCustomerPortal;
+use App\Livewire\LoginDriverPortal;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFive;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFiveExisting;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFour;
@@ -1315,6 +1317,89 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
     }); // end Authentication
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // ** ------------------------ PORTALS - DRIVER -------------------------- **
+
+
+
+
+
+
+
+    // 1: portal - driver - login
+    Route::get('portals/driver', LoginDriverPortal::class);
+    Route::get('portals/driver/login', LoginDriverPortal::class)->name('portals.driver.login');
+
+
+
+
+
+
+
+
+
+
+
+    // :: Authenticated
+    // Route::middleware(['auth.portals.driver'])->group(function () {
+
+
+
+
+
+
+
+
+    // 1: portal - driver - home
+    Route::get('portals/driver/home', DriverHome::class)->name('portals.driver.home');
+
+
+
+
+
+
+
+
+
+    // }); // end Authentication
+
+
 
 
 

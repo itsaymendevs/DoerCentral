@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'auth.user' => \App\Http\Middleware\UserMiddleware::class,
         'auth.userApi' => \App\Http\Middleware\UserApiMiddleware::class,
         'auth.portals.customer' => \App\Http\Middleware\PortalCustomerMiddleware::class,
+        'auth.portals.driver' => \App\Http\Middleware\PortalDriverMiddleware::class,
         'preventBack' => \App\Http\Middleware\PreventBackButtonMiddleware::class,
     ];
 }

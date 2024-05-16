@@ -1,5 +1,3 @@
-<div class='loader--wrapper'>
-    <div class="loader"></div>
-    <div class="loader mx-5"></div>
-    <div class="loader"></div>
+<div class="preloader preloader--bg" id='preloader'>
+    <img src="{{ asset('assets/img/Preloaders/doer.png') }}" alt="">
 </div>

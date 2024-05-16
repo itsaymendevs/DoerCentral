@@ -70,8 +70,21 @@
 
 
                     {{-- dashboard --}}
+
+                    {{-- :: rolePermission - dashboard --}}
+
+                    @if ($user->checkPermission('Dashboard'))
+
+
+
                     <a href="{{ route('dashboard.home') }}" class="btn navbar--menu-button
                         @if (Request::is('dashboard')) active @endif">Dashboard</a>
+
+
+
+                    @endif
+                    {{-- end if - rolePermission --}}
+
 
 
 

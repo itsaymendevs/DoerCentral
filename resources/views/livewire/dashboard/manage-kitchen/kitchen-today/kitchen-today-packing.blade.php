@@ -356,8 +356,9 @@
                                     {{-- 1.3: remarks --}}
                                     @if ($scheduleMealBySubscription?->remarks)
 
-                                    <span class="d-block fs-13 kitchen--table-remarks">
-                                        <small class="fw-semibold text-theme-secondary fs-11 d-block">Remarks</small>
+                                    <span class="d-block fs-13 kitchen--table-remarks"
+                                        style="border-color: var(--bs-danger)">
+                                        <small class="fw-normal text-danger fs-11 d-block">Remarks</small>
                                         <span class="d-block fs-13 fw-normal">
                                             {{ $scheduleMealBySubscription?->remarks }}
                                         </span>

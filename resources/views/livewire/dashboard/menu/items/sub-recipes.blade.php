@@ -44,7 +44,7 @@
             {{-- search --}}
             <div class="col-2">
                 <input wire:model.live='searchSubRecipe' class="form--input main-version mx-auto" type="search"
-                    style="width: 80% !important" placeholder="Search for Sub-Recipes" />
+                    style="width: 80% !important" placeholder="Search by Name" />
             </div>
 
 

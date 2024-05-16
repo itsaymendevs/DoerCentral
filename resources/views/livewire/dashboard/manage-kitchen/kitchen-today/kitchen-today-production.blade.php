@@ -801,7 +801,7 @@
                                         <a href="#!" data-bs-toggle='modal' data-bs-target='#view-remarks'
                                             class='init-link w-100'
                                             wire:click='viewRemarks({{ $scheduleMealsByMeal }})'>
-                                            <h1 class="fs-12 my-1 w-100 text-center">View Remarks</h1>
+                                            <h1 class="fs-12 my-1 w-100 text-center">View Notes</h1>
                                         </a>
                                     </div>
 

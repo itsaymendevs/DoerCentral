@@ -19,7 +19,7 @@ class Sauces extends Component
 
 
     // :: variables
-    public $searchSauce = '';
+    public $searchSauce = '', $searchPartType;
     public $removeId;
 
 
@@ -154,11 +154,36 @@ class Sauces extends Component
 
         // 1: dependencies
         $type = Type::where('name', 'Sauce')->first();
+        $sauceTypes = ['On Side', 'Part of Meal'];
 
-        $sauces = Meal::where('typeId', $type->id)
-            ->where('name', 'LIKE', '%' . $this->searchSauce . '%')
-            ->orderBy('created_at', 'desc')
-            ->paginate(env('PAGINATE_LG'));
+
+
+
+
+
+
+        // 1.2: filter
+        if ($this->searchPartType) {
+
+
+            $sauces = Meal::where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchSauce . '%')
+                ->where('partType', $this->searchPartType)
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+
+            // 1.2: regular
+        } else {
+
+            $sauces = Meal::where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchSauce . '%')
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+        } // end if
 
 
 
@@ -172,7 +197,7 @@ class Sauces extends Component
 
 
 
-        return view('livewire.dashboard.menu.items.sauces', compact('sauces'));
+        return view('livewire.dashboard.menu.items.sauces', compact('sauces', 'sauceTypes'));
 
     } // end function
 

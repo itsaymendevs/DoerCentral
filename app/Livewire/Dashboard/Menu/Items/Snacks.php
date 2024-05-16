@@ -20,7 +20,7 @@ class Snacks extends Component
 
 
     // :: variables
-    public $searchSnack = '';
+    public $searchSnack = '', $searchPartType;
     public $removeId;
 
 
@@ -154,11 +154,41 @@ class Snacks extends Component
 
         // 1: dependencies
         $type = Type::where('name', 'Snack')->first();
+        $snackTypes = ['Sweet', 'Savoury'];
 
-        $snacks = Meal::where('typeId', $type->id)
-            ->where('name', 'LIKE', '%' . $this->searchSnack . '%')
-            ->orderBy('created_at', 'desc')
-            ->paginate(env('PAGINATE_LG'));
+
+
+
+
+
+
+
+
+        // 1.2: filter
+        if ($this->searchPartType) {
+
+
+            $snacks = Meal::where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchSnack . '%')
+                ->where('partType', $this->searchPartType)
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+
+            // 1.2: regular
+        } else {
+
+            $snacks = Meal::where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchSnack . '%')
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+        } // end if
+
+
+
 
 
 
@@ -171,7 +201,7 @@ class Snacks extends Component
 
 
 
-        return view('livewire.dashboard.menu.items.snacks', compact('snacks'));
+        return view('livewire.dashboard.menu.items.snacks', compact('snacks', 'snackTypes'));
 
     } // end function
 

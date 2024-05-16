@@ -19,8 +19,39 @@
         {{-- midRow --}}
         <div class="row">
 
-            {{-- empty --}}
-            <div class="col-3"></div>
+
+
+
+
+            {{-- col --}}
+            <div class="col-3">
+
+
+
+
+                {{-- mealType --}}
+                <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
+                    <select class="form--select" data-instance='searchMealType' data-placeholder='Select Type'
+                        data-clear='true'>
+                        <option value=""></option>
+
+                        @foreach ($mealTypes as $mealType)
+                        <option value="{{ $mealType->id }}">{{ $mealType->name }}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+
+
+
+            </div>
+            {{-- endCol --}}
+
+
+
+
+
+
 
 
 
@@ -29,6 +60,11 @@
                 <input wire:model.live='searchRecipe' class="form--input main-version mx-auto" type="search"
                     placeholder="Search for Recipes" />
             </div>
+
+
+
+
+
 
 
             {{-- col --}}
@@ -459,10 +495,65 @@
                 </div>
             </div>
         </div>
-        {{-- endRow --}}
-
-
-
     </div>
+    {{-- endContainer --}}
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $(".form--select").on("change", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+
+         @this.set(instance, selectValue);
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
 </section>
 {{-- endSection --}}

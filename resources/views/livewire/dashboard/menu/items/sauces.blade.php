@@ -21,9 +21,27 @@
         {{-- midRow --}}
         <div class="row">
 
+            {{-- partType --}}
+            <div class="col-2">
+                <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
+                    <select class="form--select" data-instance='searchPartType' data-placeholder='Select Type'
+                        data-clear='true'>
+                        <option value=""></option>
+
+                        @foreach ($sauceTypes as $sauceType)
+                        <option value="{{ $sauceType }}">{{ $sauceType }}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+            </div>
+
+
+
+
 
             {{-- search --}}
-            <div class="col-3">
+            <div class="col-2">
                 <input wire:model.live='searchSauce' class="form--input main-version mx-auto" type="search"
                     style="width: 80% !important" placeholder="Search for Sauces" />
             </div>
@@ -42,7 +60,7 @@
 
 
             {{-- sub-menu --}}
-            <div class="col-7 text-end">
+            <div class="col-6 text-end">
                 <livewire:dashboard.menu.items.components.sub-menu />
             </div>
 
@@ -414,8 +432,63 @@
             </div>
             {{-- endView --}}
 
-
         </div>
     </div>
+    {{-- endContainer --}}
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $(".form--select").on("change", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+
+         @this.set(instance, selectValue);
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
 </section>
 {{-- endSection --}}

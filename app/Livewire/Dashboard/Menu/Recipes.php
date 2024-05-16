@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu;
 
 use App\Models\Meal;
+use App\Models\MealType;
 use App\Models\Type;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
@@ -20,7 +21,7 @@ class Recipes extends Component
 
 
     // :: variables
-    public $searchRecipe = '';
+    public $searchRecipe = '', $searchMealType;
     public $removeId;
 
 
@@ -158,11 +159,38 @@ class Recipes extends Component
 
         // 1: dependencies
         $type = Type::where('name', 'Recipe')->first();
+        $mealTypes = MealType::where('typeId', $type->id)->get();
 
-        $meals = Meal::where('typeId', $type->id)
-            ->where('name', 'LIKE', '%' . $this->searchRecipe . '%')
-            ->orderBy('created_at', 'desc')
-            ->paginate(env('PAGINATE_LG'));
+
+
+
+
+        // 1.2: filter
+        if ($this->searchMealType) {
+
+
+            $meals = Meal::whereHas('types', function ($query) {
+                $query->where('mealTypeId', $this->searchMealType);
+            })
+                ->where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchRecipe . '%')
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+
+
+            // 1.2: regular
+        } else {
+
+            $meals = Meal::where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchRecipe . '%')
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+        } // end if
+
 
 
 
@@ -175,7 +203,7 @@ class Recipes extends Component
 
 
 
-        return view('livewire.dashboard.menu.recipes', compact('meals'));
+        return view('livewire.dashboard.menu.recipes', compact('meals', 'mealTypes'));
 
     } // end function
 

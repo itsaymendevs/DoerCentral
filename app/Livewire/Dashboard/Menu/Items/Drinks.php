@@ -20,7 +20,7 @@ class Drinks extends Component
 
 
     // :: variables
-    public $searchDrink = '';
+    public $searchDrink = '', $searchPartType;
     public $removeId;
 
 
@@ -154,11 +154,38 @@ class Drinks extends Component
 
         // 1: dependencies
         $type = Type::where('name', 'Drink')->first();
+        $drinkTypes = ['Hot Drink', 'Cold Drink'];
 
-        $drinks = Meal::where('typeId', $type->id)
-            ->where('name', 'LIKE', '%' . $this->searchDrink . '%')
-            ->orderBy('created_at', 'desc')
-            ->paginate(env('PAGINATE_LG'));
+
+
+
+
+
+
+        // 1.2: filter
+        if ($this->searchPartType) {
+
+
+
+            $drinks = Meal::where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchDrink . '%')
+                ->where('partType', $this->searchPartType)
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+
+
+            // 1.2: regular
+        } else {
+
+            $drinks = Meal::where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchDrink . '%')
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+        } // end if
 
 
 
@@ -171,7 +198,7 @@ class Drinks extends Component
 
 
 
-        return view('livewire.dashboard.menu.items.drinks', compact('drinks'));
+        return view('livewire.dashboard.menu.items.drinks', compact('drinks', 'drinkTypes'));
 
     } // end function
 

@@ -167,6 +167,7 @@ class Sides extends Component
 
 
 
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 

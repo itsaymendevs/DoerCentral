@@ -22,7 +22,7 @@ class SubRecipes extends Component
 
 
     // :: variables
-    public $searchSubRecipe = '';
+    public $searchSubRecipe = '', $searchPartType;
     public $removeId;
 
 
@@ -157,18 +157,44 @@ class SubRecipes extends Component
 
         // 1: dependencies
         $type = Type::where('name', 'Sub-recipe')->first();
-
-        $subRecipes = Meal::where('typeId', $type->id)
-            ->where('name', 'LIKE', '%' . $this->searchSubRecipe . '%')
-            ->orderBy('created_at', 'desc')
-            ->paginate(env('PAGINATE_LG'));
+        $subRecipeTypes = ['Fat', 'Protein', 'Standard', 'Vegetables', 'Carbohydrates'];
 
 
 
 
 
-        // :: overview
-        $totalSubRecipes = Meal::where('typeId', $type->id)->get();
+
+
+
+        // 1.2: filter
+        if ($this->searchPartType) {
+
+
+
+            $subRecipes = Meal::where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchSubRecipe . '%')
+                ->where('partType', $this->searchPartType)
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+
+
+            // 1.2: regular
+        } else {
+
+            $subRecipes = Meal::where('typeId', $type->id)
+                ->where('name', 'LIKE', '%' . $this->searchSubRecipe . '%')
+                ->orderBy('created_at', 'desc')
+                ->paginate(env('PAGINATE_LG'));
+
+
+        } // end if
+
+
+
+
+
 
 
 
@@ -179,7 +205,7 @@ class SubRecipes extends Component
 
 
 
-        return view('livewire.dashboard.menu.items.sub-recipes', compact('subRecipes', 'totalSubRecipes'));
+        return view('livewire.dashboard.menu.items.sub-recipes', compact('subRecipes', 'subRecipeTypes'));
 
     } // end function
 

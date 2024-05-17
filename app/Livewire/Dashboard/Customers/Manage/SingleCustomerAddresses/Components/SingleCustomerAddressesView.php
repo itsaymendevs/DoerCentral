@@ -24,7 +24,7 @@ class SingleCustomerAddressesView extends Component
 
     // :: variables
     public CustomerAddressForm $instance;
-    public $address, $removeId;
+    public $address, $counter, $removeId;
 
 
 
@@ -34,11 +34,11 @@ class SingleCustomerAddressesView extends Component
 
 
 
-    public function mount($id)
+    public function mount($id, $counter)
     {
 
-
         // 1: getCustomerAddress
+        $this->counter = $counter;
         $this->address = CustomerAddress::find($id);
 
 
@@ -300,6 +300,7 @@ class SingleCustomerAddressesView extends Component
 
         // 3: makeRequest
         $response = $this->makeRequest('dashboard/customers/addresses/update', $this->instance);
+
 
 
 

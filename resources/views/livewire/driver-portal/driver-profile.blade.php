@@ -16,13 +16,16 @@
 
 
                         {{-- image --}}
-                        <img class="of-cover rounded-circle" src="assets/img/pexels-italo-melo-2379004.jpg"
+                        <img class="of-cover rounded-circle"
+                            src="{{ asset('storage/delivery/drivers/profiles/'. $driver->imageFile) }}"
                             style="width: 110px; aspect-ratio: 1/1" />
 
 
 
+
+
                         {{-- editButton --}}
-                        <a class="btn btn--raw-icon" role="button" href="#!">
+                        <a class="btn btn--raw-icon" role="button" href="javascript:void(0);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-gear">
                                 <path
@@ -45,20 +48,51 @@
 
 
 
-                        {{-- shift --}}
+
+                        {{-- 1: morningShift --}}
+                        @if ($driver->shift->name == 'Morning Shift')
+
+
+
                         <h6 class="fw-semibold mb-3 d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                viewBox="0 0 16 16" class="bi bi-moon-fill fs-3 me-2" style="fill: #dba400">
+                                viewBox="0 0 16 16" class="bi bi-sun-fill fs-3 me-2 rotateInfinite"
+                                style="fill: #dba400">
                                 <path
-                                    d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
-                                </path>
-                            </svg>Night Shift
+                                    d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
+                            </svg>{{ $driver->shift->name }}
                         </h6>
 
 
 
+
+                        {{-- 2: eveningShift --}}
+                        @else
+
+
+
+                        <h6 class="fw-semibold mb-3 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                viewBox="0 0 16 16" class="bi bi-moon-fill fs-3 me-2 scaleInfinite"
+                                style="fill: #dba400">
+                                <path
+                                    d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+                                </path>
+                            </svg>{{ $driver->shift->name }}
+                        </h6>
+
+
+
+
+                        @endif
+                        {{-- end if --}}
+
+
+
+
+
                         {{-- name --}}
-                        <h3 class="fw-semibold mb-0 px-2">Ahmad Abdelrahman</h3>
+                        <h3 class="fw-semibold mb-0 px-2">{{ $driver->name }}</h3>
                     </div>
                 </div>
             </div>
@@ -107,7 +141,7 @@
 
 
                         {{-- icon --}}
-                        <a class="btn" role="button" href="#!">
+                        <a class="btn" role="button" href="tel:+971{{ $driver->phone }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-telephone fs-5">
                                 <path
@@ -117,7 +151,7 @@
                         </a>
 
                         {{-- text --}}
-                        <p class="mb-0 ms-3 fw-normal fs-14">+971 55 905525</p>
+                        <p class="mb-0 ms-3 fw-normal fs-14">+971 {{ $driver->phone }}</p>
                     </div>
 
 
@@ -131,7 +165,7 @@
                     <div class="d-flex align-items-center justify-content-start mb-3 profile--wrap-section">
 
                         {{-- icon --}}
-                        <a class="btn" role="button" href="#!">
+                        <button type='button' class="btn" role="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-credit-card-2-front fs-5">
                                 <path
@@ -141,38 +175,17 @@
                                     d="M2 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z">
                                 </path>
                             </svg>
-                        </a>
+                        </button>
 
 
                         {{-- text --}}
-                        <p class="mb-0 ms-3 fw-normal fs-14">License - 1955108</p>
+                        <p class="mb-0 ms-3 fw-normal fs-14">License - {{ $driver->license }}</p>
                     </div>
 
 
 
 
 
-
-
-                    {{-- city - district --}}
-                    <div class="d-flex align-items-center justify-content-start mb-3 profile--wrap-section">
-
-                        {{-- icon --}}
-                        <a class="btn" role="button" href="#!">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                viewBox="0 0 16 16" class="bi bi-pin-map-fill fs-5">
-                                <path fill-rule="evenodd"
-                                    d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z">
-                                </path>
-                                <path fill-rule="evenodd"
-                                    d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"></path>
-                            </svg>
-                        </a>
-
-
-                        {{-- text --}}
-                        <p class="mb-0 ms-3 fw-normal fs-14">Dubai - Business Bay</p>
-                    </div>
 
 
 
@@ -182,22 +195,54 @@
 
 
                     {{-- plate --}}
-                    <div class="d-flex align-items-center justify-content-start mb-0 profile--wrap-section">
+                    <div class="d-flex align-items-center justify-content-start mb-3 profile--wrap-section">
 
                         {{-- icon --}}
-                        <a class="btn" role="button" href="#!">
+                        <button class="btn" role="button" type='button'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                viewBox="0 0 16 16" class="bi bi-ticket-perferated-fill fs-5">
-                                <path fill-rule="evenodd"
-                                    d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5Zm4-1v1h1v-1H4Zm1 3H4v-1h1v1Zm7 0h-1v-1h1v1Zm-1-2v-1h1v1h-1Zm-6 3H4v1h1v-1Zm7 1h-1v-1h1v1Zm-7 1H4v1h1v-1Zm7 1h-1v-1h1v1Zm-8 1v1h1v-1H4Zm7 1v-1h1v1h-1Z">
-                                </path>
+                                class="bi bi-car-front fs-5" viewBox="0 0 16 16">
+                                <path
+                                    d="M4 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0m10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM4.862 4.276 3.906 6.19a.51.51 0 0 0 .497.731c.91-.073 2.35-.17 3.597-.17s2.688.097 3.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 10.691 4H5.309a.5.5 0 0 0-.447.276" />
+                                <path
+                                    d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM4.82 3a1.5 1.5 0 0 0-1.379.91l-.792 1.847a1.8 1.8 0 0 1-.853.904.8.8 0 0 0-.43.564L1.03 8.904a1.5 1.5 0 0 0-.03.294v.413c0 .796.62 1.448 1.408 1.484 1.555.07 3.786.155 5.592.155s4.037-.084 5.592-.155A1.48 1.48 0 0 0 15 9.611v-.413q0-.148-.03-.294l-.335-1.68a.8.8 0 0 0-.43-.563 1.8 1.8 0 0 1-.853-.904l-.792-1.848A1.5 1.5 0 0 0 11.18 3z" />
                             </svg>
-                        </a>
+                        </button>
 
 
                         {{-- text --}}
-                        <p class="mb-0 ms-3 fw-normal fs-14">Plate - 1055H</p>
+                        <p class="mb-0 ms-3 fw-normal fs-14">Plate - {{ $driver?->plate ?? 'Empty' }}</p>
                     </div>
+
+
+
+
+
+
+
+
+                    {{-- Zones --}}
+                    <div class="d-flex align-items-center justify-content-start mb-0 profile--wrap-section">
+
+                        {{-- icon --}}
+                        <button type='button' class="btn" role="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                viewBox="0 0 16 16" class="bi bi-pin-map-fill fs-5">
+                                <path fill-rule="evenodd"
+                                    d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z">
+                                </path>
+                                <path fill-rule="evenodd"
+                                    d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"></path>
+                            </svg>
+                        </button>
+
+
+                        {{-- text --}}
+                        <p class="mb-0 ms-3 fw-normal fs-14">{{ implode(' - ', $driver?->zonesInArray()) }}</p>
+                    </div>
+
+
+
+
                 </div>
             </div>
             {{-- end midCol --}}
@@ -218,7 +263,7 @@
             {{-- license picture --}}
             <div class="col-12 mb-4" data-aos="fade-up" data-aos-duration="800" data-aos-once="true" wire:ignore.self>
 
-                <form action="">
+                <form wire:submit='updateLicense'>
 
 
                     {{-- subheading --}}
@@ -239,14 +284,13 @@
 
                             {{-- input --}}
                             <input class="form-control d-none file--input" id="license--file-1"
-                                data-preview="license--preview-1" type="file" required
-                                wire:model='instance.imageFile' />
+                                data-preview="license--preview-1" type="file" required wire:model='licenseFile' />
 
 
 
                             {{-- preview --}}
-                            <img class="inventory--image-frame" id="license--preview-1"
-                                src="{{ asset('assets/img/placeholder.png') }}" />
+                            <img class="inventory--image-frame" id="license--preview-1" wire:ignore
+                                src="{{ asset('storage/delivery/drivers/licenses/' . $driver->licenseFile) }}" />
 
 
 

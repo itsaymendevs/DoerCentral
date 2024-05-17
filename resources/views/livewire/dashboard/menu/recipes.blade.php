@@ -23,13 +23,17 @@
 
 
 
-            {{-- col --}}
+
+            {{-- mealType --}}
             <div class="col-3">
 
 
 
+                {{-- :: permission - hasTypeFilter --}}
+                @if ($versionPermission->menuModuleHasMealTypeFilters)
 
-                {{-- mealType --}}
+
+
                 <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
                     <select class="form--select" data-instance='searchMealType' data-placeholder='Select Type'
                         data-clear='true'>
@@ -44,10 +48,14 @@
 
 
 
+                @endif
+                {{-- end if - permission --}}
+
+
+
+
             </div>
             {{-- endCol --}}
-
-
 
 
 

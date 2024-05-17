@@ -27,7 +27,8 @@
 
             {{-- newButton --}}
             <div class="col-3">
-                <button class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
+                <button
+                    class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center d-none"
                     type="button" data-bs-target="#new-address" data-bs-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-plus-circle-dotted fs-5 me-2">
@@ -142,7 +143,7 @@
 
 
                         {{-- loop - addresses --}}
-                        @foreach ($addresses as $address)
+                        @foreach ($addresses as $key => $address)
 
 
 
@@ -156,7 +157,7 @@
 
                             {{-- :: viewAddress --}}
                             <livewire:dashboard.customers.manage.single-customer-addresses.components.single-customer-addresses-view
-                                key="address-view-{{ $address->id }}" id='{{ $address->id }}' />
+                                key="address-view-{{ $address->id }}" id='{{ $address->id }}' counter='{{ $key }}' />
 
 
                         </div>

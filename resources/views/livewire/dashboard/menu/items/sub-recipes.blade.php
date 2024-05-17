@@ -23,6 +23,11 @@
 
 
             {{-- partType --}}
+
+            {{-- :: permission - hasTypeFilter --}}
+            @if ($versionPermission->menuModuleHasMealTypeFilters)
+
+
             <div class="col-2">
                 <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
                     <select class="form--select" data-instance='searchPartType' data-placeholder='Select Type'
@@ -39,10 +44,16 @@
 
 
 
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
 
 
             {{-- search --}}
-            <div class="col-2">
+            <div class="@if ($versionPermission->menuModuleHasMealTypeFilters) col-2 @else col-3 @endif">
                 <input wire:model.live='searchSubRecipe' class="form--input main-version mx-auto" type="search"
                     style="width: 80% !important" placeholder="Search by Name" />
             </div>
@@ -64,7 +75,7 @@
 
 
             {{-- sub-menu --}}
-            <div class="col-6 text-end">
+            <div class="@if ($versionPermission->menuModuleHasMealTypeFilters) col-6 @else col-7 @endif text-end">
                 <livewire:dashboard.menu.items.components.sub-menu />
             </div>
 

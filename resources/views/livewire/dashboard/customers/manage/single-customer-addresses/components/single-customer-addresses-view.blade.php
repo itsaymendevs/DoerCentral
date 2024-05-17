@@ -211,8 +211,9 @@
 
 
             {{-- 3: remove --}}
-            <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 mb-4 scale--self-05 h-32" type="button"
-                wire:click='remove({{ $address->id }})' wire:loading.attr='disabled' wire:target='remove, update'>
+            <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 mb-4 scale--self-05 h-32
+                @if ($counter == 0) disabled @endif" type="button" wire:click='remove({{ $address->id }})'
+                wire:loading.attr='disabled' wire:target='remove, update'>
                 <svg class="bi bi-trash fs-5" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                     fill="currentColor" viewBox="0 0 16 16">
                     <path

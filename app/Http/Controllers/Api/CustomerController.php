@@ -2009,11 +2009,33 @@ class CustomerController extends Controller
 
 
 
+
+
         // 3: adjustDelivery
 
+
+
         // 3.1: hasActiveSubscription
-        if ($customerAddress->customer->currentSubscription()->untilDate >= $this->getNextDate())
+        if ($customerAddress->customer->currentSubscription()->untilDate >= $this->getNextDate()) {
+
             $this->adjustCustomerSchedule($customerAddress->customerId);
+
+        } // end if
+
+
+
+
+        // 3.2: hasUpcomingSubscription
+        if ($customerAddress->customer->hasUpcomingSubscription()) {
+
+            $this->adjustCustomerUpcomingSchedule($customerAddress->customerId);
+
+        } // end if
+
+
+
+
+
 
 
 
@@ -2107,24 +2129,72 @@ class CustomerController extends Controller
 
 
 
-        // 1: get customer - subscription
+        // 1: get customer
         $customer = Customer::find($id);
+
+
+
+
+
+
+        // 1.2: currentSubscription - adjustDelivery
         $subscription = $customer->currentSubscription();
 
-
-
-
-
-
-        // --------------------------------
-        // --------------------------------
-
-
-
-
-
-        // 2: adjustDelivery
         $this->adjustDelivery($subscription, $customer, $this->getNextDate());
+
+
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // -----------------------
+    // -----------------------
+
+
+
+
+
+
+
+
+
+
+
+    protected function adjustCustomerUpcomingSchedule($id)
+    {
+
+
+
+
+        // 1: get customer
+        $customer = Customer::find($id);
+
+
+
+
+
+        // 1.2: upcomingSubscription - adjustDelivery
+        $subscription = $customer->latestSubscription();
+
+        $this->adjustDelivery($subscription, $customer, $subscription->startDate);
+
+
+
+
+
+
 
 
 
@@ -2168,7 +2238,7 @@ class CustomerController extends Controller
 
 
         // :: upcomingDeliveryDates
-        $upcomingDeliveries = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)->where('deliveryDate', '>=', $this->getNextDate())->get();
+        $upcomingDeliveries = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)->where('deliveryDate', '>=', $startDate)->get();
 
 
 
@@ -2201,7 +2271,9 @@ class CustomerController extends Controller
 
 
             // :: loop
-            while (true) {
+            $continueSearch = true;
+
+            while ($continueSearch) {
 
 
 
@@ -2210,6 +2282,14 @@ class CustomerController extends Controller
                 $deliveryDate = date('Y-m-d', strtotime($startDate . "+{$dateCounter} days"));
 
                 $deliveryAsWeekDay = date('l', strtotime($deliveryDate));
+
+
+
+
+
+
+                // 1.1: increaseCounter
+                $dateCounter++;
 
 
 
@@ -2282,8 +2362,7 @@ class CustomerController extends Controller
 
                     // :: adjust untilDate - increaseCounter - break
                     $subscription->untilDate = $deliveryDate;
-                    $dateCounter++;
-                    break;
+                    $continueSearch = false;
 
 
 
@@ -2292,15 +2371,9 @@ class CustomerController extends Controller
 
 
 
-
-
-
-                // :: increaseCounter
-                $dateCounter++;
-
-
-
             } // end loop - while
+
+
 
 
 

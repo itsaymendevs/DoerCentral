@@ -136,6 +136,7 @@ return new class extends Migration {
 
             // 2.3: menuMeals
             $table->boolean('menuModuleHasMealFullView')->nullable()->default(1);
+            $table->boolean('menuModuleHasMealTypeFilters')->nullable()->default(1);
 
 
 

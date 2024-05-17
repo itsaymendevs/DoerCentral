@@ -265,7 +265,7 @@
 
             {{-- untilSubscription - dates --}}
             <div class="col-12 mb-2">
-                <div class="d-block overflow-auto pb-3 text-center" style="white-space: nowrap">
+                <div class="d-block overflow-auto pb-3 text-center thin-scrollbar mb-2" style="white-space: nowrap">
 
 
 

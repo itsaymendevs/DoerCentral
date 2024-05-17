@@ -20,6 +20,8 @@ use App\Http\Controllers\Api\MenuMealController;
 use App\Http\Controllers\Api\MenuSettingController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\Portals\PortalCustomerLoginController;
+use App\Http\Controllers\Api\Portals\PortalDriverController;
+use App\Http\Controllers\Api\Portals\PortalDriverLoginController;
 use App\Http\Controllers\Api\PromoController;
 use App\Http\Controllers\Api\ExtraController;
 use App\Http\Controllers\ApiWebsite\HomeController as WebsiteHomeController;
@@ -1455,6 +1457,59 @@ Route::post('/subscription/customer/existing/store', [ExistingCustomerSubscripti
 
 // 1: portals - customer - checkCustomer
 Route::post('/portals/customer/checkCustomer', [PortalCustomerLoginController::class, 'checkCustomer']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** ---------------------- PORTALS - DRIVER ---------------------------- **
+
+
+
+
+
+
+// 1: portals - driver - checkDriver
+Route::post('/portals/driver/checkDriver', [PortalDriverLoginController::class, 'checkDriver']);
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+// 2: portals - driver - delivery - update - updateStatus
+Route::post('/portals/driver/delivery/update', [PortalDriverController::class, 'updateDelivery']);
+
+Route::post('/portals/driver/delivery/status/update', [PortalDriverController::class, 'updateDeliveryStatus']);
+
+
+
+
+
+
 
 
 

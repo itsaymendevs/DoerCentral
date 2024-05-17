@@ -195,7 +195,7 @@
 
 
             {{-- 2: update --}}
-            <button wire:loading.attr='disabled' wire:target='remove, store'
+            <button wire:loading.attr='disabled' wire:target='remove, update'
                 class="btn btn--scheme btn--scheme-2 px-4 mx-1 mb-4 py-2 d-inline-flex align-items-center fs-14 mb-4 fw-semibold justify-content-center"
                 style="border: 1px solid var(--color-scheme-2)">
                 Update

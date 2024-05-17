@@ -11,6 +11,7 @@ use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\MealType;
 use App\Models\Plan;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Home extends Component
@@ -19,6 +20,43 @@ class Home extends Component
 
 
     use HelperTrait;
+
+
+
+    public function manageUnassigned($id)
+    {
+
+
+
+
+        // 1: makeSession
+        Session::put('customerScheduleDate', $this->getNextDate());
+
+
+
+
+        // 1.2: redirect
+        return $this->redirect(route('dashboard.singleCustomerMenu', [$id]), navigate: false);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------
+
+
+
 
 
 
@@ -176,6 +214,13 @@ class Home extends Component
 
 
     } // end function
+
+
+
+
+
+
+
 
 
 

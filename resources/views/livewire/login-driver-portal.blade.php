@@ -11,7 +11,7 @@
             {{-- loginForm --}}
             <div class="col-6 col-xxl-6">
                 <form class="login--form" data-aos="fade-right" data-aos-duration="600" data-aos-once="true"
-                    wire:submit='checkUser'>
+                    wire:submit='checkDriver'>
 
 
                     <div class="text-end"></div>

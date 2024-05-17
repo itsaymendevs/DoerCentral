@@ -60,6 +60,8 @@ use App\Livewire\Dashboard\Extra\WebApps\Blogs;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsCreate;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsView;
 use App\Livewire\DriverPortal\DriverHome;
+use App\Livewire\DriverPortal\DriverProfile;
+use App\Livewire\DriverPortal\DriverSearch;
 use App\Livewire\Login;
 use App\Livewire\LoginCustomerPortal;
 use App\Livewire\LoginDriverPortal;
@@ -1377,7 +1379,7 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
     // :: Authenticated
-    // Route::middleware(['auth.portals.driver'])->group(function () {
+    Route::middleware(['auth.portals.driver'])->group(function () {
 
 
 
@@ -1386,8 +1388,35 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-    // 1: portal - driver - home
-    Route::get('portals/driver/home', DriverHome::class)->name('portals.driver.home');
+        // 1: portal - driver - home
+        Route::get('portals/driver/home', DriverHome::class)->name('portals.driver.home');
+
+
+
+
+
+
+
+        // ----------------------------------------------------------------------------
+
+
+
+
+        // 2: portal - driver - search
+        Route::get('portals/driver/search', DriverSearch::class)->name('portals.driver.search');
+
+
+
+
+
+
+        // ----------------------------------------------------------------------------
+
+
+
+
+        // 3: portal - driver - profile
+        Route::get('portals/driver/profile', DriverProfile::class)->name('portals.driver.profile');
 
 
 
@@ -1397,7 +1426,10 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-    // }); // end Authentication
+
+
+
+    }); // end Authentication
 
 
 

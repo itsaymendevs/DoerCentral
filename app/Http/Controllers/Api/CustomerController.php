@@ -2001,6 +2001,26 @@ class CustomerController extends Controller
 
 
 
+        // -------------------------------------
+        // -------------------------------------
+
+
+
+
+
+
+        // 3: adjustDelivery
+
+        // 3.1: hasActiveSubscription
+        if ($customerAddress->customer->currentSubscription()->untilDate >= $this->getNextDate())
+            $this->adjustCustomerSchedule($customerAddress->customerId);
+
+
+
+
+
+
+
         return response()->json(['message' => 'Address has been updated'], 200);
 
 
@@ -2049,6 +2069,456 @@ class CustomerController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+    // ---------------------------- HELPERS -----------------------------
+
+
+
+
+
+
+
+
+
+    protected function adjustCustomerSchedule($id)
+    {
+
+
+
+
+        // 1: get customer - subscription
+        $customer = Customer::find($id);
+        $subscription = $customer->currentSubscription();
+
+
+
+
+
+
+        // --------------------------------
+        // --------------------------------
+
+
+
+
+
+        // 2: adjustDelivery
+        $this->adjustDelivery($subscription, $customer, $this->getNextDate());
+
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    protected function adjustDelivery($subscription, $customer, $startDate)
+    {
+
+
+
+
+
+        // :: upcomingDeliveryDates
+        $upcomingDeliveries = CustomerSubscriptionDelivery::where('customerSubscriptionId', $subscription->id)->where('deliveryDate', '>=', $this->getNextDate())->get();
+
+
+
+
+
+
+        // :: root
+        $dateCounter = 0;
+        $deliveryCounter = 0;
+        $deliveryTotalCounter = intval($upcomingDeliveries->count() ?? 0);
+        $deliveryWeekDays = CustomerDeliveryDay::where('customerId', $customer->id)
+            ->get()->pluck('weekDay')->toArray();
+
+
+
+
+
+
+
+
+
+
+
+        // :: loop - upcomingDeliveries
+        foreach ($upcomingDeliveries ?? [] as $upcomingDelivery) {
+
+
+
+
+
+
+            // :: loop
+            while (true) {
+
+
+
+
+                // 1: getDeliveryDate - deliveryAsWeekDay
+                $deliveryDate = date('Y-m-d', strtotime($startDate . "+{$dateCounter} days"));
+
+                $deliveryAsWeekDay = date('l', strtotime($deliveryDate));
+
+
+
+
+
+
+                // :: ifExists
+                if (in_array($deliveryAsWeekDay, $deliveryWeekDays)) {
+
+
+
+
+
+
+                    // 1.2: general
+                    $upcomingDelivery->deliveryDate = $deliveryDate;
+
+
+
+
+
+                    // 1.2.3: Save + increaseCounter
+                    $deliveryCounter++;
+                    $upcomingDelivery->save();
+
+
+
+
+
+
+
+
+                    // ---------------------------------------------
+                    // ---------------------------------------------
+
+
+
+
+
+
+
+                    // 1.9.5: scheduleInformation
+
+
+
+                    // :: removeSchedule
+                    CustomerSubscriptionSchedule::where('scheduleDate', $deliveryDate)
+                        ->where('customerSubscriptionId', $subscription->id)->delete();
+
+
+
+
+                    // :: side-phase - storeSchedule - Meals
+                    $this->storeSchedule($subscription, $customer, $upcomingDelivery);
+
+
+
+
+
+
+
+
+
+
+                    // ---------------------------------------------
+                    // ---------------------------------------------
+
+
+
+
+                    // :: adjust untilDate - increaseCounter - break
+                    $subscription->untilDate = $deliveryDate;
+                    $dateCounter++;
+                    break;
+
+
+
+
+                } // end if - exists
+
+
+
+
+
+
+                // :: increaseCounter
+                $dateCounter++;
+
+
+
+            } // end loop - while
+
+
+
+        } // end loop - upcomingDeliveries
+
+
+
+
+
+
+
+
+
+
+
+        // :: updateSubscription
+        $subscription->save();
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    protected function storeSchedule($subscription, $customer, $subscriptionDelivery)
+    {
+
+
+
+        // :: getCalendarSchedule
+        $calendarSchedule = $subscription?->calendar?->scheduleByDate($subscriptionDelivery->deliveryDate) ?? null;
+
+
+
+
+
+
+
+
+        // 1: create schedule
+        $schedule = new CustomerSubscriptionSchedule();
+
+
+
+
+        // 1.2: general
+        $schedule->status = $subscriptionDelivery->status;
+        $schedule->scheduleDate = $subscriptionDelivery->deliveryDate;
+
+
+
+
+
+        // 1.3: calendarSchedule - subscriptionDelivery
+        $schedule->menuCalendarScheduleId = $calendarSchedule?->id ?? null;
+        $schedule->customerSubscriptionDeliveryId = $subscriptionDelivery->id;
+
+
+
+        // 1.3: customer - customerSubscription
+        $schedule->customerId = $customer->id;
+        $schedule->planId = $subscription->planId;
+        $schedule->customerSubscriptionId = $subscription->id;
+
+
+
+        $schedule->save();
+
+
+
+
+
+
+
+
+
+
+        // ---------------------------------------------
+        // ---------------------------------------------
+
+
+
+
+
+
+
+        // :: loop - mealTypes - checkQuantity
+        foreach ($subscription->types ?? [] as $subscriptionType) {
+
+            if ($subscriptionType->quantity > 0) {
+
+
+
+
+                // 2: create
+                $scheduleMeal = new CustomerSubscriptionScheduleMeal();
+
+
+                // 2.2: general
+                $scheduleMeal->cookStatus = $subscriptionDelivery->deliveryDate >= $this->getCurrentDate() ? 'Pending' : 'Packed';
+                $scheduleMeal->mealTypeId = $subscriptionType->mealTypeId;
+
+
+
+
+
+                // 2.3: subscriptionSchedule - customer - customerSubscription
+                $scheduleMeal->subscriptionScheduleId = $schedule?->id ?? null;
+
+                $scheduleMeal->customerId = $customer->id;
+                $scheduleMeal->planId = $subscription->planId;
+                $scheduleMeal->customerSubscriptionId = $subscription->id;
+
+
+
+
+
+                // 2.4:  getMeal - CalendarSchedule (HELPER IN MenuCalendarTrait)
+                $scheduleMeal->mealId = $calendarSchedule ? $this->getScheduleMeal($subscription, $calendarSchedule, $subscriptionType->mealTypeId) ?? null : null;
+
+
+
+
+
+
+
+                // ---------------------------------------
+                // ---------------------------------------
+
+
+
+
+
+
+
+                // 2.5: bundleRangeType - price - size
+                $planBundleRange = PlanBundleRange::where('planBundleId', $subscription?->planBundleId)
+                    ->where('planRangeId', $subscription?->planRangeId)
+                    ->where('isForWebsite', true)
+                    ->first();
+
+
+
+
+
+                // 2.5.1: getBundleRangeType
+                $bundleRangeType = $planBundleRange?->typeByMealType($subscriptionType->mealTypeId) ?? null;
+
+
+
+
+                // 2.5.2: bundleRangeType - price - size
+                $scheduleMeal->sizeId = $bundleRangeType?->sizeId ?? null;
+                $scheduleMeal->sizePrice = $bundleRangeType?->price ?? null;
+                $scheduleMeal->sizeCalories = $bundleRangeType?->calories ?? null;
+
+                $scheduleMeal->bundleRangeTypeId = $bundleRangeType?->id ?? null;
+
+
+
+
+
+
+
+                $scheduleMeal->save();
+
+
+
+
+
+
+
+            } // end if
+
+
+        } // end loop
+
+
+
+
+
+    } // end function
+
+
 
 
 

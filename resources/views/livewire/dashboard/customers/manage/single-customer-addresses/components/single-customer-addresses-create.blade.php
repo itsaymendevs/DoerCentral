@@ -238,7 +238,7 @@
                         {{-- submitButton --}}
                         <div class="col-12 text-center mt-2">
                             <button wire:loading.attr='disabled'
-                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
+                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 disabled">
                                 Save
                             </button>
                         </div>

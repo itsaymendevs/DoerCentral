@@ -31,6 +31,7 @@ class LoginDriverPortal extends Component
 
 
 
+
         // :: create instance
         $instance = new stdClass();
 
@@ -39,10 +40,9 @@ class LoginDriverPortal extends Component
 
 
 
-
-
         // 1: makeRequest
         $response = $this->makeRequest('portals/driver/checkDriver', $instance);
+
 
 
 

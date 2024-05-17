@@ -24,13 +24,15 @@ return new class extends Migration {
 
 
 
-            // 1.2: isBagCollected - remarks - driver
+            // 1.2: isBagCollected - imageFile - remarks - driver - imageFile
+            $table->text('imageFile')->nullable();
             $table->string('remarks', 255)->nullable();
             $table->boolean('isBagCollected')->nullable()->default(0);
 
 
             $table->bigInteger('driverId')->unsigned()->nullable();
             $table->foreign('driverId')->references('id')->on('drivers')->onDelete('cascade');
+
 
 
 

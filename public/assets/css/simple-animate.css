@@ -1,5 +1,5 @@
 .rotateInfinite {
-    animation: rotateInfinite 2s linear infinite;
+    animation: rotateInfinite 3s linear infinite;
 }
 
 @keyframes rotateInfinite {
@@ -8,5 +8,18 @@
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+.scaleInfinite {
+    animation: scaleInfinite 2s alternate-reverse infinite;
+}
+
+@keyframes scaleInfinite {
+    0% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(0.7);
     }
 }

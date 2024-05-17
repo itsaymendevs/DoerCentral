@@ -175,7 +175,7 @@
 
 
 
-                        {{-- unAssignedMeals --}}
+                        {{-- revenue --}}
 
 
                         {{-- :: permission - hasCustomerRevenue--}}
@@ -904,9 +904,9 @@
 
                                                     {{-- action --}}
                                                     <td>
-                                                        <a wire:navigate
-                                                            class="btn btn--scheme btn-outline-warning fs-12 px-2 py-1 mx-1 scale--self-05"
-                                                            href="{{ route('dashboard.singleCustomerMenu', [$commonCustomer]) }}">Manage</a>
+                                                        <button wire:click="manageUnassigned({{ $commonCustomer }})"
+                                                            type='button'
+                                                            class="btn btn--scheme btn-outline-warning fs-12 px-2 py-1 mx-1 scale--self-05">Manage</button>
                                                     </td>
 
 
@@ -1051,8 +1051,7 @@
                                                     </td>
                                                     <td>{{ date('d / m / Y', strtotime($subscription->untilDate)) }}
                                                     </td>
-                                                    <td>{{ date('d / m / Y', strtotime($subscription->untilDate)) }}
-                                                    </td>
+                                                    <td>-</td>
 
 
 
@@ -1342,8 +1341,7 @@
 
 
 
-            <div class="col-7 text-center" data-aos="fade" data-aos-duration="700" data-aos-delay="300"
-                data-aos-once="true" wire:ignore>
+            <div class="col-7 text-center" data-aos="fade" data-aos-duration="700" data-aos-once="true" wire:ignore>
                 <div style="position: relative; height:400px; width: 100%;">
                     <canvas id="chart--1"></canvas>
                 </div>

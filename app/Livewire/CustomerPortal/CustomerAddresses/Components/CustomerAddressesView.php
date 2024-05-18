@@ -6,6 +6,7 @@ use App\Livewire\Forms\CustomerAddressForm;
 use App\Models\City;
 use App\Models\CustomerAddress;
 use App\Models\CustomerDeliveryDay;
+use App\Traits\DeliveryTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -16,11 +17,13 @@ class CustomerAddressesView extends Component
 
 
     use HelperTrait;
+    use DeliveryTrait;
+
 
 
     // :: variables
     public CustomerAddressForm $instance;
-    public $address, $removeId;
+    public $address, $counter, $removeId;
 
 
 
@@ -30,11 +33,12 @@ class CustomerAddressesView extends Component
 
 
 
-    public function mount($id)
+    public function mount($id, $counter)
     {
 
 
         // 1: getCustomerAddress
+        $this->counter = $counter;
         $this->address = CustomerAddress::find($id);
 
 
@@ -127,6 +131,8 @@ class CustomerAddressesView extends Component
 
 
 
+
+
     // -----------------------------------------------------------
 
 
@@ -140,13 +146,152 @@ class CustomerAddressesView extends Component
 
 
 
-        // 1: makeRequest
+        // 1: confirmationBox
+        $this->makeAlert('question', 'This change will affect customer upcoming schedules, proceed?', 'confirmAddressUpdate');
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    #[On('confirmAddressUpdate')]
+    public function confirmUpdate()
+    {
+
+
+
+
+
+
+        // :: validation
+
+
+
+        // 1: getDeliveryDays
+        $deliveryDays = array_filter($this->instance->deliveryDays ?? [], function ($value, $key) {
+
+            return $value == true;
+
+        }, ARRAY_FILTER_USE_BOTH);
+
+        $deliveryDays = array_keys($deliveryDays ?? []);
+
+
+
+
+
+
+
+        // 1.2: validation
+        if (count($deliveryDays ?? []) == 0) {
+
+            $this->makeAlert('info', 'Please select at least one delivery day');
+            return false;
+
+        } // end if
+
+
+
+
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+
+
+
+
+        // 2: checkUpcomingSubscription
+        if ($this->address->customer->hasUpcomingSubscription()) {
+
+
+
+
+
+            // 2.2: upcomingDeliveries
+            $upcomingDeliveries = $this->address->customer?->currentSubscription()
+                ?->deliveries?->where('deliveryDate', '>=', $this->getNextDate())?->count() ?? 0;
+
+
+
+
+
+
+
+            // 2.3: checkConflict
+            $isConflicted = $this->checkDeliveryDaysConflict($deliveryDays, $upcomingDeliveries, $this->getNextDate(), $this->address->customer->latestSubscription()->startDate);
+
+
+            if ($isConflicted) {
+
+
+                $this->makeAlert('info', 'Selected days are in conflict with the upcoming subscription deliveries');
+
+                return false;
+
+            } // end if
+
+
+
+        } // end if
+
+
+
+
+
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+
+
+        // 3: makeRequest
         $response = $this->makeRequest('dashboard/customers/addresses/update', $this->instance);
+
+
 
 
 
         // 1.2: refreshByRedirect
         return $this->redirect(route('portals.customer.address', [$this->instance->customerId]) . "#tab-{$this->instance->id}", navigate: false);
+
+
 
     } // end function
 

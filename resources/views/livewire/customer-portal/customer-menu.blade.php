@@ -154,7 +154,7 @@
 
 
                     <button
-                        class="btn btn--scheme btn--scheme-outline-2 align-items-center d-inline-flex px-3 fs-12 scale--3"
+                        class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-3 fs-12 scale--3"
                         type="button" wire:click='upcomingSubscription()' wire:loading.attr='disabled'>
                         <svg class="bi bi-arrow-right fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
                             height="1em" fill="currentColor" viewBox="0 0 16 16">
@@ -173,7 +173,7 @@
 
 
                     <button
-                        class="btn btn--scheme btn--scheme-outline-2 align-items-center d-inline-flex px-3 fs-12 scale--3"
+                        class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-3 fs-12 scale--3"
                         type="button" wire:click='currentSubscription()' wire:loading.attr='disabled'>
                         <svg class="bi bi-arrow-left fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
                             height="1em" fill="currentColor" viewBox="0 0 16 16">

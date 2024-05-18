@@ -273,8 +273,9 @@
 
         {{-- remove --}}
         <div class="col-2 col-md-4">
-            <button class="btn btn--scheme btn--remove fs-12 px-2 " type="button"
-                wire:click='remove({{ $address->id }})' wire:loading.attr='disabled' wire:target='remove, update'>
+            <button class="btn btn--scheme btn--remove fs-12 px-2
+            @if ($counter == 0) disabled @endif" type="button" wire:click='remove({{ $address->id }})'
+                wire:loading.attr='disabled' wire:target='remove, update'>
                 <svg class="bi bi-trash fs-5" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                     fill="currentColor" viewBox="0 0 16 16">
                     <path
@@ -295,7 +296,7 @@
         {{-- submitButton --}}
         <div class="col-8 col-md-4 text-center">
             <button wire:loading.attr='disabled'
-                class="btn btn--scheme btn--scheme-1 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center ">
+                class="btn btn--scheme btn--scheme-outline-1 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center ">
                 Update
             </button>
         </div>

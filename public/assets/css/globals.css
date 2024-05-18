@@ -544,6 +544,12 @@ i {
     color: black !important;
 }
 
+.btn--scheme-outline-1:hover svg,
+.btn--scheme-outline-1:focus svg,
+.btn--scheme-outline-1:active svg {
+    fill: black;
+}
+
 /* scheme 2 */
 
 .btn--scheme-outline-2 {

@@ -193,6 +193,19 @@ fieldset:disabled .btn {
     color: var(--color-theme-4);
 }
 
+.btn--scheme-outline-1 svg {
+    fill: var(--color-scheme-dark-1);
+}
+
+.btn--scheme-outline-1:hover svg,
+.btn--scheme-outline-1:focus svg {
+    fill: white;
+}
+
+.btn--scheme-outline-1:hover,
+.btn--scheme-outline-1:focus {
+    color: white !important;
+}
 /* logo */
 
 .navbar--hr {

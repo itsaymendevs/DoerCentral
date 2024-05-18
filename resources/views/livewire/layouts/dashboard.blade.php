@@ -124,6 +124,15 @@
 
 
 
+        {{-- loader --}}
+        <livewire:loaders.logo-loader />
+
+
+
+
+
+
+
         <div data-aos="fade" data-aos-duration="1000">
 
 

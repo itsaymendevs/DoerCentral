@@ -2,6 +2,11 @@
 
 namespace App\Traits;
 
+use App\Models\CustomerSubscriptionDelivery;
+use App\Models\Driver;
+use App\Models\DriverZone;
+use App\Models\ShiftType;
+use App\Models\ZoneDistrict;
 use stdClass;
 
 
@@ -130,6 +135,150 @@ trait DeliveryTrait
     // --------------------------------------------------------------
     // --------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+    protected function reAssignDrivers()
+    {
+
+
+
+        // :: root
+        $deliveries = CustomerSubscriptionDelivery::whereNull('driverId')
+            ->where('deliveryDate', '>=', $this->getCurrentDate())->get();
+
+
+
+
+
+
+
+
+
+        // :: loop - deliveriesByCustomer
+        foreach ($deliveries ?? [] as $delivery) {
+
+
+
+
+            // 1: getAddress
+            $customerAddress = $delivery?->customer?->addressByDay($delivery->deliveryDate);
+
+
+
+
+
+
+
+
+
+            // :: exists
+            if ($customerAddress && $customerAddress?->deliveryTime) {
+
+
+
+                // 1.2: getShift
+                $shiftType = ShiftType::where('shiftFrom', '>=', $customerAddress?->deliveryTime?->deliveryFrom)->where('shiftUntil', '<=', $customerAddress?->deliveryTime?->deliveryUntil)?->first();
+
+
+
+
+
+
+
+                // -------------------------------
+                // -------------------------------
+
+
+
+
+
+
+                // 1.3: getZones - potentialDrivers
+                $zones = ZoneDistrict::where('cityDistrictId', $customerAddress?->cityDistrictId)
+                        ?->get()?->pluck('zoneId')?->toArray() ?? [];
+
+
+                $potentialDrivers = DriverZone::whereIn('zoneId', $zones)
+                        ?->get()->pluck('driverId')?->toArray() ?? [];
+
+
+
+
+
+
+
+
+                // -------------------------------
+                // -------------------------------
+
+
+
+
+
+
+                // :: exists
+                if ($shiftType) {
+
+
+
+
+
+                    // 1.3: getDriver
+                    $driver = Driver::whereIn('id', $potentialDrivers)
+                        ->where('shiftTypeId', $shiftType?->id)?->first();
+
+
+
+
+
+                    // :: updateDelivery
+                    $delivery->driverId = $driver?->id ?? null;
+                    $delivery->save();
+
+
+
+
+                } // end if - shiftExists
+
+
+
+
+
+
+            } // end if - addressExists
+
+
+
+
+
+
+
+
+
+        } // end loop - deliveries
+
+
+
+
+
+
+
+
+
+
+
+
+    } // end function
 
 
 

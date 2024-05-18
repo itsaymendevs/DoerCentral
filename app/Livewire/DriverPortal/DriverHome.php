@@ -217,7 +217,8 @@ class DriverHome extends Component
 
 
         // 1.2: deliveries
-        $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', $this->getCurrentDate())
+        $deliveries = CustomerSubscriptionDelivery::whereIn('status', $statuses)
+            ->where('deliveryDate', $this->getCurrentDate())
             ->where('driverId', $this->driver?->id)
             ->where('status', 'LIKE', '%' . $this->searchStatus ?? '' . '%')
             ->get();

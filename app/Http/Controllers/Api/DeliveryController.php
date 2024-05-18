@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\CityDeliveryTime;
 use App\Models\CityHoliday;
+use App\Models\CustomerSubscriptionDelivery;
 use App\Models\Driver;
 use App\Models\DriverZone;
 use App\Models\Zone;
 use App\Models\ZoneDistrict;
+use App\Traits\DeliveryTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +19,7 @@ class DeliveryController extends Controller
 {
 
 
-
+    use DeliveryTrait;
 
 
 
@@ -652,6 +654,28 @@ class DeliveryController extends Controller
 
 
 
+
+
+        // -------------------------------------
+        // -------------------------------------
+
+
+
+
+
+
+
+        // 3: reAssignDrivers
+        $this->reAssignDrivers();
+
+
+
+
+
+
+
+
+
         return response()->json(['message' => 'Driver has been created'], 200);
 
 
@@ -690,6 +714,42 @@ class DeliveryController extends Controller
         // 1: get instance
         $driver = Driver::find($request->id);
 
+
+
+
+
+        // 1.2: checkShift
+        if ($driver->shiftTypeId != $request->shiftTypeId) {
+
+
+            CustomerSubscriptionDelivery::where('driverId', $driver->id)
+                ->where('deliveryDate', '>=', $this->getCurrentDate())
+                ->update([
+                    'driverId' => null
+                ]);
+
+        } // end if
+
+
+
+
+
+
+
+
+        // ---------------------------------------------
+        // ---------------------------------------------
+
+
+
+
+
+        // :: continue
+
+
+
+
+        // 1.3: general
         $driver->name = $request->name;
         $driver->phone = $request->phone;
         $driver->email = $request->email;
@@ -734,6 +794,33 @@ class DeliveryController extends Controller
             $driverZone->save();
 
         } // end loop
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // -------------------------------------
+        // -------------------------------------
+
+
+
+
+
+
+
+        // 3: reAssignDrivers
+        $this->reAssignDrivers();
+
+
+
 
 
 

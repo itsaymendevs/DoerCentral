@@ -17,11 +17,15 @@ use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
 use App\Models\CustomerWalletDeposit;
+use App\Models\Driver;
+use App\Models\DriverZone;
 use App\Models\MealType;
 use App\Models\Notification;
 use App\Models\Plan;
 use App\Models\PlanBundleRange;
 use App\Models\PromoCode;
+use App\Models\ShiftType;
+use App\Models\ZoneDistrict;
 use App\Traits\HelperTrait;
 use App\Traits\MenuCalendarTrait;
 use Illuminate\Http\Request;
@@ -590,6 +594,33 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
 
+                // ---------------------------------------------
+                // ---------------------------------------------
+
+
+
+
+
+
+                // 1.9.6: driver
+
+
+
+                // :: side-phase - storeDriver
+                $this->storeDriver($subscription, $customer, $request, $subscriptionDelivery);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 // ---------------------------------------------
                 // ---------------------------------------------
@@ -821,6 +852,132 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function storeDriver($subscription, $customer, $request, $subscriptionDelivery)
+    {
+
+
+
+        // 1: getAddress
+        $customerAddress = $customer?->addressByDay($subscriptionDelivery->deliveryDate);
+
+
+
+
+
+
+        // :: exists
+        if ($customerAddress && $customerAddress?->deliveryTime) {
+
+
+
+            // 1.2: getShift
+            $shiftType = ShiftType::where('shiftFrom', '>=', $customerAddress?->deliveryTime?->deliveryFrom)->where('shiftUntil', '<=', $customerAddress?->deliveryTime?->deliveryUntil)?->first();
+
+
+
+
+
+
+
+            // -------------------------------
+            // -------------------------------
+
+
+
+
+
+
+            // 1.3: getZones - potentialDrivers
+            $zones = ZoneDistrict::where('cityDistrictId', $customerAddress?->cityDistrictId)
+                    ?->get()?->pluck('zoneId')?->toArray() ?? [];
+
+
+            $potentialDrivers = DriverZone::whereIn('zoneId', $zones)
+                    ?->get()->pluck('driverId')?->toArray() ?? [];
+
+
+
+
+
+
+
+
+            // -------------------------------
+            // -------------------------------
+
+
+
+
+
+
+            // :: exists
+            if ($shiftType) {
+
+
+
+
+
+                // 1.3: getDriver
+                $driver = Driver::whereIn('id', $potentialDrivers)
+                    ->where('shiftTypeId', $shiftType?->id)?->first();
+
+
+
+
+
+                // :: updateDelivery
+                $subscriptionDelivery->driverId = $driver?->id ?? null;
+                $subscriptionDelivery->save();
+
+
+
+
+            } // end if - shiftExists
+
+
+
+
+
+
+        } // end if - addressExists
+
+
+
+
+
+    } // end function
 
 
 

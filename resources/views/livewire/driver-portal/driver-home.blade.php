@@ -428,21 +428,21 @@
                         {{-- 1: pending --}}
                         @if ($delivery->status == 'Pending')
 
-                        {{-- <button wire:click="update({{ $delivery->id }}, 'Picked')" wire:loading.class='disabled'
+                        <button wire:click="update({{ $delivery->id }}, 'Picked')" wire:loading.class='disabled'
                             class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white"
-                            type="button">Confirm Picking</button> --}}
+                            type="button">Confirm Picking</button>
 
 
                         {{-- capture QR --}}
-                        <label for='capture--QR'
+                        {{-- <label for='capture--QR'
                             class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white">Confirm
-                            Picking</label>
+                            Picking</label> --}}
 
 
 
 
                         {{-- :: captureEvent --}}
-                        <input id='capture--QR' class='d-none' type="file" accept="image/*" capture>
+                        {{-- <input id='capture--QR' class='d-none' type="file" accept="image/*" capture> --}}
 
 
 

@@ -37,7 +37,7 @@
 
                 {{-- form --}}
                 <form class="px-4" wire:submit='store'>
-                    <div class="row align-items-end pt-2 mb-4">
+                    <div class="row align-items-start pt-2 mb-4">
 
 
                         {{-- name --}}
@@ -66,7 +66,7 @@
                         <div class="col-4">
                             <label class="form-label form--label">Phone</label>
                             <input class="form-control form--input mb-4" type="text" required
-                                wire:model='instance.phone' />
+                                wire:model='instance.phone' pattern="[0-9]+" minlength='9' maxlength='9' />
                         </div>
 
 

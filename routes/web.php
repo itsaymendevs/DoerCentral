@@ -6,6 +6,7 @@ use App\Livewire\CustomerPortal\CustomerAddresses;
 use App\Livewire\CustomerPortal\CustomerCalendar;
 use App\Livewire\CustomerPortal\CustomerDeliveries;
 use App\Livewire\CustomerPortal\CustomerGeneral;
+use App\Livewire\Dashboard\Extra\Reports\ReportsDelivery;
 use App\Livewire\Dashboard\Inventory\Configurations;
 use App\Livewire\Dashboard\Inventory\Ingredients;
 use App\Livewire\CustomerPortal\CustomerHome;
@@ -61,6 +62,7 @@ use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsCreate;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsView;
 use App\Livewire\DriverPortal\DriverHome;
 use App\Livewire\DriverPortal\DriverProfile;
+use App\Livewire\DriverPortal\DriverProfileEdit;
 use App\Livewire\DriverPortal\DriverSearch;
 use App\Livewire\Login;
 use App\Livewire\LoginCustomerPortal;
@@ -896,7 +898,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 17: extra - management- users - create - edit - remove
+        // 17: extra - management - users - create - edit - remove
         Route::get('dashboard/extra/management/users', Users::class)->name('dashboard.management.users');
 
 
@@ -911,7 +913,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 17.2: extra - management- roles - create - edit - remove
+        // 17.2: extra - management - roles - create - edit - remove
         Route::get('dashboard/extra/management/departments', Roles::class)->name('dashboard.management.roles');
 
 
@@ -926,7 +928,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 17.3: extra - management- activity
+        // 17.3: extra - management - activity
         Route::get('dashboard/extra/management/activity', ActivityLog::class)->name('dashboard.management.activity');
 
 
@@ -946,8 +948,30 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 18: extra - finance- paymentDetails
+        // 18: extra - finance - paymentDetails
         Route::get('dashboard/extra/finance/payment-details', PaymentDetails::class)->name('dashboard.finance.paymentDetails');
+
+
+
+
+
+
+
+
+
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+        // 19: extra - reports - delivery
+        Route::get('dashboard/extra/reports/delivery', ReportsDelivery::class)->name('dashboard.reports.delivery');
+
 
 
 
@@ -1402,8 +1426,10 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
+
         // 2: portal - driver - search
         Route::get('portals/driver/search', DriverSearch::class)->name('portals.driver.search');
+
 
 
 
@@ -1419,6 +1445,10 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
         Route::get('portals/driver/profile', DriverProfile::class)->name('portals.driver.profile');
 
 
+
+
+        // 3.2: portal - driver - profile - edit
+        Route::get('portals/driver/profile/edit', DriverProfileEdit::class)->name('portals.driver.editProfile');
 
 
 

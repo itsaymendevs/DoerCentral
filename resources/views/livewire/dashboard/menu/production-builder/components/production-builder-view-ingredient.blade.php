@@ -202,7 +202,7 @@
 
 
     {{-- calories --}}
-    <td class='d-none'>
+    <td class='d-non'>
         <input class="form-control form--input form--table-input-xxs px-1 readonly ingredient--afterCookCalories-input "
             data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' readonly=""
             wire:model='instance.afterCookCalories' wire:loading.attr='readonly' />

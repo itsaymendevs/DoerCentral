@@ -17,23 +17,18 @@
 
 
 
-    {{-- 2: delivery --}}
-    <a class="btn btn--scheme" href="{{ route('portals.customer.delivery') }}">Delivery</a>
+    {{-- 2: home --}}
+    <a class="btn btn--scheme" href="{{ route('portals.driver.home') }}">Home</a>
 
 
-    {{-- 3: calendar --}}
-    <a class="btn btn--scheme" href="{{ route('portals.customer.calendar') }}">Calendar</a>
-
-
-
-    {{-- 4: address --}}
-    <a class="btn btn--scheme" href="{{ route('portals.customer.address') }}">Manage Address</a>
+    {{-- 3: profile --}}
+    <a class="btn btn--scheme" href="{{ route('portals.driver.profile') }}">Profile</a>
 
 
 
 
-    {{-- 5: logout --}}
-    <a class="btn btn--scheme" href="{{ route('portals.customer.login') }}"
+    {{-- 4: logout --}}
+    <a class="btn btn--scheme" href="{{ route('portals.driver.login') }}"
         style="border-bottom-color: var(--bs-danger) !important;">Logout</a>
 
 

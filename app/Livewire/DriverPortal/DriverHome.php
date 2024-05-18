@@ -22,7 +22,7 @@ class DriverHome extends Component
 
     // :: variables
     public $driver, $deliveryId, $deliveryStatus;
-    public $searchDistrictId;
+    public $searchDistrictId, $searchStatus;
 
 
 
@@ -32,10 +32,8 @@ class DriverHome extends Component
     {
 
 
-
         // :: init
         $this->driver = Driver::find(session('driverId'));
-
 
 
     } // end function
@@ -211,6 +209,7 @@ class DriverHome extends Component
 
 
         // 1: dependencies
+        $statuses = ['Pending', 'Picked', 'Canceled', 'Completed'];
         $districts = CityDistrict::whereIn('id', $this->driver?->districts()?->pluck('id')?->toArray() ?? [])?->get();
 
 
@@ -220,6 +219,7 @@ class DriverHome extends Component
         // 1.2: deliveries
         $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', $this->getCurrentDate())
             ->where('driverId', $this->driver?->id)
+            ->where('status', 'LIKE', '%' . $this->searchStatus ?? '' . '%')
             ->get();
 
 
@@ -230,8 +230,7 @@ class DriverHome extends Component
 
 
 
-
-        return view('livewire.driver-portal.driver-home', compact('districts', 'deliveries'));
+        return view('livewire.driver-portal.driver-home', compact('districts', 'deliveries', 'statuses'));
 
 
 

@@ -1514,6 +1514,29 @@ Route::post('/portals/driver/delivery/status/update', [PortalDriverController::c
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+// 3: portals - driver - profile - update
+Route::post('/portals/driver/profile/update', [PortalDriverController::class, 'updateProfile']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

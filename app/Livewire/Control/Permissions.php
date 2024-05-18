@@ -160,6 +160,7 @@ class Permissions extends Component
             'extraModuleHasModule' => 'Extra Module',
             'extraModuleHasManagement' => 'Management',
             'extraModuleHasFinance' => 'Finance',
+            'extraModuleHasReports' => 'Reports',
 
             'extraModuleHasDepartments' => 'Departments',
             'extraModuleHasActivityLog' => 'Activity Log',
@@ -251,7 +252,7 @@ class Permissions extends Component
 
 
         // 2.8: extra
-        $extraPermissions = VersionPermission::get(['extraModuleHasModule', 'extraModuleHasManagement', 'extraModuleHasFinance', 'extraModuleHasDepartments', 'extraModuleHasActivityLog', 'extraModuleHasWebsite', 'extraModuleHasBlogs', 'extraModuleHasBanners', 'extraModuleHasPaymentDetails'])->first()->toArray();
+        $extraPermissions = VersionPermission::get(['extraModuleHasModule', 'extraModuleHasManagement', 'extraModuleHasFinance', 'extraModuleHasReports', 'extraModuleHasDepartments', 'extraModuleHasActivityLog', 'extraModuleHasWebsite', 'extraModuleHasBlogs', 'extraModuleHasBanners', 'extraModuleHasPaymentDetails'])->first()->toArray();
 
 
 

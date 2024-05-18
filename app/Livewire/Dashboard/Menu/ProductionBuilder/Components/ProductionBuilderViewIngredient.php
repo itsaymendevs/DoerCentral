@@ -355,14 +355,15 @@ class ProductionBuilderViewIngredient extends Component
                 if ($conversion) {
 
                     // 1.4: updateAfterCook Macros
-                    $this->instance->afterCookGrams *= $conversion->conversionValue;
+                    $this->instance->afterCookGrams = round($this->instance->afterCookGrams * $conversion->conversionValue, 2);
 
-                    $totalMacros = $this->mealPart->totalMacro($this->instance->afterCookGrams ?? 0);
+                    $this->instance->afterCookCalories = (($totalMacros->calories / $conversion->conversionValue) / $this->instance->grams) * $this->instance->afterCookGrams;
 
-                    $this->instance->afterCookCalories = $totalMacros->calories;
-                    $this->instance->afterCookProteins = $totalMacros->proteins;
-                    $this->instance->afterCookCarbs = $totalMacros->carbs;
-                    $this->instance->afterCookFats = $totalMacros->fats;
+                    $this->instance->afterCookProteins = (($totalMacros->proteins / $conversion->conversionValue) / $this->instance->grams) * $this->instance->afterCookGrams;
+
+                    $this->instance->afterCookCarbs = (($totalMacros->carbs / $conversion->conversionValue) / $this->instance->grams) * $this->instance->afterCookGrams;
+
+                    $this->instance->afterCookFats = (($totalMacros->fats / $conversion->conversionValue) / $this->instance->grams) * $this->instance->afterCookGrams;
 
 
                 } // end if - exists

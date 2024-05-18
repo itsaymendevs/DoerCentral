@@ -98,6 +98,12 @@
     border: 2px solid var(--bg-golden-dark) !important;
 }
 
+.driver--profile-cover a:hover,
+.driver--profile-cover a:focus {
+    background-color: var(--bg-golden-dark);
+    transform: scale(1.2);
+}
+
 .driver--profile-cover img {
     border: 2px solid var(--bg-golden-dark);
 }
@@ -120,4 +126,113 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* mobile menu */
+
+/* mobileApp */
+
+.mobile--menu {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    box-shadow: 0px 0px 3px 0px #23262b69;
+    background-color: #668881;
+    height: 8vh;
+    display: flex;
+    z-index: 11;
+    max-height: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile--menu .btn {
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 25%;
+    border: none;
+    border-top: 3px solid #668881;
+    border-radius: 1px;
+}
+
+.mobile--menu .btn img {
+    width: 100%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.mobile--menu .btn:focus,
+.mobile--menu .btn:hover,
+.mobile--menu .btn.active {
+    border: none;
+    background-color: var(--color-card);
+    border-top: 2px solid var(--color-theme-secondary);
+}
+
+.mobile--menu .btn:focus img,
+.mobile--menu .btn.active img {
+    transform: scale(1.3);
+}
+
+/* mobile-menu-bg */
+
+.mobile--menu-bg {
+    background: linear-gradient(180deg, #1d1e24, #141518);
+    background-size: 120% 120%;
+    animation: mobile-menu-gradient 4s ease infinite;
+}
+
+@keyframes mobile-menu-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* side-menu */
+
+/* sidebar-menu */
+
+.sidebar--menu {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 0vh;
+    width: 100%;
+    background-color: var(--color-scheme-2);
+    z-index: 12;
+    overflow: hidden;
+}
+
+.sidebar--menu .btn--scheme {
+    border-bottom: 3px solid white;
+    width: 100%;
+    border-radius: 0px;
+    max-width: 190px;
+    margin-bottom: 40px;
+    font-size: 18px;
+    padding: 10px 0px;
+}
+
+.sidebar--menu .btn--scheme:hover,
+.sidebar--menu .btn--scheme:focus {
+    max-width: 210px;
+    border-bottom: 3px solid var(--bg-golden-dark);
+}
+
+.sidebar--menu .btn--close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    border-radius: 10px;
 }

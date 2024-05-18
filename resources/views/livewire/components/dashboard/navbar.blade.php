@@ -306,6 +306,28 @@
 
 
 
+                            {{-- Reports --}}
+
+                            {{-- :: permission - hasReports --}}
+                            @if ($versionPermission->extraModuleHasReports)
+
+
+
+                            <a wire:navigate href="{{ route('dashboard.reports.delivery') }}"
+                                class="dropdown-item fw-semibold
+                                @if (Request::is('dashboard/reports/delivery', 'dashboard/reports/delivery/*')) active @endif">Reports</a>
+
+
+                            @endif
+                            {{-- end if - permission --}}
+
+
+
+
+
+
+
+
 
                             {{-- finance --}}
 
@@ -329,29 +351,6 @@
 
 
 
-                            {{-- management --}}
-
-
-
-                            {{-- :: permission - hasManagement --}}
-                            @if ($versionPermission->extraModuleHasManagement)
-
-
-
-
-                            <a wire:navigate href="{{ route('dashboard.management.users') }}"
-                                class="dropdown-item fw-semibold
-                               @if (Request::is('dashboard/extra/management', 'dashboard/extra/management/*')) active @endif">Management</a>
-
-
-
-                            @endif
-                            {{-- end if - permission --}}
-
-
-
-
-
 
 
 
@@ -365,8 +364,7 @@
 
                             <a wire:navigate href="{{ route('dashboard.blogs') }}"
                                 class="dropdown-item fw-semibold
-                                @if (Request::is('dashboard/extra/blogs', 'dashboard/extra/blogs/*')) active @endif">App
-                                &amp; Website</a>
+                                @if (Request::is('dashboard/extra/blogs', 'dashboard/extra/blogs/*')) active @endif">App &amp; Website</a>
 
 
                             @endif
@@ -375,11 +373,38 @@
 
 
 
+
+
+
+
+
+
+                            {{-- management --}}
+
+
+
+                            {{-- :: permission - hasManagement --}}
+                            @if ($versionPermission->extraModuleHasManagement)
+
+
+
+
+                            <a wire:navigate href="{{ route('dashboard.management.users') }}"
+                                class="dropdown-item fw-semibold
+                               @if (Request::is('dashboard/extra/management', 'dashboard/extra/management/*')) active @endif">Staff Management</a>
+
+
+
+                            @endif
+                            {{-- end if - permission --}}
+
+
+
+
+
+
+
                         </div>
-
-
-
-
                     </div>
 
                     @endif

@@ -70,12 +70,7 @@
 
 
                             {{-- zoneName --}}
-                            <h6 class="text-center fw-bold mt-3 mb-1 truncate-text-1l fs-15">{{ $zone->name }}</h6>
-
-
-                            {{-- breif --}}
-                            <p class="text-center fs-13 mb-1 truncate-text-3l height-3l">{{ $zone->desc }}</p>
-
+                            <h6 class="text-center fw-bold mt-3 mb-3 truncate-text-1l fs-15">{{ $zone->name }}</h6>
 
 
 
@@ -108,7 +103,7 @@
                             <div class="d-flex align-items-center justify-content-center mb-1 mt-1">
 
                                 {{-- 1: edit --}}
-                                <button class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                <button class="btn btn--scheme btn--scheme-2 h-32 fs-12 px-4 mx-2 scale--self-05"
                                     data-bs-toggle='modal' data-bs-target='#edit-zone' type="button"
                                     wire:click='edit({{ $zone->id }})'>Edit</button>
 
@@ -117,17 +112,7 @@
 
                                 {{-- 2: remove --}}
                                 <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
-                                    type="button" wire:click='remove({{ $zone->id }})'><svg class="bi bi-trash fs-5"
-                                        xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                        viewBox="0 0 16 16">
-                                        <path
-                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
-                                        </path>
-                                        <path fill-rule="evenodd"
-                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
-                                        </path>
-                                    </svg>
-                                </button>
+                                    type="button" wire:click='remove({{ $zone->id }})'>Remove</button>
 
 
 
@@ -148,13 +133,24 @@
 
 
 
+
+            {{-- ---------------------------------- --}}
+            {{-- ---------------------------------- --}}
+
+
+
+
+
             {{-- paginateLinks --}}
             @if ($zones)
+
             <div class="col-12">
                 {{ $zones->links() }}
             </div>
-            @endif
 
+
+            @endif
+            {{-- end if --}}
 
 
         </div>

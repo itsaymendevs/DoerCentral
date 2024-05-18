@@ -101,7 +101,7 @@ input[type="date"] {
     position: fixed;
     top: 0px;
     left: 0px;
-    height: 100vh;
+    height: 0vh;
     width: 100%;
     background-color: var(--color-scheme-2);
     z-index: 12;

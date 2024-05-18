@@ -81,18 +81,6 @@
 
 
 
-
-
-
-
-
-        {{-- :: swiper --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-
-
-
-
         @yield('styles')
 
 
@@ -145,6 +133,13 @@
 
         {{-- -------------------------------------- --}}
         {{-- -------------------------------------- --}}
+
+
+
+
+        {{-- mobile- side-menu --}}
+        <livewire:driver-portal.components.side-menu />
+
 
 
 
@@ -221,8 +216,6 @@
         <script src="{{ asset('assets/js/select2.min.js') }}"></script>
         <script src="{{ asset('assets/js/bs-init.js') }}"></script>
         <script src="{{ asset('assets/js/init.js') }}?id=331"></script>
-        <script src="{{ asset('assets/js/init-swiper.js') }}"></script>
-        <script src="{{ asset('assets/js/switches.js') }}"></script>
         <script src="{{ asset('assets/js/range-input.js') }}"></script>
         <script src="{{ asset('assets/js/file-preview.js') }}"></script>
         <script src="{{ asset('assets/js/button-checkbox.js') }}"></script>

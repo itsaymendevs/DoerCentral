@@ -17,14 +17,18 @@
 
                         {{-- delivery --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-1" role="tab">Delivery</a>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#tab-1" role="tab">Delivery</a>
                         </li>
+
+
+
+
 
 
 
                         {{-- cityTime / charges --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#tab-2" role="tab">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-2" role="tab">
                                 City Time &amp; Charges</a>
                         </li>
 
@@ -81,7 +85,7 @@
 
 
                         {{-- 1: deliveryTab --}}
-                        <div class="tab-pane fade no--card" id="tab-1" role="tabpanel">
+                        <div class="tab-pane fade show active no--card" id="tab-1" role="tabpanel">
 
                             {{-- deliveryView --}}
                             <livewire:dashboard.delivery.components.delivery-view />
@@ -105,7 +109,7 @@
 
 
                         {{-- 2: cityTiming / Charges Tab --}}
-                        <div class="tab-pane fade show active no--card" id="tab-2" role="tabpanel">
+                        <div class="tab-pane fade no--card" id="tab-2" role="tabpanel">
 
 
 
@@ -290,6 +294,8 @@
 
 
     @section('modals')
+
+
     {{-- 1: createTiming --}}
     <livewire:dashboard.delivery.components.delivery-create-timing />
 
@@ -321,6 +327,8 @@
 
     {{-- 3.1: editDriver --}}
     <livewire:dashboard.delivery.components.delivery-edit-driver />
+
+
     @endsection
 
 

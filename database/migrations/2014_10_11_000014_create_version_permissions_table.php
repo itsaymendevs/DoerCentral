@@ -296,6 +296,7 @@ return new class extends Migration {
             $table->boolean('extraModuleHasManagement')->nullable()->default(1);
             $table->boolean('extraModuleHasWebsite')->nullable()->default(1);
             $table->boolean('extraModuleHasFinance')->nullable()->default(1);
+            $table->boolean('extraModuleHasReports')->nullable()->default(1);
 
 
 

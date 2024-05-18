@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Delivery\Components;
+namespace App\Livewire\Dashboard\Extra\Reports;
 
 use App\Livewire\Dashboard\Delivery;
 use App\Models\CustomerSubscriptionDelivery;
@@ -9,8 +9,11 @@ use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class DeliveryView extends Component
+
+class ReportsDelivery extends Component
 {
+
+
 
 
     use HelperTrait;
@@ -94,7 +97,7 @@ class DeliveryView extends Component
 
 
 
-        return view('livewire.dashboard.delivery.components.delivery-view', compact('deliveries', 'plans', 'statuses'));
+        return view('livewire.dashboard.extra.reports.reports-delivery', compact('deliveries', 'plans', 'statuses'));
 
 
     } // end function

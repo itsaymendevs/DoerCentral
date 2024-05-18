@@ -73,20 +73,43 @@ class SingleCustomerDeliveries extends Component
 
 
 
-        // 1.2: deliveriesWithFilter
-        if ($this->searchPlan)
+
+        // 1.2: fixFilters
+        $this->searchFromDate == '' ? $this->searchFromDate = null : null;
+        $this->searchUntilDate == '' ? $this->searchUntilDate = null : null;
+
+
+
+
+
+
+
+        // 1.3: deliveriesWithFilter
+        if ($this->searchPlan) {
+
+
             $deliveries = CustomerSubscriptionDelivery::where('customerId', $this->customer->id)
                 ->where('planId', $this->searchPlan)
                 ->where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
                 ->where('deliveryDate', '<=', $this->searchUntilDate ?? '3000-01-01')
                 ->where('status', 'LIKE', '%' . $this->searchStatus . '%')
-                ->paginate(20);
-        else
+                ->paginate(env('PAGINATE_XXL'));
+
+
+        } else {
+
+
             $deliveries = CustomerSubscriptionDelivery::where('customerId', $this->customer->id)
                 ->where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
                 ->where('deliveryDate', '<=', $this->searchUntilDate ?? '3000-01-01')
                 ->where('status', 'LIKE', '%' . $this->searchStatus . '%')
-                ->paginate(20);
+                ->paginate(env('PAGINATE_XXL'));
+
+
+        } // end if
+
+
+
 
 
 

@@ -80,11 +80,11 @@
 
 
                                 {{-- whatsapp --}}
-                                <button
-                                    class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white mx-2"
-                                    type="button">
+                                <a href='https://api.whatsapp.com/send?phone=971{{ $delivery?->customer?->whatsapp }}&text=Hello%2C%20I%20have%20your%20delivery%20ready%20%F0%9F%91%8B'
+                                    target="_blank"
+                                    class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white mx-2">
                                     Whatsapp
-                                </button>
+                                </a>
                             </div>
                             {{-- endHelpers --}}
 

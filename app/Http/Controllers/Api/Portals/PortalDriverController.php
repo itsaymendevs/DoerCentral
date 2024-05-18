@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Portals;
 
 use App\Http\Controllers\Controller;
 use App\Models\CustomerSubscriptionDelivery;
+use App\Models\Driver;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
@@ -177,6 +178,76 @@ class PortalDriverController extends Controller
 
         return response()->json(['message' => "Status has been updated"], 200);
 
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function updateProfile(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+
+        // 1: get instance
+        $driver = Driver::find($request->id);
+
+        $driver->name = $request->name;
+        $driver->phone = $request->phone;
+        $driver->email = $request->email;
+        $driver->license = $request->license;
+        $driver->plate = $request->plate;
+
+
+
+
+        // 1.2: imageFile - licenseFile
+        $driver->imageFile = $request->imageFileName;
+        $driver->licenseFile = $request->licenseFileName;
+
+
+        $driver->save();
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Profile has been updated'], 200);
 
 
 

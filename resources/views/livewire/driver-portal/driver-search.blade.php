@@ -7,12 +7,16 @@
 
 
 
+            {{-- overview --}}
+
+
+
             {{-- 1: total --}}
             <div class="col-4 text-end" data-aos="fade-up" data-aos-duration="600" data-aos-once="true"
                 wire:ignore.self>
                 <div class="overview--box shrink--self solid">
                     <h6 class="fs-11">Total</h6>
-                    <p class="fs-5 bg-transparent py-1">15</p>
+                    <p class="fs-5 bg-transparent py-1">{{ $driver?->todayDeliveries()?->count() ?? 0 }}</p>
                 </div>
             </div>
 
@@ -28,9 +32,10 @@
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self solid">
                     <h6 class="fs-11">Pending</h6>
-                    <p class="fs-5 bg-transparent py-1">12</p>
+                    <p class="fs-5 bg-transparent py-1">{{ $driver?->todayPendingDeliveries()?->count() ?? 0 }}</p>
                 </div>
             </div>
+
 
 
 
@@ -40,9 +45,11 @@
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self solid">
                     <h6 class="fs-11">Completed</h6>
-                    <p class="fs-5 bg-transparent py-1">3</p>
+                    <p class="fs-5 bg-transparent py-1">{{ $driver?->todayCompletedDeliveries()?->count() ?? 0 }}</p>
                 </div>
             </div>
+
+
 
 
         </div>
@@ -68,15 +75,18 @@
 
 
 
+
             {{-- filters --}}
 
 
-
             {{-- 1: district --}}
-            <div class="col-12 mt-4" data-aos="fade" data-aos-duration="600" data-aos-once="true" data-aos-once="true"
+            <div class="col-6 col-lg-6 mt-4" data-aos="fade-up" data-aos-duration="800" data-aos-once="true"
                 wire:ignore.self>
 
-                {{-- subheading --}}
+
+
+
+                {{-- hr --}}
                 <div class="d-flex align-items-center justify-content-between mb-1">
                     <hr style="width: 65%" />
                     <label class="form-label form--label px-3 w-50 justify-content-center mb-0">District</label>
@@ -87,8 +97,8 @@
                 {{-- select --}}
                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
 
-                    <select class="form-select form--select" id='district-select' data-instance='searchDistrictId
-                        data-clear=' true'>
+                    <select class="form-select form--select" id='district-select' data-instance='searchDistrictId'
+                        data-clear='true'>
                         <option value=""></option>
 
                         @foreach ($districts ?? [] as $district)
@@ -98,8 +108,10 @@
 
                 </div>
 
+
+
             </div>
-            {{-- endCol --}}
+            {{-- endFilter --}}
 
 
 
@@ -107,23 +119,45 @@
 
 
 
-            {{-- 2: customer --}}
-            <div class="col-12" data-aos="fade" data-aos-duration="600" data-aos-delay="200" data-aos-once="true"
+
+
+            {{-- 2: status --}}
+            <div class="col-6 col-lg-6 mt-4" data-aos="fade-up" data-aos-duration="800" data-aos-once="true"
                 wire:ignore.self>
 
 
-                {{-- subheading --}}
+
+
+                {{-- hr --}}
                 <div class="d-flex align-items-center justify-content-between mb-1">
                     <hr style="width: 65%" />
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Customer</label>
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Status</label>
                 </div>
 
 
-                {{-- input --}}
-                <div class="select--single-wrapper mb-4">
-                    <input type="text" class="form--input" />
+
+                {{-- select --}}
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
+
+                    <select class="form-select form--select" data-instance='searchStatus' data-clear='true'>
+                        <option value=""></option>
+
+                        @foreach ($statuses ?? [] as $status)
+                        <option value="{{ $status }}">{{ $status }}</option>
+                        @endforeach
+                    </select>
+
                 </div>
+
+
+
             </div>
+            {{-- endFilter --}}
+
+
+
+
+
 
 
 
@@ -132,6 +166,11 @@
 
             {{-- --------------------- --}}
             {{-- --------------------- --}}
+
+
+
+
+
 
 
 
@@ -140,9 +179,25 @@
 
 
             {{-- loop - deliveries --}}
-            <div class="col-12 mt-5 pb-3" data-aos="fade" data-aos-duration="600" data-aos-delay="200"
-                data-aos-once="true" wire:ignore.self>
-                <div class="delivery--wrap position-relative">
+
+            @foreach ($deliveries ?? [] as $delivery)
+
+
+
+            {{-- ** GET ADDRESS --}}
+            @php $customerAddress = $delivery?->customer?->addressByDay($delivery->deliveryDate) ?? null; @endphp
+
+
+
+
+
+
+
+
+
+            <div class="col-12 mt-5 pb-3" key='single-delivery-{{ $delivery->id }}'>
+                <div class="delivery--wrap position-relative" data-aos="fade" data-aos-duration="600"
+                    data-aos-once="true" wire:ignore.self>
 
 
 
@@ -151,14 +206,15 @@
 
 
                         {{-- phone --}}
-                        <button class="btn delivery--helper-btn" type="button">
+                        <a href='tel:+971{{ $delivery?->customer?->phone }}' class="btn delivery--helper-btn"
+                            type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-telephone fs-5">
                                 <path
                                     d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z">
                                 </path>
                             </svg>
-                        </button>
+                        </a>
 
 
 
@@ -197,13 +253,59 @@
 
                         {{-- deliveryNo. --}}
                         <h6 class="mb-0 fs-14">
-                            Order<span class="ms-1 text-gold">#32</span>
+                            Order<span class="ms-1 text-gold">#{{ $delivery->id }}</span>
                         </h6>
 
 
+
+
+
                         {{-- status --}}
-                        <h6 class="fs-14 mb-0 text-warning">Pending</h6>
+
+
+                        {{-- :: completed --}}
+                        @if ($delivery->status == 'Completed')
+
+
+                        <h6 class="fs-14 mb-0 text-theme-secondary text-uppercase">{{ $delivery->status }}</h6>
+
+
+
+                        {{-- :: canceled --}}
+                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Not Available')
+
+
+                        <h6 class="fs-14 mb-0 text-danger text-uppercase">{{ $delivery->status }}</h6>
+
+
+
+                        {{-- others --}}
+                        @else
+
+
+                        <h6 class="fs-14 mb-0 text-warning text-uppercase">{{ $delivery->status }}</h6>
+
+
+                        @endif
+                        {{-- end if --}}
+
+
+
                     </div>
+                    {{-- endDiv --}}
+
+
+
+
+
+
+
+                    {{-- ------------------------------ --}}
+                    {{-- ------------------------------ --}}
+
+
+
+
 
 
 
@@ -211,18 +313,58 @@
 
                     {{-- customer --}}
                     <div>
-                        <h6 class="mb-3 fw-semibold">Christina Lutfi</h6>
+                        <h6 class="mb-3 fw-semibold">{{ $delivery->customer->fullName() }}</h6>
                     </div>
 
 
 
+
+
+                    {{-- address --}}
+                    @if ($customerAddress)
+
+
+
+
                     {{-- city - district --}}
-                    <h6 class="mb-2 fs-13 fw-normal">Dubai, Business Bay</h6>
+                    <h6 class="mb-2 fs-13 fw-normal">{{ $customerAddress->city->name }}, {{
+                        $customerAddress->district->name }}</h6>
+
 
 
                     {{-- addressLocation --}}
-                    <h6 class="mb-1 fs-13 fw-normal">Block. 12B - Floor. 5</h6>
-                    <h6 class="fs-13 fw-normal">Churchill Tower South</h6>
+                    <h6 class="mb-1 fs-13 fw-normal">
+                        Apartment. {{ $customerAddress?->apartment }}
+                        @if ($customerAddress?->floor)
+                        <span class='me-1'>&#x2022;</span>Floor. {{ $customerAddress?->floor }}
+                        @endif
+                    </h6>
+
+
+                    <h6 class="fs-13 fw-normal">{{ $customerAddress?->locationAddress }}</h6>
+
+
+
+
+                    {{-- :: fallback --}}
+                    @else
+
+
+                    <h6 class="mb-2 fs-13 fw-normal">Address Unavailable</h6>
+
+
+                    @endif
+                    {{-- end if --}}
+
+
+
+
+
+
+                    {{-- ------------------------------ --}}
+                    {{-- ------------------------------ --}}
+
+
 
 
 
@@ -237,26 +379,180 @@
 
 
                         {{-- confirmPicking --}}
-                        <button
+
+
+                        {{-- 1: pending --}}
+                        @if ($delivery->status == 'Pending')
+
+                        <button wire:click="update({{ $delivery->id }}, 'Picked')" wire:loading.class='disabled'
                             class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white"
-                            type="button" style="/*border: 1px solid var(--color-theme-secondary);*/">
-                            Confirm Picking</button>
+                            type="button">Confirm Picking</button>
 
 
 
-                        {{-- notAvailable --}}
+
+                        {{-- 2: picked --}}
+                        @elseif ($delivery->status == 'Picked')
+
+
+                        <button wire:click='confirmDelivery({{ $delivery->id }})'
+                            class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white"
+                            type="button" data-bs-toggle='modal' data-bs-target='#confirm-delivery'>Confirm
+                            Delivery</button>
+
+
+
+
+
+
+                        {{-- 3: completed --}}
+                        @elseif ($delivery->status == 'Completed')
+
+
+
+
                         <button
+                            class="btn btn--scheme btn--scheme-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white no-events"
+                            type="button">{{ $delivery->status }}</button>
+
+
+
+
+
+                        {{-- 4: canceled --}}
+                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Not Available')
+
+
+
+                        <button
+                            class="btn btn--scheme btn--remove py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 px-3 no-events"
+                            type="button">{{ $delivery->status }}</button>
+
+
+
+                        @endif
+                        {{-- end if --}}
+
+
+
+
+
+
+                        {{-- --------------------------- --}}
+                        {{-- --------------------------- --}}
+
+
+
+
+
+
+
+                        {{-- rightButton --}}
+
+
+
+                        {{-- 1: pending --}}
+                        @if ($delivery->status == 'Pending')
+
+
+
+                        {{-- :: cancel --}}
+                        <button wire:click="update({{ $delivery->id }}, 'Canceled')" wire:loading.class='disabled'
                             class="btn btn--scheme btn--remove py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 px-3"
-                            type="button" style="/*border: 1px solid var(--color-theme-secondary);*/">
-                            Not Available
+                            type="button">
+                            Cancel Order
                         </button>
+
+
+
+
+
+                        {{-- 2: empty --}}
+                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Not Available')
+
+
+                        <button
+                            class="btn btn--scheme btn-outline-warning py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 px-3 disabled"
+                            type="button" data-bs-target="#map-location" data-bs-toggle="modal">
+                            -----------
+                        </button>
+
+
+
+
+
+                        {{-- 3: mapLocation --}}
+                        @else
+
+
+
+                        <button wire:click='viewDeliveryMap({{ $delivery->id }})'
+                            class="btn btn--scheme btn-outline-warning py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 px-3"
+                            type="button" data-bs-target="#map-location" data-bs-toggle="modal">
+                            Map Location
+                        </button>
+
+
+
+                        @endif
+                        {{-- end if --}}
 
 
 
                     </div>
                 </div>
             </div>
+
+
+            @endforeach
             {{-- end loop --}}
+
+
+
+
+
+
+
+
+
+            {{-- ----------------------- --}}
+            {{-- ----------------------- --}}
+
+
+
+
+
+
+            {{-- :: fallback --}}
+            @if ($deliveries->count() == 0)
+
+
+            <div class="col-12 mb-5">
+                <div class="profile--wrap" data-aos="fade" data-aos-duration="600" data-aos-once="true"
+                    wire:ignore.self>
+                    <div class="d-flex align-items-center justify-content-center mb-0 profile--wrap-section">
+                        <button class="btn p-0" type='button'>
+                            <svg class="bi bi-info-lg fs-5" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704l1.323-6.208Zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0Z">
+                                </path>
+                            </svg>
+                        </button>
+                        <p class="fs-6 mb-0 ms-3 fw-normal">No Pending Delivery</p>
+                    </div>
+                </div>
+            </div>
+
+
+            @endif
+            {{-- end if - fallback --}}
+
+
+
+
+
+
 
         </div>
     </div>

@@ -142,7 +142,7 @@
 
 
                         {{-- icon --}}
-                        <a class="btn" role="button" href="tel:+971{{ $driver->phone }}">
+                        <a class="btn" href="tel:+971{{ $driver->phone }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-telephone fs-5">
                                 <path
@@ -152,7 +152,9 @@
                         </a>
 
                         {{-- text --}}
-                        <p class="mb-0 ms-3 fw-normal fs-14">+971 {{ $driver->phone }}</p>
+                        <p class="mb-0 ms-3 fw-normal fs-14 w-100">+971 <span class='init--link'>{{ $driver->phone
+                                }}</span>
+                        </p>
                     </div>
 
 
@@ -166,7 +168,7 @@
                     <div class="d-flex align-items-center justify-content-start mb-3 profile--wrap-section">
 
                         {{-- icon --}}
-                        <button type='button' class="btn" role="button">
+                        <button type='button' class="btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-credit-card-2-front fs-5">
                                 <path
@@ -180,7 +182,8 @@
 
 
                         {{-- text --}}
-                        <p class="mb-0 ms-3 fw-normal fs-14">License - {{ $driver->license }}</p>
+                        <p class="mb-0 ms-3 fw-normal fs-14 w-100">License - <span class='init--link'>{{
+                                $driver->license }}</span></p>
                     </div>
 
 
@@ -199,7 +202,7 @@
                     <div class="d-flex align-items-center justify-content-start mb-3 profile--wrap-section">
 
                         {{-- icon --}}
-                        <button class="btn" role="button" type='button'>
+                        <button class="btn" type='button'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 class="bi bi-car-front fs-5" viewBox="0 0 16 16">
                                 <path
@@ -225,7 +228,7 @@
                     <div class="d-flex align-items-center justify-content-start mb-0 profile--wrap-section">
 
                         {{-- icon --}}
-                        <button type='button' class="btn" role="button">
+                        <button type='button' class="btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-pin-map-fill fs-5">
                                 <path fill-rule="evenodd"
@@ -262,7 +265,7 @@
 
 
             {{-- license picture --}}
-            <div class="col-12 mb-4" data-aos="fade-up" data-aos-duration="800" data-aos-once="true" wire:ignore.self>
+            <div class="col-12 mb-4">
 
                 <form wire:submit='updateLicense'>
 

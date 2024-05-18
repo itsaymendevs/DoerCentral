@@ -4,12 +4,12 @@
 
 
         {{-- row --}}
-        <div class="row align-items-center min-vh-100" wire:ignore>
+        <div class="row align-items-center justify-content-center justify-content-md-start min-vh-100" wire:ignore>
 
 
 
             {{-- loginForm --}}
-            <div class="col-6 col-xxl-6">
+            <div class="col-11 col-lg-6 col-xl-5">
                 <form class="login--form" data-aos="fade-right" data-aos-duration="600" data-aos-once="true"
                     wire:submit='checkDriver'>
 
@@ -103,7 +103,7 @@
 
 
             {{-- coverImage --}}
-            <div class="col-6">
+            <div class="col-12 col-lg-6 col-xl-7 d-none d-lg-block">
                 <div class="d-block text-center" data-aos="zoom-in" data-aos-duration="600" data-aos-once="true">
                     <img class="w-100 of-cover vh-100 login--logo" src="{{ asset('assets/img/Login/cover.jpg') }}">
                 </div>

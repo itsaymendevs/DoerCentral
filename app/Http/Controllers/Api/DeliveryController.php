@@ -753,7 +753,6 @@ class DeliveryController extends Controller
         $driver->name = $request->name;
         $driver->phone = $request->phone;
         $driver->email = $request->email;
-        $driver->password = Hash::make($request->password);
         $driver->license = $request->license;
 
 

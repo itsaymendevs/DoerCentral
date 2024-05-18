@@ -903,7 +903,7 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
             // 1.2: getShift
-            $shiftType = ShiftType::where('shiftFrom', '>=', $customerAddress?->deliveryTime?->deliveryFrom)->where('shiftUntil', '<=', $customerAddress?->deliveryTime?->deliveryUntil)?->first();
+            $shiftType = ShiftType::where('shiftFrom', '<=', $customerAddress?->deliveryTime?->deliveryFrom)->where('shiftUntil', '>=', $customerAddress?->deliveryTime?->deliveryUntil)?->first();
 
 
 

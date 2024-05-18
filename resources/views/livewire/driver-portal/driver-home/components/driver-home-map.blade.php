@@ -73,8 +73,7 @@
 
                                 {{-- phone --}}
                                 <a href='tel:+971{{ $delivery?->customer?->phone }}'
-                                    class="btn btn--scheme btn--scheme-outline-1 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white mx-2"
-                                    type="button">
+                                    class="btn btn--scheme btn--scheme-outline-1 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white mx-2">
                                     Phone Call</a>
 
 

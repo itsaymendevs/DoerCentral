@@ -24,7 +24,7 @@ return new class extends Migration {
 
             // 1: general - type
             $table->bigInteger('typeId')->unsigned()->nullable();
-            $table->foreign('typeId')->references('id')->on('types')->onDelete('cascade');
+            $table->foreign('typeId')->references('id')->on('types')->onDelete('set null');
 
 
 

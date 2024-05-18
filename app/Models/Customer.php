@@ -361,7 +361,7 @@ class Customer extends Authenticatable
 
 
         // :: return
-        return $deliveryDay ? $deliveryDay->customerAddress : null;
+        return $deliveryDay ? $deliveryDay?->customerAddress : null;
 
 
 

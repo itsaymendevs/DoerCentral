@@ -132,6 +132,7 @@
                                         <th class="th--sm">Time</th>
                                         <th class="th--md">Location</th>
                                         <th class="th--md">Apartment - Floor</th>
+                                        <th class="th--sm">Driver</th>
                                         <th class="th--sm">Date</th>
                                         <th class="th--sm"></th>
                                     </tr>
@@ -191,6 +192,14 @@
                                             ?? ''
                                             }}
                                         </td>
+
+
+
+
+
+
+                                        {{-- driver --}}
+                                        <td>{{ $delivery?->driver?->name }}</td>
 
 
 

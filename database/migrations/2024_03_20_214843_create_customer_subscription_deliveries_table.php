@@ -31,7 +31,7 @@ return new class extends Migration {
 
 
             $table->bigInteger('driverId')->unsigned()->nullable();
-            $table->foreign('driverId')->references('id')->on('drivers')->onDelete('cascade');
+            $table->foreign('driverId')->references('id')->on('drivers')->onDelete('set null');
 
 
 

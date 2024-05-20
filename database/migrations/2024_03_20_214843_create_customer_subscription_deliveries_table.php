@@ -18,6 +18,11 @@ return new class extends Migration {
 
             // 1: general
             $table->date('deliveryDate')->nullable();
+            $table->string('pickupTime', 100)->nullable();
+            $table->string('deliveryTime', 100)->nullable();
+
+
+
             $table->string('status', 100)->nullable()->default('Pending');
             $table->string('pauseToken', 100)->nullable();
 
@@ -27,6 +32,7 @@ return new class extends Migration {
             // 1.2: isBagCollected - imageFile - remarks - driver - imageFile
             $table->text('imageFile')->nullable();
             $table->string('remarks', 255)->nullable();
+            $table->double('cashOnDelivery', 15)->nullable();
             $table->boolean('isBagCollected')->nullable()->default(0);
 
 

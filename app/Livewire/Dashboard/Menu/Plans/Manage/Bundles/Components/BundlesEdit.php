@@ -105,11 +105,9 @@ class BundlesEdit extends Component
 
 
         // 1: uploadFileFiles
-        if ($this->instance->imageFile != $this->instance->imageFileName) {
-
+        if ($this->instance->imageFile != $this->instance->imageFileName)
             $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/plans/bundles', $this->instance->imageFileName, 'BUN');
 
-        } // end if
 
 
 

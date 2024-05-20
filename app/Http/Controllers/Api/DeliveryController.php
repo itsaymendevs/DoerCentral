@@ -609,14 +609,18 @@ class DeliveryController extends Controller
         $driver->phone = $request->phone;
         $driver->email = $request->email;
         $driver->password = Hash::make($request->password);
-        $driver->license = $request->license;
+        $driver->license = $request->license ?? null;
+        $driver->plate = $request->plate ?? null;
 
 
 
 
-        // 1.2: imageFile - licenseFile
-        $driver->imageFile = $request->imageFileName;
-        $driver->licenseFile = $request->licenseFileName;
+        // 1.2: imageFile - license - plate - ownership
+        $driver->imageFile = $request->imageFileName ?? null;
+        $driver->licenseFile = $request->licenseFileName ?? null;
+        $driver->licenseRearFile = $request->licenseRearFileName ?? null;
+        $driver->plateFile = $request->plateFileName ?? null;
+        $driver->ownershipFile = $request->ownershipFileName ?? null;
 
 
 
@@ -753,14 +757,17 @@ class DeliveryController extends Controller
         $driver->name = $request->name;
         $driver->phone = $request->phone;
         $driver->email = $request->email;
-        $driver->license = $request->license;
+        $driver->license = $request->license ?? null;
+        $driver->plate = $request->plate ?? null;
 
 
 
-
-        // 1.2: imageFile - licenseFile
+        // 1.2: imageFile - license - plate - ownership
         $driver->imageFile = $request->imageFileName;
         $driver->licenseFile = $request->licenseFileName;
+        $driver->licenseRearFile = $request->licenseRearFileName;
+        $driver->plateFile = $request->plateFileName;
+        $driver->ownershipFile = $request->ownershipFileName;
 
 
 
@@ -769,7 +776,27 @@ class DeliveryController extends Controller
         $driver->shiftTypeId = $request->shiftTypeId;
 
 
+
+
+
+        // 1.4: resetPassword
+        if ($request?->password)
+            $driver->password = Hash::make($request->password);
+
+
+
+
+
         $driver->save();
+
+
+
+
+
+
+
+        // -------------------------------
+        // -------------------------------
 
 
 

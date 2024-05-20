@@ -34,7 +34,7 @@
 
         {{-- search --}}
         <input class="form-control form--input main-version mx-auto city-column-{{ $city->id }}" type="text"
-            wire:model.live.debounce.100ms='searchTiming' placeholder="Search by Timing" data-view="timings"
+            wire:model.live.debounce.50ms='searchTiming' placeholder="Search by Timing" data-view="timings"
             data-instance="{{ $city->id }}">
 
 
@@ -43,7 +43,7 @@
         <input class="form-control form--input main-version mx-auto city-column-{{ $city->id }}"
             placeholder="Delivery Charge" type="number" step='0.01' style="display: none" data-view="holidays"
             data-instance="{{ $city->id }}" wire:change='updateCharge($event.target.value)' data-bs-toggle="tooltip"
-            data-bss-tooltip="" title="Delivery Price in AED" value='{{ $city->deliveryCharge }}' required>
+            data-bss-tooltip="" title="Delivery Price in AED" value='{{ $city?->deliveryCharge }}' required>
 
     </div>
     {{-- end midCol --}}
@@ -144,7 +144,7 @@
                     <tr>
 
                         {{-- serial - timingName - from - until - charge --}}
-                        <td class="fw-bold">T-{{ $deliveryTime->id }}</td>
+                        <td class="fw-bold">T-{{ $globalSNCounter++ }}</td>
                         <td class="fw-bold">{{ $deliveryTime->title }}</td>
                         <td>{{ $deliveryTime->deliveryFrom }}</td>
                         <td>{{ $deliveryTime->deliveryUntil }}</td>
@@ -221,7 +221,8 @@
 
 
     {{-- manageHolidays --}}
-    <livewire:dashboard.delivery.components.delivery-manage-holidays :cityId='$city->id' key='{{ $city->id }}' />
+    <livewire:dashboard.delivery.delivery-cities.components.delivery-cities-holidays cityId='{{ $city->id }}'
+        key='city-holidays-{{ $city->id }}' />
 
 
 

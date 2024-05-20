@@ -20,7 +20,7 @@
     {{-- search --}}
     <div class="col-6 text-center">
         <input class="form-control form--input main-version mx-auto" type="search"
-            wire:model.live.debounce.100ms='searchPromoCode' placeholder="Search by PromoCode" />
+            wire:model.live.debounce.50ms='searchPromoCode' placeholder="Search by PromoCode" />
     </div>
 
 

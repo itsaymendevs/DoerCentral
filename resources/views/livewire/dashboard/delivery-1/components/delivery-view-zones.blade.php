@@ -23,7 +23,7 @@
     {{-- searchBox --}}
     <div class="col-6 text-center">
         <input class="form-control form--input main-version mx-auto" type="search"
-            wire:model.live.debounce.100ms='searchZone' placeholder="Search by Zone">
+            wire:model.live.debounce.50ms='searchZone' placeholder="Search by Zone">
     </div>
 
 

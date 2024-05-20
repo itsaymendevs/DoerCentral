@@ -6,6 +6,11 @@ use App\Livewire\CustomerPortal\CustomerAddresses;
 use App\Livewire\CustomerPortal\CustomerCalendar;
 use App\Livewire\CustomerPortal\CustomerDeliveries;
 use App\Livewire\CustomerPortal\CustomerGeneral;
+use App\Livewire\Dashboard\Delivery\DeliveryCities;
+use App\Livewire\Dashboard\Delivery\DeliveryDrivers;
+use App\Livewire\Dashboard\Delivery\DeliveryToday;
+use App\Livewire\Dashboard\Delivery\DeliveryVehicles;
+use App\Livewire\Dashboard\Delivery\DeliveryZones;
 use App\Livewire\Dashboard\Extra\Reports\ReportsDelivery;
 use App\Livewire\Dashboard\Inventory\Configurations;
 use App\Livewire\Dashboard\Inventory\Ingredients;
@@ -263,7 +268,68 @@ Route::middleware(['auth.user'])->group(function () {
 
 
         // 3: Delivery
-        Route::get('dashboard/delivery', Delivery::class)->name('dashboard.delivery');
+        Route::get('dashboard/delivery', DeliveryToday::class)->name('dashboard.delivery');
+
+
+
+
+
+        // ---------
+
+
+
+
+
+        // 3.1: cities
+        Route::get('dashboard/delivery/cities', DeliveryCities::class)->name('dashboard.delivery.cities');
+
+
+
+
+
+
+        // ---------
+
+
+
+
+
+        // 3.2: vehicles
+        Route::get('dashboard/delivery/vehicles', DeliveryVehicles::class)->name('dashboard.delivery.vehicles');
+
+
+
+
+
+
+
+        // ---------
+
+
+
+
+
+        // 3.3: zones
+        Route::get('dashboard/delivery/zones', DeliveryZones::class)->name('dashboard.delivery.zones');
+
+
+
+
+
+
+        // ---------
+
+
+
+
+
+        // 3.4: drivers
+        Route::get('dashboard/delivery/drivers', DeliveryDrivers::class)->name('dashboard.delivery.drivers');
+
+
+
+
+
 
 
 

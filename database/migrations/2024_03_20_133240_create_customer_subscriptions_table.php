@@ -113,7 +113,8 @@ return new class extends Migration {
 
 
 
-            // 3.2: deliveryCharge
+            // 3.2: cashOnDelivery - deliveryCharge
+            $table->boolean('isCashOnDelivery')->nullable()->default(0);
             $table->double('deliveryCharge', 15)->nullable()->default(0);
 
 

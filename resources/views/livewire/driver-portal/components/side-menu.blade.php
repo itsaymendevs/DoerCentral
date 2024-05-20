@@ -6,7 +6,7 @@
 
 
     {{-- 1: closeButton --}}
-    <button class="btn btn-danger btn--close sidebar--menu-close" type="button">
+    <button class="btn btn--remove-outline btn--close sidebar--menu-close" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
             class="bi bi-plus-lg fs-2" style="transform: rotate(45deg)">
             <path fill-rule="evenodd"

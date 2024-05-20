@@ -199,7 +199,7 @@
 
 
                     {{-- plate --}}
-                    <div class="d-flex align-items-center justify-content-start mb-3 profile--wrap-section">
+                    <div class="d-flex align-items-center justify-content-start mb-3 profile--wrap-section d-none">
 
                         {{-- icon --}}
                         <button class="btn" type='button'>

@@ -99,7 +99,7 @@
                 {{-- select --}}
                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
 
-                    <select class="form-select form--select" id='district-select' data-instance='searchDistrictId'
+                    <select class="form-select form--select" id='district-select' data-instance='searchDistrict'
                         data-clear='true'>
                         <option value=""></option>
 

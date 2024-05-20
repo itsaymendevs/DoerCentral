@@ -61,7 +61,7 @@
 
 
             {{-- 1: total --}}
-            <div class="col-4 text-end" data-aos="fade-up" data-aos-duration="600" data-aos-once="true"
+            <div class="col-4 text-end" data-aos="fade-left" data-aos-duration="600" data-aos-once="true"
                 wire:ignore.self>
                 <div class="overview--box shrink--self solid">
                     <h6 class="fs-11">Total</h6>
@@ -77,7 +77,7 @@
 
 
             {{-- 2: pending --}}
-            <div class="col-4 text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100"
+            <div class="col-4 text-end" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self solid">
                     <h6 class="fs-11">Pending</h6>
@@ -90,7 +90,7 @@
 
 
             {{-- 3: completed --}}
-            <div class="col-4 text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200"
+            <div class="col-4 text-end" data-aos="fade-left" data-aos-duration="600" data-aos-delay="400"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self solid">
                     <h6 class="fs-11">Completed</h6>
@@ -115,7 +115,8 @@
 
 
         {{-- content --}}
-        <div class="row align-items-end mb-submenu pb-4">
+        <div class="row align-items-end mb-submenu pb-4" data-aos="fade" data-aos-duration="800" data-aos-once="true"
+            wire:ignore.self>
 
 
 
@@ -123,8 +124,7 @@
 
 
             {{-- 1: district --}}
-            <div class="col-6 col-lg-6 mt-4" data-aos="fade" data-aos-duration="800" data-aos-once="true"
-                wire:ignore.self>
+            <div class="col-6 col-lg-6 mt-4">
 
 
 
@@ -140,7 +140,7 @@
                 {{-- select --}}
                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events' wire:ignore>
 
-                    <select class="form-select form--select" id='district-select' data-instance='searchDistrictId'
+                    <select class="form-select form--select" id='district-select' data-instance='searchDistrict'
                         data-clear='true'>
                         <option value=""></option>
 
@@ -165,8 +165,7 @@
 
 
             {{-- 2: status --}}
-            <div class="col-6 col-lg-6 mt-4" data-aos="fade" data-aos-duration="800" data-aos-once="true"
-                wire:ignore.self>
+            <div class="col-6 col-lg-6 mt-4">
 
 
 
@@ -296,7 +295,7 @@
 
                         {{-- deliveryNo. --}}
                         <h6 class="mb-0 fs-14">
-                            Order<span class="ms-1 text-gold">#{{ $delivery->id }}</span>
+                            ORD.<span class="ms-1  fs-12 text-gold">#{{ $delivery->id }}</span>
                         </h6>
 
 
@@ -315,7 +314,7 @@
 
 
                         {{-- :: canceled --}}
-                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Not Available')
+                        @elseif ($delivery->status == 'Canceled')
 
 
                         <h6 class="fs-14 mb-0 text-danger text-uppercase">{{ $delivery->status }}</h6>
@@ -481,7 +480,7 @@
 
 
                         {{-- 4: canceled --}}
-                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Not Available')
+                        @elseif ($delivery->status == 'Canceled' )
 
 
 
@@ -529,7 +528,7 @@
 
 
                         {{-- 2: empty --}}
-                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Not Available')
+                        @elseif ($delivery->status == 'Canceled')
 
 
                         <button
@@ -600,7 +599,7 @@
                                 </path>
                             </svg>
                         </button>
-                        <p class="fs-6 mb-0 ms-3 fw-normal">No Pending Delivery</p>
+                        <p class="fs-6 mb-0 ms-3 fw-normal">Delivery List is Empty</p>
                     </div>
                 </div>
             </div>

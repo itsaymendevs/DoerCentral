@@ -13,7 +13,7 @@ class DeliveryForm extends Form
     public $status, $bags;
 
 
-    public $id, $remarks, $imageFile;
+    public $id, $remarks, $cashOnDelivery, $imageFile;
 
 
     // :: helpers

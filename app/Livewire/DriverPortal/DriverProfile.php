@@ -22,7 +22,7 @@ class DriverProfile extends Component
 
 
     // :: variables
-    public $driver, $licenseFile, $licenseFileName;
+    public $driver, $licenseFile, $licenseFileName, $licenseRearFile, $licenseRearFileName;
 
 
 
@@ -41,6 +41,9 @@ class DriverProfile extends Component
         // :: syncLicense
         $this->licenseFile = $this->driver->licenseFile;
         $this->licenseFileName = $this->driver->licenseFile;
+
+        $this->licenseRearFile = $this->driver->licenseRearFile;
+        $this->licenseRearFileName = $this->driver->licenseRearFile;
 
 
     } // end function
@@ -76,13 +79,27 @@ class DriverProfile extends Component
 
 
 
+        // 1: replaceFile
+        if ($this->licenseRearFile != $this->licenseRearFileName) {
+
+            $this->licenseRearFileName = $this->replaceFile($this->licenseRearFile, 'delivery/drivers/licenses', $this->licenseRearFileName, 'LIC-R');
+
+        } // end if
+
+
+
+
+
+
 
 
 
         // 1.2: updateLocally
         $driver = Driver::find($this->driver->id);
 
-        $driver->licenseFile = $this->licenseFileName;
+        $driver->licenseFile = $this->licenseFileName ?? null;
+        $driver->licenseRearFile = $this->licenseRearFileName ?? null;
+
         $driver->save();
 
 

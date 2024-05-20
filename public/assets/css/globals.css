@@ -92,6 +92,10 @@
     border-radius: var(--badge-radius);
 }
 
+.no-transition {
+    transition: unset;
+}
+
 /* text */
 
 .text-gold {

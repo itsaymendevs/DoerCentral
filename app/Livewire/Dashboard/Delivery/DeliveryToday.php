@@ -70,10 +70,13 @@ class DeliveryToday extends Component
 
 
 
-            $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
+            $deliveries = CustomerSubscriptionDelivery::whereIn('status', $statuses)
+                ->where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
                 ->where('deliveryDate', '<=', $this->searchUntilDate ?? $this->getCurrentDate())
                 ->where('status', 'LIKE', '%' . $this->searchStatus . '%')
                 ->where('planId', $this->searchPlan)
+                ->orderBy('deliveryDate')
+                ->orderBy('status')
                 ->paginate(env('PAGINATE_XXL'));
 
 
@@ -84,9 +87,12 @@ class DeliveryToday extends Component
 
 
 
-            $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
+            $deliveries = CustomerSubscriptionDelivery::whereIn('status', $statuses)
+                ->where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
                 ->where('deliveryDate', '<=', $this->searchUntilDate ?? $this->getCurrentDate())
                 ->where('status', 'LIKE', '%' . $this->searchStatus . '%')
+                ->orderBy('deliveryDate')
+                ->orderBy('status')
                 ->paginate(env('PAGINATE_XXL'));
 
 

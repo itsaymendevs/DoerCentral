@@ -65,10 +65,10 @@ use App\Livewire\Dashboard\Promos;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsCreate;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsView;
+use App\Livewire\DriverPortal\DriverHistory;
 use App\Livewire\DriverPortal\DriverHome;
 use App\Livewire\DriverPortal\DriverProfile;
 use App\Livewire\DriverPortal\DriverProfileEdit;
-use App\Livewire\DriverPortal\DriverSearch;
 use App\Livewire\Login;
 use App\Livewire\LoginCustomerPortal;
 use App\Livewire\LoginDriverPortal;
@@ -1493,8 +1493,8 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-        // 2: portal - driver - search
-        Route::get('portals/driver/search', DriverSearch::class)->name('portals.driver.search');
+        // 2: portal - driver - history
+        Route::get('portals/driver/history', DriverHistory::class)->name('portals.driver.history');
 
 
 
@@ -1507,8 +1507,10 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
+
         // 3: portal - driver - profile
         Route::get('portals/driver/profile', DriverProfile::class)->name('portals.driver.profile');
+
 
 
 

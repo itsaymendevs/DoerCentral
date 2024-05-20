@@ -35,11 +35,39 @@ class DriverHomeConfirm extends Component
 
         // 1: get instance
         $this->instance->id = $id;
+        $this->instance->bags = 0;
+
         $this->delivery = CustomerSubscriptionDelivery::find($id);
 
 
 
     } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateBags($operation)
+    {
+
+
+        $operation == 'plus' ? $this->instance->bags += 1 : $this->instance->bags -= 1;
+
+
+    } // end function
+
+
 
 
 

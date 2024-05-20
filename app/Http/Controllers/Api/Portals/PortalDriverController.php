@@ -42,6 +42,8 @@ class PortalDriverController extends Controller
         // 1.2: general
         $delivery->status = $request?->status;
         $delivery->remarks = $request?->remarks ?? null;
+        $delivery->collectedBags = $request?->bags ?? null;
+        $delivery->cashOnDelivery = $request?->cashOnDelivery ?? null;
         $delivery->imageFile = $request?->imageFileName ?? null;
 
         $delivery->save();

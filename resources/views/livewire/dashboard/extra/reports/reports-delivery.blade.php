@@ -86,21 +86,20 @@
                 {{-- hr --}}
                 <div class="d-flex align-items-center justify-content-between mb-1">
                     <hr style="width: 40%">
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Plan</label>
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">District</label>
                 </div>
 
 
 
                 {{-- select --}}
-                <div class="select--single-wrapper mb-4" wire:loading.class='no-events' data-instance='searchPlan'
-                    data-clear='true'>
-                    <select class="form-select form--select form--delivery-select" data-instance='searchPlan'
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                    <select class="form-select form--select form--delivery-select" data-instance='searchDistrict'
                         data-clear='true'>
                         <option value=""></option>
 
-                        {{-- loop - plans --}}
-                        @foreach ($plans ?? [] as $plan)
-                        <option value="{{ $plan->id }}">{{ $plan->name }}</option>
+                        {{-- loop - districts --}}
+                        @foreach ($districts ?? [] as $district)
+                        <option value="{{ $district->id }}">{{ $district->name }}</option>
                         @endforeach
                         {{-- end loop --}}
 
@@ -236,13 +235,15 @@
                         <thead>
                             <tr>
                                 <th class="th--xs"></th>
-                                <th class="th--sm">Customer</th>
-                                <th class="th--sm">Plan</th>
-                                <th class="th--sm">Time</th>
-                                <th class="th--md">Location</th>
-                                <th class="th--md">Apartment - Floor</th>
+                                <th class="th--md">Customer</th>
+                                <th class="th--sm">City</th>
+                                <th class="th--sm">District</th>
+                                <th class="th--xs">Pickup</th>
+                                <th class="th--xs">Delivery</th>
                                 <th class="th--sm">Date</th>
-                                <th class="th--sm"></th>
+                                <th class="th--sm">Bags</th>
+                                <th class="th--md">Cash on Delivery</th>
+                                <th class="th--sm">Status</th>
                             </tr>
                         </thead>
 
@@ -266,6 +267,16 @@
 
 
 
+
+                            {{-- ** GET ADDRESS --}}
+                            @php $customerAddress = $delivery->customer->addressByDay($delivery->deliveryDate) ?? null
+                            @endphp
+
+
+
+
+
+
                             {{-- singelDelivery --}}
                             <tr>
 
@@ -276,39 +287,56 @@
 
 
 
-                                {{-- plan - deliveryTime (ByCustomerAddress) --}}
-                                <td>{{ $delivery->plan->name }}</td>
+                                {{-- city - district --}}
+                                <td>{{ $customerAddress ? $customerAddress?->city->name : '' }}</td>
+                                <td>{{ $customerAddress ? $customerAddress?->district->name : '' }}</td>
+
+
+
+
+
+                                {{-- -------------------------------- --}}
+                                {{-- -------------------------------- --}}
+
+
+
+
+
+                                {{-- pickup - deliveryTimes --}}
                                 <td>
-                                    {{
-                                    $delivery->customer->addressByDay($delivery->deliveryDate)?->deliveryTime->title
-                                    ?? ''
-                                    }}
+                                    {{ $delivery?->pickupTime ? date('h:i A', strtotime($delivery?->pickupTime)) : '-'}}
                                 </td>
 
-
-
-
-                                {{-- locationAddress (byCustomerAddress) --}}
-                                <td class="scale--3">
-                                    {!! $delivery->customer
-                                    ->addressByDay($delivery->deliveryDate)?->halfAddress() ?? '' !!}
+                                <td>
+                                    {{ $delivery?->deliveryTime ? date('h:i A', strtotime($delivery?->deliveryTime)) :
+                                    '-'}}
                                 </td>
-
-                                <td class="scale--3">
-                                    {{
-                                    $delivery->customer->addressByDay($delivery->deliveryDate)?->apartmentAndFloor()
-                                    ?? ''
-                                    }}
-                                </td>
-
-
 
 
 
 
                                 {{-- deliveryDate --}}
-                                <td class="fw-bold text-theme">{{ date('d / m / Y',
-                                    strtotime($delivery->deliveryDate)) }}</td>
+                                <td>{{ date('d / m / Y', strtotime($delivery->deliveryDate)) }}</td>
+
+
+
+
+
+
+                                {{-- -------------------------------- --}}
+                                {{-- -------------------------------- --}}
+
+
+
+
+
+
+
+                                {{-- collectedBags - cashOnDelivery --}}
+                                <td>{{ $delivery?->collectedBags ?? 0 }}</td>
+                                <td>{{ $delivery?->cashOnDelivery ?? 0 }}</td>
+
+
 
 
 

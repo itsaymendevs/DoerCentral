@@ -1,7 +1,7 @@
 {{-- 1: sidebar menu --}}
 <div id="sidebar--menu"
     class="sidebar--menu d-flex align-items-center flex-column justify-content-center d-md-none invisible"
-    style='height: 0vh; opacity:0; transition:0.7s all ease-in-out;'>
+    style='height: 0vh; opacity:0; transition:0.4s all ease-in;'>
 
 
 
@@ -17,17 +17,33 @@
 
 
 
+
     {{-- 2: home --}}
-    <a class="btn btn--scheme" href="{{ route('portals.driver.home') }}">Home</a>
-
-
-    {{-- 3: profile --}}
-    <a class="btn btn--scheme" href="{{ route('portals.driver.profile') }}">Profile</a>
+    <a wire:navigate class="btn btn--scheme @if (Request::is('portals/driver/home')) active @endif"
+        href="{{ route('portals.driver.home') }}">Home</a>
 
 
 
 
-    {{-- 4: logout --}}
+
+    {{-- 3: history --}}
+    <a wire:navigate class="btn btn--scheme @if (Request::is('portals/driver/history')) active @endif"
+        href="{{ route('portals.driver.history') }}">History</a>
+
+
+
+
+    {{-- 4: profile --}}
+    <a wire:navigate class="btn btn--scheme @if (Request::is('portals/driver/profile')) active @endif"
+        href="{{ route('portals.driver.profile') }}">Profile</a>
+
+
+
+
+
+
+
+    {{-- 5: logout --}}
     <a class="btn btn--scheme" href="{{ route('portals.driver.login') }}"
         style="border-bottom-color: var(--bs-danger) !important;">Logout</a>
 

@@ -61,12 +61,42 @@
 
 
 
+
+
+
                         {{-- remarks --}}
                         <div class="col-12">
                             <label class="form-label form--label">Remarks</label>
                             <textarea class="form-control form--input form--textarea mb-4"
                                 wire:model='instance.remarks'></textarea>
                         </div>
+
+
+
+
+
+
+
+
+                        {{-- cash on delivery --}}
+                        <div class="col-12">
+                            <label class="form-label form--label">Collected Cash</label>
+                            <input class="form-control form--input mb-4" type="number" min="0" step="0.01"
+                                wire:model='instance.cashOnDelivery' />
+
+                        </div>
+
+
+
+
+
+
+
+
+                        {{-- -------------------------------- --}}
+                        {{-- -------------------------------- --}}
+
+
 
 
 
@@ -95,7 +125,7 @@
 
                                 {{-- minusButton --}}
                                 <button class="btn btn--scheme px-2 range--button minus for-driver" type="button"
-                                    data-type="minus" data-target="bag-counter-1">
+                                    wire:click="updateBags('minus')">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                         viewBox="0 0 16 16" class="bi bi-dash-circle">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z">
@@ -111,16 +141,20 @@
 
 
                                 {{-- input --}}
-                                <input class="form-control form--input mb-0 form--bag-input" type="number" min="0"
-                                    max="{{ $delivery?->subscription?->unCollectedBags() ?? 0 }}" step="1"
-                                    wire:model='instance.bags' required />
+                                <input class="form-control form--input mb-0 form--bag-input" data-input="bag-counter-1"
+                                    type="number" min="0" max="{{ $delivery?->subscription?->unCollectedBags() ?? 0 }}"
+                                    step="1" wire:model='instance.bags' required />
+
+
+
+
 
 
 
 
                                 {{-- plusButton --}}
                                 <button class="btn btn--scheme px-2 range--button plus for-driver" type="button"
-                                    data-type="plus" data-target="bag-counter-1">
+                                    wire:click="updateBags('plus')">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                         viewBox="0 0 16 16" class="bi bi-plus-circle">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z">

@@ -258,6 +258,14 @@
 
 
 
+
+        {{-- 1.6: init actions (download / print) --}}
+        <script src="{{ asset('assets/js/init-actions.js') }}"></script>
+
+
+
+
+
         {{-- 1.6: otherScripts --}}
         @yield('scripts')
 

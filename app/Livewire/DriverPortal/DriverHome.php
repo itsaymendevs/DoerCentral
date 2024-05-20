@@ -3,6 +3,8 @@
 namespace App\Livewire\DriverPortal;
 
 use App\Models\CityDistrict;
+use App\Models\CustomerAddress;
+use App\Models\CustomerDeliveryDay;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\Driver;
 use App\Traits\HelperTrait;
@@ -22,7 +24,7 @@ class DriverHome extends Component
 
     // :: variables
     public $driver, $deliveryId, $deliveryStatus;
-    public $searchDistrictId, $searchStatus;
+    public $searchDistrict, $searchStatus;
 
 
 
@@ -216,12 +218,76 @@ class DriverHome extends Component
 
 
 
-        // 1.2: deliveries
-        $deliveries = CustomerSubscriptionDelivery::whereIn('status', $statuses)
-            ->where('deliveryDate', $this->getCurrentDate())
-            ->where('driverId', $this->driver?->id)
-            ->where('status', 'LIKE', '%' . $this->searchStatus ?? '' . '%')
-            ->get();
+
+        // ---------------------------
+        // ---------------------------
+
+
+
+
+        // 2: get Deliveries
+
+
+
+        // 2.1: district
+        if ($this->searchDistrict) {
+
+
+
+
+            // 2.2: prepDistrictFilter
+            $weekDay = date('l', strtotime($this->getCurrentDate()));
+
+
+
+            $customerAddresses = CustomerAddress::whereHas('deliveryDays', function ($query) use ($weekDay) {
+
+                $query?->where('weekDay', $weekDay);
+
+            })?->where('cityDistrictId', $this->searchDistrict)?->pluck('customerId')?->toArray() ?? [];
+
+
+
+
+
+
+
+
+
+            // 2.3: getDeliveries
+            $deliveries = CustomerSubscriptionDelivery::whereIn('status', $statuses)
+                ->where('deliveryDate', $this->getCurrentDate())
+                ->where('driverId', $this->driver?->id)
+                ->whereIn('customerId', $customerAddresses)
+                ->where('status', 'LIKE', '%' . $this->searchStatus ?? '' . '%')
+                ->get();
+
+
+
+
+
+
+
+
+
+            // 2.5: regular
+        } else {
+
+
+            $deliveries = CustomerSubscriptionDelivery::whereIn('status', $statuses)
+                ->where('deliveryDate', $this->getCurrentDate())
+                ->where('driverId', $this->driver?->id)
+                ->where('status', 'LIKE', '%' . $this->searchStatus ?? '' . '%')
+                ->get();
+
+
+        } // end if
+
+
+
+
+
+
 
 
 

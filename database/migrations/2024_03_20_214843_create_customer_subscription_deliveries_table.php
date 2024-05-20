@@ -29,11 +29,16 @@ return new class extends Migration {
 
 
 
-            // 1.2: isBagCollected - imageFile - remarks - driver - imageFile
+            // 1.2: isBagCollected -cashOnDelivery - imageFile - remarks - driver - imageFile
             $table->text('imageFile')->nullable();
             $table->string('remarks', 255)->nullable();
             $table->double('cashOnDelivery', 15)->nullable();
+
+
             $table->boolean('isBagCollected')->nullable()->default(0);
+            $table->integer('collectedBags')->nullable();
+
+
 
 
             $table->bigInteger('driverId')->unsigned()->nullable();

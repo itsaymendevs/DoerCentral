@@ -12,11 +12,11 @@
 
 
             {{-- 1: total --}}
-            <div class="col-4 text-end" data-aos="fade-up" data-aos-duration="600" data-aos-once="true"
+            <div class="col-4 text-end" data-aos="fade-left" data-aos-duration="600" data-aos-once="true"
                 wire:ignore.self>
                 <div class="overview--box shrink--self solid">
                     <h6 class="fs-11">Total</h6>
-                    <p class="fs-5 bg-transparent py-1">{{ $driver?->todayDeliveries()?->count() ?? 0 }}</p>
+                    <p class="fs-5 bg-transparent py-1">{{ $deliveries?->count() ?? 0 }}</p>
                 </div>
             </div>
 
@@ -27,12 +27,13 @@
 
 
 
-            {{-- 2: pending --}}
-            <div class="col-4 text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100"
+            {{-- 2: pending / notPicked --}}
+            <div class="col-4 text-end" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self solid">
-                    <h6 class="fs-11">Pending</h6>
-                    <p class="fs-5 bg-transparent py-1">{{ $driver?->todayPendingDeliveries()?->count() ?? 0 }}</p>
+                    <h6 class="fs-11">Not Picked</h6>
+                    <p class="fs-5 bg-transparent py-1">{{ $deliveries?->where('status', 'Pending')?->count() ?? 0 }}
+                    </p>
                 </div>
             </div>
 
@@ -41,11 +42,12 @@
 
 
             {{-- 3: completed --}}
-            <div class="col-4 text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200"
+            <div class="col-4 text-end" data-aos="fade-left" data-aos-duration="600" data-aos-delay="400"
                 data-aos-once="true" wire:ignore.self>
                 <div class="overview--box shrink--self solid">
                     <h6 class="fs-11">Completed</h6>
-                    <p class="fs-5 bg-transparent py-1">{{ $driver?->todayCompletedDeliveries()?->count() ?? 0 }}</p>
+                    <p class="fs-5 bg-transparent py-1">{{ $deliveries?->where('status', 'Completed')?->count() ?? 0 }}
+                    </p>
                 </div>
             </div>
 
@@ -71,7 +73,8 @@
 
 
         {{-- content --}}
-        <div class="row align-items-end mb-submenu">
+        <div class="row align-items-end mb-submenu" data-aos="fade-up" data-aos-duration="800" data-aos-once="true"
+            wire:ignore.self>
 
 
 
@@ -80,8 +83,7 @@
 
 
             {{-- 1: district --}}
-            <div class="col-6 col-lg-6 mt-4" data-aos="fade-up" data-aos-duration="800" data-aos-once="true"
-                wire:ignore.self>
+            <div class="col-12 col-lg-12 mt-4">
 
 
 
@@ -120,10 +122,16 @@
 
 
 
+            {{-- -------------------------- --}}
+            {{-- -------------------------- --}}
+
+
+
+
+
 
             {{-- 2: status --}}
-            <div class="col-6 col-lg-6 mt-4" data-aos="fade-up" data-aos-duration="800" data-aos-once="true"
-                wire:ignore.self>
+            <div class="col-6 col-lg-6">
 
 
 
@@ -156,6 +164,33 @@
 
 
 
+
+
+
+
+            {{-- 3: date --}}
+            <div class="col-6 col-lg-6">
+
+
+
+
+                {{-- hr --}}
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                    <hr style="width: 65%" />
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Date</label>
+                </div>
+
+
+
+                {{-- input --}}
+                <input class="form-control form--input mb-4" type="date" max="{{ date('Y-m-d', strtotime('-1 day')) }}"
+                    wire:model.live='searchDeliveryDate' />
+
+
+
+
+            </div>
+            {{-- endFilter --}}
 
 
 
@@ -253,7 +288,7 @@
 
                         {{-- deliveryNo. --}}
                         <h6 class="mb-0 fs-14">
-                            Order<span class="ms-1 text-gold">#{{ $delivery->id }}</span>
+                            ORD.<span class="ms-1 fs-12 text-gold">#{{ $delivery->id }}</span>
                         </h6>
 
 
@@ -272,7 +307,7 @@
 
 
                         {{-- :: canceled --}}
-                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Not Available')
+                        @elseif ($delivery->status == 'Canceled')
 
 
                         <h6 class="fs-14 mb-0 text-danger text-uppercase">{{ $delivery->status }}</h6>
@@ -288,6 +323,23 @@
 
                         @endif
                         {{-- end if --}}
+
+
+
+
+
+
+
+                        {{-- ---------------- --}}
+                        {{-- ---------------- --}}
+
+
+
+
+                        {{-- bags --}}
+                        <h6 class="mb-0 fs-14">
+                            <span class="me-1 text-gold">{{ $delivery?->collectedBags ?? 0 }}</span>Bags
+                        </h6>
 
 
 
@@ -313,7 +365,7 @@
 
                     {{-- customer --}}
                     <div>
-                        <h6 class="mb-3 fw-semibold">{{ $delivery->customer->fullName() }}</h6>
+                        <h6 class="mb-1 fw-semibold">{{ $delivery->customer->fullName() }}</h6>
                     </div>
 
 
@@ -327,22 +379,8 @@
 
 
                     {{-- city - district --}}
-                    <h6 class="mb-2 fs-13 fw-normal">{{ $customerAddress->city->name }}, {{
+                    <h6 class="mb-3 fs-13 fw-normal">{{ $customerAddress->city->name }}, {{
                         $customerAddress->district->name }}</h6>
-
-
-
-                    {{-- addressLocation --}}
-                    <h6 class="mb-1 fs-13 fw-normal">
-                        Apartment. {{ $customerAddress?->apartment }}
-                        @if ($customerAddress?->floor)
-                        <span class='me-1'>&#x2022;</span>Floor. {{ $customerAddress?->floor }}
-                        @endif
-                    </h6>
-
-
-                    <h6 class="fs-13 fw-normal">{{ $customerAddress?->locationAddress }}</h6>
-
 
 
 
@@ -350,7 +388,7 @@
                     @else
 
 
-                    <h6 class="mb-2 fs-13 fw-normal">Address Unavailable</h6>
+                    <h6 class="mb-3 fs-13 fw-normal">Address Unavailable</h6>
 
 
                     @endif
@@ -369,137 +407,38 @@
 
 
 
-
-
-
-
-
-                    {{-- actionButtons --}}
-                    <div class="mt-4 d-flex align-items-center justify-content-between">
-
-
-                        {{-- confirmPicking --}}
-
-
-                        {{-- 1: pending --}}
-                        @if ($delivery->status == 'Pending')
-
-                        <button wire:click="update({{ $delivery->id }}, 'Picked')" wire:loading.class='disabled'
-                            class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white"
-                            type="button">Confirm Picking</button>
-
-
-
-
-                        {{-- 2: picked --}}
-                        @elseif ($delivery->status == 'Picked')
-
-
-                        <button wire:click='confirmDelivery({{ $delivery->id }})'
-                            class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white"
-                            type="button" data-bs-toggle='modal' data-bs-target='#confirm-delivery'>Confirm
-                            Delivery</button>
-
-
-
-
-
-
-                        {{-- 3: completed --}}
-                        @elseif ($delivery->status == 'Completed')
-
-
-
-
-                        <button
-                            class="btn btn--scheme btn--scheme-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white no-events"
-                            type="button">{{ $delivery->status }}</button>
-
-
-
-
-
-                        {{-- 4: canceled --}}
-                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Not Available')
-
-
-
-                        <button
-                            class="btn btn--scheme btn--remove py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 px-3 no-events"
-                            type="button">{{ $delivery->status }}</button>
-
-
-
-                        @endif
-                        {{-- end if --}}
-
-
-
-
-
-
-                        {{-- --------------------------- --}}
-                        {{-- --------------------------- --}}
-
-
-
-
-
-
-
-                        {{-- rightButton --}}
-
-
-
-                        {{-- 1: pending --}}
-                        @if ($delivery->status == 'Pending')
-
-
-
-                        {{-- :: cancel --}}
-                        <button wire:click="update({{ $delivery->id }}, 'Canceled')" wire:loading.class='disabled'
-                            class="btn btn--scheme btn--remove py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 px-3"
-                            type="button">
-                            Cancel Order
-                        </button>
-
-
-
-
-
-                        {{-- 2: empty --}}
-                        @elseif ($delivery->status == 'Canceled' || $delivery->status == 'Not Available')
-
-
-                        <button
-                            class="btn btn--scheme btn-outline-warning py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 px-3 disabled"
-                            type="button" data-bs-target="#map-location" data-bs-toggle="modal">
-                            -----------
-                        </button>
-
-
-
-
-
-                        {{-- 3: mapLocation --}}
-                        @else
-
-
-
-                        <button wire:click='viewDeliveryMap({{ $delivery->id }})'
-                            class="btn btn--scheme btn-outline-warning py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 px-3"
-                            type="button" data-bs-target="#map-location" data-bs-toggle="modal">
-                            Map Location
-                        </button>
-
-
-
-                        @endif
-                        {{-- end if --}}
-
-
-
+                    {{-- pickup - delivery --}}
+                    @if ($delivery->status == 'Completed')
+
+                    <div class="d-flex align-items-center justify-content-between mb-0">
+                        <h6 class="fs-12 fw-normal">
+                            PICKUP<span class="ms-1 text-theme">
+                                {{ date('h:i A', strtotime($delivery?->pickupTime))}}</span>
+                        </h6>
+                        <h6 class="fs-12 fw-normal">
+                            DELIVERY<span class="ms-1 text-theme">
+                                {{ date('h:i A', strtotime($delivery?->deliveryTime))}}</span>
+                        </h6>
                     </div>
+
+
+                    @endif
+                    {{-- end if --}}
+
+
+
+
+
+                    {{-- cashOnDelivery --}}
+                    <h6 class="text-center fs-12 fw-normal mb-0 mt-3 text-uppercase">
+                        <span class="fs-5 me-1 fw-semibold">{{ $delivery?->cashOnDelivery ?? 0 }}</span>AED Collected
+                    </h6>
+
+
+
+
+
+
                 </div>
             </div>
 
@@ -524,12 +463,11 @@
 
 
             {{-- :: fallback --}}
-            @if ($deliveries->count() == 0)
+            @if ($deliveries?->count() == 0)
 
 
             <div class="col-12 mb-5">
-                <div class="profile--wrap" data-aos="fade" data-aos-duration="600" data-aos-once="true"
-                    wire:ignore.self>
+                <div class="profile--wrap">
                     <div class="d-flex align-items-center justify-content-center mb-0 profile--wrap-section">
                         <button class="btn p-0" type='button'>
                             <svg class="bi bi-info-lg fs-5" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
@@ -539,7 +477,7 @@
                                 </path>
                             </svg>
                         </button>
-                        <p class="fs-6 mb-0 ms-3 fw-normal">No Pending Delivery</p>
+                        <p class="fs-6 mb-0 ms-3 fw-normal">Delivery List is Empty</p>
                     </div>
                 </div>
             </div>
@@ -606,40 +544,6 @@
 
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-
-    @section('modals')
-
-
-
-    {{-- 1: confirm --}}
-    <livewire:driver-portal.driver-home.components.driver-home-confirm />
-
-
-
-    {{-- 2: map --}}
-    <livewire:driver-portal.driver-home.components.driver-home-map />
-
-
-    @endsection
-
-
-
-
-
-    {{-- -------------------------------------------------- --}}
-    {{-- -------------------------------------------------- --}}
-
-
-
 
 
 

@@ -231,9 +231,11 @@
 }
 
 .sidebar--menu .btn--scheme:hover,
-.sidebar--menu .btn--scheme:focus {
+.sidebar--menu .btn--scheme:focus,
+.sidebar--menu .btn--scheme.active {
     max-width: 210px;
-    border-bottom: 3px solid var(--bg-golden-dark);
+    border: none;
+    border-bottom: 3px solid var(--color-scheme-3);
 }
 
 .sidebar--menu .btn--close {

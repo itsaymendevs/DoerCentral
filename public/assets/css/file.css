@@ -11,6 +11,10 @@
     border-radius: var(--card-radius) !important;
 }
 
+tbody tr {
+    height: 60px;
+}
+
 .memoir--table thead {
     background-color: var(--table-border-color);
     border-top: 5px solid var(--table-border-color);

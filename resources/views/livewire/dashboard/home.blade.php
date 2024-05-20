@@ -797,9 +797,9 @@
                                             <thead>
                                                 <tr>
                                                     <th class="th--xs"></th>
-                                                    <th class="th--sm">Customer</th>
-                                                    <th class="th--md">Plan</th>
-                                                    <th class="th--lg">Unassigned Meals</th>
+                                                    <th class="th--lg">Customer</th>
+                                                    <th class="th--lg">Plan</th>
+                                                    <th class="th--xl">Unassigned Meals</th>
                                                     <th class="th--xs"></th>
                                                 </tr>
                                             </thead>

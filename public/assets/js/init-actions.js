@@ -73,3 +73,25 @@ function openWindow(section) {
         }, 3000);
     } // end if
 } // end function
+
+// -----------------------------------------------
+// -----------------------------------------------
+
+$(".flip--button").click(function () {
+    // 1: showRear
+    if ($(".flip--rear").css("display") == "none") {
+        $(".flip--front").slideToggle("200");
+
+        setTimeout(function () {
+            $(".flip--rear").slideToggle("200");
+        }, 1000);
+
+        // 2: showFront
+    } else {
+        $(".flip--rear").slideToggle("200");
+
+        setTimeout(function () {
+            $(".flip--front").slideToggle("200");
+        }, 1000);
+    } // end if
+});

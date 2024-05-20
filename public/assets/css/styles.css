@@ -44,6 +44,11 @@ body {
     border-color: var(--bg-theme);
 }
 
+/* transition */
+.no-transition {
+    transition: unset;
+}
+
 /* spinner */
 
 .spinner--float-right {
@@ -58,9 +63,6 @@ body {
     position: absolute;
     right: 25px;
     top: 25px;
-}
-
-.spinner--xs {
 }
 
 .btn {
@@ -546,8 +548,18 @@ textarea:read-only {
     background-color: var(--delete-color);
 }
 
+.badge--remove-outline {
+    border: 2px solid var(--delete-color);
+    color: var(--delete-color);
+}
+
 .badge--warning {
     background-color: #dba400;
+}
+
+.badge--warning-outline {
+    border: 2px solid #dba400;
+    color: #dba400;
 }
 
 .badge--theme {
@@ -557,6 +569,11 @@ textarea:read-only {
 
 .badge--theme-secondary {
     background-color: var(--color-theme-secondary);
+}
+
+.badge--theme-secondary-outline {
+    border: 2px solid var(--color-theme-secondary);
+    color: var(--color-theme-secondary);
 }
 
 .badge--secondary {

@@ -36,7 +36,7 @@
 
 
                 {{-- form --}}
-                <form class="px-4" wire:submit='store'>
+                <form class="px-4" wire:submit='update'>
                     <div class="row align-items-start pt-2 mb-4">
 
 

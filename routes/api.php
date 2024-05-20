@@ -203,6 +203,31 @@ Route::post('/dashboard/delivery/drivers/remove', [DeliveryController::class, 'r
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 1.5: delivery - storeVehicles - update - remove
+Route::post('/dashboard/delivery/vehicles/store', [DeliveryController::class, 'storeVehicle']);
+Route::post('/dashboard/delivery/vehicles/update', [DeliveryController::class, 'updateVehicle']);
+
+Route::post('/dashboard/delivery/vehicles/remove', [DeliveryController::class, 'removeVehicle']);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

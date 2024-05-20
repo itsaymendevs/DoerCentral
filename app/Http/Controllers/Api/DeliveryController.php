@@ -9,6 +9,7 @@ use App\Models\CityHoliday;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\Driver;
 use App\Models\DriverZone;
+use App\Models\Vehicle;
 use App\Models\Zone;
 use App\Models\ZoneDistrict;
 use App\Traits\DeliveryTrait;
@@ -614,7 +615,7 @@ class DeliveryController extends Controller
 
 
 
-        // 1.2: imageFile - license - plate - ownership
+        // 1.2: imageFile - license
         $driver->imageFile = $request->imageFileName ?? null;
         $driver->licenseFile = $request->licenseFileName ?? null;
         $driver->licenseRearFile = $request->licenseRearFileName ?? null;
@@ -624,6 +625,8 @@ class DeliveryController extends Controller
 
         // 1.3: shiftType
         $driver->shiftTypeId = $request->shiftTypeId;
+        $driver->vehicleId = $request?->vehicleId ?? null;
+
 
 
         $driver->save();
@@ -683,6 +686,10 @@ class DeliveryController extends Controller
 
 
     } // end function
+
+
+
+
 
 
 
@@ -758,7 +765,7 @@ class DeliveryController extends Controller
 
 
 
-        // 1.2: imageFile - license - plate - ownership
+        // 1.2: imageFile - license
         $driver->imageFile = $request->imageFileName;
         $driver->licenseFile = $request->licenseFileName;
         $driver->licenseRearFile = $request->licenseRearFileName;
@@ -766,8 +773,12 @@ class DeliveryController extends Controller
 
 
 
-        // 1.3: shiftType
+        // 1.3: shiftType - vehicle
         $driver->shiftTypeId = $request->shiftTypeId;
+        $driver->vehicleId = $request?->vehicleId ?? null;
+
+
+
 
 
 
@@ -891,6 +902,194 @@ class DeliveryController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function storeVehicle(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $vehicle = new Vehicle();
+
+        $vehicle->name = $request->name;
+        $vehicle->type = $request->type;
+        $vehicle->plate = $request->plate;
+        $vehicle->issueDate = $request->issueDate;
+        $vehicle->expiryDate = $request->expiryDate ?? null;
+
+
+
+
+        // 1.2: imageFile - plate - insurance - ownership
+        $vehicle->imageFile = $request->imageFileName ?? null;
+        $vehicle->plateFile = $request->plateFileName ?? null;
+        $vehicle->insuranceFile = $request->insuranceFileName ?? null;
+        $vehicle->ownershipFile = $request->ownershipFileName ?? null;
+
+
+
+        $vehicle->save();
+
+
+
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Vehicle has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function updateVehicle(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $vehicle = Vehicle::find($request->id);
+
+
+
+
+        // 1.2: general
+        $vehicle->name = $request->name;
+        $vehicle->type = $request->type;
+        $vehicle->plate = $request->plate;
+        $vehicle->issueDate = $request->issueDate;
+        $vehicle->expiryDate = $request->expiryDate ?? null;
+
+
+
+
+        // 1.2: imageFile - plate - insurance - ownership
+        $vehicle->imageFile = $request?->imageFileName;
+        $vehicle->plateFile = $request?->plateFileName;
+        $vehicle->insuranceFile = $request?->insuranceFileName;
+        $vehicle->ownershipFile = $request?->ownershipFileName;
+
+
+
+        $vehicle->save();
+
+
+
+
+
+        return response()->json(['message' => 'Vehicle has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+    public function removeVehicle(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        Vehicle::find($id)->delete();
+
+
+        return response()->json(['message' => 'Vehicle has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
 
 
 

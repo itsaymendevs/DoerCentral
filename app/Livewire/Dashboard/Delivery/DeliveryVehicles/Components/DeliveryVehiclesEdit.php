@@ -82,17 +82,25 @@ class DeliveryVehiclesEdit extends Component
 
 
         // 1.2.3: insurance
-        $preview = asset('storage/delivery/vehicles/insurances/' . $this->instance->insuranceFile);
-        $this->dispatch('setFilePreview', filePreview: 'insurance--preview-2', defaultPreview: $preview);
+        if ($this->instance->insuranceFile) {
+
+            $preview = asset('storage/delivery/vehicles/insurances/' . $this->instance->insuranceFile);
+            $this->dispatch('setFilePreview', filePreview: 'insurance--preview-2', defaultPreview: $preview);
+
+        } // end if
+
 
 
 
 
 
         // 1.2.4: ownership
-        $preview = asset('storage/delivery/vehicles/ownerships/' . $this->instance->ownershipFile);
-        $this->dispatch('setFilePreview', filePreview: 'ownership--preview-2', defaultPreview: $preview);
+        if ($this->instance->ownershipFile) {
 
+            $preview = asset('storage/delivery/vehicles/ownerships/' . $this->instance->ownershipFile);
+            $this->dispatch('setFilePreview', filePreview: 'ownership--preview-2', defaultPreview: $preview);
+
+        } // end if
 
 
 

@@ -3,6 +3,8 @@
 namespace App\Livewire\Dashboard\Extra\Reports;
 
 use App\Livewire\Dashboard\Delivery;
+use App\Models\CityDistrict;
+use App\Models\CustomerAddress;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\Plan;
 use App\Traits\HelperTrait;
@@ -22,7 +24,7 @@ class ReportsDelivery extends Component
 
 
     // :: variables
-    public $searchPlan, $searchFromDate, $searchUntilDate, $searchStatus = '', $searchCustomer = '';
+    public $searchDistrict, $searchFromDate, $searchUntilDate, $searchStatus = '', $searchCustomer = '';
 
 
 
@@ -34,6 +36,7 @@ class ReportsDelivery extends Component
 
         // 1: dependencies
         $plans = Plan::all();
+        $districts = CityDistrict::all();
         $statuses = ['Pending', 'Picked', 'Canceled', 'Completed'];
 
 
@@ -55,8 +58,23 @@ class ReportsDelivery extends Component
         // 1.3: getDeliveries
 
 
-        // :: withPlan
-        if ($this->searchPlan) {
+        // :: withDistrict
+        if ($this->searchDistrict) {
+
+
+
+
+            // 1.3.2: prepDistrictFilter
+            $weekDay = date('l', strtotime($this->getCurrentDate()));
+
+
+
+            $customerAddresses = CustomerAddress::where('cityDistrictId', $this->searchDistrict)?->pluck('customerId')?->toArray() ?? [];
+
+
+
+
+
 
 
 
@@ -64,15 +82,20 @@ class ReportsDelivery extends Component
                 ->where('deliveryDate', '>=', $this->searchFromDate ?? $this->getCurrentDate())
                 ->where('deliveryDate', '<=', $this->searchUntilDate ?? $this->getCurrentDate())
                 ->where('status', 'LIKE', '%' . $this->searchStatus . '%')
-                ->where('planId', $this->searchPlan)
+                ->whereIn('customerId', $customerAddresses)
                 ->orderBy('deliveryDate')
                 ->orderBy('status')
-                ->paginate(env('PAGINATE_XXL'));
+                ->paginate(env('PAGINATE_LG'));
 
 
 
 
-            // :: noPlan
+
+
+
+
+
+            // :: noDistrict
         } else {
 
 
@@ -83,7 +106,7 @@ class ReportsDelivery extends Component
                 ->where('status', 'LIKE', '%' . $this->searchStatus . '%')
                 ->orderBy('deliveryDate')
                 ->orderBy('status')
-                ->paginate(env('PAGINATE_XXL'));
+                ->paginate(env('PAGINATE_LG'));
 
 
         } // end if
@@ -103,7 +126,7 @@ class ReportsDelivery extends Component
 
 
 
-        return view('livewire.dashboard.extra.reports.reports-delivery', compact('deliveries', 'plans', 'statuses'));
+        return view('livewire.dashboard.extra.reports.reports-delivery', compact('deliveries', 'plans', 'statuses', 'districts'));
 
 
     } // end function

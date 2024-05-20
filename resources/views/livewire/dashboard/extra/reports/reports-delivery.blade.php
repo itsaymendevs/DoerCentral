@@ -69,8 +69,8 @@
 
             {{-- 1: customer --}}
             <div class="col-3" wire:ignore>
-                <input class="form-control form--input mb-4" type="text" placeholder="Search by Customer"
-                    wire:model.live='searchCustomer'>
+                <input class="form-control form--input mb-4 readonly" readonly type="text"
+                    placeholder="Search by Customer" wire:model.live='searchCustomer'>
             </div>
 
 

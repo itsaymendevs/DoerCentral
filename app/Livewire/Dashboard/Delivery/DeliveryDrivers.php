@@ -144,7 +144,7 @@ class DeliveryDrivers extends Component
 
         // 1: dependencies
         $drivers = Driver::where('name', 'LIKE', '%' . $this->searchDriver . '%')
-            ->paginate(env('PAGINATE'), pageName: 'drivers');
+            ->paginate(env('PAGINATE'));
 
 
 

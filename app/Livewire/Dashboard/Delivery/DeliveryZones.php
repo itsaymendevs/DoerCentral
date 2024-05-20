@@ -145,7 +145,7 @@ class DeliveryZones extends Component
 
         // 1: dependencies
         $zones = Zone::where('name', 'LIKE', '%' . $this->searchZone . '%')
-            ->paginate(env('PAGINATE'), pageName: 'zones');
+            ->paginate(env('PAGINATE'));
 
 
 

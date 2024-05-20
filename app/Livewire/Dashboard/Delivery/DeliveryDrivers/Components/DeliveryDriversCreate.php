@@ -71,21 +71,6 @@ class DeliveryDriversCreate extends Component
 
 
 
-        // 1.1.3: plate
-        if ($this->instance->plateFile)
-            $this->instance->plateFileName = $this->uploadFile($this->instance->plateFile, 'delivery/vehicles/plates', 'PLT');
-
-
-
-
-
-        // 1.1.4: ownership
-        if ($this->instance->ownershipFile)
-            $this->instance->ownershipFileName = $this->uploadFile($this->instance->ownershipFile, 'delivery/vehicles/ownerships', 'OWN');
-
-
-
-
 
 
 
@@ -106,8 +91,6 @@ class DeliveryDriversCreate extends Component
         $this->dispatch('resetFile', file: 'driver--file-1', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'license--file-1', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'license--file-2', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'plate--file-1', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'ownership--file-1', defaultPreview: $this->getDefaultPreview());
 
 
         $this->dispatch('refreshViews');

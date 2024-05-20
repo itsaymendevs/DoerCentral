@@ -312,6 +312,43 @@
 
 
 
+    {{-- ------------------------------------------ --}}
+    {{-- ------------------------------------------ --}}
+
+
+
+
+    @section('modals')
+
+
+    {{-- 1: createVehicle --}}
+    <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-create />
+
+    {{-- 1.2: editVehicle --}}
+    <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-edit />
+
+
+
+    @endsection
+
+
+
+
+
+    {{-- ------------------------------------------ --}}
+    {{-- ------------------------------------------ --}}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

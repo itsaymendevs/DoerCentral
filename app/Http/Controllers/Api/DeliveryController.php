@@ -610,7 +610,6 @@ class DeliveryController extends Controller
         $driver->email = $request->email;
         $driver->password = Hash::make($request->password);
         $driver->license = $request->license ?? null;
-        $driver->plate = $request->plate ?? null;
 
 
 
@@ -619,8 +618,6 @@ class DeliveryController extends Controller
         $driver->imageFile = $request->imageFileName ?? null;
         $driver->licenseFile = $request->licenseFileName ?? null;
         $driver->licenseRearFile = $request->licenseRearFileName ?? null;
-        $driver->plateFile = $request->plateFileName ?? null;
-        $driver->ownershipFile = $request->ownershipFileName ?? null;
 
 
 
@@ -758,7 +755,6 @@ class DeliveryController extends Controller
         $driver->phone = $request->phone;
         $driver->email = $request->email;
         $driver->license = $request->license ?? null;
-        $driver->plate = $request->plate ?? null;
 
 
 
@@ -766,8 +762,6 @@ class DeliveryController extends Controller
         $driver->imageFile = $request->imageFileName;
         $driver->licenseFile = $request->licenseFileName;
         $driver->licenseRearFile = $request->licenseRearFileName;
-        $driver->plateFile = $request->plateFileName;
-        $driver->ownershipFile = $request->ownershipFileName;
 
 
 

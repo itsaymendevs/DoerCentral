@@ -31,11 +31,13 @@ return new class extends Migration {
 
 
 
-            // 1.3: shiftType
+            // 1.3: shiftType - vehicle
+            $table->bigInteger('vehicleId')->unsigned()->nullable();
+            $table->foreign('vehicleId')->references('id')->on('vehicles')->onDelete('set null');
+
+
             $table->bigInteger('shiftTypeId')->unsigned()->nullable();
             $table->foreign('shiftTypeId')->references('id')->on('shift_types')->onDelete('set null');
-
-
 
 
 

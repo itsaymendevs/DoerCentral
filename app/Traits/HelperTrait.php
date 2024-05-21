@@ -4,12 +4,8 @@ namespace App\Traits;
 
 use App\Models\CityDeliveryTime;
 use App\Models\CityDistrict;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use stdClass;
-use Stichoza\GoogleTranslate\GoogleTranslate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 

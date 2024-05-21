@@ -30,6 +30,25 @@ class IngredientsBrandsEdit extends Component
 
 
 
+
+        // :: per 100G
+        $this->instance->calories *= 100;
+        $this->instance->proteins *= 100;
+        $this->instance->carbs *= 100;
+        $this->instance->fats *= 100;
+        $this->instance->cholesterol *= 100;
+        $this->instance->sodium *= 100;
+        $this->instance->fiber *= 100;
+        $this->instance->sugar *= 100;
+        $this->instance->calcium *= 100;
+        $this->instance->iron *= 100;
+        $this->instance->vitaminA *= 100;
+        $this->instance->vitaminC *= 100;
+
+
+
+
+
     } // end function
 
 

@@ -299,7 +299,7 @@
 
                         {{-- subheading --}}
                         <div class="col-12 text-end align-self-start brands--wrapper">
-                            <h6 class="fw-normal text-gold mb-2 me-3">Available Brands</h6>
+                            <h6 class="fw-normal text-gold mb-2 me-3">Available Brands Per 100 (G)</h6>
                         </div>
 
 

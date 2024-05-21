@@ -408,18 +408,18 @@ class InventoryExtraController extends Controller
 
 
         // 1.3: macros
-        $macro->calories = $request->calories ?? 0;
-        $macro->proteins = $request->proteins ?? 0;
-        $macro->carbs = $request->carbs ?? 0;
-        $macro->fats = $request->fats ?? 0;
-        $macro->cholesterol = $request->cholesterol ?? 0;
-        $macro->sodium = $request->sodium ?? 0;
-        $macro->fiber = $request->fiber ?? 0;
-        $macro->sugar = $request->sugar ?? 0;
-        $macro->calcium = $request->calcium ?? 0;
-        $macro->iron = $request->iron ?? 0;
-        $macro->vitaminA = $request->vitaminA ?? 0;
-        $macro->vitaminC = $request->vitaminC ?? 0;
+        $macro->calories = ($request->calories ?? 0) / 100;
+        $macro->proteins = ($request->proteins ?? 0) / 100;
+        $macro->carbs = ($request->carbs ?? 0) / 100;
+        $macro->fats = ($request->fats ?? 0) / 100;
+        $macro->cholesterol = ($request->cholesterol ?? 0) / 100;
+        $macro->sodium = ($request->sodium ?? 0) / 100;
+        $macro->fiber = ($request->fiber ?? 0) / 100;
+        $macro->sugar = ($request->sugar ?? 0) / 100;
+        $macro->calcium = ($request->calcium ?? 0) / 100;
+        $macro->iron = ($request->iron ?? 0) / 100;
+        $macro->vitaminA = ($request->vitaminA ?? 0) / 100;
+        $macro->vitaminC = ($request->vitaminC ?? 0) / 100;
 
 
 
@@ -491,19 +491,18 @@ class InventoryExtraController extends Controller
 
 
         // 1.3: macros
-        $macro->calories = $request->calories ?? 0;
-        $macro->proteins = $request->proteins ?? 0;
-        $macro->carbs = $request->carbs ?? 0;
-        $macro->fats = $request->fats ?? 0;
-        $macro->cholesterol = $request->cholesterol ?? 0;
-        $macro->sodium = $request->sodium ?? 0;
-        $macro->fiber = $request->fiber ?? 0;
-        $macro->sugar = $request->sugar ?? 0;
-        $macro->calcium = $request->calcium ?? 0;
-        $macro->iron = $request->iron ?? 0;
-        $macro->vitaminA = $request->vitaminA ?? 0;
-        $macro->vitaminC = $request->vitaminC ?? 0;
-
+        $macro->calories = ($request->calories ?? 0) / 100;
+        $macro->proteins = ($request->proteins ?? 0) / 100;
+        $macro->carbs = ($request->carbs ?? 0) / 100;
+        $macro->fats = ($request->fats ?? 0) / 100;
+        $macro->cholesterol = ($request->cholesterol ?? 0) / 100;
+        $macro->sodium = ($request->sodium ?? 0) / 100;
+        $macro->fiber = ($request->fiber ?? 0) / 100;
+        $macro->sugar = ($request->sugar ?? 0) / 100;
+        $macro->calcium = ($request->calcium ?? 0) / 100;
+        $macro->iron = ($request->iron ?? 0) / 100;
+        $macro->vitaminA = ($request->vitaminA ?? 0) / 100;
+        $macro->vitaminC = ($request->vitaminC ?? 0) / 100;
 
 
 

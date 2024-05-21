@@ -251,3 +251,69 @@
     padding: 0px;
     border-width: 2px;
 }
+
+/* camera */
+
+#camera-reader {
+    padding: 5px 5px !important;
+    border-radius: var(--radius) !important;
+    border: 2px dashed var(--input-border-color) !important;
+}
+
+#camera-reader * {
+    font-family: "Poppins", "Noto Sans Arabic" !important;
+}
+
+#camera-reader span.html5-qrcode-element {
+    display: none !important;
+}
+
+#camera-reader img {
+    display: none !important;
+}
+#camera-reader button {
+    background-color: var(--color-scheme-2) !important;
+    background-color: var(--color-scheme-2) !important;
+    padding: 0px 13px !important;
+    height: 36px !important;
+    font-size: 12px !important;
+    margin-top: 15px !important;
+    border-radius: var(--radius) !important;
+    border: 1px solid var(--input-border-color) !important;
+}
+
+#camera-reader button:hover,
+#camera-reader button:focus,
+#camera-reader button:active {
+    background-color: var(--color-scheme-dark-2) !important;
+    color: white !important;
+}
+
+#camera-reader a {
+    background-color: var(--color-scheme-2) !important;
+    background-color: var(--color-scheme-2) !important;
+    padding: 0px 13px !important;
+    height: 36px !important;
+    font-size: 12px !important;
+    margin-top: 15px !important;
+    border-radius: var(--radius) !important;
+    border: 1px solid var(--input-border-color) !important;
+}
+
+#camera-reader a:hover,
+#camera-reader a:focus,
+#camera-reader a:active {
+    background-color: var(--color-scheme-dark-2) !important;
+    color: white !important;
+}
+
+#camera-reader select {
+    background-color: var(--color-scheme-2) !important;
+    background-color: var(--color-scheme-2) !important;
+    padding: 0px 13px !important;
+    height: 36px !important;
+    font-size: 12px !important;
+    margin-top: 15px !important;
+    border-radius: var(--radius) !important;
+    border: 1px solid var(--input-border-color) !important;
+}

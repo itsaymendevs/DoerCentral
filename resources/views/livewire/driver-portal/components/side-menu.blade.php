@@ -19,7 +19,7 @@
 
 
     {{-- 2: home --}}
-    <a wire:navigate class="btn btn--scheme @if (Request::is('portals/driver/home')) active @endif"
+    <a class="btn btn--scheme @if (Request::is('portals/driver/home')) active @endif"
         href="{{ route('portals.driver.home') }}">Home</a>
 
 

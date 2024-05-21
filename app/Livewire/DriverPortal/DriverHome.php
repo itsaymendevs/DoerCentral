@@ -141,6 +141,31 @@ class DriverHome extends Component
 
 
 
+    // ----------------------------------------------------------
+
+
+
+
+
+    public function pickDelivery($id)
+    {
+
+
+        // :: dispatchEvent
+        $this->dispatch('pickDelivery', $id);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
 
 
 

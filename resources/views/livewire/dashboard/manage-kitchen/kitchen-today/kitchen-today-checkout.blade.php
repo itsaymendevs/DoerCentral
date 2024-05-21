@@ -280,7 +280,7 @@
                             <h5 class="text-center mb-1 w-100 border-start-0">
                                 {!! QrCode::size(85)
                                 ->backgroundColor(255,255,255, 0)
-                                ->generate(route('dashboard.singleCustomer', [$delivery->customer->id])) !!}
+                                ->generate($delivery->id) !!}
                             </h5>
                         </div>
 

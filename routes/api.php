@@ -1519,8 +1519,13 @@ Route::post('/portals/driver/checkDriver', [PortalDriverLoginController::class, 
 
 
 
+
+
 // ---------------------------------
 // ---------------------------------
+
+
+
 
 
 
@@ -1530,6 +1535,27 @@ Route::post('/portals/driver/delivery/update', [PortalDriverController::class, '
 
 Route::post('/portals/driver/delivery/status/update', [PortalDriverController::class, 'updateDeliveryStatus']);
 
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
+// 2: portals - driver - delivery - update - updateStatus
+Route::post('/portals/driver/delivery/update', [PortalDriverController::class, 'updateDelivery']);
+
+
+Route::post('/portals/driver/delivery/status/update', [PortalDriverController::class, 'updateDeliveryStatus']);
 
 
 

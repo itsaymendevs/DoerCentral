@@ -8,7 +8,7 @@ use Livewire\Form;
 class DriverForm extends Form
 {
     // :: variables
-    public $id, $name, $phone, $email, $license, $password, $imageFile, $licenseFile, $licenseRearFile, $shiftTypeId;
+    public $id, $name, $phone, $email, $license, $password, $imageFile, $licenseFile, $licenseRearFile, $shiftTypeId, $vehicleId;
 
 
 

@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Delivery\DeliveryDrivers\Components;
 use App\Livewire\Forms\DriverForm;
 use App\Models\Driver;
 use App\Models\ShiftType;
+use App\Models\Vehicle;
 use App\Models\Zone;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
@@ -106,6 +107,7 @@ class DeliveryDriversEdit extends Component
 
         // :: setSelect
         $this->dispatch('setSelect', id: '#shift-select-2', value: $driver->shiftTypeId);
+        $this->dispatch('setSelect', id: '#vehicle-select-2', value: $driver?->vehicleId);
         $this->dispatch('setSelect', id: '#zone-select-2', value: $driver?->zones?->pluck('zoneId')->toArray());
 
 
@@ -250,6 +252,7 @@ class DeliveryDriversEdit extends Component
 
         // 1: dependencies
         $shiftTypes = ShiftType::all();
+        $vehicles = Vehicle::all();
         $zones = Zone::all();
 
 
@@ -260,7 +263,7 @@ class DeliveryDriversEdit extends Component
 
 
 
-        return view('livewire.dashboard.delivery.delivery-drivers.components.delivery-drivers-edit', compact('zones', 'shiftTypes'));
+        return view('livewire.dashboard.delivery.delivery-drivers.components.delivery-drivers-edit', compact('zones', 'shiftTypes', 'vehicles'));
 
     } // end function
 

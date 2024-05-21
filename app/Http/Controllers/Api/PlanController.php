@@ -1614,7 +1614,7 @@ class PlanController extends Controller
         CustomerSubscriptionScheduleMeal::where('bundleRangeTypeId', $bundleRangeType->id)
             ->whereIn('subscriptionScheduleId', $subscriptionSchedules)
                 ?->update([
-                'sizeId' => $bundleRangeType->sizeId,
+                'sizeId' => $bundleRangeType->sizeId ?? null,
                 'sizePrice' => $bundleRangeType->price,
                 'sizeCalories' => $bundleRangeType->calories,
             ]);

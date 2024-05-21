@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Delivery\DeliveryDrivers\Components;
 
 use App\Livewire\Forms\DriverForm;
 use App\Models\ShiftType;
+use App\Models\Vehicle;
 use App\Models\Zone;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
@@ -125,12 +126,13 @@ class DeliveryDriversCreate extends Component
 
         // 1: dependencies
         $shiftTypes = ShiftType::all();
+        $vehicles = Vehicle::all();
         $zones = Zone::all();
 
 
 
 
-        return view('livewire.dashboard.delivery.delivery-drivers.components.delivery-drivers-create', compact('shiftTypes', 'zones'));
+        return view('livewire.dashboard.delivery.delivery-drivers.components.delivery-drivers-create', compact('shiftTypes', 'zones', 'vehicles'));
 
     } // end function
 

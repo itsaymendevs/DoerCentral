@@ -53,8 +53,30 @@
 
 
 
-                        {{-- empty --}}
-                        <div class="col-4"></div>
+
+
+
+
+
+                        {{-- phone --}}
+                        <div class="col-4">
+                            <label class="form-label form--label">Phone</label>
+                            <input class="form-control form--input mb-4" type="text" required
+                                wire:model='instance.phone' pattern="[0-9]+" minlength='9' maxlength='9' />
+                        </div>
+
+
+
+
+
+
+                        {{-- email --}}
+                        <div class="col-4">
+                            <label class="form-label form--label">Email</label>
+                            <input class="form-control form--input mb-4" type="email" required
+                                wire:model='instance.email' />
+                        </div>
+
 
 
 
@@ -85,23 +107,15 @@
 
 
 
-                        {{-- phone --}}
+
+
+                        {{-- license --}}
                         <div class="col-4">
-                            <label class="form-label form--label">Phone</label>
+                            <label class="form-label form--label">License</label>
                             <input class="form-control form--input mb-4" type="text" required
-                                wire:model='instance.phone' pattern="[0-9]+" minlength='9' maxlength='9' />
+                                wire:model='instance.license' />
                         </div>
 
-
-
-
-
-                        {{-- email --}}
-                        <div class="col-4">
-                            <label class="form-label form--label">Email</label>
-                            <input class="form-control form--input mb-4" type="email" required
-                                wire:model='instance.email' />
-                        </div>
 
 
 
@@ -121,12 +135,26 @@
 
 
 
-                        {{-- license --}}
-                        <div class="col-4">
-                            <label class="form-label form--label">License</label>
-                            <input class="form-control form--input mb-4" type="text" required
-                                wire:model='instance.license' />
+
+
+
+                        {{-- vehicle --}}
+                        <div class="col-4" wire:ignore>
+                            <label class="form-label form--label">Vehicle</label>
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                                <select class="form-select form--modal-select form--modal-driver-select-1"
+                                    data-modal='#new-driver' data-instance='instance.vehicleId'>
+                                    <option value=""></option>
+
+                                    @foreach ($vehicles ?? [] as $vehicle)
+                                    <option value="{{ $vehicle->id }}">{{ $vehicle->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
+
+
+
 
 
 
@@ -136,7 +164,7 @@
 
                         {{-- deliveryZones --}}
                         <div class="col-8" wire:ignore>
-                            <label class="form-label form--label">Delivery Zones</label>
+                            <label class="form-label form--label">Zones</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select class="form-select form--modal-select form--modal-driver-select-1"
                                     data-modal='#new-driver' data-instance='instance.zones' multiple="">

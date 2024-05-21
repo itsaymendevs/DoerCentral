@@ -20,7 +20,8 @@
 
             <div class="select--single-wrapper mb-3" wire:loading.class='no-events' wire:ignore>
                 <select class="form-select form--select form--select-{{ $instance?->id }}"
-                    data-instance='instance.sizeId' required data-placeholder='Size' value='{{ $instance?->sizeId }}'>
+                    data-instance='instance.sizeId' required data-placeholder='Size' data-clear='true'
+                    value='{{ $instance?->sizeId }}'>
                     <option value=""></option>
 
                     @foreach ($sizes as $size)

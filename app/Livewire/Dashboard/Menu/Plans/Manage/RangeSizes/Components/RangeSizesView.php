@@ -79,12 +79,12 @@ class RangeSizesView extends Component
 
 
         // 1: getSize
-        $size = Size::find($this->instance->sizeId);
+        $size = Size::find($this->instance?->sizeId);
 
 
         // 1.2: updateCalories - Price
-        $this->instance->calories = $size->calories;
-        $this->instance->price = $size->price;
+        $this->instance->calories = $size?->calories ?? 0;
+        $this->instance->price = $size?->price ?? 0;
 
 
 

@@ -59,6 +59,19 @@ class Driver extends Authenticatable
 
 
 
+    public function vehicle()
+    {
+
+        return $this->belongsTo(Vehicle::class, 'vehicleId');
+
+    } // end function
+
+
+
+
+
+
+
 
 
 

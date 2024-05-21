@@ -198,8 +198,12 @@
 
 
 
-                    {{-- plate --}}
-                    <div class="d-flex align-items-center justify-content-start mb-3 profile--wrap-section d-none">
+                    {{-- vehicle - plate --}}
+                    @if ($driver?->vehicle)
+
+
+
+                    <div class="d-flex align-items-center justify-content-start mb-3 profile--wrap-section">
 
                         {{-- icon --}}
                         <button class="btn" type='button'>
@@ -214,10 +218,13 @@
 
 
                         {{-- text --}}
-                        <p class="mb-0 ms-3 fw-normal fs-14">Plate - {{ $driver?->plate ?? 'Empty' }}</p>
+                        <p class="mb-0 ms-3 fw-normal fs-14">
+                            {{ $driver?->vehicle?->name }} - {{ $driver?->vehicle?->plate}}</p>
                     </div>
 
 
+                    @endif
+                    {{-- end if --}}
 
 
 

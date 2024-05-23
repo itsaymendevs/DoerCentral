@@ -2140,7 +2140,21 @@ class CustomerController extends Controller
         // 1.2: currentSubscription - adjustDelivery
         $subscription = $customer->currentSubscription();
 
-        $this->adjustDelivery($subscription, $customer, $this->getNextDate());
+
+
+
+
+        // 1.3: getStartDate
+        $startDate = $this->getNextDate();
+
+        if ($subscription?->startDate >= $startDate)
+            $startDate = $subscription->startDate;
+
+
+
+
+
+        $this->adjustDelivery($subscription, $customer, $startDate);
 
 
 

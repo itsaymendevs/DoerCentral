@@ -251,10 +251,29 @@ class SingleCustomerAddressesView extends Component
 
 
 
+            // 1: getStartDate
+            $startDate = $this->getNextDate();
+
+            if ($this->address->customer?->currentSubscription()?->startDate >= $startDate)
+                $startDate = $this->address->customer?->currentSubscription()->startDate;
+
+
+
+
+
+
+
+            // --------------------------------------
+            // --------------------------------------
+
+
+
+
+
 
             // 2.2: upcomingDeliveries
             $upcomingDeliveries = $this->address->customer?->currentSubscription()
-                ?->deliveries?->where('deliveryDate', '>=', $this->getNextDate())?->count() ?? 0;
+                ?->deliveries?->where('deliveryDate', '>=', $startDate)?->count() ?? 0;
 
 
 
@@ -263,7 +282,9 @@ class SingleCustomerAddressesView extends Component
 
 
             // 2.3: checkConflict
-            $isConflicted = $this->checkDeliveryDaysConflict($deliveryDays, $upcomingDeliveries, $this->getNextDate(), $this->address->customer->latestSubscription()->startDate);
+            $isConflicted = $this->checkDeliveryDaysConflict($deliveryDays, $upcomingDeliveries, $startDate, $this->address->customer->latestSubscription()->startDate);
+
+
 
 
             if ($isConflicted) {

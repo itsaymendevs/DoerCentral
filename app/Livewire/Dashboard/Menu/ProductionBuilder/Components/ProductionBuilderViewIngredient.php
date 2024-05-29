@@ -273,9 +273,20 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
+
             // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/builder/ingredients/remove', $instance);
             $this->makeAlert('info', $response->message);
+
+
+
+
+
+            // :: resetPage / openTab - redirectRoute - alert
+            return $this->redirect(route('dashboard.menuProductionBuilder', [$this->instance->mealId]) . "#tab-2", navigate: false);
+
+
+
 
 
         } // end if

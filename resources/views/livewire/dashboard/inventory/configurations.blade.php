@@ -324,5 +324,58 @@
 
 
 
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+    {{-- section --}}
+    @section('modals')
+
+
+
+
+    {{-- 1: allergies --}}
+    <livewire:dashboard.inventory.configurations.components.configurations-allergies-ingredients-edit />
+
+
+
+    {{-- 2: excludes --}}
+    <livewire:dashboard.inventory.configurations.components.configurations-excludes-ingredients-edit />
+
+
+
+
+
+
+    @endsection
+    {{-- endSection --}}
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
 </section>
 {{-- endContent --}}

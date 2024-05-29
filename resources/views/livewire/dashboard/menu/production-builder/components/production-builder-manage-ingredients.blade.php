@@ -161,13 +161,13 @@
 
 
                     {{-- singleRow - part --}}
-                    <tr key='ingredient-{{ $mealSizeIngredient->id }}'>
+                    <tr key='single-ingredient-{{ $mealSizeIngredient->id }}' wire:ignore>
 
 
 
 
                         {{-- coloringTD --}}
-                        <td class="fw-bold tr--ingredient td--overflow" wire:ignore style="max-width: 270px;">
+                        <td class="fw-bold tr--ingredient td--overflow" style="max-width: 270px;">
 
 
                             <div class="select--single-wrapper builder mx-auto" wire:loading.class='no-events'
@@ -197,7 +197,7 @@
 
 
                         {{-- type --}}
-                        <td class="fw-bold" wire:ignore>
+                        <td class="fw-bold">
                             <div class="select--single-wrapper xxs" wire:loading.class='no-events'
                                 style="width: 85px !important; max-width: 85px !important">
                                 <select class="form-select ingredient--type-select "
@@ -219,7 +219,7 @@
 
 
                         {{-- cookingType --}}
-                        <td class="fw-bold px-0" wire:ignore>
+                        <td class="fw-bold px-0">
                             <div class="select--single-wrapper builder mx-auto" wire:loading.class='no-events'
                                 style="width: 155px !important; max-width: 155px !important">
                                 <select class="form-select ingredient--cookingType-select "
@@ -292,13 +292,13 @@
 
 
                     {{-- singleRow - part --}}
-                    <tr key='part-{{ $mealSizePart->id }}'>
+                    <tr key='single-part-{{ $mealSizePart->id }}' wire:ignore>
 
 
 
 
                         {{-- coloringTD --}}
-                        <td class="fw-bold tr--{{ strtolower($mealSizePart->type->name) }} td--overflow" wire:ignore
+                        <td class="fw-bold tr--{{ strtolower($mealSizePart->type->name) }} td--overflow"
                             style="max-width: 270px;">
 
 
@@ -334,7 +334,7 @@
 
 
                         {{-- type --}}
-                        <td class="fw-bold" wire:ignore>
+                        <td class="fw-bold">
                             <div class="select--single-wrapper xxs" wire:loading.class='no-events'
                                 style="width: 85px !important; max-width: 85px !important">
                                 <select class="form-select part--type-select "
@@ -1110,7 +1110,7 @@
 
 
                     {{-- 1: ingredient --}}
-                    @foreach ($mealSize->ingredients as $mealSizeIngredient)
+                    @foreach ($mealSize->ingredients ?? [] as $mealSizeIngredient)
 
 
                     <livewire:dashboard.menu.production-builder.components.production-builder-view-ingredient
@@ -1129,13 +1129,13 @@
 
 
                     {{-- 2: parts --}}
-                    @foreach ($mealSize->parts as $mealSizePart)
+                    @foreach ($mealSize->parts ?? [] as $mealSizePart)
 
 
 
                     <livewire:dashboard.menu.production-builder.components.production-builder-view-ingredient
                         :id='$mealSizePart->id' typeId='{{ $mealSizePart->type->id }}'
-                        key='sub-recipe-details-{{ $mealSizePart->id }}' />
+                        key='part-details-{{ $mealSizePart->id }}' />
 
                     @endforeach
                     {{-- end loop --}}

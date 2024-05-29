@@ -990,10 +990,10 @@
                                             <thead>
                                                 <tr>
                                                     <th class="th--xs"></th>
-                                                    <th class="th--sm">Customer</th>
+                                                    <th class="th--md">Customer</th>
                                                     <th class="th--md">Plan</th>
                                                     <th class="th--xs">Duration</th>
-                                                    <th class="th--sm">Bundle</th>
+                                                    <th class="th--md">Bundle</th>
 
                                                     <th class="th--sm">Order Date</th>
                                                     <th class="th--sm">Start Date</th>
@@ -1051,7 +1051,7 @@
                                                     </td>
                                                     <td>{{ date('d / m / Y', strtotime($subscription->untilDate)) }}
                                                     </td>
-                                                    <td>-</td>
+                                                    <td></td>
 
 
 
@@ -1158,10 +1158,10 @@
                                             <thead>
                                                 <tr>
                                                     <th class="th--xs"></th>
-                                                    <th class="th--sm">Customer</th>
+                                                    <th class="th--md">Customer</th>
                                                     <th class="th--md">Plan</th>
                                                     <th class="th--xs">Duration</th>
-                                                    <th class="th--sm">Bundle</th>
+                                                    <th class="th--md">Bundle</th>
 
                                                     <th class="th--sm">Order Date</th>
                                                     <th class="th--sm">Start Date</th>

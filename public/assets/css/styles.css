@@ -80,6 +80,10 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
 /* rounded */
 
 .rounded-1 {

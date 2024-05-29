@@ -466,6 +466,7 @@ class Customer extends Authenticatable
         // :: return
         $content = new stdClass();
 
+
         $content->excludes = $excludes;
         $content->allergies = $allergies;
         $content->excludeIngredients = $excludeIngredients;

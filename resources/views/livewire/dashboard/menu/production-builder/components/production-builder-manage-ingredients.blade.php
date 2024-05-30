@@ -99,12 +99,30 @@
                     </tr>
 
 
+
+
+
+
                     {{-- fixedSubtitle --}}
+
+
+                    {{-- :: permission - hasConversion --}}
+                    @if ($versionPermission->menuModuleHasBuilderConversion)
+
                     <tr>
                         <td class="fw-bold" style="height: 62px" colspan="3">
                             After Cook<small class="fw-semibold text-gold fs-10 ms-1">(Auto)</small>
                         </td>
                     </tr>
+
+                    @endif
+                    {{-- end if - permission --}}
+
+
+
+
+
+
 
 
                     {{-- fixedSubtitle --}}
@@ -120,7 +138,17 @@
                     <tr class="subheader">
                         <td class="fw-bold fs-11"></td>
                         <td class="fw-bold th--sm fs-11">Type</td>
+
+
+                        {{-- :: permission - hasConversion --}}
+                        @if ($versionPermission->menuModuleHasBuilderConversion)
+
                         <td class="fw-bold th--lg fs-11">Cook Type</td>
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
                     </tr>
 
 
@@ -219,7 +247,11 @@
 
 
                         {{-- cookingType --}}
-                        <td class="fw-bold px-0">
+
+                        {{-- :: permission inline - hasConversion --}}
+
+                        <td
+                            class="fw-bold px-0 @if (!$versionPermission->menuModuleHasBuilderConversion) d-none @endif">
                             <div class="select--single-wrapper builder mx-auto" wire:loading.class='no-events'
                                 style="width: 155px !important; max-width: 155px !important">
                                 <select class="form-select ingredient--cookingType-select "
@@ -237,6 +269,8 @@
                                 </select>
                             </div>
                         </td>
+
+
 
 
 
@@ -358,7 +392,20 @@
 
 
                         {{-- empty - cookingTypes --}}
+
+
+
+
+                        {{-- :: permission - hasConversion --}}
+                        @if ($versionPermission->menuModuleHasBuilderConversion)
+
                         <td></td>
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
 
 
 
@@ -590,8 +637,12 @@
 
 
 
+
                     {{-- 1.2: automaticAfterCook For Size --}}
-                    <tr>
+
+                    {{-- :: permission - inline hasConversion --}}
+
+                    <tr class='@if (!$versionPermission->menuModuleHasBuilderConversion) d-none @endif'>
 
 
 
@@ -758,7 +809,6 @@
 
 
                     </tr>
-
 
 
 
@@ -978,9 +1028,26 @@
 
 
                         {{-- grams - afterCookGrams - % --}}
-                        <td class="fw-bold fs-11 th--sm">Grams</td>
+                        <td class="fw-bold fs-11 th--sm" @if (!$versionPermission->menuModuleHasBuilderConversion)
+                            colspan='2' @endif>Grams</td>
+
+
+
+
+
+                        {{-- :: permission - hasConversion --}}
+                        @if ($versionPermission->menuModuleHasBuilderConversion)
+
                         <td class="fw-bold fs-11 px-1 th--sm">Cooked<small
                                 class="fw-semibold text-gold fs-10 ms-1">(G)</small></td>
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
 
 
                         {{-- :: permission - hasPercentage --}}

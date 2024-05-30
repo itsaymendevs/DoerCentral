@@ -78,6 +78,9 @@
                                 <table class="table table-bordered" id="memoir--table">
 
 
+
+
+
                                     {{-- thead --}}
                                     <thead>
                                         <tr>
@@ -90,14 +93,24 @@
 
 
 
+
+
+
+
                                     {{-- -------------------------- --}}
                                     {{-- -------------------------- --}}
+
+
+
 
 
 
 
                                     {{-- tbody --}}
                                     <tbody>
+
+
+
 
 
 
@@ -109,7 +122,7 @@
 
                                             {{-- SN - name --}}
                                             <td class="fw-bold text-center">{{ $globalSNCounter++ }}</td>
-                                            <td class="fw-bold text-center">
+                                            <td class="fw-bold text-start ps-3">
                                                 <span class="d-block fs-14 fw-normal text-gold">{{
                                                     $scheduleMeal->customer->fullName() }}</span>
                                             </td>
@@ -122,7 +135,6 @@
                                                 <span class="d-block fs-14 fw-normal">{{ $scheduleMeal?->remarks
                                                     }}</span>
                                             </td>
-
                                         </tr>
 
                                         @endforeach

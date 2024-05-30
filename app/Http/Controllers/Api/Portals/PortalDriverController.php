@@ -230,7 +230,6 @@ class PortalDriverController extends Controller
         $driver->phone = $request->phone;
         $driver->email = $request->email;
         $driver->license = $request->license;
-        $driver->plate = $request->plate;
 
 
 

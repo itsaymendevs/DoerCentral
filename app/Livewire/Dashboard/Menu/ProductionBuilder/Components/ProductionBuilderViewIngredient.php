@@ -183,7 +183,7 @@ class ProductionBuilderViewIngredient extends Component
 
 
         // :: validAmount
-        if (! empty($this->instance->amount)) {
+        if ($this->instance?->amount >= 0) {
 
 
             // 1: makeRequest
@@ -401,6 +401,9 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
+
+
+
     // -----------------------------------------------------------------
 
 
@@ -421,7 +424,7 @@ class ProductionBuilderViewIngredient extends Component
 
 
         // 1: dependencies
-        if (! empty($this->instance->amount)) {
+        if ($this->instance?->amount >= 0) {
 
             $this->reCalculateMacros();
             $this->dispatch('reCalculateTotalMacros', id: "#ingredient--grams-input-{$this->instance->typeId}-{$this->instance->id}");
@@ -443,6 +446,9 @@ class ProductionBuilderViewIngredient extends Component
 
 
     } // end function
+
+
+
 
 
 } // end class

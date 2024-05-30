@@ -2,9 +2,8 @@
 <tr id='{{ strtolower($instance->typeId) }}-{{ $instance->id }}'>
 
 
-    {{-- @if (!$versionPermission->menuModuleHasBuilderPercentage) colspan='2' @endif --}}
     {{-- amount - grams --}}
-    <td class="fw-bold">
+    <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderConversion) colspan='2' @endif>
         <input id='ingredient--grams-input-{{ $instance->typeId }}-{{ $instance->id }}'
             class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input"
             data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' required wire:model='instance.amount'
@@ -15,12 +14,26 @@
 
 
 
+
+
+
     {{-- afterCookGrams - Amount --}}
+
+
+    {{-- :: permission - hasConversion --}}
+    @if ($versionPermission->menuModuleHasBuilderConversion)
+
     <td class="fw-bold">
         <input class="form-control form--input form--table-input-xxs px-1 ingredient--afterCookGrams-input readonly"
             data-size='{{ $instance->mealSizeId }}' type="number" step='0.01' required
             wire:model='instance.afterCookGrams' readonly="" wire:loading.attr='readonly' />
     </td>
+
+
+    @endif
+    {{-- end if - permission --}}
+
+
 
 
 

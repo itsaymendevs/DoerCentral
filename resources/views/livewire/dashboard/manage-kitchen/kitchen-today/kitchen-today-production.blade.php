@@ -382,8 +382,17 @@
 
 
 
+
+
+
                                     {{-- ** Get MealSize ** --}}
                                     @php $mealSize = $scheduleMealsBySize?->first()?->mealSize(); @endphp
+
+
+                                    {{-- ** Get MealSize - excludedCustomersByIngredient [+ Allergies] ** --}}
+                                    {{-- @php $mealSizeExcludedCustomersByIngredient =
+                                    $scheduleMealsBySize?->first()?->mealSizeExcludedCustomersByIngredient($scheduleMealsBySize);
+                                    @endphp --}}
 
 
 
@@ -400,7 +409,9 @@
                                     {{-- sumGrams --}}
                                     @php $totalGrams[$mealSizeIngredient?->ingredientId] =
                                     ($totalGrams[$mealSizeIngredient?->ingredientId] ?? 0)
-                                    + $mealSizeIngredient?->amount * $scheduleMealsBySize->count(); @endphp
+                                    + $mealSizeIngredient?->amount
+                                    * $scheduleMealsBySize->count();
+                                    @endphp
 
 
                                     @endforeach
@@ -718,8 +729,8 @@
                                             {{-- :: viewPart --}}
                                             <button
                                                 class="btn btn--raw-icon fs-14 text-warning d-inline-block scale--3 w-auto ms-1"
-                                                wire:click='viewPart({{ $mealSizePart->part->id }})' type="button"
-                                                data-bs-target="#view-part" data-bs-toggle="modal">
+                                                wire:click='viewPart({{ $mealSizePart->part->id }}, {{ $mealSizePart?->amount ?? 0 }})'
+                                                type="button" data-bs-target="#view-part" data-bs-toggle="modal">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                     fill="currentColor" viewBox="0 0 16 16" class="bi bi-eye fs-6"
                                                     style="fill: var(--bs-warning)">
@@ -785,9 +796,42 @@
 
 
 
-
-
                                 <td class="text-start">
+
+
+
+
+
+
+                                    {{-- ** Get hasExcludeCustomers ** --}}
+                                    @php $hasExcludeCustomers =
+                                    $scheduleMealsByMeal?->first()?->mealCheckExcludeCustomers($scheduleMealsByMeal);
+                                    @endphp
+
+
+
+
+
+                                    {{-- 1: hasExcludeCustomers --}}
+                                    @if ($hasExcludeCustomers)
+
+
+                                    <div class="kitchen--size-box mb-2 btn--remove"
+                                        style="border-color:var(--bs-danger)">
+                                        <a href="#!" data-bs-toggle='modal' data-bs-target='#view-excludes'
+                                            class='init-link w-100'
+                                            wire:click='viewExcludes({{ $scheduleMealsByMeal }})'>
+                                            <h1 class="fs-12 my-1 w-100 text-center">View Excludes</h1>
+                                        </a>
+                                    </div>
+
+                                    @endif
+                                    {{-- end if --}}
+
+
+
+
+
 
 
 
@@ -999,6 +1043,15 @@
 
     {{-- 2: viewRemarks - customer & remarks --}}
     <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-remarks />
+
+
+
+
+
+    {{-- 3: viewExcludes - customer & excludes --}}
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-excludes />
+
+
 
 
 

@@ -49,6 +49,19 @@ class MealPart extends Model
 
 
 
+    public function mealSize()
+    {
+
+        return $this->belongsTo(Type::class, 'typeId');
+
+    } // end function
+
+
+
+
+
+
+
     // ------------------------------------------
     // ------------------------------------------
     // ------------------------------------------

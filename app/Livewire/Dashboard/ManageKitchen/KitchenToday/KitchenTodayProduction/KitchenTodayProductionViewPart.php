@@ -12,7 +12,7 @@ class KitchenTodayProductionViewPart extends Component
 
 
     // :: variables
-    public $mealSize;
+    public $mealSize, $mealSizeTotalAmount, $partAmount;
     public $unit = 1;
 
 
@@ -24,7 +24,7 @@ class KitchenTodayProductionViewPart extends Component
 
 
     #[On('viewPart')]
-    public function remount($id, $unit)
+    public function remount($id, $partAmount, $unit)
     {
 
 
@@ -35,8 +35,28 @@ class KitchenTodayProductionViewPart extends Component
 
 
 
-        // 1.2: getMealSize
-        $this->mealSize = $meal?->sizes?->first();
+        // 1.2: getMealSize [ALWAYS ITEM SIZE]
+        $this->mealSize = $meal?->sizes->first();
+
+
+
+
+
+
+
+        // ---------------------------------------
+        // ---------------------------------------
+
+
+
+
+
+
+
+        // 1.3: totalAmount - partAmount
+        $this->partAmount = $partAmount ?? 0;
+        $this->mealSizeTotalAmount = $this->mealSize->totalGrams() ?? 1;
+
 
 
 

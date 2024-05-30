@@ -149,6 +149,8 @@ return new class extends Migration {
             $table->boolean('menuModuleHasBuilderMacros')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderReplacements')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderPercentage')->nullable()->default(1);
+            $table->boolean('menuModuleHasBuilderConversion')->nullable()->default(1);
+
 
             $table->boolean('menuModuleHasBuilderCutlery')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderPackings')->nullable()->default(1);

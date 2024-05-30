@@ -140,4 +140,158 @@ class CustomerSubscriptionScheduleMeal extends Model
 
 
 
-} // end model
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function mealCheckExcludeCustomers($scheduleMealsByMeal)
+    {
+
+
+
+
+
+        // 1: ingredients & Parts
+
+
+
+        // 1: getMealExcludes - allergies
+        $combine = $scheduleMealsByMeal->first()?->meal?->allergiesAndExcludesInArray();
+
+
+
+
+
+        // 1.2: getHasExcludes
+        $hasCustomerExcludes = CustomerExclude::whereIn('customerId', $scheduleMealsByMeal?->pluck('customerId')?->toArray() ?? [])?->whereIn('excludeId', $combine['excludes'])?->count() ?? 0;
+
+
+
+
+
+        if ($hasCustomerExcludes > 0)
+            return true;
+
+
+
+
+
+
+
+
+        return false;
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function mealCustomerExcludes($scheduleMealsByMeal)
+    {
+
+
+
+        // 1: ingredients & Parts
+
+
+
+
+
+        // 1: getMealExcludes - allergies
+        $combine = $scheduleMealsByMeal->first()?->meal?->allergiesAndExcludesInArray();
+
+
+
+
+
+        // 1.2: get excludeCustomers - excludeIngredients
+        $excludeCustomers = CustomerExclude::whereIn('customerId', $scheduleMealsByMeal?->pluck('customerId')?->toArray() ?? [])?->whereIn('excludeId', $combine['excludes'])?->get();
+
+
+
+
+
+
+        // ---------------------------------------
+        // ---------------------------------------
+
+
+
+
+
+
+
+        // 2: customerExcludes
+        $customerExcludes = [];
+
+
+
+
+
+        // 2.1: loop - excludeCustomers
+        foreach ($excludeCustomers ?? [] as $excludeCustomer) {
+
+            $customerExcludes[$excludeCustomer->customerId] = array_merge($customerExcludes[$excludeCustomer->customerId] ?? [], $excludeCustomer?->exclude?->ingredients?->whereIn('id', $combine['excludeIngredients'])?->pluck('id')?->toArray() ?? []);
+
+
+        } // end loop
+
+
+
+
+
+
+
+        return $customerExcludes;
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+} // end modal

@@ -58,13 +58,40 @@ class KitchenTodayProduction extends Component
 
 
 
-    public function viewPart($id)
+    public function viewPart($id, $partAmount)
+    {
+
+
+        // :: dispatchEvent
+        $this->dispatch('viewPart', $id, $partAmount, $this->unit);
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function viewExcludes($scheduleMealsByMeal)
     {
 
 
 
         // :: dispatchEvent
-        $this->dispatch('viewPart', $id, $this->unit);
+        $this->dispatch('viewExcludes', $scheduleMealsByMeal, $this->unit);
 
 
     } // end function

@@ -76,19 +76,30 @@
                             <div class="memoir--table w-100">
                                 <table class="table table-bordered" id="memoir--table">
 
+
+
+
+
                                     {{-- thead --}}
                                     <thead>
                                         <tr>
                                             <th class="th--xs"></th>
-                                            <th class="th--lg">Part</th>
-                                            <th class="th--sm">Grams</th>
+                                            <th class="th--lg text-start ps-3">Part</th>
+                                            <th class="th--sm text-start ps-3">Amount</th>
                                         </tr>
                                     </thead>
 
 
 
+
+
+
+
+
                                     {{-- -------------------------------- --}}
                                     {{-- -------------------------------- --}}
+
+
 
 
 
@@ -105,6 +116,19 @@
                                         {{-- loop - parts --}}
                                         @foreach ($mealSize?->parts ?? [] as $mealSizePart)
 
+
+
+                                        {{-- ** GET AMOUNT - AMOUNT PERCENTAGE OF PART --}}
+                                        @php $amount = ((($mealSizePart?->amount ?? 0) /
+                                        $mealSizeTotalAmount) * 100) * $partAmount / 100;
+                                        @endphp
+
+
+
+
+
+
+
                                         <tr key='mealSize-ingredient-{{ $mealSizePart->id }}'>
 
 
@@ -117,17 +141,17 @@
 
 
                                             {{-- part --}}
-                                            <td class="fw-bold text-start">
-                                                <span class="text-center d-block fs-14 fw-normal">{{
+                                            <td class="fw-bold text-start ps-3">
+                                                <span class="text-start d-block fs-14 fw-normal">{{
                                                     $mealSizePart?->part?->name }}</span>
                                             </td>
 
 
 
-                                            {{-- amount (grams) --}}
-                                            <td class="fw-bold text-start">
-                                                <span class="text-center d-block fs-15 fw-semibold text-gold">{{
-                                                    ($mealSizePart?->amount ?? 0) / $unit }}
+                                            {{-- amount --}}
+                                            <td class="fw-bold text-start ps-3">
+                                                <span class="text-start d-block fs-15 fw-semibold text-gold">{{
+                                                    round($amount ?? 0, 1) / $unit }}
                                                     <small class='fs-10'>{{ $unit == 1 ? '(G)' : '(KG)'}}</small>
                                                 </span>
                                             </td>
@@ -147,10 +171,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {{-- endTable --}}
-
-
-
                         </div>
 
 
@@ -190,19 +210,29 @@
                             <div class="memoir--table w-100">
                                 <table class="table table-bordered" id="memoir--table">
 
+
+
+
+
                                     {{-- thead --}}
                                     <thead>
                                         <tr>
                                             <th class='th--xs'></th>
-                                            <th class="th--lg">Ingredient</th>
-                                            <th class="th--sm">Grams</th>
+                                            <th class="th--lg text-start ps-3">Ingredient</th>
+                                            <th class="th--sm text-start ps-3">Amount</th>
                                         </tr>
                                     </thead>
 
 
 
+
+
+
                                     {{-- -------------------------------- --}}
                                     {{-- -------------------------------- --}}
+
+
+
 
 
 
@@ -217,6 +247,20 @@
                                         {{-- loop - ingredients --}}
                                         @foreach ($mealSize?->ingredients ?? [] as $mealSizeIngredient)
 
+
+
+
+
+                                        {{-- ** GET AMOUNT - AMOUNT PERCENTAGE OF INGREDIENT --}}
+                                        @php $amount = ((($mealSizeIngredient?->amount ?? 0) /
+                                        $mealSizeTotalAmount) * 100) * $partAmount / 100;
+                                        @endphp
+
+
+
+
+
+
                                         <tr key='mealSize-ingredient-{{ $mealSizeIngredient->id }}'>
 
 
@@ -228,17 +272,17 @@
 
 
                                             {{-- ingredient --}}
-                                            <td class="fw-bold text-start">
-                                                <span class="text-center d-block fs-14 fw-normal">{{
+                                            <td class="fw-bold text-start ps-3">
+                                                <span class="text-start d-block fs-14 fw-normal">{{
                                                     $mealSizeIngredient?->ingredient?->name }}</span>
                                             </td>
 
 
 
-                                            {{-- amount (grams) --}}
-                                            <td class="fw-bold text-start">
-                                                <span class="text-center d-block fs-15 fw-semibold text-gold">{{
-                                                    ($mealSizeIngredient?->amount ?? 0) / $unit }}
+                                            {{-- amount --}}
+                                            <td class="fw-bold text-start ps-3">
+                                                <span class="text-start d-block fs-15 fw-semibold text-gold">{{
+                                                    round($amount ?? 0, 1) / $unit }}
                                                     <small class='fs-10'>{{ $unit == 1 ? '(G)' : '(KG)'}}</small>
                                                 </span>
                                             </td>
@@ -257,23 +301,11 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {{-- endTable --}}
-
-
-
                         </div>
-
 
 
                         @endif
                         {{-- end if - ingredients --}}
-
-
-
-
-
-
-
 
 
 

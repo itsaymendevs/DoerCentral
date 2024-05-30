@@ -62,4 +62,70 @@ class MealSize extends Model
 
 
 
+
+
+
+
+
+    // ---------------------------------------------------------
+    // ---------------------------------------------------------
+    // ---------------------------------------------------------
+
+
+
+
+
+    public function totalGrams()
+    {
+
+        // :: root
+        $totalGrams = 0;
+        $parts = $this->parts()->get();
+        $ingredients = $this->ingredients()->get();
+
+
+
+
+
+        // 1: ingredients
+        foreach ($ingredients ?? [] as $mealIngredient) {
+
+
+            $totalGrams += $mealIngredient?->amount ?? 0;
+
+        } // end loop
+
+
+
+
+
+        // 2: parts
+        foreach ($parts ?? [] as $mealPart) {
+
+
+            $totalGrams += $mealPart?->amount ?? 0;
+
+        } // end loop
+
+
+
+
+
+
+
+        return $totalGrams;
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
 } // end model

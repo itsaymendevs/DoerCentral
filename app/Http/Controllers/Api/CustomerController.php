@@ -2350,7 +2350,7 @@ class CustomerController extends Controller
 
 
                     // :: removeSchedule
-                    CustomerSubscriptionSchedule::where('scheduleDate', $deliveryDate)
+                    CustomerSubscriptionSchedule::where('customerSubscriptionDeliveryId', $upcomingDelivery->id)
                         ->where('customerSubscriptionId', $subscription->id)->delete();
 
 

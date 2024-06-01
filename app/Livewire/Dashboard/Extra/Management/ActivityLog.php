@@ -29,7 +29,7 @@ class ActivityLog extends Component
 
 
         // 1: dependencies
-        $logs = Log::orderBy('created_at', 'desc')
+        $logs = Log::orderBy('dateTime', 'desc')
             ->where('name', 'LIKE', '%' . $this->searchUser . '%')->get();
 
 

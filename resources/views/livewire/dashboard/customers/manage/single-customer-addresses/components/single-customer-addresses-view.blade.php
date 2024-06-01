@@ -6,7 +6,6 @@
 
 
 
-
         {{-- city --}}
         <div class="col-3">
 

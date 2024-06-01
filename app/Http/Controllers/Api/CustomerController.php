@@ -1126,7 +1126,7 @@ class CustomerController extends Controller
         // :: root
         $dateCounter = 0;
         $deliveryCounter = 0;
-        $deliveryWeekDays = explode('_', $subscription->planDeliveryDays);
+        $deliveryWeekDays = $customer->deliveryWeekDays();
 
 
 
@@ -2003,7 +2003,6 @@ class CustomerController extends Controller
 
         // -------------------------------------
         // -------------------------------------
-
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Menu\Plans\Manage;
 
 use App\Models\MenuCalendarPlan;
+use App\Models\Plan;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
@@ -83,9 +84,9 @@ class Calendars extends Component
 
 
             // ## log - activity ##
-            $plan = $calendarPlan->plan->name;
+            $plan = Plan::find($this->id);
 
-            $this->storeActivity('Menu', "Updated calendar for plan {$plan->name}");
+            $this->storeActivity('Menu', "Updated calendar for plan {$plan?->name}");
 
 
 

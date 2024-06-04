@@ -6,6 +6,7 @@ use App\Exports\KitchenPackingExport;
 use App\Models\Bag;
 use App\Models\Customer;
 use App\Models\CustomerSubscription;
+use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\MealType;
@@ -343,9 +344,17 @@ class KitchenTodayPacking extends Component
 
 
 
+        // 2: getDeliveries
+        $customers = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchScheduleDate)?->pluck('customerId')?->toArray() ?? [];
 
-        // 2: getSchedules - meals
+
+
+
+
+
+        // 2.1: getSchedules - meals
         $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->searchScheduleDate)
+            ->whereIn('customerId', $customers)
             ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
 
 

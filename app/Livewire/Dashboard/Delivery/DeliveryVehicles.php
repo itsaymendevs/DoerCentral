@@ -40,6 +40,26 @@ class DeliveryVehicles extends Component
 
 
 
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+
+    public function editPromotion($id)
+    {
+
+
+        // 1: dispatchId
+        $this->dispatch('editPromotion', $id);
+
+
+    } // end function
+
+
+
 
 
 

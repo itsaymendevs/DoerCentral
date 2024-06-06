@@ -223,6 +223,10 @@ Route::post('/dashboard/delivery/vehicles/remove', [DeliveryController::class, '
 
 
 
+// 1.5.2: delivery - vehicles - promotions - update
+Route::post('/dashboard/delivery/vehicles/promotions/update', [DeliveryController::class, 'updateVehiclePromotion']);
+
+
 
 
 

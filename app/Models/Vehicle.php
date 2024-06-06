@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model
 {
     use HasFactory;
-}
+
+
+
+    public function promotion()
+    {
+
+        return $this->hasOne(VehiclePromotion::class, 'vehicleId');
+
+    } // end function
+
+
+
+
+
+
+} // end model

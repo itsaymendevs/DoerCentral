@@ -10,6 +10,7 @@ use App\Models\CustomerSubscriptionDelivery;
 use App\Models\Driver;
 use App\Models\DriverZone;
 use App\Models\Vehicle;
+use App\Models\VehiclePromotion;
 use App\Models\Zone;
 use App\Models\ZoneDistrict;
 use App\Traits\DeliveryTrait;
@@ -974,6 +975,28 @@ class DeliveryController extends Controller
 
 
 
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+        // 2: promotion
+
+
+
+        // 2.1: create
+        $promotion = new VehiclePromotion();
+
+        $promotion->vehicleId = $vehicle->id;
+        $promotion->save();
+
+
+
+
+
+
 
 
 
@@ -1087,6 +1110,65 @@ class DeliveryController extends Controller
 
     } // end function
 
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateVehiclePromotion(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $promotion = VehiclePromotion::find($request->id);
+
+        $promotion->promotionURL = $request->promotionURL;
+        $promotion->width = $request->width;
+        $promotion->height = $request->height;
+
+
+
+        $promotion->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Promotion has been updated'], 200);
+
+
+
+
+    } // end function
 
 
 

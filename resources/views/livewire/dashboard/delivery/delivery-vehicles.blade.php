@@ -241,10 +241,19 @@
                                 <div class="col-12">
                                     <div class="d-flex align-items-center justify-content-center mb-1 mt-3">
 
-
-                                        {{-- 1: edit --}}
+                                        {{-- 1: promotion --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05 h-32 mb-0 "
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-3 mx-1 scale--self-05 h-32 mb-0 "
+                                            data-bs-toggle="modal" data-bs-target='#vehicle-promotion' type="button"
+                                            wire:click='editPromotion({{ $vehicle?->promotion?->id }})'>Promotion</button>
+
+
+
+
+
+                                        {{-- 2: edit --}}
+                                        <button
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-3 mx-1 scale--self-05 h-32 mb-0 "
                                             data-bs-toggle="modal" data-bs-target='#edit-vehicle' type="button"
                                             wire:click='edit({{ $vehicle->id }})'>Edit</button>
 
@@ -253,8 +262,8 @@
 
 
 
-                                        {{-- 2: remove --}}
-                                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
+                                        {{-- 3: remove --}}
+                                        <button class="btn btn--scheme btn--remove fs-12 px-2 mx-1 scale--self-05 h-32"
                                             type="button" wire:click='remove({{ $vehicle->id }})'
                                             wire:loading.attr='disabled'>Remove</button>
 
@@ -334,8 +343,15 @@
     {{-- 1: createVehicle --}}
     <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-create />
 
+
+
     {{-- 1.2: editVehicle --}}
     <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-edit />
+
+
+
+    {{-- 1.3: vehiclePromotion --}}
+    <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-promotion />
 
 
 

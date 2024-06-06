@@ -951,8 +951,9 @@ Route::post('/dashboard/menu/builder/meal-types/update', [BuilderController::cla
 
 
 
-// 9.4: menu - builder - ingredients - storeSizes
+// 9.4: menu - builder - ingredients - storeSizes - updatePrice
 Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 'storeBuilderSize']);
+Route::post('/dashboard/menu/builder/sizes/price/update', [BuilderController::class, 'updateBuilderSizePrice']);
 
 
 

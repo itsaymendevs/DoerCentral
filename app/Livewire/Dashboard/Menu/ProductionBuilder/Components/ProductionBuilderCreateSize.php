@@ -158,6 +158,48 @@ class ProductionBuilderCreateSize extends Component
 
 
 
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updatePrice($mealSizeId, $price)
+    {
+
+
+
+        // :: validation
+        if ($mealSizeId) {
+
+
+
+
+            // 1: make instance
+            $instance = new stdClass();
+            $instance->id = $mealSizeId;
+            $instance->price = $price;
+
+
+
+
+
+            // 1.2: makeRequest
+            $response = $this->makeRequest('dashboard/menu/builder/sizes/price/update', $instance);
+
+
+        } // end if
+
+
+
+
+    } // end function
+
+
+
 
 
 

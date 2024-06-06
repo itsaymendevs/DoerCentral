@@ -245,8 +245,14 @@ return new class extends Migration {
             // 5: deliveryModule
 
 
-            // 5.1: deliveryDrivers
+            // 5.1: deliveryVehiclePromotion
+            $table->boolean('deliveryModuleHasVehiclePromotion')->nullable()->default(1);
+
+
+
+            // 5.2: deliveryDrivers
             $table->boolean('deliveryModuleHasDrivers')->nullable()->default(1);
+
 
 
 

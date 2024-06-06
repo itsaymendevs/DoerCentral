@@ -75,6 +75,7 @@
         <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/checkout.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/only-print.css') }}" rel="stylesheet">
 
 
 

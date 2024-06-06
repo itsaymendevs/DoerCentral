@@ -120,8 +120,8 @@ class Permissions extends Component
 
             // 1.5: inventory - delivery
             'inventoryModuleHasStock' => 'Supplier & Stock',
+            'deliveryModuleHasVehiclePromotion' => 'Vehicle Promotion',
             'deliveryModuleHasDrivers' => 'Delivery Zones',
-
 
 
             // 1.6: sales
@@ -229,7 +229,7 @@ class Permissions extends Component
 
 
         // 2.5: inventoryAndDelivery
-        $inventoryPermissions = VersionPermission::get(['inventoryModuleHasStock', 'deliveryModuleHasDrivers'])->first()->toArray();
+        $inventoryPermissions = VersionPermission::get(['inventoryModuleHasStock', 'deliveryModuleHasVehiclePromotion', 'deliveryModuleHasDrivers'])->first()->toArray();
 
 
 

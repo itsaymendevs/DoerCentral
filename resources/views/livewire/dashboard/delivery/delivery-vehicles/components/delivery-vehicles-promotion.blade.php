@@ -11,8 +11,8 @@
 
 
                     {{-- closeButton --}}
-                    <button class="btn btn--raw-icon w-auto btn--close" data-bs-toggle="tooltip" data-bss-tooltip=""
-                        data-bs-placement="right" data-bs-dismiss="modal" type="button" title="Close Modal">
+                    <button class="btn btn--raw-icon w-auto btn--close" data-bs-dismiss="modal" data-bs-toggle="tooltip"
+                        data-bss-tooltip="" data-bs-placement="right" type="button" title="Close Modal">
                         <svg class="bi bi-dash-lg fs-1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                             fill="currentColor" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z">
@@ -21,6 +21,8 @@
                     </button>
                 </header>
                 {{-- endHeader --}}
+
+
 
 
 
@@ -38,16 +40,15 @@
 
                 {{-- form --}}
                 <form class="px-4" wire:submit='update'>
-                    <div class="row align-items-start row pt-2 mb-4">
+                    <div class="row align-items-center row pt-2 mb-4">
 
 
 
 
                         {{-- promotionURL --}}
                         <div class="col-12">
-                            <label class="form-label form--label">Promotion Link</label>
                             <input class="form-control form--input mb-4" type="text" required
-                                wire:model='instance.promotionURL'>
+                                wire:model='instance.promotionURL' placeholder="Promotion URL">
                         </div>
 
 
@@ -56,6 +57,9 @@
 
                         {{-- -------------------------------- --}}
                         {{-- -------------------------------- --}}
+
+
+
 
 
 
@@ -64,14 +68,41 @@
                         {{-- QR --}}
                         <div class="col-6">
                             <div class="mb-4">
-                                <label class="form-label upload--wrap" data-bs-toggle="tooltip" data-bss-tooltip="">
-                                    <img class="inventory--image-frame" src="../assets/img/Untitled.png"
-                                        style="height: 180px;">
-                                </label>
+                                <div
+                                    class='promotion--wrap mt-2 w-100 d-flex justify-content-center align-items-center'>
+                                    {!! QrCode::size(180)
+                                    ->backgroundColor(255,255,255, 0)
+                                    ->generate($instance->promotionURL ?? 'https://doer.ae') !!}
+                                </div>
                             </div>
                         </div>
 
 
+
+
+
+
+
+
+                        {{-- QR - PrintOnly --}}
+                        <div class="col-12 print--only">
+                            <div class="mb-4">
+                                <div id='promotion--qr'
+                                    class='promotion--wrap w-100 d-flex justify-content-center align-items-center'>
+                                    {!! QrCode::size($instance?->width ? $instance?->width * 37.8 : 180)
+                                    ->backgroundColor(255,255,255, 0)
+                                    ->generate($instance->promotionURL ?? 'https://doer.ae') !!}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        {{-- -------------------------------- --}}
+                        {{-- -------------------------------- --}}
 
 
 
@@ -86,28 +117,58 @@
 
                                 {{-- width --}}
                                 <div class="col-12">
-                                    <label class="form-label form--label">Width<small
-                                            class="ms-1 fw-semibold text-gold fs-10">(CM)</small>
-                                    </label>
 
-                                    <input class="form-control form--input mb-4" type="number" step='0.01' required
-                                        wire:model='instance.width'>
+
+                                    {{-- label --}}
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <hr style="width: 45%">
+                                        <label
+                                            class="form-label form--label px-3 w-50 justify-content-center mb-0">Width
+                                            <small class="ms-1 fw-semibold text-gold fs-9">(CM)</small>
+                                        </label>
+                                    </div>
+
+                                    {{-- input --}}
+                                    <input class="form-control text-center form--input mb-4" type="number" step='0.01'
+                                        required wire:model='instance.width'>
+
                                 </div>
+
+
+
+
+
 
 
 
 
                                 {{-- height --}}
                                 <div class="col-12">
-                                    <label class="form-label form--label">Height<small
-                                            class="ms-1 fw-semibold text-gold fs-10">(CM)</small>
-                                    </label>
-                                    <input class="form-control form--input mb-4" type="number" step='0.01' required
-                                        wire:model='instance.height'>
+
+
+                                    {{-- label --}}
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <hr style="width: 45%">
+                                        <label
+                                            class="form-label form--label px-3 w-50 justify-content-center mb-0">Height
+                                            <small class="ms-1 fw-semibold text-gold fs-9">(CM)</small>
+                                        </label>
+                                    </div>
+
+                                    {{-- input --}}
+                                    <input class="form-control  text-center form--input mb-4 readonly" readonly
+                                        type="number" step='0.01' required wire:model='instance.width'>
+
                                 </div>
+
+
+
+
 
                             </div>
                         </div>
+                        {{-- endCol --}}
+
 
 
 
@@ -115,6 +176,8 @@
 
                         {{-- ------------------------------ --}}
                         {{-- ------------------------------ --}}
+
+
 
 
 
@@ -131,11 +194,14 @@
 
 
 
+
+
                             {{-- 2: print --}}
                             <button
-                                class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold mx-2"
-                                type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                    fill="currentColor" viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
+                                class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold mx-2 print--labels"
+                                data-print='promotion--qr' type="button"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                    class="bi bi-printer fs-6 me-2">
                                     <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
                                     <path
                                         d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z">

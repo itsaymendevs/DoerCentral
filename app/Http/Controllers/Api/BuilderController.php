@@ -574,6 +574,56 @@ class BuilderController extends Controller
 
 
 
+    // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function updateBuilderSizePrice(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: get instance
+        $mealSize = MealSize::find($request->id);
+
+        $mealSize->price = $request?->price ?? null;
+        $mealSize->save();
+
+
+
+
+
+        return response()->json(['message' => 'Price has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

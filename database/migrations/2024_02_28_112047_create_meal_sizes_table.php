@@ -22,6 +22,14 @@ return new class extends Migration {
 
 
 
+
+            // 1.2: price
+            $table->double('price', 15)->nullable()->default(0);
+
+
+
+
+
             // 1.2: meal - size
             $table->bigInteger('mealId')->unsigned()->nullable();
             $table->foreign('mealId')->references('id')->on('meals')->onDelete('cascade');

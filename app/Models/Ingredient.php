@@ -22,6 +22,33 @@ class Ingredient extends Model
 
 
 
+    public function group()
+    {
+
+        return $this->belongsTo(IngredientGroup::class, 'groupId');
+
+    } // end function
+
+
+
+
+
+
+
+    public function category()
+    {
+
+        return $this->belongsTo(IngredientCategory::class, 'categoryId');
+
+    } // end function
+
+
+
+
+
+
+
+
     public function unit()
     {
 
@@ -53,6 +80,21 @@ class Ingredient extends Model
         return $this->macros?->where('ingredientType', 'Fresh')->first();
 
     } // end function
+
+
+
+
+
+
+    public function meals()
+    {
+
+        return $this->hasMany(MealIngredient::class, 'ingredientId');
+
+
+    } // end function
+
+
 
 
 

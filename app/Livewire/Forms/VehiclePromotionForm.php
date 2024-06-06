@@ -9,11 +9,11 @@ class VehiclePromotionForm extends Form
 {
 
     #[Validate('required')]
-    public $promotionURL, $width, $height, $vehicleId;
+    public $promotionURL, $width, $vehicleId;
 
 
 
-    public $id;
+    public $id, $height;
 
 
 

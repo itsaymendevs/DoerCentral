@@ -1152,7 +1152,7 @@ class DeliveryController extends Controller
 
         $promotion->promotionURL = $request->promotionURL;
         $promotion->width = $request->width;
-        $promotion->height = $request->height;
+        $promotion->height = $request->width;
 
 
 

@@ -126,7 +126,7 @@
 
                                 {{-- profileImage --}}
                                 <div class="col-12 text-center position-relative">
-                                    <img class="client--card-logo smaller of-cover"
+                                    <img class="client--card-logo smaller"
                                         src="{{ asset('storage/delivery/vehicles/profiles/' . $vehicle->imageFile) }}">
                                 </div>
 
@@ -242,10 +242,26 @@
                                     <div class="d-flex align-items-center justify-content-center mb-1 mt-3">
 
                                         {{-- 1: promotion --}}
+
+
+
+
+                                        {{-- :: permission - hasVehiclePromotion --}}
+                                        @if ($versionPermission->deliveryModuleHasVehiclePromotion)
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-2 fs-12 px-3 mx-1 scale--self-05 h-32 mb-0 "
                                             data-bs-toggle="modal" data-bs-target='#vehicle-promotion' type="button"
                                             wire:click='editPromotion({{ $vehicle?->promotion?->id }})'>Promotion</button>
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
+
 
 
 

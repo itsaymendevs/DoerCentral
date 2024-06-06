@@ -115,7 +115,7 @@
 
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
-                                    <img class="client--card-logo smaller of-cover"
+                                    <img class="client--card-logo smaller "
                                         src="{{ asset('storage/delivery/zones/' . $zone->imageFile) }}">
                                 </div>
 

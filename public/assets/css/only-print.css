@@ -1,0 +1,13 @@
+.print--only {
+    display: none !important;
+}
+
+@media print {
+    .print--only {
+        display: flex !important;
+    }
+
+    .print--table * {
+        color: black !important;
+    }
+}

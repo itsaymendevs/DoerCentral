@@ -352,3 +352,9 @@
     color: black !important;
     fill: black !important;
 }
+
+.promotion--wrap svg {
+    border-radius: var(--radius);
+    padding: 12px;
+    background-color: #cccccc;
+}

@@ -112,7 +112,7 @@
 
                                 {{-- profileImage --}}
                                 <div class="col-12 text-center position-relative">
-                                    <img class="client--card-logo smaller of-cover"
+                                    <img class="client--card-logo smaller"
                                         src="{{ asset('storage/delivery/drivers/profiles/' . $driver->imageFile) }}">
                                 </div>
 

@@ -54,7 +54,17 @@
 
 
 
-            {{-- 5: settings --}}
+
+
+            {{-- 5: ingredientsList --}}
+            <a class="btn @if (Request::is('dashboard/menu/ingredients-list')) active @endif"
+                href="{{ route('dashboard.menuIngredientsList') }}" wire:navigate>Ingredients List</a>
+
+
+
+
+
+            {{-- 6: settings --}}
             <a class="btn @if (Request::is('dashboard/menu/settings')) active @endif"
                 href="{{ route('dashboard.menuSettings') }}" wire:navigate>Settings</a>
 

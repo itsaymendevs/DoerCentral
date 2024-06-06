@@ -6,7 +6,7 @@
 
 
     {{-- meal - name --}}
-    <h3 class="fw-semibold text-center">
+    <h3 class="fw-semibold text-center fs-4">
         {{ $instance->name }}
     </h3>
 

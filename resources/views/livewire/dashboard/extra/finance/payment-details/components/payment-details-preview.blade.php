@@ -202,7 +202,7 @@
 
 
                                                 {{-- name --}}
-                                                <h5 class="mb-2 mt-0 fw-semibold">Aleens</h5>
+                                                <h5 class="mb-2 mt-0 fw-semibold">{{$globalProfile->name }}</h5>
 
 
                                                 {{-- address --}}

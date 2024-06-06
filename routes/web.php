@@ -48,6 +48,7 @@ use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayProduction;
 use App\Livewire\Dashboard\Menu\Builder;
 use App\Livewire\Dashboard\Menu\Calendars;
 use App\Livewire\Dashboard\Menu\Calendars\SingleCalendar;
+use App\Livewire\Dashboard\Menu\IngredientsList;
 use App\Livewire\Dashboard\Menu\Items\Drinks;
 use App\Livewire\Dashboard\Menu\Items\Meals;
 use App\Livewire\Dashboard\Menu\Items\Sauces;
@@ -595,6 +596,10 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
+
+
         // ---------
 
 
@@ -602,7 +607,22 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 6.8: Settings
+        // 6.8: ingredientsList
+        Route::get('dashboard/menu/ingredients-list', IngredientsList::class)->name('dashboard.menuIngredientsList');
+
+
+
+
+
+
+        // ---------
+
+
+
+
+
+
+        // 6.9: Settings
         Route::get('dashboard/menu/settings', Settings::class)->name('dashboard.menuSettings');
 
 

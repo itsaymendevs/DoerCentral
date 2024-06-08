@@ -526,7 +526,7 @@
 
                                 // :: check allergy - exclude
                                 $combine =
-                                $customer->checkMealCompatibility($subscriptionScheduleMeal->meal->id);
+                                $customer->checkMealCompatibility($subscriptionScheduleMeal?->meal?->id);
 
 
                                 $isNotAllergy = $combine?->allergies->count() == 0;
@@ -545,7 +545,7 @@
 
 
                                 <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 mb-0 mb-lg-5"
-                                    key='schedule-meal-{{ $subscriptionScheduleMeal->id }}'>
+                                    key='schedule-meal-{{ $subscriptionScheduleMeal?->id }}'>
                                     <div class="overview--card client-version menu scale--self-05 mb-floating">
                                         <div class="row">
 
@@ -553,7 +553,7 @@
                                             {{-- imageFile --}}
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
-                                                    src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleMeal->meal->imageFile ?? $defaultPlate)) }}" />
+                                                    src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleMeal?->meal?->imageFile ?? $defaultPlate)) }}" />
                                             </div>
 
 
@@ -562,7 +562,7 @@
                                             {{-- name --}}
                                             <div class="col-12">
                                                 <h6 class="text-center fw-bold mt-3 mb-2 truncate-text-2l height-2l">{{
-                                                    $subscriptionScheduleMeal->meal->name }}</h6>
+                                                    $subscriptionScheduleMeal?->meal?->name }}</h6>
                                             </div>
 
 
@@ -614,7 +614,7 @@
                                                     <button class="btn  btn--scheme btn--remove fs-11 px-2 mx-1 py-1"
                                                         @if($isNotAllergy && $isNotExclude) disabled @endif
                                                         type="button" data-bs-toggle='modal'
-                                                        data-bs-target='#meal-excludes' wire:click='viewExcludes({{ $subscriptionScheduleMeal->meal->id
+                                                        data-bs-target='#meal-excludes' wire:click='viewExcludes({{ $subscriptionScheduleMeal?->meal?->id
                                                         }})'>Excludes</button>
 
 
@@ -786,7 +786,7 @@
 
 
                                 {{-- withoutDefault --}}
-                                @if ($calendarScheduleMeal->mealId !=
+                                @if ($calendarScheduleMeal?->mealId !=
                                 $subscriptionScheduleMeals?->where('mealTypeId', $mealType->id)?->first()?->mealId)
 
 
@@ -868,7 +868,7 @@
                                                     <button
                                                         class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
                                                         type="button">
-                                                        {{ $subscriptionScheduleMeal?->meal?->diet?->name }}
+                                                        {{ $calendarScheduleMeal?->meal?->diet?->name }}
                                                     </button>
                                                 </div>
 
@@ -1154,7 +1154,7 @@
                                             {{-- imageFile --}}
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
-                                                    src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleReplacement->replacement->imageFile ?? $defaultPlate)) }}" />
+                                                    src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleReplacement?->replacement?->imageFile ?? $defaultPlate)) }}" />
                                             </div>
 
 
@@ -1163,7 +1163,7 @@
                                             {{-- name --}}
                                             <div class="col-12">
                                                 <h6 class="text-center fw-bold mt-3 mb-2 truncate-text-2l height-2l">{{
-                                                    $subscriptionScheduleReplacement->replacement->name }}</h6>
+                                                    $subscriptionScheduleReplacement?->replacement?->name }}</h6>
                                             </div>
 
 
@@ -1193,7 +1193,7 @@
                                                     <button
                                                         class="btn btn--raw-icon fs-13 text-warning d-flex align-items-center justify-content-center fw-bold"
                                                         type="button">
-                                                        {{ $subscriptionScheduleMeal?->meal?->diet?->name }}
+                                                        {{ $subscriptionScheduleReplacement?->meal?->diet?->name }}
                                                     </button>
                                                 </div>
 

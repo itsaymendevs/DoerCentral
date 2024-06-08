@@ -30,7 +30,7 @@ class ActivityLog extends Component
 
         // 1: dependencies
         $logs = Log::orderBy('dateTime', 'desc')
-            ->where('name', 'LIKE', '%' . $this->searchUser . '%')->get();
+            ->where('name', 'LIKE', '%' . $this->searchUser . '%')->paginate(200);
 
 
         return view('livewire.dashboard.extra.management.activity-log', compact('logs'));

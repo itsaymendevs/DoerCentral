@@ -368,13 +368,13 @@ class ProductionBuilderViewIngredient extends Component
                     // 1.4: updateAfterCook Macros
                     $this->instance->afterCookGrams = round($this->instance->afterCookGrams * $conversion->conversionValue, 2);
 
-                    $this->instance->afterCookCalories = (($totalMacros->calories / $conversion->conversionValue) / $this->instance->grams) * $this->instance->afterCookGrams;
+                    $this->instance->afterCookCalories = (($totalMacros->calories / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams > 0 ? $this->instance->grams : 1)) * $this->instance->afterCookGrams;
 
-                    $this->instance->afterCookProteins = (($totalMacros->proteins / $conversion->conversionValue) / $this->instance->grams) * $this->instance->afterCookGrams;
+                    $this->instance->afterCookProteins = (($totalMacros->proteins / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams > 0 ? $this->instance->grams : 1)) * $this->instance->afterCookGrams;
 
-                    $this->instance->afterCookCarbs = (($totalMacros->carbs / $conversion->conversionValue) / $this->instance->grams) * $this->instance->afterCookGrams;
+                    $this->instance->afterCookCarbs = (($totalMacros->carbs / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams > 0 ? $this->instance->grams : 1)) * $this->instance->afterCookGrams;
 
-                    $this->instance->afterCookFats = (($totalMacros->fats / $conversion->conversionValue) / $this->instance->grams) * $this->instance->afterCookGrams;
+                    $this->instance->afterCookFats = (($totalMacros->fats / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams > 0 ? $this->instance->grams : 1)) * $this->instance->afterCookGrams;
 
 
                 } // end if - exists

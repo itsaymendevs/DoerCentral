@@ -156,7 +156,7 @@
 
 
         {{-- :: permission inline - hasSizeOverview --}}
-        <!-- <div class="row @if ($initSizeId != $mealSize->size->id) d-none @endif
+        <div class="row @if ($initSizeId != $mealSize->size->id) d-none @endif
             @if (!$versionPermission->menuModuleHasBuilderSizeOverview) d-none-permission @endif"
             data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
 
@@ -169,7 +169,7 @@
                     <h6 class="fs-12">Calories</h6>
                     <p>
                         <input class="form-control form--input form--table-input-xs text-center readonly" type="number"
-                            value="{{ $mealSize->size->calories }}" readonly="" step="0.01" />
+                            value="{{ $mealSize?->size?->calories }}" readonly="" step="0.01" />
                     </p>
                 </div>
             </div>
@@ -217,7 +217,7 @@
 
 
 
-        </div> -->
+        </div>
 
 
 

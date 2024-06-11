@@ -433,7 +433,7 @@
                         @if ($delivery->status == 'Pending')
 
                         <button wire:click="update({{ $delivery->id }}, 'Picked')" wire:loading.class='disabled'
-                            class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white d-none"
+                            class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white"
                             type="button">Confirm Picking</button>
 
 
@@ -441,10 +441,10 @@
 
 
                         {{-- capture QR --}}
-                        <label data-bs-toggle='modal' data-bs-target='#pickup-delivery'
+                        {{-- <label data-bs-toggle='modal' data-bs-target='#pickup-delivery'
                             wire:click="pickDelivery({{ $delivery->id }})"
                             class="btn btn--scheme btn--scheme-outline-3 py-1 d-inline-flex align-items-center justify-content-center shrink--self fs-12 text-white ">Confirm
-                            Picking</label>
+                            Picking</label> --}}
 
 
 

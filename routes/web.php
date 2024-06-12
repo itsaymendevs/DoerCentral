@@ -119,6 +119,17 @@ Route::get('/storage-link', function () {
 
 
 
+// :: scheduleList
+Route::get('/schedule-list', function () {
+
+    $list = Artisan::call('schedule:list');
+
+});
+
+
+
+
+
 
 
 

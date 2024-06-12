@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ReAssignScheduleJob;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\MenuCalendar;
@@ -12,6 +13,7 @@ use App\Models\MenuCalendarSchedule;
 use App\Models\MenuCalendarScheduleMeal;
 use App\Traits\MenuCalendarTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class MenuCalendarController extends Controller
 {
@@ -499,11 +501,16 @@ class MenuCalendarController extends Controller
 
 
 
-        // 2: re-assign schedule
+        // 2: re-assign schedule [Job] - runQueue
         $calendarSchedule = MenuCalendarSchedule::find($request->menuCalendarScheduleId);
 
+        ReAssignScheduleJob::dispatch($calendarSchedule);
 
-        $this->reAssignSchedule($calendarSchedule);
+
+        // :: queue - run
+        Artisan::call('queue:work --stop-when-empty');
+
+
 
 
 

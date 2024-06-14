@@ -55,8 +55,9 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-        // 1.3: globalCounter
+        // 1.3: globalCounter - globalMaximumSuppliers
         View::share('globalSNCounter', 1);
+        View::share('globalMaximumSuppliers', 4);
 
 
 

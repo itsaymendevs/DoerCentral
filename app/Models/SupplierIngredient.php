@@ -13,7 +13,7 @@ class SupplierIngredient extends Model
 
     public function supplier()
     {
-        return $this->belongsTo(Supplier::class, 'supplierId');
+        return $this->belongsTo(Supplier::class, 'supplierId', 'id');
 
     } // end function
 

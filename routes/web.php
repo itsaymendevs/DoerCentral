@@ -12,6 +12,7 @@ use App\Livewire\Dashboard\Delivery\DeliveryToday;
 use App\Livewire\Dashboard\Delivery\DeliveryVehicles;
 use App\Livewire\Dashboard\Delivery\DeliveryZones;
 use App\Livewire\Dashboard\Extra\Reports\ReportsDelivery;
+use App\Livewire\Dashboard\Inventory\Comparisons;
 use App\Livewire\Dashboard\Inventory\Configurations;
 use App\Livewire\Dashboard\Inventory\Ingredients;
 use App\Livewire\CustomerPortal\CustomerHome;
@@ -390,6 +391,23 @@ Route::middleware(['auth.user'])->group(function () {
 
 
         // ---------
+
+
+
+
+
+
+
+        // 4.3.5: inventory - comparisons
+        Route::get('dashboard/inventory/comparisons', Comparisons::class)->name('dashboard.inventory.comparisons');
+
+
+
+
+        // ---------
+
+
+
 
 
 

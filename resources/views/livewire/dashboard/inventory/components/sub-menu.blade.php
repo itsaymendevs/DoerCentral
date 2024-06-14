@@ -55,6 +55,16 @@
 
 
 
+
+            {{-- comparisons --}}
+            <a wire:navigate class="btn
+            @if (Request::is('dashboard/inventory/comparisons')) active @endif" role="button"
+                href="{{ route('dashboard.inventory.comparisons') }}">Comparisons</a>
+
+
+
+
+
             {{-- stock --}}
             <a wire:navigate class="btn
             @if (Request::is('dashboard/inventory/stock')) active @endif" role="button"

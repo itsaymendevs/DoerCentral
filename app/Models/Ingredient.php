@@ -22,6 +22,19 @@ class Ingredient extends Model
 
 
 
+
+    public function suppliers()
+    {
+
+        return $this->hasMany(SupplierIngredient::class, 'ingredientId');
+
+    } // end function
+
+
+
+
+
+
     public function group()
     {
 
@@ -68,6 +81,12 @@ class Ingredient extends Model
         return $this->belongsTo(Unit::class, 'purchaseUnitId', 'id');
 
     } // end function
+
+
+
+
+
+
 
 
 

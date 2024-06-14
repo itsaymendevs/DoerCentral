@@ -701,20 +701,20 @@
 
 
     {{-- 0: pickup --}}
-    <livewire:driver-portal.driver-home.components.driver-home-pickup />
+    <livewire:driver-portal.driver-home.components.driver-home-pickup key='driver-pickup-modal' />
 
 
 
 
 
     {{-- 1: confirm --}}
-    <livewire:driver-portal.driver-home.components.driver-home-confirm />
+    <livewire:driver-portal.driver-home.components.driver-home-confirm key='driver-confirm-modal' />
 
 
 
 
     {{-- 2: map --}}
-    <livewire:driver-portal.driver-home.components.driver-home-map />
+    <livewire:driver-portal.driver-home.components.driver-home-map key='driver-map-modal' />
 
 
     @endsection

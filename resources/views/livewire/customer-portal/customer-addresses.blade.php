@@ -220,8 +220,8 @@
 
 
     {{-- 1: createAddress --}}
-    <livewire:customer-portal.customer-addresses.components.customer-addresses-create key='{{ $customer->id }}'
-        id='{{ $customer->id }}' />
+    <livewire:customer-portal.customer-addresses.components.customer-addresses-create
+        key='create-address-{{ $customer->id }}' id='{{ $customer->id }}' />
 
 
 

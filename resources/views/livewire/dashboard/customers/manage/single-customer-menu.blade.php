@@ -1687,7 +1687,7 @@
 
     {{-- 1: editRemarks --}}
     <livewire:dashboard.customers.manage.single-customer-menu.components.single-customer-menu-edit-remarks
-        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+        id='{{ $customer->id }}' key='edit-remarks-modal-{{ $customer->id }}' />
 
 
 
@@ -1702,7 +1702,7 @@
 
     {{-- 2: viewExcludes --}}
     <livewire:dashboard.customers.manage.single-customer-menu.components.single-customer-menu-view-excludes
-        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+        id='{{ $customer->id }}' key='view-excludes-modal-{{ $customer->id }}' />
 
 
 
@@ -1721,7 +1721,7 @@
 
     {{-- 3: replaceMeal --}}
     <livewire:dashboard.customers.manage.single-customer-menu.components.single-customer-menu-replace-meal
-        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+        id='{{ $customer->id }}' key='replace-meal-modal-{{ $customer->id }}' />
 
 
 
@@ -1732,7 +1732,7 @@
 
     {{-- 3.5: replaceMealExcludes --}}
     <livewire:dashboard.customers.manage.single-customer-menu.components.single-customer-menu-replace-meal-excludes
-        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+        id='{{ $customer->id }}' key='replace-meal-excludes-modal-{{ $customer->id }}' />
 
 
 

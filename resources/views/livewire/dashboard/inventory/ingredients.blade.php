@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.inventory.components.sub-menu title='Ingredients List' />
+        <livewire:dashboard.inventory.components.sub-menu title='Ingredients List' key='sub-menu' />
 
 
 
@@ -759,15 +759,15 @@
 
 
     {{-- 1: createIngredient --}}
-    <livewire:dashboard.inventory.ingredients.components.ingredients-create />
+    <livewire:dashboard.inventory.ingredients.components.ingredients-create key='ingredients-create-modal' />
 
     {{-- 2: editIngredient --}}
-    <livewire:dashboard.inventory.ingredients.components.ingredients-edit />
+    <livewire:dashboard.inventory.ingredients.components.ingredients-edit key='ingredients-edit-modal' />
 
 
 
     {{-- 3: editBrands --}}
-    <livewire:dashboard.inventory.ingredients.components.ingredients-brands />
+    <livewire:dashboard.inventory.ingredients.components.ingredients-brands key='ingredients-brands-modal' />
 
 
 

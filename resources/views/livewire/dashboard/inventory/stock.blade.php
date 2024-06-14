@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.inventory.components.sub-menu title='Stock Overview' />
+        <livewire:dashboard.inventory.components.sub-menu title='Stock Overview' key='sub-menu' />
 
 
 

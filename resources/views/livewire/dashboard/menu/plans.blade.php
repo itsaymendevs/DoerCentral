@@ -582,14 +582,14 @@
 
 
     {{-- 1: createPlan --}}
-    <livewire:dashboard.menu.plans.components.plans-create />
+    <livewire:dashboard.menu.plans.components.plans-create key='plans-create-modal' />
 
 
 
 
 
     {{-- 1.2: editPlan --}}
-    <livewire:dashboard.menu.plans.components.plans-edit />
+    <livewire:dashboard.menu.plans.components.plans-edit key='plans-edit-modal' />
 
 
 
@@ -603,7 +603,7 @@
 
 
     {{-- 2: managePlanRanges --}}
-    <livewire:dashboard.menu.plans.components.plans-manage-ranges />
+    <livewire:dashboard.menu.plans.components.plans-manage-ranges key='plans-manage-ranges-modal' />
     @endsection
 
 

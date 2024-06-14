@@ -217,7 +217,7 @@
 
     {{-- 1: createAddress --}}
     <livewire:dashboard.customers.manage.single-customer-addresses.components.single-customer-addresses-create
-        id='{{ $customer->id }}' key='{{ $customer->id }}' />
+        id='{{ $customer->id }}' key='create-address-modal-{{ $customer->id }}' />
 
 
 

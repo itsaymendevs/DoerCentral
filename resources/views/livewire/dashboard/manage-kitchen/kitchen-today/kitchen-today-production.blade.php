@@ -1036,20 +1036,23 @@
 
 
     {{-- 1: viewPart - ingredients & otherParts --}}
-    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-part />
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-part
+        key='view-part-modal' />
 
 
 
 
     {{-- 2: viewRemarks - customer & remarks --}}
-    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-remarks />
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-remarks
+        key='view-remarks-modal' />
 
 
 
 
 
     {{-- 3: viewExcludes - customer & excludes --}}
-    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-excludes />
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-excludes
+        key='view-excludes-modal' />
 
 
 

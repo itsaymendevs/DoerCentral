@@ -716,7 +716,8 @@
 
 
     {{-- 1: preview / print --}}
-    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-label.components.kitchen-today-label-preview />
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-label.components.kitchen-today-label-preview
+        key='today-label-preview-modal' />
 
 
 

@@ -292,10 +292,10 @@
 
 
     {{-- 1: createDriver --}}
-    <livewire:dashboard.delivery.delivery-drivers.components.delivery-drivers-create />
+    <livewire:dashboard.delivery.delivery-drivers.components.delivery-drivers-create key='create-driver-modal' />
 
     {{-- 1.2: editDriver --}}
-    <livewire:dashboard.delivery.delivery-drivers.components.delivery-drivers-edit />
+    <livewire:dashboard.delivery.delivery-drivers.components.delivery-drivers-edit key='edit-driver-modal' />
 
 
 

@@ -357,17 +357,18 @@
 
 
     {{-- 1: createVehicle --}}
-    <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-create />
+    <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-create key='vehicle-create-modal' />
 
 
 
     {{-- 1.2: editVehicle --}}
-    <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-edit />
+    <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-edit key='vehicle-edit-modal' />
 
 
 
     {{-- 1.3: vehiclePromotion --}}
-    <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-promotion />
+    <livewire:dashboard.delivery.delivery-vehicles.components.delivery-vehicles-promotion
+        key='vehicle-promotion-modal' />
 
 
 

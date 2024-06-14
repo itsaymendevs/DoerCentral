@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.inventory.components.sub-menu title='Manage Configurations' />
+        <livewire:dashboard.inventory.components.sub-menu title='Manage Configurations' key='sub-menu' />
 
 
 
@@ -350,12 +350,14 @@
 
 
     {{-- 1: allergies --}}
-    <livewire:dashboard.inventory.configurations.components.configurations-allergies-ingredients-edit />
+    <livewire:dashboard.inventory.configurations.components.configurations-allergies-ingredients-edit
+        key='allergies-modal' />
 
 
 
     {{-- 2: excludes --}}
-    <livewire:dashboard.inventory.configurations.components.configurations-excludes-ingredients-edit />
+    <livewire:dashboard.inventory.configurations.components.configurations-excludes-ingredients-edit
+        key='excludes-modal' />
 
 
 

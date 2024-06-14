@@ -207,7 +207,7 @@
 
 
         {{-- 1: createContainer --}}
-        <livewire:dashboard.manage-kitchen.containers.containers-create />
+        <livewire:dashboard.manage-kitchen.containers.containers-create key='create-containers-modal' />
 
 
 

@@ -255,13 +255,13 @@
 
 
     {{-- 1: createRole --}}
-    <livewire:dashboard.extra.management.roles.components.roles-create />
+    <livewire:dashboard.extra.management.roles.components.roles-create key='create-roles-modal' />
 
 
 
 
     {{-- 2: editRole --}}
-    <livewire:dashboard.extra.management.roles.components.roles-edit />
+    <livewire:dashboard.extra.management.roles.components.roles-edit key='edit-roles-modal' />
 
 
 

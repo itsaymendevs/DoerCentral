@@ -297,10 +297,10 @@
 
 
     {{-- 1: createTiming --}}
-    <livewire:dashboard.delivery.components.delivery-create-timing />
+    <livewire:dashboard.delivery.components.delivery-create-timing key='create-timing-modal' />
 
     {{-- 1.2: createTiming --}}
-    <livewire:dashboard.delivery.components.delivery-edit-timing />
+    <livewire:dashboard.delivery.components.delivery-edit-timing key='edit-timing-modal' />
 
 
 
@@ -310,10 +310,10 @@
 
 
     {{-- 2: createZone --}}
-    <livewire:dashboard.delivery.components.delivery-create-zone />
+    <livewire:dashboard.delivery.components.delivery-create-zone key='create-zone-modal' />
 
     {{-- 2.1: editZone --}}
-    <livewire:dashboard.delivery.components.delivery-edit-zone />
+    <livewire:dashboard.delivery.components.delivery-edit-zone key='edit-zone-modal' />
 
 
 
@@ -323,10 +323,10 @@
 
 
     {{-- 3: createDriver --}}
-    <livewire:dashboard.delivery.components.delivery-create-driver />
+    <livewire:dashboard.delivery.components.delivery-create-driver key='create-driver-modal' />
 
     {{-- 3.1: editDriver --}}
-    <livewire:dashboard.delivery.components.delivery-edit-driver />
+    <livewire:dashboard.delivery.components.delivery-edit-driver key='edit-driver-modal' />
 
 
     @endsection

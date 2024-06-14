@@ -327,10 +327,10 @@
 
 
     {{-- 1: createBundle --}}
-    <livewire:dashboard.menu.plans.manage.bundles.components.bundles-create :$id />
+    <livewire:dashboard.menu.plans.manage.bundles.components.bundles-create :$id key='create-bundles-modal' />
 
     {{-- 1.2: editBundle --}}
-    <livewire:dashboard.menu.plans.manage.bundles.components.bundles-edit :$id />
+    <livewire:dashboard.menu.plans.manage.bundles.components.bundles-edit :$id key='edit-bundles-modal' />
 
 
 
@@ -339,7 +339,7 @@
 
 
     {{-- 2: manageBundleDays --}}
-    <livewire:dashboard.menu.plans.manage.bundles.components.bundles-manage-days :$id />
+    <livewire:dashboard.menu.plans.manage.bundles.components.bundles-manage-days :$id key='manage-bunldes-modal' />
 
 
 
@@ -349,7 +349,7 @@
 
 
     {{-- 3: migrateBundle --}}
-    <livewire:dashboard.menu.plans.manage.bundles.components.bundles-migrate :$id />
+    <livewire:dashboard.menu.plans.manage.bundles.components.bundles-migrate :$id key='migrate-bundles-modal' />
 
 
 

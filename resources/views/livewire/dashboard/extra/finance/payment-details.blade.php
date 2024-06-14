@@ -664,7 +664,7 @@
 
 
     {{-- 1: preview / print --}}
-    <livewire:dashboard.extra.finance.payment-details.components.payment-details-preview />
+    <livewire:dashboard.extra.finance.payment-details.components.payment-details-preview key='payment-details-modal' />
 
 
 

@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.inventory.components.sub-menu title='Suppliers List' />
+        <livewire:dashboard.inventory.components.sub-menu title='Suppliers List' key='sub-menu' />
 
 
 
@@ -110,12 +110,12 @@
                         <thead>
                             <tr>
                                 <th class="th--xs"></th>
-                                <th class="th--sm">Name</th>
-                                <th class="th--xs">Phone</th>
-                                <th class="th--md">Address</th>
-                                <th class="th--sm">Categories</th>
-                                <th class="th--sm">Ingredients</th>
-                                <th class="th--md"></th>
+                                <th class="th--lg">Name</th>
+                                <th class="th--md">Phone</th>
+                                <th class="th--lg">Address</th>
+                                <th class="th--xs">Categories</th>
+                                <th class="th--xs">Ingredients</th>
+                                <th class="th--xs"></th>
                             </tr>
                         </thead>
 
@@ -138,7 +138,7 @@
 
 
                                 {{-- name - phone --}}
-                                <td class="fw-bold">{{ $supplier->name }}</td>
+                                <td>{{ $supplier->name }}</td>
                                 <td>{{ $supplier->phone }}</td>
 
 
@@ -305,19 +305,19 @@
 
 
     {{-- 1: create --}}
-    <livewire:dashboard.inventory.suppliers.components.suppliers-create />
+    <livewire:dashboard.inventory.suppliers.components.suppliers-create key='supplier-create-modal' />
 
 
 
 
     {{-- 2: edit --}}
-    <livewire:dashboard.inventory.suppliers.components.suppliers-edit />
+    <livewire:dashboard.inventory.suppliers.components.suppliers-edit key='supplier-edit-modal' />
 
 
 
 
     {{-- 3: ingredients --}}
-    <livewire:dashboard.inventory.suppliers.components.suppliers-ingredients />
+    <livewire:dashboard.inventory.suppliers.components.suppliers-ingredients key='supplier-ingredients-modal' />
 
 
 

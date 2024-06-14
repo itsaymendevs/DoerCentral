@@ -4,6 +4,8 @@ namespace App\Livewire\Dashboard\Inventory;
 
 use App\Models\Ingredient;
 use App\Models\IngredientCategory;
+use App\Models\Supplier;
+use App\Models\SupplierIngredient;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -34,25 +36,22 @@ class Comparisons extends Component
 
         // 1: dependencies
         $categories = IngredientCategory::all();
+        $supplierIngredientsRaw = SupplierIngredient::all();
 
 
 
 
+        $supplierIngredients = $supplierIngredientsRaw->filter(function ($item) {
 
 
-        // 1.2: ingredients - makeFilter
-        $ingredientsRaw = Ingredient::whereHas('suppliers')
-            ->where('name', 'LIKE', '%' . $this->searchIngredient . '%')->get();
-
-
-
-
-        $ingredients = $ingredientsRaw->filter(function ($item) {
-
-
-            // 1: category
             $toReturn = true;
-            $this->searchCategory ? $item->categoryId != $this->searchCategory ? $toReturn = false : null : null;
+
+
+            // 1: ingredient - category
+            $this->searchIngredient ? ! str_contains(strtolower($item?->ingredient?->name), $this->searchIngredient) ? $toReturn = false : null : null;
+
+            $this->searchCategory ? $item?->ingredient?->categoryId != $this->searchCategory ? $toReturn = false : null : null;
+
 
 
             return $toReturn;
@@ -66,14 +65,26 @@ class Comparisons extends Component
 
 
 
-        // 1.2.2: finalIngredients
-        $ingredients = Ingredient::whereHas('suppliers')
-            ->orderBy('created_at', 'desc')
-            ->whereIn('id', $ingredients?->pluck('id')?->toArray() ?? [])
-            ->paginate(env('PAGINATE_XXL'));
+
+        // ---------------------------------------------------
+        // ---------------------------------------------------
 
 
 
+
+
+
+
+
+
+        // 1.2.2: finalSupplierIngredients
+        $supplierIngredients = SupplierIngredient::orderBy('ingredientId')
+            ->whereIn('id', $supplierIngredients?->pluck('id')?->toArray() ?? [])
+            ->get();
+
+
+
+        $suppliers = Supplier::whereIn('id', $supplierIngredients?->pluck('supplierId')?->toArray())->get();
 
 
 
@@ -87,7 +98,7 @@ class Comparisons extends Component
 
 
 
-        return view('livewire.dashboard.inventory.comparisons', compact('ingredients', 'categories'));
+        return view('livewire.dashboard.inventory.comparisons', compact('supplierIngredients', 'categories', 'suppliers'));
 
 
 

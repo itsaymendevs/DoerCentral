@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.inventory.components.sub-menu title='Purchase List' />
+        <livewire:dashboard.inventory.components.sub-menu title='Purchase List' key='sub-menu' />
 
 
 
@@ -313,26 +313,26 @@
 
 
     {{-- 1: create --}}
-    <livewire:dashboard.inventory.purchases.components.purchases-create />
+    <livewire:dashboard.inventory.purchases.components.purchases-create key='purchases-create-modal' />
 
 
 
 
     {{-- 2: edit --}}
-    <livewire:dashboard.inventory.purchases.components.purchases-edit />
+    <livewire:dashboard.inventory.purchases.components.purchases-edit key='purchases-edit-modal' />
 
 
 
 
     {{-- 3: ingredients --}}
-    <livewire:dashboard.inventory.purchases.components.purchases-ingredients />
+    <livewire:dashboard.inventory.purchases.components.purchases-ingredients key='purchases-ingredients-modal' />
 
 
 
 
 
     {{-- 4: confirm --}}
-    <livewire:dashboard.inventory.purchases.components.purchases-confirm />
+    <livewire:dashboard.inventory.purchases.components.purchases-confirm key='purchases-confirm-modal' />
 
 
 

@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.inventory.components.sub-menu title='Comparison Table' />
+        <livewire:dashboard.inventory.components.sub-menu title='Comparison Table' key='sub-menu' />
 
 
 
@@ -29,7 +29,7 @@
 
             {{-- 1: ingredientFilter --}}
             <div class="col-4">
-                <input class="form-control form--input mb-4" type="text" wire:model.live='searchIngredient'
+                <input class="form-control form--input" type="text" wire:model.live='searchIngredient'
                     placeholder="Search by Ingredient" />
             </div>
 
@@ -49,7 +49,7 @@
                 </div>
 
 
-                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                <div class="select--single-wrapper" wire:loading.class='no-events'>
                     <select class="form-select form--select form--search-ingredient-select" data-clear='true'
                         data-instance='searchCategory'>
                         <option value=""></option>
@@ -73,7 +73,7 @@
             <div class="col-5 text-end">
                 <h3 class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
                     data-bs-toggle="tooltip" data-bss-tooltip="" title="Number of Ingredients">
-                    {{ $ingredients->total() }}
+                    {{ $supplierIngredients?->groupBy('ingredientId')->count() }}
                 </h3>
             </div>
 
@@ -122,7 +122,10 @@
 
                         {{-- thead --}}
                         <thead>
-                            <tr>
+
+
+
+                            <tr style="vertical-align: middle">
                                 <th class="th--xs"></th>
                                 <th class="th--lg">Ingredient</th>
                                 <th class="th--md">Category</th>
@@ -130,24 +133,20 @@
 
 
 
+                                {{-- loop - suppliers --}}
+                                @foreach ($suppliers as $supplier)
 
-                                {{-- 1: loop - ingredients --}}
-                                @foreach ($ingredients ?? [] as $ingredient)
+                                <th class="th--md">{{ $supplier?->name }}</th>
 
+                                @endforeach
+                                {{-- end loop --}}
 
-
-                                {{-- 2: loop - suppliers --}}
-                                @for ($i = 0; $i < $globalMaximumSuppliers; $i++) <th class="th--md"
-                                    style="font-weight: bold !important">{{
-                                    $ingredient?->suppliers[$i]?->supplier?->name ?? '' }}</th> @endfor
-
-
-
-                                    @endforeach
-                                    {{-- end loop - ingredients --}}
 
                             </tr>
+
+
                         </thead>
+                        {{-- endHeaders --}}
 
 
 
@@ -168,34 +167,73 @@
                         <tbody>
 
 
-                            {{-- loop - ingredients --}}
-                            @foreach ($ingredients ?? [] as $ingredient)
+
+                            {{-- loop - groupByIngredient --}}
+                            @foreach ($supplierIngredients->groupBy('ingredientId') ?? [] as $commonIngredient =>
+                            $supplierIngredientsByIngredient)
 
                             <tr>
 
 
-                                {{-- name - category --}}
-                                <td class="fw-bold fs-6">{{ $globalSNCounter++ }}</td>
-                                <td class="fs-6">{{ $ingredient->name }}</td>
-                                <td class='fs-6'>{{ $ingredient?->category?->name }}</td>
+
+                                {{-- 1: ingredient --}}
+                                <td class='fw-bold'>{{ $globalSNCounter++ }}</td>
+                                <td>{{ $supplierIngredientsByIngredient?->first()?->ingredient?->name }}</td>
+
+
+
+                                {{-- 1.2: category --}}
+                                <td>
+                                    {{$supplierIngredientsByIngredient?->first()?->ingredient?->category?->name ?? ''}}
+                                </td>
 
 
 
 
-                                {{-- 2: loop - suppliers --}}
-                                @for ($i = 0; $i < $globalMaximumSuppliers; $i++) <td class='fs-6 text-gold fw-bold'>
-                                    {{ ($ingredient?->suppliers[$i]?->sellPrice ?? null) ?
-                                    number_format($ingredient?->suppliers[$i]?->sellPrice, 2) : '' }}</td> @endfor
+
+                                {{-- 1.3: price --}}
+
+
+                                {{-- 1.3.1: loop - suppliers --}}
+                                @foreach ($suppliers as $supplier)
+
+
+
+                                {{-- :: DoProvide --}}
+                                @if ($supplierIngredientsByIngredient?->where('supplierId', $supplier->id)?->count())
+
+
+
+                                <td class='text-gold fs-6 fw-bold'>
+                                    {{ number_format($supplierIngredientsByIngredient?->where('supplierId',
+                                    $supplier->id)?->last()?->sellPrice ?? 0, 2) }}
+                                </td>
+
+
+
+                                {{-- :: DoNotProvide --}}
+                                @else
+
+                                <td></td>
+
+
+                                @endif
+                                {{-- end if --}}
+
+
+
+                                @endforeach
+                                {{-- end loop - suppliers --}}
+
+
+
 
 
 
                             </tr>
 
-
                             @endforeach
                             {{-- end loop --}}
-
-
 
 
 
@@ -205,30 +243,6 @@
             </div>
             {{-- end tableView --}}
 
-
-
-
-
-
-
-
-
-
-
-            {{-- ---------------------------------------------- --}}
-            {{-- ---------------------------------------------- --}}
-
-
-
-
-
-
-
-
-            {{-- pagination --}}
-            <div class="col-12">
-                {{ $ingredients->links() }}
-            </div>
 
 
 

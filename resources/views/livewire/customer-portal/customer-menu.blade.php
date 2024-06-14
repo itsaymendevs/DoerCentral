@@ -1600,7 +1600,7 @@
 
     {{-- 1: viewExcludes --}}
     <livewire:customer-portal.customer-menu.components.customer-menu-view-excludes id='{{ $customer->id }}'
-        key='{{ $customer->id }}' />
+        key='view-excludes-modal-{{ $customer->id }}' />
 
 
 

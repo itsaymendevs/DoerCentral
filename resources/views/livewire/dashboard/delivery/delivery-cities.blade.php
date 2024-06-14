@@ -136,10 +136,11 @@
 
 
     {{-- 1: createTime --}}
-    <livewire:dashboard.delivery.delivery-cities.components.delivery-cities-times-create />
+    <livewire:dashboard.delivery.delivery-cities.components.delivery-cities-times-create
+        key='city-create-times-modal' />
 
     {{-- 1.2: editTime --}}
-    <livewire:dashboard.delivery.delivery-cities.components.delivery-cities-times-edit />
+    <livewire:dashboard.delivery.delivery-cities.components.delivery-cities-times-edit key='city-edit-times-modal' />
 
 
 

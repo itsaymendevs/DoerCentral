@@ -335,13 +335,13 @@
 
 
     {{-- 1: createUser --}}
-    <livewire:dashboard.extra.management.users.components.users-create />
+    <livewire:dashboard.extra.management.users.components.users-create key='create-user-modal' />
 
 
 
 
     {{-- 2: editUser --}}
-    <livewire:dashboard.extra.management.users.components.users-edit />
+    <livewire:dashboard.extra.management.users.components.users-edit key='edit-user-modal' />
 
 
 

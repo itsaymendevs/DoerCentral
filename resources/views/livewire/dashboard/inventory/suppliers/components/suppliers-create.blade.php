@@ -48,7 +48,7 @@
                         <div class="col-4">
                             <label class="form-label form--label">Phone Number</label>
                             <input class="form-control form--input mb-4" type="text" wire:model='instance.phone'
-                                required />
+                                required minlength='9' maxlength='9' />
                         </div>
 
 

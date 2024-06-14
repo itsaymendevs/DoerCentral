@@ -309,10 +309,10 @@
 
 
     {{-- 1: createCalendar --}}
-    <livewire:dashboard.menu.calendars.components.calendars-create />
+    <livewire:dashboard.menu.calendars.components.calendars-create key='create-calendar-modal' />
 
     {{-- 1.2: editCalendar --}}
-    <livewire:dashboard.menu.calendars.components.calendars-edit />
+    <livewire:dashboard.menu.calendars.components.calendars-edit key='edit-calendar-modal' />
 
 
     @endsection

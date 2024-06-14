@@ -861,7 +861,7 @@
 
 
     {{-- 1: pauseSubscription --}}
-    <livewire:dashboard.customers.components.customers-pause-subscription />
+    <livewire:dashboard.customers.components.customers-pause-subscription key='pause-subscription-modal' />
 
 
 

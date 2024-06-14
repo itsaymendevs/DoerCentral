@@ -107,12 +107,12 @@
 
     @section('modals')
     {{-- 1: createPromo --}}
-    <livewire:dashboard.promos.components.promos-create />
+    <livewire:dashboard.promos.components.promos-create key='create-promo-modal' />
 
 
 
     {{-- 2: editPromo --}}
-    <livewire:dashboard.promos.components.promos-edit />
+    <livewire:dashboard.promos.components.promos-edit key='edit-promo-modal' />
     @endsection
 
 

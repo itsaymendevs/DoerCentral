@@ -249,10 +249,10 @@
 
 
     {{-- 1: createZone --}}
-    <livewire:dashboard.delivery.delivery-zones.components.delivery-zones-create />
+    <livewire:dashboard.delivery.delivery-zones.components.delivery-zones-create key='delivery-zone-create-modal' />
 
     {{-- 1.2: editZone --}}
-    <livewire:dashboard.delivery.delivery-zones.components.delivery-zones-edit />
+    <livewire:dashboard.delivery.delivery-zones.components.delivery-zones-edit key='delivery-zone-edit-modal' />
 
 
 

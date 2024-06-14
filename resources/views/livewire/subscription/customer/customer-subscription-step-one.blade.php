@@ -159,19 +159,22 @@
 
 
     {{-- 1: determineCustomer --}}
-    <livewire:subscription.customer.customer-subscription-step-one.components.customer-subscription-step-one-determine-customer />
+    <livewire:subscription.customer.customer-subscription-step-one.components.customer-subscription-step-one-determine-customer
+        key='determine-customer-modal' />
 
 
 
 
     {{-- 1.2: newCustomer --}}
-    <livewire:subscription.customer.customer-subscription-step-one.components.customer-subscription-step-one-new-customer />
+    <livewire:subscription.customer.customer-subscription-step-one.components.customer-subscription-step-one-new-customer
+        key='new-customer-modal' />
 
 
 
 
     {{-- 1.3: existingCustomer --}}
-    <livewire:subscription.customer.customer-subscription-step-one.components.customer-subscription-step-one-existing-customer />
+    <livewire:subscription.customer.customer-subscription-step-one.components.customer-subscription-step-one-existing-customer
+        key='existing-customer-modal' />
 
 
 

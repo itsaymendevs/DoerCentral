@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.inventory.components.sub-menu title='Manage Settings' />
+        <livewire:dashboard.inventory.components.sub-menu title='Manage Settings' key='sub-menu' />
 
 
 

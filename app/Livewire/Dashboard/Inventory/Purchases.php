@@ -53,50 +53,11 @@ class Purchases extends Component
     public function confirm($id)
     {
 
-        // 1: params - confirmationBox
-        $this->confirmId = $id;
-
-        $this->makeAlert('question', 'Confirm Purchase?', 'confirmPurchaseReceiving');
-
-    } // end function
-
-
-
-
-
-    // -----------------------------------------------------------------
-
-
-
-
-
-
-
-    #[On('confirmPurchaseReceiving')]
-    public function confirmReceiving()
-    {
-
-
-        // 1: remove
-        if ($this->confirmId) {
-
-            $response = $this->makeRequest('dashboard/inventory/purchases/confirm', $this->confirmId);
-            $this->makeAlert('info', $response->message);
-
-
-
-            // 1.2: renderView
-            $this->dispatch('refreshStock');
-            $this->render();
-
-
-        } // end if
-
+        // 1: dispatchEvent
+        $this->dispatch('confirmPurchase', $id);
 
 
     } // end function
-
-
 
 
 

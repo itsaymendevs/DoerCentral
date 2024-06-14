@@ -35,7 +35,7 @@
 
 
                 {{-- form --}}
-                <form class="px-4" wire:submit='store'>
+                <form class="px-4" wire:submit='update'>
                     <div class="row row pt-2 mb-4">
 
 
@@ -53,13 +53,16 @@
                                     {{-- head --}}
                                     <thead>
                                         <tr>
-                                            <th>Ingredient</th>
-                                            <th>Unit</th>
-                                            <th>Quantity</th>
-                                            <th>Received</th>
-                                            <th></th>
+
+                                            <th class='th--xs'></th>
+                                            <th class='th--lg'>Ingredient</th>
+                                            <th class='th--xs'>Unit</th>
+                                            <th class='th--sm'>Quantity</th>
+                                            <th class='th--md'>Received</th>
                                         </tr>
                                     </thead>
+
+
 
 
 
@@ -72,14 +75,36 @@
 
 
 
-                                        {{-- :: view purchaseIngredient --}}
-                                        <livewire:dashboard.inventory.purchases.components.purchases-ingredients-edit
-                                            id='{{ $purchaseIngredient->id }}'
-                                            key='purchase-ingredient-{{ $purchaseIngredient->id }}' />
+
+                                        {{-- singleRow --}}
+                                        <tr>
+
+
+                                            {{-- ingredient - unit - quantity --}}
+                                            <td>{{ $globalSNCounter++ }}</td>
+
+                                            <td>{{ $purchaseIngredient?->ingredient?->name }}</td>
+                                            <td>{{ $purchaseIngredient?->unit?->name }}</td>
+                                            <td>{{ $purchaseIngredient?->quantity }}</td>
+
+
+                                            <td>
+                                                <input class="form-control form--input form--table-input-sm"
+                                                    type="number" min='0' step='0.1' required
+                                                    wire:model='receivedQuantity.{{ $purchaseIngredient->id }}' />
+                                            </td>
+
+
+                                        </tr>
+                                        {{-- end singleRow --}}
+
+
 
 
                                         @endforeach
                                         {{-- end loop --}}
+
+
 
 
                                     </tbody>
@@ -93,16 +118,34 @@
                         {{-- end viewCol --}}
 
 
+
+
+
+
+
+
+
+
+                        {{-- submitButton --}}
+                        <div class="col-12 text-end mt-3">
+                            <button
+                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05"
+                                wire:loading.attr='disabled'>
+                                Confirm
+                            </button>
+                        </div>
+
+
+
+
                     </div>
+                </form>
+                {{-- endForm --}}
+
+
+
             </div>
         </div>
-        </form>
-        {{-- endForm --}}
-
-
-
     </div>
-</div>
-</div>
 </div>
 {{-- endModal --}}

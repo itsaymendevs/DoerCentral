@@ -186,11 +186,11 @@
                                     @else
 
                                     <span class="badge fs-11 badge--warning pointer scale--self-05"
+                                        data-bs-toggle="modal" data-bs-target='#purchase-confirm'
                                         wire:click='confirm({{ $purchase->id }})'
                                         wire:loading.attr='disabled'>Confirm?</span>
 
                                     @endif
-
                                 </td>
 
 
@@ -326,6 +326,14 @@
 
     {{-- 3: ingredients --}}
     <livewire:dashboard.inventory.purchases.components.purchases-ingredients />
+
+
+
+
+
+    {{-- 4: confirm --}}
+    <livewire:dashboard.inventory.purchases.components.purchases-confirm />
+
 
 
 

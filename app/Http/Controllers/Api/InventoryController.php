@@ -1513,13 +1513,13 @@ class InventoryController extends Controller
 
         // :: root
         $request = json_decode(json_encode($request->all()));
-        $id = $request->instance;
+        $request = $request->instance;
 
 
 
 
         // 1: get instance
-        $purchase = StockPurchase::find($id);
+        $purchase = StockPurchase::find($request->id);
 
         $purchase->isConfirmed = true;
 
@@ -1537,19 +1537,38 @@ class InventoryController extends Controller
 
 
 
-        // 2: append toStock
-        foreach ($purchase->ingredients as $purchaseIngredient) {
+
+
+        // 2: + toStock
+        foreach ($request->receivedQuantity as $id => $quantity) {
+
 
 
             // ** NOTE: QUANTITY IS IN KG ONLY IN STOCK!
             // ** THATS WHY NO UNIT MENTIONED
 
 
-            // :: create
+
+
+
+            // 2.1: updateReceivedQuantity
+            $purchaseIngredient = StockPurchaseIngredient::find($id);
+
+            $purchaseIngredient->receivedQuantity = $quantity;
+            $purchaseIngredient->save();
+
+
+
+
+
+
+
+
+            // 2.2: createStock
             $stock = new Stock();
 
             $stock->buyPrice = $purchaseIngredient->buyPrice;
-            $stock->availableQuantity = $purchaseIngredient->quantity;
+            $stock->availableQuantity = $quantity;
 
             $stock->ingredientId = $purchaseIngredient->ingredientId;
             $stock->stockPurchaseId = $purchaseIngredient->stockPurchaseId;
@@ -1557,7 +1576,13 @@ class InventoryController extends Controller
             $stock->save();
 
 
+
+
         } // end loop
+
+
+
+
 
 
 

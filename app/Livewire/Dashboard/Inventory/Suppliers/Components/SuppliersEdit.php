@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Inventory\Suppliers\Components;
 
 
 use App\Livewire\Forms\SupplierForm;
+use App\Models\IngredientCategory;
 use App\Models\Supplier;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
@@ -40,6 +41,16 @@ class SuppliersEdit extends Component
 
         foreach ($supplier->toArray() as $key => $value)
             $this->instance->{$key} = $value;
+
+
+
+
+
+
+        // 1.2: setSelect
+        $this->dispatch('setSelect', id: '#supplier-category-select-2', value: $supplier?->categories?->pluck('categoryId')?->toArray() ?? []);
+
+
 
 
 
@@ -98,6 +109,7 @@ class SuppliersEdit extends Component
 
         // :: resetForm - resetFilePreview
         $this->instance->reset();
+        $this->dispatch('resetSelect');
         $this->dispatch('closeModal', modal: '#edit-supplier .btn--close');
         $this->dispatch('refreshViews');
 
@@ -131,14 +143,23 @@ class SuppliersEdit extends Component
     {
 
 
+        // 1: dependencies
+        $categories = IngredientCategory::all();
+
+
+
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.inventory.suppliers.components.suppliers-edit');
+        return view('livewire.dashboard.inventory.suppliers.components.suppliers-edit', compact('categories'));
 
 
     } // end function
+
+
 
 
 } // end class

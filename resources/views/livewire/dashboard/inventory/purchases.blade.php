@@ -149,11 +149,10 @@
                                         <button class="btn btn--raw-icon inline view scale--3"
                                             wire:click='manageIngredients({{ $purchase->id }})'
                                             data-bs-target="#purchase-ingredients" data-bs-toggle="modal" type="button">
-                                            <svg class="bi bi-eye-fill" xmlns="http://www.w3.org/2000/svg" width="1em"
+                                            <svg class="bi bi-list-ul" xmlns="http://www.w3.org/2000/svg" width="1em"
                                                 height="1em" fill="currentColor" viewBox="0 0 16 16">
-                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
-                                                <path
-                                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z">
+                                                <path fill-rule="evenodd"
+                                                    d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
                                                 </path>
                                             </svg>
                                         </button>

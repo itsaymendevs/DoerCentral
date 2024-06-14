@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Inventory\Suppliers\Components;
 
 use App\Livewire\Forms\SupplierForm;
+use App\Models\IngredientCategory;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 
@@ -47,9 +48,10 @@ class SuppliersCreate extends Component
 
 
 
-
         // :: validate
         $this->instance->validate();
+
+
 
 
 
@@ -64,6 +66,7 @@ class SuppliersCreate extends Component
         // :: refresh - closeModal
         $this->instance->reset();
         $this->dispatch('refreshViews');
+        $this->dispatch('resetSelect');
         $this->dispatch('closeModal', modal: '#new-supplier .btn--close');
 
 
@@ -90,7 +93,15 @@ class SuppliersCreate extends Component
     public function render()
     {
 
-        return view('livewire.dashboard.inventory.suppliers.components.suppliers-create');
+
+        // 1: dependencies
+        $categories = IngredientCategory::all();
+
+
+
+        return view('livewire.dashboard.inventory.suppliers.components.suppliers-create', compact('categories'));
+
+
 
     } // end function
 

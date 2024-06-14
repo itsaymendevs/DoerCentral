@@ -8,11 +8,17 @@ use Livewire\Form;
 class SupplierForm extends Form
 {
 
-   // :: variables
-   #[Validate('required')]
-   public $name, $phone, $email, $address;
+    // :: variables
+    #[Validate('required')]
+    public $name, $phone, $email, $address;
 
-   public $id;
+    public $id;
+
+
+
+
+    // :: relations
+    public $categories = [];
 
 
 

@@ -18,4 +18,51 @@ class Supplier extends Model
 
 
 
+
+
+    public function categories()
+    {
+        return $this->hasMany(SupplierCategory::class, 'supplierId');
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------
+
+
+
+
+
+
+
+    public function categoriesInArray()
+    {
+
+
+
+        // 1: getCategories
+        $categoriesIds = $this?->categories()?->get()?->pluck('categoryId')?->toArray() ?? [];
+        $categoriesInArray = IngredientCategory::whereIn('id', $categoriesIds)?->pluck('name')?->toArray() ?? [''];
+
+
+        return $categoriesInArray;
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
 } // end model

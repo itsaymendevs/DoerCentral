@@ -13,6 +13,7 @@ use App\Models\Stock;
 use App\Models\StockPurchase;
 use App\Models\StockPurchaseIngredient;
 use App\Models\Supplier;
+use App\Models\SupplierCategory;
 use App\Models\SupplierIngredient;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
@@ -1000,6 +1001,41 @@ class InventoryController extends Controller
 
 
 
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+        // 2: supplierCategories
+
+
+
+
+        // 2.1: loop - categories
+        foreach ($request->categories ?? [] as $category) {
+
+
+            // :: create
+            $supplierCategory = new SupplierCategory();
+
+            $supplierCategory->categoryId = $category;
+            $supplierCategory->supplierId = $supplier->id;
+
+            $supplierCategory->save();
+
+
+        } // end loop
+
+
+
+
+
+
+
+
         return response()->json(['message' => 'Supplier has been created'], 200);
 
 
@@ -1048,6 +1084,45 @@ class InventoryController extends Controller
 
 
         $supplier->save();
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+        // 2: supplierCategories
+
+
+
+
+        // 2.1: loop - categories - removePrevious
+        SupplierCategory::where('supplierId', $supplier->id)->delete();
+
+        foreach ($request->categories ?? [] as $category) {
+
+
+            // :: create
+            $supplierCategory = new SupplierCategory();
+
+            $supplierCategory->categoryId = $category;
+            $supplierCategory->supplierId = $supplier->id;
+
+            $supplierCategory->save();
+
+
+        } // end loop
+
+
+
 
 
 

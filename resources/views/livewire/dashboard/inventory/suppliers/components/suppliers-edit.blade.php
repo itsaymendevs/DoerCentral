@@ -70,6 +70,32 @@
 
 
 
+
+
+
+
+                        {{-- categories --}}
+                        <div class="col-12" wire:ignore>
+                            <label class="form-label form--label">Categories</label>
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                                <select id='supplier-category-select-2'
+                                    class="form-select form--modal-select form--modal-manage-supplier-edit-category-select"
+                                    data-trigger='true' data-modal='#edit-supplier' data-instance='instance.categories'
+                                    multiple='' required>
+
+                                    @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+
+
                         {{-- submitButton --}}
                         <div class="col-12 text-end mt-3">
                             <button
@@ -88,5 +114,65 @@
             </div>
         </div>
     </div>
+    {{-- end modalBody --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- select-handle --}}
+    <script>
+        $(".form--modal-manage-supplier-edit-category-select").on("change", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+
+         @this.set(instance, selectValue);
+
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
 </div>
 {{-- endModal --}}

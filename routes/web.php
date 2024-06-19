@@ -45,6 +45,7 @@ use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayCheckout;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayDelivery;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayLabel;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayPacking;
+use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayPreparations;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayProduction;
 use App\Livewire\Dashboard\Menu\Builder;
 use App\Livewire\Dashboard\Menu\Calendars;
@@ -835,13 +836,25 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+        // 10: kitchen - kitchenToday - preparations - export
+        Route::get('dashboard/kitchen/today/preparations', KitchenTodayPreparations::class)->name('dashboard.kitchenTodayPreparations');
 
 
 
-        // 10: kitchen - kitchenToday - production - export
+
+
+
+
+        // ---------
+
+
+
+
+
+
+
+        // 10.1: kitchen - kitchenToday - production - export
         Route::get('dashboard/kitchen/today/production', KitchenTodayProduction::class)->name('dashboard.kitchenTodayProduction');
-
-
 
 
 
@@ -857,7 +870,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 10.1: kitchen - kitchenToday - packing
+        // 10.2: kitchen - kitchenToday - packing
         Route::get('dashboard/kitchen/today/packing', KitchenTodayPacking::class)->name('dashboard.kitchenTodayPacking');
 
 
@@ -875,7 +888,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 10.2: kitchen - kitchenToday - checkout
+        // 10.3: kitchen - kitchenToday - checkout
         Route::get('dashboard/kitchen/today/checkout', KitchenTodayCheckout::class)->name('dashboard.kitchenTodayCheckout');
 
 
@@ -893,7 +906,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 10.3: kitchen - kitchenToday - delivery
+        // 10.4: kitchen - kitchenToday - delivery
         Route::get('dashboard/kitchen/today/delivery', KitchenTodayDelivery::class)->name('dashboard.kitchenTodayDelivery');
 
 
@@ -909,7 +922,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 10.4: kitchen - kitchenToday - labels
+        // 10.5: kitchen - kitchenToday - labels
         Route::get('dashboard/kitchen/today/labels', KitchenTodayLabel::class)->name('dashboard.kitchenTodayLabel');
 
 

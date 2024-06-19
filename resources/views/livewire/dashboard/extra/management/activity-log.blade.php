@@ -56,6 +56,9 @@
 
         {{-- mainRow --}}
         <div class="row pt-2 align-items-center mb-5">
+
+
+
             <div class="col-12 mt-4 pt-4">
                 <div id="print--table" class="memoir--table w-100">
                     <table class="table table-bordered" id="memoir--table">
@@ -137,6 +140,31 @@
                     </table>
                 </div>
             </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
+            {{-- ---------------------- --}}
+            {{-- ---------------------- --}}
+
+
+
+
+
+
+            {{-- pagination --}}
+            <div class="col-12 mt-3">
+                {{ $logs->links() }}
+            </div>
+
+
+
+
+
         </div>
     </div>
     {{-- endContainer --}}

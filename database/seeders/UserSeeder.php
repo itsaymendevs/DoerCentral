@@ -19,14 +19,15 @@ class UserSeeder extends Seeder
         $userHealthybite = ['Healthybite', 'admin@healthybite.ae', 'healthybite@123', '9715590100', 1];
         $userRealmeal = ['RealMeal', 'admin@realmeal.ae', 'realmeal@123', '9715590100', 1];
         $userTest = ['Test', 'admin@test.ae', 'test@123', '9715590100', 1];
+        $userBeMoreHealthy = ['Be More Healthy', 'admin@bemorehealthy.ae', 'bemorehealthy@123', '9715590100', 1];
 
 
         User::create([
-            'name' => $user[0],
-            'email' => $user[1],
-            'password' => Hash::make($user[2]),
-            'phone' => $user[3],
-            'roleId' => $user[4],
+            'name' => $userBeMoreHealthy[0],
+            'email' => $userBeMoreHealthy[1],
+            'password' => Hash::make($userBeMoreHealthy[2]),
+            'phone' => $userBeMoreHealthy[3],
+            'roleId' => $userBeMoreHealthy[4],
         ]);
 
 

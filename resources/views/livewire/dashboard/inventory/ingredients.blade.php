@@ -556,7 +556,7 @@
                                 <td class="fw-bold">{{ $globalSNCounter++ }}</td>
                                 <td class="fw-bold">{{ $ingredient->name }}</td>
                                 <td>{{ $ingredient->freshMacro()->calories * 100 }}</td>
-                                <td>{{ $ingredient->freshMacro()->proteins * 100 }}1</td>
+                                <td>{{ $ingredient->freshMacro()->proteins * 100 }}</td>
                                 <td>{{ $ingredient->freshMacro()->carbs * 100 }}</td>
                                 <td>{{ $ingredient->freshMacro()->fats * 100 }}</td>
 

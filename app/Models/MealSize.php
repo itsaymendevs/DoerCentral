@@ -128,4 +128,64 @@ class MealSize extends Model
 
 
 
+    // ----------------------------------------------------------
+    // ----------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function ingredientsWithGrams()
+    {
+
+
+        // :: root
+        $ingredientsWithGrams = [];
+        $parts = $this->parts()->get();
+        $ingredients = $this->ingredients()->get();
+
+
+
+
+
+        // 1: ingredients
+        foreach ($ingredients ?? [] as $mealIngredient) {
+
+
+            $ingredientsWithGrams[$mealIngredient->ingredientId] = ($ingredientsWithGrams[$mealIngredient->ingredientId] ?? 0) + $mealIngredient?->amount ?? 0;
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return $ingredientsWithGrams;
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
 } // end model

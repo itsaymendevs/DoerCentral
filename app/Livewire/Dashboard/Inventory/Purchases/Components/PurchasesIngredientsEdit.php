@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Inventory\Purchases\Components;
 
 use App\Livewire\Forms\StockPurchaseIngredientForm;
 use App\Models\StockPurchaseIngredient;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -18,6 +19,9 @@ class PurchasesIngredientsEdit extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
+
+
 
 
     // :: variable
@@ -93,6 +97,26 @@ class PurchasesIngredientsEdit extends Component
 
         // :: validation
         $this->instance->validate();
+
+
+
+
+
+        // ## log - activity ##
+        $return = $this->storeActivity('Inventory', "Updated purchase quantity for {$this->purchaseIngredient->ingredient->name} from {$this->purchaseIngredient->quantity} to {$this->instance?->quantity} in PurchaseID. {$this->purchaseIngredient->stockPurchase->purchaseID}");
+
+
+
+
+
+
+
+        // ------------------------------------
+        // ------------------------------------
+
+
+
+
 
 
 

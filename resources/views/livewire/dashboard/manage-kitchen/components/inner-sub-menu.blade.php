@@ -4,6 +4,18 @@
         data-aos-once="true" wire:ignore.self>
 
 
+
+        {{-- preparation --}}
+        <a wire:navigate
+            class="btn fs-13
+         @if (Request::is('dashboard/kitchen/today/preparations', 'dashboard/kitchen/today/preparations/*')) active @endif"
+            role="button" href="{{ route('dashboard.kitchenTodayPreparations') }}">Preparations</a>
+
+
+
+
+
+
         {{-- production --}}
         <a wire:navigate class="btn fs-13
         @if (Request::is('dashboard/kitchen/today/production', 'dashboard/kitchen/today/production/*')) active @endif"

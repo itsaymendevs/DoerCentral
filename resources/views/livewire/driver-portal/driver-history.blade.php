@@ -183,8 +183,7 @@
 
 
                 {{-- input --}}
-                <input class="form-control form--input mb-4" type="date" max="{{ date('Y-m-d', strtotime('-1 day')) }}"
-                    wire:model.live='searchDeliveryDate' />
+                <input class="form-control form--input mb-4" type="date" wire:model.live='searchDeliveryDate' />
 
 
 

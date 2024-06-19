@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Extra\Management;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use App\Models\ActivityLog as Log;
+use Livewire\WithPagination;
 
 
 
@@ -13,7 +14,7 @@ class ActivityLog extends Component
 {
 
     use HelperTrait;
-
+    use WithPagination;
 
 
     // :: variables
@@ -29,7 +30,7 @@ class ActivityLog extends Component
 
 
         // 1: dependencies
-        $logs = Log::orderBy('dateTime', 'desc')
+        $logs = Log::orderBy('id', 'desc')
             ->where('name', 'LIKE', '%' . $this->searchUser . '%')->paginate(200);
 
 

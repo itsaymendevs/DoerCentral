@@ -138,35 +138,35 @@
 
                                                 {{-- :: restriction - unPause --}}
 
-                                                @if ($allowedUnPauseDate <= $pause->untilDate)
+                                                @if ($pause->untilDate >= $allowedUnPauseDate)
 
 
-                                                    <button
-                                                        class="btn btn--scheme btn--remove fs-12 px-4 mx-2 scale--self-05 h-32"
-                                                        @if ($pause->isCanceled) disabled @endif
-                                                        wire:click='unPause({{ $pause->id }})'
-                                                        type="button">
-                                                        Cancel
-                                                    </button>
-
-
-
-                                                    {{-- :: disabled --}}
-                                                    @else
-
-
-                                                    <button
-                                                        class="btn btn--scheme btn--remove fs-12 px-4 mx-2 scale--self-05 h-32"
-                                                        @if ($pause->isCanceled) disabled @endif
-                                                        wire:click='unPause({{ $pause->id }})'
-                                                        type="button" disabeld>
-                                                        Cancel
-                                                    </button>
+                                                <button
+                                                    class="btn btn--scheme btn--remove fs-12 px-4 mx-2 scale--self-05 h-32"
+                                                    @if ($pause->isCanceled) disabled @endif
+                                                    wire:click='unPause({{ $pause->id }})'
+                                                    type="button">
+                                                    Cancel
+                                                </button>
 
 
 
-                                                    @endif
-                                                    {{-- end if - restriction --}}
+                                                {{-- :: disabled --}}
+                                                @else
+
+
+                                                <button
+                                                    class="btn btn--scheme btn--remove fs-12 px-4 mx-2 scale--self-05 h-32"
+                                                    @if ($pause->isCanceled) disabled @endif
+                                                    wire:click='unPause({{ $pause->id }})'
+                                                    type="button" disabled>
+                                                    Cancel
+                                                </button>
+
+
+
+                                                @endif
+                                                {{-- end if - restriction --}}
 
 
 

@@ -187,7 +187,8 @@
                     <button class="btn btn--scheme btn--remove align-items-center d-inline-flex px-3 fs-12 scale--3
                         @if ($deliveryStatus == 'No Delivery') disabled @endif
                         @if($scheduleDate < $allowedSkipDate) disabled @endif" type="button"
-                        wire:click='skipScheduleDay()' wire:loading.attr='disabled' wire:target='skipScheduleDay'>
+                        wire:click='skipScheduleDay' wire:loading.attr='disabled'
+                        wire:target='skipScheduleDay, unSkipScheduleDay' key='skip'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-skip-end fs-5 me-2">
                             <path
@@ -210,8 +211,9 @@
 
 
                     <button class="btn btn--scheme btn--scheme-1 align-items-center d-inline-flex px-3 fs-12 scale--3 fw-semibold @if ($deliveryStatus == 'No Delivery') disabled @endif
-                        @if($scheduleDate < $allowedUnPauseDate) disabled @endif" type="button"
-                        wire:click='unSkipScheduleDay()' wire:loading.attr='disabled' wire:target='unSkipScheduleDay'>
+                        @if($scheduleDate < $allowedUnPauseDate) disabled @endif" type="button" key='unSkip'
+                        wire:click='unSkipScheduleDay' wire:loading.attr='disabled'
+                        wire:target="unSkipScheduleDay, skipScheduleDay">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-skip-end fs-5 me-2">
                             <path

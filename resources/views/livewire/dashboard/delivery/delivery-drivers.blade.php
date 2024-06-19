@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.delivery.components.sub-menu title="Manage Drivers" />
+        <livewire:dashboard.delivery.components.sub-menu title="Manage Drivers" key='submenu' />
 
 
 

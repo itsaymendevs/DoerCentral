@@ -22,6 +22,7 @@ class PermissionSeeder extends Seeder
         for ($i = 0; $i < count($permissions); $i++) {
             Permission::create([
                 'name' => $permissions[$i]['name'],
+                'route' => $permissions[$i]['route'],
                 'group' => $permissions[$i]['group'],
             ]);
         } // end loop

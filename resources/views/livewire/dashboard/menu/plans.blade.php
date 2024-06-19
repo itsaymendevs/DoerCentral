@@ -6,7 +6,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.menu.components.sub-menu />
+        <livewire:dashboard.menu.components.sub-menu key='submenu' />
 
 
 

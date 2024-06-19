@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.manage-kitchen.components.sub-menu title='Labels Today' />
+        <livewire:dashboard.manage-kitchen.components.sub-menu title='Labels Today' key='kitchen-submenu' />
 
 
 
@@ -213,7 +213,7 @@
                         class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold"
                         @if (empty($scheduleMeal?->meal?->label)) disabled @endif
                         type="button" data-bs-toggle='modal' data-bs-target='#label-print'
-                        wire:click='labelPrint({{ $scheduleMealsByMeal }})'>
+                        wire:click="labelPrint({{ $scheduleMealsByMeal }})">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                             viewBox="0 0 16 16" class="bi bi-printer fs-6 me-2">
                             <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>

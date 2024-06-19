@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.delivery.components.sub-menu title="Delivery Cities" />
+        <livewire:dashboard.delivery.components.sub-menu title="Delivery Cities" key='submenu' />
 
 
 

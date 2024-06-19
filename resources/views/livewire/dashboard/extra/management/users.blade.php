@@ -40,7 +40,7 @@
             <div class="col-4 text-end">
 
 
-                <livewire:dashboard.extra.management.components.sub-menu />
+                <livewire:dashboard.extra.management.components.sub-menu key='submenu' />
 
 
             </div>

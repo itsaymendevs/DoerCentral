@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.menu.components.sub-menu />
+        <livewire:dashboard.menu.components.sub-menu key='submenu' />
 
 
 
@@ -43,7 +43,7 @@
 
             {{-- sub-menu --}}
             <div class="col-7 text-end">
-                <livewire:dashboard.menu.items.components.sub-menu />
+                <livewire:dashboard.menu.items.components.sub-menu key='inner-submenu' />
             </div>
 
 

@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.manage-kitchen.components.sub-menu title='Kitchen Today' />
+        <livewire:dashboard.manage-kitchen.components.sub-menu title='Kitchen Today' key='kitchen-submenu' />
 
 
 
@@ -466,7 +466,7 @@
                                         <button
                                             class="btn btn--scheme btn--scheme-outline-3 align-items-center d-inline-flex px-3 py-1 fs-12 justify-content-center fw-semibold"
                                             type="button" style="border:1px dashed var(--color-theme-secondary)"
-                                            wire:click='packMeals({{ $scheduleMealsBySubscription->first()->subscription->id }})'>Packed?</button>
+                                            wire:click="packMeals('{{ $scheduleMealsBySubscription->first()->subscription->id }}')">Packed?</button>
 
 
 

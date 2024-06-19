@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.delivery.components.sub-menu title="Manage Zones" />
+        <livewire:dashboard.delivery.components.sub-menu title="Manage Zones" key='submenu' />
 
 
 

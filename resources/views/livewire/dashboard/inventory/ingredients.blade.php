@@ -378,7 +378,7 @@
                                         <button class="btn btn--scheme btn--scheme-2 px-2 py-1 mx-1 text-white scale--3"
                                             data-bs-toggle="modal" data-bss-tooltip=""
                                             data-bs-target="#ingredient-brands" type="button"
-                                            wire:click='editBrands({{ $ingredient->id }})'>
+                                            wire:click="editBrands({{ $ingredient->id }})">
                                             <svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="1em"
                                                 height="1em" fill="currentColor" viewBox="0 0 16 16">
                                                 <path
@@ -580,7 +580,7 @@
                                         {{-- Brands --}}
                                         <button class="btn btn--raw-icon inline scale--3 px-2" data-bs-toggle="modal"
                                             data-bss-tooltip="" data-bs-target="#ingredient-brands" type="button"
-                                            wire:click='editBrands({{ $ingredient->id }})'>
+                                            wire:click="editBrands({{ $ingredient->id }})">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-tags">
                                                 <path

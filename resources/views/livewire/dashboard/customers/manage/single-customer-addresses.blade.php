@@ -6,7 +6,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.customers.manage.components.sub-menu id='{{ $customer->id }}' />
+        <livewire:dashboard.customers.manage.components.sub-menu id='{{ $customer->id }}' key='submenu' />
 
 
 

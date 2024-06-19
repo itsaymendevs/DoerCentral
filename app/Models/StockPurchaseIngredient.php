@@ -38,4 +38,6 @@ class StockPurchaseIngredient extends Model
     } // end function
 
 
+
+
 } // end model

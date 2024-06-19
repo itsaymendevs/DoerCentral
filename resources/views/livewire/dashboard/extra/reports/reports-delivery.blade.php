@@ -21,7 +21,7 @@
             {{-- sub-menu --}}
             <div class="col-6 text-center mb-4 pb-3">
 
-                <livewire:dashboard.extra.reports.components.sub-menu />
+                <livewire:dashboard.extra.reports.components.sub-menu key='submenu' />
 
             </div>
 

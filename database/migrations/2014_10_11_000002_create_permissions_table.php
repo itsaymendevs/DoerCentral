@@ -18,6 +18,8 @@ return new class extends Migration {
 
             // 1: general
             $table->string('name', 255)->nullable();
+            $table->string('route', 255)->nullable();
+
             $table->string('group', 255)->nullable();
 
 

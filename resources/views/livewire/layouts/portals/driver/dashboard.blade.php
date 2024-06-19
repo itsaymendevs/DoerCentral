@@ -138,7 +138,7 @@
 
 
         {{-- mobile- side-menu --}}
-        <livewire:driver-portal.components.side-menu />
+        <livewire:driver-portal.components.side-menu key='sidemenu' />
 
 
 
@@ -147,7 +147,7 @@
 
 
         {{-- mobile - sub-menu --}}
-        <livewire:driver-portal.components.sub-menu />
+        <livewire:driver-portal.components.sub-menu key='submenu' />
 
 
 

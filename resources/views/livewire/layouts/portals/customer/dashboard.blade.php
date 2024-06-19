@@ -162,12 +162,12 @@
 
 
         {{-- mobile- sub-menu --}}
-        <livewire:customer-portal.components.mobile-sub-menu />
+        <livewire:customer-portal.components.mobile-sub-menu key='submenu' />
 
 
 
         {{-- mobile- side-menu --}}
-        <livewire:customer-portal.components.mobile-side-menu />
+        <livewire:customer-portal.components.mobile-side-menu key='sidemenu' />
 
 
 

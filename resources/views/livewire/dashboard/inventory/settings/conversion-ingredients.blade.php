@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.inventory.components.sub-menu title='Conversion Ingredients' />
+        <livewire:dashboard.inventory.components.sub-menu title='Conversion Ingredients' key='submenu' />
 
 
 

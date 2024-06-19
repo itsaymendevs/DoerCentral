@@ -6,7 +6,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.menu.plans.manage.components.sub-menu :$id />
+        <livewire:dashboard.menu.plans.manage.components.sub-menu :$id key='submenu' />
 
 
 

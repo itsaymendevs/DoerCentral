@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.manage-kitchen.components.sub-menu title='Kitchen Today' />
+        <livewire:dashboard.manage-kitchen.components.sub-menu title='Kitchen Today' key='kitchen-submenu' />
 
 
 
@@ -336,9 +336,41 @@
                                 <td class="fw-bold text-start">
                                     <span class="d-block fw-normal">{{
                                         $scheduleMealsByMeal->first()?->meal?->name }}
+
+
+                                        {{-- :: view instructions --}}
+                                        <button
+                                            class="btn btn--raw-icon fs-14 text-warning d-inline-block scale--3 w-auto ms-1"
+                                            wire:click="viewInstructions('{{ $scheduleMealsByMeal->first()?->meal?->id }}')"
+                                            type="button" data-bs-target="#view-instructions" data-bs-toggle="modal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                fill="currentColor" viewBox="0 0 16 16" class="bi bi-eye fs-6"
+                                                style="fill: var(--bs-warning)">
+                                                <path
+                                                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z">
+                                                </path>
+                                                <path
+                                                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+
+
+
+
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+
+
+
+
+
+                                        {{-- diet --}}
                                         <small class="fw-semibold text-gold fs-10 d-block">
                                             {{ $scheduleMealsByMeal->first()?->meal?->diet?->name }}
                                         </small>
+
+
                                     </span>
                                 </td>
 
@@ -729,7 +761,7 @@
                                             {{-- :: viewPart --}}
                                             <button
                                                 class="btn btn--raw-icon fs-14 text-warning d-inline-block scale--3 w-auto ms-1"
-                                                wire:click='viewPart({{ $mealSizePart->part->id }}, {{ $mealSizePart?->amount ?? 0 }})'
+                                                wire:click="viewPart('{{ $mealSizePart?->part?->id }}', '{{ $mealSizePart?->amount ?? 0 }}')"
                                                 type="button" data-bs-target="#view-part" data-bs-toggle="modal">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                     fill="currentColor" viewBox="0 0 16 16" class="bi bi-eye fs-6"
@@ -742,6 +774,7 @@
                                                     </path>
                                                 </svg>
                                             </button>
+
                                         </span>
 
 
@@ -820,7 +853,7 @@
                                         style="border-color:var(--bs-danger)">
                                         <a href="#!" data-bs-toggle='modal' data-bs-target='#view-excludes'
                                             class='init-link w-100'
-                                            wire:click='viewExcludes({{ $scheduleMealsByMeal }})'>
+                                            wire:click="viewExcludes({{ $scheduleMealsByMeal }})">
                                             <h1 class="fs-12 my-1 w-100 text-center">View Excludes</h1>
                                         </a>
                                     </div>
@@ -844,7 +877,7 @@
                                         style="border-color:var(--bs-danger)">
                                         <a href="#!" data-bs-toggle='modal' data-bs-target='#view-remarks'
                                             class='init-link w-100'
-                                            wire:click='viewRemarks({{ $scheduleMealsByMeal }})'>
+                                            wire:click="viewRemarks({{ $scheduleMealsByMeal }})">
                                             <h1 class="fs-12 my-1 w-100 text-center">View Notes</h1>
                                         </a>
                                     </div>
@@ -885,9 +918,26 @@
 
 
 
-
+                                    {{-- imageFile --}}
                                     <img class='w-100 of-contain' style="height: 130px"
                                         src="{{ asset('storage/menu/meals/' . ($scheduleMealsByMeal->first()?->meal?->imageFile ?? $defaultPlate)) }}">
+
+
+
+
+
+                                    {{-- container --}}
+                                    <h6 class='mt-2 fs-14 text-center'>{{
+                                        $scheduleMealsByMeal->first()?->meal?->container?->name }}</h6>
+
+
+
+
+
+
+                                    {{-- --------------------------------------- --}}
+                                    {{-- --------------------------------------- --}}
+
 
 
 
@@ -903,7 +953,7 @@
                                         <button
                                             class="btn btn--scheme btn--scheme-outline-3 align-items-center d-inline-flex px-3 py-1 fs-12 justify-content-center fw-semibold"
                                             type="button" style="border:1px dashed var(--color-theme-secondary)"
-                                            wire:click='cookMeal({{ $commonType }}, {{ $commonMeal }})'>
+                                            wire:click="cookMeal('{{ $commonType }}', '{{ $commonMeal }}')">
                                             Mark As Cooked?
                                         </button>
 
@@ -1035,14 +1085,23 @@
     @section('modals')
 
 
-    {{-- 1: viewPart - ingredients & otherParts --}}
+
+    {{-- 1: viewInstructions - meal --}}
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-instructions
+        key='view-instructions-modal' />
+
+
+
+
+
+    {{-- 2: viewPart - ingredients & otherParts --}}
     <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-part
         key='view-part-modal' />
 
 
 
 
-    {{-- 2: viewRemarks - customer & remarks --}}
+    {{-- 3: viewRemarks - customer & remarks --}}
     <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-remarks
         key='view-remarks-modal' />
 
@@ -1050,7 +1109,7 @@
 
 
 
-    {{-- 3: viewExcludes - customer & excludes --}}
+    {{-- 4: viewExcludes - customer & excludes --}}
     <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-excludes
         key='view-excludes-modal' />
 

@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.manage-kitchen.components.sub-menu title='Containers' />
+        <livewire:dashboard.manage-kitchen.components.sub-menu title='Containers' key='kitchen-submenu' />
 
 
 
@@ -124,7 +124,7 @@
 
                                         {{-- remove --}}
                                         <button class="btn btn--scheme btn--remove-outline fs-12 px-2 mx-2 h-32"
-                                            type="button" wire:click='remove({{ $container->id }})'
+                                            type="button" wire:click="remove('{{ $container->id }}')"
                                             wire:loading.attr='disabled' wire:target='remove, updateCharge'>
                                             <svg class="bi bi-trash fs-5" xmlns="http://www.w3.org/2000/svg" width="1em"
                                                 height="1em" fill="currentColor" viewBox="0 0 16 16">

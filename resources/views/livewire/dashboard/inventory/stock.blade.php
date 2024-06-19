@@ -143,7 +143,7 @@
                                             class="btn btn--raw-icon d-flex align-items-baseline justify-content-center scale--3 fw-bold text-danger"
                                             type="button">0
                                             <span class='fs-9 ms-1 text-heading'>({{
-                                                $stockIngredientsByIngredient?->first()->ingredient->purchaseUnit->name
+                                                $stockIngredientsByIngredient?->first()?->unit?->name
                                                 }})</span>
                                         </button>
                                     </div>
@@ -158,7 +158,7 @@
                                             type="button">
                                             {{ $stockIngredientsByIngredient?->sum('quantity') }}
                                             <span class='fs-9 ms-1 text-heading'>({{
-                                                $stockIngredientsByIngredient?->first()->ingredient->purchaseUnit->name
+                                                $stockIngredientsByIngredient?->first()?->unit?->name
                                                 }})</span>
 
                                         </button>

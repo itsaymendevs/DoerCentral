@@ -18,7 +18,7 @@ class ProductionBuilderViewInstruction extends Component
 
 
     // :: variables
-    public $instruction;
+    public $instruction, $counter;
     public $mealInstruction;
     public $removeId;
 
@@ -27,13 +27,13 @@ class ProductionBuilderViewInstruction extends Component
 
 
 
-    public function mount($id)
+    public function mount($id, $counter)
     {
 
         // 1: get instance
         $this->mealInstruction = MealInstruction::find($id);
         $this->instruction = $this->mealInstruction->content;
-
+        $this->counter = $counter;
 
     } // end function
 

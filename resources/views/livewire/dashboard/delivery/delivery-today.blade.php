@@ -7,7 +7,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.delivery.components.sub-menu title="Today's Delivery" />
+        <livewire:dashboard.delivery.components.sub-menu title="Today's Delivery" key='submenu' />
 
 
 

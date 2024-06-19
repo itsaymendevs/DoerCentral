@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:control.components.sub-menu title='Version Permissions' />
+        <livewire:control.components.sub-menu title='Version Permissions' key='submenu' />
 
 
 

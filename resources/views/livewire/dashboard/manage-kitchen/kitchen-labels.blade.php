@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.manage-kitchen.components.sub-menu title='Manage Labels' />
+        <livewire:dashboard.manage-kitchen.components.sub-menu title='Manage Labels' key='kitchen-submenu' />
 
 
 
@@ -122,7 +122,7 @@
 
                                         {{-- remove --}}
                                         <button class="btn btn--scheme btn--remove fs-12 px-2 mx-2 scale--self-05 h-32"
-                                            type="button" wire:click='remove({{ $label->id }})'
+                                            type="button" wire:click="remove('{{ $label->id }}')"
                                             wire:loading.attr='disabled'>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-trash fs-5">

@@ -57,14 +57,35 @@ class KitchenTodayProduction extends Component
 
 
 
+    public function viewInstructions($id)
+    {
+
+        // :: dispatchEvent
+        $this->dispatch('viewInstructions', $id);
 
 
-    public function viewPart($id, $partAmount)
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    public function viewPart($id, $partAmount = 0)
     {
 
 
         // :: dispatchEvent
-        $this->dispatch('viewPart', $id, $partAmount, $this->unit);
+        $this->dispatch('viewPart', $id, $partAmount, $this->unit ?? 1);
 
 
     } // end function

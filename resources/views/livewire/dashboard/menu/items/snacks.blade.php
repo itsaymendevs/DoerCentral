@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.menu.components.sub-menu />
+        <livewire:dashboard.menu.components.sub-menu key='submenu' />
 
 
 
@@ -79,7 +79,7 @@
 
             {{-- sub-menu --}}
             <div class="@if ($versionPermission->menuModuleHasMealTypeFilters) col-6 @else col-7 @endif text-end">
-                <livewire:dashboard.menu.items.components.sub-menu />
+                <livewire:dashboard.menu.items.components.sub-menu key='inner-submenu' />
             </div>
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Permission;
 use App\Models\User;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
@@ -85,11 +86,48 @@ class Login extends Component
 
             // 1.4: determine APP_TYPE
 
-            if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH')
-                return $this->redirect(route('dashboard.home'), navigate: false);
-            else
+
+            // A: Client
+            if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
+
+
+
+                return $this->redirect(route("dashboard.home"), navigate: false);
+
+
+                // 1.4.1: getPermissions
+                $permissions = Permission::where('group', 'Module')->get();
+
+
+
+                // 1.4.2: loop - permissions
+                foreach ($permissions as $permission) {
+
+
+                    // :: isFound
+                    if ($user->checkPermission($permission->name)) {
+
+
+                    } // end if
+
+
+
+                } // end loop
+
+
+
+
+
+
+
+
+                // B: BOTH - Server
+            } else {
+
+
                 return $this->redirect(route('dashboard.control.permissions'), navigate: false);
 
+            } // end if
 
 
 

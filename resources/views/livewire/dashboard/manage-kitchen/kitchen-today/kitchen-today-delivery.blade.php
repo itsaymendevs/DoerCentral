@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.manage-kitchen.components.sub-menu title='Kitchen Today' />
+        <livewire:dashboard.manage-kitchen.components.sub-menu title='Kitchen Today' key='kitchen-submenu' />
 
 
 

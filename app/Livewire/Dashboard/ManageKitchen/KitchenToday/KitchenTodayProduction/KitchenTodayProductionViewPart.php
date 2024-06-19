@@ -60,6 +60,12 @@ class KitchenTodayProductionViewPart extends Component
 
 
 
+
+
+
+
+
+
     } // end function
 
 
@@ -87,7 +93,18 @@ class KitchenTodayProductionViewPart extends Component
     public function render()
     {
 
-        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-part');
+
+
+
+        // 1: dependencies
+        $instructions = $this->mealSize?->meal?->instructions ?? [];
+
+
+
+
+
+
+        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-production.kitchen-today-production-view-part', compact('instructions'));
 
 
     } // end function

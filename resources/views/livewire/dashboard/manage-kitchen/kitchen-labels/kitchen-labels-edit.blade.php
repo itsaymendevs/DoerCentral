@@ -4,7 +4,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.manage-kitchen.components.sub-menu title='Label Builder' />
+        <livewire:dashboard.manage-kitchen.components.sub-menu title='Label Builder' key='kitchen-submenu' />
 
 
 

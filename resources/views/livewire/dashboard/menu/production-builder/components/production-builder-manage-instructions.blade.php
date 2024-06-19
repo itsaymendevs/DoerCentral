@@ -68,6 +68,7 @@
                 <table class="table table-bordered" id="memoir--table">
 
 
+
                     {{-- head --}}
                     <thead>
                         <tr>
@@ -85,9 +86,10 @@
 
 
                         {{-- loop - instructions --}}
-                        @foreach ($meal->instructions as $instruction)
+                        @foreach ($meal->instructions as $key => $instruction)
                         <livewire:dashboard.menu.production-builder.components.production-builder-view-instruction
-                            :id='$instruction->id' key="{{ $instruction->id }}" />
+                            :id='$instruction->id' key="single-instruction-{{ $instruction->id }}"
+                            counter='{{ $key }}' />
                         @endforeach
                         {{-- end loop --}}
 

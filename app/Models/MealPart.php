@@ -9,6 +9,7 @@ use stdClass;
 
 class MealPart extends Model
 {
+
     use HasFactory;
     use MacroTrait;
 
@@ -118,6 +119,57 @@ class MealPart extends Model
 
 
     } // end function
+
+
+
+
+
+
+
+    // ------------------------------------------
+    // ------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function ingredientsWithGrams($currentAmount = 0)
+    {
+
+
+        // :: root
+        $ingredientsWithGrams = [];
+
+
+
+
+
+        // 1: getPart
+        $part = $this->part()->first();
+
+
+
+        // 1.2: MacroHelper
+        $ingredientsWithGrams = $part ? $this->getIngredientsWithGrams($part, $currentAmount, $ingredientsWithGrams) : [];
+
+
+
+
+
+
+        return $ingredientsWithGrams;
+
+
+    } // end function
+
+
 
 
 

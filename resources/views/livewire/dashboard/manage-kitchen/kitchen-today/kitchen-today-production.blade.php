@@ -43,7 +43,7 @@
 
 
             {{-- :: innerSubMenu --}}
-            <livewire:dashboard.manage-kitchen.components.inner-sub-menu />
+            <livewire:dashboard.manage-kitchen.components.inner-sub-menu key='kitchen-inner-submenu' />
 
 
         </div>

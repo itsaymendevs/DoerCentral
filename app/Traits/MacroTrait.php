@@ -100,4 +100,101 @@ trait MacroTrait
 
 
 
+
+
+
+
+    // ---------------------------------------------------------------------
+    // ---------------------------------------------------------------------
+    // ---------------------------------------------------------------------
+    // ---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function getIngredientsWithGrams($part, $currentAmount, $ingredientsWithGrams, $isRecursion = false)
+    {
+
+
+
+
+        // 1: check part-ingredients
+        foreach ($part->ingredients ?? [] as $partIngredient) {
+
+
+
+            // 1.2: getGrams
+            $ingredientsWithGrams[$partIngredient->ingredientId] = ($ingredientsWithGrams[$partIngredient->ingredientId] ?? 0) + (($partIngredient?->amount ?? 0) * $currentAmount);
+
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------------
+        // --------------------------------------------------
+
+
+
+
+
+
+
+
+        // 1.2: check part-otherParts => send original-part
+        foreach ($part->parts ?? [] as $mealPart) {
+
+
+
+            // 1.3: MacroHelper - recursion
+            $partIngredientsWithGrams = $this->getIngredientsWithGrams($mealPart->part, $currentAmount, $ingredientsWithGrams, true);
+
+
+
+            // 1.4: merge
+            $ingredientsWithGrams = $ingredientsWithGrams + $partIngredientsWithGrams;
+
+
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return $ingredientsWithGrams;
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
 } // end trait

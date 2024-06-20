@@ -1,7 +1,7 @@
 /* table */
 
 .kitchen--table tr td {
-    vertical-align: top;
+    vertical-align: top !important;
 }
 
 .kitchen--size-box {
@@ -28,12 +28,12 @@
 
 .inline--table tr th {
     text-align: left;
-    padding-left: 14px;
+    padding-left: 15px;
 }
 
 .inline--table tr td {
     text-align: left;
-    padding-left: 14px;
+    padding-left: 15px;
 }
 
 /* instructions */

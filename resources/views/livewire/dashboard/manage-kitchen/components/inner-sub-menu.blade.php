@@ -15,6 +15,17 @@
 
 
 
+        {{-- quantity --}}
+        <a wire:navigate class="btn fs-13
+     @if (Request::is('dashboard/kitchen/today/quantity', 'dashboard/kitchen/today/quantity/*')) active @endif"
+            role="button" href="{{ route('dashboard.kitchenTodayQuantity') }}">Quantity</a>
+
+
+
+
+
+
+
 
         {{-- production --}}
         <a wire:navigate class="btn fs-13
@@ -24,10 +35,16 @@
 
 
 
+
+
         {{-- packing --}}
         <a wire:navigate
             class="btn fs-13 @if (Request::is('dashboard/kitchen/today/packing', 'dashboard/kitchen/today/packing/*')) active @endif"
             role="button" href="{{ route('dashboard.kitchenTodayPacking') }}">Packing</a>
+
+
+
+
 
 
 

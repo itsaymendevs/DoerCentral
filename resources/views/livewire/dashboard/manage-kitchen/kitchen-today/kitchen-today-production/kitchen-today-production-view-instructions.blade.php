@@ -73,7 +73,7 @@
                         @foreach ($instructions ?? [] as $instruction)
 
 
-                        <div class="col-12">
+                        <div class="col-12" key='single-instruction-{{ $instruction->id }}'>
                             <p class='fs-14 instruction--wrap'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                     class="bi bi-diamond-half me-2" viewBox="0 0 16 16">

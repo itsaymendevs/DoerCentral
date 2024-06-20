@@ -6,11 +6,12 @@ use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\Ingredient;
-use App\Models\IngredientCategory;
+use App\Models\Meal;
+use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 
-class KitchenTodayPreparations extends Component
+class KitchenTodayQuantities extends Component
 {
 
 
@@ -20,7 +21,7 @@ class KitchenTodayPreparations extends Component
 
 
     // :: variables
-    public $searchScheduleDate, $ingredientsWithGrams, $searchCategory, $searchIngredient;
+    public $searchScheduleDate, $partsWithGrams, $ingredientsWithGrams, $searchType, $searchMeal;
     public $toKG = false, $unit = 1;
 
 
@@ -111,7 +112,8 @@ class KitchenTodayPreparations extends Component
 
 
 
-        // 3: ingredientsWithGrams
+        // 3: partsWithGrams - ingredientsWithGrams
+        $this->partsWithGrams = [];
         $this->ingredientsWithGrams = [];
 
 
@@ -119,6 +121,7 @@ class KitchenTodayPreparations extends Component
 
         // 3.1: loop - groupByMeal
         foreach ($scheduleMeals->groupBy('mealId') as $commonMeal => $scheduleMealsByMeal) {
+
 
 
 
@@ -140,7 +143,6 @@ class KitchenTodayPreparations extends Component
 
 
 
-
                     // ---------------------------------
                     // ---------------------------------
 
@@ -148,17 +150,8 @@ class KitchenTodayPreparations extends Component
 
 
 
-                    // 3.3.2: getIngredientsWithGrams
-                    $mealSizeIngredientsWithGrams = $mealSize->ingredientsWithGrams();
-
-
-
-                    // 3.3.3: multiplyByMeals
-                    $mealSizeIngredientsWithGramsMultiplied = array_map(function ($element) use ($scheduleMealsByMeal) {
-
-                        return $element * ($scheduleMealsByMeal->count() ?? 0);
-
-                    }, $mealSizeIngredientsWithGrams);
+                    // 3.3.2: contentWithGrams
+                    $contentWithGrams = $mealSize->contentWithGrams($scheduleMealsByMeal->count() ?? 0);
 
 
 
@@ -174,9 +167,9 @@ class KitchenTodayPreparations extends Component
 
 
                     // 3.3.4: merge
-                    $this->ingredientsWithGrams = $this->ingredientsWithGrams + $mealSizeIngredientsWithGramsMultiplied;
+                    $this->partsWithGrams = $this->partsWithGrams + $contentWithGrams->partsWithGrams;
 
-
+                    $this->ingredientsWithGrams = $this->ingredientsWithGrams + $contentWithGrams->ingredientsWithGrams;
 
 
 
@@ -209,10 +202,31 @@ class KitchenTodayPreparations extends Component
 
 
 
-
     // -----------------------------------------------------------
 
 
+
+
+
+
+
+    public function viewMeal($id)
+    {
+
+
+        // :: dispatchEvent
+        $this->dispatch('viewMeal', $id, $this->unit ?? 1);
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
 
 
 
@@ -255,7 +269,7 @@ class KitchenTodayPreparations extends Component
 
 
         // 1: dependencies
-        $categories = IngredientCategory::all();
+        $types = Type::all();
         $this->unit = $this->toKG ? $this->getGramToKG() : 1;
 
 
@@ -266,8 +280,19 @@ class KitchenTodayPreparations extends Component
         // 1.2: get ingredients
         $ingredients = Ingredient::orderBy('categoryId')
             ->whereIn('id', array_keys($this->ingredientsWithGrams))
-            ->where('name', 'LIKE', '%' . $this->searchIngredient . '%')
-            ->whereIn('categoryId', $this->searchCategory ? [$this->searchCategory] : $categories->pluck('id')->toArray())->get();
+            ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
+            ->get();
+
+
+
+
+
+
+        // 1.3: get parts
+        $parts = Meal::orderBy('typeId')
+            ->whereIn('id', array_keys($this->partsWithGrams))
+            ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
+            ->whereIn('typeId', $this->searchType ? [$this->searchType] : $types->pluck('id')->toArray())->get();
 
 
 
@@ -275,12 +300,17 @@ class KitchenTodayPreparations extends Component
 
 
 
-        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-preparations', compact('categories', 'ingredients'));
+
+
+        return view('livewire.dashboard.manage-kitchen.kitchen-today.kitchen-today-quantities', compact('types', 'parts', 'ingredients'));
 
 
 
 
     } // end function
+
+
+
 
 
 

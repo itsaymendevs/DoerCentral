@@ -1,4 +1,4 @@
-<div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="view-part" wire:ignore.self>
+<div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="view-meal" wire:ignore.self>
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body py-0 px-0">
@@ -61,6 +61,9 @@
 
 
 
+                        {{-- ----------------------------------- --}}
+                        {{-- ----------------------------------- --}}
+
 
 
 
@@ -117,18 +120,6 @@
                                         @foreach ($mealSize?->parts ?? [] as $mealSizePart)
 
 
-
-                                        {{-- ** GET AMOUNT - AMOUNT PERCENTAGE OF PART --}}
-                                        @php $amount = ((($mealSizePart?->amount ?? 0) /
-                                        $mealSizeTotalAmount) * 100) * $partAmount / 100;
-                                        @endphp
-
-
-
-
-
-
-
                                         <tr key='mealSize-part-{{ $mealSizePart->id }}'>
 
 
@@ -151,7 +142,7 @@
                                             {{-- amount --}}
                                             <td class="fw-bold text-start ps-3">
                                                 <span class="text-start d-block fs-15 fw-semibold text-gold">{{
-                                                    round($amount ?? 0, 1) / $unit }}
+                                                    round($mealSizePart->amount ?? 0, 1) / $unit }}
                                                     <small class='fs-10'>{{ $unit == 1 ? '(G)' : '(KG)'}}</small>
                                                 </span>
                                             </td>
@@ -248,19 +239,6 @@
                                         @foreach ($mealSize?->ingredients ?? [] as $mealSizeIngredient)
 
 
-
-
-
-                                        {{-- ** GET AMOUNT - AMOUNT PERCENTAGE OF INGREDIENT --}}
-                                        @php $amount = ((($mealSizeIngredient?->amount ?? 0) /
-                                        $mealSizeTotalAmount) * 100) * $partAmount / 100;
-                                        @endphp
-
-
-
-
-
-
                                         <tr key='mealSize-ingredient-{{ $mealSizeIngredient->id }}'>
 
 
@@ -281,9 +259,31 @@
 
                                             {{-- amount --}}
                                             <td class="fw-bold text-start ps-3">
-                                                <span class="text-start d-block fs-15 fw-semibold text-gold">{{
-                                                    round($amount ?? 0, 1) / $unit }}
-                                                    <small class='fs-10'>{{ $unit == 1 ? '(G)' : '(KG)'}}</small>
+                                                <span class="text-start d-block fs-15 fw-semibold text-gold">
+
+
+
+                                                    {{-- A: gram --}}
+                                                    @if ($unit == 1)
+
+
+                                                    {{ number_format(($mealSizeIngredient->amount ?? 0) / $unit) }}
+                                                    <small class='fs-10'>(G)</small>
+
+
+
+                                                    {{-- B: KG --}}
+                                                    @else
+
+
+                                                    {{ number_format(($mealSizeIngredient->amount ?? 0) / $unit, 2) }}
+                                                    <small class='fs-10'>(KG)</small>
+
+
+                                                    @endif
+                                                    {{-- end if --}}
+
+
                                                 </span>
                                             </td>
 
@@ -353,7 +353,7 @@
                         {{-- loop - instructions --}}
                         @foreach ($instructions ?? [] as $instruction)
 
-                        <div class="col-12" key='single-part-instruction-{{ $instruction->id }}'>
+                        <div class="col-12">
                             <p class='fs-14 instruction--wrap'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                     class="bi bi-diamond-half me-2" viewBox="0 0 16 16">

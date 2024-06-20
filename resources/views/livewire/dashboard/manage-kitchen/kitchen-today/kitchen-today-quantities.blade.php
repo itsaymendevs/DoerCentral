@@ -5,7 +5,8 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.manage-kitchen.components.sub-menu title='Preparation & Stock' key='kitchen-submenu' />
+        <livewire:dashboard.manage-kitchen.components.sub-menu title='Recipes & Items' key='kitchen-submenu' />
+
 
 
 
@@ -83,23 +84,23 @@
 
                     {{-- search --}}
                     <div class="col-6">
-                        <input type="text" class="form--input main-version w-100" placeholder="Search Ingredient"
-                            wire:model.live='searchIngredient' />
+                        <input type="text" class="form--input main-version w-100" placeholder="Search by Name"
+                            wire:model.live='searchMeal' />
                     </div>
 
 
 
 
 
-                    {{-- category --}}
+                    {{-- type --}}
                     <div class="col-6">
                         <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
-                            <select class="form--select" data-instance='searchCategory'
-                                data-placeholder='Select Category' data-clear='true' required>
+                            <select class="form--select" data-instance='searchType' data-placeholder='Select Type'
+                                data-clear='true' required>
                                 <option value=""></option>
 
-                                @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @foreach ($types as $type)
+                                <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -205,6 +206,9 @@
 
 
 
+
+
+
             {{-- counter --}}
             <div class="col-4 text-end d-flex align-items-center justify-content-end">
 
@@ -233,7 +237,7 @@
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
                     title="Number of Meals">
-                    {{ $ingredients?->count() ?? 0 }}
+                    {{ $meals?->count() ?? 0 }}
                 </h3>
             </div>
 
@@ -264,7 +268,7 @@
     <div class="container-fluid">
         <div class="row mt-4 mb-2">
             <div class="col-12 mt-4">
-                <div id="print--table" class="memoir--table w-100 inline--table">
+                <div id="print--table" class="memoir--table w-100 inline--table ">
                     <table class="table table-bordered" id="memoir--table">
 
 
@@ -272,7 +276,7 @@
                         <thead>
                             <tr>
                                 <th class="th--lg">Name</th>
-                                <th class="th--md">Category</th>
+                                <th class="th--md">Type</th>
                                 <th class="th--sm">Amount</th>
                             </tr>
                         </thead>
@@ -295,29 +299,145 @@
 
 
 
-                            {{-- loop - ingredients --}}
-                            @foreach ($ingredients ?? [] as $ingredient)
+                            {{-- 1: loop - parts --}}
+                            @foreach ($parts ?? [] as $part)
 
 
-                            <tr key='single-ingredient-{{ $ingredient->id }}'>
+                            <tr key='single-part-{{ $part->id }}'>
 
 
-                                {{-- 1: ingredient --}}
-                                <td class='fs-15'>{{ $ingredient?->name ?? '' }}</td>
-
-
-
+                                {{-- 1: part --}}
+                                <td class='fs-15'>{{ $part?->name }}
 
 
 
-                                {{-- 1.2: category --}}
-                                <td class='fs-15'>{{ $ingredient?->category?->name ?? '' }}</td>
+                                    {{-- :: viewPart --}}
+                                    <button
+                                        class="btn btn--raw-icon fs-14 text-warning d-inline-block scale--3 w-auto ms-1"
+                                        wire:click="viewPart('{{ $part?->id }}')" type="button"
+                                        data-bs-target="#view-meal" data-bs-toggle="modal">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            fill="currentColor" viewBox="0 0 16 16" class="bi bi-eye fs-6"
+                                            style="fill: var(--bs-warning)">
+                                            <path
+                                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z">
+                                            </path>
+                                            <path
+                                                d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+
+                                </td>
+
+
+
+
+
+
+
+                                {{-- -------------------------------- --}}
+                                {{-- -------------------------------- --}}
+
+
+
+
+
+
+
+                                {{-- 1.2: type --}}
+                                <td class='fs-15'>{{ $part?->type?->name}}</td>
+
+
 
 
 
 
                                 {{-- 1.3: quantity --}}
                                 <td class='fw-semibold fs-6 text-warning'>
+
+
+
+                                    {{-- A: gram --}}
+                                    @if ($unit == 1)
+
+
+                                    {{ number_format($partsWithGrams[$part->id] / $unit) }}
+                                    <small class='fs-10'>(G)</small>
+
+
+
+                                    {{-- B: KG --}}
+                                    @else
+
+
+                                    {{ number_format($partsWithGrams[$part->id] / $unit, 2) }}
+                                    <small class='fs-10'>(KG)</small>
+
+
+                                    @endif
+                                    {{-- end if --}}
+
+                                </td>
+
+
+                            </tr>
+
+                            @endforeach
+                            {{-- end loop --}}
+
+
+
+
+
+
+
+
+
+
+
+
+                            {{-- ----------------------------------- --}}
+                            {{-- ----------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            {{-- 2: loop - ingredients --}}
+                            @foreach ($ingredients ?? [] as $ingredient)
+
+
+                            <tr key='single-ingredient-{{ $ingredient->id }}'>
+
+
+
+
+                                {{-- 1: ingredient --}}
+                                <td class='fs-15'>{{ $ingredient?->name }}</td>
+
+
+
+
+                                {{-- 1.2: type --}}
+                                <td class='fs-15'>Ingredient</td>
+
+
+
+
+
+
+                                {{-- 1.3: quantity --}}
+                                <td class='fw-semibold fs-6 text-warning'>
+
 
 
                                     {{-- A: gram --}}
@@ -332,8 +452,10 @@
                                     {{-- B: KG --}}
                                     @else
 
+
                                     {{ number_format($ingredientsWithGrams[$ingredient->id] / $unit, 2) }}
                                     <small class='fs-10'>(KG)</small>
+
 
                                     @endif
                                     {{-- end if --}}
@@ -341,13 +463,14 @@
                                 </td>
 
 
-
-
                             </tr>
-
 
                             @endforeach
                             {{-- end loop --}}
+
+
+
+
 
 
 
@@ -414,9 +537,45 @@
 
 
 
+
+
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
 
+
+
+
+
+
+
+
+
+
+
+    @section('modals')
+
+
+
+
+
+    {{-- 1: viewMeal - ingredients & otherParts - instructions --}}
+    {{--
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-quantities.components.kitchen-today-quantities-view-meal
+        key='view-meal-modal' /> --}}
+
+
+
+
+
+    @endsection
+
+
+
+
+
+
+    {{-- ------------------------------------------ --}}
+    {{-- ------------------------------------------ --}}
 
 
 

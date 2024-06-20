@@ -35,7 +35,7 @@
 
                 {{-- input --}}
                 <input class="form--input" type="date" wire:model='searchScheduleDate' wire:loading.attr='disabled'
-                    wire:change='dependencies' />
+                    required wire:change='dependencies' />
             </div>
 
 
@@ -314,8 +314,8 @@
                                     {{-- :: viewPart --}}
                                     <button
                                         class="btn btn--raw-icon fs-14 text-warning d-inline-block scale--3 w-auto ms-1"
-                                        wire:click="viewPart('{{ $part?->id }}')" type="button"
-                                        data-bs-target="#view-meal" data-bs-toggle="modal">
+                                        wire:click="viewPart('{{ $part?->id }}', '{{ $partsWithGrams[$part->id] }}')"
+                                        type="button" data-bs-target="#view-part" data-bs-toggle="modal">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                             fill="currentColor" viewBox="0 0 16 16" class="bi bi-eye fs-6"
                                             style="fill: var(--bs-warning)">
@@ -558,10 +558,9 @@
 
 
 
-    {{-- 1: viewMeal - ingredients & otherParts - instructions --}}
-    {{--
-    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-quantities.components.kitchen-today-quantities-view-meal
-        key='view-meal-modal' /> --}}
+    {{-- 1: viewPart - ingredients & otherParts - instructions --}}
+    <livewire:dashboard.manage-kitchen.kitchen-today.kitchen-today-quantities.components.kitchen-today-quantities-view-part
+        key='view-part-modal' />
 
 
 

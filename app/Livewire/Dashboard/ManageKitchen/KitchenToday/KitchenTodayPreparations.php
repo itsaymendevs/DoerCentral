@@ -20,7 +20,7 @@ class KitchenTodayPreparations extends Component
 
 
     // :: variables
-    public $searchScheduleDate, $ingredientsWithGrams, $searchCategory, $searchIngredient;
+    public $searchScheduleDate, $searchScheduleUntilDate, $ingredientsWithGrams, $searchCategory, $searchIngredient;
     public $toKG = false, $unit = 1;
 
 
@@ -76,16 +76,27 @@ class KitchenTodayPreparations extends Component
 
 
 
+        // :: checkScheduleUntilDate
+        $this->searchScheduleUntilDate == '' ? $this->searchScheduleUntilDate = null : null;
+
+
+
+
+
 
         // 1: getDeliveries
-        $customers = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchScheduleDate)?->pluck('customerId')?->toArray() ?? [];
+        $customers = CustomerSubscriptionDelivery::where('deliveryDate', '>=', $this->searchScheduleDate)
+            ->where('deliveryDate', '<=', $this->searchScheduleUntilDate ?? $this->searchScheduleDate)
+                ?->pluck('customerId')?->toArray() ?? [];
+
 
 
 
 
 
         // 1.2: getSchedules - meals
-        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->searchScheduleDate)
+        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', '>=', $this->searchScheduleDate)
+            ->where('scheduleDate', '<=', $this->searchScheduleUntilDate ?? $this->searchScheduleDate)
             ->whereIn('customerId', $customers)
             ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
 

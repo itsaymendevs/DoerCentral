@@ -26,7 +26,7 @@
 
 
             {{-- date --}}
-            <div class="col-4">
+            <div class="col-2">
                 <div class="d-flex align-items-center justify-content-between mb-1">
                     <hr style="width: 65%" />
                     <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Date</label>
@@ -34,8 +34,34 @@
 
                 {{-- input --}}
                 <input class="form--input" type="date" wire:model='searchScheduleDate' wire:loading.attr='disabled'
+                    required wire:change='dependencies' />
+            </div>
+
+
+
+
+
+
+            {{-- ----------------------- --}}
+            {{-- ----------------------- --}}
+
+
+
+
+
+            {{-- untilDate --}}
+            <div class="col-2">
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                    <hr style="width: 65%" />
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Until</label>
+                </div>
+
+                {{-- input --}}
+                <input class="form--input" type="date" wire:model='searchScheduleUntilDate' wire:loading.attr='disabled'
                     wire:change='dependencies' />
             </div>
+
+
 
 
 

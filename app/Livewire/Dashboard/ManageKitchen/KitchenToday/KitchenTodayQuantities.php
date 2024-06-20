@@ -210,12 +210,12 @@ class KitchenTodayQuantities extends Component
 
 
 
-    public function viewMeal($id)
+    public function viewPart($id, $partAmount = 0)
     {
 
 
         // :: dispatchEvent
-        $this->dispatch('viewMeal', $id, $this->unit ?? 1);
+        $this->dispatch('viewPart', $id, $partAmount, $this->unit ?? 1);
 
 
     } // end function

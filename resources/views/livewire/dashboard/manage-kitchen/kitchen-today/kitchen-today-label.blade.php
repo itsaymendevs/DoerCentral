@@ -36,8 +36,8 @@
 
 
                 {{-- input --}}
-                <input class="form--input" type="date" wire:model.live='searchScheduleDate'
-                    wire:loading.attr='disabled' />
+                <input class="form--input" type="date" wire:model.live='searchScheduleDate' wire:loading.attr='disabled'
+                    required />
             </div>
 
 

@@ -12,8 +12,6 @@ class Navbar extends Component
 
 
 
-        // $this->redirect(route('dashboard.login'), navigate: false);
-
 
         // 1: dependencies
         $user = User::find(session('userId'));

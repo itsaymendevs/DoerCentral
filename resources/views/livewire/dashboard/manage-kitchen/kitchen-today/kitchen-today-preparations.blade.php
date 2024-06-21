@@ -258,7 +258,7 @@
 
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
-                    title="Number of Meals">
+                    title="Number of Ingredients">
                     {{ $ingredients?->count() ?? 0 }}
                 </h3>
             </div>

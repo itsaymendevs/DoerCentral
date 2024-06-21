@@ -236,8 +236,8 @@
 
                 <h3 data-bs-toggle="tooltip" data-bss-tooltip=""
                     class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 px-3 rounded-1 mb-0 py-1"
-                    title="Number of Meals">
-                    {{ $meals?->count() ?? 0 }}
+                    title="Number of Rows">
+                    {{ ($ingredients?->count() ?? 0) + ($parts?->count() ?? 0) }}
                 </h3>
             </div>
 
@@ -346,7 +346,7 @@
 
 
                                 {{-- 1.2: type --}}
-                                <td class='fs-15'>{{ $part?->type?->name}}</td>
+                                <td class='fs-15'>{{ $part?->type?->name }}</td>
 
 
 

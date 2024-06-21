@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\ManageKitchen\KitchenToday;
 
+use App\Exports\KitchenPreparationExport;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
@@ -9,6 +10,7 @@ use App\Models\Ingredient;
 use App\Models\IngredientCategory;
 use App\Traits\HelperTrait;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KitchenTodayPreparations extends Component
 {
@@ -233,6 +235,63 @@ class KitchenTodayPreparations extends Component
 
     public function export()
     {
+
+
+
+        // 1: prepareExportData
+
+
+        // 1.2: dependencies
+        $categories = IngredientCategory::all();
+
+
+
+
+
+
+        // 1.3: get ingredients
+        $ingredients = Ingredient::orderBy('categoryId')
+            ->whereIn('id', array_keys($this->ingredientsWithGrams))
+            ->where('name', 'LIKE', '%' . $this->searchIngredient . '%')
+            ->whereIn('categoryId', $this->searchCategory ? [$this->searchCategory] : $categories->pluck('id')->toArray())->get();
+
+
+
+
+
+
+
+
+
+        // ---------------------------------------
+        // ---------------------------------------
+
+
+
+
+
+
+
+
+
+        // 2: makeExport
+        if ($ingredients?->count() > 0) {
+
+
+            return Excel::download(new KitchenPreparationExport($ingredients, $this->ingredientsWithGrams, $this->unit), 'kitchen-preparations.xlsx');
+
+
+
+            // :: no-production
+        } else {
+
+
+
+            $this->makeAlert('info', 'Preparations-list is empty');
+
+
+        } // end if
+
 
 
 

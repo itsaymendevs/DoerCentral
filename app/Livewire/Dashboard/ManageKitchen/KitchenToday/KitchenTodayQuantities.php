@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Dashboard\ManageKitchen\KitchenToday;
 
+use App\Exports\KitchenQuantityExport;
 use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\Ingredient;
 use App\Models\Meal;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Type;
 use App\Traits\HelperTrait;
 use Livewire\Component;
@@ -236,6 +238,82 @@ class KitchenTodayQuantities extends Component
 
     public function export()
     {
+
+
+
+        // 1: prepareExportData
+
+
+
+
+
+
+        // 1.2: dependencies
+        $types = Type::all();
+        $this->unit = $this->toKG ? $this->getGramToKG() : 1;
+
+
+
+
+
+
+        // 1.3: get ingredients
+        $ingredients = Ingredient::orderBy('categoryId')
+            ->whereIn('id', array_keys($this->ingredientsWithGrams))
+            ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
+            ->get();
+
+
+
+
+
+
+        // 1.4: get parts
+        $parts = Meal::orderBy('typeId')
+            ->whereIn('id', array_keys($this->partsWithGrams))
+            ->where('name', 'LIKE', '%' . $this->searchMeal . '%')
+            ->whereIn('typeId', $this->searchType ? [$this->searchType] : $types->pluck('id')->toArray())->get();
+
+
+
+
+
+
+
+
+
+
+        // ---------------------------------------
+        // ---------------------------------------
+
+
+
+
+
+
+
+
+
+        // 2: makeExport
+        if ($parts?->count() > 0 || $ingredients?->count() > 0) {
+
+
+            return Excel::download(new KitchenQuantityExport($parts, $ingredients, $this->partsWithGrams, $this->ingredientsWithGrams, $this->unit), 'kitchen-quantity.xlsx');
+
+
+
+
+            // :: no-production
+        } else {
+
+
+
+            $this->makeAlert('info', 'Quantity-list is empty');
+
+
+        } // end if
+
+
 
 
 

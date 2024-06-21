@@ -164,8 +164,8 @@ fieldset:disabled .btn {
     border-radius: 300px;
     margin: auto;
     padding: 30px 0px;
-    width: 70px;
-    border: 3px solid transparent;
+    width: 76px;
+    border: 2px solid transparent;
     background-color: transparent;
 }
 
@@ -456,7 +456,8 @@ fieldset:disabled .btn {
 
 /* calendar */
 .tr--ingredient {
-    background-color: #009f4d40 !important;
+    background-color: #009f4d1f !important;
+    padding: 10px;
 }
 
 .underline-gold {
@@ -499,4 +500,23 @@ fieldset:disabled .btn {
     -webkit-animation: loader-gradient 6s ease infinite;
     -moz-animation: loader-gradient 6s ease infinite;
     animation: loader-gradient 6s ease infinite;
+}
+
+/* viewMeal */
+.btn.customer--view-meal {
+    border: 2px solid var(--color-theme-secondary) !important;
+    background-color: white;
+}
+
+.btn.customer--view-meal:hover svg,
+.btn.customer--view-meal:focus svg {
+    fill: white !important;
+}
+
+.consist--wrapper h6 {
+    font-weight: 500 !important;
+}
+
+.swiper--caption.for-meals {
+    border: 1px solid #f0f0f0;
 }

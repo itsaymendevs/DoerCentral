@@ -162,7 +162,7 @@ class KitchenTodayPreparations extends Component
 
 
                     // 3.3.2: getIngredientsWithGrams
-                    $mealSizeIngredientsWithGrams = $mealSize->ingredientsWithGrams();
+                    $mealSizeIngredientsWithGrams = $mealSize?->ingredientsWithGrams() ?? [];
 
 
 
@@ -187,7 +187,7 @@ class KitchenTodayPreparations extends Component
 
 
                     // 3.3.4: merge
-                    $this->ingredientsWithGrams = $this->ingredientsWithGrams + $mealSizeIngredientsWithGramsMultiplied;
+                    $this->ingredientsWithGrams = $this->ingredientsWithGrams + ($mealSizeIngredientsWithGramsMultiplied ?? []);
 
 
 

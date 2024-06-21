@@ -140,7 +140,7 @@ class KitchenTodayQuantities extends Component
 
 
                     // 3.3.1: getMealSize
-                    $mealSize = $scheduleMeal->mealSize();
+                    $mealSize = $scheduleMeal?->mealSize();
 
 
 
@@ -153,7 +153,7 @@ class KitchenTodayQuantities extends Component
 
 
                     // 3.3.2: contentWithGrams
-                    $contentWithGrams = $mealSize->contentWithGrams($scheduleMealsByMeal->count() ?? 0);
+                    $contentWithGrams = $mealSize?->contentWithGrams($scheduleMealsByMeal?->count() ?? 0) ?? [];
 
 
 
@@ -169,9 +169,9 @@ class KitchenTodayQuantities extends Component
 
 
                     // 3.3.4: merge
-                    $this->partsWithGrams = $this->partsWithGrams + $contentWithGrams->partsWithGrams;
+                    $this->partsWithGrams = $this->partsWithGrams + ($contentWithGrams?->partsWithGrams ?? []);
 
-                    $this->ingredientsWithGrams = $this->ingredientsWithGrams + $contentWithGrams->ingredientsWithGrams;
+                    $this->ingredientsWithGrams = $this->ingredientsWithGrams + ($contentWithGrams->ingredientsWithGrams ?? []);
 
 
 

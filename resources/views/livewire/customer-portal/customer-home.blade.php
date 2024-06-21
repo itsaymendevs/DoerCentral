@@ -22,7 +22,7 @@
 
 
         {{-- mainRow --}}
-        <div class="row align-items-end pt-2 row mb-5">
+        <div class="row align-items-end pt-2 row mb-5" wire:ignore>
 
 
 
@@ -41,7 +41,7 @@
 
 
                         {{-- name --}}
-                        <h5 class="fw-normal d-flex align-items-center mb-3">
+                        <h5 class="fw-500 d-flex align-items-center mb-3">
                             Welcome Back
                             <span class="fw-semibold ms-2 text-orange" data-aos='zoom-out' data-aos-delay='200'
                                 wire:ignore.self>{{
@@ -50,7 +50,7 @@
 
 
                         {{-- location --}}
-                        <h6 class="fw-normal d-flex align-items-center">
+                        <h6 class="fw-500 d-flex align-items-center">
                             <img class="me-2" src="{{ asset('assets/img/App/pin.png') }}" style="width: 16px" />
 
                             {{-- :: hasDelivery --}}
@@ -275,7 +275,7 @@
                                 wire:ignore.self>
                                 <div class="item--box macros for--calories">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-18 fw-bold d-block">{{ $totalCalories }}</span><span
+                                        <span class="fs-16 fw-bold d-block">{{ $totalCalories }}</span><span
                                             class="fs-12 d-block fw-bold mt-3">CAL</span>
                                     </p>
                                 </div>
@@ -290,7 +290,7 @@
                                 wire:ignore.self>
                                 <div class="item--box macros for--carbs">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-18 fw-bold  d-block">{{ $totalCarbs }}</span>
+                                        <span class="fs-16 fw-bold  d-block">{{ $totalCarbs }}</span>
                                         <span class="fs-12 d-block fw-bold  mt-3">CARB</span>
                                     </p>
                                 </div>
@@ -305,7 +305,7 @@
                                 wire:ignore.self>
                                 <div class="item--box macros for--proteins">
                                     <p class="text-center  mb-0">
-                                        <span class="fs-18 fw-bold  d-block">{{ $totalProteins }}</span><span
+                                        <span class="fs-16 fw-bold  d-block">{{ $totalProteins }}</span><span
                                             class="fs-12 d-block fw-bold mt-3">PROTEIN</span>
                                     </p>
                                 </div>
@@ -321,7 +321,7 @@
                                 wire:ignore.self>
                                 <div class="item--box macros for--fats">
                                     <p class="text-center fs-15 mb-0">
-                                        <span class="fs-18 fw-bold  d-block">{{ $totalFats }}</span><span
+                                        <span class="fs-16 fw-bold  d-block">{{ $totalFats }}</span><span
                                             class="fs-12 d-block fw-bold  mt-3">FAT</span>
                                     </p>
                                 </div>
@@ -382,7 +382,7 @@
 
 
                     {{-- carousel --}}
-                    <div class="col-12 mb-5">
+                    <div class="col-12 mb-5" wire:ignore>
 
 
 
@@ -403,7 +403,8 @@
                                 @foreach ($scheduleMeals ?? [] as $scheduleMeal)
 
 
-                                <div class="swiper-slide">
+                                <div class="swiper-slide pointer" data-bs-toggle='modal' data-bs-target='#view-meal'
+                                    wire:click="viewMeal('{{ $scheduleMeal?->mealSize()?->id }}')">
 
 
                                     {{-- name - type --}}
@@ -685,14 +686,34 @@
 
 
 
-    {{-- initSwiper --}}
-    <script>
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
 
 
 
-    </script>
 
 
+
+
+
+
+
+    @section('modals')
+
+
+
+
+    {{-- 1: viewMeal --}}
+    <livewire:customer-portal.customer-home.components.customer-home-view-meal key='view-meal-modal' />
+
+
+
+
+
+    @endsection
+    {{-- endSection --}}
 
 
 

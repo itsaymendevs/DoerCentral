@@ -16,6 +16,10 @@ body {
     filter: invert(1);
 }
 
+.fw-500 {
+    font-weight: 500 !important;
+}
+
 /* margin */
 
 .mt-cards {

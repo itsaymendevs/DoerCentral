@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.range--input-wrapper input.darker {
+    background-color: #00000026;
+}
+
 .range--input-wrapper .range--button {
     position: absolute;
     height: 100%;

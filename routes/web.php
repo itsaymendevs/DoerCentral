@@ -69,6 +69,7 @@ use App\Livewire\Dashboard\Promos;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsCreate;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsView;
+use App\Livewire\Dashboard\Temporary\CustomizePlan;
 use App\Livewire\DriverPortal\DriverHistory;
 use App\Livewire\DriverPortal\DriverHome;
 use App\Livewire\DriverPortal\DriverProfile;
@@ -1127,6 +1128,36 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // ** ----------------------------- TEMPORARY ---------------------------- **
+
+
+
+
+        // 1: dashboard - temporary - customize-plan
+        Route::get('dashboard/temporary/customize-plan', CustomizePlan::class)->name('dashboard.temporary.customizePlan');
+
+
+
+
+
+
+
     } // end if - CLIENT ROUTES
 
 
@@ -1608,6 +1639,12 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
     }); // end Authentication
+
+
+
+
+
+
 
 
 

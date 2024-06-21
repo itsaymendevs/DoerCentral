@@ -556,7 +556,28 @@
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
                                                     src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleMeal?->meal?->imageFile ?? $defaultPlate)) }}" />
+
+
+
+
+
+                                                {{-- viewButton --}}
+                                                <button class="btn btn--raw-icon customer--view-meal" role="button"
+                                                    data-bs-toggle='modal' data-bs-target='#view-meal'
+                                                    wire:click="viewMeal('{{ $subscriptionScheduleMeal?->meal
+                                                                ?->certainSize($sizesByMealType[$mealType->id]?->id)?->id }}')">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                        fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0" />
+                                                    </svg>
+                                                </button>
                                             </div>
+
+
+
+
+
 
 
 
@@ -832,6 +853,20 @@
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
                                                     src="{{ asset('storage/menu/meals/' . ($calendarScheduleMeal?->meal->imageFile ?? $defaultPlate)) }}" />
+
+
+
+                                                {{-- viewButton --}}
+                                                <button class="btn btn--raw-icon customer--view-meal" role="button"
+                                                    data-bs-toggle='modal' data-bs-target='#view-meal'
+                                                    wire:click="viewMeal('{{ $calendarScheduleMeal?->meal?->certainSize($sizesByMealType[$mealType->id]?->id)?->id }}')">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                        fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0" />
+                                                    </svg>
+                                                </button>
+
                                             </div>
 
 
@@ -1157,6 +1192,21 @@
                                             <div class="col-12 text-center position-relative">
                                                 <img class="client--card-logo"
                                                     src="{{ asset('storage/menu/meals/' . ($subscriptionScheduleReplacement?->replacement?->imageFile ?? $defaultPlate)) }}" />
+
+
+
+                                                {{-- viewButton --}}
+                                                <button class="btn btn--raw-icon customer--view-meal" role="button"
+                                                    data-bs-toggle='modal' data-bs-target='#view-meal'
+                                                    wire:click="viewMeal('{{ $subscriptionScheduleReplacement?->replacement?->certainSize($sizesByMealType[$mealType->id]?->id)?->id }}')">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                        fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0" />
+                                                    </svg>
+                                                </button>
+
+
                                             </div>
 
 
@@ -1603,6 +1653,16 @@
     {{-- 1: viewExcludes --}}
     <livewire:customer-portal.customer-menu.components.customer-menu-view-excludes id='{{ $customer->id }}'
         key='view-excludes-modal-{{ $customer->id }}' />
+
+
+
+
+
+
+    {{-- 2: viewMeal --}}
+    <livewire:customer-portal.customer-menu.components.customer-menu-view-meal
+        key='view-meal-modal-{{ $customer->id }}' />
+
 
 
 

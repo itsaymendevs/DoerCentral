@@ -47,3 +47,14 @@
     min-width: 25px;
     margin-top: 5px;
 }
+
+.meal--single-wrapper img {
+    width: 100%;
+    object-fit: contain;
+    height: 200px;
+}
+
+.meal--single-name {
+    max-width: 300px;
+    margin: auto;
+}

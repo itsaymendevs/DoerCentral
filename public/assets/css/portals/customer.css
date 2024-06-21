@@ -137,3 +137,32 @@ input[type="date"] {
     padding: 0px;
     border-width: 2px;
 }
+
+/* viewMeal */
+.btn.customer--view-meal {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    margin: auto;
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-card);
+    border: 2px solid var(--color-scheme-3) !important;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.btn.customer--view-meal:hover,
+.btn.customer--view-meal:focus {
+    background-color: var(--color-scheme-2);
+    transform: scale(1.1);
+}
+
+.btn.customer--view-meal svg {
+    width: 100%;
+    height: 100%;
+}

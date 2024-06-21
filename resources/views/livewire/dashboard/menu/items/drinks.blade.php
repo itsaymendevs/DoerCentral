@@ -119,6 +119,8 @@
 
                     {{-- loop - drinks --}}
                     @foreach ($drinks as $drink)
+
+
                     <div class="col-4 col-xl-3 col-xxl-3">
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">

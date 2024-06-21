@@ -617,6 +617,32 @@ class CustomerMenu extends Component
 
 
 
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function viewMeal($id)
+    {
+
+
+        // 1: dispatchId
+        $this->dispatch('viewMeal', $id);
+
+
+    } // end function
+
+
+
+
+
+
 
 
 

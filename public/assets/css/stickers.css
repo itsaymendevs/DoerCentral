@@ -188,6 +188,10 @@
         height: 100vh !important;
         width: 100vw !important;
         align-items: end !important;
+        page-break-after: always;
+        position: fixed !important;
+        top: 0px;
+        left: 0px;
         /* transform: rotateX(180deg) rotateY(180deg) !important; */
     }
 

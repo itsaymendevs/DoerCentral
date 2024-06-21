@@ -83,7 +83,6 @@ class Login extends Component
 
 
 
-
             // 1.4: determine APP_TYPE
 
 
@@ -92,11 +91,10 @@ class Login extends Component
 
 
 
-                return $this->redirect(route("dashboard.home"), navigate: false);
 
 
                 // 1.4.1: getPermissions
-                $permissions = Permission::where('group', 'Module')->get();
+                $permissions = Permission::where('group', 'Modules')->get();
 
 
 
@@ -106,6 +104,9 @@ class Login extends Component
 
                     // :: isFound
                     if ($user->checkPermission($permission->name)) {
+
+
+                        return $this->redirect(route($permission->route), navigate: false);
 
 
                     } // end if
@@ -140,7 +141,7 @@ class Login extends Component
 
 
         // :: incorrectCredentials
-        $this->makeAlert('error', $response?->error);
+        $this->makeAlert('error', $response?->error ?? 'Try Again');
 
 
 

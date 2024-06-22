@@ -195,7 +195,6 @@ class CustomerSubscriptionStepOne extends Component
         $plans = Plan::whereHas('ranges')
             ->whereHas('bundles')
             ->whereHas('defaultCalendarRelation')
-            ->where('isForWebsite', true)
             ->get();
 
 

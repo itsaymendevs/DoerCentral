@@ -38,6 +38,7 @@ use App\Livewire\Dashboard\Inventory\Stock;
 use App\Livewire\Dashboard\Inventory\Suppliers;
 use App\Livewire\Dashboard\Inventory\Settings as InventorySettings;
 use App\Livewire\Dashboard\ManageKitchen\KitchenContainers;
+use App\Livewire\Dashboard\ManageKitchen\KitchenItems;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels\KitchenLabelsCreate;
 use App\Livewire\Dashboard\ManageKitchen\KitchenLabels\KitchenLabelsEdit;
@@ -965,6 +966,13 @@ Route::middleware(['auth.user'])->group(function () {
 
         // 11: kitchen - containers
         Route::get('dashboard/kitchen/containers', KitchenContainers::class)->name('dashboard.kitchenContainers');
+
+
+
+
+
+        // 11.5: kitchen - items
+        Route::get('dashboard/kitchen/items', KitchenItems::class)->name('dashboard.kitchenItems');
 
 
 

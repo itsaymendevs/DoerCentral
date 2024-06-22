@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bag;
 use App\Models\Container;
 use App\Models\Label;
 use App\Models\LabelContainer;
+use App\Models\ServingItem;
 use Illuminate\Http\Request;
 
 class KitchenController extends Controller
@@ -563,6 +565,121 @@ class KitchenController extends Controller
 
 
         return response()->json(['message' => 'Label has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateBag(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $bag = Bag::find($request->id);
+
+
+
+
+        // 1.2: general
+        $bag->price = $request->price ?? 0;
+        $bag->imageFile = $request->imageFileName ?? null;
+
+
+        $bag->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Bag has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateServings(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $serving = ServingItem::find($request->id);
+
+
+
+
+        // 1.2: general
+        $serving->cutleryPrice = $request->cutleryPrice ?? 0;
+
+        $serving->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Cost has been updated'], 200);
+
 
 
 

@@ -16,6 +16,12 @@ trait HelperTrait
 
 
 
+    // :: globalVariables
+    public $removeId;
+
+
+
+
 
 
 

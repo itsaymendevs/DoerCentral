@@ -5,13 +5,22 @@ namespace App\Livewire\Forms;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class MealServingForm extends Form
+class BagForm extends Form
 {
 
+
     // :: variables
-    public $desc, $useCutlery, $mealId;
+    #[Validate('required')]
+    public $name, $imageFile, $price;
 
     public $id;
+
+
+
+
+    // :: helpers
+    public $imageFileName;
+
 
 
 

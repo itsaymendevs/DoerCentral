@@ -120,6 +120,7 @@ class PurchasesIngredients extends Component
 
 
 
+
         // 1.2: makeRequest
         $response = $this->makeRequest('dashboard/inventory/purchases/ingredients/store', $this->instance);
 
@@ -129,7 +130,7 @@ class PurchasesIngredients extends Component
 
 
         // :: resetForm - resetFilePreview
-        $this->instance->reset('ingredientId', 'quantity', 'unitName');
+        $this->instance->reset('ingredientId', 'quantity', 'unitName', 'includeWastage');
         $this->dispatch('resetSelect');
         $this->dispatch('refreshViews');
 

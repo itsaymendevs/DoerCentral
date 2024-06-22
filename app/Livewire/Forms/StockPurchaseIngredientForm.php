@@ -8,17 +8,17 @@ use Livewire\Form;
 class StockPurchaseIngredientForm extends Form
 {
 
-   // :: variables
-   #[Validate('required')]
-   public $quantity, $ingredientId, $stockPurchaseId;
+    // :: variables
+    #[Validate('required')]
+    public $quantity, $ingredientId, $stockPurchaseId;
 
 
-   public $id, $buyPrice, $unitId;
+    public $id, $buyPrice, $unitId, $includeWastage;
 
 
 
-   // :: helpers
-   public $unitName;
+    // :: helpers
+    public $unitName;
 
 
 

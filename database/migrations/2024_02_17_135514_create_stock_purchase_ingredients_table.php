@@ -21,9 +21,14 @@ return new class extends Migration {
 
 
 
+            // 1.2: includeWastage
+            $table->boolean('includeWastage')->nullable()->default(0);
 
 
-            // 1.2: unit
+
+
+
+            // 1.3: unit
             $table->bigInteger('unitId')->unsigned()->nullable();
             $table->foreign('unitId')->references('id')->on('units')->onDelete('set null');
 

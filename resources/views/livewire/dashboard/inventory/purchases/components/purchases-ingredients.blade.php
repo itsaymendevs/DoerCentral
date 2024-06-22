@@ -8,7 +8,7 @@
 
                 {{-- header --}}
                 <header class="modal--header px-4">
-                    <h5 class="mb-0 fw-bold text-white">Purchase Ingredients</h5>
+                    <h5 class="mb-0 fw-bold text-white">Purchase Details</h5>
                     <button class="btn btn--raw-icon w-auto btn--close" data-bs-toggle="tooltip" data-bss-tooltip=""
                         data-bs-placement="right" type="button" data-bs-dismiss="modal" title="Close Modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
@@ -41,7 +41,6 @@
 
                         {{-- supplier --}}
                         <div class="col-4">
-                            <label class="form-label form--label">Supplier</label>
                             <input class="form-control form--input mb-4 readonly" type="text" readonly=""
                                 value='{{ $purchase?->supplier->name }}' />
                         </div>
@@ -57,7 +56,6 @@
 
                         {{-- po. --}}
                         <div class="col-4">
-                            <label class="form-label form--label">P.O Number</label>
                             <input class="form-control form--input mb-4 readonly" type="text" readonly=""
                                 value='{{ $purchase?->PONumber }}' />
                         </div>
@@ -76,12 +74,12 @@
 
                                 {{-- ingredients --}}
                                 <div class="col-4">
-                                    <label class="form-label form--label">Ingredient</label>
                                     <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                         <select
                                             class="form-select form--modal-select form--modal-filter-ingredient-select"
                                             data-modal='#purchase-ingredients' id='purchase-ingredient-select-2'
-                                            data-instance='instance.ingredientId' required>
+                                            data-instance='instance.ingredientId' data-placeholder='Ingredient'
+                                            required>
                                             <option value=""></option>
 
                                             @foreach ($supplierIngredients as $supplierIngredients)
@@ -98,27 +96,47 @@
 
 
                                 {{-- unit --}}
-                                <div class="col-3">
-                                    <label class="form-label form--label">Unit</label>
+                                <div class="col-2">
                                     <input class="form-control form--input mb-4 readonly" type="text" readonly=""
-                                        wire:model='instance.unitName' />
+                                        wire:model='instance.unitName' placeholder="Unit" />
                                 </div>
 
 
 
                                 {{-- quantity --}}
                                 <div class="col-2">
-                                    <label class="form-label form--label">Quantity</label>
                                     <input class="form-control form--input mb-4" type="number" step='0.1' required
-                                        wire:model='instance.quantity' />
+                                        wire:model='instance.quantity' placeholder="Amount" />
                                 </div>
 
 
 
 
 
+                                {{-- wastage --}}
+                                <div class="col-4">
+                                    <div class="form-check form-switch justify-content-center mealType--checkbox mb-4">
+                                        <input class="form-check-input pointer" id="include-wastage-1" type="checkbox"
+                                            wire:model='instance.includeWastage' wire:loading.attr='readonly' />
+                                        <label class="form-check-label fs-14" for="include-wastage-1">Wastage</label>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                {{-- -------------------- --}}
+                                {{-- -------------------- --}}
+
+
+
+
+
+
+
                                 {{-- submitButton --}}
-                                <div class="col-3 text-center">
+                                <div class="col-12 text-center">
                                     <button
                                         class="btn btn--scheme btn--scheme-2 px-4 scalemix--3 py-1 d-inline-flex align-items-center fs-13"
                                         wire:loading.attr='disabled' @if ($purchase?->isConfirmed) disabled @endif>
@@ -154,7 +172,7 @@
 
 
                                 {{-- view purchaseIngredients --}}
-                                <div class="col-12 mt-3">
+                                <div class="col-12 mt-4">
                                     <div class="table-responsive memoir--table">
                                         <table class="table table-bordered" id="memoir--table">
 

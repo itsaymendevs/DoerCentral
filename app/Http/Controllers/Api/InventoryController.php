@@ -1689,6 +1689,8 @@ class InventoryController extends Controller
         // 1.2: basic
         $purchaseIngredient->ingredientId = $request->ingredientId;
         $purchaseIngredient->quantity = doubleval($request->quantity);
+        $purchaseIngredient->includeWastage = $request->includeWastage ?? false;
+
 
 
         // 1.3: stockPurchase - buyPrice - unit

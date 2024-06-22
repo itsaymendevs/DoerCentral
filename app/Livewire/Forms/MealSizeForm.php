@@ -7,11 +7,10 @@ use Livewire\Form;
 
 class MealSizeForm extends Form
 {
-   // :: variables
-   public $id, $mealId, $sizeId;
+    // :: variables
+    public $id, $mealId, $sizeId;
 
-   public $afterCookCalories, $afterCookProteins, $afterCookCarbs, $afterCookFats;
-
+    public $afterCookCalories, $afterCookProteins, $afterCookCarbs, $afterCookFats, $price, $yield, $numberOfServing, $totalServingGrams, $pricePerServing, $gramsPerServing;
 
 
 

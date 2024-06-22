@@ -122,9 +122,34 @@
 
 
 
+    {{-- :: manageServings --}}
+    <livewire:dashboard.menu.production-builder.components.production-builder-manage-servings :id='$meal->id'
+        key="{{ $meal->id }}" />
+
+
+
+
+
+
+
+
+
+    {{-- ------------------------------------------------------ --}}
+    {{-- ------------------------------------------------------ --}}
+
+
+
+
+
+
+
+
+
     {{-- :: manageInstructions --}}
     <livewire:dashboard.menu.production-builder.components.production-builder-manage-instructions :id='$meal->id'
         key="{{ $meal->id }}" />
+
+
 
 
 

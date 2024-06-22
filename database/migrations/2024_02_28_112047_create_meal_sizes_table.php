@@ -25,6 +25,18 @@ return new class extends Migration {
 
             // 1.2: price
             $table->double('price', 15)->nullable()->default(0);
+            $table->double('yield', 15)->nullable()->default(0);
+
+
+
+            // 1.3: servingDetails
+            $table->double('numberOfServing', 15)->nullable();
+            $table->double('totalServingGrams', 15)->nullable();
+            $table->double('pricePerServing', 15)->nullable();
+            $table->double('gramsPerServing', 15)->nullable();
+
+
+
 
 
 

@@ -951,9 +951,12 @@ Route::post('/dashboard/menu/builder/meal-types/update', [BuilderController::cla
 
 
 
-// 9.4: menu - builder - ingredients - storeSizes - updatePrice
+// 9.4: menu - builder - ingredients - storeSizes - updatePrice - updateServing
 Route::post('/dashboard/menu/builder/sizes/store', [BuilderController::class, 'storeBuilderSize']);
 Route::post('/dashboard/menu/builder/sizes/price/update', [BuilderController::class, 'updateBuilderSizePrice']);
+Route::post('/dashboard/menu/builder/sizes/servings/update', [BuilderController::class, 'updateBuilderSizeServings']);
+
+
 
 
 
@@ -1223,8 +1226,9 @@ Route::post('/dashboard/kitchen/containers/remove', [KitchenController::class, '
 
 
 
-// 12.1: kitchen -containers - updateCharge
+// 12.1: kitchen -containers - updateCharge - updateLidCharge
 Route::post('/dashboard/kitchen/containers/charge/update', [KitchenController::class, 'updateContainerCharge']);
+Route::post('/dashboard/kitchen/containers/lid-charge/update', [KitchenController::class, 'updateContainerLidCharge']);
 
 
 

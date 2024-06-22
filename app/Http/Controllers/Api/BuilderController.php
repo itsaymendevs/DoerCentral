@@ -628,6 +628,54 @@ class BuilderController extends Controller
 
 
     // -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function updateBuilderSizeServings(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+
+        // 1: get instance
+        $mealSize = MealSize::find($request->id);
+
+        $mealSize->{$request->key} = $request?->value ?? null;
+        $mealSize->save();
+
+
+
+
+
+        return response()->json(['message' => 'Information has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------------------
     // -------------------------------------------------------------
     // -------------------------------------------------------------
     // -------------------------------------------------------------

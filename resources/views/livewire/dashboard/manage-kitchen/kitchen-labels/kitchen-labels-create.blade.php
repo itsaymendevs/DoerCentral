@@ -684,7 +684,7 @@
 
                     {{-- charge --}}
                     <div class="col-5">
-                        <label class="form-label form--label">Charge
+                        <label class="form-label form--label">Cost
                             <small class="ms-1 fw-semibold text-gold fs-9">(AED)</small>
                         </label>
                         <input type="number" step='0.01' class="form--input mb-4" required

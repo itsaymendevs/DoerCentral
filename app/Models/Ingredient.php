@@ -119,4 +119,85 @@ class Ingredient extends Model
 
 
 
+
+    public function stocks()
+    {
+
+        return $this->hasMany(Stock::class, 'ingredientId');
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // -------------------------------------------------
+    // -------------------------------------------------
+    // -------------------------------------------------
+    // -------------------------------------------------
+
+
+
+
+
+
+
+
+    public function availableQuantity()
+    {
+
+
+
+        // 1: get stocks
+        $totalQuantity = $this->stocks()->sum('availableQuantity');
+
+
+
+        dd($totalQuantity);
+
+        return $totalQuantity ?? 0;
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -------------------------------------------------
+
+
+
+
+
+
+    public function latestPrice()
+    {
+
+
+
+        // 1: get stocks
+        $latestPrice = $this->stocks()?->orderBy('created_at', 'desc')?->first()?->buyPrice;
+
+        dd($latestPrice);
+
+        return $latestPrice ?? 0;
+
+
+
+
+    } // end function
+
+
+
+
+
 } // end function

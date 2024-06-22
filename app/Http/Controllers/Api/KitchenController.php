@@ -118,6 +118,61 @@ class KitchenController extends Controller
 
 
 
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function updateContainerLidCharge(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $container = Container::find($request->id);
+
+
+        // 1.2: general
+        $container->lidCharge = $request->lidCharge ?? null;
+
+
+        $container->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Charge has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
 
     // --------------------------------------------------------------------------------------------
 

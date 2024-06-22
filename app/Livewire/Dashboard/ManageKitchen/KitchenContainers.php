@@ -102,6 +102,79 @@ class KitchenContainers extends Component
 
 
 
+    public function updateLid($id, $lidCharge)
+    {
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+        // 1: create instance
+        $instance = new stdClass();
+
+        $instance->id = $id;
+        $instance->lidCharge = $lidCharge;
+
+
+
+        // :: checkCharge
+        if ($lidCharge >= 0) {
+
+
+            // 1.2: makeRequest
+            $response = $this->makeRequest('dashboard/kitchen/containers/lid-charge/update', $instance);
+
+
+            // :: render - alert
+            $this->makeAlert('success', $response->message);
+            $this->render();
+
+
+        } // end if
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
     public function remove($id)
     {
 

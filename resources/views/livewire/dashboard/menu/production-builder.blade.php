@@ -194,5 +194,50 @@
             </div>
         </div>
     </div>
+    {{-- emdWrapper --}}
+
+
+
+
+
+
+
+
+
+
+
+    {{-- ------------------------------------------ --}}
+    {{-- ------------------------------------------ --}}
+
+
+
+
+
+
+    @section('modals')
+
+
+
+    {{-- 1: viewCost --}}
+    <livewire:dashboard.menu.production-builder.components.production-builder-view-cost-details
+        key='cost-details-modal' />
+
+
+
+
+    @endsection
+
+
+
+    {{-- ------------------------------------------ --}}
+    {{-- ------------------------------------------ --}}
+
+
+
+
+
+
+
+
 </section>
 {{-- end contentSection --}}

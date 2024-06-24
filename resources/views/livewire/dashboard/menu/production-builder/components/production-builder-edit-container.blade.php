@@ -22,6 +22,19 @@
 
 
 
+
+
+    {{-- containerCost - lidCharge --}}
+    <input type="hidden" id='containerCost' value='{{ $currentContainer ? $currentContainer?->charge ?? 0 : 0 }}'>
+    <input type="hidden" id='lidCharge' value='{{ $currentContainer ? $currentContainer?->lidCharge ?? 0 : 0 }}'>
+
+
+
+
+
+
+
+
     {{-- containerPreview --}}
 
 

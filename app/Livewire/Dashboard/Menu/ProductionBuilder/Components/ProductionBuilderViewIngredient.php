@@ -362,10 +362,19 @@ class ProductionBuilderViewIngredient extends Component
                 $this->instance->cost = ($ingredient?->latestPricePerGram() ?? 0) * ($this->instance->amount ?? 0);
 
 
+            } else {
+
+                $this->instance->cost = 0;
 
             } // end if
 
 
+
+
+
+
+            // :: refreshSizeViews
+            $this->dispatch('refreshSizeViews');
 
 
 

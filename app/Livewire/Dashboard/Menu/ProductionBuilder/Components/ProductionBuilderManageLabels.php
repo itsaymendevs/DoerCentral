@@ -105,6 +105,7 @@ class ProductionBuilderManageLabels extends Component
             // :: resetSelect - updateInstance - render
             $this->meal = Meal::find($this->meal->id);
 
+            $this->dispatch('refreshSizeViews');
             $this->render();
 
         } // end if
@@ -171,6 +172,8 @@ class ProductionBuilderManageLabels extends Component
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/builder/cutlery/toggle', $instance);
 
+
+        $this->dispatch('refreshSizeViews');
         $this->render();
 
 

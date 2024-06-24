@@ -95,7 +95,9 @@ class ProductionBuilderEditContainer extends Component
             // :: resetSelect - updateInstance - render
             $this->meal = Meal::find($this->meal->id);
 
+            $this->dispatch('refreshSizeViews');
             $this->render();
+
 
         } // end if
 

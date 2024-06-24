@@ -203,4 +203,22 @@
         margin-top: 0px !important;
         align-items: center !important;
     }
+
+    /* aleens */
+    .printable-schedule-meal.isSquare .aleens--sticker-printout {
+        padding-left: 20px !important;
+        padding-top: -10px !important;
+    }
+
+    .printable-schedule-meal.isSquare
+        .aleens--sticker-printout
+        .sticker--label-macro {
+        margin-left: 13px !important;
+        margin-bottom: 7px !important;
+    }
+
+    .isRounded .aleens--sticker-printout {
+        padding-left: 0px !important;
+        /* padding-top: 10px !important; */
+    }
 }

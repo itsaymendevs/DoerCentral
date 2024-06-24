@@ -294,4 +294,57 @@ class MealSize extends Model
 
 
 
+    // ----------------------------------------------------------
+    // ----------------------------------------------------------
+
+
+
+
+
+
+
+    public function costPrice()
+    {
+
+
+
+        // :: root
+        $totalCost = 0;
+        $ingredients = $this->ingredients()->get();
+
+
+
+
+        // 1: ingredients
+        foreach ($ingredients ?? [] as $mealIngredient) {
+
+            $totalCost += ($mealIngredient?->ingredient?->latestPricePerGram() * ($mealIngredient?->amount ?? 0));
+
+        } // end loop
+
+
+
+
+
+        // 1.2: container - lid - label
+        $totalCost += $this->meal?->container?->charge ?? 0;
+        $totalCost += $this->meal?->container?->lidCost ?? 0;
+        $totalCost += $this->meal?->label?->charge ?? 0;
+
+
+
+
+        // 1.3: cutleryPrice
+
+
+
+        return $totalCost;
+
+
+    } // end function
+
+
+
+
+
 } // end model

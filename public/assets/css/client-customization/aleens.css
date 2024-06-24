@@ -520,3 +520,11 @@ fieldset:disabled .btn {
 .swiper--caption.for-meals {
     border: 1px solid #f0f0f0;
 }
+
+/* viewMeal */
+.consist--wrapper h6 svg {
+    fill: var(--color-theme-secondary) !important;
+    font-size: 12px;
+    transform: rotate(45deg);
+    margin-right: 12px;
+}

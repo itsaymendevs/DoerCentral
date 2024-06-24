@@ -1680,20 +1680,49 @@ class InventoryController extends Controller
 
 
 
-        // 1: create
+        // 1: checkWastage
+        if ($request->includeWastage) {
+
+
+
+            // 1.2: get wastage
+            $wastage = $supplierIngredient->ingredient->wastage;
+
+
+            $request->quantity = doubleval($request->quantity) + (doubleval($request->quantity) * ($wastage / 100));
+
+
+        } // end if
+
+
+
+
+
+
+
+
+        // ------------------------------------------
+        // ------------------------------------------
+
+
+
+
+
+
+        // 2: create
         $purchaseIngredient = new StockPurchaseIngredient();
 
 
 
 
-        // 1.2: basic
+        // 2.1: basic
         $purchaseIngredient->ingredientId = $request->ingredientId;
         $purchaseIngredient->quantity = doubleval($request->quantity);
         $purchaseIngredient->includeWastage = $request->includeWastage ?? false;
 
 
 
-        // 1.3: stockPurchase - buyPrice - unit
+        // 2.2: stockPurchase - buyPrice - unit
         $purchaseIngredient->stockPurchaseId = $purchase->id;
         $purchaseIngredient->buyPrice = $supplierIngredient->sellPrice;
         $purchaseIngredient->unitId = $supplierIngredient->unitId;

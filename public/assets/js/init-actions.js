@@ -65,7 +65,7 @@ function openWindow(section) {
 
         paper.write(head);
         paper.write(content);
-        paper.close();
+        // paper.close();
 
         setTimeout(function () {
             popup.print();

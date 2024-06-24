@@ -848,8 +848,11 @@
 
 
 
+
+
+
                         {{-- :: sepearator --}}
-                        <div class="d-block"></div>
+                        <div class="d-block label--seperator"></div>
 
 
 

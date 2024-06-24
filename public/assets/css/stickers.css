@@ -184,11 +184,17 @@
     .nutrition-tag {
         padding: 0px !important;
     }
+
+    .label--seperator {
+        display: none !important;
+    }
+
     #label--paper .printable-schedule-meal {
-        height: 100vh !important;
-        width: 100vw !important;
+        height: 100% !important;
+        display: flex !important;
+        width: 100% !important;
         align-items: end !important;
-        page-break-after: always;
+        /* page-break-after: always; */
         /* transform: rotateX(180deg) rotateY(180deg) !important; */
     }
 

@@ -792,10 +792,10 @@
 
 
 
-                        {{-- cost --}}
+                        {{-- cost [not-used] --}}
                         <td colspan="1">
                             <input
-                                class="form-control form--input form--table-input-sm readonly ingredient--afterCookCost-total-input"
+                                class="form-control form--input form--table-input-sm readonly d-none ingredient--afterCookCost-total-input"
                                 data-size='{{ $mealSize->id }}' type="number" value="0" readonly="" step='0.01' />
                         </td>
 

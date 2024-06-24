@@ -25,6 +25,13 @@
 
 
 
+    {{-- labelCost --}}
+    <input type="hidden" id='labelCost' value='{{ $currentLabel ? $currentLabel?->charge ?? 0 : 0 }}'>
+
+
+
+
+
 
 
 
@@ -90,6 +97,14 @@
             <label class="form-check-label" for="cutlery-checkbox-1">Include Cutlery</label>
         </div>
     </div>
+
+
+
+
+
+
+    {{-- cutleryCost --}}
+    <input type="hidden" id='cutleryCost' value='{{ $useCutlery ? $cutleryPrice : 0 }}'>
 
 
 

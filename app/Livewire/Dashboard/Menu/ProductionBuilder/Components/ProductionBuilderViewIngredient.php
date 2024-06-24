@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Livewire\Forms\MealPartDetailForm;
 use App\Models\ConversionIngredient;
+use App\Models\Ingredient;
 use App\Models\Meal;
 use App\Models\MealIngredient;
 use App\Models\MealPart;
@@ -352,9 +353,35 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
+            // 1.3: cost
+            if ($this->instance->typeId == 'Ingredient') {
 
 
-            // 1.3: afterCookGrams
+                // 1.3.1: geBuyPrice
+                $ingredient = Ingredient::find($this->instance?->partId ?? 0);
+                $this->instance->cost = ($ingredient?->latestPricePerGram() ?? 0) * ($this->instance->amount ?? 0);
+
+
+
+            } // end if
+
+
+
+
+
+
+
+
+            // -----------------------------------------------
+            // -----------------------------------------------
+
+
+
+
+
+
+
+            // 1.4: afterCookGrams
             if ($this->instance->typeId == 'Ingredient' && ! empty($this->instance->partId) && ! empty($this->instance->cookingTypeId)) {
 
 
@@ -375,6 +402,8 @@ class ProductionBuilderViewIngredient extends Component
                     $this->instance->afterCookCarbs = (($totalMacros->carbs / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams > 0 ? $this->instance->grams : 1)) * $this->instance->afterCookGrams;
 
                     $this->instance->afterCookFats = (($totalMacros->fats / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams > 0 ? $this->instance->grams : 1)) * $this->instance->afterCookGrams;
+
+
 
 
                 } // end if - exists

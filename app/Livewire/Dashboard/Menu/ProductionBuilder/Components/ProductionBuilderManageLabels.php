@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 use App\Models\Label;
 use App\Models\Meal;
 use App\Models\MealServing;
+use App\Models\ServingItem;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use stdClass;
@@ -19,7 +20,7 @@ class ProductionBuilderManageLabels extends Component
 
 
     // :: variables
-    public $meal, $useCutlery;
+    public $meal, $useCutlery, $cutleryPrice;
     public $label;
 
 
@@ -35,6 +36,7 @@ class ProductionBuilderManageLabels extends Component
 
 
         // 1.2: cutlery
+        $this->cutleryPrice = ServingItem::first()->cutleryPrice ?? 0;
         $this->useCutlery = MealServing::where('mealId', $this->meal->id)->first()->useCutlery;
 
 
@@ -200,7 +202,6 @@ class ProductionBuilderManageLabels extends Component
         // 1: dependencies
         $labels = Label::all();
         $currentLabel = $this->meal?->labelId ? Label::find($this->meal->labelId) : null;
-
 
 
 

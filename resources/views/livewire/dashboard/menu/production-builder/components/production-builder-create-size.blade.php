@@ -125,14 +125,16 @@
         {{-- 1: priceForSize --}}
         <div class="row justify-content-center @if ($initSizeId != $mealSize->size->id) d-none @endif"
             data-instance='mealSizes' data-view='size-{{ $mealSize->size->id }}' wire:ignore.self>
+
+
+
+            {{-- A: fixedPrice --}}
             <div class="col-6">
-
-
 
                 {{-- label --}}
                 <div class="d-flex align-items-center justify-content-between mb-1">
                     <hr style="width: 60%" />
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Price</label>
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Manual Price</label>
                 </div>
 
 
@@ -143,6 +145,37 @@
 
 
             </div>
+
+
+
+
+
+            {{-- ------------------------------- --}}
+            {{-- ------------------------------- --}}
+
+
+
+
+
+            {{-- B: automaticPrice --}}
+            <div class="col-6" wire:ignore>
+
+                {{-- label --}}
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                    <hr style="width: 60%" />
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Cost Price</label>
+                </div>
+
+
+                {{-- input --}}
+                <input class="form-control form--input text-center mb-4 readonly meal--automatic-price"
+                    data-size='{{ $mealSize->id }}' readonly type="number" step='0.01' />
+
+
+            </div>
+
+
+
         </div>
         {{-- endRow --}}
 

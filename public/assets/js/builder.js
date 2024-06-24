@@ -60,6 +60,7 @@ $("tbody").on("change", ".ingredient--grams-input", function (event) {
             totalRawProteins =
             totalRawCarbs =
             totalRawFats =
+            totalRawCosts =
             totalAfterCookGrams =
             totalAfterCookCalories =
             totalAfterCookProteins =
@@ -93,7 +94,9 @@ $("tbody").on("change", ".ingredient--grams-input", function (event) {
         $(`.ingredient--fats-input[data-size=${size}]`).each(function () {
             totalRawFats += parseFloat($(this).val());
         });
-
+        $(`.ingredient--cost-input[data-size=${size}]`).each(function () {
+            totalRawCosts += parseFloat($(this).val());
+        });
         // ----------------------------------------------
 
         // 1.3: display totalMacros
@@ -111,6 +114,9 @@ $("tbody").on("change", ".ingredient--grams-input", function (event) {
         );
         $(`.ingredient--fats-total-input[data-size=${size}]`).val(
             totalRawFats.toFixed(1)
+        );
+        $(`.ingredient--cost-total-input[data-size=${size}]`).val(
+            totalRawCosts.toFixed(1)
         );
 
         // -------------------------------------------------
@@ -187,6 +193,7 @@ $(document).ready(function () {
                 totalRawProteins =
                 totalRawCarbs =
                 totalRawFats =
+                totalRawCosts =
                 totalAfterCookGrams =
                 totalAfterCookCalories =
                 totalAfterCookProteins =
@@ -227,6 +234,10 @@ $(document).ready(function () {
                 totalRawFats += parseFloat($(this).val());
             });
 
+            $(`.ingredient--cost-input[data-size=${size}]`).each(function () {
+                totalRawCosts += parseFloat($(this).val());
+            });
+
             // ----------------------------------------------
 
             // 1.3: display totalMacros
@@ -245,6 +256,10 @@ $(document).ready(function () {
             $(`.ingredient--fats-total-input[data-size=${size}]`).val(
                 totalRawFats.toFixed(1)
             );
+            $(`.ingredient--cost-total-input[data-size=${size}]`).val(
+                totalRawCosts.toFixed(1)
+            );
+
             // -------------------------------------------------
             // -------------------------------------------------
             // -------------------------------------------------

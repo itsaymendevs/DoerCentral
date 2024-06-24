@@ -187,14 +187,43 @@ class Ingredient extends Model
         // 1: get stocks
         $latestPrice = $this->stocks()?->orderBy('created_at', 'desc')?->first()?->buyPrice;
 
-        dd($latestPrice);
-
         return $latestPrice ?? 0;
 
 
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+    // -------------------------------------------------
+
+
+
+
+
+
+    public function latestPricePerGram()
+    {
+
+
+
+        // 1: get stocks
+        $latestPrice = $this->stocks()?->orderBy('created_at', 'desc')?->first()?->buyPrice;
+
+        return $latestPrice ? doubleval($latestPrice) / 1000 : 0;
+
+
+
+
+    } // end function
+
 
 
 

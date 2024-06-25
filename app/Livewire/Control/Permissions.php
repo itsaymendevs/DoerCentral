@@ -80,6 +80,13 @@ class Permissions extends Component
 
 
 
+            // -------------------------------------------
+            // -------------------------------------------
+
+
+
+
+
             // 1.2: customer
             'customerModuleHasSettings' => 'General Settings',
             'customerModuleHasVector' => 'Vector Picture',
@@ -99,6 +106,16 @@ class Permissions extends Component
 
 
 
+
+
+
+            // -------------------------------------------
+            // -------------------------------------------
+
+
+
+
+
             // 1.3: calendar - settings
             'menuModuleHasCreateCalendar' => 'Create Calendar',
             'menuModuleHasDietTypes' => 'Manage Diets',
@@ -106,22 +123,60 @@ class Permissions extends Component
 
 
 
+
+            // -------------------------------------------
+            // -------------------------------------------
+
+
+
+
+
+
             // 1.4: kitchen
             'kitchenModuleHasPrintExcel' => 'Print - Excel',
             'kitchenModuleHasTypeSizeFilters' => 'Type & Size Filters',
+            'kitchenModuleHasMealDetails' => 'Meal Details',
+            'kitchenModuleHasMealPartDetails' => 'Meal Part Details',
+
             'kitchenModuleHasConfirmCooking' => 'Confirm Cooking',
             'kitchenModuleHasConfirmPacking' => 'Confirm Packing',
+            'kitchenModuleHasPreparationTab' => 'Preparation Tab',
+            'kitchenModuleHasQuantityTab' => 'Quantity Tab',
             'kitchenModuleHasCheckoutTab' => 'Checkout Tab',
+            'kitchenModuleHasCheckoutType' => 'Checkout Type',
+
+
             'kitchenModuleHasLabelsTab' => 'Labels Tab',
             'kitchenModuleHasContainersTab' => 'Containers Tab',
+            'kitchenModuleHasItemsTab' => 'Items Tab',
+
+
+
+
+
+            // -------------------------------------------
+            // -------------------------------------------
+
+
 
 
 
 
             // 1.5: inventory - delivery
             'inventoryModuleHasStock' => 'Supplier & Stock',
+            'inventoryModuleHasComparisons' => 'Comparisons Tab',
+
             'deliveryModuleHasVehiclePromotion' => 'Vehicle Promotion',
             'deliveryModuleHasDrivers' => 'Delivery Zones',
+
+
+
+
+
+            // -------------------------------------------
+            // -------------------------------------------
+
+
 
 
             // 1.6: sales
@@ -132,12 +187,21 @@ class Permissions extends Component
 
 
 
+            // -------------------------------------------
+            // -------------------------------------------
+
+
+
+
             // 1.7: plan - builder
             'menuModuleHasHidePlan' => 'Hide Plan',
             'menuModuleHasHideBundle' => 'Hide Bundle',
             'menuModuleHasDynamicBundles' => 'Dynamic Bundle',
             'menuModuleHasMealFullView' => 'Full Meal Preview',
             'menuModuleHasMealTypeFilters' => 'Meal-Type Filters',
+            'menuModuleHasIngredientsList' => 'Ingredient Lists',
+
+
 
             'menuModuleHasBuilderExtraPictures' => 'Builder Extra Pictures',
 
@@ -159,6 +223,16 @@ class Permissions extends Component
 
 
 
+
+
+
+            // -------------------------------------------
+            // -------------------------------------------
+
+
+
+
+
             // 1.8: extra
             'extraModuleHasModule' => 'Extra Module',
             'extraModuleHasManagement' => 'Management',
@@ -174,6 +248,12 @@ class Permissions extends Component
             'extraModuleHasPaymentDetails' => 'Payment Details',
 
         ];
+
+
+
+
+
+
 
 
 
@@ -223,14 +303,14 @@ class Permissions extends Component
 
 
         // 2.4: kitchen
-        $kitchenPermissions = VersionPermission::get(['kitchenModuleHasPrintExcel', 'kitchenModuleHasTypeSizeFilters', 'kitchenModuleHasConfirmCooking', 'kitchenModuleHasConfirmPacking', 'kitchenModuleHasCheckoutTab', 'kitchenModuleHasLabelsTab', 'kitchenModuleHasContainersTab'])->first()->toArray();
+        $kitchenPermissions = VersionPermission::get(['kitchenModuleHasPrintExcel', 'kitchenModuleHasTypeSizeFilters', 'kitchenModuleHasMealDetails', 'kitchenModuleHasMealPartDetails', 'kitchenModuleHasConfirmCooking', 'kitchenModuleHasConfirmPacking', 'kitchenModuleHasPreparationTab', 'kitchenModuleHasQuantityTab', 'kitchenModuleHasCheckoutTab', 'kitchenModuleHasCheckoutType', 'kitchenModuleHasLabelsTab', 'kitchenModuleHasContainersTab', 'kitchenModuleHasItemsTab'])->first()->toArray();
 
 
 
 
 
         // 2.5: inventoryAndDelivery
-        $inventoryPermissions = VersionPermission::get(['inventoryModuleHasStock', 'deliveryModuleHasVehiclePromotion', 'deliveryModuleHasDrivers'])->first()->toArray();
+        $inventoryPermissions = VersionPermission::get(['inventoryModuleHasStock', 'inventoryModuleHasComparisons', 'deliveryModuleHasVehiclePromotion', 'deliveryModuleHasDrivers'])->first()->toArray();
 
 
 
@@ -246,7 +326,7 @@ class Permissions extends Component
 
 
         // 2.7: planAndBuilder
-        $planBuilderPermissions = VersionPermission::get(['menuModuleHasHidePlan', 'menuModuleHasHideBundle', 'menuModuleHasDynamicBundles', 'menuModuleHasMealFullView', 'menuModuleHasMealTypeFilters', 'menuModuleHasBuilderExtraPictures', 'menuModuleHasBuilderCostOverview', 'menuModuleHasBuilderSizeOverview', 'menuModuleHasBuilderExtraItems', 'menuModuleHasBuilderMacros', 'menuModuleHasBuilderReplacements', 'menuModuleHasBuilderPercentage', 'menuModuleHasBuilderConversion', 'menuModuleHasBuilderCutlery', 'menuModuleHasBuilderPackings', 'menuModuleHasBuilderLabelPreview', 'menuModuleHasBuilderContainerPreview'])->first()->toArray();
+        $planBuilderPermissions = VersionPermission::get(['menuModuleHasHidePlan', 'menuModuleHasHideBundle', 'menuModuleHasDynamicBundles', 'menuModuleHasMealFullView', 'menuModuleHasMealTypeFilters', 'menuModuleHasIngredientsList', 'menuModuleHasBuilderExtraPictures', 'menuModuleHasBuilderCostOverview', 'menuModuleHasBuilderSizeOverview', 'menuModuleHasBuilderExtraItems', 'menuModuleHasBuilderMacros', 'menuModuleHasBuilderReplacements', 'menuModuleHasBuilderPercentage', 'menuModuleHasBuilderConversion', 'menuModuleHasBuilderCutlery', 'menuModuleHasBuilderPackings', 'menuModuleHasBuilderLabelPreview', 'menuModuleHasBuilderContainerPreview'])->first()->toArray();
 
 
 

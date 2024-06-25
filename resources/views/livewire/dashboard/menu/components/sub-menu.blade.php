@@ -56,9 +56,20 @@
 
 
 
+
             {{-- 5: ingredientsList --}}
+
+            {{-- :: permission - hasIngredientsList --}}
+            @if ($versionPermission->menuModuleHasIngredientsList)
+
+
             <a class="btn @if (Request::is('dashboard/menu/ingredients-list')) active @endif"
                 href="{{ route('dashboard.menuIngredientsList') }}" wire:navigate>Ingredients List</a>
+
+
+
+            @endif
+            {{-- end if - permission --}}
 
 
 

@@ -161,6 +161,8 @@ return new class extends Migration {
 
 
 
+            // 2.4.5: menuIngredientsList
+            $table->boolean('menuModuleHasIngredientsList')->nullable()->default(1);
 
 
 
@@ -196,21 +198,28 @@ return new class extends Migration {
 
             // 3.1: kitchenProduction / Packing
             $table->boolean('kitchenModuleHasPrintExcel')->nullable()->default(1);
+
             $table->boolean('kitchenModuleHasTypeSizeFilters')->nullable()->default(1);
+            $table->boolean('kitchenModuleHasMealDetails')->nullable()->default(1);
+            $table->boolean('kitchenModuleHasMealPartDetails')->nullable()->default(1);
 
             $table->boolean('kitchenModuleHasConfirmCooking')->nullable()->default(1);
             $table->boolean('kitchenModuleHasConfirmPacking')->nullable()->default(1);
 
 
-            // 3.2: kitchenCheckout
+            // 3.2: kitchenPreparation / Quantity / Checkout
+            $table->boolean('kitchenModuleHasPreparationTab')->nullable()->default(1);
+            $table->boolean('kitchenModuleHasQuantityTab')->nullable()->default(1);
             $table->boolean('kitchenModuleHasCheckoutTab')->nullable()->default(1);
+            $table->boolean('kitchenModuleHasCheckoutType')->nullable()->default(1);
 
 
 
 
-            // 3.3: kitchenLabels / Containers
+            // 3.3: kitchenLabels / Containers / Items
             $table->boolean('kitchenModuleHasLabelsTab')->nullable()->default(1);
             $table->boolean('kitchenModuleHasContainersTab')->nullable()->default(1);
+            $table->boolean('kitchenModuleHasItemsTab')->nullable()->default(1);
 
 
 
@@ -228,8 +237,9 @@ return new class extends Migration {
             // 4: inventoryModule
 
 
-            // 4.1: inventoryStock
+            // 4.1: inventoryStock / Comparisons
             $table->boolean('inventoryModuleHasStock')->nullable()->default(1);
+            $table->boolean('inventoryModuleHasComparisons')->nullable()->default(1);
 
 
 

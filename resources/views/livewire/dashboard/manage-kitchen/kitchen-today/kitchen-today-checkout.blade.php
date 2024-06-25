@@ -174,6 +174,11 @@
             <div class="col-4 d-flex align-items-center justify-content-end">
 
 
+                {{-- :: permission - hasCheckoutType --}}
+                @if ($versionPermission->kitchenModuleHasCheckoutType)
+
+
+
                 {{-- switchTypes --}}
                 <div class="form-check form-switch mealType--checkbox py-2 rounded-1 px-4 d-inline-flex me-2 mb-0"
                     style="background-color: var(--color-scheme-2)">
@@ -188,6 +193,10 @@
                     <label class="form-check-label border-0 ms-2 me-0 fw-semibold" for="switch-types">Hide Types</label>
 
                 </div>
+
+
+                @endif
+                {{-- end if - permissions --}}
 
 
 
@@ -350,8 +359,15 @@
 
 
 
+
                         {{-- mealTypes --}}
                         @if (!$hideTypes)
+
+
+
+                        {{-- :: permission - hasCheckoutType --}}
+                        @if ($versionPermission->kitchenModuleHasCheckoutType)
+
 
                         <div class="single-row">
                             <h5 class="text-center fs-12 mb-0 w-100 border-start-0 border-bottom-0 px-2"
@@ -359,6 +375,11 @@
                                 {{ implode(' - ', $delivery?->schedule?->mealTypesWithSize()) }}
                             </h5>
                         </div>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
 
 
                         @endif

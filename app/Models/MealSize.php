@@ -310,7 +310,9 @@ class MealSize extends Model
 
         // :: root
         $totalCost = 0;
+        $parts = $this->parts()->get();
         $ingredients = $this->ingredients()->get();
+
 
 
 
@@ -321,6 +323,24 @@ class MealSize extends Model
             $totalCost += ($mealIngredient?->ingredient?->latestPricePerGram() * ($mealIngredient?->amount ?? 0));
 
         } // end loop
+
+
+
+
+
+
+
+
+        // 1.2: parts
+        foreach ($parts ?? [] as $mealPart) {
+
+            $totalMacros = $mealPart?->totalMacro($mealPart?->amount ?? 0);
+            $totalCost += doubleval($totalMacros?->cost ?? 0);
+
+        } // end loop
+
+
+
 
 
 
@@ -369,7 +389,9 @@ class MealSize extends Model
 
         // :: root
         $combine = new stdClass();
+        $parts = $this->parts()->get();
         $ingredients = $this->ingredients()->get();
+
 
 
 
@@ -388,15 +410,34 @@ class MealSize extends Model
 
 
 
+        // 1.2: parts
+        foreach ($parts ?? [] as $mealPart) {
 
-        // 1.2: container - lid - label
+            $totalMacros = $mealPart?->totalMacro($mealPart?->amount ?? 0);
+            $combine->foodCost += doubleval($totalMacros?->cost ?? 0);
+
+        } // end loop
+
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+        // 2: container - lid - label
         $combine->margin = 0;
         $combine->operationCost = 0;
         $combine->lidCost = $this->meal?->container?->lidCharge ?? 0;
         $combine->labelCost = $this->meal?->label?->charge ?? 0;
         $combine->containerCost = $this->meal?->container?->charge ?? 0;
-
-
 
 
 

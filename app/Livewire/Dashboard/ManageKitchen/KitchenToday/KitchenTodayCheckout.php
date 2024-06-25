@@ -19,7 +19,7 @@ class KitchenTodayCheckout extends Component
 
 
     // :: variables
-    public $searchDeliveryDate, $searchCustomer, $hideTypes = false;
+    public $searchDeliveryDate, $searchCustomer, $hideTypes = true;
 
 
 

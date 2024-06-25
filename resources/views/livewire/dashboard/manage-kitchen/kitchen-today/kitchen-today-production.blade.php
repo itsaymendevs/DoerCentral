@@ -336,6 +336,12 @@
                                         $scheduleMealsByMeal->first()?->meal?->name }}
 
 
+
+
+                                        {{-- :: permission - hasMealDetails --}}
+                                        @if ($versionPermission->kitchenModuleHasMealDetails)
+
+
                                         {{-- :: view instructions --}}
                                         <button
                                             class="btn btn--raw-icon fs-14 text-warning d-inline-block scale--3 w-auto ms-1"
@@ -353,6 +359,9 @@
                                             </svg>
                                         </button>
 
+
+                                        @endif
+                                        {{-- end if - permission --}}
 
 
 
@@ -755,6 +764,9 @@
 
 
 
+                                            {{-- :: permission - hasMealPartDetails --}}
+                                            @if ($versionPermission->kitchenModuleHasMealPartDetails)
+
 
                                             {{-- :: viewPart --}}
                                             <button
@@ -772,6 +784,12 @@
                                                     </path>
                                                 </svg>
                                             </button>
+
+
+                                            @endif
+                                            {{-- end if - permission --}}
+
+
 
                                         </span>
 

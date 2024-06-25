@@ -52,8 +52,8 @@
 
 
 
-            {{-- :: permission - hasContainersTab --}}
-            @if ($versionPermission->kitchenModuleHasContainersTab)
+            {{-- :: permission - hasItemsTab --}}
+            @if ($versionPermission->kitchenModuleHasItemsTab)
 
 
 

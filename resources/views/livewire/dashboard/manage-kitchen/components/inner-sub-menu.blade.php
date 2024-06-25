@@ -6,20 +6,38 @@
 
 
         {{-- preparation --}}
+
+        {{-- :: permission - hasPreparationTab --}}
+        @if ($versionPermission->kitchenModuleHasPreparationTab)
+
         <a wire:navigate
             class="btn fs-13
          @if (Request::is('dashboard/kitchen/today/preparations', 'dashboard/kitchen/today/preparations/*')) active @endif"
             role="button" href="{{ route('dashboard.kitchenTodayPreparations') }}">Preparations</a>
 
 
+        @endif
+        {{-- end if - permission --}}
+
+
+
+
+
 
 
 
         {{-- quantity --}}
+
+        {{-- :: permission - hasQuantityTab --}}
+        @if ($versionPermission->kitchenModuleHasQuantityTab)
+
         <a wire:navigate class="btn fs-13
-     @if (Request::is('dashboard/kitchen/today/quantity', 'dashboard/kitchen/today/quantity/*')) active @endif"
+        @if (Request::is('dashboard/kitchen/today/quantity', 'dashboard/kitchen/today/quantity/*')) active @endif"
             role="button" href="{{ route('dashboard.kitchenTodayQuantity') }}">Quantity</a>
 
+
+        @endif
+        {{-- end if - permission --}}
 
 
 

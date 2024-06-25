@@ -6,18 +6,20 @@
 
 
     {{-- 1: payment details --}}
-
-
-    {{-- :: permission - hasPaymentDetails --}}
-
-
     <a wire:navigate class="btn fs-13
     @if (Request::is('dashboard/extra/finance/payment-details')) active @endif" role="button"
-        href="{{ route('dashboard.finance.paymentDetails') }}">Payment Details</a>
+        href="{{ route('dashboard.finance.paymentDetails') }}">Payments</a>
 
 
-    {{-- end if - permission --}}
 
+
+
+
+
+    {{-- 2: operationCost --}}
+    <a wire:navigate class="btn fs-13
+    @if (Request::is('dashboard/extra/finance/operation-costs')) active @endif" role="button"
+        href="{{ route('dashboard.finance.operationCosts') }}">Costs</a>
 
 
 

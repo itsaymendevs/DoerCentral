@@ -7,30 +7,20 @@
 
 
         {{-- topRow --}}
-        <div class="row align-items-center mb-5 pb-2">
+        <div class="row align-items-end">
 
 
 
             {{-- empty --}}
-            <div class="col-4">
+            <div class="col-3 mb-4 pb-3"></div>
 
-                <livewire:dashboard.extra.finance.components.sub-menu key='submenu' />
-
-            </div>
-
-
-
-
-
-            {{-- --------------------------------- --}}
-            {{-- --------------------------------- --}}
 
 
 
 
             {{-- sub-menu --}}
-            <div class="col-4 text-center">
-                <h4 class="text-center mb-0 fw-bold">Payments</h4>
+            <div class="col-6 text-center mb-4 pb-3">
+                <livewire:dashboard.extra.finance.components.sub-menu key='submenu' />
             </div>
 
 
@@ -42,7 +32,7 @@
 
 
             {{-- switch - counter --}}
-            <div class="col-4 text-end d-flex align-items-center justify-content-end">
+            <div class="col-3 text-end d-flex align-items-center justify-content-end  mb-4 pb-3">
 
 
 
@@ -102,27 +92,17 @@
 
 
 
-        </div>
-        {{-- endRow --}}
+
+
+
+
+            {{-- ---------------------------------- --}}
+            {{-- ---------------------------------- --}}
 
 
 
 
 
-
-
-        {{-- ---------------------------------- --}}
-        {{-- ---------------------------------- --}}
-
-
-
-
-
-
-
-
-        {{-- contentRow --}}
-        <div class="row align-items-end">
 
 
 
@@ -146,7 +126,7 @@
 
                 <div class="d-flex align-items-center justify-content-between mb-1 hr--title">
                     <hr style="width: 65%" />
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">From</label>
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">From Date</label>
                 </div>
 
                 <input type="date" class="form--input" wire:model.live='searchFromDate' />
@@ -164,7 +144,7 @@
 
                 <div class="d-flex align-items-center justify-content-between mb-1 hr--title">
                     <hr style="width: 65%" />
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Until</label>
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Until Date</label>
                 </div>
 
                 <input type="date" class="form--input" wire:model.live='searchUntilDate' />
@@ -240,8 +220,8 @@
 
             {{-- total --}}
             <div class="col text-end" wire:ignore.self>
-                <div class="overview--box macros-version shrink--self">
-                    <h6 class='fs-12'>Revenue</h6>
+                <div class="overview--box shrink--self">
+                    <h6 class='fs-13'>Revenue</h6>
                     <p class="truncate-text-1l">{{
                         number_format($invoicesForOverview?->sum('totalCheckoutPrice')) }}</p>
                 </div>
@@ -252,8 +232,8 @@
             {{-- totalInclusiveBag --}}
             <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100"
                 data-aos-once="true" wire:ignore.self>
-                <div class="overview--box macros-version shrink--self">
-                    <h6 class='fs-12'>Revenue Inc. Bag</h6>
+                <div class="overview--box shrink--self">
+                    <h6 class='fs-13'>Revenue Inc. Bag</h6>
                     <p class="truncate-text-1l">{{ number_format($invoicesForOverview?->sum('totalCheckoutPrice') -
                         $invoicesForOverview?->sum('bagPrice'))}}</p>
                 </div>
@@ -267,8 +247,8 @@
             {{-- coolBagTotal --}}
             <div class="col text-end" data-aos="fade-up" d ata-aos-duration="600" data-aos-delay="200"
                 data-aos-once="true" wire:ignore.self>
-                <div class="overview--box macros-version shrink--self">
-                    <h6 class='fs-12'>Bag Total</h6>
+                <div class="overview--box shrink--self">
+                    <h6 class='fs-13'>Bag Total</h6>
                     <p class="truncate-text-1l">{{ number_format($invoicesForOverview?->sum('bagPrice'))
                         }}</p>
                 </div>
@@ -282,8 +262,8 @@
             {{-- coolBagRefunded--}}
             <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300"
                 data-aos-once="true" wire:ignore.self>
-                <div class="overview--box macros-version shrink--self">
-                    <h6 class='fs-12'>Bag Refunds</h6>
+                <div class="overview--box shrink--self">
+                    <h6 class='fs-13'>Bag Refunds</h6>
                     <p class="truncate-text-1l">{{ number_format($invoicesForOverview?->sum('bagRefund.amount'))}}</p>
                 </div>
             </div>
@@ -296,8 +276,8 @@
             {{-- coolBagBalance --}}
             <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400"
                 data-aos-once="true" wire:ignore.self>
-                <div class="overview--box macros-version shrink--self">
-                    <h6 class='fs-12'>Bag Balance</h6>
+                <div class="overview--box shrink--self">
+                    <h6 class='fs-13'>Bag Balance</h6>
                     <p class="truncate-text-1l">{{ number_format($invoicesForOverview?->sum('bagPrice') -
                         $invoicesForOverview?->sum('bagRefund.amount'))}}</p>
                 </div>
@@ -311,8 +291,8 @@
             {{-- deliveryCharges --}}
             <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500"
                 data-aos-once="true" wire:ignore.self>
-                <div class="overview--box macros-version shrink--self">
-                    <h6 class='fs-12'>Delivery Charges</h6>
+                <div class="overview--box shrink--self">
+                    <h6 class='fs-13'>Delivery Charges</h6>
                     <p class="truncate-text-1l">{{ number_format($invoicesForOverview?->sum('deliveryCharge')) }}</p>
                 </div>
             </div>
@@ -328,8 +308,8 @@
 
             <div class="col text-end" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600"
                 data-aos-once="true" wire:ignore.self>
-                <div class="overview--box macros-version shrink--self">
-                    <h6 class='fs-12'>Balance Amount</h6>
+                <div class="overview--box shrink--self">
+                    <h6 class='fs-13'>Balance Amount</h6>
                     <p class="truncate-text-1l">0</p>
                 </div>
             </div>

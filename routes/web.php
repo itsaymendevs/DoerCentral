@@ -1110,6 +1110,12 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+        // 18.2: extra - finance - operationCosts
+        Route::get('dashboard/extra/finance/operation-costs', PaymentDetails::class)->name('dashboard.finance.operationCosts');
+
+
+
+
 
 
 

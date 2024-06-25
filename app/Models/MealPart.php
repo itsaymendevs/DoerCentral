@@ -110,6 +110,7 @@ class MealPart extends Model
         $totalMacros->proteins = round($partMacro[2] ?? 0, 2);
         $totalMacros->carbs = round($partMacro[3] ?? 0, 2);
         $totalMacros->fats = round($partMacro[4] ?? 0, 2);
+        $totalMacros->cost = round($partMacro[5] ?? 0, 2);
 
 
 

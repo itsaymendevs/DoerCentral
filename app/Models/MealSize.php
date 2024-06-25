@@ -328,7 +328,7 @@ class MealSize extends Model
 
         // 1.2: container - lid - label
         $totalCost += $this->meal?->container?->charge ?? 0;
-        $totalCost += $this->meal?->container?->lidCost ?? 0;
+        $totalCost += $this->meal?->container?->lidCharge ?? 0;
         $totalCost += $this->meal?->label?->charge ?? 0;
 
 
@@ -342,6 +342,80 @@ class MealSize extends Model
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------
+    // ----------------------------------------------------------
+
+
+
+
+
+
+
+    public function costPriceDetails()
+    {
+
+
+
+        // :: root
+        $combine = new stdClass();
+        $ingredients = $this->ingredients()->get();
+
+
+
+
+        // 1: ingredients
+        $combine->foodCost = 0;
+
+        foreach ($ingredients ?? [] as $mealIngredient) {
+
+            $combine->foodCost += ($mealIngredient?->ingredient?->latestPricePerGram() * ($mealIngredient?->amount ?? 0));
+
+        } // end loop
+
+
+
+
+
+
+
+        // 1.2: container - lid - label
+        $combine->margin = 0;
+        $combine->operationCost = 0;
+        $combine->lidCost = $this->meal?->container?->lidCharge ?? 0;
+        $combine->labelCost = $this->meal?->label?->charge ?? 0;
+        $combine->containerCost = $this->meal?->container?->charge ?? 0;
+
+
+
+
+
+
+
+
+        // 2: totalCost
+        $combine->totalCost = $combine->foodCost + $combine->lidCost + $combine->labelCost + $combine->containerCost + $combine->operationCost;
+
+
+
+
+
+        return $combine;
+
+
+    } // end function
+
+
 
 
 

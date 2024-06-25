@@ -12,7 +12,7 @@ trait MacroTrait
 
 
 
-    public function getMacro($part, $currentAmount, $isRecursion = false, $totalGrams = 0, $totalCalories = 0, $totalProteins = 0, $totalCarbs = 0, $totalFats = 0)
+    public function getMacro($part, $currentAmount, $isRecursion = false, $totalGrams = 0, $totalCalories = 0, $totalProteins = 0, $totalCarbs = 0, $totalFats = 0, $totalCost = 0)
     {
 
 
@@ -33,6 +33,7 @@ trait MacroTrait
             $totalProteins += ($totalSubMacros->proteins / $part->totalGrams()) * $currentAmount;
             $totalCarbs += ($totalSubMacros->carbs / $part->totalGrams()) * $currentAmount;
             $totalFats += ($totalSubMacros->fats / $part->totalGrams()) * $currentAmount;
+            $totalCost += ($totalSubMacros->cost / $part->totalGrams()) * $currentAmount;
 
 
         } // end loop
@@ -70,6 +71,8 @@ trait MacroTrait
             $totalProteins += round($partMacro[2] ?? 0, 2);
             $totalCarbs += round($partMacro[3] ?? 0, 2);
             $totalFats += round($partMacro[4] ?? 0, 2);
+            $totalCost += round($partMacro[5] ?? 0, 2);
+
 
 
 
@@ -87,7 +90,7 @@ trait MacroTrait
 
 
 
-        return [$totalGrams, $totalCalories, $totalProteins, $totalCarbs, $totalFats];
+        return [$totalGrams, $totalCalories, $totalProteins, $totalCarbs, $totalFats, $totalCost];
 
 
 

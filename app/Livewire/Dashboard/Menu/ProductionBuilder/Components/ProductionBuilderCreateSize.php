@@ -54,6 +54,31 @@ class ProductionBuilderCreateSize extends Component
 
 
 
+    public function viewCostDetails($id)
+    {
+
+        // 1: dispatchEvent
+        $this->dispatch('viewCostDetails', $id);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
     public function store()
     {
 

@@ -58,7 +58,7 @@ class MealIngredient extends Model
 
 
         // :: root
-        $totalCalories = $totalProteins = $totalCarbs = $totalFats = 0;
+        $totalCalories = $totalProteins = $totalCarbs = $totalFats = $totalCost = 0;
 
 
 
@@ -76,6 +76,7 @@ class MealIngredient extends Model
         $totalProteins += ($ingredient?->freshMacro()?->proteins ?? 0) * $currentAmount;
         $totalCarbs += ($ingredient?->freshMacro()?->carbs ?? 0) * $currentAmount;
         $totalFats += ($ingredient?->freshMacro()?->fats ?? 0) * $currentAmount;
+        $totalCost += ($ingredient?->latestPricePerGram() ?? 0) * $currentAmount;
 
 
 
@@ -90,6 +91,7 @@ class MealIngredient extends Model
         $totalMacros->proteins = round($totalProteins, 2);
         $totalMacros->carbs = round($totalCarbs, 2);
         $totalMacros->fats = round($totalFats, 2);
+        $totalMacros->cost = round($totalCost, 2);
 
 
 

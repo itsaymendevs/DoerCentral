@@ -143,6 +143,7 @@ return new class extends Migration {
             // 2.4: menuBuilder
             $table->boolean('menuModuleHasBuilderExtraPictures')->nullable()->default(1);
 
+            $table->boolean('menuModuleHasBuilderCostOverview')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderSizeOverview')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderExtraItems')->nullable()->default(1);
 

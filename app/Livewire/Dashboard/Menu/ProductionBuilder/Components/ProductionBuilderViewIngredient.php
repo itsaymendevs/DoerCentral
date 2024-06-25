@@ -339,34 +339,9 @@ class ProductionBuilderViewIngredient extends Component
             $this->instance->proteins = $this->instance->afterCookProteins = $totalMacros->proteins;
             $this->instance->carbs = $this->instance->afterCookCarbs = $totalMacros->carbs;
             $this->instance->fats = $this->instance->afterCookFats = $totalMacros->fats;
+            $this->instance->cost = $totalMacros->cost;
+
             $this->instance->grams = $this->instance->afterCookGrams = $this->instance->amount ?? 0;
-
-
-
-
-
-
-            // -----------------------------------------------
-            // -----------------------------------------------
-
-
-
-
-
-            // 1.3: cost
-            if ($this->instance->typeId == 'Ingredient') {
-
-
-                // 1.3.1: geBuyPrice
-                $ingredient = Ingredient::find($this->instance?->partId ?? 0);
-                $this->instance->cost = ($ingredient?->latestPricePerGram() ?? 0) * ($this->instance->amount ?? 0);
-
-
-            } else {
-
-                $this->instance->cost = 0;
-
-            } // end if
 
 
 
@@ -375,6 +350,7 @@ class ProductionBuilderViewIngredient extends Component
 
             // :: refreshSizeViews
             $this->dispatch('refreshSizeViews');
+
 
 
 

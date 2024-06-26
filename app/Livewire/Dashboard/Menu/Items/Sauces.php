@@ -131,6 +131,27 @@ class Sauces extends Component
 
 
 
+    // ---------------------------------------------------------------
+
+
+
+
+
+
+
+    public function editMenuList($id)
+    {
+
+
+        // 1: dispatchEvent
+        $this->dispatch('editMenuList', $id);
+
+
+    } // end function
+
+
+
+
 
 
 

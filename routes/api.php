@@ -1187,8 +1187,9 @@ Route::post('/dashboard/menu/calendars/schedules/meals/toggle', [MenuCalendarCon
 
 
 
-// 11: menu - meals - remove
+// 11: menu - meals - updateLists - remove
 Route::post('/dashboard/menu/meals/remove', [MenuMealController::class, 'removeMeal']);
+Route::post('/dashboard/menu/meals/lists/update', [MenuMealController::class, 'updateMealLists']);
 
 
 

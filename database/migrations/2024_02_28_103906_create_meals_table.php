@@ -53,6 +53,12 @@ return new class extends Migration {
 
 
 
+            // 1.3.5: isForMenu - isForAddons
+            $table->boolean('isForMenu')->nullable()->default(0);
+            $table->boolean('isForAddons')->nullable()->default(0);
+
+
+
 
 
             // 1.4: imageFiles

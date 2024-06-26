@@ -13,6 +13,59 @@ class MenuMealController extends Controller
 
 
 
+
+
+    public function updateMealLists(Request $request)
+    {
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $meal = Meal::find($request->id);
+
+
+        // 1.2: general
+        $meal->isForMenu = boolval($request->isForMenu);
+        $meal->isForAddons = boolval($request->isForAddons);
+
+
+        $meal->save();
+
+
+
+
+
+        return response()->json(['message' => 'Lists has been updated'], 200);
+
+
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
     public function removeMeal(Request $request)
     {
 
@@ -38,14 +91,6 @@ class MenuMealController extends Controller
 
 
 
-
-
-
-
-
-
-
-    // --------------------------------------------------------------------------------------------
 
 
 

@@ -378,11 +378,19 @@ Route::post('/dashboard/inventory/purchases/ingredients/remove', [InventoryContr
 
 
 
+
+
 // ---------------------------------
 // ---------------------------------
 
 
 
+
+
+
+
+// 3.3: inventory - purchaseOrders - store
+Route::post('/dashboard/inventory/purchase-orders/store', [InventoryExtraController::class, 'storePurchaseOrder']);
 
 
 

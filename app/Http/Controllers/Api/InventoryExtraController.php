@@ -7,6 +7,7 @@ use App\Models\Conversion;
 use App\Models\ConversionIngredient;
 use App\Models\CookingType;
 use App\Models\IngredientMacro;
+use App\Models\StockPurchase;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
@@ -554,6 +555,107 @@ class InventoryExtraController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function storePurchaseOrder(Request $request)
+    {
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $purchaseOrders = collect($request->instance);
+
+
+
+
+
+        // 1: loop - purchases
+        foreach ($purchaseOrders?->groupBy('supplierId') as $commonSupplier => $purchaseOrdersBySupplier) {
+
+
+
+
+            // 1.2: create
+            $purchase = new StockPurchase();
+
+
+
+            // 1.3: basic
+            $purchase->PONumber = $this->makeSerial('PO', StockPurchase::count() + 1);
+            $purchase->supplierId = $commonSupplier;
+
+
+            $purchase->save();
+
+
+
+
+
+
+
+
+            // ---------------------------------------------------
+            // ---------------------------------------------------
+
+
+
+
+
+
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+
+        return response()->json(['message' => 'Purchases has been created'], 200);
+
+
+
+
+    } // end function
+
+
 
 
 

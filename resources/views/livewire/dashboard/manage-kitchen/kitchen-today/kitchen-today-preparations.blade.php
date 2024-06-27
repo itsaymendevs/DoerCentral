@@ -33,7 +33,7 @@
                 </div>
 
                 {{-- input --}}
-                <input class="form--input" type="date" wire:model='searchScheduleDate' wire:loading.attr='disabled'
+                <input class="form--input" type="date" wire:model='searchScheduleDate' wire:loading.attr='readonly'
                     required wire:change='dependencies' />
             </div>
 
@@ -57,7 +57,7 @@
                 </div>
 
                 {{-- input --}}
-                <input class="form--input" type="date" wire:model='searchScheduleUntilDate' wire:loading.attr='disabled'
+                <input class="form--input" type="date" wire:model='searchScheduleUntilDate' wire:loading.attr='readonly'
                     wire:change='dependencies' />
             </div>
 

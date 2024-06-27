@@ -33,3 +33,16 @@
     width: 90%;
     margin: auto;
 }
+
+/* counter small */
+.counter--small:before {
+    content: "(";
+    font-size: 9px;
+    margin-right: 2px;
+}
+
+.counter--small:after {
+    content: ")";
+    font-size: 9px;
+    margin-left: 2px;
+}

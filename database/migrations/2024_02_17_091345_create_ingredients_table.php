@@ -37,7 +37,16 @@ return new class extends Migration {
 
 
 
-            // 1.3: unitId - purchaseUnitId
+            // 1.3: defaultSupplier
+            $table->bigInteger('supplierId')->unsigned()->nullable();
+            $table->foreign('supplierId')->references('id')->on('suppliers')->onDelete('set null');
+
+
+
+
+
+
+            // 1.3.5: unitId - purchaseUnitId
             $table->bigInteger('unitId')->unsigned()->nullable();
             $table->foreign('unitId')->references('id')->on('units')->onDelete('set null');
 

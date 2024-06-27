@@ -32,6 +32,7 @@ use App\Livewire\Dashboard\Extra\Management\ActivityLog;
 use App\Livewire\Dashboard\Extra\Management\Roles;
 use App\Livewire\Dashboard\Extra\Management\Users;
 use App\Livewire\Dashboard\Home;
+use App\Livewire\Dashboard\Inventory\PurchaseOrders;
 use App\Livewire\Dashboard\Inventory\Purchases;
 use App\Livewire\Dashboard\Inventory\Settings\ConversionIngredients;
 use App\Livewire\Dashboard\Inventory\Stock;
@@ -401,8 +402,20 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+        // 4.3.5: inventory - purchaseOrder - store - update - remove
+        Route::get('dashboard/inventory/purchase-orders', PurchaseOrders::class)->name('dashboard.inventory.purchaseOrders');
 
-        // 4.3.5: inventory - comparisons
+
+
+
+        // ---------
+
+
+
+
+
+
+        // 4.3.6: inventory - comparisons
         Route::get('dashboard/inventory/comparisons', Comparisons::class)->name('dashboard.inventory.comparisons');
 
 

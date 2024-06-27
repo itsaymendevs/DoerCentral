@@ -4,6 +4,7 @@ namespace App\Livewire\CustomerPortal;
 
 use App\Models\Blog;
 use App\Models\Customer;
+use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleMeal;
 use App\Models\Meal;
@@ -46,7 +47,6 @@ class CustomerHome extends Component
         // :: getCustomerAddress
         $this->customerAddress = $this->customer->addressByDay($this->getCurrentDate());
 
-        //
 
 
 
@@ -111,6 +111,7 @@ class CustomerHome extends Component
     {
 
 
+
         // 1: dependencies
         $blogs = Blog::where('isForWebsite', true)->orderBy('publishDate', 'desc')->get();
         $totalCalories = $totalProteins = $totalCarbs = $totalFats = 0;
@@ -125,8 +126,16 @@ class CustomerHome extends Component
 
 
 
-        // 2.1: getSchedule
-        $schedule = CustomerSubscriptionSchedule::where('customerId', $this->customer->id)
+        // 2.1: getDelivery / getSchedule
+        $delivery = CustomerSubscriptionDelivery::orderBy('deliveryDate')
+                ?->where('customerId', $this->customer->id)
+                ?->where('deliveryDate', $this->getCurrentDate())
+                ?->first();
+
+
+
+
+        $schedule = CustomerSubscriptionSchedule::where('customerSubscriptionDeliveryId', $delivery?->id)
             ->where('scheduleDate', $this->getCurrentDate())->first();
 
 

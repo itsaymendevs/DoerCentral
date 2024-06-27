@@ -3,6 +3,7 @@
 namespace App\Livewire\CustomerPortal;
 
 use App\Models\Customer;
+use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\MealType;
 use App\Traits\CalendarTrait;
@@ -147,13 +148,31 @@ class CustomerCalendar extends Component
 
 
 
-        // 1.2: get schedules - mealTypes
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+
+        // 1.2: getDeliveries - mealTypes
         $mealTypes = MealType::whereIn('id', $this->subscription?->typesInArray())->get();
 
 
-        $schedules = CustomerSubscriptionSchedule::where('customerSubscriptionId', $this->subscription->id)
-            ->where('scheduleDate', '>=', $this->searchFromDate)
-            ->where('scheduleDate', '<=', end($weekDates))
+        $deliveries = CustomerSubscriptionDelivery::orderBy('deliveryDate')
+                ?->where('customerSubscriptionId', $this->subscription->id)
+                ?->where('deliveryDate', '>=', $this->searchFromDate)
+                ?->where('deliveryDate', '<=', end($weekDates))
+                ?->pluck('id')?->toArray() ?? [];
+
+
+
+
+
+
+        // 2.1: getSchedules
+        $schedules = CustomerSubscriptionSchedule::whereIn('customerSubscriptionDeliveryId', $deliveries ?? [])
             ->orderBy('scheduleDate')
             ->get();
 
@@ -161,8 +180,26 @@ class CustomerCalendar extends Component
 
 
 
+
+
+        // -------------------------------------------
+        // -------------------------------------------
+
+
+
+
+
+        // 3: mobileSchedules
+        $deliveries = CustomerSubscriptionDelivery::orderBy('deliveryDate')
+                ?->where('customerSubscriptionId', $this->subscription->id)
+                ?->where('deliveryDate', $this->searchScheduleDate)
+                ?->pluck('id')?->toArray() ?? [];
+
+
+
+
         // :: extra - forMobile
-        $schedulesForMobile = CustomerSubscriptionSchedule::where('customerSubscriptionId', $this->subscription->id)
+        $schedulesForMobile = CustomerSubscriptionSchedule::whereIn('customerSubscriptionDeliveryId', $deliveries ?? [])
             ->where('scheduleDate', $this->searchScheduleDate)
             ->get();
 

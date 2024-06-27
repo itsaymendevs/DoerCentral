@@ -166,7 +166,8 @@ class KitchenTodayLabel extends Component
 
 
         // 2: getDeliveries
-        $customers = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchScheduleDate)?->pluck('customerId')?->toArray() ?? [];
+        $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchScheduleDate)
+            ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
 
 
 
@@ -174,8 +175,9 @@ class KitchenTodayLabel extends Component
 
         // 2.1: getSchedules - meals
         $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->searchScheduleDate)
-            ->whereIn('customerId', $customers)
-            ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
+            ->whereIn('customerSubscriptionDeliveryId', $deliveries)
+            ->pluck('id')->toArray() ?? [];
+
 
 
 
@@ -185,6 +187,9 @@ class KitchenTodayLabel extends Component
             ->whereIn('mealTypeId', $this->searchMealType ? [$this->searchMealType] : $mealTypes->pluck('id')->toArray())
             ->orderBy('mealTypeId')
             ->get();
+
+
+
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\CustomerPortal;
 
+use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionPause;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -779,8 +780,12 @@ class CustomerMenu extends Component
 
 
             // 1.4: getDates - untilSubscription
-            $datesUntilSubscription[$scheduleDate] = CustomerSubscriptionSchedule::where('customerSubscriptionId', $this->subscription->id)
-                ->where('scheduleDate', $scheduleDate)?->first()?->meals?->count() ?? 0;
+            $delivery = CustomerSubscriptionDelivery::where('customerSubscriptionId', $this->subscription->id)
+                    ?->where('deliveryDate', $scheduleDate)?->first();
+
+
+
+            $datesUntilSubscription[$scheduleDate] = CustomerSubscriptionSchedule::where('customerSubscriptionDeliveryId', $delivery?->id)->where('scheduleDate', $scheduleDate)?->first()?->meals?->count() ?? 0;
 
 
 
@@ -811,7 +816,12 @@ class CustomerMenu extends Component
 
 
         // 2: subscription - schedule / scheduleMeals
-        $subscriptionSchedule = CustomerSubscriptionSchedule::where('customerSubscriptionId', $this->subscription->id)->where('scheduleDate', $this->scheduleDate)?->first();
+        $delivery = CustomerSubscriptionDelivery::where('customerSubscriptionId', $this->subscription->id)
+                ?->where('deliveryDate', $this->scheduleDate)?->first();
+
+
+        $subscriptionSchedule = CustomerSubscriptionSchedule::where('customerSubscriptionDeliveryId', $delivery?->id)
+                ?->where('scheduleDate', $this->scheduleDate)?->first();
 
 
         $subscriptionScheduleMeals = $subscriptionSchedule?->meals ?? [];

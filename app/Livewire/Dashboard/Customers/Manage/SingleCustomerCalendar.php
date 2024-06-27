@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Customers\Manage;
 
 use App\Models\Customer;
+use App\Models\CustomerSubscriptionDelivery;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\MealType;
 use App\Traits\CalendarTrait;
@@ -138,8 +139,7 @@ class SingleCustomerCalendar extends Component
 
 
 
-
-        // 1.2: fromDate - weekDates
+        // 1.2: prepFilters
         $this->searchFromDate == '' ? $this->searchFromDate = $this->getCurrentDate() : null;
         $weekDates = $this->getWeekDates($this->searchFromDate);
 
@@ -148,18 +148,38 @@ class SingleCustomerCalendar extends Component
 
 
 
-        // 1.2: get schedules - mealTypes
+
+        // ------------------------------------------
+        // ------------------------------------------
+
+
+
+
+
+
+
+        // 2: get deliveries - mealTypes
         $mealTypes = MealType::whereIn('id', $this->subscription?->typesInArray())->get();
-        // $mealTypes = MealType::all(); // ?? allow to show different types
+
+        $deliveries = CustomerSubscriptionDelivery::orderBy('deliveryDate')
+                ?->where('customerSubscriptionId', $this->activeSubscriptions?->pluck('id')?->toArray() ?? [])
+                ?->where('deliveryDate', '>=', $this->searchFromDate)
+                ?->where('deliveryDate', '<=', end($weekDates))
+                ?->pluck('id')?->toArray() ?? [];
 
 
 
 
-        $schedules = CustomerSubscriptionSchedule::whereIn('customerSubscriptionId', $this->activeSubscriptions?->pluck('id')?->toArray() ?? [])
-            ->where('scheduleDate', '>=', $this->searchFromDate)
-            ->where('scheduleDate', '<=', end($weekDates))
+
+
+        // 2.1: getSchedules
+        $schedules = CustomerSubscriptionSchedule::whereIn('customerSubscriptionDeliveryId', $deliveries ?? [])
             ->orderBy('scheduleDate')
             ->get();
+
+
+
+
 
 
 

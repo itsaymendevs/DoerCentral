@@ -37,9 +37,15 @@ class CustomerMenuController extends Controller
 
 
         // 1: get instance
-        $subscriptionSchedule = CustomerSubscriptionSchedule::where('customerSubscriptionId', $request->customerSubscriptionId)
+        $subscriptionDelivery = CustomerSubscriptionDelivery::where('customerSubscriptionId', $request->customerSubscriptionId)
+            ->where('deliveryDate', $request->scheduleDate)
+            ->first();
+
+
+        $subscriptionSchedule = CustomerSubscriptionSchedule::where('customerSubscriptionDeliveryId', $subscriptionDelivery?->id)
             ->where('scheduleDate', $request->scheduleDate)
             ->first();
+
 
 
 

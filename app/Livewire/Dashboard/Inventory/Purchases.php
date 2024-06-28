@@ -185,7 +185,8 @@ class Purchases extends Component
 
 
         // 1: dependencies
-        $purchases = StockPurchase::where('PONumber', 'LIKE', '%' . $this->searchPONumber . '%')
+        $purchases = StockPurchase::orderBy('created_at', 'desc')
+            ->where('PONumber', 'LIKE', '%' . $this->searchPONumber . '%')
             ->orWhere('purchaseID', 'LIKE', '%' . $this->searchPONumber . '%')
             ->paginate(env('PAGINATE_XXL'));
 

@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\Portals\PortalDriverController;
 use App\Http\Controllers\Api\Portals\PortalDriverLoginController;
 use App\Http\Controllers\Api\PromoController;
 use App\Http\Controllers\Api\ExtraController;
+use App\Http\Controllers\Api\StockController;
 use App\Http\Controllers\ApiWebsite\HomeController as WebsiteHomeController;
 use App\Http\Controllers\ApiWebsite\HelperController as WebsiteHelperController;
 
@@ -1211,46 +1212,6 @@ Route::post('/dashboard/menu/meals/lists/update', [MenuMealController::class, 'u
 
 
 
-// ------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-// 12: kitchen - containers
-Route::post('/dashboard/kitchen/containers/store', [KitchenController::class, 'storeContainer']);
-Route::post('/dashboard/kitchen/containers/update', [KitchenController::class, 'updateContainer']);
-
-Route::post('/dashboard/kitchen/containers/remove', [KitchenController::class, 'removeContainer']);
-
-
-
-
-
-
-
-// 12.1: kitchen -containers - updateCharge - updateLidCharge
-Route::post('/dashboard/kitchen/containers/charge/update', [KitchenController::class, 'updateContainerCharge']);
-Route::post('/dashboard/kitchen/containers/lid-charge/update', [KitchenController::class, 'updateContainerLidCharge']);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1268,11 +1229,89 @@ Route::post('/dashboard/kitchen/containers/lid-charge/update', [KitchenControlle
 
 
 
-// 13: kitchen - labels
-Route::post('/dashboard/kitchen/labels/store', [KitchenController::class, 'storeLabel']);
-Route::post('/dashboard/kitchen/labels/update', [KitchenController::class, 'updateLabel']);
+// 12: stock - items - containers
+Route::post('/dashboard/stock/items/containers/store', [StockController::class, 'storeContainer']);
+Route::post('/dashboard/stock/items/containers/update', [StockController::class, 'updateContainer']);
 
-Route::post('/dashboard/kitchen/labels/remove', [KitchenController::class, 'removeLabel']);
+Route::post('/dashboard/stock/items/containers/remove', [StockController::class, 'removeContainer']);
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+// 12.1: stock - containers - updateCharge - updateLidCharge
+Route::post('/dashboard/stock/items/containers/charge/update', [StockController::class, 'updateContainerCharge']);
+Route::post('/dashboard/stock/items/containers/lid-charge/update', [StockController::class, 'updateContainerLidCharge']);
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+// 12.5: stock - vendors - store - update - remove
+Route::post('/dashboard/stock/vendors/store', [StockController::class, 'storeVendor']);
+Route::post('/dashboard/stock/vendors/update', [StockController::class, 'updateVendor']);
+
+Route::post('/dashboard/stock/vendors/remove', [StockController::class, 'removeVendor']);
+
+
+
+
+
+
+
+// 12.5.1: stock - vendors - items - store - update - remove
+Route::post('/dashboard/stock/vendors/items/store', [StockController::class, 'storeVendorItem']);
+Route::post('/dashboard/stock/vendors/items/update', [StockController::class, 'updateVendorItem']);
+
+Route::post('/dashboard/stock/vendors/items/remove', [StockController::class, 'removeVendorItem']);
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 13: stock - items - labels
+Route::post('/dashboard/stock/items/labels/store', [StockController::class, 'storeLabel']);
+Route::post('/dashboard/stock/items/labels/update', [StockController::class, 'updateLabel']);
+
+Route::post('/dashboard/stock/items/labels/remove', [StockController::class, 'removeLabel']);
 
 
 

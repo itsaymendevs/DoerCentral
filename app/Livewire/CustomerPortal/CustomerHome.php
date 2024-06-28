@@ -129,6 +129,7 @@ class CustomerHome extends Component
         // 2.1: getDelivery / getSchedule
         $delivery = CustomerSubscriptionDelivery::orderBy('deliveryDate')
                 ?->where('customerId', $this->customer->id)
+                ?->whereIn('status', ['Pending', 'Picked', 'Completed'])
                 ?->where('deliveryDate', $this->getCurrentDate())
                 ?->first();
 

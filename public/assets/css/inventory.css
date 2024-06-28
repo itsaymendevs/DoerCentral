@@ -46,3 +46,14 @@
     font-size: 9px;
     margin-left: 2px;
 }
+
+/* hover icon */
+.hover--icon-gold:hover svg,
+.hover--icon-gold:focus svg {
+    fill: var(--bs-yellow) !important;
+}
+
+.hover--icon-danger:hover svg,
+.hover--icon-danger:focus svg {
+    fill: var(--bs-danger) !important;
+}

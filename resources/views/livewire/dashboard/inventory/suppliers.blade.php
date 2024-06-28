@@ -130,11 +130,11 @@
                             @foreach ($suppliers ?? [] as $supplier)
 
 
-                            <tr>
+                            <tr key='single-supplier-{{ $supplier->id }}'>
 
 
                                 {{-- id --}}
-                                <td class="fw-bold">SP-{{ $supplier->id }}</td>
+                                <td class="fw-bold">SP-{{ $globalSNCounter++ }}</td>
 
 
                                 {{-- name - phone --}}

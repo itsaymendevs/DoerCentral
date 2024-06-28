@@ -75,7 +75,33 @@
 
 
 
-            {{-- 6: settings --}}
+
+
+
+
+            {{-- 7: Addons --}}
+
+            {{-- :: permission - hasIngredientsList --}}
+            @if ($versionPermission->menuModuleHasIngredientsList)
+
+
+            <a class="btn @if (Request::is('dashboard/menu/addons')) active @endif"
+                href="{{ route('dashboard.menuAddons') }}" wire:navigate>Add-ons</a>
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+            {{-- 8: settings --}}
             <a class="btn @if (Request::is('dashboard/menu/settings')) active @endif"
                 href="{{ route('dashboard.menuSettings') }}" wire:navigate>Settings</a>
 

@@ -4,6 +4,8 @@ namespace App\Traits;
 
 use App\Models\CityDeliveryTime;
 use App\Models\CityDistrict;
+use App\Models\Container;
+use App\Models\Label;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -260,6 +262,98 @@ trait HelperTrait
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------
+    // --------------------------------------------------------------
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------
+    // --------------------------------------------------------------
+    // --------------------------------------------------------------
+
+
+
+
+
+    public function levelSelect($levelType, $value, $levelId = null)
+    {
+
+
+
+        // 1: items
+        if ($levelType == 'items') {
+
+
+            // A: containers - labels
+            if ($value == 'Containers') {
+
+                $items = Container::get(['id', 'name as text'])?->toArray() ?? [];
+
+            } elseif ($value == 'Labels') {
+
+                $items = Label::get(['id', 'name as text'])?->toArray() ?? [];
+
+            } // end if
+
+
+
+
+
+
+
+
+            // B: validateEmpty
+            count($items ?? []) ? array_unshift($items, ['id' => '', 'text' => '']) : null;
+
+
+
+
+            // C: refreshSelect
+            if ($levelId) {
+
+                $this->dispatch('refreshSelect', id: ".level--two[data-id='{$levelId}']", data: $items ?? ['id' => '', 'text' => '']);
+
+            } else {
+
+                $this->dispatch('refreshSelect', id: '.level--two', data: $items ?? ['id' => '', 'text' => '']);
+
+            } // end if
+
+
+
+
+
+
+
+        } // end if
+
+
+
+
+
+    } // end function
+
 
 
 

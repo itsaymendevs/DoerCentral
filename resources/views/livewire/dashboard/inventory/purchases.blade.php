@@ -137,7 +137,7 @@
 
 
                                 {{-- supplier - po. - reference --}}
-                                <td class="fw-bold">PR-{{ $purchase->id }}</td>
+                                <td class="fw-bold">PR-{{ $globalSNCounter++ }}</td>
                                 <td class="fw-bold">{{ $purchase->supplier->name }}</td>
                                 <td>{{ $purchase->PONumber }} / {{ $purchase->purchaseID }}</td>
 

@@ -50,6 +50,7 @@ use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayPacking;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayPreparations;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayProduction;
 use App\Livewire\Dashboard\ManageKitchen\KitchenToday\KitchenTodayQuantities;
+use App\Livewire\Dashboard\Menu\Addons;
 use App\Livewire\Dashboard\Menu\Builder;
 use App\Livewire\Dashboard\Menu\Calendars;
 use App\Livewire\Dashboard\Menu\Calendars\SingleCalendar;
@@ -71,6 +72,11 @@ use App\Livewire\Dashboard\Promos;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsCreate;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsView;
+use App\Livewire\Dashboard\Stock\Items\ItemsContainers;
+use App\Livewire\Dashboard\Stock\Items\ItemsLabels;
+use App\Livewire\Dashboard\Stock\Items\ItemsLabels\ItemsLabelsCreate;
+use App\Livewire\Dashboard\Stock\Items\ItemsLabels\ItemsLabelsEdit;
+use App\Livewire\Dashboard\Stock\Vendors;
 use App\Livewire\Dashboard\Temporary\CustomizePlan;
 use App\Livewire\DriverPortal\DriverHistory;
 use App\Livewire\DriverPortal\DriverHome;
@@ -677,6 +683,17 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+        // ---------
+
+
+
+
+
+
+        // 6.9.5: addons - menu
+        Route::get('dashboard/menu/addons', Addons::class)->name('dashboard.menuAddons');
+
+
 
 
 
@@ -1156,6 +1173,66 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+        // 20: stock - items - containers - store - update - remove
+        Route::get('dashboard/stock/items/containers', ItemsContainers::class)->name('dashboard.stock.items.containers');
+
+
+
+
+
+
+
+        // ---------
+
+
+
+
+
+        // 20.1: stock - items - labels - store - update - remove
+        Route::get('dashboard/stock/items/labels', ItemsLabels::class)->name('dashboard.stock.items.labels');
+
+
+        Route::get('dashboard/stock/items/labels/create', ItemsLabelsCreate::class)->name('dashboard.stock.items.createLabel');
+
+
+        Route::get('dashboard/stock/items/labels/{id}/edit', ItemsLabelsEdit::class)->name('dashboard.stock.items.editLabel');
+
+
+
+
+
+        // ---------
+
+
+
+
+
+
+        // 20: stock - vendors - vendors - store - update - remove
+        Route::get('dashboard/stock/items/vendors', Vendors::class)->name('dashboard.stock.items.vendors');
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1176,8 +1253,13 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
         // 1: dashboard - temporary - customize-plan
         Route::get('dashboard/temporary/customize-plan', CustomizePlan::class)->name('dashboard.temporary.customizePlan');
+
+
+
+
 
 
 

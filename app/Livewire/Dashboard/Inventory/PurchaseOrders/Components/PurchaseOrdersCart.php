@@ -7,6 +7,7 @@ use App\Models\SupplierIngredient;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class PurchaseOrdersCart extends Component
 {
@@ -19,7 +20,7 @@ class PurchaseOrdersCart extends Component
 
     // :: variables
     public $instance = [];
-    public $ingredientsWithGrams, $unit;
+    public $ingredientsWithGrams, $unit, $receivingDate;
 
 
 
@@ -76,9 +77,34 @@ class PurchaseOrdersCart extends Component
 
             // 2.3: extra
             $this->instance[$outerKey]['extraAmount'] = 0;
+            $this->instance[$outerKey]['wastage'] = true;
             $this->instance[$outerKey]['supplier'] = $supplierIngredient->supplier->name;
             $this->instance[$outerKey]['ingredient'] = $supplierIngredient->ingredient->name;
-            $this->instance[$outerKey]['totalSellPrice'] = number_format(($supplierIngredient?->sellPrice ?? 0) * ($ingredientsWithGrams[$supplierIngredient->ingredient->id] / $unit), 1);
+
+
+
+
+
+            // 2.4: quantity
+            $this->instance[$outerKey]['originalQuantity'] = ($ingredientsWithGrams[$supplierIngredient->ingredient->id] + ($ingredientsWithGrams[$supplierIngredient->ingredient->id] * $supplierIngredient->ingredient->getWastage())) / $unit;
+
+
+            $this->instance[$outerKey]['quantity'] = ($ingredientsWithGrams[$supplierIngredient->ingredient->id] + ($ingredientsWithGrams[$supplierIngredient->ingredient->id] * $supplierIngredient->ingredient->getWastage())) / $unit;
+
+
+
+
+
+
+
+            // 2.5: totalSellPrice
+            $this->instance[$outerKey]['originalTotalSellPrice'] = number_format(($supplierIngredient?->sellPrice ?? 0) * (($ingredientsWithGrams[$supplierIngredient->ingredient->id] + ($ingredientsWithGrams[$supplierIngredient->ingredient->id] * $supplierIngredient->ingredient->getWastage())) / $unit), 1);
+
+
+
+            $this->instance[$outerKey]['totalSellPrice'] = number_format(($supplierIngredient?->sellPrice ?? 0) * (($ingredientsWithGrams[$supplierIngredient->ingredient->id] + ($ingredientsWithGrams[$supplierIngredient->ingredient->id] * $supplierIngredient->ingredient->getWastage())) / $unit), 1);
+
+
 
 
 
@@ -98,6 +124,9 @@ class PurchaseOrdersCart extends Component
 
 
     // -----------------------------------------------------------
+
+
+
 
 
 
@@ -125,6 +154,7 @@ class PurchaseOrdersCart extends Component
 
 
 
+
         // --------------------------------------
         // --------------------------------------
 
@@ -132,8 +162,17 @@ class PurchaseOrdersCart extends Component
 
 
 
-        // 1: makeRequest
-        $response = $this->makeRequest('dashboard/inventory/purchase-orders/store', $this->instance);
+        // 1: appendReceivingDate
+        $instance = new stdClass();
+
+        $instance->receivingDate = $this->receivingDate;
+        $instance->purchaseOrders = $this->instance;
+
+
+
+
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/inventory/purchase-orders/store', $instance);
 
 
 
@@ -142,10 +181,10 @@ class PurchaseOrdersCart extends Component
 
         // :: reset
         $this->instance = [];
+        $this->receivingDate = null;
+        $this->dispatch('resetCart');
         $this->dispatch('closeModal', modal: '#purchase-cart .btn--close');
-
         $this->makeAlert('success', $response?->message);
-
 
 
 
@@ -170,22 +209,32 @@ class PurchaseOrdersCart extends Component
 
 
 
+
+
     public function updateAmount($key)
     {
 
 
 
-        if ($this->instance[$key]['extraAmount']) {
 
-
-            // 1: updatePrice
-            $this->instance[$key]['totalSellPrice'] = ($this->instance[$key]['sellPrice'] ?? 0) *
-                ($this->ingredientsWithGrams[$this->instance[$key]['ingredientId']] / $this->unit);
+        // :: exists
+        if ($this->instance[$key]['extraAmount'] >= 0) {
 
 
 
-            $this->instance[$key]['totalSellPrice'] = number_format(($this->instance[$key]['totalSellPrice'] ?? 0) +
-                ($this->instance[$key]['totalSellPrice'] ?? 0) * (($this->instance[$key]['extraAmount'] ?? 0) / 100), 2);
+            // 1: updateQuantity
+            $this->instance[$key]['quantity'] = number_format($this->instance[$key]['originalQuantity'] + ($this->instance[$key]['originalQuantity'] * (($this->instance[$key]['extraAmount'] ?? 0) / 100)), 2);
+
+
+
+
+
+
+
+            // 2: updatePrice
+            $this->instance[$key]['totalSellPrice'] = number_format($this->instance[$key]['originalTotalSellPrice'] + ($this->instance[$key]['originalTotalSellPrice'] * (($this->instance[$key]['extraAmount'] ?? 0) / 100)), 2);
+
+
 
 
         } // end if
@@ -194,6 +243,13 @@ class PurchaseOrdersCart extends Component
 
 
     } // end function
+
+
+
+
+
+
+
 
 
 

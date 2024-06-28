@@ -165,6 +165,7 @@ class SingleCustomerCalendar extends Component
                 ?->where('customerSubscriptionId', $this->activeSubscriptions?->pluck('id')?->toArray() ?? [])
                 ?->where('deliveryDate', '>=', $this->searchFromDate)
                 ?->where('deliveryDate', '<=', end($weekDates))
+                ?->whereIn('status', ['Pending', 'Picked', 'Completed'])
                 ?->pluck('id')?->toArray() ?? [];
 
 

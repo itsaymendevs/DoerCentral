@@ -1,5 +1,5 @@
 <div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="purchase-cart" wire:ignore.self>
-    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="max-width: 1400px;">
         <div class="modal-content">
             <div class="modal-body py-0 px-0">
 
@@ -34,16 +34,48 @@
 
                 {{-- outerWrapper --}}
                 <form wire:submit='store' wire:loading.class='disabled' class="px-4">
-                    <div class="row pt-2 mb-4">
+                    <div class="row align-items-end pt-2 mb-4">
 
 
 
-                        <div class="col-12 mb-2 text-center">
+
+                        {{-- empty --}}
+                        <div class="col-3"></div>
+
+
+
+
+
+
+                        {{-- 1: totalSellPrice --}}
+                        <div class="col-6 mb-4 text-center">
                             <h5 class='text-decoration-underline d-inline-block'>Total Price</h5>
                             <h5 class='text-gold ms-2 fs-4 fw-semibold d-inline-block'>
                                 {{ number_format(array_sum(array_column($instance, 'totalSellPrice')), 2) }}
                             </h5>
                         </div>
+
+
+
+
+
+
+                        {{-- 2: receivingDate --}}
+                        <div class="col-3 mb-4">
+
+                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                <hr style="width: 40%" />
+                                <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Receiving
+                                    Date</label>
+                            </div>
+
+                            <input class="form-control form--input" type="date" wire:model='receivingDate'
+                                wire:loading.attr='readonly' required />
+                        </div>
+
+
+
+
 
 
 
@@ -71,12 +103,15 @@
                                             <th class="th--xs"></th>
                                             <th class="th--lg"></th>
                                             <th class="th--sm">Supplier</th>
+                                            <th class="th--sm">Quantity</th>
                                             <th class="th--sm">Price / KG</th>
-                                            <th class="th--sm">Total Price</th>
+                                            <th class="th--sm">Total</th>
 
-                                            <th class="th--sm">Extra Amount
+                                            <th class="th--md">Extra Quantity
                                                 <small class='fs-10 text-dark'>(%)</small>
                                             </th>
+
+                                            <th class="th--md">Note</th>
 
                                         </tr>
                                     </thead>
@@ -126,32 +161,58 @@
 
 
 
-
-                                            {{-- 3: pricePerKG --}}
+                                            {{-- 3: amount --}}
                                             <td class="fw-bold text-start ps-3">
                                                 <span class="fs-6 d-block fw-semibold text-gold  text-center">{{
-                                                    number_format($singleInstance["sellPrice"] ?? 0, 2) }}</span>
+                                                    number_format($singleInstance["quantity"] ?? 0, 2) }}
+                                                    <small class='fs-10'>(KG)</small>
+                                                </span>
                                             </td>
 
 
 
-                                            {{-- 4: totalPrice --}}
+
+
+                                            {{-- 4: pricePerKG --}}
+                                            <td class="fw-bold text-start ps-3">
+                                                <span class="fs-6 d-block fw-semibold text-gold  text-center">{{
+                                                    number_format($singleInstance["sellPrice"] ?? 0, 2) }}
+                                                    <small class='fs-10'>(AED)</small>
+                                                </span>
+
+                                            </td>
+
+
+
+                                            {{-- 5: totalPrice --}}
                                             <td class="fw-bold text-start ps-3">
                                                 <span class="fs-6 d-block fw-semibold text-gold text-center">{{
-                                                    number_format($singleInstance["totalSellPrice"] ?? 0, 2) }}</span>
+                                                    number_format($singleInstance["totalSellPrice"] ?? 0, 2) }}
+                                                    <small class='fs-10'>(AED)</small>
+                                                </span>
                                             </td>
 
 
 
 
 
-                                            {{-- 5: extraAmount --}}
+                                            {{-- 6: extraAmount --}}
                                             <td>
                                                 <input class="form-control form--input form--table-input-sm"
                                                     type="number" step="0.01"
                                                     wire:model="instance.{{ $key }}.extraAmount" required="" min='0'
                                                     max='100' wire:change="updateAmount('{{ $key }}')">
                                             </td>
+
+
+
+
+                                            {{-- 7: note --}}
+                                            <td>
+                                                <input class="form-control form--input form--table-input" type="text"
+                                                    wire:model="instance.{{ $key }}.remarks">
+                                            </td>
+
 
 
 

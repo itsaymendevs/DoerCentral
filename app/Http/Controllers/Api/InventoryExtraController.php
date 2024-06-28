@@ -8,6 +8,8 @@ use App\Models\ConversionIngredient;
 use App\Models\CookingType;
 use App\Models\IngredientMacro;
 use App\Models\StockPurchase;
+use App\Models\StockPurchaseIngredient;
+use App\Models\SupplierIngredient;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
@@ -596,13 +598,16 @@ class InventoryExtraController extends Controller
 
         // :: root
         $request = json_decode(json_encode($request->all()));
-        $purchaseOrders = collect($request->instance);
+        $request = $request->instance;
+
 
 
 
 
 
         // 1: loop - purchases
+        $purchaseOrders = collect($request->purchaseOrders);
+
         foreach ($purchaseOrders?->groupBy('supplierId') as $commonSupplier => $purchaseOrdersBySupplier) {
 
 
@@ -616,6 +621,7 @@ class InventoryExtraController extends Controller
             // 1.3: basic
             $purchase->PONumber = $this->makeSerial('PO', StockPurchase::count() + 1);
             $purchase->supplierId = $commonSupplier;
+            $purchase->receivingDate = $request?->receivingDate ?? null;
 
 
             $purchase->save();
@@ -634,10 +640,50 @@ class InventoryExtraController extends Controller
 
 
 
+            // 2: purchase ingredients
+            foreach ($purchaseOrdersBySupplier ?? [] as $purchaseOrder) {
 
 
 
-        } // end loop
+                // 2.1: dependencies
+                $supplierIngredient = SupplierIngredient::where('supplierId', $purchase->supplierId)
+                    ->where('ingredientId', $purchaseOrder->ingredientId)->first();
+
+
+
+
+
+
+                // 2.3: create
+                $purchaseIngredient = new StockPurchaseIngredient();
+
+
+
+
+                // 2.4: basic
+                $purchaseIngredient->ingredientId = $purchaseOrder->ingredientId;
+                $purchaseIngredient->quantity = doubleval($purchaseOrder->quantity);
+                $purchaseIngredient->includeWastage = boolval($purchaseOrder->wastage ?? false);
+                $purchaseIngredient->remarks = $purchaseOrder->remarks ?? null;
+
+
+
+                // 2.5: stockPurchase - buyPrice - unit
+                $purchaseIngredient->stockPurchaseId = $purchase->id;
+                $purchaseIngredient->buyPrice = $supplierIngredient->sellPrice;
+                $purchaseIngredient->unitId = $supplierIngredient->unitId;
+
+
+
+                $purchaseIngredient->save();
+
+
+
+            } // end loop - purchaseOrders
+
+
+
+        } // end loop - groupBySupplier
 
 
 

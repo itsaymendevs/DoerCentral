@@ -164,6 +164,7 @@ class CustomerCalendar extends Component
                 ?->where('customerSubscriptionId', $this->subscription->id)
                 ?->where('deliveryDate', '>=', $this->searchFromDate)
                 ?->where('deliveryDate', '<=', end($weekDates))
+                ?->whereIn('status', ['Pending', 'Picked', 'Completed'])
                 ?->pluck('id')?->toArray() ?? [];
 
 
@@ -193,6 +194,7 @@ class CustomerCalendar extends Component
         $deliveries = CustomerSubscriptionDelivery::orderBy('deliveryDate')
                 ?->where('customerSubscriptionId', $this->subscription->id)
                 ?->where('deliveryDate', $this->searchScheduleDate)
+                ?->whereIn('status', ['Pending', 'Picked', 'Completed'])
                 ?->pluck('id')?->toArray() ?? [];
 
 

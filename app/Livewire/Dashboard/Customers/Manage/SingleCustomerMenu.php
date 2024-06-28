@@ -711,7 +711,7 @@ class SingleCustomerMenu extends Component
 
 
             $datesUntilSubscription[$scheduleDate] = CustomerSubscriptionSchedule::where('customerSubscriptionDeliveryId', $delivery?->id)
-                ->where('scheduleDate', $scheduleDate)?->first()?->meals?->count() ?? 0;
+                    ?->where('scheduleDate', $scheduleDate)?->first()?->meals?->count() ?? 0;
 
 
 

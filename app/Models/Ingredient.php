@@ -143,6 +143,18 @@ class Ingredient extends Model
 
 
 
+    public function getWastage()
+    {
+
+
+        // 1: getWastage
+        return doubleval(($this->wastage ?? 0) / 100);
+
+
+
+
+    } // end function
+
 
 
 

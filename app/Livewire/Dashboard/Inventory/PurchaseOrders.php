@@ -10,6 +10,7 @@ use App\Models\IngredientCategory;
 use App\Models\Supplier;
 use App\Models\SupplierIngredient;
 use App\Traits\HelperTrait;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class PurchaseOrders extends Component
@@ -234,10 +235,24 @@ class PurchaseOrders extends Component
 
 
 
-        // 1: append
-        array_push($this->cart, ['ingredientId' => $ingredient, 'supplierId' => $supplier]);
+        // 1: check ingredient
+        if (! in_array($ingredient, array_column($this->cart, 'ingredientId'))) {
 
-        $this->alert('info', 'Added to Cart');
+
+            array_push($this->cart, ['ingredientId' => $ingredient, 'supplierId' => $supplier]);
+            $this->alert('success', 'Added to Cart');
+
+
+
+            // 2: exists
+        } else {
+
+
+            $this->alert('info', 'Already in Cart!');
+
+
+        } // end if
+
 
 
 
@@ -245,6 +260,75 @@ class PurchaseOrders extends Component
     } // end function
 
 
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function remove($ingredient, $supplier)
+    {
+
+
+        // 1: dependencies
+        $cartDuplicate = $this->cart;
+
+
+
+        // 1.2: filterCart
+        $this->cart = array_filter($cartDuplicate ?? [], function ($item, $key) use ($ingredient) {
+
+            return $item['ingredientId'] != $ingredient;
+
+        }, ARRAY_FILTER_USE_BOTH);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+    #[On('resetCart')]
+    public function resetCart()
+    {
+
+
+        // 1: resetCart
+        $this->cart = [];
+
+
+    } // end function
 
 
 

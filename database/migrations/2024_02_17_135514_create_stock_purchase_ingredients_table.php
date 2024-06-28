@@ -21,7 +21,8 @@ return new class extends Migration {
 
 
 
-            // 1.2: includeWastage
+            // 1.2: includeWastage - remarks
+            $table->string('remarks', 255)->nullable()->default(0);
             $table->boolean('includeWastage')->nullable()->default(0);
 
 

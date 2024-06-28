@@ -349,6 +349,46 @@ window.addEventListener("setSelect", (event) => {
 
 // -------------------------------------------------------------
 
+// 6: initEditSelect
+window.addEventListener("setSelectOptions", (event) => {
+    $(document).ready(function () {
+        selectId = event.detail.id;
+        setupValue = event.detail.value;
+        setupDelay = event.detail.delay ? true : false;
+
+        setupClear = $(selectId).attr("data-clear") ? true : false;
+        setupModal = $(selectId).attr("data-modal");
+        setupPlaceholder = $(selectId).attr("data-placeholder");
+        setupTrigger = $(selectId).attr("data-trigger") ? true : false;
+        setupValueChild = null;
+
+        if (setupDelay) {
+            // ::clone
+            setupValueChild = setupValue;
+
+            $(selectId)
+                .val(setupValueChild)
+                .select2({
+                    dropdownParent: setupModal,
+                    allowClear: setupClear,
+                    placeholder: setupPlaceholder ? setupPlaceholder : "",
+                });
+        } else {
+            $(selectId)
+                .val(setupValue)
+                .select2({
+                    dropdownParent: setupModal,
+                    allowClear: setupClear,
+                    placeholder: setupPlaceholder ? setupPlaceholder : "",
+                });
+        } // end if
+
+        if (setupTrigger) $(selectId).trigger("change");
+    });
+});
+
+// -------------------------------------------------------------
+
 // 6.5: mirrorSelect
 window.addEventListener("mirrorSelect", (event) => {
     $(document).ready(function () {

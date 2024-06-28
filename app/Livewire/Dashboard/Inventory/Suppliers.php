@@ -158,7 +158,9 @@ class Suppliers extends Component
 
 
         // 1: dependencies
-        $suppliers = Supplier::where('name', 'LIKE', '%' . $this->searchSupplier . '%')->paginate(env('PAGINATE_XXL'));
+        $suppliers = Supplier::orderBy('created_at', 'desc')
+            ->where('name', 'LIKE', '%' . $this->searchSupplier . '%')
+            ->paginate(env('PAGINATE_XXL'));
 
 
 

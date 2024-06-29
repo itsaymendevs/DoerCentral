@@ -76,6 +76,7 @@ use App\Livewire\Dashboard\Stock\Items\ItemsContainers;
 use App\Livewire\Dashboard\Stock\Items\ItemsLabels;
 use App\Livewire\Dashboard\Stock\Items\ItemsLabels\ItemsLabelsCreate;
 use App\Livewire\Dashboard\Stock\Items\ItemsLabels\ItemsLabelsEdit;
+use App\Livewire\Dashboard\Stock\Items\ItemsOthers;
 use App\Livewire\Dashboard\Stock\Vendors;
 use App\Livewire\Dashboard\Temporary\CustomizePlan;
 use App\Livewire\DriverPortal\DriverHistory;
@@ -1190,6 +1191,18 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+        // ---------
+
+
+
+
+
+        // 20.1: stock - items - others - store - update - remove
+        Route::get('dashboard/stock/items/others', ItemsOthers::class)->name('dashboard.stock.items.others');
+
+
+
+
 
 
         // ---------
@@ -1198,7 +1211,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 20.1: stock - items - labels - store - update - remove
+        // 20.2: stock - items - labels - store - update - remove
         Route::get('dashboard/stock/items/labels', ItemsLabels::class)->name('dashboard.stock.items.labels');
 
 
@@ -1218,7 +1231,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 20: stock - vendors - vendors - store - update - remove
+        // 20.4: stock - vendors - vendors - store - update - remove
         Route::get('dashboard/stock/items/vendors', Vendors::class)->name('dashboard.stock.items.vendors');
 
 

@@ -3,9 +3,13 @@
 namespace App\Livewire\Dashboard\Stock\Vendors\Components;
 
 use App\Livewire\Forms\VendorItemForm;
+use App\Models\VendorContainer;
+use App\Models\VendorItem;
+use App\Models\VendorLabel;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class VendorsItemsEdit extends Component
 {
@@ -27,12 +31,34 @@ class VendorsItemsEdit extends Component
     public function mount($id, $type)
     {
 
-        // 1: clone instance / Files
-        // $supplierIngredient = SupplierIngredient::find($id);
 
-        // foreach ($supplierIngredient->toArray() as $key => $value)
-        //     $this->instance->{$key} = $value;
+        // 1: get instance
+        if ($type == 'Containers') {
 
+            $item = VendorContainer::find($id);
+
+        } elseif ($type == 'Labels') {
+
+            $item = VendorLabel::find($id);
+
+        } elseif ($type == 'Items') {
+
+            $item = VendorItem::find($id);
+
+        } // end if
+
+
+
+        foreach ($item?->toArray() as $key => $value)
+            $this->instance->{$key} = $value;
+
+
+
+
+
+        // 1.2: extra
+        $this->instance->type = $type;
+        $this->instance->itemName = $item->item?->name;
 
 
     } // end function
@@ -80,17 +106,8 @@ class VendorsItemsEdit extends Component
 
 
 
-
-
-        // :: validation
-        $this->instance->validate();
-
-
-
-
         // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/inventory/suppliers/ingredients/update', $this->instance);
-
+        $response = $this->makeRequest('dashboard/stock/vendors/items/update', $this->instance);
 
 
 
@@ -107,6 +124,9 @@ class VendorsItemsEdit extends Component
 
 
 
+
+
+
     // -----------------------------------------------------------------
 
 
@@ -116,7 +136,7 @@ class VendorsItemsEdit extends Component
 
 
 
-    public function remove($id)
+    public function remove()
     {
 
 
@@ -141,13 +161,12 @@ class VendorsItemsEdit extends Component
 
 
         // 1: params - confirmationBox
-        $this->removeId = $id;
-
         $this->makeAlert('remove', null, 'confirmVendorItemRemove');
 
 
 
     } // end function
+
 
 
 
@@ -161,26 +180,23 @@ class VendorsItemsEdit extends Component
 
 
 
+
+
+
     #[On('confirmVendorItemRemove')]
     public function confirmRemove()
     {
 
 
-        // 1: remove
-        if ($this->removeId) {
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/stock/vendors/items/remove', $this->instance);
+        $this->makeAlert('info', $response?->message);
 
 
 
-            // 1.2: makeRequest
-            $response = $this->makeRequest('dashboard/stock/vendors/items/remove', $this->removeId);
-            $this->makeAlert('info', $response?->message);
+        $this->dispatch('refreshViews');
 
 
-
-            $this->dispatch('refreshViews');
-
-
-        } // end if
 
 
 

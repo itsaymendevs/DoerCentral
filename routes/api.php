@@ -1229,26 +1229,11 @@ Route::post('/dashboard/menu/meals/lists/update', [MenuMealController::class, 'u
 
 
 
-// 12: stock - items - containers
+// 12: stock - items - containers - updateCharge - lidCharge
 Route::post('/dashboard/stock/items/containers/store', [StockController::class, 'storeContainer']);
 Route::post('/dashboard/stock/items/containers/update', [StockController::class, 'updateContainer']);
 
 Route::post('/dashboard/stock/items/containers/remove', [StockController::class, 'removeContainer']);
-
-
-
-
-
-
-
-
-// ---------------------------------
-// ---------------------------------
-
-
-
-
-// 12.1: stock - containers - updateCharge - updateLidCharge
 Route::post('/dashboard/stock/items/containers/charge/update', [StockController::class, 'updateContainerCharge']);
 Route::post('/dashboard/stock/items/containers/lid-charge/update', [StockController::class, 'updateContainerLidCharge']);
 
@@ -1258,11 +1243,37 @@ Route::post('/dashboard/stock/items/containers/lid-charge/update', [StockControl
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
+// 12.1: stock - items - updateCharge - others
+Route::post('/dashboard/stock/items/others/store', [StockController::class, 'storeItem']);
+Route::post('/dashboard/stock/items/others/update', [StockController::class, 'updateItem']);
+Route::post('/dashboard/stock/items/others/charge/update', [StockController::class, 'updateItemCharge']);
+
+Route::post('/dashboard/stock/items/others/remove', [StockController::class, 'removeItem']);
+
+
+
+
+
+
+
+
+
 
 
 
 // ---------------------------------
 // ---------------------------------
+
+
 
 
 

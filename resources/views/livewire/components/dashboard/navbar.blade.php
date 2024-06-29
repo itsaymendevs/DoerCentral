@@ -165,6 +165,29 @@
 
 
 
+                    {{-- stock --}}
+
+                    {{-- :: rolePermission - stock --}}
+
+                    {{-- @if ($user->checkPermission('Stock')) --}}
+
+
+                    <a class="btn navbar--menu-button
+                    @if (Request::is('dashboard/stock', 'dashboard/stock/*')) active @endif"
+                        href="{{ route('dashboard.stock.items.containers') }}">Stock</a>
+
+
+                    {{-- @endif --}}
+                    {{-- end if - rolePermission --}}
+
+
+
+
+
+
+
+
+
 
                     {{-- inventory --}}
 

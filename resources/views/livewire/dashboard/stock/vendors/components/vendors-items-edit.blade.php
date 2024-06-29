@@ -13,7 +13,7 @@
     {{-- price --}}
     <td>
         <input required class="form-control form--input form--table-input-sm" type="number" step='0.01'
-            wire:model='instance.sellPrice' wire:change='update' wire:loading.attr='readonly' />
+            wire:model='instance.sellPrice' wire:change="update" wire:loading.attr='readonly' />
     </td>
 
 
@@ -22,8 +22,7 @@
 
     {{-- remove --}}
     <td>
-        <button class="btn btn--raw-icon scale--3" type="button" wire:loading.attr='disabled'
-            wire:click='remove({{ $instance->id }})'>
+        <button class="btn btn--raw-icon scale--3" type="button" wire:loading.attr='disabled' wire:click="remove">
             <svg class="bi bi-trash fs-5" style="fill: var(--delete-color)" xmlns="http://www.w3.org/2000/svg"
                 width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                 <path

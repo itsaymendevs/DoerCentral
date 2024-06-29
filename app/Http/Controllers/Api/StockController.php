@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Item;
 use App\Models\Vendor;
 use App\Models\VendorContainer;
+use App\Models\VendorItem;
 use App\Models\VendorLabel;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
@@ -224,6 +226,219 @@ class StockController extends Controller
     // --------------------------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
+
+    public function storeItem(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $item = new Item();
+
+
+        // 1.2: general
+        $item->name = $request->name;
+        $item->desc = $request?->desc ?? null;
+        $item->charge = $request?->charge ?? null;
+
+        $item->imageFile = $request->imageFileName ?? null;
+
+
+        $item->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Item has been created'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function updateItem(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $item = Item::find($request->id);
+
+
+        // 1.2: general
+        $item->name = $request->name;
+        $item->desc = $request?->desc ?? null;
+        $item->charge = $request?->charge ?? null;
+
+        $item->imageFile = $request->imageFileName ?? null;
+
+
+        $item->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Item has been update'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateItemCharge(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $item = Item::find($request->id);
+
+
+        // 1.2: general
+        $item->charge = $request->charge ?? null;
+
+
+        $item->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Charge has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function removeItem(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $id = $request->instance;
+
+
+
+
+        // 1: get instance
+        Item::find($id)->delete();
+
+
+        return response()->json(['message' => 'Item has been removed'], 200);
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
 
 
 
@@ -891,12 +1106,7 @@ class StockController extends Controller
 
 
 
-        // 1: create
-
-
-
-
-        // 1.2: containers - labels
+        // 1: create instance
         if ($request->type == 'Containers') {
 
             $vendorItem = new VendorContainer();
@@ -907,6 +1117,11 @@ class StockController extends Controller
 
             $vendorItem = new VendorLabel();
             $vendorItem->labelId = $request->itemId;
+
+        } elseif ($request->type == 'Items') {
+
+            $vendorItem = new VendorItem();
+            $vendorItem->itemId = $request->itemId;
 
         } // end if
 
@@ -965,6 +1180,33 @@ class StockController extends Controller
 
 
 
+        // 1: get instance
+        if ($request->type == 'Containers') {
+
+            $vendorItem = VendorContainer::find($request->id);
+
+        } elseif ($request->type == 'Labels') {
+
+            $vendorItem = VendorLabel::find($request->id);
+
+        } elseif ($request->type == 'Items') {
+
+            $vendorItem = VendorItem::find($request->id);
+
+        } // end if
+
+
+
+
+
+        // 1.3: general
+        $vendorItem->sellPrice = $request->sellPrice ?? null;
+
+
+
+
+        $vendorItem->save();
+
 
 
 
@@ -1000,13 +1242,29 @@ class StockController extends Controller
 
         // :: root
         $request = json_decode(json_encode($request->all()));
-        $id = $request->instance;
+        $request = $request->instance;
 
 
 
 
         // 1: get instance
-        // SupplierIngredient::find($id)->delete();
+        if ($request->type == 'Containers') {
+
+            VendorContainer::find($request->id)->delete();
+
+        } elseif ($request->type == 'Labels') {
+
+            VendorLabel::find($request->id)->delete();
+
+        } elseif ($request->type == 'Items') {
+
+            VendorItem::find($request->id)->delete();
+
+        } // end if
+
+
+
+
 
 
         return response()->json(['message' => 'Item has been removed'], 200);

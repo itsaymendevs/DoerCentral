@@ -5,16 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VendorLabel extends Model
+class VendorItem extends Model
 {
     use HasFactory;
+
+
 
     public function item()
     {
 
-        return $this->belongsTo(Label::class, 'labelId');
+        return $this->belongsTo(Item::class, 'itemId');
 
     } // end function
+
+
+
+
+
 
 
 } // end model

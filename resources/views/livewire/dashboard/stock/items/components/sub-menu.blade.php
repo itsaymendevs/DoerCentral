@@ -16,5 +16,13 @@
 
 
 
+
+    {{-- 3: others --}}
+    <a wire:navigate class="btn fs-13 @if (Request::is('dashboard/stock/items/others')) active @endif"
+        href="{{ route('dashboard.stock.items.others') }}" role="button">Others</a>
+
+
+
+
 </div>
 {{-- end div --}}

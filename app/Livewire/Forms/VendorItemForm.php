@@ -12,12 +12,12 @@ class VendorItemForm extends Form
     #[Validate('required')]
     public $vendorId, $itemId, $sellPrice;
 
-    public $id, $type, $unitId, $itemName;
+    public $id, $unitId;
 
 
 
     // :: helpers
-    public $unitName;
+    public $type, $unitName, $itemName;
 
 
 } // end form

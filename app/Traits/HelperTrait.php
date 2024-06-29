@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Models\CityDeliveryTime;
 use App\Models\CityDistrict;
 use App\Models\Container;
+use App\Models\Item;
 use App\Models\Label;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,7 @@ trait HelperTrait
 
 
     // :: globalVariables
-    public $removeId;
+    public $removeId, $removeType;
 
 
 
@@ -313,6 +314,10 @@ trait HelperTrait
             } elseif ($value == 'Labels') {
 
                 $items = Label::get(['id', 'name as text'])?->toArray() ?? [];
+
+            } elseif ($value == 'Items') {
+
+                $items = Item::get(['id', 'name as text'])?->toArray() ?? [];
 
             } // end if
 

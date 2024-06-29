@@ -277,7 +277,7 @@
                                     {{ number_format(($ingredientsWithGrams[$ingredient->id] +
                                     ($ingredientsWithGrams[$ingredient->id] *
                                     $ingredient->getWastage())) / $unit) }}
-                                    <small class='fs-10'>(G)</small>
+                                    <small class='fs-9'>(G)</small>
 
 
 
@@ -287,7 +287,7 @@
                                     {{ number_format(($ingredientsWithGrams[$ingredient->id] +
                                     ($ingredientsWithGrams[$ingredient->id] *
                                     $ingredient->getWastage())) / $unit, 2) }}
-                                    <small class='fs-10'>(KG)</small>
+                                    <small class='fs-9'>(KG)</small>
 
                                     @endif
                                     {{-- end if --}}
@@ -349,11 +349,6 @@
 
 
                                     <div class='d-flex align-items-center justify-content-center'>
-                                        {{ number_format(($supplierIngredient?->sellPrice ?? 0) *
-                                        (($ingredientsWithGrams[$ingredient->id] +
-                                        ($ingredientsWithGrams[$ingredient->id] * $ingredient->getWastage())) / $unit),
-                                        1) }}
-
 
 
 
@@ -400,6 +395,22 @@
 
                                         @endif
                                         {{-- end if --}}
+
+
+
+
+
+
+
+                                        {{-- price --}}
+                                        <div class='ms-1'>
+                                            {{ number_format(($supplierIngredient?->sellPrice ?? 0) *
+                                            (($ingredientsWithGrams[$ingredient->id] +
+                                            ($ingredientsWithGrams[$ingredient->id] * $ingredient->getWastage())) /
+                                            $unit),
+                                            1) }}
+                                            <small class='fs-9'>(AED)</small>
+                                        </div>
 
 
 
@@ -430,7 +441,6 @@
 
 
                                     <div class='d-flex align-items-center justify-content-center'>
-                                        {{ number_format($supplierIngredient?->sellPrice ?? 0, 1) }}
 
 
                                         {{-- A: append --}}
@@ -476,6 +486,17 @@
 
                                         @endif
                                         {{-- end if --}}
+
+
+
+
+
+
+                                        {{-- price --}}
+                                        <div class="ms-1">
+                                            {{ number_format($supplierIngredient?->sellPrice ?? 0, 1) }}
+                                            <small class='fs-9'>(AED)</small>
+                                        </div>
 
 
 

@@ -23,7 +23,7 @@
             {{-- items --}}
             <a wire:navigate
                 class="btn
-            @if (Request::is('dashboard/stock/items/containers') || Request::is('dashboard/stock/items/labels')) active @endif"
+            @if (Request::is('dashboard/stock/items/containers') || Request::is('dashboard/stock/items/labels') || Request::is('dashboard/stock/items/others')) active @endif"
                 role="button" href="{{ route('dashboard.stock.items.containers') }}">Items</a>
 
 

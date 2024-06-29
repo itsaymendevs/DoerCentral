@@ -4,6 +4,9 @@ namespace App\Livewire\Dashboard\Stock\Vendors\Components;
 
 use App\Livewire\Forms\VendorItemForm;
 use App\Models\Container;
+use App\Models\VendorContainer;
+use App\Models\VendorItem;
+use App\Models\VendorLabel;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -136,7 +139,11 @@ class VendorsItems extends Component
 
 
         // 1: dependencies
-        $types = ['Containers', 'Labels'];
+        $types = ['Containers', 'Labels', 'Items'];
+        $vendorItems = VendorItem::where('vendorId', $this->instance?->vendorId)->get();
+        $vendorLabels = VendorLabel::where('vendorId', $this->instance?->vendorId)->get();
+        $vendorContainers = VendorContainer::where('vendorId', $this->instance?->vendorId)->get();
+
 
 
 
@@ -148,7 +155,7 @@ class VendorsItems extends Component
 
 
 
-        return view('livewire.dashboard.stock.vendors.components.vendors-items', compact('types'));
+        return view('livewire.dashboard.stock.vendors.components.vendors-items', compact('types', 'vendorItems', 'vendorLabels', 'vendorContainers'));
 
 
 

@@ -48,10 +48,11 @@
 
 
                         {{-- 1: totalSellPrice --}}
-                        <div class="col-6 mb-4 text-center">
+                        <div class="col-6 mb-5 text-center">
                             <h5 class='text-decoration-underline d-inline-block'>Total Price</h5>
                             <h5 class='text-gold ms-2 fs-4 fw-semibold d-inline-block'>
                                 {{ number_format(array_sum(array_column($instance, 'totalSellPrice')), 2) }}
+                                <small class='fs-10'>(AED)</small>
                             </h5>
                         </div>
 
@@ -61,7 +62,7 @@
 
 
                         {{-- 2: receivingDate --}}
-                        <div class="col-3 mb-4">
+                        <div class="col-3 mb-5">
 
                             <div class="d-flex align-items-center justify-content-between mb-1">
                                 <hr style="width: 40%" />

@@ -47,7 +47,7 @@
                                     data-instance='instance.type' required>
                                     <option value=""></option>
 
-                                    @foreach ($types as $type)
+                                    @foreach ($types ?? [] as $type)
                                     <option value="{{ $type }}">{{ $type }}</option>
                                     @endforeach
 
@@ -153,18 +153,55 @@
 
 
 
-                                        {{-- loop - items --}}
-                                        {{-- @foreach ($vendorItems as $vendorItem) --}}
+                                        {{-- 1: loop - containers --}}
+                                        @foreach ($vendorContainers as $vendorContainer)
 
 
-                                        {{--
                                         <livewire:dashboard.stock.vendors.components.vendors-items-edit
-                                            key='vendor-item-{{ $vendorItem->id }}' id='{{ $vendorItem->id }}'
-                                            type='Containers' /> --}}
+                                            key='vendor-container-{{ $vendorContainer->id }}'
+                                            id='{{ $vendorContainer->id }}' type='Containers' />
 
-                                        {{-- @endforeach --}}
+
+                                        @endforeach
                                         {{-- end loop --}}
 
+
+
+
+
+
+
+
+                                        {{-- 2: loop - labels --}}
+                                        @foreach ($vendorLabels ?? [] as $vendorLabel)
+
+
+                                        <livewire:dashboard.stock.vendors.components.vendors-items-edit
+                                            key='vendor-label-{{ $vendorLabel->id }}' id='{{ $vendorLabel->id }}'
+                                            type='Labels' />
+
+
+                                        @endforeach
+                                        {{-- end loop --}}
+
+
+
+
+
+
+
+
+                                        {{-- 1: loop - items --}}
+                                        @foreach ($vendorItems ?? [] as $vendorItem)
+
+
+                                        <livewire:dashboard.stock.vendors.components.vendors-items-edit
+                                            key='vendor-item-{{ $vendorItem->id }}' id='{{ $vendorItem->id }}'
+                                            type='Items' />
+
+
+                                        @endforeach
+                                        {{-- end loop --}}
 
 
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class VendorItem extends Model
 {
+
     use HasFactory;
 
 
@@ -20,6 +21,14 @@ class VendorItem extends Model
 
 
 
+
+
+    public function unit()
+    {
+
+        return $this->belongsTo(Unit::class, 'unitId');
+
+    } // end function
 
 
 

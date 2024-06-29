@@ -77,7 +77,13 @@ use App\Livewire\Dashboard\Stock\Items\ItemsLabels;
 use App\Livewire\Dashboard\Stock\Items\ItemsLabels\ItemsLabelsCreate;
 use App\Livewire\Dashboard\Stock\Items\ItemsLabels\ItemsLabelsEdit;
 use App\Livewire\Dashboard\Stock\Items\ItemsOthers;
+use App\Livewire\Dashboard\Stock\Stock\StockContainers;
+use App\Livewire\Dashboard\Stock\Stock\StockItems;
+use App\Livewire\Dashboard\Stock\Stock\StockLabels;
 use App\Livewire\Dashboard\Stock\Vendors;
+use App\Livewire\Dashboard\Stock\Purchases as StockPurchases;
+use App\Livewire\Dashboard\Stock\Stock as StockOverview;
+
 use App\Livewire\Dashboard\Temporary\CustomizePlan;
 use App\Livewire\DriverPortal\DriverHistory;
 use App\Livewire\DriverPortal\DriverHome;
@@ -984,19 +990,13 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
         // ----------------------------------------------------------------------------
         // ----------------------------------------------------------------------------
         // ----------------------------------------------------------------------------
 
 
 
-
-
-
-
-
-        // 11: kitchen - containers
-        Route::get('dashboard/kitchen/containers', KitchenContainers::class)->name('dashboard.kitchenContainers');
 
 
 
@@ -1004,41 +1004,6 @@ Route::middleware(['auth.user'])->group(function () {
 
         // 11.5: kitchen - items
         Route::get('dashboard/kitchen/items', KitchenItems::class)->name('dashboard.kitchenItems');
-
-
-
-
-
-
-
-
-
-        // ----------------------------------------------------------------------------
-        // ----------------------------------------------------------------------------
-        // ----------------------------------------------------------------------------
-
-
-
-
-
-
-
-        // 12: kitchen - labels
-        Route::get('dashboard/kitchen/labels', KitchenLabels::class)->name('dashboard.kitchenLabels');
-
-
-
-        // 12: kitchen - labels - create
-        Route::get('dashboard/kitchen/labels/create', KitchenLabelsCreate::class)->name('dashboard.kitchenLabelsCreate');
-
-        Route::get('dashboard/kitchen/labels/{id}/edit', KitchenLabelsEdit::class)->name('dashboard.kitchenLabelsEdit');
-
-
-
-
-
-
-
 
 
 
@@ -1230,15 +1195,35 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-
-        // 20.4: stock - vendors - vendors - store - update - remove
-        Route::get('dashboard/stock/items/vendors', Vendors::class)->name('dashboard.stock.items.vendors');
-
+        // 20.4: stock - vendors - store - update - remove
+        Route::get('dashboard/stock/vendors', Vendors::class)->name('dashboard.stock.vendors');
 
 
 
 
 
+        // ---------
+
+
+
+
+        // 20.5: stock - purchases - store - update - remove
+        Route::get('dashboard/stock/purchases', StockPurchases::class)->name('dashboard.stock.purchases');
+
+
+
+
+
+
+        // ---------
+
+
+
+
+        // 20.6: stock - stock containers - labels - items
+        Route::get('dashboard/stock/stock-items', StockItems::class)->name('dashboard.stock.stockItems');
+        Route::get('dashboard/stock/stock-labels', StockLabels::class)->name('dashboard.stock.stockLabels');
+        Route::get('dashboard/stock/stock-containers', StockContainers::class)->name('dashboard.stock.stockContainers');
 
 
 

@@ -21,5 +21,15 @@ class VendorContainer extends Model
 
 
 
+    public function unit()
+    {
+
+        return $this->belongsTo(Unit::class, 'unitId');
+
+    } // end function
+
+
+
+
 
 } // end model

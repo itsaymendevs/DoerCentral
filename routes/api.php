@@ -1267,9 +1267,6 @@ Route::post('/dashboard/stock/items/others/remove', [StockController::class, 're
 
 
 
-
-
-
 // ---------------------------------
 // ---------------------------------
 
@@ -1278,7 +1275,8 @@ Route::post('/dashboard/stock/items/others/remove', [StockController::class, 're
 
 
 
-// 12.5: stock - vendors - store - update - remove
+
+// 12.2: stock - vendors - store - update - remove
 Route::post('/dashboard/stock/vendors/store', [StockController::class, 'storeVendor']);
 Route::post('/dashboard/stock/vendors/update', [StockController::class, 'updateVendor']);
 
@@ -1290,11 +1288,48 @@ Route::post('/dashboard/stock/vendors/remove', [StockController::class, 'removeV
 
 
 
-// 12.5.1: stock - vendors - items - store - update - remove
+// 12.3: stock - vendors - items - store - update - remove
 Route::post('/dashboard/stock/vendors/items/store', [StockController::class, 'storeVendorItem']);
 Route::post('/dashboard/stock/vendors/items/update', [StockController::class, 'updateVendorItem']);
 
 Route::post('/dashboard/stock/vendors/items/remove', [StockController::class, 'removeVendorItem']);
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
+
+
+
+// 12.4: stock - purchases - items - store - update - remove
+Route::post('/dashboard/stock/purchases/store', [StockController::class, 'storePurchase']);
+Route::post('/dashboard/stock/purchases/update', [StockController::class, 'updatePurchase']);
+Route::post('/dashboard/stock/purchases/confirm', [StockController::class, 'confirmPurchase']);
+
+Route::post('/dashboard/stock/purchases/remove', [StockController::class, 'removePurchase']);
+
+
+
+
+
+
+
+// 12.5: stock - purchases - items - store - update - remove
+Route::post('/dashboard/stock/purchases/items/store', [StockController::class, 'storePurchaseItem']);
+Route::post('/dashboard/stock/purchases/items/update', [StockController::class, 'updatePurchaseItem']);
+
+Route::post('/dashboard/stock/purchases/items/remove', [StockController::class, 'removePurchaseItem']);
 
 
 

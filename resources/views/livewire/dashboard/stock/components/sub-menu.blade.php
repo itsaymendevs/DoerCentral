@@ -33,8 +33,8 @@
 
             {{-- vendors --}}
             <a wire:navigate class="btn
-                 @if (Request::is('dashboard/stock/items/vendors')) active @endif" role="button"
-                href="{{ route('dashboard.stock.items.vendors') }}">Vendors</a>
+                 @if (Request::is('dashboard/stock/vendors')) active @endif" role="button"
+                href="{{ route('dashboard.stock.vendors') }}">Vendors</a>
 
 
 
@@ -42,10 +42,18 @@
 
             {{-- purchases --}}
             <a wire:navigate class="btn
-            @if (Request::is('dashboard/inventory/purchases')) active @endif" role="button"
-                href="{{ route('dashboard.inventory.purchases') }}">Purchases</a>
+            @if (Request::is('dashboard/stock/purchases')) active @endif" role="button"
+                href="{{ route('dashboard.stock.purchases') }}">Purchases</a>
 
 
+
+
+
+
+            {{-- stock --}}
+            <a wire:navigate
+                class="btn @if (Request::is('dashboard/stock/stock-containers') || Request::is('dashboard/stock/stock-labels') ||Request::is('dashboard/stock/stock-items')) active @endif"
+                role="button" href="{{ route('dashboard.stock.stockContainers') }}">Stock</a>
 
 
 

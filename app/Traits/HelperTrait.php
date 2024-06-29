@@ -7,6 +7,9 @@ use App\Models\CityDistrict;
 use App\Models\Container;
 use App\Models\Item;
 use App\Models\Label;
+use App\Models\VendorContainer;
+use App\Models\VendorItem;
+use App\Models\VendorLabel;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -276,18 +279,6 @@ trait HelperTrait
 
 
 
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-    // --------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
     // --------------------------------------------------------------
     // --------------------------------------------------------------
@@ -297,7 +288,7 @@ trait HelperTrait
 
 
 
-    public function levelSelect($levelType, $value, $levelId = null)
+    public function levelSelect($levelType, $levelFilterId = null, $value, $levelId = null)
     {
 
 
@@ -352,6 +343,90 @@ trait HelperTrait
 
 
         } // end if
+
+
+
+
+
+
+        // -----------------------------------------------------------------
+        // -----------------------------------------------------------------
+
+
+
+
+
+
+
+        // 1: vendorItems
+        if ($levelType == 'vendorItems') {
+
+
+
+            // A: containers - labels - items
+            if ($value == 'Containers') {
+
+
+                $items = VendorContainer::where('vendorId', $levelFilterId)
+                        ?->get()?->pluck('containerId')?->toArray() ?? [];
+
+                $items = Container::whereIn('id', $items)?->get(['id', 'name as text'])?->toArray() ?? [];
+
+
+
+            } elseif ($value == 'Labels') {
+
+
+                $items = VendorLabel::where('vendorId', $levelFilterId)
+                        ?->get()?->pluck('labelId')?->toArray() ?? [];
+
+                $items = Label::whereIn('id', $items)?->get(['id', 'name as text'])?->toArray() ?? [];
+
+
+
+            } elseif ($value == 'Items') {
+
+
+                $items = VendorItem::where('vendorId', $levelFilterId)
+                        ?->get()?->pluck('itemId')?->toArray() ?? [];
+
+
+                $items = Item::whereIn('id', $items)?->get(['id', 'name as text'])?->toArray() ?? [];
+
+
+            } // end if
+
+
+
+
+
+
+
+            // B: validateEmpty
+            count($items ?? []) ? array_unshift($items, ['id' => '', 'text' => '']) : null;
+
+
+
+
+
+            // C: refreshSelect
+            if ($levelId) {
+
+                $this->dispatch('refreshSelect', id: ".level--two[data-id='{$levelId}']", data: $items ?? ['id' => '', 'text' => '']);
+
+            } else {
+
+                $this->dispatch('refreshSelect', id: '.level--two', data: $items ?? ['id' => '', 'text' => '']);
+
+            } // end if
+
+
+
+
+        } // end if
+
+
+
 
 
 

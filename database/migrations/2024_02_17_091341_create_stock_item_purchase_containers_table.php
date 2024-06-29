@@ -10,20 +10,16 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('stock_purchase_ingredients', function (Blueprint $table) {
+        Schema::create('stock_item_purchase_containers', function (Blueprint $table) {
             $table->id();
+
 
 
             // 1: general
             $table->double('buyPrice', 15)->nullable();
             $table->double('quantity', 15)->nullable();
             $table->double('receivedQuantity', 15)->nullable();
-
-
-
-            // 1.2: includeWastage - remarks
             $table->string('remarks', 255)->nullable();
-            $table->boolean('includeWastage')->nullable()->default(0);
 
 
 
@@ -36,13 +32,14 @@ return new class extends Migration {
 
 
 
-            // 1.4: ingredient - stockPurchase
-            $table->bigInteger('ingredientId')->unsigned()->nullable();
-            $table->foreign('ingredientId')->references('id')->on('ingredients')->onDelete('cascade');
+            // 1.4: container - stockPurchase
+            $table->bigInteger('containerId')->unsigned()->nullable();
+            $table->foreign('containerId')->references('id')->on('containers')->onDelete('cascade');
 
 
-            $table->bigInteger('stockPurchaseId')->unsigned()->nullable();
-            $table->foreign('stockPurchaseId')->references('id')->on('stock_purchases')->onDelete('cascade');
+            $table->bigInteger('stockItemPurchaseId')->unsigned()->nullable();
+            $table->foreign('stockItemPurchaseId')->references('id')->on('stock_item_purchases')->onDelete('cascade');
+
 
 
 
@@ -55,6 +52,6 @@ return new class extends Migration {
      */
     public function down() : void
     {
-        Schema::dropIfExists('stock_purchase_ingredients');
+        Schema::dropIfExists('stock_item_purchase_containers');
     }
 };

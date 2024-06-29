@@ -2,30 +2,33 @@
 <tr>
 
 
-    {{-- item - unit --}}
-    <td>{{ $instance?->type }}</td>
+
+    {{-- 1: general --}}
     <td>{{ $instance?->itemName }}</td>
     <td>{{ $instance?->unitName }}</td>
+    <td>{{ $instance?->buyPrice }}</td>
 
 
 
 
-
-    {{-- price --}}
+    {{-- 2: quantity --}}
     <td>
-        <input required class="form-control form--input form--table-input-sm" type="number" step='0.01'
-            wire:model='instance.sellPrice' wire:change="update" wire:loading.attr='readonly' />
+        <input required class="form-control form--input form--table-input-sm" type="number" step='0.1'
+            wire:model='instance.quantity' wire:change='update' @if ($purchaseItem?->stockPurchase->isConfirmed)
+        readonly @endif />
     </td>
 
 
 
 
 
-    {{-- remove --}}
+
+    {{-- 3: remove --}}
     <td>
-        <button class="btn btn--raw-icon scale--3" type="button" wire:loading.attr='disabled' wire:click="remove">
-            <svg class="bi bi-trash fs-5" style="fill: var(--delete-color)" xmlns="http://www.w3.org/2000/svg"
-                width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+        <button class="btn btn--raw-icon scale--3" type="button" wire:click='remove({{ $instance->id }})'
+            wire:loading.attr='disabled' @if ($purchaseItem?->stockPurchase->isConfirmed) disabled @endif>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
+                class="bi bi-trash fs-5" style="fill: var(--delete-color)">
                 <path
                     d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
                 </path>

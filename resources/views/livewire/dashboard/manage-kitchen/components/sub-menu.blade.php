@@ -10,45 +10,6 @@
             data-aos-delay="800" data-aos-once="true" wire:ignore.self>
 
 
-            {{-- labels --}}
-
-
-            {{-- :: permission - hasLabelsTab --}}
-            @if ($versionPermission->kitchenModuleHasLabelsTab)
-
-
-            <a wire:navigate href="{{ route('dashboard.kitchenLabels') }}" class="btn
-                @if (Request::is('dashboard/kitchen/labels', 'dashboard/kitchen/labels/*')) active @endif"
-                role="button">Labels</a>
-
-
-            @endif
-            {{-- end if - permission --}}
-
-
-
-
-
-
-
-
-            {{-- :: permission - hasContainersTab --}}
-            @if ($versionPermission->kitchenModuleHasContainersTab)
-
-
-            {{-- containers --}}
-            <a wire:navigate class="btn
-                @if (Request::is('dashboard/kitchen/containers')) active @endif" role="button"
-                href="{{ route('dashboard.kitchenContainers') }}">Containers</a>
-
-
-            @endif
-            {{-- end if - permission --}}
-
-
-
-
-
 
 
 

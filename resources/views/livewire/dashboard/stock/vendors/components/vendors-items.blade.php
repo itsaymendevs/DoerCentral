@@ -59,8 +59,9 @@
 
 
 
+
                         {{-- item --}}
-                        <div class="col-6" wire:ignore>
+                        <div class="col-5" wire:ignore>
                             <label class="form-label form--label">Item</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                 <select
@@ -76,12 +77,30 @@
 
 
 
+                        {{-- unit --}}
+                        <div class="col-2" wire:ignore>
+                            <label class="form-label form--label">Unit</label>
+                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                                <select class="form-select form--modal-select form--modal-manage-vendor-select"
+                                    data-modal='#vendor-items' data-instance='instance.unitId' required>
+                                    <option value=""></option>
+
+                                    @foreach ($units as $unit)
+                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
 
 
 
 
                         {{-- price --}}
-                        <div class="col-3">
+                        <div class="col-2">
                             <label class="form-label form--label">Price</label>
                             <input wire:model='instance.sellPrice' required class="form-control form--input mb-4"
                                 type="number" step='0.01' />
@@ -141,6 +160,7 @@
                                         <tr>
                                             <th>Type</th>
                                             <th>Item</th>
+                                            <th>Unit</th>
                                             <th>Price</th>
                                             <th></th>
                                         </tr>

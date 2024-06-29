@@ -1,25 +1,29 @@
 <?php
 
-namespace App\Livewire\Dashboard\Stock\Vendors\Components;
+namespace App\Livewire\Dashboard\Stock\Purchases\Components;
 
-use App\Livewire\Forms\VendorItemForm;
-use App\Models\VendorContainer;
-use App\Models\VendorItem;
-use App\Models\VendorLabel;
+use App\Livewire\Forms\StockItemPurchaseItemForm;
+use App\Models\StockItemPurchaseContainer;
+use App\Models\StockItemPurchaseItem;
+use App\Models\StockItemPurchaseLabel;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use stdClass;
 
-class VendorsItemsEdit extends Component
+class PurchasesItemsEdit extends Component
 {
 
 
     use HelperTrait;
+    use ActivityTrait;
+
+
 
 
     // :: variable
-    public VendorItemForm $instance;
+    public StockItemPurchaseItemForm $instance;
+    public $purchaseItem;
 
 
 
@@ -35,23 +39,23 @@ class VendorsItemsEdit extends Component
         // 1: get instance
         if ($type == 'Containers') {
 
-            $item = VendorContainer::find($id);
+            $this->purchaseItem = StockItemPurchaseContainer::find($id);
 
         } elseif ($type == 'Labels') {
 
-            $item = VendorLabel::find($id);
+            $this->purchaseItem = StockItemPurchaseLabel::find($id);
 
         } elseif ($type == 'Items') {
 
-            $item = VendorItem::find($id);
+            $this->purchaseItem = StockItemPurchaseItem::find($id);
 
         } // end if
 
 
 
-        foreach ($item?->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
 
+        foreach ($this->purchaseItem?->toArray() as $key => $value)
+            $this->instance->{$key} = $value;
 
 
 
@@ -59,9 +63,11 @@ class VendorsItemsEdit extends Component
         // 1.2: extra
         $this->instance->type = $type;
 
-        $this->instance->itemId = $item->item?->id;
-        $this->instance->itemName = $item->item?->name;
-        $this->instance->unitName = $item->unit?->name;
+        $this->instance->itemId = $this->purchaseItem->item?->id;
+        $this->instance->itemName = $this->purchaseItem->item?->name;
+        $this->instance->unitName = $this->purchaseItem->unit?->name;
+
+
 
 
     } // end function
@@ -89,6 +95,7 @@ class VendorsItemsEdit extends Component
 
 
 
+
         // :: rolePermission
         if (! session('globalUser')->checkPermission('Edit Actions')) {
 
@@ -109,21 +116,47 @@ class VendorsItemsEdit extends Component
 
 
 
+
+
+        // :: validation
+        $this->instance->validate();
+
+
+
+
+
+        // ## log - activity ##
+        $return = $this->storeActivity('Stock', "Updated purchase quantity for {$this->instance->itemName} from {$this->purchaseItem->quantity} to {$this->instance?->quantity} in PurchaseID. {$this->purchaseItem->stockPurchase->purchaseID}");
+
+
+
+
+
+
+
+        // ------------------------------------
+        // ------------------------------------
+
+
+
+
+
+
+
         // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/stock/vendors/items/update', $this->instance);
+        $response = $this->makeRequest('dashboard/stock/purchases/items/update', $this->instance);
+
 
 
 
 
         // :: resetForm - resetFilePreview
+        $this->dispatch('refreshViews');
         $this->makeAlert('success', $response?->message);
 
 
 
     } // end function
-
-
-
 
 
 
@@ -139,8 +172,10 @@ class VendorsItemsEdit extends Component
 
 
 
-    public function remove()
+    public function remove($id)
     {
+
+
 
 
         // :: rolePermission
@@ -164,12 +199,13 @@ class VendorsItemsEdit extends Component
 
 
         // 1: params - confirmationBox
-        $this->makeAlert('remove', null, 'confirmVendorItemRemove');
+        $this->removeId = $id;
+
+        $this->makeAlert('remove', null, 'confirmPurchaseItemRemove');
 
 
 
     } // end function
-
 
 
 
@@ -185,14 +221,13 @@ class VendorsItemsEdit extends Component
 
 
 
-
-    #[On('confirmVendorItemRemove')]
+    #[On('confirmPurchaseItemRemove')]
     public function confirmRemove()
     {
 
 
         // 1: makeRequest
-        $response = $this->makeRequest('dashboard/stock/vendors/items/remove', $this->instance);
+        $response = $this->makeRequest('dashboard/stock/purchases/items/remove', $this->instance);
         $this->makeAlert('info', $response?->message);
 
 
@@ -217,6 +252,8 @@ class VendorsItemsEdit extends Component
 
 
 
+
+
     public function render()
     {
 
@@ -227,7 +264,7 @@ class VendorsItemsEdit extends Component
 
 
 
-        return view('livewire.dashboard.stock.vendors.components.vendors-items-edit');
+        return view('livewire.dashboard.stock.purchases.components.purchases-items-edit');
 
 
     } // end function

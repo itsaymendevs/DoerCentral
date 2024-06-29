@@ -1,13 +1,18 @@
-{{-- content --}}
-<section class="content--section" id="content--section">
+<section id="content--section" class="content--section">
     <div class="container">
 
 
 
 
-
         {{-- :: SubMenu --}}
-        <livewire:dashboard.inventory.components.sub-menu title='Purchase List' key='sub-menu' />
+        <livewire:dashboard.stock.components.sub-menu title='Purchases' key='stock-submenu' />
+
+
+
+
+
+
+
 
 
 
@@ -27,7 +32,7 @@
 
 
 
-            {{-- newPurchaseButton --}}
+            {{-- newButton --}}
             <div class="col-3">
                 <button class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
                     data-bs-target="#new-purchase" data-bs-toggle="modal" type="button">
@@ -43,11 +48,17 @@
 
 
 
+
+
+
             {{-- search --}}
             <div class="col-6 text-center">
                 <input wire:model.live='searchPONumber' class="form-control form--input main-version mx-auto"
                     type="search" placeholder="Search for PO. / Reference" />
             </div>
+
+
+
 
 
 
@@ -58,7 +69,6 @@
                     {{ $purchases->total() }}
                 </h3>
             </div>
-
 
 
 
@@ -245,9 +255,10 @@
 
                             </tr>
 
-
                             @endforeach
                             {{-- end loop --}}
+
+
 
                         </tbody>
                     </table>
@@ -319,17 +330,25 @@
 
 
     {{-- 1: create --}}
-    {{--
-    <livewire:dashboard.inventory.purchases.components.purchases-create key='purchases-create-modal' /> --}}
+    <livewire:dashboard.stock.purchases.components.purchases-create key='purchases-create-modal' />
 
 
 
 
     {{-- 2: edit --}}
-    {{--
-    <livewire:dashboard.inventory.purchases.components.purchases-edit key='purchases-edit-modal' /> --}}
+    <livewire:dashboard.stock.purchases.components.purchases-edit key='purchases-edit-modal' />
 
 
+
+
+    {{-- 3: items --}}
+    <livewire:dashboard.stock.purchases.components.purchases-items key='purchases-items-modal' />
+
+
+
+
+    {{-- 4: confirm --}}
+    <livewire:dashboard.stock.purchases.components.purchases-confirm key='purchases-confirm-modal' />
 
 
 

@@ -12,7 +12,7 @@ class BlogSectionForm extends Form
     #[Validate('required')]
     public $title, $content, $blogId;
 
-    public $id, $sideImageFile, $bottomImageFile;
+    public $id, $sideImageFile, $bottomImageFile, $isCenter;
 
 
 

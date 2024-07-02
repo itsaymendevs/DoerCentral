@@ -10,9 +10,9 @@ class BlogForm extends Form
 
     // :: variables
     #[Validate('required')]
-    public $title, $subtitle, $author, $imageFile, $headerImageFile;
+    public $title, $subtitle, $author, $imageFile, $mobileImageFile, $headerImageFile;
 
-    public $id, $publishDate;
+    public $id, $publishDate, $summary, $isDarkMode, $isCenter;
 
 
 
@@ -22,7 +22,7 @@ class BlogForm extends Form
 
 
     // :: helpers
-    public $imageFileName, $headerImageFileName;
+    public $imageFileName, $mobileImageFileName, $headerImageFileName;
 
 
 

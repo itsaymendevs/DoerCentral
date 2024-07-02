@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\CustomerSubscriptionController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DeliveryController;
 use App\Http\Controllers\Api\ExistingCustomerSubscriptionController;
+use App\Http\Controllers\Api\FinanceController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\InventoryExtraController;
 use App\Http\Controllers\Api\KitchenController;
@@ -1527,7 +1528,48 @@ Route::post('/dashboard/extra/management/users/remove', [ManagementController::c
 
 
 
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// 20: extra - finance - methods - update - togglers
+Route::post('/dashboard/extra/finance/payment-methods/update', [FinanceController::class, 'updatePaymentMethod']);
+
+
+Route::post('/dashboard/extra/finance/payment-methods/toggle', [FinanceController::class, 'togglePaymentMethod']);
+Route::post('/dashboard/extra/finance/payment-methods/toggle-live', [FinanceController::class, 'togglePaymentMethodLive']);
+
+
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
 // }); // end middleware
+
+
+
+
 
 
 

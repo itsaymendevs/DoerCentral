@@ -119,7 +119,7 @@ class BlogsViewCreateSection extends Component
 
 
         // :: refresh / closeModal
-        $this->instance->reset();
+        $this->instance->reset('title', 'content', 'sideImageFile', 'bottomImageFile', 'sideImageFileName', 'bottomImageFileName');
         $this->dispatch('refreshViews');
         $this->dispatch('resetFile', file: 'blog--file-3', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'blog--file-4', defaultPreview: $this->getDefaultPreview());

@@ -326,8 +326,9 @@
         <div class="form-check form-switch mealType--checkbox justify-content-center">
 
 
-            <input class="form-check-input pointer replacement--checkbox" data-group='{{ $instance->groupToken }}'
-                type="checkbox" @if($this->instance->isReplacement) checked @endif
+            <input class="form-check-input pointer replacement--checkbox ingredient--default-input"
+                data-group='{{ $instance->groupToken }}' type="checkbox" data-size='{{ $instance->mealSizeId }}'
+                @if($this->instance->isReplacement) checked @endif
             id="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}"
             wire:model='instance.isReplacement'
             wire:change='update' wire:loading.attr='disabled' wire:target='update, remove, init' />

@@ -27,8 +27,13 @@ return new class extends Migration {
 
 
 
+            // 1.3: isCenter
+            $table->boolean('isCenter')->nullable()->default(0);
 
-            // 1.3: blog
+
+
+
+            // 1.4: blog
             $table->bigInteger('blogId')->unsigned()->nullable();
             $table->foreign('blogId')->references('id')->on('blogs')->onDelete('cascade');
 

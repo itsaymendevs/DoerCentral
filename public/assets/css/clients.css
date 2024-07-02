@@ -205,3 +205,10 @@
 .client--floating-button svg.active {
     fill: var(--bs-yellow);
 }
+
+/* finance keys */
+.span--key {
+    width: 18ch !important;
+    margin: auto;
+    display: block !important;
+}

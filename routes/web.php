@@ -11,7 +11,9 @@ use App\Livewire\Dashboard\Delivery\DeliveryDrivers;
 use App\Livewire\Dashboard\Delivery\DeliveryToday;
 use App\Livewire\Dashboard\Delivery\DeliveryVehicles;
 use App\Livewire\Dashboard\Delivery\DeliveryZones;
+use App\Livewire\Dashboard\Extra\Finance\PaymentMethods;
 use App\Livewire\Dashboard\Extra\Reports\ReportsDelivery;
+use App\Livewire\Dashboard\Extra\WebApps\Socials;
 use App\Livewire\Dashboard\Inventory\Comparisons;
 use App\Livewire\Dashboard\Inventory\Configurations;
 use App\Livewire\Dashboard\Inventory\Ingredients;
@@ -1038,6 +1040,27 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+        // 17: extra - socials - update
+        Route::get('dashboard/extra/socials', Socials::class)->name('dashboard.socials');
+
+
+
+
+
+
+
+
+
 
         // ----------------------------------------------------------------------------
         // ----------------------------------------------------------------------------
@@ -1106,6 +1129,27 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+        // ---------
+
+
+
+
+
+
+        // 18.1: extra - finance - payment-methods
+        Route::get('dashboard/extra/finance/payment-methods', PaymentMethods::class)->name('dashboard.finance.paymentMethods');
+
+
+
+
+
+
+        // ---------
+
+
+
+
         // 18.2: extra - finance - operationCosts
         Route::get('dashboard/extra/finance/operation-costs', PaymentDetails::class)->name('dashboard.finance.operationCosts');
 
@@ -1126,8 +1170,14 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
         // 19: extra - reports - delivery
         Route::get('dashboard/extra/reports/delivery', ReportsDelivery::class)->name('dashboard.reports.delivery');
+
+
+
+
 
 
 

@@ -64,6 +64,13 @@ class BlogsCreate extends Component
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'extra/blogs', 'BLG');
 
 
+
+        if ($this->instance->mobileImageFile)
+            $this->instance->mobileImageFileName = $this->uploadFile($this->instance->mobileImageFile, 'extra/blogs', 'BLG-MOBILE');
+
+
+
+
         if ($this->instance->headerImageFile)
             $this->instance->headerImageFileName = $this->uploadFile($this->instance->headerImageFile, 'extra/blogs', 'BLG-HEADER');
 
@@ -117,6 +124,7 @@ class BlogsCreate extends Component
 
 
         return view('livewire.dashboard.extra.web-apps.blogs.blogs-create');
+
 
     } // end function
 

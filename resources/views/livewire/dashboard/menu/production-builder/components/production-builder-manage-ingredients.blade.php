@@ -1131,7 +1131,7 @@
                         @if ($versionPermission->menuModuleHasBuilderReplacements)
 
 
-                        <td class="fw-bold fs-11">Replace.</td>
+                        <td class="fw-bold fs-11">Default</td>
 
 
                         @endif

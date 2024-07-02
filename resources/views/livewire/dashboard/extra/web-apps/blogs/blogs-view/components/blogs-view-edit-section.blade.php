@@ -76,6 +76,15 @@
 
                             </div>
                         </div>
+                        {{-- endCol --}}
+
+
+
+
+
+                        {{-- ----------------------------------- --}}
+                        {{-- ----------------------------------- --}}
+
 
 
 
@@ -86,13 +95,31 @@
 
 
 
+
+
+                            {{-- centerSection --}}
+                            <div class="form-check form-switch mb-4 mealType--checkbox justify-content-center">
+                                <input class="form-check-input pointer" id="centerize-section-checkbox-2"
+                                    type="checkbox" wire:model="instance.isCenter" wire:loading.attr="disabled">
+
+                                <label class="form-check-label d-flex justify-content-center"
+                                    wire:loading.attr="disabled" for="centerize-section-checkbox-2">Center
+                                    Section</label>
+                            </div>
+
+
+
+
+
+
+
                             {{-- A: sideImageFile --}}
                             <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip" data-bss-tooltip=""
                                 title="Click To Upload" for="blog--file-5">
 
 
                                 {{-- size --}}
-                                <span class="upload--caption badge">1:2 Side</span>
+                                <span class="upload--caption badge">Picture</span>
 
 
 
@@ -104,11 +131,10 @@
 
                                 {{-- image --}}
                                 <img id="blog--preview-5" class="inventory--image-frame"
-                                    src="{{ asset('assets/img/placeholder.png') }}"
-                                    style="aspect-ratio: 1/3; height: 350px" width="512" height="250" wire:ignore />
+                                    src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                    width="512" height="250" wire:ignore />
 
                             </label>
-
 
 
 
@@ -120,7 +146,7 @@
                                 title="Click To Upload" for="blog--file-6">
 
                                 {{-- size --}}
-                                <span class="upload--caption badge">2:1 Bottom</span>
+                                <span class="upload--caption badge">Picture</span>
 
 
 
@@ -131,13 +157,10 @@
 
                                 <img id="blog--preview-6" class="inventory--image-frame"
                                     src="{{ asset('assets/img/placeholder.png') }}" width="512" height="250"
-                                    style="aspect-ratio: 2/1; height: 200px" wire:ignore />
+                                    style="aspect-ratio: 1/2;" wire:ignore />
 
                             </label>
                         </div>
-
-
-
                     </div>
                 </form>
             </div>

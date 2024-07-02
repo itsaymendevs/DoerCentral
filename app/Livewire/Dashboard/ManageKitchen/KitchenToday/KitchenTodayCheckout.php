@@ -85,7 +85,7 @@ class KitchenTodayCheckout extends Component
         // 2: getDeliveries
         $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchDeliveryDate)
             ->whereIn('customerSubscriptionId', $subscriptions)
-            ->whereIn('status', ['Pending', 'Completed'])->paginate(16);
+            ->whereIn('status', ['Pending', 'Picked', 'Completed'])->paginate(16);
 
 
 

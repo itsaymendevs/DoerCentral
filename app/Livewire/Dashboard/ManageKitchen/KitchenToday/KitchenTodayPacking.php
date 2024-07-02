@@ -209,7 +209,7 @@ class KitchenTodayPacking extends Component
 
 
         // 2: getDeliveries
-        $customers = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchScheduleDate)?->pluck('customerId')?->toArray() ?? [];
+        $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchScheduleDate)?->pluck('id')?->toArray() ?? [];
 
 
 
@@ -217,8 +217,8 @@ class KitchenTodayPacking extends Component
 
         // 2.1: getSchedules - meals
         $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->searchScheduleDate)
-            ->whereIn('customerId', $customers)
-            ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
+            ->whereIn('customerSubscriptionDeliveryId', $deliveries)
+            ->whereIn('status', ['Pending', 'Picked', 'Completed'])?->pluck('id')->toArray() ?? [];
 
 
 
@@ -359,7 +359,7 @@ class KitchenTodayPacking extends Component
 
 
         // 2: getDeliveries
-        $customers = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchScheduleDate)?->pluck('customerId')?->toArray() ?? [];
+        $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', $this->searchScheduleDate)?->pluck('id')?->toArray() ?? [];
 
 
 
@@ -368,8 +368,8 @@ class KitchenTodayPacking extends Component
 
         // 2.1: getSchedules - meals
         $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->searchScheduleDate)
-            ->whereIn('customerId', $customers)
-            ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
+            ->whereIn('customerSubscriptionDeliveryId', $deliveries)
+            ->whereIn('status', ['Pending', 'Picked', 'Completed'])?->pluck('id')->toArray() ?? [];
 
 
 

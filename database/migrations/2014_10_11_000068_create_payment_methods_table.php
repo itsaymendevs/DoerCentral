@@ -28,9 +28,20 @@ return new class extends Migration {
 
 
 
+            // 1.3 TEST KEYS
+            $table->text('envTestKey')->nullable();
+            $table->text('envTestSecondKey')->nullable();
+            $table->text('envTestThirdKey')->nullable();
+            $table->text('envTestFourthKey')->nullable();
 
-            // 1.3: isActive
+
+
+
+
+
+            // 1.3: isActive - isLive
             $table->boolean('isActive')->nullable()->default(1);
+            $table->boolean('isLive')->nullable()->default(0);
 
 
 

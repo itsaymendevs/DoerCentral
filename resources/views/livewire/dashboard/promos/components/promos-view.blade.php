@@ -145,10 +145,11 @@
                         {{-- isActive --}}
                         <td>
                             <div class="form-check form-switch form-check-inline input--switch">
-                                <input class="form-check-input" id="formCheck-isActive-1" type="checkbox"
-                                    wire:change='toggleActive({{ $promoCode->id }})' @if ($promoCode->isActive)
-                                checked @endif />
-                                <label class="form-check-label d-none" for="formCheck-isActive-1">Active</label>
+                                <input class="form-check-input" id="formCheck-isActive-{{ $promoCode->id }}"
+                                    type="checkbox" wire:change='toggleActive({{ $promoCode->id }})'
+                                    @if($promoCode->isActive) checked @endif />
+                                <label class="form-check-label d-none"
+                                    for="formCheck-isActive-{{ $promoCode->id }}">Active</label>
                             </div>
                         </td>
 
@@ -161,10 +162,11 @@
                         {{-- isForWebsite --}}
                         <td>
                             <div class="form-check form-switch form-check-inline input--switch">
-                                <input class="form-check-input" id="formCheck-1" type="checkbox"
-                                    wire:change='toggleForWebsite({{ $promoCode->id }})' @if ($promoCode->isForWebsite)
+                                <input class="form-check-input" id="formCheck-{{ $promoCode->id }}" type="checkbox"
+                                    wire:change='toggleForWebsite({{ $promoCode->id }})' @if($promoCode->isForWebsite)
                                 checked @endif />
-                                <label class="form-check-label d-none" for="formCheck-1">Hidden</label>
+                                <label class="form-check-label d-none"
+                                    for="formCheck-{{ $promoCode->id }}">Hidden</label>
                             </div>
                         </td>
 

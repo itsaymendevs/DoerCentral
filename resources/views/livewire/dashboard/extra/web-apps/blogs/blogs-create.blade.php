@@ -96,13 +96,13 @@
 
 
             {{-- headerImage --}}
-            <div class="col-8 mb-4">
+            <div class="col-4 mb-4">
                 <label class="col-form-label upload--wrap mb-2" data-bs-toggle="tooltip" data-bss-tooltip=""
                     title="Click To Upload" for="blog--file-1">
 
 
                     {{-- size --}}
-                    <span class="upload--caption badge">2:1 Header</span>
+                    <span class="upload--caption badge" style="max-width: 250px">1920 x 1080</span>
 
 
                     {{-- input --}}
@@ -116,6 +116,37 @@
                         style="aspect-ratio: 2/1" />
                 </label>
             </div>
+
+
+
+
+
+
+
+
+            {{-- mobileImageFile --}}
+            <div class="col-4 mb-4">
+                <label class="col-form-label upload--wrap mb-2" data-bs-toggle="tooltip" data-bss-tooltip=""
+                    title="Click To Upload" for="blog--file-0">
+
+
+                    {{-- size --}}
+                    <span class="upload--caption badge" style="max-width: 250px">640 x 960</span>
+
+
+
+                    {{-- input --}}
+                    <input type="file" id="blog--file-0" class="d-none file--input" data-preview="blog--preview-0"
+                        wire:model='instance.mobileImageFile' required />
+
+
+                    {{-- preview --}}
+                    <img id="blog--preview-0" wire:ignore.self class="inventory--image-frame"
+                        src="{{ asset('assets/img/placeholder.png') }}" width="512" height="250"
+                        style="aspect-ratio: 2/1" />
+                </label>
+            </div>
+
 
 
 
@@ -149,13 +180,23 @@
 
 
 
+            {{-- ---------------------------------------------- --}}
+            {{-- ---------------------------------------------- --}}
+
+
+
+
+
+
+
+
             {{-- midRow --}}
             <div class="col-12">
                 <div class="row align-items-center">
 
 
                     {{-- title --}}
-                    <div class="col-5">
+                    <div class="col-6">
                         <label class="form-label form--label">Blog Title</label>
                         <input type="text" class="form--input mb-4" required wire:model='instance.title' />
                     </div>
@@ -165,7 +206,7 @@
 
 
                     {{-- tags --}}
-                    <div class="col-4" wire:ignore>
+                    <div class="col-3" wire:ignore>
                         <label class="form-label form--label">Tags</label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select form--tag-select" id='tags-select-1'
@@ -184,6 +225,18 @@
                     </div>
 
 
+
+
+
+
+                    {{-- --------------------------- --}}
+                    {{-- --------------------------- --}}
+
+
+
+
+
+
                     {{-- subtitle --}}
                     <div class="col-9">
                         <label class="form-label form--label">Subtitle</label>
@@ -193,10 +246,87 @@
 
 
 
+                    <div class="col-3">
+
+                    </div>
+
+
+
+
+
+                    {{-- --------------------------- --}}
+                    {{-- --------------------------- --}}
+
+
+
+
+
+
+
+                    {{-- summary --}}
+                    <div class="col-9">
+                        <label class="form-label form--label">Summary</label>
+                        <textarea class="form-control form--input form--textarea mb-4" wire:model='instance.summary'
+                            maxlength="200"></textarea>
+                    </div>
+
+
+
+
+
+
+
+                    {{-- togglers --}}
+                    <div class="col-3">
+
+
+
+                        {{-- 1: darkMode --}}
+                        <div class="form-check form-switch mb-0 mealType--checkbox justify-content-center mb-3">
+
+
+                            <input class="form-check-input pointer" id="isDarkMode-checkbox" type="checkbox"
+                                wire:model="instance.isDarkMode" wire:loading.attr="disabled">
+
+
+                            <label class="form-check-label d-flex w-50 justify-content-center"
+                                wire:loading.attr="disabled" for="isDarkMode-checkbox">Dark
+                                Mode</label>
+
+                        </div>
+
+
+
+                        {{-- 2: centerSlider --}}
+                        <div class="form-check form-switch mb-0 mealType--checkbox justify-content-center">
+
+
+                            <input class="form-check-input pointer" id="centerize-checkbox" type="checkbox"
+                                wire:model="instance.isCenter" wire:loading.attr="disabled">
+
+
+                            <label class="form-check-label d-flex w-50 justify-content-center"
+                                wire:loading.attr="disabled" for="centerize-checkbox">Center
+                                Slider</label>
+
+                        </div>
+
+                    </div>
+                    {{-- end togglers --}}
+
+
+
+
+
+
+
+
+
+
                     {{-- submitButton --}}
-                    <div class="col-3 text-center">
+                    <div class="col-9 text-center d-flex justify-content-center align-items-end">
                         <button wire:loading.attr='disabled'
-                            wire:target='instance.imageFile, instance.headerImageFile, store'
+                            wire:target='instance.imageFile, instance.headerImageFile, instance.mobileImageFile, store'
                             class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05"
                             style="border: 1px dashed var(--color-theme-secondary)">Create</button>
                     </div>

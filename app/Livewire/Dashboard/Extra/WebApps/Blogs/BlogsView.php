@@ -46,7 +46,13 @@ class BlogsView extends Component
 
 
 
+        // 1.2: convertBoolean - images
+        $this->instance->isCenter = boolval($this->instance->isCenter);
+        $this->instance->isDarkMode = boolval($this->instance->isDarkMode);
+
+
         $this->instance->imageFileName = $this->instance->imageFile;
+        $this->instance->mobileImageFileName = $this->instance->mobileImageFile;
         $this->instance->headerImageFileName = $this->instance->headerImageFile;
 
 
@@ -65,9 +71,21 @@ class BlogsView extends Component
 
 
 
-        // 1.2: setFilePreview
+        // 1.3: setFilePreview
+        $this->dispatch('setFilePreview', filePreview: 'blog--preview-0', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('setFilePreview', filePreview: 'blog--preview-1', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('setFilePreview', filePreview: 'blog--preview-2', defaultPreview: $this->getDefaultPreview());
+
+
+
+
         $preview = asset('storage/extra/blogs/' . $this->instance->imageFile);
         $this->dispatch('setFilePreview', filePreview: 'blog--preview-2', defaultPreview: $preview);
+
+
+        $preview = asset('storage/extra/blogs/' . $this->instance->mobileImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'blog--preview-0', defaultPreview: $preview);
+
 
 
         $preview = asset('storage/extra/blogs/' . $this->instance->headerImageFile);
@@ -138,9 +156,14 @@ class BlogsView extends Component
             $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/blogs', $this->instance->imageFileName, 'BLG');
 
 
+
+        if ($this->instance->mobileImageFile != $this->instance->mobileImageFileName)
+            $this->instance->mobileImageFileName = $this->replaceFile($this->instance->mobileImageFile, 'extra/blogs', $this->instance->mobileImageFileName, 'BLG');
+
+
+
         if ($this->instance->headerImageFile != $this->instance->headerImageFileName)
             $this->instance->headerImageFileName = $this->replaceFile($this->instance->headerImageFile, 'extra/blogs', $this->instance->headerImageFileName, 'BLG-HEADER');
-
 
 
 

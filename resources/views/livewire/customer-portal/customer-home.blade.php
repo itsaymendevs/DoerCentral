@@ -563,7 +563,7 @@
 
 
                 {{-- blogs --}}
-                <div class="row align-items-start @if ($blogs->count() == 0) d-none @endif">
+                <div class="row align-items-start @if ($blogs->count() == 0) d-none @endif" wire:ignore>
 
 
 
@@ -600,7 +600,7 @@
 
 
                                 {{-- loop - today blogs --}}
-                                @foreach ($blogs as $blog)
+                                @foreach ($blogs ?? [] as $blog)
 
                                 <div class="swiper-slide">
                                     <img src="{{ asset('storage/extra/blogs/' . $blog->imageFile) }}" alt=""

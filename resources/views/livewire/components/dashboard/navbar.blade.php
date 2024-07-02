@@ -167,9 +167,9 @@
 
                     {{-- stock --}}
 
-                    {{-- :: rolePermission - stock --}}
+                    {{-- :: rolePermission - inventory --}}
 
-                    {{-- @if ($user->checkPermission('Stock')) --}}
+                    @if ($user->checkPermission('Inventory'))
 
 
                     <a class="btn navbar--menu-button
@@ -177,7 +177,7 @@
                         href="{{ route('dashboard.stock.items.containers') }}">Stock</a>
 
 
-                    {{-- @endif --}}
+                    @endif
                     {{-- end if - rolePermission --}}
 
 

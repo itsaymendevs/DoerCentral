@@ -5,7 +5,17 @@
 
 
 
-    {{-- 1: payment details --}}
+
+
+    {{-- 1: methods --}}
+    <a wire:navigate class="btn fs-13
+    @if (Request::is('dashboard/extra/finance/payment-methods')) active @endif" role="button"
+        href="{{ route('dashboard.finance.paymentMethods') }}">Payment Methods</a>
+
+
+
+
+    {{-- 2: payment details --}}
     <a wire:navigate class="btn fs-13
     @if (Request::is('dashboard/extra/finance/payment-details')) active @endif" role="button"
         href="{{ route('dashboard.finance.paymentDetails') }}">Payments</a>
@@ -14,9 +24,7 @@
 
 
 
-
-
-    {{-- 2: operationCost --}}
+    {{-- 3: operationCost --}}
     <a wire:navigate class="btn fs-13
     @if (Request::is('dashboard/extra/finance/operation-costs')) active @endif" role="button"
         href="{{ route('dashboard.finance.operationCosts') }}">Costs</a>

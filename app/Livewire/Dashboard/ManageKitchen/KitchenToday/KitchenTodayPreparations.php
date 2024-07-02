@@ -87,9 +87,9 @@ class KitchenTodayPreparations extends Component
 
 
         // 1: getDeliveries
-        $customers = CustomerSubscriptionDelivery::where('deliveryDate', '>=', $this->searchScheduleDate)
+        $deliveries = CustomerSubscriptionDelivery::where('deliveryDate', '>=', $this->searchScheduleDate)
             ->where('deliveryDate', '<=', $this->searchScheduleUntilDate ?? $this->searchScheduleDate)
-                ?->pluck('customerId')?->toArray() ?? [];
+                ?->pluck('id')?->toArray() ?? [];
 
 
 
@@ -99,7 +99,7 @@ class KitchenTodayPreparations extends Component
         // 1.2: getSchedules - meals
         $schedules = CustomerSubscriptionSchedule::where('scheduleDate', '>=', $this->searchScheduleDate)
             ->where('scheduleDate', '<=', $this->searchScheduleUntilDate ?? $this->searchScheduleDate)
-            ->whereIn('customerId', $customers)
+            ->whereIn('customerSubscriptionDeliveryId', $deliveries)
             ->whereIn('status', ['Pending', 'Completed'])?->pluck('id')->toArray() ?? [];
 
 

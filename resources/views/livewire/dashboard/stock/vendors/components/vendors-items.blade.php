@@ -306,7 +306,7 @@
          levelId = $(this).attr('data-id');
 
 
-         @this.levelSelect(levelType, selectValue, levelId);
+         @this.levelSelect(levelType, null, selectValue, levelId);
 
 
       }); //end function

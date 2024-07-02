@@ -44,10 +44,12 @@ class BlogsViewEditSection extends Component
 
 
 
+
+        // 1.2: convertBoolean - imageFiles
+        $this->instance->isCenter = boolval($this->instance->isCenter);
+
         $this->instance->sideImageFileName = $this->instance?->sideImageFile ?? null;
         $this->instance->bottomImageFileName = $this->instance?->bottomImageFile ?? null;
-
-
 
 
 
@@ -61,6 +63,10 @@ class BlogsViewEditSection extends Component
 
 
         // 1.2: setFilePreview
+        $this->dispatch('setFilePreview', filePreview: 'blog--preview-5', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('setFilePreview', filePreview: 'blog--preview-6', defaultPreview: $this->getDefaultPreview());
+
+
 
         if ($this->instance->sideImageFile) {
 
@@ -68,6 +74,8 @@ class BlogsViewEditSection extends Component
             $this->dispatch('setFilePreview', filePreview: 'blog--preview-5', defaultPreview: $preview);
 
         } // end if
+
+
 
 
 
@@ -141,13 +149,20 @@ class BlogsViewEditSection extends Component
 
 
         // 1: replaceFiles
-        if ($this->instance->sideImageFile != $this->instance->sideImageFileName)
+        if ($this->instance->sideImageFile != $this->instance->sideImageFileName) {
+
             $this->instance->sideImageFileName = $this->replaceFile($this->instance->sideImageFile, 'extra/blogs/sections', $this->instance->sideImageFileName, 'BLG-SIDE');
 
+        } // end if
 
-        if ($this->instance->bottomImageFile != $this->instance->bottomImageFileName)
+
+
+
+        if ($this->instance->bottomImageFile != $this->instance->bottomImageFileName) {
+
             $this->instance->bottomImageFileName = $this->replaceFile($this->instance->bottomImageFile, 'extra/blogs/sections', $this->instance->bottomImageFileName, 'BLG-BOTTOM');
 
+        } // end if
 
 
 

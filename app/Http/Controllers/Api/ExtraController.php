@@ -36,14 +36,19 @@ class ExtraController extends Controller
         $blog->title = $request->title;
         $blog->author = $request->author;
         $blog->subtitle = $request->subtitle;
+        $blog->summary = $request->summary ?? null;
+
 
         $blog->publishDate = $this->getCurrentDate();
+        $blog->isCenter = $request->isCenter ?? false;
+        $blog->isDarkMode = $request->isDarkMode ?? false;
 
 
 
 
         // 1.2: imageFiles
         $blog->imageFile = $request->imageFileName ?? null;
+        $blog->mobileImageFile = $request->mobileImageFileName ?? null;
         $blog->headerImageFile = $request->headerImageFileName ?? null;
 
 
@@ -131,13 +136,17 @@ class ExtraController extends Controller
         $blog->title = $request->title;
         $blog->author = $request->author;
         $blog->subtitle = $request->subtitle;
+        $blog->summary = $request->summary ?? null;
 
+
+        $blog->isCenter = $request->isCenter ?? false;
+        $blog->isDarkMode = $request->isDarkMode ?? false;
 
 
 
         // 1.2: imageFiles
         $blog->imageFile = $request->imageFileName ?? null;
-
+        $blog->mobileImageFile = $request->mobileImageFileName ?? null;
         $blog->headerImageFile = $request->headerImageFileName ?? null;
 
 
@@ -339,7 +348,14 @@ class ExtraController extends Controller
 
 
 
-        // 1.3: blog
+
+        // 1.3: isCenter
+        $section->isCenter = $request->isCenter ?? false;
+
+
+
+
+        // 1.4: blog
         $section->blogId = $request->blogId;
 
 
@@ -417,6 +433,9 @@ class ExtraController extends Controller
 
 
 
+
+        // 1.3: isCenter
+        $section->isCenter = $request->isCenter ?? false;
 
 
 

@@ -18,6 +18,8 @@ return new class extends Migration {
             // 1: general
             $table->text('title')->nullable();
             $table->text('subtitle')->nullable();
+            $table->text('summary')->nullable();
+
             $table->date('publishDate')->nullable();
             $table->string('author', 255)->nullable();
 
@@ -25,12 +27,16 @@ return new class extends Migration {
 
             // 1.2: isForWebsite
             $table->boolean('isForWebsite')->nullable()->default(1);
+            $table->boolean('isDarkMode')->nullable()->default(0);
+            $table->boolean('isCenter')->nullable()->default(0);
 
 
 
 
-            // 1.3: imageFile (Card) - headerImageFile
+
+            // 1.3: imageFile (Desktop) - mobileImageFile - headerImageFile
             $table->text('imageFile')->nullable();
+            $table->text('mobileImageFile')->nullable();
             $table->text('headerImageFile')->nullable();
 
 

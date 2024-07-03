@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\BlogSection;
 use App\Models\BlogTag;
+use App\Models\Social;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
@@ -501,6 +502,79 @@ class ExtraController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function updateSocialMedia(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: create
+        $socialMedia = Social::first();
+
+
+        $socialMedia->instagramURL = $request->instagramURL ?? null;
+        $socialMedia->facebookURL = $request->facebookURL ?? null;
+        $socialMedia->twitterURL = $request->twitterURL ?? null;
+        $socialMedia->linkedInURL = $request->linkedInURL ?? null;
+
+
+        $socialMedia->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Links has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
 
 
 

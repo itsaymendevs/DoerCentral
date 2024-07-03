@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
                 // PermissionSeeder::class,
                 // RoleSeeder::class,
             UserSeeder::class,
+            // SocialSeeder::class,
             // ServingItemSeeder::class,
             // IngredientCategorySeeder::class,
             // IngredientGroupSeeder::class,

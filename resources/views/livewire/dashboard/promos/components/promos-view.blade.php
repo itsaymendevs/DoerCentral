@@ -61,7 +61,7 @@
 
 
                         {{-- :: permission - hasPromoTogglers --}}
-                        @if ($versionPermission->salesModuleHasPromoTogglers)
+                        @if ($versionPermission->salesModuleHasPromoTogglers || session('hasTechAccess'))
 
 
                         <th class="th--sm">Active?</th>
@@ -137,7 +137,7 @@
 
 
                         {{-- :: permission - hasPromoTogglers --}}
-                        @if ($versionPermission->salesModuleHasPromoTogglers)
+                        @if ($versionPermission->salesModuleHasPromoTogglers || session('hasTechAccess'))
 
 
 

@@ -164,7 +164,7 @@ class Permissions extends Component
 
             // 1.5: inventory - delivery
             'inventoryModuleHasStock' => 'Supplier & Stock',
-            'inventoryModuleHasComparisons' => 'Comparisons Tab',
+            'inventoryModuleHasComparisons' => 'P.O & Comparisons',
 
             'deliveryModuleHasVehiclePromotion' => 'Vehicle Promotion',
             'deliveryModuleHasDrivers' => 'Delivery Zones',
@@ -187,6 +187,22 @@ class Permissions extends Component
 
 
 
+
+
+            // 1.6.5: stock
+            'stockModuleHasModule' => 'Stock Module',
+            'stockModuleHasStock' => 'Vendors & Stock',
+            'stockModuleHasComparisons' => 'Comparison Tab',
+
+
+
+
+
+
+
+
+
+
             // -------------------------------------------
             // -------------------------------------------
 
@@ -197,6 +213,7 @@ class Permissions extends Component
             'menuModuleHasHidePlan' => 'Hide Plan',
             'menuModuleHasHideBundle' => 'Hide Bundle',
             'menuModuleHasDynamicBundles' => 'Dynamic Bundle',
+            'menuModuleHasMealAddons' => 'Meal Addons',
             'menuModuleHasMealFullView' => 'Full Meal Preview',
             'menuModuleHasMealTypeFilters' => 'Meal-Type Filters',
             'menuModuleHasIngredientsList' => 'Ingredient Lists',
@@ -235,17 +252,35 @@ class Permissions extends Component
 
             // 1.8: extra
             'extraModuleHasModule' => 'Extra Module',
-            'extraModuleHasManagement' => 'Management',
-            'extraModuleHasFinance' => 'Finance',
-            'extraModuleHasReports' => 'Reports',
+            'extraModuleHasReports' => 'Reports Module',
+            'extraModuleHasFinance' => 'Finance Module',
+            'extraModuleHasWebsite' => 'App & Website Module',
+            'extraModuleHasManagement' => 'Management Module',
 
-            'extraModuleHasDepartments' => 'Departments',
-            'extraModuleHasActivityLog' => 'Activity Log',
 
-            'extraModuleHasWebsite' => 'App & Website',
-            'extraModuleHasBlogs' => 'Website Blogs',
-            'extraModuleHasBanners' => 'Website Banners',
-            'extraModuleHasPaymentDetails' => 'Payment Details',
+
+            // 1.8.1: management
+            'extraModuleHasDepartments' => 'Management - Departments',
+            'extraModuleHasActivityLog' => 'Management - Activity Log',
+
+
+
+            // 1.8.2: website
+            'extraModuleHasBlogs' => 'Website -  Blogs',
+            'extraModuleHasBlogsModification' => 'Website -  Blog Modifications',
+            'extraModuleHasBanners' => 'Website -  Banners',
+            'extraModuleHasSocials' => 'Website - Socials',
+
+
+
+
+
+
+            // 1.8.3: finance
+            'extraModuleHasFinanceCosts' => 'Finance - Costs',
+            'extraModuleHasFinancePaymentMethods' => 'Finance - Payment Methods',
+            'extraModuleHasFinancePaymentDetails' => 'Finance - Payment Details',
+
 
         ];
 
@@ -325,8 +360,17 @@ class Permissions extends Component
 
 
 
-        // 2.7: planAndBuilder
-        $planBuilderPermissions = VersionPermission::get(['menuModuleHasHidePlan', 'menuModuleHasHideBundle', 'menuModuleHasDynamicBundles', 'menuModuleHasMealFullView', 'menuModuleHasMealTypeFilters', 'menuModuleHasIngredientsList', 'menuModuleHasBuilderExtraPictures', 'menuModuleHasBuilderCostOverview', 'menuModuleHasBuilderSizeOverview', 'menuModuleHasBuilderExtraItems', 'menuModuleHasBuilderMacros', 'menuModuleHasBuilderReplacements', 'menuModuleHasBuilderPercentage', 'menuModuleHasBuilderConversion', 'menuModuleHasBuilderCutlery', 'menuModuleHasBuilderPackings', 'menuModuleHasBuilderLabelPreview', 'menuModuleHasBuilderContainerPreview'])->first()->toArray();
+
+        // 2.7: stock
+        $stockPermissions = VersionPermission::get(['stockModuleHasModule', 'stockModuleHasStock', 'stockModuleHasComparisons'])->first()->toArray();
+
+
+
+
+
+
+        // 2.8: planAndBuilder
+        $planBuilderPermissions = VersionPermission::get(['menuModuleHasHidePlan', 'menuModuleHasHideBundle', 'menuModuleHasDynamicBundles', 'menuModuleHasMealAddons', 'menuModuleHasMealFullView', 'menuModuleHasMealTypeFilters', 'menuModuleHasIngredientsList', 'menuModuleHasBuilderExtraPictures', 'menuModuleHasBuilderCostOverview', 'menuModuleHasBuilderSizeOverview', 'menuModuleHasBuilderExtraItems', 'menuModuleHasBuilderMacros', 'menuModuleHasBuilderReplacements', 'menuModuleHasBuilderPercentage', 'menuModuleHasBuilderConversion', 'menuModuleHasBuilderCutlery', 'menuModuleHasBuilderPackings', 'menuModuleHasBuilderLabelPreview', 'menuModuleHasBuilderContainerPreview'])->first()->toArray();
 
 
 
@@ -334,14 +378,13 @@ class Permissions extends Component
 
 
 
-        // 2.8: extra
-        $extraPermissions = VersionPermission::get(['extraModuleHasModule', 'extraModuleHasManagement', 'extraModuleHasFinance', 'extraModuleHasReports', 'extraModuleHasDepartments', 'extraModuleHasActivityLog', 'extraModuleHasWebsite', 'extraModuleHasBlogs', 'extraModuleHasBanners', 'extraModuleHasPaymentDetails'])->first()->toArray();
+        // 2.9: extra
+        $extraPermissions = VersionPermission::get(['extraModuleHasModule', 'extraModuleHasManagement', 'extraModuleHasFinance', 'extraModuleHasReports', 'extraModuleHasWebsite', 'extraModuleHasDepartments', 'extraModuleHasActivityLog', 'extraModuleHasBlogs', 'extraModuleHasBlogsModification', 'extraModuleHasBanners', 'extraModuleHasSocials', 'extraModuleHasFinanceCosts', 'extraModuleHasFinancePaymentMethods', 'extraModuleHasFinancePaymentDetails'])->first()->toArray();
 
 
 
 
-
-        return view('livewire.control.permissions', compact('generalPermissions', 'dashboardPermissions', 'calendarSettingPermissions', 'customerPermissions', 'kitchenPermissions', 'inventoryPermissions', 'salesPermissions', 'planBuilderPermissions', 'extraPermissions', 'displayTitles'));
+        return view('livewire.control.permissions', compact('generalPermissions', 'dashboardPermissions', 'calendarSettingPermissions', 'customerPermissions', 'kitchenPermissions', 'inventoryPermissions', 'salesPermissions', 'planBuilderPermissions', 'extraPermissions', 'displayTitles', 'stockPermissions'));
 
 
 

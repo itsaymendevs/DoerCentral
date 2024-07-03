@@ -168,7 +168,7 @@
 
 
                                         {{-- :: permission - hasHideBundle --}}
-                                        @if ($versionPermission->menuModuleHasHideBundle)
+                                        @if ($versionPermission->menuModuleHasHideBundle || session('hasTechAccess'))
 
 
 

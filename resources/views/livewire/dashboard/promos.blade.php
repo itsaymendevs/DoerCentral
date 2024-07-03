@@ -27,7 +27,7 @@
                         {{-- 2: rewards --}}
 
                         {{-- :: permission - hasRewards --}}
-                        @if ($versionPermission->salesModuleHasRewards)
+                        @if ($versionPermission->salesModuleHasRewards || session('hasTechAccess'))
 
 
                         <li class="nav-item" role="presentation">

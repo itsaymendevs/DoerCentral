@@ -31,6 +31,13 @@
 
 
 
+
+            {{-- :: permission - hasStock --}}
+            @if ($versionPermission->stockModuleHasStock || session('hasTechAccess'))
+
+
+
+
             {{-- vendors --}}
             <a wire:navigate class="btn
                  @if (Request::is('dashboard/stock/vendors')) active @endif" role="button"
@@ -54,6 +61,15 @@
             <a wire:navigate
                 class="btn @if (Request::is('dashboard/stock/stock-containers') || Request::is('dashboard/stock/stock-labels') ||Request::is('dashboard/stock/stock-items')) active @endif"
                 role="button" href="{{ route('dashboard.stock.stockContainers') }}">Stock</a>
+
+
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
 
 
 

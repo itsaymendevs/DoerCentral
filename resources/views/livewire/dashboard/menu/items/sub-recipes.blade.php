@@ -25,7 +25,7 @@
             {{-- partType --}}
 
             {{-- :: permission - hasTypeFilter --}}
-            @if ($versionPermission->menuModuleHasMealTypeFilters)
+            @if ($versionPermission->menuModuleHasMealTypeFilters || session('hasTechAccess'))
 
 
             <div class="col-2">
@@ -185,7 +185,7 @@
 
 
                                 {{-- :: permission - hasMealView --}}
-                                @if ($versionPermission->menuModuleHasMealFullView)
+                                @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 
@@ -310,7 +310,7 @@
                                         {{-- 2: ingredients tooltip --}}
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 
@@ -349,7 +349,7 @@
 
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
                                         <button
@@ -380,7 +380,7 @@
                                         {{-- 4: preview --}}
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 

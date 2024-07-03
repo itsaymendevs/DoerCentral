@@ -112,7 +112,7 @@
 
 
             {{-- :: permission - hasEditCalendar --}}
-            @if ($versionPermission->customerModuleEditCalendar)
+            @if ($versionPermission->customerModuleEditCalendar || session('hasTechAccess'))
 
 
 
@@ -163,7 +163,7 @@
 
 
                 {{-- :: permission - hasSkip --}}
-                @if ($versionPermission->customerModuleHasSkip)
+                @if ($versionPermission->customerModuleHasSkip || session('hasTechAccess'))
 
 
 
@@ -601,7 +601,8 @@
                                                 {{-- diet--}}
 
                                                 {{-- :: permission - hasMealFullView --}}
-                                                @if ($versionPermission->menuModuleHasMealFullView)
+                                                @if ($versionPermission->menuModuleHasMealFullView
+                                                || session('hasTechAccess'))
 
 
 
@@ -674,7 +675,8 @@
                                             {{-- sizeMacros --}}
 
                                             {{-- :: permission - hasMealFullView --}}
-                                            @if ($versionPermission->menuModuleHasMealFullView)
+                                            @if ($versionPermission->menuModuleHasMealFullView ||
+                                            session('hasTechAccess'))
 
 
 
@@ -918,7 +920,8 @@
                                                 {{-- diet--}}
 
                                                 {{-- :: permission - hasMealFullView --}}
-                                                @if ($versionPermission->menuModuleHasMealFullView)
+                                                @if ($versionPermission->menuModuleHasMealFullView ||
+                                                session('hasTechAccess'))
 
 
 
@@ -1001,7 +1004,8 @@
 
 
                                             {{-- :: permission - hasMealFullView --}}
-                                            @if ($versionPermission->menuModuleHasMealFullView)
+                                            @if ($versionPermission->menuModuleHasMealFullView ||
+                                            session('hasTechAccess'))
 
 
 
@@ -1265,7 +1269,8 @@
                                                 {{-- diet--}}
 
                                                 {{-- :: permission - hasMealFullView --}}
-                                                @if ($versionPermission->menuModuleHasMealFullView)
+                                                @if ($versionPermission->menuModuleHasMealFullView ||
+                                                session('hasTechAccess'))
 
 
 
@@ -1353,7 +1358,8 @@
 
 
                                             {{-- :: permission - hasMealFullView --}}
-                                            @if ($versionPermission->menuModuleHasMealFullView)
+                                            @if ($versionPermission->menuModuleHasMealFullView ||
+                                            session('hasTechAccess'))
 
 
 

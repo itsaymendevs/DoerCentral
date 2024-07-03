@@ -161,7 +161,7 @@
 
 
             {{-- :: permission - hasCostOverview --}}
-            @if ($versionPermission->menuModuleHasBuilderCostOverview)
+            @if ($versionPermission->menuModuleHasBuilderCostOverview || session('hasTechAccess'))
 
             <div class="col-6">
 

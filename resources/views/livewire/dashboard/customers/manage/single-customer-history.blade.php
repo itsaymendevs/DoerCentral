@@ -34,7 +34,7 @@
 
                         {{-- 1: subscriptions --}}
 
-                        @if (!$versionPermission->isProcessing)
+                        @if (!$versionPermission->isProcessing || session('hasTechAccess'))
 
 
                         <li class="nav-item" role="presentation">
@@ -59,7 +59,7 @@
 
 
                         {{-- :: permission - hasInvoicesView --}}
-                        @if ($versionPermission->customerModuleHasInvoicesView)
+                        @if ($versionPermission->customerModuleHasInvoicesView || session('hasTechAccess'))
 
 
                         <li class="nav-item" role="presentation">
@@ -120,7 +120,7 @@
 
 
                         {{-- :: permission - hasInvoicesView --}}
-                        @if ($versionPermission->customerModuleHasInvoicesView)
+                        @if ($versionPermission->customerModuleHasInvoicesView || session('hasTechAccess'))
 
 
 

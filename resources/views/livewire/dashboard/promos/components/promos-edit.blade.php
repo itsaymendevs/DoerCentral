@@ -43,7 +43,7 @@
 
 
                         {{-- :: permission - !hasPromoFixedAmount --}}
-                        @if (!$versionPermission->salesModuleHasPromoFixedAmount)
+                        @if (!$versionPermission->salesModuleHasPromoFixedAmount || session('hasTechAccess'))
 
 
                         {{-- empty - forViewPurpose --}}
@@ -85,7 +85,7 @@
                         {{-- amount --}}
 
                         {{-- :: permission - hasPromoFixedAmount --}}
-                        @if ($versionPermission->salesModuleHasPromoFixedAmount)
+                        @if ($versionPermission->salesModuleHasPromoFixedAmount || session('hasTechAccess'))
 
 
                         <div class="col-4">

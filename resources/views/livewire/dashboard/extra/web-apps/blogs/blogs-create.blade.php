@@ -161,7 +161,7 @@
 
 
                     {{-- size --}}
-                    <span class="upload--caption badge">1:1 Card</span>
+                    <span class="upload--caption badge">Card</span>
 
 
                     {{-- input --}}

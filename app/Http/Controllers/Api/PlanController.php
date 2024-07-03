@@ -45,16 +45,20 @@ class PlanController extends Controller
         $plan = new Plan();
 
         $plan->name = $request->name;
-        $plan->startingPrice = $request->startingPrice;
+        $plan->nameURL = $this->getNameURL($request->name);
 
         $plan->desc = $request->desc;
         $plan->longDesc = $request->longDesc;
+        $plan->themeColor = $request->themeColor ?? "#000";
+        $plan->startingPrice = $request->startingPrice;
 
 
 
 
         // 1.2: imageFile
         $plan->imageFile = $request->imageFileName;
+        $plan->secondImageFile = $request->secondImageFileName ?? null;
+        $plan->thirdImageFile = $request->thirdImageFileName ?? null;
 
 
 
@@ -104,18 +108,20 @@ class PlanController extends Controller
         $plan = Plan::find($request->id);
 
         $plan->name = $request->name;
-        $plan->startingPrice = $request->startingPrice;
+        $plan->nameURL = $this->getNameURL($request->name);
 
         $plan->desc = $request->desc;
         $plan->longDesc = $request->longDesc;
+        $plan->themeColor = $request->themeColor ?? "#000";
+        $plan->startingPrice = $request->startingPrice;
 
 
 
 
         // 1.2: imageFile
-        if ($request->imageFileName)
-            $plan->imageFile = $request->imageFileName;
-
+        $plan->imageFile = $request->imageFileName ?? null;
+        $plan->secondImageFile = $request->secondImageFileName ?? null;
+        $plan->thirdImageFile = $request->thirdImageFileName ?? null;
 
 
         $plan->save();

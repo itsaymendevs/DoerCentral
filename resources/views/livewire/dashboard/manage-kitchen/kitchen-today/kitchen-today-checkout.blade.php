@@ -104,7 +104,7 @@
 
 
                 {{-- :: permission - hasPrintExcel --}}
-                @if ($versionPermission->kitchenModuleHasPrintExcel)
+                @if ($versionPermission->kitchenModuleHasPrintExcel || session('hasTechAccess'))
 
 
 
@@ -175,7 +175,7 @@
 
 
                 {{-- :: permission - hasCheckoutType --}}
-                @if ($versionPermission->kitchenModuleHasCheckoutType)
+                @if ($versionPermission->kitchenModuleHasCheckoutType || session('hasTechAccess'))
 
 
 
@@ -366,7 +366,7 @@
 
 
                         {{-- :: permission - hasCheckoutType --}}
-                        @if ($versionPermission->kitchenModuleHasCheckoutType)
+                        @if ($versionPermission->kitchenModuleHasCheckoutType || session('hasTechAccess'))
 
 
                         <div class="single-row">

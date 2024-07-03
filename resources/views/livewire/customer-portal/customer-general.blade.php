@@ -604,7 +604,7 @@
 
 
                 {{-- :: permission - hasWallet --}}
-                @if ($versionPermission->customerModuleHasWallet)
+                @if ($versionPermission->customerModuleHasWallet || session('hasTechAccess'))
 
 
 
@@ -807,7 +807,7 @@
 
 
                 {{-- :: hasCustomerBundlesView --}}
-                @if ($versionPermission->hasCustomerBundlesView)
+                @if ($versionPermission->hasCustomerBundlesView || session('hasTechAccess'))
 
 
 

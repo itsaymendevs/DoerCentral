@@ -21,7 +21,7 @@
 
 
     {{-- :: permission - hasDepartments --}}
-    @if ($versionPermission->extraModuleHasDepartments)
+    @if ($versionPermission->extraModuleHasDepartments || session('hasTechAccess'))
 
 
     <a wire:navigate class="btn fs-13 @if (Request::is('dashboard/extra/management/departments')) active @endif"
@@ -41,7 +41,7 @@
 
 
     {{-- :: permission - hasDepartments --}}
-    @if ($versionPermission->extraModuleHasActivityLog)
+    @if ($versionPermission->extraModuleHasActivityLog || session('hasTechAccess'))
 
 
     <a wire:navigate class="btn fs-13 @if (Request::is('dashboard/extra/management/activity')) active @endif"

@@ -43,7 +43,7 @@
 
 
             {{-- :: permission - hasDrivers --}}
-            @if ($versionPermission->deliveryModuleHasDrivers)
+            @if ($versionPermission->deliveryModuleHasDrivers || session('hasTechAccess'))
 
 
 

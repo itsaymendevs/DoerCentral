@@ -33,7 +33,7 @@
 
 
             {{-- :: permission - hasStock --}}
-            @if ($versionPermission->inventoryModuleHasStock)
+            @if ($versionPermission->inventoryModuleHasStock || session('hasTechAccess'))
 
 
 
@@ -62,7 +62,7 @@
 
 
             {{-- :: permission - hasPurchaseOrders --}}
-            @if ($versionPermission->inventoryModuleHasComparisons)
+            @if ($versionPermission->inventoryModuleHasComparisons || session('hasTechAccess'))
 
 
             <a wire:navigate class="btn
@@ -84,7 +84,7 @@
 
 
             {{-- :: permission - hasComparisons --}}
-            @if ($versionPermission->inventoryModuleHasComparisons)
+            @if ($versionPermission->inventoryModuleHasComparisons || session('hasTechAccess'))
 
 
             <a wire:navigate class="btn
@@ -144,7 +144,7 @@
 
 
             {{-- :: permission - hasAdminView --}}
-            @if ($versionPermission->hasAdminView)
+            @if ($versionPermission->hasAdminView || session('hasTechAccess'))
 
 
             <a wire:navigate class="btn

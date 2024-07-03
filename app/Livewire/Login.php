@@ -70,6 +70,16 @@ class Login extends Component
 
 
 
+            if ($user->email == 'tech@doer.ae') {
+
+                Session::put('hasTechAccess', true);
+
+            } else {
+
+                Session::put('hasTechAccess', false);
+
+            } // end if
+
 
 
 

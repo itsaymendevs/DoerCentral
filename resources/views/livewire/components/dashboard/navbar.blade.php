@@ -73,7 +73,7 @@
 
                     {{-- :: rolePermission - dashboard --}}
 
-                    @if ($user->checkPermission('Dashboard'))
+                    @if ($user->checkPermission('Dashboard') || session('hasTechAccess'))
 
 
 
@@ -97,7 +97,7 @@
 
                     {{-- :: rolePermission - customers --}}
 
-                    @if ($user->checkPermission('Customers'))
+                    @if ($user->checkPermission('Customers') || session('hasTechAccess'))
 
 
                     <a class="btn  navbar--menu-button
@@ -122,7 +122,7 @@
 
                     {{-- :: rolePermission - menu --}}
 
-                    @if ($user->checkPermission('Menu'))
+                    @if ($user->checkPermission('Menu') || session('hasTechAccess'))
 
 
                     <a class="btn navbar--menu-button
@@ -147,7 +147,7 @@
 
                     {{-- :: rolePermission - kitchen --}}
 
-                    @if ($user->checkPermission('Kitchen'))
+                    @if ($user->checkPermission('Kitchen') || session('hasTechAccess'))
 
 
                     <a wire:navigate href="{{ route('dashboard.kitchenTodayProduction') }}" class="btn navbar--menu-button
@@ -169,12 +169,26 @@
 
                     {{-- :: rolePermission - inventory --}}
 
-                    @if ($user->checkPermission('Inventory'))
+                    @if ($user->checkPermission('Inventory') || session('hasTechAccess'))
+
+
+
+
+                    {{-- :: permission - hasStockModule --}}
+                    @if ($versionPermission->stockModuleHasModule || session('hasTechAccess'))
+
 
 
                     <a class="btn navbar--menu-button
                     @if (Request::is('dashboard/stock', 'dashboard/stock/*')) active @endif"
                         href="{{ route('dashboard.stock.items.containers') }}">Stock</a>
+
+
+
+                    @endif
+                    {{-- end if - permission --}}
+
+
 
 
                     @endif
@@ -193,7 +207,7 @@
 
                     {{-- :: rolePermission - inventory --}}
 
-                    @if ($user->checkPermission('Inventory'))
+                    @if ($user->checkPermission('Inventory') || session('hasTechAccess'))
 
 
                     <a class="btn navbar--menu-button
@@ -217,7 +231,7 @@
 
                     {{-- :: rolePermission - delivery --}}
 
-                    @if ($user->checkPermission('Delivery'))
+                    @if ($user->checkPermission('Delivery') || session('hasTechAccess'))
 
 
                     <a class="btn navbar--menu-button
@@ -244,7 +258,7 @@
 
                     {{-- :: rolePermission - sales --}}
 
-                    @if ($user->checkPermission('Sales'))
+                    @if ($user->checkPermission('Sales') || session('hasTechAccess'))
 
 
 
@@ -294,7 +308,7 @@
 
                     {{-- :: rolePermission - Extra --}}
 
-                    @if ($user->checkPermission('Extra'))
+                    @if ($user->checkPermission('Extra') || session('hasTechAccess'))
 
 
 
@@ -302,7 +316,7 @@
 
 
                     {{-- :: permission - hasExtraModule --}}
-                    @if ($versionPermission->extraModuleHasModule)
+                    @if ($versionPermission->extraModuleHasModule || session('hasTechAccess'))
 
 
 
@@ -332,7 +346,7 @@
                             {{-- Reports --}}
 
                             {{-- :: permission - hasReports --}}
-                            @if ($versionPermission->extraModuleHasReports)
+                            @if ($versionPermission->extraModuleHasReports || session('hasTechAccess'))
 
 
 
@@ -355,7 +369,7 @@
                             {{-- finance --}}
 
                             {{-- :: permission - hasFinance --}}
-                            @if ($versionPermission->extraModuleHasFinance)
+                            @if ($versionPermission->extraModuleHasFinance || session('hasTechAccess'))
 
 
 
@@ -381,7 +395,7 @@
                             {{-- app & website --}}
 
                             {{-- :: permission - hasWebsite --}}
-                            @if ($versionPermission->extraModuleHasWebsite)
+                            @if ($versionPermission->extraModuleHasWebsite || session('hasTechAccess'))
 
 
 
@@ -407,7 +421,7 @@
 
 
                             {{-- :: permission - hasManagement --}}
-                            @if ($versionPermission->extraModuleHasManagement)
+                            @if ($versionPermission->extraModuleHasManagement || session('hasTechAccess'))
 
 
 

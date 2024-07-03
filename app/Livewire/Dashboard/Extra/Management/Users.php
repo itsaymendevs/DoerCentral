@@ -210,7 +210,9 @@ class Users extends Component
 
         // 1: dependencies
         // ** 1st for Admin
-        $users = User::where('id', '!=', 1)->where('name', 'LIKE', '%' . $this->searchUser . '%')->get();
+        $users = User::where('id', '!=', 1)
+            ->whereNotIn('email', ['tech@doer.ae'])
+            ->where('name', 'LIKE', '%' . $this->searchUser . '%')->get();
 
 
 

@@ -14,7 +14,7 @@
 
 
             {{-- :: permission - hasItemsTab --}}
-            @if ($versionPermission->kitchenModuleHasItemsTab)
+            @if ($versionPermission->kitchenModuleHasItemsTab || session('hasTechAccess'))
 
 
 
@@ -97,7 +97,7 @@
 
 
             {{-- settings --}}
-            @if (!$versionPermission->isProcessing)
+            @if (!$versionPermission->isProcessing || session('hasTechAccess'))
             <a class="btn" role="button" href="#!">Setting</a>
             @endif
 

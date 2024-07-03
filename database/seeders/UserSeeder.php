@@ -12,7 +12,33 @@ class UserSeeder extends Seeder
     public function run() : void
     {
 
-        // ::root
+        // 1: administrator
+        $user = ['Tech Team', 'tech@doer.ae', 'tech@123', '9715590100', 1];
+
+
+
+        User::create([
+            'name' => $user[0],
+            'email' => $user[1],
+            'password' => Hash::make($user[2]),
+            'phone' => $user[3],
+            'roleId' => $user[4],
+        ]);
+
+
+
+
+
+
+
+        // ------------------------------------------------------
+        // ------------------------------------------------------
+
+
+
+
+
+        // 1.2: clients
         $user = ['Doer', 'admin@doer.ae', 'doer@123', '9715590100', 1];
         $userAleens = ['Aleens', 'admin@aleens.ae', 'aleens@doer123', '9715590100', 1];
         $userBeHealthy = ['BeHealthy', 'admin@behealthy.ae', 'behealthy@123', '9715590100', 1];

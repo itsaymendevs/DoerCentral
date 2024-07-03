@@ -263,7 +263,7 @@
 
 
             {{-- :: permission - hasExtraPictures --}}
-            @if ($versionPermission->menuModuleHasBuilderExtraPictures)
+            @if ($versionPermission->menuModuleHasBuilderExtraPictures || session('hasTechAccess'))
 
 
 

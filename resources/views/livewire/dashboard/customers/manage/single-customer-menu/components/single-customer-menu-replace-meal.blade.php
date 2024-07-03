@@ -132,7 +132,7 @@
 
 
                                         {{-- :: permission - hasMealFullView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
                                         <div class="d-flex align-items-center justify-content-center mb-2">

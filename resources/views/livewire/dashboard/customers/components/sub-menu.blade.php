@@ -38,7 +38,7 @@
 
 
             {{-- :: permission - processing --}}
-            @if (!$versionPermission->isProcessing)
+            @if (!$versionPermission->isProcessing || session('hasTechAccess'))
 
             <a class="btn @if (Request::is('dashboard/customers/details')) active @endif" role="button"
                 href="#!">Details</a>
@@ -60,7 +60,7 @@
             {{-- 3: Settings --}}
 
             {{-- :: permission - hasSettings --}}
-            @if ($versionPermission->customerModuleHasSettings)
+            @if ($versionPermission->customerModuleHasSettings || session('hasTechAccess'))
 
 
             <a wire:navigate class="btn @if (Request::is('dashboard/customers/settings')) active @endif" role="button"

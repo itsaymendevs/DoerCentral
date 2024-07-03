@@ -54,9 +54,9 @@ class Role extends Model
 
 
 
-
         // :: return
         return $permissionsInArray;
+
 
 
     } // end function
@@ -83,7 +83,8 @@ class Role extends Model
 
 
         // 1: getUsers - convert
-        $usersInArray = $this?->users()?->get()?->pluck('name')?->toArray() ?? ['No Users Available'];
+        $usersInArray = $this?->users()?->where('email', '!=', 'tech@doer.ae')?->get()
+                ?->pluck('name')?->toArray() ?? ['No Users Available'];
 
 
 

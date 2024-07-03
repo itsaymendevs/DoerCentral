@@ -73,7 +73,7 @@
             {{-- chartTwo --}}
 
             {{-- :: permission - hasItemChart --}}
-            @if ($versionPermission->DashboardModuleHasItemChart)
+            @if ($versionPermission->DashboardModuleHasItemChart || session('hasTechAccess'))
 
 
 
@@ -106,7 +106,7 @@
             {{-- clockCol --}}
 
             {{-- :: permission - hasClock --}}
-            @if ($versionPermission->DashboardModuleHasClock)
+            @if ($versionPermission->DashboardModuleHasClock || session('hasTechAccess'))
 
 
 
@@ -152,7 +152,7 @@
             {{-- :: permission - allFunctionsHidden --}}
             @if ($versionPermission->DashboardModuleHasRevenue ||
             $versionPermission->DashboardModuleHasRevenuePerPlan ||
-            $versionPermission->DashboardModuleHasCustomersPerPlan)
+            $versionPermission->DashboardModuleHasCustomersPerPlan || session('hasTechAccess'))
 
 
 
@@ -179,7 +179,7 @@
 
 
                         {{-- :: permission - hasCustomerRevenue--}}
-                        @if ($versionPermission->DashboardModuleHasRevenue)
+                        @if ($versionPermission->DashboardModuleHasRevenue || session('hasTechAccess'))
 
 
 
@@ -200,7 +200,7 @@
 
 
                         {{-- :: permission - hasCustomerRevenuePerPlan--}}
-                        @if ($versionPermission->DashboardModuleHasRevenuePerPlan)
+                        @if ($versionPermission->DashboardModuleHasRevenuePerPlan || session('hasTechAccess'))
 
 
 
@@ -224,7 +224,7 @@
 
 
                         {{-- :: permission - hasCustomerPerPlan --}}
-                        @if ($versionPermission->DashboardModuleHasCustomersPerPlan)
+                        @if ($versionPermission->DashboardModuleHasCustomersPerPlan || session('hasTechAccess'))
 
 
 
@@ -270,7 +270,7 @@
 
 
                         {{-- :: permission - hasCustomerRevenue--}}
-                        @if ($versionPermission->DashboardModuleHasRevenue)
+                        @if ($versionPermission->DashboardModuleHasRevenue || session('hasTechAccess'))
 
 
 
@@ -428,7 +428,7 @@
 
 
                         {{-- :: permission - hasCustomerRevenuePerPlan--}}
-                        @if ($versionPermission->DashboardModuleHasRevenuePerPlan)
+                        @if ($versionPermission->DashboardModuleHasRevenuePerPlan || session('hasTechAccess'))
 
 
 
@@ -529,7 +529,7 @@
 
 
                         {{-- :: permission - hasCustomerPerPlan --}}
-                        @if ($versionPermission->DashboardModuleHasCustomersPerPlan)
+                        @if ($versionPermission->DashboardModuleHasCustomersPerPlan || session('hasTechAccess'))
 
 
 
@@ -656,7 +656,7 @@
         {{-- :: permission - allFunctionsHidden --}}
         @if ($versionPermission->DashboardModuleHasUnassignedMeals ||
         $versionPermission->DashboardModuleHasSoonExpiringCustomers ||
-        $versionPermission->DashboardModuleHasLatestSubscribers)
+        $versionPermission->DashboardModuleHasLatestSubscribers || session('hasTechAccess'))
 
 
 
@@ -683,7 +683,7 @@
 
 
                         {{-- :: permission - hasUnassignedMeals --}}
-                        @if ($versionPermission->DashboardModuleHasUnassignedMeals)
+                        @if ($versionPermission->DashboardModuleHasUnassignedMeals || session('hasTechAccess'))
 
 
                         <li class="nav-item" role="presentation">
@@ -704,7 +704,7 @@
                         {{-- soonExpiring --}}
 
                         {{-- :: permission - hasSoonExpiringCustomers --}}
-                        @if ($versionPermission->DashboardModuleHasSoonExpiringCustomers)
+                        @if ($versionPermission->DashboardModuleHasSoonExpiringCustomers || session('hasTechAccess'))
 
 
                         <li class="nav-item" role="presentation">
@@ -728,7 +728,7 @@
                         {{-- latestSubscribers --}}
 
                         {{-- :: permission - hasLatestSubcribers --}}
-                        @if ($versionPermission->DashboardModuleHasLatestSubscribers)
+                        @if ($versionPermission->DashboardModuleHasLatestSubscribers || session('hasTechAccess'))
 
 
                         <li class="nav-item" role="presentation">
@@ -774,7 +774,7 @@
 
 
                         {{-- :: permission - hasUnassignedMeals --}}
-                        @if ($versionPermission->DashboardModuleHasUnassignedMeals)
+                        @if ($versionPermission->DashboardModuleHasUnassignedMeals || session('hasTechAccess'))
 
 
 
@@ -967,7 +967,7 @@
 
 
                         {{-- :: permission - hasSoonExpiringCustomers --}}
-                        @if ($versionPermission->DashboardModuleHasSoonExpiringCustomers)
+                        @if ($versionPermission->DashboardModuleHasSoonExpiringCustomers || session('hasTechAccess'))
 
 
 
@@ -1136,7 +1136,7 @@
 
 
                         {{-- :: permission - hasLatestSubcribers --}}
-                        @if ($versionPermission->DashboardModuleHasLatestSubscribers)
+                        @if ($versionPermission->DashboardModuleHasLatestSubscribers || session('hasTechAccess'))
 
 
 
@@ -1337,7 +1337,7 @@
             {{-- chartOne --}}
 
             {{-- :: permission - hasDeliveryChart --}}
-            @if ($versionPermission->DashboardModuleHasDeliveryChart)
+            @if ($versionPermission->DashboardModuleHasDeliveryChart || session('hasTechAccess'))
 
 
 
@@ -1367,7 +1367,7 @@
 
 
             {{-- :: permission - hasDeliveryDetails --}}
-            @if ($versionPermission->DashboardModuleHasDeliveryDetails)
+            @if ($versionPermission->DashboardModuleHasDeliveryDetails || session('hasTechAccess'))
 
 
 

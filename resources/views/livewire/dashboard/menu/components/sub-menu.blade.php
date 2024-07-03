@@ -24,9 +24,14 @@
             data-aos-once="true" role="group">
 
 
+
+
             {{-- 1: recipes --}}
             <a class="btn @if (Request::is('dashboard/menu/recipes')) active @endif"
                 href="{{ route('dashboard.menuRecipes') }}" wire:navigate>Recipes</a>
+
+
+
 
 
 
@@ -41,9 +46,16 @@
 
 
 
+
+
+
             {{-- 3: recipeBuilder --}}
             <a class="btn @if (Request::is('dashboard/menu/builder', 'dashboard/menu/production-builder/*')) active @endif"
                 href="{{ route('dashboard.menuBuilder') }}" wire:navigate>Builder</a>
+
+
+
+
 
 
 
@@ -57,10 +69,13 @@
 
 
 
+
+
+
             {{-- 5: ingredientsList --}}
 
             {{-- :: permission - hasIngredientsList --}}
-            @if ($versionPermission->menuModuleHasIngredientsList)
+            @if ($versionPermission->menuModuleHasIngredientsList || session('hasTechAccess'))
 
 
             <a class="btn @if (Request::is('dashboard/menu/ingredients-list')) active @endif"
@@ -81,8 +96,9 @@
 
             {{-- 7: Addons --}}
 
-            {{-- :: permission - hasIngredientsList --}}
-            @if ($versionPermission->menuModuleHasIngredientsList)
+            {{-- :: permission - hasMealAddons --}}
+            @if ($versionPermission->menuModuleHasMealAddons || session('hasTechAccess'))
+
 
 
             <a class="btn @if (Request::is('dashboard/menu/addons')) active @endif"

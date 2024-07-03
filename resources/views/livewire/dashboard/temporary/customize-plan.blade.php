@@ -305,7 +305,8 @@
 
 
                                                     {{-- :: permission - hasMealView --}}
-                                                    @if ($versionPermission->menuModuleHasMealFullView)
+                                                    @if ($versionPermission->menuModuleHasMealFullView ||
+                                                    session('hasTechAccess'))
 
 
 

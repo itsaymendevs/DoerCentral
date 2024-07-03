@@ -27,7 +27,7 @@
 
 
                 {{-- :: permission - hasDietTypes --}}
-                @if ($versionPermission->menuModuleHasDietTypes)
+                @if ($versionPermission->menuModuleHasDietTypes || session('hasTechAccess'))
 
 
 
@@ -167,7 +167,7 @@
 
 
                 {{-- :: permission - hasTags --}}
-                @if ($versionPermission->menuModuleHasTags)
+                @if ($versionPermission->menuModuleHasTags || session('hasTechAccess'))
 
 
 

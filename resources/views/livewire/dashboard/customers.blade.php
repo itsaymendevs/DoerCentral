@@ -204,7 +204,7 @@
 
 
             {{-- :: permission - masterView --}}
-            @if ($versionPermission->hasMasterView)
+            @if ($versionPermission->hasMasterView || session('hasTechAccess'))
 
 
 
@@ -507,7 +507,7 @@
 
 
             {{-- :: permission - masterView --}}
-            @if (!$versionPermission->hasMasterView)
+            @if (!$versionPermission->hasMasterView || session('hasTechAccess'))
 
 
 

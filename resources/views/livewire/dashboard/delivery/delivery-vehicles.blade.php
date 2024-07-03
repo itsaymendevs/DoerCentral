@@ -247,7 +247,8 @@
 
 
                                         {{-- :: permission - hasVehiclePromotion --}}
-                                        @if ($versionPermission->deliveryModuleHasVehiclePromotion)
+                                        @if ($versionPermission->deliveryModuleHasVehiclePromotion ||
+                                        session('hasTechAccess'))
 
 
                                         <button

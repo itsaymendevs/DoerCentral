@@ -135,7 +135,9 @@ return new class extends Migration {
 
 
             // 2.3: menuMeals
+            $table->boolean('menuModuleHasMealAddons')->nullable()->default(1);
             $table->boolean('menuModuleHasMealFullView')->nullable()->default(1);
+
             $table->boolean('menuModuleHasMealTypeFilters')->nullable()->default(1);
 
 
@@ -311,7 +313,7 @@ return new class extends Migration {
 
 
 
-            // 7.2: management - website
+            // 7.2: extra - tabs
             $table->boolean('extraModuleHasManagement')->nullable()->default(1);
             $table->boolean('extraModuleHasWebsite')->nullable()->default(1);
             $table->boolean('extraModuleHasFinance')->nullable()->default(1);
@@ -320,18 +322,61 @@ return new class extends Migration {
 
 
 
-            // 7.3: blogs - banners
+
+
+            // 7.3: extra - management
             $table->boolean('extraModuleHasDepartments')->nullable()->default(1);
             $table->boolean('extraModuleHasActivityLog')->nullable()->default(1);
 
+
+
+
+
+            // 7.3: extra - website
             $table->boolean('extraModuleHasBlogs')->nullable()->default(1);
+            $table->boolean('extraModuleHasBlogsModification')->nullable()->default(1);
+
             $table->boolean('extraModuleHasBanners')->nullable()->default(1);
+            $table->boolean('extraModuleHasSocials')->nullable()->default(1);
 
 
 
 
-            // 7.4: paymentDetails
-            $table->boolean('extraModuleHasPaymentDetails')->nullable()->default(1);
+
+
+
+            // 7.4: extra - finance
+            $table->boolean('extraModuleHasFinancePaymentMethods')->nullable()->default(1);
+            $table->boolean('extraModuleHasFinancePaymentDetails')->nullable()->default(1);
+            $table->boolean('extraModuleHasFinanceCosts')->nullable()->default(1);
+
+
+
+
+
+
+
+            // ----------------------------------
+            // ----------------------------------
+
+
+
+
+
+            // 8: stockModule
+
+
+            // 8.1: extraModule
+            $table->boolean('stockModuleHasModule')->nullable()->default(1);
+
+
+
+            // 8.2: stock
+            $table->boolean('stockModuleHasStock')->nullable()->default(1);
+            $table->boolean('stockModuleHasComparisons')->nullable()->default(1);
+
+
+
 
 
 

@@ -41,6 +41,9 @@ class PlansEdit extends Component
 
 
         $this->instance->imageFileName = $this->instance->imageFile;
+        $this->instance->secondImageFileName = $this->instance->secondImageFile ?? null;
+        $this->instance->thirdImageFileName = $this->instance->thirdImageFile ?? null;
+
 
 
 
@@ -48,7 +51,18 @@ class PlansEdit extends Component
 
         // 1.2: setFilePreview
         $preview = asset('storage/menu/plans/' . $this->instance->imageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-2', defaultPreview: $preview);
+        $this->dispatch('setFilePreview', filePreview: 'plan--preview-4', defaultPreview: $preview);
+
+
+        $preview = asset('storage/menu/plans/' . $this->instance->secondImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'plan--preview-5', defaultPreview: $preview);
+
+
+        $preview = asset('storage/menu/plans/' . $this->instance->thirdImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'plan--preview-6', defaultPreview: $preview);
+
+
+
 
 
 
@@ -109,6 +123,20 @@ class PlansEdit extends Component
 
 
 
+        if ($this->instance->secondImageFile != $this->instance->secondImageFileName)
+            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'menu/plans', $this->instance->secondImageFileName, 'PLN-S');
+
+
+
+        if ($this->instance->thirdImageFile != $this->instance->thirdImageFileName)
+            $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'menu/plans', $this->instance->thirdImageFileName, 'PLN-T');
+
+
+
+
+
+
+
 
 
         // ## log - activity ##
@@ -130,7 +158,9 @@ class PlansEdit extends Component
 
         $this->dispatch('refreshViews');
         $this->dispatch('closeModal', modal: '#edit-plan .btn--close');
-        $this->dispatch('resetFile', file: 'plan--file-2', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-4', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-5', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-6', defaultPreview: $this->getDefaultPreview());
 
 
 

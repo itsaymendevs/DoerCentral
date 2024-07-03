@@ -226,7 +226,7 @@
 
 
                 {{-- :: permission - hasSkip --}}
-                @if ($versionPermission->customerModuleHasSkip)
+                @if ($versionPermission->customerModuleHasSkip || session('hasTechAccess'))
 
 
 

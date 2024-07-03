@@ -77,7 +77,7 @@
 
 
                     {{-- :: permission - hasTypeSizeFilters --}}
-                    @if ($versionPermission->kitchenModuleHasTypeSizeFilters)
+                    @if ($versionPermission->kitchenModuleHasTypeSizeFilters || session('hasTechAccess'))
 
 
 
@@ -145,7 +145,7 @@
 
 
                 {{-- :: permission - hasPrintExcel --}}
-                @if ($versionPermission->kitchenModuleHasPrintExcel)
+                @if ($versionPermission->kitchenModuleHasPrintExcel || session('hasTechAccess'))
 
 
 
@@ -339,7 +339,8 @@
 
 
                                         {{-- :: permission - hasMealDetails --}}
-                                        @if ($versionPermission->kitchenModuleHasMealDetails)
+                                        @if ($versionPermission->kitchenModuleHasMealDetails ||
+                                        session('hasTechAccess'))
 
 
                                         {{-- :: view instructions --}}
@@ -765,7 +766,10 @@
 
 
                                             {{-- :: permission - hasMealPartDetails --}}
-                                            @if ($versionPermission->kitchenModuleHasMealPartDetails)
+                                            @if ($versionPermission->kitchenModuleHasMealPartDetails ||
+                                            session('hasTechAccess'))
+
+
 
 
                                             {{-- :: viewPart --}}

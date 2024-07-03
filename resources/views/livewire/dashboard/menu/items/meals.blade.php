@@ -109,6 +109,11 @@
 
 
                                         {{-- menuList --}}
+
+                                        {{-- :: permission - hasMealAddons --}}
+                                        @if ($versionPermission->menuModuleHasMealAddons || session('hasTechAccess'))
+
+
                                         <button class="btn client--floating-button" type="button"
                                             data-bs-target="#menu-list" data-bs-toggle="modal"
                                             wire:click="editMenuList('{{ $meal->id }}')">
@@ -149,6 +154,12 @@
 
 
                                         </button>
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
                                     </div>
                                 </div>
 
@@ -212,7 +223,7 @@
 
 
                                 {{-- :: permission - hasMealView --}}
-                                @if ($versionPermission->menuModuleHasMealFullView)
+                                @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 
@@ -334,7 +345,7 @@
                                         {{-- 2: ingredients tooltip --}}
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 
@@ -370,7 +381,7 @@
                                         {{-- 3: print excel --}}
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
                                         <button
@@ -402,7 +413,7 @@
                                         {{-- 4: preview --}}
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
                                         <button

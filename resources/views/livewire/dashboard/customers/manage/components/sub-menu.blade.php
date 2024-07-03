@@ -57,7 +57,7 @@
 
 
             {{-- :: permission - hasInvoicesView --}}
-            @if ($versionPermission->customerModuleHasInvoicesView)
+            @if ($versionPermission->customerModuleHasInvoicesView || session('hasTechAccess'))
 
 
             <a class="btn fs-13 @if (Request::is('dashboard/customers/' . $id . '/history')) active @endif"

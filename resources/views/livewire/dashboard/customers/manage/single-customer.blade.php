@@ -354,7 +354,7 @@
                                     {{-- 1: VIP --}}
 
                                     {{-- :: permission - hasVIP --}}
-                                    @if ($versionPermission->customerModuleHasVIP)
+                                    @if ($versionPermission->customerModuleHasVIP || session('hasTechAccess'))
 
 
 
@@ -381,7 +381,7 @@
 
 
                                     {{-- :: permission - hasEnabled --}}
-                                    @if ($versionPermission->customerModuleHasEnabled)
+                                    @if ($versionPermission->customerModuleHasEnabled || session('hasTechAccess'))
 
 
                                     <div class="form-check form-switch mb-3 mealType--checkbox">
@@ -487,7 +487,7 @@
 
 
                             {{-- :: permission - hasManager --}}
-                            @if ($versionPermission->customerModuleHasManager)
+                            @if ($versionPermission->customerModuleHasManager || session('hasTechAccess'))
 
 
 
@@ -533,7 +533,7 @@
                             {{-- driver --}}
 
                             {{-- :: permission - hasDriver --}}
-                            @if ($versionPermission->customerModuleHasDriver)
+                            @if ($versionPermission->customerModuleHasDriver || session('hasTechAccess'))
 
 
 
@@ -617,7 +617,7 @@
                 {{-- image --}}
 
                 {{-- :: permission - hasVector --}}
-                @if ($versionPermission->customerModuleHasVector)
+                @if ($versionPermission->customerModuleHasVector || session('hasTechAccess'))
 
 
                 <img class="w-100 of-contain" src='{{ asset("assets/img/Customers/{$customer->gender}.png") }}'
@@ -758,7 +758,7 @@
 
 
                 {{-- :: permission - hasWallet --}}
-                @if ($versionPermission->customerModuleHasWallet)
+                @if ($versionPermission->customerModuleHasWallet || session('hasTechAccess'))
 
 
 
@@ -859,7 +859,7 @@
                                 {{-- :: editBundle --}}
 
                                 {{-- :: permission - hasEditBundle --}}
-                                @if ($versionPermission->customerModuleHasEditBundle)
+                                @if ($versionPermission->customerModuleHasEditBundle || session('hasTechAccess'))
 
 
 
@@ -939,7 +939,7 @@
 
 
                 {{-- :: permission - hasBundleView --}}
-                @if ($versionPermission->customerModuleHasBundlesView)
+                @if ($versionPermission->customerModuleHasBundlesView || session('hasTechAccess'))
 
 
 

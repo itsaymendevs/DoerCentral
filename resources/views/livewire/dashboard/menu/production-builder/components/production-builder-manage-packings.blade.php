@@ -82,7 +82,7 @@
 
 
     {{-- :: permission - hasPackings --}}
-    @if ($versionPermission->menuModuleHasBuilderPackings)
+    @if ($versionPermission->menuModuleHasBuilderPackings || session('hasTechAccess'))
 
 
 

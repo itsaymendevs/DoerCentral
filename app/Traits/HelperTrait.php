@@ -30,7 +30,6 @@ trait HelperTrait
 
 
 
-
     protected function getGramToKG()
     {
 
@@ -39,6 +38,30 @@ trait HelperTrait
 
 
     } // end function
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+    protected function getNameURL($name = '')
+    {
+
+        return str_replace(" ", "-", strtolower($name));
+
+
+    } // end function
+
+
 
 
 
@@ -637,9 +660,11 @@ trait HelperTrait
 
 
         // 1: removeFile
-        if (! empty($fileName))
+        if (! empty($fileName)) {
+
             Storage::disk('public')->delete($path . '/' . $fileName);
 
+        }
 
 
 

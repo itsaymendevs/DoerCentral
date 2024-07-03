@@ -103,7 +103,7 @@
 
 
                 {{-- :: permission - hasPrintExcel --}}
-                @if ($versionPermission->kitchenModuleHasPrintExcel)
+                @if ($versionPermission->kitchenModuleHasPrintExcel || session('hasTechAccess'))
 
 
 

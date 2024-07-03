@@ -196,7 +196,8 @@
                                         {{-- input --}}
 
                                         {{-- :: permission - hasDynamicBundles --}}
-                                        @if ($versionPermission->menuModuleHasDynamicBundles)
+                                        @if ($versionPermission->menuModuleHasDynamicBundles ||
+                                        session('hasTechAccess'))
 
 
 

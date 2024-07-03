@@ -27,7 +27,7 @@
 
 
                 {{-- :: permission - hasCreateCalendar --}}
-                @if ($versionPermission->menuModuleHasCreateCalendar)
+                @if ($versionPermission->menuModuleHasCreateCalendar || session('hasTechAccess'))
 
 
 

@@ -39,7 +39,7 @@
 
 
     {{-- :: permission - hasContainerPreview --}}
-    @if ($versionPermission->menuModuleHasBuilderContainerPreview)
+    @if ($versionPermission->menuModuleHasBuilderContainerPreview || session('hasTechAccess'))
 
 
 

@@ -33,7 +33,7 @@
 
 
                 {{-- :: permission - hasAdminView --}}
-                @if ($versionPermission->hasAdminView)
+                @if ($versionPermission->hasAdminView || session('hasTechAccess'))
 
 
 
@@ -80,7 +80,7 @@
 
 
                 {{-- :: permission - hasMasterView --}}
-                @if ($versionPermission->hasMasterView)
+                @if ($versionPermission->hasMasterView || session('hasTechAccess'))
 
 
 
@@ -365,7 +365,7 @@
 
 
                                     {{-- :: permission - hasAdminView --}}
-                                    @if ($versionPermission->hasAdminView)
+                                    @if ($versionPermission->hasAdminView || session('hasTechAccess'))
 
 
 
@@ -513,7 +513,7 @@
 
 
                                 {{-- :: permission - hasAdminView --}}
-                                @if ($versionPermission->hasAdminView)
+                                @if ($versionPermission->hasAdminView || session('hasTechAccess'))
 
                                 <th class="th--sm"></th>
 
@@ -568,7 +568,7 @@
                                 {{-- actions --}}
 
                                 {{-- :: permission - hasAdminView --}}
-                                @if ($versionPermission->hasAdminView)
+                                @if ($versionPermission->hasAdminView || session('hasTechAccess'))
 
 
                                 <td>

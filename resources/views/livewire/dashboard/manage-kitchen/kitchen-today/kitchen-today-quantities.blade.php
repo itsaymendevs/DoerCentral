@@ -78,7 +78,7 @@
 
 
                     {{-- :: permission - hasTypeSizeFilters --}}
-                    @if ($versionPermission->kitchenModuleHasTypeSizeFilters)
+                    @if ($versionPermission->kitchenModuleHasTypeSizeFilters || session('hasTechAccess'))
 
 
 
@@ -144,7 +144,7 @@
 
 
                 {{-- :: permission - hasPrintExcel --}}
-                @if ($versionPermission->kitchenModuleHasPrintExcel)
+                @if ($versionPermission->kitchenModuleHasPrintExcel || session('hasTechAccess'))
 
 
 

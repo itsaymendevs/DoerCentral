@@ -39,7 +39,7 @@
 
 
                 {{-- :: permission - hasMasterView --}}
-                @if ($versionPermission->hasMasterView)
+                @if ($versionPermission->hasMasterView || session('hasTechAccess'))
 
 
 

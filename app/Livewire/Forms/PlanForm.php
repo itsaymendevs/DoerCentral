@@ -10,17 +10,17 @@ class PlanForm extends Form
 
 
 
-   // :: variables
-   #[Validate('required')]
-   public $name, $startingPrice, $desc, $longDesc;
+    // :: variables
+    #[Validate('required')]
+    public $name, $startingPrice, $desc, $longDesc;
 
-   public $id, $imageFile;
-
-
+    public $id, $nameURL, $themeColor, $imageFile, $secondImageFile, $thirdImageFile;
 
 
-   // :: helpers
-   public $imageFileName;
+
+
+    // :: helpers
+    public $imageFileName, $secondImageFileName, $thirdImageFileName;
 
 
 } // end form

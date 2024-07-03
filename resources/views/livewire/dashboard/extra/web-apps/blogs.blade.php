@@ -12,6 +12,14 @@
 
             {{-- newButton --}}
             <div class="col-4">
+
+
+
+
+                {{-- :: permission - hasBlogsModification --}}
+                @if ($versionPermission->extraModuleHasBlogsModification || session('hasTechAccess'))
+
+
                 <a wire:navigate
                     class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
                     href="{{ route('dashboard.createBlog') }}">
@@ -22,7 +30,15 @@
                         </path>
                     </svg>New Blog
                 </a>
+
+                @endif
+                {{-- end if - permission --}}
+
             </div>
+            {{-- endCol --}}
+
+
+
 
 
 
@@ -148,8 +164,7 @@
                                         <p class="text-center fs-13 fw-bold text-danger mb-0">
                                             <button
                                                 class="btn btn--raw-icon fs-15 text-warning d-inline-flex align-items-center justify-content-center scale--3 w-auto"
-                                                data-bs-toggle="tooltip" data-bss-tooltip="" type="button"
-                                                title="Ketogenic Diet">
+                                                data-bs-toggle="tooltip" data-bss-tooltip="" type="button" title="">
                                                 Tags<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                     fill="currentColor" viewBox="0 0 16 16" class="bi bi-tags fs-6 ms-2"
                                                     style="fill: var(--bs-warning)">
@@ -181,9 +196,21 @@
 
 
                                         {{-- 1: manage --}}
+
+
+                                        {{-- :: permission - hasBlogsModification --}}
+                                        @if ($versionPermission->extraModuleHasBlogsModification ||
+                                        session('hasTechAccess'))
+
+
+
                                         <a wire:navigate href="{{ route('dashboard.viewBlog', [$blog->id]) }}" class="btn btn--scheme btn--scheme-2
                                         fs-12 px-4 mx-2 scale--self-05" type="button">Manage</a>
 
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
 
 
 

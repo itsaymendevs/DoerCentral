@@ -48,7 +48,7 @@
 
 
                 {{-- :: permission - hasMasterView --}}
-                @if ($versionPermission->hasMasterView)
+                @if ($versionPermission->hasMasterView || session('hasTechAccess'))
 
                 <div class="btn-group btn--swtich-group me-3" role="group" wire:ignore>
 
@@ -514,7 +514,7 @@
 
 
             {{-- :: permission - hasMasterView --}}
-            @if ($versionPermission->hasMasterView)
+            @if ($versionPermission->hasMasterView || session('hasTechAccess'))
 
 
             <div class="col-12 mt-4 pt-4 payments-column mb-3" data-view="cards" style="display: none" wire:ignore.self>

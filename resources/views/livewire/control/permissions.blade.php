@@ -50,8 +50,13 @@
 
 
 
+
                             {{-- ---------------------- --}}
                             {{-- ---------------------- --}}
+
+
+
+
 
 
 
@@ -611,6 +616,93 @@
                             </tbody>
                         </table>
                     </div>
+
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------------- --}}
+                    {{-- ---------------------------------------------- --}}
+                    {{-- ---------------------------------------------- --}}
+
+
+
+
+
+
+
+                    {{-- 6.5: Stock --}}
+                    <div class="table-responsive memoir--table w-100">
+                        <table class="table table-bordered" id="memoir--table">
+
+
+                            {{-- headers --}}
+                            <thead>
+                                <tr>
+                                    <th class="text-start th--sm ps-3">
+                                        Stock
+                                    </th>
+                                    <th class="th--xs">Enabled</th>
+                                </tr>
+                            </thead>
+
+
+
+                            {{-- -------------------------- --}}
+                            {{-- -------------------------- --}}
+
+
+
+
+
+                            {{-- tbody --}}
+                            <tbody>
+
+
+
+                                {{-- :: loop - stock --}}
+                                @foreach ($stockPermissions ?? [] as $key => $stockPermission)
+                                <tr>
+
+
+
+                                    {{-- name --}}
+                                    <td class="text-start fw-semibold ps-3 fs-14">
+                                        {{ $displayTitles[$key] }}
+                                    </td>
+
+
+
+
+                                    {{-- toggleBox --}}
+                                    <td class="fw-bold">
+                                        <div class="form-check form-switch form-check-inline input--switch">
+                                            <input class="form-check-input" type="checkbox" @if($stockPermission)
+                                                checked @endif id="formCheck-{{ $globalSNCounter++ }}"
+                                                wire:change="update('{{ $key }}')" wire:loading.attr='disabled'
+                                                wire:target='update' />
+                                            <label class="form-check-label d-none" for="formCheck-1">Label</label>
+                                        </div>
+                                    </td>
+
+
+
+                                </tr>
+                                @endforeach
+                                {{-- end loop --}}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+
                 </div>
                 {{-- endCol --}}
 

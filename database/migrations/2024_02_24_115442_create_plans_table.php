@@ -16,7 +16,12 @@ return new class extends Migration {
 
             // 1: general
             $table->string('name', 255)->nullable();
+            $table->string('nameURL', 255)->nullable();
+            $table->string('themeColor', 100)->nullable();
             $table->string('startingPrice', 100)->nullable();
+
+
+
 
             $table->text('desc')->nullable();
             $table->text('longDesc')->nullable();
@@ -29,6 +34,13 @@ return new class extends Migration {
 
             // 1.3: imageFile
             $table->text('imageFile')->nullable();
+            $table->text('secondImageFile')->nullable();
+            $table->text('thirdImageFile')->nullable();
+
+
+
+
+
 
 
 

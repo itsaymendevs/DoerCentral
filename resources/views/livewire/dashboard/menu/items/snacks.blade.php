@@ -26,7 +26,7 @@
 
 
             {{-- :: permission - hasTypeFilter --}}
-            @if ($versionPermission->menuModuleHasMealTypeFilters)
+            @if ($versionPermission->menuModuleHasMealTypeFilters || session('hasTechAccess'))
 
 
             <div class="col-2">
@@ -145,6 +145,12 @@
 
 
                                         {{-- menuList --}}
+
+
+                                        {{-- :: permission - hasMealAddons --}}
+                                        @if ($versionPermission->menuModuleHasMealAddons || session('hasTechAccess'))
+
+
                                         <button class="btn client--floating-button" type="button"
                                             data-bs-target="#menu-list" data-bs-toggle="modal"
                                             wire:click="editMenuList('{{ $snack->id }}')">
@@ -185,6 +191,13 @@
 
 
                                         </button>
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
                                     </div>
                                 </div>
 
@@ -245,7 +258,7 @@
 
 
                                 {{-- :: permission - hasMealView --}}
-                                @if ($versionPermission->menuModuleHasMealFullView)
+                                @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 
@@ -370,7 +383,7 @@
                                         {{-- 2: ingredients tooltip --}}
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
                                         <button
@@ -407,7 +420,7 @@
                                         {{-- 3: print excel --}}
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 
@@ -437,7 +450,7 @@
                                         {{-- 4: preview --}}
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 

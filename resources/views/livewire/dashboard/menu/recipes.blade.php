@@ -30,7 +30,7 @@
 
 
                 {{-- :: permission - hasTypeFilter --}}
-                @if ($versionPermission->menuModuleHasMealTypeFilters)
+                @if ($versionPermission->menuModuleHasMealTypeFilters || session('hasTechAccess'))
 
 
 
@@ -84,7 +84,7 @@
 
 
                 {{-- :: permission - hasMasterView --}}
-                @if ($versionPermission->hasMasterView)
+                @if ($versionPermission->hasMasterView || session('hasTechAccess'))
 
 
                 <div class="btn-group btn--swtich-group me-3" role="group" style="margin-bottom: 10px">
@@ -168,6 +168,11 @@
 
 
                                         {{-- menuList --}}
+
+                                        {{-- :: permission - hasMealAddons --}}
+                                        @if ($versionPermission->menuModuleHasMealAddons || session('hasTechAccess'))
+
+
                                         <button class="btn client--floating-button" type="button"
                                             data-bs-target="#menu-list" data-bs-toggle="modal"
                                             wire:click="editMenuList('{{ $meal->id }}')">
@@ -208,6 +213,13 @@
 
 
                                         </button>
+
+
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
                                     </div>
                                 </div>
                                 {{-- endCover --}}
@@ -265,7 +277,7 @@
 
 
                                 {{-- :: permission - hasMealView --}}
-                                @if ($versionPermission->menuModuleHasMealFullView)
+                                @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 
@@ -419,7 +431,7 @@
 
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 
@@ -460,7 +472,7 @@
 
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
                                         <button
@@ -490,7 +502,7 @@
                                         {{-- 4: clone --}}
 
                                         {{-- :: permission - hasMealView --}}
-                                        @if ($versionPermission->menuModuleHasMealFullView)
+                                        @if ($versionPermission->menuModuleHasMealFullView || session('hasTechAccess'))
 
 
 

@@ -59,6 +59,12 @@ class PlansCreate extends Component
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans', 'PLN');
 
 
+        if ($this->instance->secondImageFile)
+            $this->instance->secondImageFileName = $this->uploadFile($this->instance->secondImageFile, 'menu/plans', 'PLN-S');
+
+
+        if ($this->instance->thirdImageFile)
+            $this->instance->thirdImageFileName = $this->uploadFile($this->instance->thirdImageFile, 'menu/plans', 'PLN-T');
 
 
 
@@ -84,6 +90,8 @@ class PlansCreate extends Component
         $this->dispatch('refreshViews');
         $this->dispatch('closeModal', modal: '#new-plan .btn--close');
         $this->dispatch('resetFile', file: 'plan--file-1', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-2', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-3', defaultPreview: $this->getDefaultPreview());
 
 
 

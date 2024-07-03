@@ -8,7 +8,7 @@
         {{-- preparation --}}
 
         {{-- :: permission - hasPreparationTab --}}
-        @if ($versionPermission->kitchenModuleHasPreparationTab)
+        @if ($versionPermission->kitchenModuleHasPreparationTab || session('hasTechAccess'))
 
         <a wire:navigate
             class="btn fs-13
@@ -29,7 +29,7 @@
         {{-- quantity --}}
 
         {{-- :: permission - hasQuantityTab --}}
-        @if ($versionPermission->kitchenModuleHasQuantityTab)
+        @if ($versionPermission->kitchenModuleHasQuantityTab || session('hasTechAccess'))
 
         <a wire:navigate class="btn fs-13
         @if (Request::is('dashboard/kitchen/today/quantity', 'dashboard/kitchen/today/quantity/*')) active @endif"
@@ -71,7 +71,7 @@
         {{-- checkout --}}
 
         {{-- :: permission - hasCheckoutTab --}}
-        @if ($versionPermission->kitchenModuleHasCheckoutTab)
+        @if ($versionPermission->kitchenModuleHasCheckoutTab || session('hasTechAccess'))
 
 
 

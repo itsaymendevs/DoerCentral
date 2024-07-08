@@ -45,7 +45,17 @@ class BlogsViewEditSection extends Component
 
 
 
-        // 1.2:  imageFiles
+
+
+        // 1.2: setEditor
+        $this->dispatch("setEditorContent-quill-editor-2", value: $this->instance?->content ?? '');
+
+
+
+
+
+
+        // 1.3: imageFiles
         $this->instance->imageFileName = $this->instance?->imageFile ?? null;
         $this->instance->secondImageFileName = $this->instance?->secondImageFile ?? null;
         $this->instance->thirdImageFileName = $this->instance?->thirdImageFile ?? null;
@@ -57,6 +67,8 @@ class BlogsViewEditSection extends Component
 
 
 
+
+
         // -----------------------------------------
         // -----------------------------------------
 
@@ -65,7 +77,8 @@ class BlogsViewEditSection extends Component
 
 
 
-        // 1.3: previews
+
+        // 1.4: previews
         if ($this->instance->imageFileName) {
 
             $preview = asset('storage/extra/blogs/sections/' . $this->instance->imageFileName);
@@ -112,6 +125,8 @@ class BlogsViewEditSection extends Component
 
 
     } // end function
+
+
 
 
 
@@ -234,6 +249,8 @@ class BlogsViewEditSection extends Component
 
         // 2: reset
         $this->instance->reset();
+        $this->dispatch('resetEditorContent');
+
         $this->dispatch('resetFile', file: 'section--file-5', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'section--file-6', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'section--file-7', defaultPreview: $this->getDefaultPreview());

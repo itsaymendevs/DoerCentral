@@ -15,8 +15,8 @@ return new class extends Migration {
 
 
             // 1: general
-            $table->text('title')->nullable();
-            $table->text('content')->nullable();
+            $table->longText('title')->nullable();
+            $table->longText('content')->nullable();
             $table->string('type', 100)->nullable()->default('Regular');
 
 

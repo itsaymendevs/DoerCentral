@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->text('twitterURL')->nullable();
             $table->text('facebookURL')->nullable();
             $table->text('instagramURL')->nullable();
+            $table->text('tiktokURL')->nullable();
+            $table->text('snapchatURL')->nullable();
             $table->text('linkedInURL')->nullable();
 
 

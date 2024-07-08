@@ -108,7 +108,7 @@ return new class extends Migration {
 
 
             // 3.1: hero
-            $table->text('heroText')->nullable();
+            $table->longText('heroText')->nullable();
 
             $table->text('heroImageFile')->nullable();
             $table->text('heroSecondImageFile')->nullable();
@@ -119,7 +119,7 @@ return new class extends Migration {
 
 
             // 3.2: contentText
-            $table->text('contentTitleText')->nullable();
+            $table->longText('contentTitleText')->nullable();
 
 
 
@@ -127,7 +127,7 @@ return new class extends Migration {
 
 
             // 3.3: footer
-            $table->text('footerText')->nullable();
+            $table->longText('footerText')->nullable();
             $table->text('footerImageFile')->nullable();
             $table->text('footerCopyrightsText')->nullable();
 

@@ -1498,6 +1498,15 @@ Route::post('/dashboard/extra/settings/socials/update', [ExtraController::class,
 
 
 
+// 18.1: extra - settings - blogs - attachments - update
+Route::post('/dashboard/extra/settings/blogs/update', [ExtraController::class, 'updateBlogSettings']);
+
+Route::post('/dashboard/extra/settings/blogs/attachments/update', [ExtraController::class, 'updateBlogAttachments']);
+
+
+
+
+
 
 
 

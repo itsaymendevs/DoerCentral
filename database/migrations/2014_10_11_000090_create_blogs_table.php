@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->text('title')->nullable();
             $table->text('titleURL')->nullable();
             $table->text('subtitle')->nullable();
-            $table->text('summary')->nullable();
+            $table->longText('summary')->nullable();
 
             $table->date('publishDate')->nullable();
             $table->string('author', 255)->nullable();

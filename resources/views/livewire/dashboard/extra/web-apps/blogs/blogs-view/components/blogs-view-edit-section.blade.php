@@ -1,5 +1,5 @@
 <div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="edit-section" wire:ignore.self>
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body py-0 px-0">
 
@@ -61,11 +61,21 @@
 
 
                                 {{-- content --}}
-                                <div class="col-12">
-                                    <label class="form-label form--label">Content</label>
-                                    <textarea class="form-control form--input form--textarea mb-4" required
-                                        wire:model='instance.content'></textarea>
+                                <div class="col-12" wire:ignore>
+                                    <label class="form-label form--label">Section Content</label>
+
+
+                                    <livewire:dashboard.components.editor-toolbar key='quill-editor-toolbar-2'
+                                        id='quill-editor-toolbar-2' />
+                                    <div id='quill-editor-2' class="quill-editor-edit-modal"
+                                        data-toolbar='#quill-editor-toolbar-2'
+                                        data-value="{{ $instance->content ?? '' }}" data-instance='instance.content'>
+                                    </div>
                                 </div>
+
+
+
+
 
 
                             </div>
@@ -311,6 +321,129 @@
         </div>
     </div>
     {{-- endBody --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+    {{-- quill --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+
+
+
+
+
+    <script>
+        $('.quill-editor-edit-modal').each(function() {
+
+            let id = $(this).attr('id');
+            let toolbar = $(this).attr('data-toolbar');
+            let instance = $(this).attr('data-instance');
+            let value = $(this).attr('data-value');
+
+            let quill = new Quill(this, {
+                modules: {
+                syntax: true,
+                toolbar: toolbar,
+                },
+                theme: 'snow',
+            });
+
+
+
+
+
+            // 1.2: checkValue
+            if (value) {
+
+                let delta = quill.clipboard.convert({html: value});
+                quill.setContents(delta, "api");
+
+            } // end if
+
+
+
+
+
+
+
+
+
+            // -----------------------------------------
+            // -----------------------------------------
+
+
+
+
+
+
+
+            // 1.4: updateHTML - setHTML - resetHTML
+            quill.on('editor-change', (eventName, ...args) => {
+
+                @this.set(instance, quill.getSemanticHTML());
+
+            });
+
+
+            window.addEventListener(`setEditorContent-${id}`, (event) => {
+                let delta = quill.clipboard.convert({html: event.detail.value});
+                quill.setContents(delta, "api");
+            });
+
+
+            window.addEventListener("resetEditorContent", (event) => {
+                quill.setContents([]);
+            });
+
+
+        });
+    </script>
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
 
 
 

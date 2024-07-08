@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\BlogReference;
 use App\Models\BlogSection;
+use App\Models\BlogSetting;
 use App\Models\BlogTag;
 use App\Models\Social;
 use App\Traits\HelperTrait;
@@ -556,13 +557,15 @@ class ExtraController extends Controller
 
 
 
-        // 1: create
+        // 1: get instance
         $socialMedia = Social::first();
 
 
         $socialMedia->instagramURL = $request->instagramURL ?? null;
         $socialMedia->facebookURL = $request->facebookURL ?? null;
         $socialMedia->twitterURL = $request->twitterURL ?? null;
+        $socialMedia->tiktokURL = $request->tiktokURL ?? null;
+        $socialMedia->snapchatURL = $request->snapchatURL ?? null;
         $socialMedia->linkedInURL = $request->linkedInURL ?? null;
 
 
@@ -585,9 +588,165 @@ class ExtraController extends Controller
 
 
 
+
+
+
     // --------------------------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
+
+
+
+    public function updateBlogSettings(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $settings = BlogSetting::first();
+
+
+
+
+        // 1: colors
+        $settings->textColor = $request->textColor ?? null;
+        $settings->textSecondaryColor = $request->textSecondaryColor ?? null;
+        $settings->bodyColor = $request->bodyColor ?? null;
+        $settings->heroBackgroundColor = $request->heroBackgroundColor ?? null;
+        $settings->heroTextColor = $request->heroTextColor ?? null;
+        $settings->cardTitleColor = $request->cardTitleColor ?? null;
+        $settings->cardSubtitleColor = $request->cardSubtitleColor ?? null;
+        $settings->cardAuthorColor = $request->cardAuthorColor ?? null;
+        $settings->cardButtonColor = $request->cardButtonColor ?? null;
+        $settings->cardButtonBorderColor = $request->cardButtonBorderColor ?? null;
+        $settings->cardButtonBorderHoverColor = $request->cardButtonBorderHoverColor ?? null;
+        $settings->hrColor = $request->hrColor ?? null;
+        $settings->cursorColor = $request->cursorColor ?? null;
+
+
+
+
+        // 1.2: features
+        $settings->heroPictureRadius = $request->heroPictureRadius ?? null;
+        $settings->numberOfColumns = $request->numberOfColumns ?? null;
+
+
+
+
+        // 1.3: alignments
+        $settings->cardAlignment = $request->cardAlignment ?? null;
+        $settings->heroTextAlignment = $request->heroTextAlignment ?? null;
+        $settings->singleBlogHeroAlignment = $request->singleBlogHeroAlignment ?? null;
+        $settings->singleBlogSectionTitleAlignment = $request->singleBlogSectionTitleAlignment ?? null;
+        $settings->singleBlogSectionContentAlignment = $request->singleBlogSectionContentAlignment ?? null;
+
+
+
+
+
+
+        // 1.4: content
+        $settings->heroText = $request->heroText ?? null;
+        $settings->contentTitleText = $request->contentTitleText ?? null;
+        $settings->footerText = $request->footerText ?? null;
+        $settings->footerCopyrightsText = $request->footerCopyrightsText ?? null;
+
+
+
+        $settings->save();
+
+
+
+
+
+        return response()->json(['message' => 'Settings has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function updateBlogAttachments(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $settings = BlogSetting::first();
+
+
+
+
+
+        // 1.2: heroFiles
+        $settings->heroImageFile = $request->heroImageFileName ?? null;
+        $settings->heroSecondImageFile = $request->heroSecondImageFileName ?? null;
+        $settings->heroThirdImageFile = $request->heroThirdImageFileName ?? null;
+        $settings->heroFourthImageFile = $request->heroFourthImageFileName ?? null;
+
+
+        // 1.3: footerFile
+        $settings->footerImageFile = $request->footerImageFileName ?? null;
+
+
+
+
+        $settings->save();
+
+
+
+
+
+        return response()->json(['message' => 'Attachments has been updated'], 200);
+
+
+
+
+    } // end function
 
 
 

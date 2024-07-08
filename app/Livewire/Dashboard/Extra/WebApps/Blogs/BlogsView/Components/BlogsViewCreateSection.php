@@ -87,6 +87,8 @@ class BlogsViewCreateSection extends Component
 
 
 
+
+
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'extra/blogs/sections', 'SEC1');
@@ -127,6 +129,7 @@ class BlogsViewCreateSection extends Component
 
 
         // 2: reset
+        $this->dispatch('resetEditorContent');
         $this->instance->reset('title', 'content', 'imageFile', 'secondImageFile', 'thirdImageFile', 'fourthImageFile', 'imageFileName', 'secondImageFileName', 'thirdImageFileName', 'fourthImageFileName');
 
 

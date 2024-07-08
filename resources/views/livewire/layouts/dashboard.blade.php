@@ -75,6 +75,7 @@
         <link href="{{ asset('assets/css/loader.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/checkout.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/editor.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/only-print.css') }}" rel="stylesheet">
 
 
@@ -277,8 +278,6 @@
 
         {{-- 1.6: init actions (download / print) --}}
         <script src="{{ asset('assets/js/init-actions.js') }}"></script>
-
-
 
 
 

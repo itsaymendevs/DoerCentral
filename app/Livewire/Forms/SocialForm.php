@@ -8,7 +8,7 @@ use Livewire\Form;
 class SocialForm extends Form
 {
     // :: variables
-    public $id, $instagramURL, $facebookURL, $twitterURL, $linkedInURL;
+    public $id, $instagramURL, $facebookURL, $twitterURL, $linkedInURL, $tiktokURL, $snapchatURL;
 
 
 

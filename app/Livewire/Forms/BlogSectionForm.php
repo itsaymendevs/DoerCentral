@@ -10,15 +10,15 @@ class BlogSectionForm extends Form
 
     // :: variables
     #[Validate('required')]
-    public $title, $content, $blogId;
+    public $title, $content, $type, $blogId;
 
-    public $id, $sideImageFile, $bottomImageFile, $isCenter;
+    public $id, $imageFile, $secondImageFile, $thirdImageFile, $fourthImageFile;
 
 
 
 
     // :: helpers
-    public $sideImageFileName, $bottomImageFileName;
+    public $imageFileName, $secondImageFileName, $thirdImageFileName, $fourthImageFileName;
 
 
 

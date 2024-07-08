@@ -1,5 +1,5 @@
 <div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="new-section" wire:ignore.self>
-    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body py-0 px-0">
 
@@ -39,8 +39,11 @@
                     <div class="row align-items-start row pt-2 mb-4">
 
 
-                        {{-- leftSection --}}
-                        <div class="col-8">
+
+
+
+                        {{-- content --}}
+                        <div class="col-12">
                             <div class="row align-items-center">
 
 
@@ -60,21 +63,215 @@
                                 {{-- content --}}
                                 <div class="col-12">
                                     <label class="form-label form--label">Content</label>
-                                    <textarea class="form-control form--input form--textarea mb-4" style="height: 350px"
-                                        required wire:model='instance.content'></textarea>
+                                    <textarea class="form-control form--input form--textarea mb-4" required
+                                        wire:model='instance.content'></textarea>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        {{-- endCol --}}
+
+
+
+
+
+
+
+                        {{-- ----------------------------------- --}}
+                        {{-- ----------------------------------- --}}
+
+
+
+
+
+
+
+                        {{-- bottomCol --}}
+                        <div class="col-12">
+                            <div class="row">
+
+
+
+
+
+                                {{-- type --}}
+                                <div class="col-12 mt-4 mb-3 d-flex justify-content-around align-items-center">
+
+
+
+                                    {{-- loop - types --}}
+                                    @foreach ($types ?? [] as $key => $type)
+
+
+                                    <div class="form-check mb-3 itemType--radio" key='section-type-{{ $key }}'>
+
+                                        {{-- input --}}
+                                        <input class="form-check-input" id="section-type-checkbox-{{ $key }}"
+                                            type="radio" value='{{ $type }}' wire:model='instance.type'
+                                            wire:loading.attr='disabled' />
+
+
+                                        {{-- label --}}
+                                        <label class="form-check-label" wire:loading.attr='disabled'
+                                            for="section-type-checkbox-{{ $key }}">{{ $type }}</label>
+
+                                    </div>
+
+
+                                    @endforeach
+                                    {{-- end loop --}}
+
+
+
+                                </div>
+                                {{-- endCol --}}
+
+
+
+
+
+
+
+
+
+
+
+
+                                {{-- ----------------------------------- --}}
+                                {{-- ----------------------------------- --}}
+
+
+
+
+
+
+                                {{-- 1: imageFile --}}
+                                <div class="col-3">
+                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                        data-bss-tooltip="" title="Click To Upload" for="section--file-1">
+
+
+                                        {{-- size --}}
+                                        <span class="upload--caption badge">1st</span>
+
+
+
+                                        {{-- input --}}
+                                        <input class="form-control d-none file--input" type="file" id="section--file-1"
+                                            data-preview="section--preview-1" wire:model='instance.imageFile' />
+
+
+
+                                        {{-- image --}}
+                                        <img id="section--preview-1" class="inventory--image-frame"
+                                            src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                            width="512" height="250" wire:ignore />
+
+                                    </label>
                                 </div>
 
 
 
-                                {{-- append --}}
-                                <div class="col-12 text-center">
-                                    <button wire:loading.attr='disabled'
-                                        wire:target='store, instance.sideImageFile, instance.bottomImageFile'
-                                        class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
-                                        Append Section
-                                    </button>
+
+
+
+
+
+
+                                {{-- 2: secondImageFile --}}
+                                <div class="col-3">
+                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                        data-bss-tooltip="" title="Click To Upload" for="section--file-2">
+
+
+                                        {{-- size --}}
+                                        <span class="upload--caption badge">2nd</span>
+
+
+
+                                        {{-- input --}}
+                                        <input class="form-control d-none file--input" type="file" id="section--file-2"
+                                            data-preview="section--preview-2" wire:model='instance.secondImageFile' />
+
+
+
+                                        {{-- image --}}
+                                        <img id="section--preview-2" class="inventory--image-frame"
+                                            src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                            width="512" height="250" wire:ignore />
+
+                                    </label>
                                 </div>
-                                {{-- endButton --}}
+
+
+
+
+
+
+
+
+
+                                {{-- 3: thirdImageFile --}}
+                                <div class="col-3">
+                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                        data-bss-tooltip="" title="Click To Upload" for="section--file-3">
+
+
+                                        {{-- size --}}
+                                        <span class="upload--caption badge">3rd</span>
+
+
+
+                                        {{-- input --}}
+                                        <input class="form-control d-none file--input" type="file" id="section--file-3"
+                                            data-preview="section--preview-3" wire:model='instance.thirdImageFile' />
+
+
+
+                                        {{-- image --}}
+                                        <img id="section--preview-3" class="inventory--image-frame"
+                                            src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                            width="512" height="250" wire:ignore />
+
+                                    </label>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+                                {{-- 4: fourthImageFile --}}
+                                <div class="col-3">
+                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                        data-bss-tooltip="" title="Click To Upload" for="section--file-4">
+
+
+                                        {{-- size --}}
+                                        <span class="upload--caption badge">4th</span>
+
+
+
+                                        {{-- input --}}
+                                        <input class="form-control d-none file--input" type="file" id="section--file-4"
+                                            data-preview="section--preview-4" wire:model='instance.fourthImageFile' />
+
+
+
+                                        {{-- image --}}
+                                        <img id="section--preview-4" class="inventory--image-frame"
+                                            src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                            width="512" height="250" wire:ignore />
+
+                                    </label>
+                                </div>
+
+
 
 
 
@@ -86,6 +283,8 @@
 
 
 
+
+
                         {{-- ----------------------------------- --}}
                         {{-- ----------------------------------- --}}
 
@@ -94,80 +293,15 @@
 
 
 
-
-                        {{-- rightSection --}}
-                        <div class="col-4">
-
-
-
-
-
-
-                            {{-- centerSection --}}
-                            <div class="form-check form-switch mb-4 mealType--checkbox justify-content-center">
-                                <input class="form-check-input pointer" id="centerize-section-checkbox" type="checkbox"
-                                    wire:model="instance.isCenter" wire:loading.attr="disabled">
-
-                                <label class="form-check-label d-flex justify-content-center"
-                                    wire:loading.attr="disabled" for="centerize-section-checkbox">Center
-                                    Section</label>
-                            </div>
-
-
-
-
-
-
-
-                            {{-- A: sideImageFile --}}
-                            <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip" data-bss-tooltip=""
-                                title="Click To Upload" for="blog--file-3">
-
-
-                                {{-- size --}}
-                                <span class="upload--caption badge">Picture</span>
-
-
-
-                                {{-- input --}}
-                                <input class="form-control d-none file--input" type="file" id="blog--file-3"
-                                    data-preview="blog--preview-3" wire:model='instance.sideImageFile' />
-
-
-
-                                {{-- image --}}
-                                <img id="blog--preview-3" class="inventory--image-frame"
-                                    src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
-                                    width="512" height="250" wire:ignore />
-
-                            </label>
-
-
-
-
-
-
-
-                            {{-- B: bottomImageFile --}}
-                            <label class="form-label upload--wrap mb-2" data-bs-toggle="tooltip" data-bss-tooltip=""
-                                title="Click To Upload" for="blog--file-4">
-
-                                {{-- size --}}
-                                <span class="upload--caption badge">Picture</span>
-
-
-
-                                {{-- input --}}
-                                <input class="form-control d-none file--input" type="file" id="blog--file-4"
-                                    data-preview="blog--preview-4" wire:model='instance.bottomImageFile' />
-
-
-                                <img id="blog--preview-4" class="inventory--image-frame"
-                                    src="{{ asset('assets/img/placeholder.png') }}" width="512" height="250"
-                                    style="aspect-ratio: 1/2;" wire:ignore />
-
-                            </label>
+                        {{-- submitButton --}}
+                        <div class="col-12 text-center mt-3">
+                            <button wire:loading.attr='disabled'
+                                wire:target='store, instance.imageFile, instance.secondImageFile, instance.thirdImageFile, instance.fourthImageFile'
+                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05">
+                                Append Section
+                            </button>
                         </div>
+                        {{-- endButton --}}
 
 
 

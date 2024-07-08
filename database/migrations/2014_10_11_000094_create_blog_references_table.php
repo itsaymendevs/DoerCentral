@@ -10,30 +10,24 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('blog_sections', function (Blueprint $table) {
+        Schema::create('blog_references', function (Blueprint $table) {
             $table->id();
 
 
+
             // 1: general
-            $table->text('title')->nullable();
-            $table->text('content')->nullable();
-            $table->string('type', 100)->nullable()->default('Regular');
+            $table->text('reference')->nullable();
+            $table->text('referenceURL')->nullable();
 
 
 
 
-            // 1.2: imageFiles
-            $table->text('imageFile')->nullable();
-            $table->text('secondImageFile')->nullable();
-            $table->text('thirdImageFile')->nullable();
-            $table->text('fourthImageFile')->nullable();
 
-
-
-
-            // 1.3: blog
+            // 1.2: blog
             $table->bigInteger('blogId')->unsigned()->nullable();
             $table->foreign('blogId')->references('id')->on('blogs')->onDelete('cascade');
+
+
 
 
 
@@ -46,6 +40,6 @@ return new class extends Migration {
      */
     public function down() : void
     {
-        Schema::dropIfExists('blog_sections');
+        Schema::dropIfExists('blog_references');
     }
 };

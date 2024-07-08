@@ -285,3 +285,11 @@ hr {
     text-align: left;
     font-weight: 600 !important;
 }
+
+/* palettes */
+.palette-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}

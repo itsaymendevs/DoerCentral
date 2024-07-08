@@ -18,7 +18,8 @@
 
             {{-- search --}}
             <div class="col-4 text-center">
-                <input type="text" class="form--input" placeholder="Search for User" wire:model.live='searchUser' />
+                <input type="text" class="form--input" placeholder="Search for Description"
+                    wire:model.live='searchUser' />
             </div>
 
 

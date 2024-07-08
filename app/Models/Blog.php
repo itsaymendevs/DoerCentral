@@ -22,6 +22,17 @@ class Blog extends Model
 
 
 
+    public function references()
+    {
+
+        return $this->hasMany(BlogReference::class, 'blogId');
+
+    } // end function
+
+
+
+
+
     public function sections()
     {
 

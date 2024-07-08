@@ -218,10 +218,15 @@ return new class extends Migration {
 
 
 
-            // 3.3: kitchenLabels / Containers / Items
-            $table->boolean('kitchenModuleHasLabelsTab')->nullable()->default(1);
-            $table->boolean('kitchenModuleHasContainersTab')->nullable()->default(1);
-            $table->boolean('kitchenModuleHasItemsTab')->nullable()->default(1);
+            // 3.3: stockModule / Containers / Labels / Items
+            $table->boolean('stockModuleHasLabelsTab')->nullable()->default(1);
+            $table->boolean('stockModuleHasLabelsModification')->nullable()->default(1);
+
+            $table->boolean('stockModuleHasContainersTab')->nullable()->default(1);
+            $table->boolean('stockModuleHasContainersModification')->nullable()->default(1);
+
+            $table->boolean('stockModuleHasItemsTab')->nullable()->default(1);
+            $table->boolean('stockModuleHasItemsModification')->nullable()->default(1);
 
 
 

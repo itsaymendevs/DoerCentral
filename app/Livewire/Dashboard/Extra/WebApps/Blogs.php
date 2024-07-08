@@ -53,7 +53,7 @@ class Blogs extends Component
 
 
         // 1: makeRequest
-        $response = $this->makeRequest('dashboard/extra/blogs/toggle', $id);
+        $response = $this->makeRequest('dashboard/extra/website/blogs/toggle', $id);
 
 
         // :: makeAlert
@@ -131,7 +131,7 @@ class Blogs extends Component
         // 1: remove
         if ($this->removeId) {
 
-            $response = $this->makeRequest('dashboard/extra/blogs/remove', $this->removeId);
+            $response = $this->makeRequest('dashboard/extra/website/blogs/remove', $this->removeId);
             $this->makeAlert('info', $response->message);
 
         } // end if

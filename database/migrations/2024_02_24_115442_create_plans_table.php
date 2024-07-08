@@ -17,7 +17,6 @@ return new class extends Migration {
             // 1: general
             $table->string('name', 255)->nullable();
             $table->string('nameURL', 255)->nullable();
-            $table->string('themeColor', 100)->nullable();
             $table->string('startingPrice', 100)->nullable();
 
 
@@ -40,6 +39,10 @@ return new class extends Migration {
 
 
 
+
+            // 1.4: color
+            $table->bigInteger('colorPaletteId')->unsigned()->nullable();
+            $table->foreign('colorPaletteId')->references('id')->on('color_palettes')->onDelete('set null');
 
 
 

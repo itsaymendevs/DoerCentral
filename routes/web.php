@@ -13,7 +13,6 @@ use App\Livewire\Dashboard\Delivery\DeliveryVehicles;
 use App\Livewire\Dashboard\Delivery\DeliveryZones;
 use App\Livewire\Dashboard\Extra\Finance\PaymentMethods;
 use App\Livewire\Dashboard\Extra\Reports\ReportsDelivery;
-use App\Livewire\Dashboard\Extra\WebApps\Socials;
 use App\Livewire\Dashboard\Inventory\Comparisons;
 use App\Livewire\Dashboard\Inventory\Configurations;
 use App\Livewire\Dashboard\Inventory\Ingredients;
@@ -74,6 +73,7 @@ use App\Livewire\Dashboard\Promos;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsCreate;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsView;
+use App\Livewire\Dashboard\Extra\WebApps\Settings as ExtraSettings;
 use App\Livewire\Dashboard\Stock\Items\ItemsContainers;
 use App\Livewire\Dashboard\Stock\Items\ItemsLabels;
 use App\Livewire\Dashboard\Stock\Items\ItemsLabels\ItemsLabelsCreate;
@@ -1028,9 +1028,9 @@ Route::middleware(['auth.user'])->group(function () {
 
 
         // 16: extra - blogs - create - edit
-        Route::get('dashboard/extra/blogs', Blogs::class)->name('dashboard.blogs');
-        Route::get('dashboard/extra/blogs/create', BlogsCreate::class)->name('dashboard.createBlog');
-        Route::get('dashboard/extra/blogs/{id}', BlogsView::class)->name('dashboard.viewBlog');
+        Route::get('dashboard/extra/website/blogs', Blogs::class)->name('dashboard.website.blogs');
+        Route::get('dashboard/extra/website/blogs/create', BlogsCreate::class)->name('dashboard.website.createBlog');
+        Route::get('dashboard/extra/website/blogs/{id}', BlogsView::class)->name('dashboard.website.viewBlog');
 
 
 
@@ -1050,8 +1050,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 17: extra - socials - update
-        Route::get('dashboard/extra/socials', Socials::class)->name('dashboard.socials');
+        // 17: extra - settings
+        Route::get('dashboard/extra/website/settings', ExtraSettings::class)->name('dashboard.website.settings');
 
 
 

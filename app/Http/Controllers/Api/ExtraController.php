@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\BlogReference;
 use App\Models\BlogSection;
 use App\Models\BlogTag;
 use App\Models\Social;
@@ -35,21 +36,27 @@ class ExtraController extends Controller
 
 
         $blog->title = $request->title;
+        $blog->titleURL = $this->getNameURL($request->title);
+
         $blog->author = $request->author;
         $blog->subtitle = $request->subtitle;
         $blog->summary = $request->summary ?? null;
-
-
         $blog->publishDate = $this->getCurrentDate();
-        $blog->isCenter = $request->isCenter ?? false;
-        $blog->isDarkMode = $request->isDarkMode ?? false;
 
 
 
 
-        // 1.2: imageFiles
+        // 1.2: togglers
+        $blog->showTags = $request->showTags ?? false;
+        $blog->showReferences = $request->showReferences ?? false;
+        $blog->isHeaderFluid = $request->isHeaderFluid ?? false;
+
+
+
+
+
+        // 1.3: imageFiles
         $blog->imageFile = $request->imageFileName ?? null;
-        $blog->mobileImageFile = $request->mobileImageFileName ?? null;
         $blog->headerImageFile = $request->headerImageFileName ?? null;
 
 
@@ -85,8 +92,6 @@ class ExtraController extends Controller
 
 
         } // end loop
-
-
 
 
 
@@ -133,21 +138,26 @@ class ExtraController extends Controller
         // 1: get instance
         $blog = Blog::find($request->id);
 
-
         $blog->title = $request->title;
+        $blog->titleURL = $this->getNameURL($request->title);
+
         $blog->author = $request->author;
         $blog->subtitle = $request->subtitle;
         $blog->summary = $request->summary ?? null;
 
 
-        $blog->isCenter = $request->isCenter ?? false;
-        $blog->isDarkMode = $request->isDarkMode ?? false;
+
+
+        // 1.2: togglers
+        $blog->showTags = $request->showTags ?? false;
+        $blog->showReferences = $request->showReferences ?? false;
+        $blog->isHeaderFluid = $request->isHeaderFluid ?? false;
 
 
 
-        // 1.2: imageFiles
+
+        // 1.3: imageFiles
         $blog->imageFile = $request->imageFileName ?? null;
-        $blog->mobileImageFile = $request->mobileImageFileName ?? null;
         $blog->headerImageFile = $request->headerImageFileName ?? null;
 
 
@@ -192,6 +202,7 @@ class ExtraController extends Controller
 
 
         } // end loop
+
 
 
 
@@ -337,21 +348,24 @@ class ExtraController extends Controller
         // 1: create
         $section = new BlogSection();
 
+
+        $section->type = $request->type;
         $section->title = $request->title ?? null;
         $section->content = $request->content ?? null;
 
 
 
 
+
+
+
         // 1.2: imageFiles
-        $section->sideImageFile = $request->sideImageFileName ?? null;
-        $section->bottomImageFile = $request->bottomImageFileName ?? null;
+        $section->imageFile = $request->imageFileName ?? null;
+        $section->secondImageFile = $request->secondImageFileName ?? null;
+        $section->thirdImageFile = $request->thirdImageFileName ?? null;
+        $section->fourthImageFile = $request->fourthImageFileName ?? null;
 
 
-
-
-        // 1.3: isCenter
-        $section->isCenter = $request->isCenter ?? false;
 
 
 
@@ -422,21 +436,20 @@ class ExtraController extends Controller
         // 1: create
         $section = BlogSection::find($request->id);
 
+        $section->type = $request->type;
         $section->title = $request->title ?? null;
         $section->content = $request->content ?? null;
 
 
 
 
+
         // 1.2: imageFiles
-        $section->sideImageFile = $request->sideImageFileName ?? null;
-        $section->bottomImageFile = $request->bottomImageFileName ?? null;
+        $section->imageFile = $request->imageFileName ?? null;
+        $section->secondImageFile = $request->secondImageFileName ?? null;
+        $section->thirdImageFile = $request->thirdImageFileName ?? null;
+        $section->fourthImageFile = $request->fourthImageFileName ?? null;
 
-
-
-
-        // 1.3: isCenter
-        $section->isCenter = $request->isCenter ?? false;
 
 
 

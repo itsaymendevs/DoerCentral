@@ -36,12 +36,16 @@
 
                 {{-- form --}}
                 <form class="px-4" wire:submit='update'>
-                    <div class="row align-items-center justify-content-center pt-2 mb-4">
+                    <div class="row align-items-start justify-content-center pt-2 mb-4">
 
 
                         {{-- imageFile --}}
                         <div class="col-4">
-                            <div>
+
+
+
+                            {{-- 1: imageFile --}}
+                            <div class='mb-3'>
                                 <label class="form-label upload--wrap" data-bs-toggle="tooltip" data-bss-tooltip=""
                                     for="plan--file-4" title="Click To Upload">
 
@@ -66,8 +70,6 @@
                                     </svg>
                                 </label>
                             </div>
-                        </div>
-                        {{-- endCol --}}
 
 
 
@@ -75,12 +77,16 @@
 
 
 
+                            {{-- ------------------------------------ --}}
+                            {{-- ------------------------------------ --}}
 
 
 
 
-                        {{-- imageFile --}}
-                        <div class="col-4">
+
+
+
+                            {{-- 2: secondImageFile --}}
                             <div>
                                 <label class="form-label upload--wrap" data-bs-toggle="tooltip" data-bss-tooltip=""
                                     for="plan--file-5" title="Click To Upload">
@@ -109,8 +115,12 @@
                                     </svg>
                                 </label>
                             </div>
+
+
                         </div>
                         {{-- endCol --}}
+
+
 
 
 
@@ -134,14 +144,27 @@
 
 
                         {{-- rightCol --}}
-                        <div class="col-12 mt-4">
+                        <div class="col-8">
                             <div class="row justify-content-center">
 
 
 
 
                                 {{-- themeColor --}}
-                                <div class="col-6">
+                                <div class="col-8">
+
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <hr style="width: 20%" />
+                                        <label
+                                            class="form-label form--label px-3 w-50 justify-content-center mb-0">Theme
+                                            Color</label>
+
+
+                                        <hr style="width: 20%" />
+
+                                    </div>
+
+
                                     <input type="color" class="form--input mb-5 pointer" required
                                         wire:model.live='instance.themeColor' />
                                 </div>
@@ -149,10 +172,24 @@
 
 
 
+                                {{-- empty --}}
+                                <div class="col-12"></div>
+
+
+
+
+
+                                {{-- ---------------------------- --}}
+                                {{-- ---------------------------- --}}
+
+
+
+
+
 
 
                                 {{-- name --}}
-                                <div class="col-7">
+                                <div class="col-6">
                                     <label class="form-label form--label">Name</label>
                                     <input class="form-control form--input mb-4" type="text" required
                                         wire:model='instance.name' />
@@ -164,9 +201,9 @@
 
 
                                 {{-- startingPrice --}}
-                                <div class="col-5">
+                                <div class="col-6">
                                     <label class="form-label form--label">Starting Price<small
-                                            class="ms-1 fw-semibold text-gold fs-10">(AED)</small>
+                                            class="ms-1 fw-semibold text-gold fs-9">(AED)</small>
                                     </label>
                                     <input class="form-control form--input mb-4" type="text"
                                         wire:model='instance.startingPrice' required />
@@ -185,16 +222,19 @@
 
                                 {{-- desc --}}
                                 <div class="col-12">
-                                    <label class="form-label form--label">Brief Description</label>
-                                    <input class="form-control form--input mb-4" type="text" wire:model='instance.desc'
-                                        required />
+                                    <label class="form-label form--label">Brief</label>
+                                    <textarea class="form-control form--input form--textarea mb-4" style="height: 100px"
+                                        wire:model='instance.desc' required></textarea>
                                 </div>
+
+
+
 
 
                                 {{-- longDesc --}}
                                 <div class="col-12">
-                                    <label class="form-label form--label">Long Description</label>
-                                    <textarea class="form-control form--input form--textarea mb-4"
+                                    <label class="form-label form--label">Description</label>
+                                    <textarea class="form-control form--input form--textarea mb-4" style="height: 130px"
                                         wire:model='instance.longDesc' required></textarea>
                                 </div>
                             </div>

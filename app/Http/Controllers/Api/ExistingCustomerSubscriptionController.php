@@ -219,7 +219,7 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
             // :: loop - deliveryDays
-            foreach ($request->deliveryDays ?? [] as $weekDay => $isChecked) {
+            foreach ($deliveryDaysInArray ?? [] as $weekDay => $isChecked) {
 
                 boolval($isChecked) ?
                     $subscription->planDeliveryDays = ($subscription->planDeliveryDays ?? '') . $weekDay . '_'

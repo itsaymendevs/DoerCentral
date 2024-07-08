@@ -36,35 +36,28 @@
 
                 {{-- form --}}
                 <form class="px-4" wire:submit='store'>
-                    <div class="row align-items-center justify-content-center pt-2 mb-4">
+                    <div class="row align-items-start justify-content-center pt-2 mb-4">
 
 
                         {{-- imageFile --}}
                         <div class="col-4">
-                            <div>
+
+
+
+                            {{-- 1: imageFile --}}
+                            <div class='mb-3'>
                                 <label class="form-label upload--wrap" data-bs-toggle="tooltip" data-bss-tooltip=""
                                     for="plan--file-1" title="Click To Upload">
 
 
-
-                                    {{-- size --}}
-                                    {{-- <span class="upload--caption badge">500 x 500</span> --}}
-
-
-
                                     {{-- input --}}
                                     <input class="form-control d-none file--input" id="plan--file-1"
-                                        data-preview="plan--preview-1" type="file" required
-                                        wire:model='instance.imageFile' />
-
-
-
+                                        data-preview="plan--preview-1" type="file" wire:model='instance.imageFile'
+                                        required />
 
                                     {{-- preview --}}
                                     <img class="inventory--image-frame" id="plan--preview-1"
                                         src="{{ asset('assets/img/placeholder.png') }}" wire:ignore />
-
-
 
                                     {{-- icon --}}
                                     <svg class="bi bi-cloud-upload" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -78,8 +71,6 @@
                                     </svg>
                                 </label>
                             </div>
-                        </div>
-                        {{-- endCol --}}
 
 
 
@@ -87,24 +78,25 @@
 
 
 
+                            {{-- ------------------------------------ --}}
+                            {{-- ------------------------------------ --}}
 
 
-                        {{-- secondImageFile --}}
-                        <div class="col-4">
+
+
+
+
+
+                            {{-- 2: secondImageFile --}}
                             <div>
                                 <label class="form-label upload--wrap" data-bs-toggle="tooltip" data-bss-tooltip=""
                                     for="plan--file-2" title="Click To Upload">
 
 
-                                    {{-- size --}}
-
-
-
                                     {{-- input --}}
                                     <input class="form-control d-none file--input" id="plan--file-2"
-                                        data-preview="plan--preview-2" type="file" required
-                                        wire:model='instance.secondImageFile' />
-
+                                        data-preview="plan--preview-2" type="file" wire:model='instance.secondImageFile'
+                                        required />
 
 
 
@@ -112,11 +104,6 @@
                                     <img class="inventory--image-frame" id="plan--preview-2"
                                         src="{{ asset('assets/img/placeholder.png') }}" wire:ignore />
 
-
-
-
-
-
                                     {{-- icon --}}
                                     <svg class="bi bi-cloud-upload" xmlns="http://www.w3.org/2000/svg" width="1em"
                                         height="1em" fill="currentColor" viewBox="0 0 16 16">
@@ -129,6 +116,8 @@
                                     </svg>
                                 </label>
                             </div>
+
+
                         </div>
                         {{-- endCol --}}
 
@@ -142,10 +131,11 @@
 
 
 
-                        {{-- -------------------------------------------- --}}
-                        {{-- -------------------------------------------- --}}
-                        {{-- -------------------------------------------- --}}
-                        {{-- -------------------------------------------- --}}
+                        {{-- --------------------------------------------- --}}
+                        {{-- --------------------------------------------- --}}
+                        {{-- --------------------------------------------- --}}
+                        {{-- --------------------------------------------- --}}
+
 
 
 
@@ -155,8 +145,96 @@
 
 
                         {{-- rightCol --}}
-                        <div class="col-12 mt-4">
-                            <div class="row">
+                        <div class="col-8">
+                            <div class="row justify-content-center">
+
+
+
+
+                                {{-- palettesColor --}}
+                                <div class="col-12">
+
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <hr style="width: 20%" />
+                                        <label
+                                            class="form-label form--label px-3 w-50 justify-content-center mb-0">Palette</label>
+
+
+                                        <hr style="width: 20%" />
+
+                                    </div>
+
+
+
+                                    {{-- -------------------------------- --}}
+                                    {{-- -------------------------------- --}}
+
+
+
+
+                                    {{-- wrapper --}}
+                                    <div class="row">
+
+
+
+
+                                        {{-- loop - palettes --}}
+                                        @foreach ($palettes ?? [] as $palette)
+
+                                        <div class="col-3" key='single-palette-{{ $palette->id }}'>
+                                            <div class="palette-wrapper">
+
+
+                                                <label class="palette-window"
+                                                    style="background-color: {{ $palette->value }}"></label>
+
+                                                <label class="palette-window"
+                                                    style="background-color: {{ $palette->secondValue }}"></label>
+
+
+
+                                                {{-- checkbox --}}
+                                                <input type="checkbox" class='d-none' name=""
+                                                    id="palette-checkbox-{{ $palette->id }}">
+
+
+                                            </div>
+                                        </div>
+
+                                        @endforeach
+                                        {{-- end loop --}}
+
+
+                                    </div>
+                                    {{-- endWrapper --}}
+
+
+
+                                </div>
+                                {{-- endCol --}}
+
+
+
+
+
+
+                                {{-- empty --}}
+                                <div class="col-12"></div>
+
+
+
+
+
+
+
+
+                                {{-- ---------------------------- --}}
+                                {{-- ---------------------------- --}}
+
+
+
+
+
 
 
                                 {{-- name --}}
@@ -167,10 +245,14 @@
                                 </div>
 
 
+
+
+
+
                                 {{-- startingPrice --}}
                                 <div class="col-6">
                                     <label class="form-label form--label">Starting Price<small
-                                            class="ms-1 fw-semibold text-gold fs-10">(AED)</small>
+                                            class="ms-1 fw-semibold text-gold fs-9">(AED)</small>
                                     </label>
                                     <input class="form-control form--input mb-4" type="text"
                                         wire:model='instance.startingPrice' required />
@@ -178,18 +260,30 @@
 
 
 
+
+
+
+
+
+
+
+
+
                                 {{-- desc --}}
                                 <div class="col-12">
-                                    <label class="form-label form--label">Brief Description</label>
-                                    <input class="form-control form--input mb-4" type="text" wire:model='instance.desc'
-                                        required />
+                                    <label class="form-label form--label">Brief</label>
+                                    <textarea class="form-control form--input form--textarea mb-4" style="height: 100px"
+                                        wire:model='instance.desc' required></textarea>
                                 </div>
+
+
+
 
 
                                 {{-- longDesc --}}
                                 <div class="col-12">
-                                    <label class="form-label form--label">Long Description</label>
-                                    <textarea class="form-control form--input form--textarea mb-4"
+                                    <label class="form-label form--label">Description</label>
+                                    <textarea class="form-control form--input form--textarea mb-4" style="height: 130px"
                                         wire:model='instance.longDesc' required></textarea>
                                 </div>
                             </div>
@@ -199,15 +293,19 @@
 
 
 
+
+
+
                         {{-- submit --}}
                         <div class="col-12 text-end mt-3">
                             <button
                                 class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05"
                                 wire:loading.attr='disabled'
-                                wire:target='instance.imageFile, instance.secondImageFile, store'>
+                                wire:target='instance.imageFile, instance.secondImageFile, update'>
                                 Save
                             </button>
                         </div>
+
 
 
                     </div>

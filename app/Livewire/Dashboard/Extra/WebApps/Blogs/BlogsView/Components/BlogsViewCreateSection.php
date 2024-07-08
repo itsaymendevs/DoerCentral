@@ -28,9 +28,9 @@ class BlogsViewCreateSection extends Component
     {
 
 
-        // 1: get blogId
+        // 1: get instance
         $this->instance->blogId = $id;
-
+        $this->instance->type = 'Regular';
 
 
     } // end function
@@ -88,13 +88,21 @@ class BlogsViewCreateSection extends Component
 
 
         // 1: uploadFile
-        if ($this->instance->sideImageFile)
-            $this->instance->sideImageFileName = $this->uploadFile($this->instance->sideImageFile, 'extra/blogs/sections', 'BLG-SIDE');
+        if ($this->instance->imageFile)
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'extra/blogs/sections', 'SEC1');
 
 
-        if ($this->instance->bottomImageFile)
-            $this->instance->bottomImageFileName = $this->uploadFile($this->instance->bottomImageFile, 'extra/blogs/sections', 'BLG-BOTTOM');
+        if ($this->instance->secondImageFile)
+            $this->instance->secondImageFileName = $this->uploadFile($this->instance->secondImageFile, 'extra/blogs/sections', 'SEC2');
 
+
+
+        if ($this->instance->thirdImageFile)
+            $this->instance->thirdImageFileName = $this->uploadFile($this->instance->thirdImageFile, 'extra/blogs/sections', 'SEC3');
+
+
+        if ($this->instance->fourthImageFile)
+            $this->instance->fourthImageFileName = $this->uploadFile($this->instance->fourthImageFile, 'extra/blogs/sections', 'SEC4');
 
 
 
@@ -111,23 +119,39 @@ class BlogsViewCreateSection extends Component
 
 
         // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/extra/blogs/sections/store', $this->instance);
+        $response = $this->makeRequest('dashboard/extra/website/blogs/sections/store', $this->instance);
 
 
 
 
 
 
-        // :: refresh / closeModal
-        $this->instance->reset('title', 'content', 'sideImageFile', 'bottomImageFile', 'sideImageFileName', 'bottomImageFileName');
+        // 2: reset
+        $this->instance->reset('title', 'content', 'imageFile', 'secondImageFile', 'thirdImageFile', 'fourthImageFile', 'imageFileName', 'secondImageFileName', 'thirdImageFileName', 'fourthImageFileName');
+
+
+        $this->dispatch('resetFile', file: 'section--file-1',
+            defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-2',
+            defaultPreview: $this->getDefaultPreview());
+
+        $this->dispatch('resetFile', file: 'section--file-3',
+            defaultPreview: $this->getDefaultPreview());
+
+        $this->dispatch('resetFile', file: 'section--file-4',
+            defaultPreview: $this->getDefaultPreview());
+
+
+
+
+
+
+
+
+        // 2.1: refresh
         $this->dispatch('refreshViews');
-        $this->dispatch('resetFile', file: 'blog--file-3', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'blog--file-4', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('closeModal', modal: '#new-section .btn--close');
 
-
-
-        // :: alert
         $this->makeAlert('success', $response->message);
 
 
@@ -155,11 +179,17 @@ class BlogsViewCreateSection extends Component
     {
 
 
+        // 1: dependencies
+        $types = ['Floating Left', 'Regular', 'Floating Right'];
+
+
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.extra.web-apps.blogs.blogs-view.components.blogs-view-create-section');
+        return view('livewire.dashboard.extra.web-apps.blogs.blogs-view.components.blogs-view-create-section', compact('types'));
 
     } // end function
 

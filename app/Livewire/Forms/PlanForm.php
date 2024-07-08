@@ -14,7 +14,7 @@ class PlanForm extends Form
     #[Validate('required')]
     public $name, $startingPrice, $desc, $longDesc;
 
-    public $id, $nameURL, $themeColor, $imageFile, $secondImageFile, $thirdImageFile;
+    public $id, $nameURL, $colorPaletteId, $imageFile, $secondImageFile, $thirdImageFile;
 
 
 

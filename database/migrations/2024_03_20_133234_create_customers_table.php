@@ -39,15 +39,21 @@ return new class extends Migration {
 
 
 
-
             // 1.3: bagRemarks
             $table->string('bagRemarks', 255)->nullable();
 
 
 
 
+            // 1.4: re-token
+            $table->text('reToken')->nullable();
 
-            // 1.3: manager - driver
+
+
+
+
+
+            // 1.5: manager - driver
             $table->bigInteger('managerId')->unsigned()->nullable();
             $table->foreign('managerId')->references('id')->on('users')->onDelete('set null');
 

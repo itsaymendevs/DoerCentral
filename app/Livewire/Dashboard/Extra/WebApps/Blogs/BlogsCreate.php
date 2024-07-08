@@ -65,12 +65,6 @@ class BlogsCreate extends Component
 
 
 
-        if ($this->instance->mobileImageFile)
-            $this->instance->mobileImageFileName = $this->uploadFile($this->instance->mobileImageFile, 'extra/blogs', 'BLG-MOBILE');
-
-
-
-
         if ($this->instance->headerImageFile)
             $this->instance->headerImageFileName = $this->uploadFile($this->instance->headerImageFile, 'extra/blogs', 'BLG-HEADER');
 
@@ -80,8 +74,9 @@ class BlogsCreate extends Component
 
 
 
+
         // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/extra/blogs/store', $this->instance);
+        $response = $this->makeRequest('dashboard/extra/website/blogs/store', $this->instance);
 
 
 
@@ -92,7 +87,7 @@ class BlogsCreate extends Component
         $this->makeAlert('success', $response->message);
 
         $latestBlog = Blog::latest()->first();
-        return $this->redirect(route('dashboard.viewBlog', ['id' => $latestBlog->id]), navigate: true);
+        return $this->redirect(route('dashboard.website.viewBlog', ['id' => $latestBlog->id]), navigate: true);
 
 
 

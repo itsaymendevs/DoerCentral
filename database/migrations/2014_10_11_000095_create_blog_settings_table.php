@@ -14,25 +14,123 @@ return new class extends Migration {
             $table->id();
 
 
-            // 1: general
-            $table->string('color', 100)->nullable();
-            $table->string('hrColor', 100)->nullable();
-            $table->string('titlePlacement', 100)->nullable();
+            // 1: textColors
+            $table->string('textColor', 100)->nullable()->default('#000000');
+            $table->string('textSecondaryColor', 100)->nullable()->default('#000000');
+            $table->string('bodyColor', 100)->nullable()->default('#000000');
 
 
 
 
-            // 1.2: font
-            $table->text('fontURL')->nullable();
-            $table->string('font', 255)->nullable();
+            // 1.2: hero
+            $table->string('heroPictureRadius', 100)->nullable();
+            $table->string('heroBackgroundColor', 100)->nullable()->default('#000000');
+            $table->string('heroTextColor', 100)->nullable()->default('#000000');
 
 
 
 
-            // 1.2: menuLinks
-            $table->text('homeURL')->nullable();
-            $table->text('contactURL')->nullable();
-            $table->text('blogsURL')->nullable();
+
+
+            // 1.3: card
+            $table->string('cardTitleColor', 100)->nullable()->default('#000000');
+            $table->string('cardSubtitleColor', 100)->nullable()->default('#000000');
+            $table->string('cardAuthorColor', 100)->nullable()->default('#000000');
+            $table->string('cardButtonColor', 100)->nullable()->default('#000000');
+            $table->string('cardButtonBorderColor', 100)->nullable()->default('#000000');
+            $table->string('cardButtonBorderHoverColor', 100)->nullable()->default('#000000');
+
+
+
+            // 1.4: hr - cursor
+            $table->string('hrColor', 100)->nullable()->default('#000000');
+            $table->string('cursorColor', 100)->nullable()->default('#000000');
+
+
+
+
+
+
+            // 1.5: numberOfColumns
+            $table->integer('numberOfColumns')->nullable()->default(3);
+
+
+
+
+            // 1.6: alignment
+            $table->string('cardAlignment', 100)->nullable();
+            $table->string('heroTextAlignment', 100)->nullable();
+
+
+
+
+
+
+
+            // --------------------------------------------
+            // --------------------------------------------
+
+
+
+
+
+
+            // 2: singleBlog
+
+
+
+            // 2.1: hero
+            $table->string('singleBlogHeroAlignment', 100)->nullable();
+
+
+
+            // 2.2: sections
+            $table->string('singleBlogSectionTitleAlignment', 100)->nullable();
+            $table->string('singleBlogSectionContentAlignment', 100)->nullable();
+
+
+
+
+
+
+
+
+            // --------------------------------------------
+            // --------------------------------------------
+
+
+
+
+
+
+            // 3: content
+
+
+
+            // 3.1: hero
+            $table->text('heroText')->nullable();
+
+            $table->text('heroImageFile')->nullable();
+            $table->text('heroSecondImageFile')->nullable();
+            $table->text('heroThirdImageFile')->nullable();
+            $table->text('heroFourthImageFile')->nullable();
+
+
+
+
+            // 3.2: contentText
+            $table->text('contentTitleText')->nullable();
+
+
+
+
+
+
+            // 3.3: footer
+            $table->text('footerText')->nullable();
+            $table->text('footerImageFile')->nullable();
+            $table->text('footerCopyrightsText')->nullable();
+
 
 
 

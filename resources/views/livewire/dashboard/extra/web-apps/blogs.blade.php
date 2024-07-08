@@ -22,7 +22,7 @@
 
                 <a wire:navigate
                     class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
-                    href="{{ route('dashboard.createBlog') }}">
+                    href="{{ route('dashboard.website.createBlog') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-plus-circle-dotted fs-5 me-2">
                         <path
@@ -204,7 +204,8 @@
 
 
 
-                                        <a wire:navigate href="{{ route('dashboard.viewBlog', [$blog->id]) }}" class="btn btn--scheme btn--scheme-2
+                                        <a wire:navigate href="{{ route('dashboard.website.viewBlog', [$blog->id]) }}"
+                                            class="btn btn--scheme btn--scheme-2
                                         fs-12 px-4 mx-2 scale--self-05" type="button">Manage</a>
 
 

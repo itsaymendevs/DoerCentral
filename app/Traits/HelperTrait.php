@@ -913,4 +913,34 @@ trait HelperTrait
 
 
 
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+    function makeRegularToken()
+    {
+
+
+
+        // :: returnToken
+        return date('dmYhis');
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
 } // end trait

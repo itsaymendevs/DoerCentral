@@ -83,8 +83,8 @@ class CustomerSubscriptionStepOne extends Component
 
 
 
-    // --------------------------------------------------------------
 
+    // --------------------------------------------------------------
 
 
 
@@ -180,6 +180,9 @@ class CustomerSubscriptionStepOne extends Component
 
 
 
+
+
+
     // --------------------------------------------------------------
 
 
@@ -190,6 +193,9 @@ class CustomerSubscriptionStepOne extends Component
 
     public function render()
     {
+
+
+
 
         // 1: dependencies
         $plans = Plan::whereHas('ranges')
@@ -205,6 +211,7 @@ class CustomerSubscriptionStepOne extends Component
 
 
         return view('livewire.subscription.customer.customer-subscription-step-one', compact('plans'));
+
 
 
     } // end function

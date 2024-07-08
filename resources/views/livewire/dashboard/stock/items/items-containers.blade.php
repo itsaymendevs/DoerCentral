@@ -33,7 +33,17 @@
 
 
             {{-- newButton --}}
+
+
+            {{-- :: permission - hasContainersModification --}}
+            @if ($versionPermission->stockModuleHasContainersModification || session('hasTechAccess'))
+
+
             <div class="col-auto">
+
+
+
+
                 <button
                     class="btn btn--scheme btn--scheme-2 w-100 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
                     type="button" data-bs-target="#new-container" data-bs-toggle="modal">
@@ -45,6 +55,17 @@
                     </svg>New Container
                 </button>
             </div>
+
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
+
+
 
 
 
@@ -166,6 +187,16 @@
 
 
                                     {{-- actions --}}
+
+
+
+
+                                    {{-- :: permission - hasContainersModification --}}
+                                    @if ($versionPermission->stockModuleHasContainersModification ||
+                                    session('hasTechAccess'))
+
+
+
                                     <div class="d-flex align-items-center justify-content-center mb-1">
 
 
@@ -202,6 +233,13 @@
 
 
                                     </div>
+
+
+
+                                    @endif
+                                    {{-- end if - permission --}}
+
+
                                     {{-- endActions --}}
 
 

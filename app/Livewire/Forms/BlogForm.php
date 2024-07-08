@@ -10,19 +10,19 @@ class BlogForm extends Form
 
     // :: variables
     #[Validate('required')]
-    public $title, $subtitle, $author, $imageFile, $mobileImageFile, $headerImageFile;
+    public $title, $subtitle, $author, $imageFile, $headerImageFile;
 
-    public $id, $publishDate, $summary, $isDarkMode, $isCenter;
+    public $id, $titleURL, $publishDate, $summary, $showTags, $showReferences, $isHeaderFluid;
 
 
 
     // :: relation
-    public $tags = [];
+    public $tags = [], $references = [];
 
 
 
     // :: helpers
-    public $imageFileName, $mobileImageFileName, $headerImageFileName;
+    public $imageFileName, $headerImageFileName;
 
 
 

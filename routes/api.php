@@ -1436,11 +1436,11 @@ Route::post('/dashboard/kitchen/production/meals/pack', [KitchenTodayController:
 
 
 // 18: extra - blogs - store - update
-Route::post('/dashboard/extra/blogs/store', [ExtraController::class, 'storeBlog']);
-Route::post('/dashboard/extra/blogs/update', [ExtraController::class, 'updateBlog']);
-Route::post('/dashboard/extra/blogs/toggle', [ExtraController::class, 'toggleBlog']);
+Route::post('/dashboard/extra/website/blogs/store', [ExtraController::class, 'storeBlog']);
+Route::post('/dashboard/extra/website/blogs/update', [ExtraController::class, 'updateBlog']);
+Route::post('/dashboard/extra/website/blogs/toggle', [ExtraController::class, 'toggleBlog']);
 
-Route::post('/dashboard/extra/blogs/remove', [ExtraController::class, 'removeBlog']);
+Route::post('/dashboard/extra/website/blogs/remove', [ExtraController::class, 'removeBlog']);
 
 
 
@@ -1460,10 +1460,10 @@ Route::post('/dashboard/extra/blogs/remove', [ExtraController::class, 'removeBlo
 
 
 // 18.2: extra - blogs - sections - store - update - remove
-Route::post('/dashboard/extra/blogs/sections/store', [ExtraController::class, 'storeBlogSection']);
-Route::post('/dashboard/extra/blogs/sections/update', [ExtraController::class, 'updateBlogSection']);
+Route::post('/dashboard/extra/website/blogs/sections/store', [ExtraController::class, 'storeBlogSection']);
+Route::post('/dashboard/extra/website/blogs/sections/update', [ExtraController::class, 'updateBlogSection']);
 
-Route::post('/dashboard/extra/blogs/sections/remove', [ExtraController::class, 'removeBlogSection']);
+Route::post('/dashboard/extra/website/blogs/sections/remove', [ExtraController::class, 'removeBlogSection']);
 
 
 
@@ -1490,8 +1490,8 @@ Route::post('/dashboard/extra/blogs/sections/remove', [ExtraController::class, '
 
 
 
-// 18: extra - socials - store - update
-Route::post('/dashboard/extra/socials/update', [ExtraController::class, 'updateSocialMedia']);
+// 18: extra - settings - socials - store - update
+Route::post('/dashboard/extra/settings/socials/update', [ExtraController::class, 'updateSocialMedia']);
 
 
 

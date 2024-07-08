@@ -12,8 +12,8 @@
 
 
     <a wire:navigate class="btn fs-13
-    @if (Request::is('dashboard/extra/blogs', 'dashboard/extra/blogs/*')) active @endif" role="button"
-        href="{{ route('dashboard.blogs') }}">Blogs</a>
+    @if (Request::is('dashboard/extra/website/blogs', 'dashboard/extra/website/blogs/*')) active @endif" role="button"
+        href="{{ route('dashboard.website.blogs') }}">Blogs</a>
 
 
 
@@ -55,8 +55,8 @@
 
 
     <a wire:navigate class="btn fs-13
-    @if (Request::is('dashboard/extra/socials', 'dashboard/extra/socials/*')) active @endif" role="button"
-        href="{{ route('dashboard.socials') }}">Social Links</a>
+    @if (Request::is('dashboard/extra/settings', 'dashboard/extra/settings/*')) active @endif" role="button"
+        href="{{ route('dashboard.website.settings') }}">Settings</a>
 
 
 

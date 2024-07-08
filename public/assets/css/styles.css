@@ -362,6 +362,12 @@ textarea:read-only {
     align-items: center;
 }
 
+.form--label.with-icon i {
+    font-size: 15px;
+    margin-right: 5px;
+    color: var(--bs-warning);
+}
+
 .hr--title .form--label {
     color: var(--bs-gray-400);
 }
@@ -448,6 +454,19 @@ textarea:read-only {
     border-radius: var(--input-radius);
     font-size: var(--input-font);
     color: var(--color-theme);
+}
+
+/* color */
+input[type="color"] {
+    -webkit-appearance: none;
+    width: 100%;
+    padding: 0px 30px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+    border: none;
 }
 
 /* textarea */

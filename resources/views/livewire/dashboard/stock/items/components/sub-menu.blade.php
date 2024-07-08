@@ -6,7 +6,7 @@
 
 
     {{-- :: permission - hasContainers --}}
-    @if ($versionPermission->kitchenModuleHasContainersTab || session('hasTechAccess'))
+    @if ($versionPermission->stockModuleHasContainersTab || session('hasTechAccess'))
 
 
 
@@ -23,7 +23,7 @@
 
 
     {{-- :: permission - hasLabel --}}
-    @if ($versionPermission->kitchenModuleHasLabelsTab || session('hasTechAccess'))
+    @if ($versionPermission->stockModuleHasLabelsTab || session('hasTechAccess'))
 
 
     {{-- 2: labels --}}
@@ -43,7 +43,7 @@
 
 
     {{-- :: permission - hasItem --}}
-    @if ($versionPermission->kitchenModuleHasItemsTab || session('hasTechAccess'))
+    @if ($versionPermission->stockModuleHasItemsTab || session('hasTechAccess'))
 
 
     {{-- 3: others --}}

@@ -146,12 +146,6 @@ class Permissions extends Component
             'kitchenModuleHasCheckoutType' => 'Checkout Type',
 
 
-            'kitchenModuleHasLabelsTab' => 'Labels Tab',
-            'kitchenModuleHasContainersTab' => 'Containers Tab',
-            'kitchenModuleHasItemsTab' => 'Items Tab',
-
-
-
 
 
             // -------------------------------------------
@@ -193,6 +187,18 @@ class Permissions extends Component
             'stockModuleHasModule' => 'Stock Module',
             'stockModuleHasStock' => 'Vendors & Stock',
             'stockModuleHasComparisons' => 'Comparison Tab',
+
+
+            'stockModuleHasLabelsTab' => 'Labels',
+            'stockModuleHasLabelsModification' => 'Label Modifications',
+            'stockModuleHasContainersTab' => 'Containers',
+            'stockModuleHasContainersModification' => 'Container Modifications',
+            'stockModuleHasItemsTab' => 'Items',
+            'stockModuleHasItemsModification' => 'Item Modifications',
+
+
+
+
 
 
 
@@ -338,7 +344,7 @@ class Permissions extends Component
 
 
         // 2.4: kitchen
-        $kitchenPermissions = VersionPermission::get(['kitchenModuleHasPrintExcel', 'kitchenModuleHasTypeSizeFilters', 'kitchenModuleHasMealDetails', 'kitchenModuleHasMealPartDetails', 'kitchenModuleHasConfirmCooking', 'kitchenModuleHasConfirmPacking', 'kitchenModuleHasPreparationTab', 'kitchenModuleHasQuantityTab', 'kitchenModuleHasCheckoutTab', 'kitchenModuleHasCheckoutType', 'kitchenModuleHasLabelsTab', 'kitchenModuleHasContainersTab', 'kitchenModuleHasItemsTab'])->first()->toArray();
+        $kitchenPermissions = VersionPermission::get(['kitchenModuleHasPrintExcel', 'kitchenModuleHasTypeSizeFilters', 'kitchenModuleHasMealDetails', 'kitchenModuleHasMealPartDetails', 'kitchenModuleHasConfirmCooking', 'kitchenModuleHasConfirmPacking', 'kitchenModuleHasPreparationTab', 'kitchenModuleHasQuantityTab', 'kitchenModuleHasCheckoutTab', 'kitchenModuleHasCheckoutType'])->first()->toArray();
 
 
 
@@ -362,7 +368,7 @@ class Permissions extends Component
 
 
         // 2.7: stock
-        $stockPermissions = VersionPermission::get(['stockModuleHasModule', 'stockModuleHasStock', 'stockModuleHasComparisons'])->first()->toArray();
+        $stockPermissions = VersionPermission::get(['stockModuleHasModule', 'stockModuleHasStock', 'stockModuleHasComparisons', 'stockModuleHasLabelsTab', 'stockModuleHasLabelsModification', 'stockModuleHasContainersTab', 'stockModuleHasContainersModification', 'stockModuleHasItemsTab', 'stockModuleHasItemsModification'])->first()->toArray();
 
 
 

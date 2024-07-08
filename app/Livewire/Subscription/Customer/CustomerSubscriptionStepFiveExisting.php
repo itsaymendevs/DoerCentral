@@ -520,7 +520,7 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
 
 
-
+        dd($this->instance);
 
         // :: continue
 
@@ -534,6 +534,7 @@ class CustomerSubscriptionStepFiveExisting extends Component
 
         // ## log - activity ##
         $this->storeActivity('Customers', "Renew subscription for {$this->instance->firstName} {$this->instance->lastName}");
+
 
 
 

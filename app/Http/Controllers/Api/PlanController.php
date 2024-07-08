@@ -49,7 +49,7 @@ class PlanController extends Controller
 
         $plan->desc = $request->desc;
         $plan->longDesc = $request->longDesc;
-        $plan->themeColor = $request->themeColor ?? "#000";
+        $plan->colorPaletteId = $request->colorPaletteId ?? null;
         $plan->startingPrice = $request->startingPrice;
 
 
@@ -112,7 +112,7 @@ class PlanController extends Controller
 
         $plan->desc = $request->desc;
         $plan->longDesc = $request->longDesc;
-        $plan->themeColor = $request->themeColor ?? "#000";
+        $plan->colorPaletteId = $request->colorPaletteId ?? null;
         $plan->startingPrice = $request->startingPrice;
 
 

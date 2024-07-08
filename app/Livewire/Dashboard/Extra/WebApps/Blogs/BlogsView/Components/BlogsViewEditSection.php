@@ -45,11 +45,14 @@ class BlogsViewEditSection extends Component
 
 
 
-        // 1.2: convertBoolean - imageFiles
-        $this->instance->isCenter = boolval($this->instance->isCenter);
+        // 1.2:  imageFiles
+        $this->instance->imageFileName = $this->instance?->imageFile ?? null;
+        $this->instance->secondImageFileName = $this->instance?->secondImageFile ?? null;
+        $this->instance->thirdImageFileName = $this->instance?->thirdImageFile ?? null;
+        $this->instance->fourthImageFileName = $this->instance?->fourthImageFile ?? null;
 
-        $this->instance->sideImageFileName = $this->instance?->sideImageFile ?? null;
-        $this->instance->bottomImageFileName = $this->instance?->bottomImageFile ?? null;
+
+
 
 
 
@@ -62,29 +65,46 @@ class BlogsViewEditSection extends Component
 
 
 
-        // 1.2: setFilePreview
-        $this->dispatch('setFilePreview', filePreview: 'blog--preview-5', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('setFilePreview', filePreview: 'blog--preview-6', defaultPreview: $this->getDefaultPreview());
+        // 1.3: previews
+        if ($this->instance->imageFileName) {
 
-
-
-        if ($this->instance->sideImageFile) {
-
-            $preview = asset('storage/extra/blogs/sections/' . $this->instance->sideImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'blog--preview-5', defaultPreview: $preview);
+            $preview = asset('storage/extra/blogs/sections/' . $this->instance->imageFileName);
+            $this->dispatch('setFilePreview', filePreview: 'section--preview-5', defaultPreview: $preview);
 
         } // end if
 
 
 
 
+        if ($this->instance->secondImageFile) {
 
-        if ($this->instance->bottomImageFile) {
-
-            $preview = asset('storage/extra/blogs/sections/' . $this->instance->bottomImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'blog--preview-6', defaultPreview: $preview);
+            $preview = asset('storage/extra/blogs/sections/' . $this->instance->secondImageFile);
+            $this->dispatch('setFilePreview', filePreview: 'section--preview-6', defaultPreview: $preview);
 
         } // end if
+
+
+
+
+        if ($this->instance->thirdImageFile) {
+
+            $preview = asset('storage/extra/blogs/sections/' . $this->instance->thirdImageFile);
+            $this->dispatch('setFilePreview', filePreview: 'section--preview-7', defaultPreview: $preview);
+
+        } // end if
+
+
+
+
+        if ($this->instance->fourthImageFile) {
+
+            $preview = asset('storage/extra/blogs/sections/' . $this->instance->fourthImageFile);
+            $this->dispatch('setFilePreview', filePreview: 'section--preview-8', defaultPreview: $preview);
+
+        } // end if
+
+
+
 
 
 
@@ -149,20 +169,43 @@ class BlogsViewEditSection extends Component
 
 
         // 1: replaceFiles
-        if ($this->instance->sideImageFile != $this->instance->sideImageFileName) {
+        if ($this->instance->imageFile != $this->instance->imageFileName) {
 
-            $this->instance->sideImageFileName = $this->replaceFile($this->instance->sideImageFile, 'extra/blogs/sections', $this->instance->sideImageFileName, 'BLG-SIDE');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/blogs/sections', $this->instance->imageFileName, 'SEC1');
+
+        } // end if
+
+
+
+
+        if ($this->instance->secondImageFile != $this->instance->secondImageFileName) {
+
+            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'extra/blogs/sections', $this->instance->secondImageFileName, 'SEC2');
 
         } // end if
 
 
 
 
-        if ($this->instance->bottomImageFile != $this->instance->bottomImageFileName) {
 
-            $this->instance->bottomImageFileName = $this->replaceFile($this->instance->bottomImageFile, 'extra/blogs/sections', $this->instance->bottomImageFileName, 'BLG-BOTTOM');
+
+        if ($this->instance->thirdImageFile != $this->instance->thirdImageFileName) {
+
+            $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'extra/blogs/sections', $this->instance->thirdImageFileName, 'SEC3');
 
         } // end if
+
+
+
+
+
+        if ($this->instance->fourthImageFile != $this->instance->fourthImageFileName) {
+
+            $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'extra/blogs/sections', $this->instance->fourthImageFileName, 'SEC4');
+
+        } // end if
+
+
 
 
 
@@ -182,23 +225,28 @@ class BlogsViewEditSection extends Component
 
 
         // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/extra/blogs/sections/update', $this->instance);
+        $response = $this->makeRequest('dashboard/extra/website/blogs/sections/update', $this->instance);
 
 
 
 
 
 
-        // :: refresh / closeModal
+        // 2: reset
         $this->instance->reset();
+        $this->dispatch('resetFile', file: 'section--file-5', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-6', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-7', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-8', defaultPreview: $this->getDefaultPreview());
+
+
+
+
+
+        // 2.1: refresh
         $this->dispatch('refreshViews');
-        $this->dispatch('resetFile', file: 'blog--file-5', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'blog--file-6', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('closeModal', modal: '#edit-section .btn--close');
 
-
-
-        // :: alert
         $this->makeAlert('success', $response->message);
 
 
@@ -226,11 +274,20 @@ class BlogsViewEditSection extends Component
     {
 
 
+        // 1: dependencies
+        $types = ['Floating Left', 'Regular', 'Floating Right'];
+
+
+
+
+
+
+
         // :: initTooltips
         $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.extra.web-apps.blogs.blogs-view.components.blogs-view-edit-section');
+        return view('livewire.dashboard.extra.web-apps.blogs.blogs-view.components.blogs-view-edit-section', compact('types'));
 
     } // end function
 

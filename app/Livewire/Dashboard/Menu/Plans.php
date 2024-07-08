@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Dashboard\Menu;
 
+use App\Models\ColorPalette;
 use App\Models\Plan;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
@@ -246,6 +247,7 @@ class Plans extends Component
 
         // 1: dependencies
         $plans = Plan::all();
+        $palettes = ColorPalette::all();
 
 
 
@@ -255,7 +257,7 @@ class Plans extends Component
 
 
 
-        return view('livewire.dashboard.menu.plans', compact('plans'));
+        return view('livewire.dashboard.menu.plans', compact('plans', 'palettes'));
 
     } // end function
 

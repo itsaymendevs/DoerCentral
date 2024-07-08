@@ -399,9 +399,9 @@
 
 
 
-                            <a wire:navigate href="{{ route('dashboard.blogs') }}"
+                            <a wire:navigate href="{{ route('dashboard.website.blogs') }}"
                                 class="dropdown-item fw-semibold
-                                @if (Request::is('dashboard/extra/blogs', 'dashboard/extra/blogs/*')) active @endif">App &amp; Website</a>
+                                @if (Request::is('dashboard/extra/website/blogs', 'dashboard/extra/website/blogs/*')) active @endif">App &amp; Website</a>
 
 
                             @endif

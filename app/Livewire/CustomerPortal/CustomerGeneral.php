@@ -41,7 +41,6 @@ class CustomerGeneral extends Component
 
 
 
-
     // -----------------------------------------------------------------
 
 
@@ -63,8 +62,12 @@ class CustomerGeneral extends Component
 
 
 
-        // 1.2: makeSession - redirectStepOne
-        Session::flash('renewCustomer', $instance);
+        // 1.2: re-token
+        $customer = Customer::find($id);
+
+        $customer->reToken = $this->makeRegularToken();
+        $customer->save();
+
 
 
 
@@ -73,10 +76,8 @@ class CustomerGeneral extends Component
         // 1.3: getPlansURL
         $profile = Profile::first();
 
-        return $this->redirect($profile->plansURL, navigate: false);
 
-
-
+        $this->redirect($profile->plansURL . '/' . $customer->reToken, navigate: false);
 
 
 

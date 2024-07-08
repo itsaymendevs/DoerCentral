@@ -33,6 +33,12 @@
 
 
             {{-- newButton --}}
+
+            {{-- :: permission - hasLabelsModification --}}
+            @if ($versionPermission->stockModuleHasLabelsModification ||
+            session('hasTechAccess'))
+
+
             <div class="col-auto">
                 <a wire:navigate
                     class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
@@ -45,6 +51,14 @@
                     </svg>New Label
                 </a>
             </div>
+
+
+            @endif
+            {{-- end if - permission --}}
+
+
+
+
 
 
 
@@ -159,6 +173,12 @@
 
 
                                 {{-- actions --}}
+
+                                {{-- :: permission - hasLabelsModification --}}
+                                @if ($versionPermission->stockModuleHasLabelsModification ||
+                                session('hasTechAccess'))
+
+
                                 <div class="col-12">
                                     <div class="d-flex align-items-center justify-content-center mb-1 mt-1">
 
@@ -186,11 +206,19 @@
                                             </svg>
                                         </button>
 
-
-
                                     </div>
                                 </div>
+
+
+                                @endif
+                                {{-- end if - permission --}}
+
+
                                 {{-- endActions --}}
+
+
+
+
 
                             </div>
                         </div>

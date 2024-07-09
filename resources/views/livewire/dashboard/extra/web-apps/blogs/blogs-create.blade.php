@@ -199,6 +199,8 @@
 
 
 
+
+
                 {{-- --------------------------------- --}}
                 {{-- --------------------------------- --}}
 
@@ -208,7 +210,38 @@
 
 
 
-                {{-- 2: showReferences --}}
+                {{-- 2: isSquareCard --}}
+                <div class="form-check form-switch mb-3 mealType--checkbox d-flex justify-content-center">
+
+                    {{-- input --}}
+                    <input class="form-check-input pointer" id="isSquare-checkbox" type="checkbox"
+                        wire:model='instance.isSquareCard' wire:loading.attr='disabled' />
+
+
+                    {{-- label --}}
+                    <label class="form-check-label fs-14 text-center" style="width: 150px" wire:loading.attr='disabled'
+                        for="isSquare-checkbox">Square Card</label>
+
+                </div>
+
+
+
+
+
+
+
+
+
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+
+
+
+
+
+
+
+                {{-- 3: showReferences --}}
                 <div class="form-check form-switch mb-3 mealType--checkbox d-flex justify-content-center">
 
 
@@ -240,7 +273,7 @@
 
 
 
-                {{-- 3: isHeaderFluid --}}
+                {{-- 4: isHeaderFluid --}}
                 <div class="form-check form-switch mb-3 mealType--checkbox d-flex justify-content-center">
 
                     {{-- input --}}
@@ -254,6 +287,9 @@
                         Header</label>
 
                 </div>
+
+
+
 
 
 

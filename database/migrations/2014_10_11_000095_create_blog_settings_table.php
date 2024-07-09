@@ -100,13 +100,17 @@ return new class extends Migration {
 
             // 2.1: hero
             $table->string('singleBlogHeroAlignment', 100)->nullable()->default('left');
-            $table->string('singleBlogNavbarBackgroundColor', 100)->nullable()->default('#000000');
             $table->string('singleBlogNavbarTextColor', 100)->nullable()->default('#000000');
+            $table->string('singleBlogNavbarBackgroundColor', 100)->nullable()->default('#000000');
 
 
 
+            // 2.2: mid-section
+            $table->string('singleBlogAuthorColor', 100)->nullable()->default('#000000');
 
-            // 2.2: sections
+
+
+            // 2.3: sections
             $table->string('singleBlogSectionTitleAlignment', 100)->nullable()->default('left');
             $table->string('singleBlogSectionContentAlignment', 100)->nullable()->default('left');
 

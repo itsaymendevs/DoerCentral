@@ -50,6 +50,7 @@ class BlogsView extends Component
         $this->instance->showTags = boolval($this->instance->showTags);
         $this->instance->showReferences = boolval($this->instance->showReferences);
         $this->instance->isHeaderFluid = boolval($this->instance->isHeaderFluid);
+        $this->instance->isSquareCard = boolval($this->instance->isSquareCard);
 
 
         $this->instance->imageFileName = $this->instance->imageFile;

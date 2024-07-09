@@ -51,6 +51,7 @@ class ExtraController extends Controller
         $blog->showTags = $request->showTags ?? false;
         $blog->showReferences = $request->showReferences ?? false;
         $blog->isHeaderFluid = $request->isHeaderFluid ?? false;
+        $blog->isSquareCard = $request->isSquareCard ?? false;
 
 
 
@@ -653,6 +654,7 @@ class ExtraController extends Controller
         $settings->mobileMenuTextColor = $request->mobileMenuTextColor ?? null;
         $settings->mobileMenuBackgroundColor = $request->mobileMenuBackgroundColor ?? null;
 
+        $settings->singleBlogAuthorColor = $request->singleBlogAuthorColor ?? null;
         $settings->singleBlogNavbarTextColor = $request->singleBlogNavbarTextColor ?? null;
         $settings->singleBlogNavbarBackgroundColor = $request->singleBlogNavbarBackgroundColor ?? null;
 

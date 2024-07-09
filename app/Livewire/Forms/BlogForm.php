@@ -12,7 +12,7 @@ class BlogForm extends Form
     #[Validate('required')]
     public $title, $subtitle, $author, $imageFile, $headerImageFile;
 
-    public $id, $titleURL, $publishDate, $summary, $showTags, $showReferences, $isHeaderFluid;
+    public $id, $titleURL, $publishDate, $summary, $showTags, $showReferences, $isHeaderFluid, $isSquareCard;
 
 
 

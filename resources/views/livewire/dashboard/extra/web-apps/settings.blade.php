@@ -664,6 +664,22 @@
 
 
 
+                                        {{-- singleBlogAuthorColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Author
+                                                    Text<small class="ms-1 fw-semibold text-gold fs-9">(Single
+                                                        Blog)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.singleBlogAuthorColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
 
 
 

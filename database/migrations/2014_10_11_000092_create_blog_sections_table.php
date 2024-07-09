@@ -22,7 +22,7 @@ return new class extends Migration {
 
 
 
-            // 1.2: imageFiles
+            // 1.3: imageFiles
             $table->text('imageFile')->nullable();
             $table->text('secondImageFile')->nullable();
             $table->text('thirdImageFile')->nullable();

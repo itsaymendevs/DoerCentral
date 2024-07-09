@@ -348,26 +348,15 @@
 
 
 
-
-
-    {{-- quill --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-
-
-
-
-
-
     <script>
-        $('.quill-editor-modal').each(function() {
+        $('#new-section .quill-editor-modal').each(function() {
 
-            let toolbar = $(this).attr('data-toolbar');
+            console.log('33333');
+            var toolbar = $(this).attr('data-toolbar');
             let instance = $(this).attr('data-instance');
-            let value = $(this).attr('data-value');
+            var value = $(this).attr('data-value');
 
-            let quill = new Quill(this, {
+            var quill = new Quill(this, {
                 modules: {
                 syntax: true,
                 toolbar: toolbar,
@@ -382,7 +371,7 @@
             // 1.2: checkValue
             if (value) {
 
-                let delta = quill.clipboard.convert({html: value});
+                var delta = quill.clipboard.convert({html: value});
                 quill.setContents(delta, "api");
 
             } // end if
@@ -406,6 +395,7 @@
 
         });
     </script>
+
 
 
 

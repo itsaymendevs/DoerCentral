@@ -151,7 +151,7 @@
 
 
                                 {{-- themeColor --}}
-                                <div class="col-8">
+                                <div class="col-8 d-none">
 
                                     <div class="d-flex align-items-center justify-content-between mb-1">
                                         <hr style="width: 20%" />

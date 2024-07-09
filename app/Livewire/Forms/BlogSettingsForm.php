@@ -9,7 +9,8 @@ class BlogSettingsForm extends Form
 {
 
     // :: variables
-    public $id, $textColor, $textSecondaryColor, $bodyColor, $heroPictureRadius, $heroBackgroundColor, $heroTextColor, $cardTitleColor, $cardSubtitleColor, $cardAuthorColor, $cardButtonColor, $cardButtonBorderColor, $cardButtonBorderHoverColor, $hrColor, $cursorColor, $numberOfColumns, $cardAlignment, $heroTextAlignment, $singleBlogHeroAlignment, $singleBlogSectionTitleAlignment, $singleBlogSectionContentAlignment, $heroText, $heroImageFile, $heroSecondImageFile, $heroThirdImageFile, $heroFourthImageFile, $contentTitleText, $footerText, $footerImageFile, $footerCopyrightsText;
+    public $id, $textColor, $bodyColor, $heroPictureRadius, $heroBackgroundColor, $heroTextColor, $sliderIndicatorColor, $sliderIndicatorPlacement, $mobileMenuTextColor, $mobileMenuBackgroundColor, $cardTitleColor, $cardSubtitleColor, $cardDateColor, $cardAuthorColor, $cardButtonColor, $cardButtonHoverColor, $cardButtonBorderColor, $cardButtonBorderHoverColor, $cardButtonShadowColor, $cardButtonShadowHoverColor, $hrColor, $cursorColor, $cursorSecondaryColor, $numberOfColumns, $cardAlignment, $heroTextAlignment, $singleBlogHeroAlignment, $singleBlogNavbarBackgroundColor, $singleBlogNavbarTextColor, $singleBlogSectionTitleAlignment, $singleBlogSectionContentAlignment, $heroText, $heroImageFile, $heroSecondImageFile, $heroThirdImageFile, $heroFourthImageFile, $contentTitleText, $footerText, $footerImageFile, $footerCopyrightsText;
+
 
 
 

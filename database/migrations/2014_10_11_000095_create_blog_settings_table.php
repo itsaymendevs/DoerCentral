@@ -16,16 +16,30 @@ return new class extends Migration {
 
             // 1: textColors
             $table->string('textColor', 100)->nullable()->default('#000000');
-            $table->string('textSecondaryColor', 100)->nullable()->default('#000000');
             $table->string('bodyColor', 100)->nullable()->default('#000000');
 
 
 
 
             // 1.2: hero
-            $table->string('heroPictureRadius', 100)->nullable();
+            $table->string('heroPictureRadius', 100)->nullable()->default('10');
             $table->string('heroBackgroundColor', 100)->nullable()->default('#000000');
             $table->string('heroTextColor', 100)->nullable()->default('#000000');
+
+
+
+
+            // 1.3: slider
+            $table->string('sliderIndicatorColor', 100)->nullable()->default('#000000');
+            $table->string('sliderIndicatorPlacement', 100)->nullable();
+
+
+
+
+            // 1.4: mobileMenu
+            $table->string('mobileMenuTextColor', 100)->nullable()->default('#000000');
+            $table->string('mobileMenuBackgroundColor', 100)->nullable()->default('#000000');
+
 
 
 
@@ -35,16 +49,21 @@ return new class extends Migration {
             // 1.3: card
             $table->string('cardTitleColor', 100)->nullable()->default('#000000');
             $table->string('cardSubtitleColor', 100)->nullable()->default('#000000');
+            $table->string('cardDateColor', 100)->nullable()->default('#000000');
             $table->string('cardAuthorColor', 100)->nullable()->default('#000000');
             $table->string('cardButtonColor', 100)->nullable()->default('#000000');
+            $table->string('cardButtonHoverColor', 100)->nullable()->default('#000000');
             $table->string('cardButtonBorderColor', 100)->nullable()->default('#000000');
             $table->string('cardButtonBorderHoverColor', 100)->nullable()->default('#000000');
+            $table->string('cardButtonShadowColor', 100)->nullable()->default('#000000');
+            $table->string('cardButtonShadowHoverColor', 100)->nullable()->default('#000000');
 
 
 
             // 1.4: hr - cursor
             $table->string('hrColor', 100)->nullable()->default('#000000');
             $table->string('cursorColor', 100)->nullable()->default('#000000');
+            $table->string('cursorSecondaryColor', 100)->nullable()->default('#000000');
 
 
 
@@ -58,8 +77,8 @@ return new class extends Migration {
 
 
             // 1.6: alignment
-            $table->string('cardAlignment', 100)->nullable();
-            $table->string('heroTextAlignment', 100)->nullable();
+            $table->string('cardAlignment', 100)->nullable()->default('left');
+            $table->string('heroTextAlignment', 100)->nullable()->default('left');
 
 
 
@@ -75,18 +94,21 @@ return new class extends Migration {
 
 
 
-            // 2: singleBlog
+            // 2: singleBlog Special
 
 
 
             // 2.1: hero
-            $table->string('singleBlogHeroAlignment', 100)->nullable();
+            $table->string('singleBlogHeroAlignment', 100)->nullable()->default('left');
+            $table->string('singleBlogNavbarBackgroundColor', 100)->nullable()->default('#000000');
+            $table->string('singleBlogNavbarTextColor', 100)->nullable()->default('#000000');
+
 
 
 
             // 2.2: sections
-            $table->string('singleBlogSectionTitleAlignment', 100)->nullable();
-            $table->string('singleBlogSectionContentAlignment', 100)->nullable();
+            $table->string('singleBlogSectionTitleAlignment', 100)->nullable()->default('left');
+            $table->string('singleBlogSectionContentAlignment', 100)->nullable()->default('left');
 
 
 

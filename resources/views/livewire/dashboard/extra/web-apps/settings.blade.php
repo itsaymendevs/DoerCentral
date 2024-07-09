@@ -1,50 +1,5 @@
 {{-- mainSection --}}
 <section id="content--section" class="content--section">
-
-
-
-
-    {{-- --------------------------------------- --}}
-    {{-- --------------------------------------- --}}
-
-
-
-
-
-    {{-- Head --}}
-    @section('head')
-
-
-
-    {{-- quill --}}
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
-
-
-    @endsection
-    {{-- endSection --}}
-
-
-
-
-
-
-    {{-- --------------------------------------- --}}
-    {{-- --------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-
-
-    {{-- container --}}
     <div class="container">
 
 
@@ -345,12 +300,45 @@
                                         {{-- bodyColor --}}
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0"
-                                                    style="width: 80%">Body</label>
+                                                <label class="form-label form--label mb-0" style="width: 80%">Body
+                                                    BG</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instanceBlog.bodyColor">
                                             </div>
                                         </div>
+
+
+
+
+
+                                        {{-- textColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Body
+                                                    Text</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.textColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- hrColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0"
+                                                    style="width: 80%">Separator</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.hrColor">
+                                            </div>
+                                        </div>
+
+
 
 
 
@@ -371,15 +359,14 @@
 
 
 
-
-
-                                        {{-- textColor --}}
+                                        {{-- cursorSecondaryColor --}}
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Theme
-                                                    Main</label>
+                                                <label class="form-label form--label mb-0"
+                                                    style="width: 80%">Cursor<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(2nd)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.textColor">
+                                                    wire:model="instanceBlog.cursorSecondaryColor">
                                             </div>
                                         </div>
 
@@ -389,15 +376,41 @@
 
 
 
-                                        {{-- textSecondaryColor --}}
+
+
+
+
+
+                                        {{-- mobileMenuTextColor --}}
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Theme
-                                                    Secondary</label>
+                                                <label class="form-label form--label mb-0" style="width: 80%">Mobile
+                                                    Menu Text</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.textSecondaryColor">
+                                                    wire:model="instanceBlog.mobileMenuTextColor">
                                             </div>
                                         </div>
+
+
+
+
+
+
+
+
+
+                                        {{-- mobileMenuBackgroundColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Mobile
+                                                    Menu BG</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.mobileMenuBackgroundColor">
+                                            </div>
+                                        </div>
+
+
+
 
 
 
@@ -408,11 +421,14 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Hero
-                                                    Background</label>
+                                                    BG</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instanceBlog.heroBackgroundColor">
                                             </div>
                                         </div>
+
+
+
 
 
 
@@ -429,6 +445,21 @@
                                                     wire:model="instanceBlog.heroTextColor">
                                             </div>
                                         </div>
+
+
+
+
+
+                                        {{-- sliderIndicatorColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Slider
+                                                    Indicators</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.sliderIndicatorColor">
+                                            </div>
+                                        </div>
+
 
 
 
@@ -479,6 +510,22 @@
 
 
 
+                                        {{-- cardDateColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Card
+                                                    Date</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.cardDateColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
 
                                         {{-- cardButtonColor --}}
                                         <div class="col-4">
@@ -496,13 +543,29 @@
 
 
 
+                                        {{-- cardButtonHoverColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Button
+                                                    Text<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.cardButtonHoverColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
 
                                         {{-- cardButtonBorderColor --}}
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Card
-                                                    Button
-                                                    Border</label>
+                                                    Button Border</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instanceBlog.cardButtonBorderColor">
                                             </div>
@@ -530,15 +593,70 @@
 
 
 
-                                        {{-- hrColor --}}
+
+
+
+                                        {{-- cardButtonShadowColor --}}
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0"
-                                                    style="width: 80%">Separator</label>
+                                                <label class="form-label form--label mb-0" style="width: 80%">Card
+                                                    Button Shadow</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.hrColor">
+                                                    wire:model="instanceBlog.cardButtonShadowColor">
                                             </div>
                                         </div>
+
+
+
+
+
+
+
+                                        {{-- cardButtonShadowHoverColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Button
+                                                    Shadow<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.cardButtonShadowHoverColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- singleBlogNavbarBackgroundColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
+                                                    BG<small class="ms-1 fw-semibold text-gold fs-9">(Single
+                                                        Blog)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.singleBlogNavbarBackgroundColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- singleBlogNavbarTextColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
+                                                    Text<small class="ms-1 fw-semibold text-gold fs-9">(Single
+                                                        Blog)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.singleBlogNavbarTextColor">
+                                            </div>
+                                        </div>
+
+
 
 
 
@@ -1249,20 +1367,12 @@
 
 
 
-
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
 
 
 
 
-
-
-
-    {{-- quill --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 
 
 

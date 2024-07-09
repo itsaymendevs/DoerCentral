@@ -31,6 +31,7 @@ return new class extends Migration {
             $table->boolean('showTags')->nullable()->default(1);
             $table->boolean('showReferences')->nullable()->default(1);
             $table->boolean('isHeaderFluid')->nullable()->default(1);
+            $table->boolean('isSquareCard')->nullable()->default(0);
 
 
 

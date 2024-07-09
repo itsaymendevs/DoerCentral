@@ -152,7 +152,7 @@
 
 
                                 {{-- palettesColor --}}
-                                <div class="col-12">
+                                <div class="col-12 d-none">
 
                                     <div class="d-flex align-items-center justify-content-between mb-1">
                                         <hr style="width: 20%" />

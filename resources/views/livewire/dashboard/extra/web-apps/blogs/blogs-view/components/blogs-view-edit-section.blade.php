@@ -335,25 +335,11 @@
 
 
 
-
-
-
-
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
 
 
 
-
-
-
-
-
-
-    {{-- quill --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 
 
 
@@ -363,19 +349,18 @@
     <script>
         $('.quill-editor-edit-modal').each(function() {
 
-            let id = $(this).attr('id');
-            let toolbar = $(this).attr('data-toolbar');
-            let instance = $(this).attr('data-instance');
-            let value = $(this).attr('data-value');
+            var id = $(this).attr('id');
+            var toolbar = $(this).attr('data-toolbar');
+            var instance = $(this).attr('data-instance');
+            var value = $(this).attr('data-value');
 
-            let quill = new Quill(this, {
-                modules: {
+            var quill = new Quill(this, {
+            modules: {
                 syntax: true,
                 toolbar: toolbar,
-                },
-                theme: 'snow',
+            },
+            theme: 'snow',
             });
-
 
 
 
@@ -383,8 +368,8 @@
             // 1.2: checkValue
             if (value) {
 
-                let delta = quill.clipboard.convert({html: value});
-                quill.setContents(delta, "api");
+                var delta = quill.clipboard.convert({html: value});
+                quill.setContents(delta, "silent");
 
             } // end if
 
@@ -414,7 +399,7 @@
 
 
             window.addEventListener(`setEditorContent-${id}`, (event) => {
-                let delta = quill.clipboard.convert({html: event.detail.value});
+                var delta = quill.clipboard.convert({html: event.detail.value});
                 quill.setContents(delta, "api");
             });
 
@@ -426,6 +411,7 @@
 
         });
     </script>
+
 
 
 

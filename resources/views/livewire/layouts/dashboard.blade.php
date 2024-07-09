@@ -103,6 +103,25 @@
 
 
 
+        {{-- QuillCSS --}}
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+
+
+
+        {{-- QuillJS --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+
+
+
+
+
+
 
 
         {{-- head --}}
@@ -235,6 +254,8 @@
         <script src="{{ asset('assets/js/button-checkbox.js') }}"></script>
         <script src="{{ asset('assets/js/html2canvas.js') }}"></script>
         <script src="{{ asset('assets/js/preview-password.js') }}"></script>
+
+
 
 
 

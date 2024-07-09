@@ -153,6 +153,9 @@ class ExtraController extends Controller
         $blog->showTags = $request->showTags ?? false;
         $blog->showReferences = $request->showReferences ?? false;
         $blog->isHeaderFluid = $request->isHeaderFluid ?? false;
+        $blog->isSquareCard = $request->isSquareCard ?? false;
+
+
 
 
 
@@ -623,18 +626,38 @@ class ExtraController extends Controller
 
         // 1: colors
         $settings->textColor = $request->textColor ?? null;
-        $settings->textSecondaryColor = $request->textSecondaryColor ?? null;
         $settings->bodyColor = $request->bodyColor ?? null;
         $settings->heroBackgroundColor = $request->heroBackgroundColor ?? null;
         $settings->heroTextColor = $request->heroTextColor ?? null;
+        $settings->sliderIndicatorColor = $request->sliderIndicatorColor ?? null;
+
         $settings->cardTitleColor = $request->cardTitleColor ?? null;
         $settings->cardSubtitleColor = $request->cardSubtitleColor ?? null;
         $settings->cardAuthorColor = $request->cardAuthorColor ?? null;
+        $settings->cardDateColor = $request->cardDateColor ?? null;
         $settings->cardButtonColor = $request->cardButtonColor ?? null;
+        $settings->cardButtonHoverColor = $request->cardButtonHoverColor ?? null;
         $settings->cardButtonBorderColor = $request->cardButtonBorderColor ?? null;
         $settings->cardButtonBorderHoverColor = $request->cardButtonBorderHoverColor ?? null;
+        $settings->cardButtonShadowColor = $request->cardButtonShadowColor ?? null;
+        $settings->cardButtonShadowHoverColor = $request->cardButtonShadowHoverColor ?? null;
+
+
+
+
+
         $settings->hrColor = $request->hrColor ?? null;
         $settings->cursorColor = $request->cursorColor ?? null;
+        $settings->cursorSecondaryColor = $request->cursorSecondaryColor ?? null;
+
+        $settings->mobileMenuTextColor = $request->mobileMenuTextColor ?? null;
+        $settings->mobileMenuBackgroundColor = $request->mobileMenuBackgroundColor ?? null;
+
+        $settings->singleBlogNavbarTextColor = $request->singleBlogNavbarTextColor ?? null;
+        $settings->singleBlogNavbarBackgroundColor = $request->singleBlogNavbarBackgroundColor ?? null;
+
+
+
 
 
 
@@ -652,7 +675,6 @@ class ExtraController extends Controller
         $settings->singleBlogHeroAlignment = $request->singleBlogHeroAlignment ?? null;
         $settings->singleBlogSectionTitleAlignment = $request->singleBlogSectionTitleAlignment ?? null;
         $settings->singleBlogSectionContentAlignment = $request->singleBlogSectionContentAlignment ?? null;
-
 
 
 

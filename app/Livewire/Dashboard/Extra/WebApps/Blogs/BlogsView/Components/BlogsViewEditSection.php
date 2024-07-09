@@ -34,7 +34,19 @@ class BlogsViewEditSection extends Component
     {
 
 
-        // 1: clone instance
+
+        // 1: resetFiles
+        $this->dispatch('resetFile', file: 'section--file-5', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-6', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-7', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-8', defaultPreview: $this->getDefaultPreview());
+
+
+
+
+
+
+        // 1.1: get instance
         $this->section = BlogSection::find($id);
 
 

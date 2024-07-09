@@ -661,10 +661,8 @@ trait HelperTrait
 
         // 1: removeFile
         if (! empty($fileName)) {
-
             Storage::disk('public')->delete($path . '/' . $fileName);
-
-        }
+        } // end if
 
 
 
@@ -673,6 +671,9 @@ trait HelperTrait
         // 2: uploadFile - makeFileName
         $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
         $instanceFile->storeAs($path, $fileName, 'public');
+
+
+
 
 
         // 1.2: return fileName

@@ -624,8 +624,16 @@ class ExtraController extends Controller
 
 
 
+        // 1.1: fonts
+        $settings->fontLinks = $request->fontLinks ?? null;
+        $settings->textFont = $request->textFont ?? null;
+        $settings->headingFont = $request->headingFont ?? null;
 
-        // 1: colors
+
+
+
+
+        // 1.2: colors
         $settings->textColor = $request->textColor ?? null;
         $settings->bodyColor = $request->bodyColor ?? null;
         $settings->heroBackgroundColor = $request->heroBackgroundColor ?? null;
@@ -659,19 +667,25 @@ class ExtraController extends Controller
         $settings->singleBlogNavbarBackgroundColor = $request->singleBlogNavbarBackgroundColor ?? null;
 
 
+        $settings->singleBlogTagColor = $request->singleBlogTagColor ?? null;
+        $settings->singleBlogTagHoverColor = $request->singleBlogTagHoverColor ?? null;
+        $settings->singleBlogTagTextColor = $request->singleBlogTagTextColor ?? null;
+        $settings->singleBlogTagTextHoverColor = $request->singleBlogTagTextHoverColor ?? null;
 
 
 
 
 
-        // 1.2: features
+
+
+        // 1.3: features
         $settings->heroPictureRadius = $request->heroPictureRadius ?? null;
         $settings->numberOfColumns = $request->numberOfColumns ?? null;
 
 
 
 
-        // 1.3: alignments
+        // 1.4: alignments
         $settings->cardAlignment = $request->cardAlignment ?? null;
         $settings->heroTextAlignment = $request->heroTextAlignment ?? null;
         $settings->singleBlogHeroAlignment = $request->singleBlogHeroAlignment ?? null;
@@ -682,7 +696,7 @@ class ExtraController extends Controller
 
 
 
-        // 1.4: content
+        // 1.5: content
         $settings->heroText = $request->heroText ?? null;
         $settings->contentTitleText = $request->contentTitleText ?? null;
         $settings->footerText = $request->footerText ?? null;
@@ -746,7 +760,8 @@ class ExtraController extends Controller
 
 
 
-        // 1.2: heroFiles
+        // 1.2: logoFile - heroFiles
+        $settings->logoImageFile = $request->logoImageFileName ?? null;
         $settings->heroImageFile = $request->heroImageFileName ?? null;
         $settings->heroSecondImageFile = $request->heroSecondImageFileName ?? null;
         $settings->heroThirdImageFile = $request->heroThirdImageFileName ?? null;

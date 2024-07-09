@@ -633,8 +633,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    BG<small class="ms-1 fw-semibold text-gold fs-9">(Single
-                                                        Blog)</small></label>
+                                                    BG<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Blog)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instanceBlog.singleBlogNavbarBackgroundColor">
                                             </div>
@@ -649,8 +649,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    Text<small class="ms-1 fw-semibold text-gold fs-9">(Single
-                                                        Blog)</small></label>
+                                                    Text<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Blog)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instanceBlog.singleBlogNavbarTextColor">
                                             </div>
@@ -668,13 +668,173 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Author
-                                                    Text<small class="ms-1 fw-semibold text-gold fs-9">(Single
-                                                        Blog)</small></label>
+                                                    Text<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Blog)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instanceBlog.singleBlogAuthorColor">
                                             </div>
                                         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+                                        {{-- singleBlogTagColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Tags
+                                                    BG</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.singleBlogTagColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+                                        {{-- singleBlogTagHoverColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Tags
+                                                    BG<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.singleBlogTagHoverColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- singleBlogTagTextColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Tags
+                                                    Text</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.singleBlogTagTextColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                        {{-- singleBlogTagTextHoverColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Tags
+                                                    Text<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceBlog.singleBlogTagTextHoverColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+                                        {{-- 1.5: fontFamily --}}
+                                        <div class="col-12 mt-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <hr class="w-75" />
+                                                <label
+                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Font
+                                                    Family</label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- 1: textFont --}}
+                                        <div class="col-4">
+
+                                            <label class="form-label form--label">Body<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(ex.
+                                                    "Poppins")</small></label>
+                                            <input class="form-control form--input mb-4" type="text"
+                                                wire:model='instanceBlog.textFont' />
+
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- headingFont --}}
+                                        <div class="col-4">
+
+                                            <label class="form-label form--label">Headers<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(ex.
+                                                    "Courgette")</small></label>
+                                            <input class="form-control form--input mb-4" type="text"
+                                                wire:model='instanceBlog.headingFont' />
+
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- fontLinks --}}
+                                        <div class="col-12">
+                                            <label class="form-label form--label">Embed Links<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(Google
+                                                    Fonts)</small></label>
+                                            <textarea class="form-control form--input form--textarea mb-4"
+                                                wire:model='instanceBlog.fontLinks' style="height: 190px"></textarea>
+                                        </div>
 
 
 
@@ -873,9 +1033,9 @@
                                         {{-- numberOfColumns --}}
                                         <div class="col-4">
                                             <label class="form-label form--label">Card Columns<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(2-3)</small></label>
+                                                    class="ms-1 fw-semibold text-gold fs-9">(2-4)</small></label>
                                             <input class="form-control form--input mb-4" type="number" step='1' min='2'
-                                                max='3' wire:model='instanceBlog.numberOfColumns' />
+                                                max='4' wire:model='instanceBlog.numberOfColumns' />
                                         </div>
 
 
@@ -1256,8 +1416,71 @@
 
 
 
-                                        {{-- 2: footer --}}
+                                        {{-- 2: logo - footer --}}
                                         <div class="col-6">
+
+
+
+
+
+                                            {{-- 2.1: logo --}}
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <hr class="w-75" />
+                                                <label
+                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Logo
+                                                </label>
+                                            </div>
+
+
+
+
+
+                                            {{-- imageFile --}}
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Click To Upload" for="logo--file-1">
+
+
+                                                        {{-- size --}}
+                                                        <span class="upload--caption badge">250 x 150</span>
+
+
+
+                                                        {{-- input --}}
+                                                        <input class="form-control d-none file--input" type="file"
+                                                            id="logo--file-1" data-preview="logo--preview-1"
+                                                            wire:model='instanceBlog.logoImageFile' readonly />
+
+
+
+                                                        {{-- image --}}
+                                                        <img id="logo--preview-1" class="inventory--image-frame"
+                                                            src="{{ asset('assets/img/placeholder.png') }}"
+                                                            style="aspect-ratio: 1/2;" width="512" height="250"
+                                                            wire:ignore />
+
+                                                    </label>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+                                            {{-- ------------------------------------ --}}
+                                            {{-- ------------------------------------ --}}
+
+
+
+
+
+
+
+
+                                            {{-- 2.2: footer --}}
                                             <div class="d-flex align-items-center justify-content-between mb-4">
                                                 <hr class="w-75" />
                                                 <label
@@ -1269,23 +1492,8 @@
 
 
 
-
-                                            {{-- ------------------------- --}}
-                                            {{-- ------------------------- --}}
-
-
-
-
-
-                                            {{-- imageFiles - Hero --}}
+                                            {{-- imageFile --}}
                                             <div class="row">
-
-
-
-
-
-
-                                                {{-- 1: imageFile --}}
                                                 <div class="col-12">
                                                     <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
                                                         data-bss-tooltip="" title="Click To Upload"
@@ -1312,12 +1520,9 @@
 
                                                     </label>
                                                 </div>
-
-
-
-
-
                                             </div>
+
+
                                         </div>
                                         {{-- endCol --}}
 
@@ -1338,7 +1543,7 @@
                                         <div class="col-12 text-center mt-3">
                                             <button wire:loading.attr='disabled'
                                                 class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center"
-                                                wire:target='instanceBlog.heroImageFile, instanceBlog.heroSecondImageFile, instanceBlog.heroThirdImageFile, instanceBlog.heroFourthImageFile, instanceBlog.footerImageFile'>
+                                                wire:target='instanceBlog.heroImageFile, instanceBlog.logoImageFile, instanceBlog.heroSecondImageFile, instanceBlog.heroThirdImageFile, instanceBlog.heroFourthImageFile, instanceBlog.footerImageFile'>
                                                 Save
                                             </button>
                                         </div>
@@ -1389,6 +1594,7 @@
 
 
 
+    @section('scripts')
 
 
 
@@ -1470,6 +1676,11 @@
 
 
 
+
+
+
+
+    @endsection
 
 
 

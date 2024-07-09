@@ -14,6 +14,18 @@ return new class extends Migration {
             $table->id();
 
 
+
+            // 0.5: fonts
+            $table->longText('fontLinks')->nullable();
+
+            $table->string('textFont', 100)->nullable()->default('Poppins');
+            $table->string('headingFont', 100)->nullable()->default('Courgette');
+
+
+
+
+
+
             // 1: textColors
             $table->string('textColor', 100)->nullable()->default('#000000');
             $table->string('bodyColor', 100)->nullable()->default('#000000');
@@ -110,10 +122,20 @@ return new class extends Migration {
 
 
 
+
+
+
             // 2.3: sections
             $table->string('singleBlogSectionTitleAlignment', 100)->nullable()->default('left');
             $table->string('singleBlogSectionContentAlignment', 100)->nullable()->default('left');
 
+
+
+            // 2.4: tags
+            $table->string('singleBlogTagColor', 100)->nullable()->default('#000000');
+            $table->string('singleBlogTagHoverColor', 100)->nullable()->default('#000000');
+            $table->string('singleBlogTagTextColor', 100)->nullable()->default('#000000');
+            $table->string('singleBlogTagTextHoverColor', 100)->nullable()->default('#000000');
 
 
 
@@ -133,7 +155,14 @@ return new class extends Migration {
 
 
 
-            // 3.1: hero
+
+            // 3.1: logo
+            $table->text('logoImageFile')->nullable();
+
+
+
+
+            // 3.2: hero
             $table->longText('heroText')->nullable();
 
             $table->text('heroImageFile')->nullable();
@@ -144,7 +173,7 @@ return new class extends Migration {
 
 
 
-            // 3.2: contentText
+            // 3.3: contentText
             $table->longText('contentTitleText')->nullable();
 
 
@@ -152,10 +181,20 @@ return new class extends Migration {
 
 
 
-            // 3.3: footer
+            // 3.4: footer
             $table->longText('footerText')->nullable();
             $table->text('footerImageFile')->nullable();
             $table->text('footerCopyrightsText')->nullable();
+
+
+
+
+
+
+
+
+
+
 
 
 

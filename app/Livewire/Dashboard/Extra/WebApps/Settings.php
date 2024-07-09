@@ -70,9 +70,11 @@ class Settings extends Component
 
 
 
-        // 2.2:  imageFiles
+        // 2.2: imageFiles
+        $this->instanceBlog->logoImageFileName = $this->instanceBlog?->logoImageFile ?? null;
+
         $this->instanceBlog->heroImageFileName = $this->instanceBlog?->heroImageFile ?? null;
-        $this->instanceBlog->heroSecondImageFile = $this->instanceBlog?->heroSecondImageFile ?? null;
+        $this->instanceBlog->heroSecondImageFileName = $this->instanceBlog?->heroSecondImageFile ?? null;
         $this->instanceBlog->heroThirdImageFileName = $this->instanceBlog?->heroThirdImageFile ?? null;
         $this->instanceBlog->heroFourthImageFileName = $this->instanceBlog?->heroFourthImageFile ?? null;
 
@@ -92,6 +94,16 @@ class Settings extends Component
 
 
         // 2.3: previews
+        if ($this->instanceBlog->logoImageFile) {
+
+            $preview = asset('storage/extra/blogs/settings/' . $this->instanceBlog->logoImageFile);
+            $this->dispatch('setFilePreview', filePreview: 'logo--preview-1', defaultPreview: $preview);
+
+        } // end if
+
+
+
+
         if ($this->instanceBlog->heroImageFile) {
 
             $preview = asset('storage/extra/blogs/settings/' . $this->instanceBlog->heroImageFile);
@@ -323,6 +335,12 @@ class Settings extends Component
 
 
         // 1: replaceFiles
+        if ($this->instanceBlog->logoImageFile != $this->instanceBlog->logoImageFileName)
+            $this->instanceBlog->logoImageFileName = $this->replaceFile($this->instanceBlog->logoImageFile, 'extra/blogs/settings', $this->instanceBlog->logoImageFileName, 'LG');
+
+
+
+
         if ($this->instanceBlog->heroImageFile != $this->instanceBlog->heroImageFileName)
             $this->instanceBlog->heroImageFileName = $this->replaceFile($this->instanceBlog->heroImageFile, 'extra/blogs/settings', $this->instanceBlog->heroImageFileName, 'SFI');
 

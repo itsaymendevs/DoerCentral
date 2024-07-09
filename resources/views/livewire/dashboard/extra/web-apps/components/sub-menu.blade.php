@@ -54,7 +54,7 @@
     @if ($versionPermission->extraModuleHasSocials || session('hasTechAccess'))
 
 
-    <a wire:navigate class="btn fs-13
+    <a class="btn fs-13
     @if (Request::is('dashboard/extra/website/settings', 'dashboard/extra/website/settings/*')) active @endif"
         role="button" href="{{ route('dashboard.website.settings') }}">Settings</a>
 

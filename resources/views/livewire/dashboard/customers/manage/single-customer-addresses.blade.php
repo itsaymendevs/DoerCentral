@@ -150,7 +150,7 @@
                         {{-- tabPane --}}
                         <div key="address-content-{{ $address->id }}" class="tab-pane fade
                         @if ($addresses->first()->id == $address->id) show active @endif no--card px-1"
-                            id="tab-{{ $address->id }}" role="tabpanel">
+                            id="tab-{{ $address->id }}" role="tabpanel" style="padding-bottom: 8px">
 
 
 

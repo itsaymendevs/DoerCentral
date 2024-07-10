@@ -42,9 +42,10 @@ class RecipesMenuList extends Component
 
 
         // 1.2: convertBoolean
-        $this->instance->isForAddons = boolval($this->instance->isForAddons);
+        $this->instance->isForVIP = boolval($this->instance->isForVIP);
         $this->instance->isForMenu = boolval($this->instance->isForMenu);
-
+        $this->instance->isForAddons = boolval($this->instance->isForAddons);
+        $this->instance->isForCatering = boolval($this->instance->isForCatering);
 
 
     } // end function
@@ -75,7 +76,6 @@ class RecipesMenuList extends Component
 
             $response = $this->makeRequest('dashboard/menu/meals/lists/update', $this->instance);
 
-            $this->makeAlert('info', $response->message);
             $this->dispatch('refreshViews');
 
 

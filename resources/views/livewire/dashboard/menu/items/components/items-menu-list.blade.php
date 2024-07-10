@@ -115,7 +115,7 @@
                                                 <div class="form-check form-switch form-check-inline input--switch">
                                                     <input class="form-check-input" type="checkbox"
                                                         id="menuList-checkbox-1" wire:model='instance.isForAddons'
-                                                        wire:change='update'>
+                                                        wire:change='update' wire:loading.attr='disabled'>
                                                     <label class="form-check-label d-none"
                                                         for="menuList-checkbox-1">Label</label>
                                                 </div>
@@ -127,8 +127,32 @@
 
 
 
+                                        {{-- 2: vipMenu --}}
+                                        <tr>
+                                            <td class="fw-bold text-center">
+                                                <span class="fs-6 d-block fw-normal text-gold">VIP Menu</span>
+                                            </td>
 
-                                        {{-- 2: diningMenu --}}
+
+
+                                            {{-- switch --}}
+                                            <td class="fw-bold text-start ps-3">
+                                                <div class="form-check form-switch form-check-inline input--switch">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="menuList-checkbox-4" wire:model='instance.isForVIP'
+                                                        wire:change='update' wire:loading.attr='disabled'>
+                                                    <label class="form-check-label d-none"
+                                                        for="menuList-checkbox-4">Label</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+
+
+
+
+                                        {{-- 3: diningMenu --}}
                                         <tr>
                                             <td class="fw-bold text-center">
                                                 <span class="fs-6 d-block fw-normal text-gold">Dining Menu</span>
@@ -141,12 +165,50 @@
                                                 <div class="form-check form-switch form-check-inline input--switch">
                                                     <input class="form-check-input" type="checkbox"
                                                         id="menuList-checkbox-2" wire:model='instance.isForMenu'
-                                                        wire:change='update'>
+                                                        wire:change='update' wire:loading.attr='disabled'>
                                                     <label class="form-check-label d-none"
                                                         for="menuList-checkbox-2">Label</label>
                                                 </div>
                                             </td>
                                         </tr>
+
+
+
+
+
+
+
+
+
+
+                                        {{-- 4: Catering Menu --}}
+                                        <tr>
+                                            <td class="fw-bold text-center">
+                                                <span class="fs-6 d-block fw-normal text-gold">Catering Menu</span>
+                                            </td>
+
+
+
+                                            {{-- switch --}}
+                                            <td class="fw-bold text-start ps-3">
+                                                <div class="form-check form-switch form-check-inline input--switch">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="menuList-checkbox-3" wire:model='instance.isForCatering'
+                                                        wire:change='update' wire:loading.attr='disabled'>
+                                                    <label class="form-check-label d-none"
+                                                        for="menuList-checkbox-3">Label</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+
+
+
+
+
+
+
 
 
 

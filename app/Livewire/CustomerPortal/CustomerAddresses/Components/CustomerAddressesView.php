@@ -147,7 +147,7 @@ class CustomerAddressesView extends Component
 
 
         // 1: confirmationBox
-        $this->makeAlert('question', 'This change will affect customer upcoming schedules, proceed?', 'confirmAddressUpdate');
+        $this->makeAlert('question', 'This change will affect your upcoming schedules, proceed?', 'confirmAddressUpdate');
 
 
 
@@ -310,8 +310,11 @@ class CustomerAddressesView extends Component
 
 
 
-        // 1.2: refreshByRedirect
-        return $this->redirect(route('portals.customer.address', [$this->instance->customerId]) . "#tab-{$this->instance->id}", navigate: false);
+        // 3.1: refreshByRedirect
+        $this->makeAlert('success', $response->message);
+
+
+        return $this->redirect(route('portals.customer.address'), navigate: false);
 
 
 

@@ -1,14 +1,67 @@
 <form wire:submit='update'>
+
+
+
+
+
+    {{-- -------------------------------------------------------- --}}
+    {{-- -------------------------------------------------------- --}}
+
+
+
+
+
+
+    {{-- styles --}}
+    @section('styles')
+
+
+
+    <style>
+        @media (min-width: 992px) {
+
+            .form--input-address {
+                width: 83% !important;
+            }
+
+            .form--label-address {
+                width: 17% !important;
+            }
+        }
+    </style>
+
+
+
+    @endsection
+    {{-- endSection --}}
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------------- --}}
+    {{-- -------------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+    {{-- row --}}
     <div class="row align-items-center">
 
 
 
 
 
-
-
         {{-- city --}}
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-4">
 
 
             {{-- hr --}}
@@ -43,7 +96,7 @@
 
 
         {{-- district --}}
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-4">
 
 
             {{-- hr --}}
@@ -70,7 +123,7 @@
 
 
         {{-- deliveryTime --}}
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-4">
 
 
             {{-- hr --}}
@@ -107,34 +160,8 @@
 
 
 
-
-
-        {{-- locationAddress --}}
-        <div class="col-12 col-lg-9">
-            <div class="input--with-label journey mb-4">
-                <label class="form-label form--label mb-0">Address</label>
-                <input class="form-control form--input text-start" type="text" required
-                    wire:model='instance.locationAddress' />
-            </div>
-        </div>
-
-
-
-
-
-        {{-- empty --}}
-        <div class="col-12"></div>
-
-
-
-
-
-
-
-
-
         {{-- title / name --}}
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-4">
             <div class="input--with-label journey mb-4">
                 <label class="form-label form--label mb-0">Name</label>
                 <input class="form-control form--input text-start" type="text" required wire:model='instance.name' />
@@ -147,13 +174,42 @@
 
 
 
+        {{-- locationAddress --}}
+        <div class="col-12 col-lg-8">
+            <div class="input--with-label journey mb-4">
+                <label class="form-label form--label mb-0 form--label-address">Address</label>
+                <input class="form-control form--input text-start form--input-address" type="text" required
+                    wire:model='instance.locationAddress' />
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        {{-- ------------------- --}}
+        {{-- ------------------- --}}
+
+
+
+
+
+
+
+
 
 
 
         {{-- apartment --}}
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-4">
             <div class="input--with-label journey mb-4">
-                <label class="form-label form--label mb-0">Apart</label>
+                <label class="form-label form--label mb-0">Apartment</label>
                 <input class="form-control form--input text-start" type="text" wire:model='instance.apartment' />
             </div>
         </div>
@@ -163,14 +219,12 @@
 
 
         {{-- floor --}}
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-4">
             <div class="input--with-label journey mb-4">
                 <label class="form-label form--label mb-0">Floor</label>
                 <input class="form-control form--input text-start" type="text" wire:model='instance.floor' />
             </div>
         </div>
-
-
 
 
 
@@ -200,9 +254,21 @@
 
 
             {{-- title --}}
-            <div class="d-flex align-items-center justify-content-between mb-2 hr--title">
+            <div class="d-flex align-items-center justify-content-between mb-3 hr--title">
                 <hr class="w-100" />
-                <label class="form-label form--label px-3 mb-0 w-75 justify-content-center fs-14">Delivery Days</label>
+                <label class="form-label form--label px-3 mb-0 mx-auto justify-content-center fs-14"
+                    style="width: 330px !important;">
+                    Delivery Days
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                        class="bi bi-info-circle fs-5 ms-2 pointer" viewBox="0 0 16 16" data-bs-toggle="tooltip"
+                        data-bss-tooltip="" data-bs-placement="top" style="fill: var(--bs-warning);"
+                        title="Changing delivery days will set your menu picks to default!">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"></path>
+                        <path
+                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0">
+                        </path>
+                    </svg>
+                </label>
             </div>
 
 
@@ -219,7 +285,7 @@
 
 
                 {{-- loop - deliveryDays --}}
-                @foreach ($weekDays as $key => $weekDay)
+                @foreach ($weekDays ?? [] as $key => $weekDay)
 
 
 
@@ -296,7 +362,7 @@
         {{-- submitButton --}}
         <div class="col-8 col-md-4 text-center">
             <button wire:loading.attr='disabled'
-                class="btn btn--scheme btn--scheme-outline-1 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center disabled ">
+                class="btn btn--scheme btn--scheme-outline-1 px-5 mx-1 py-2 d-inline-flex align-items-center fs-14 fw-semibold justify-content-center">
                 Update
             </button>
         </div>

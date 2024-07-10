@@ -26,6 +26,9 @@ class SingleCalendar extends Component
 
 
 
+
+
+
     // -----------------------------------------------------------
 
 
@@ -44,11 +47,13 @@ class SingleCalendar extends Component
         // :: initTooltips
         $this->dispatch('initTooltips');
 
-
-
         return view('livewire.dashboard.menu.calendars.single-calendar');
 
+
     } // end function
+
+
+
 
 
 } // end class

@@ -32,8 +32,10 @@ class MenuMealController extends Controller
 
 
         // 1.2: general
+        $meal->isForVIP = boolval($request->isForVIP);
         $meal->isForMenu = boolval($request->isForMenu);
         $meal->isForAddons = boolval($request->isForAddons);
+        $meal->isForCatering = boolval($request->isForCatering);
 
 
         $meal->save();

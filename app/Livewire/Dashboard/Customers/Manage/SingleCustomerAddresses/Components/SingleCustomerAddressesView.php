@@ -310,7 +310,6 @@ class SingleCustomerAddressesView extends Component
 
 
 
-
         // --------------------------------------
         // --------------------------------------
 
@@ -330,7 +329,11 @@ class SingleCustomerAddressesView extends Component
 
 
 
+
+
         // 3.1: refreshByRedirect
+        $this->makeAlert('success', $response->message);
+
         return $this->redirect(route('dashboard.singleCustomerAddresses',
             [$this->instance->customerId]) . "#tab-{$this->instance->id}", navigate: false);
 

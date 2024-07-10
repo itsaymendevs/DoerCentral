@@ -8,6 +8,7 @@ use App\Traits\CalendarTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class SingleCalendarView extends Component
 {
@@ -18,8 +19,8 @@ class SingleCalendarView extends Component
 
 
     // :: variables
-    public $searchFromDate = '';
-    public $menuCalendarId;
+    public $menuCalendarId, $searchFromDate = '';
+
 
 
 
@@ -75,6 +76,87 @@ class SingleCalendarView extends Component
 
 
     } // end function
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+    public function changeDefault($id)
+    {
+
+
+
+        // 1: params - confirmationBox
+        $this->temporaryId = $id;
+
+        $this->makeAlert('question', 'Change to Default?', 'confirmChangeDefault');
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+    #[On('confirmChangeDefault')]
+    public function confirmChangeDefault()
+    {
+
+
+
+
+        // 1: checkID
+        if ($this->temporaryId) {
+
+
+
+            // 1.2: create instance
+            $instance = new stdClass();
+            $instance->id = $this->temporaryId;
+
+
+
+
+            // 1.3: makeRequest
+            $response = $this->makeRequest('dashboard/menu/calendars/schedules/meals/update-default', $instance);
+
+
+            $this->render();
+            $this->makeAlert('success', $response->message);
+
+
+
+        } // end if
+
+
+
+
+
+
+    } // end function
+
+
+
 
 
 

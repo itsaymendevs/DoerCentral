@@ -286,6 +286,11 @@ hr {
     font-weight: 600 !important;
 }
 
+.calendar--table-meal.semi-dark {
+    background-color: #2d3035 !important;
+    color: white !important;
+}
+
 /* palettes */
 .palette-wrapper {
     display: flex;

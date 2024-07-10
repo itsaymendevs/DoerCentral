@@ -1137,6 +1137,7 @@ Route::post('/dashboard/menu/builder/cutlery/toggle', [BuilderController::class,
 // 10: menu - calendar - storeCalendar - update  - remove
 Route::post('/dashboard/menu/calendars/store', [MenuCalendarController::class, 'storeCalendar']);
 Route::post('/dashboard/menu/calendars/update', [MenuCalendarController::class, 'updateCalendar']);
+Route::post('/dashboard/menu/calendars/clone', [MenuCalendarController::class, 'cloneCalendar']);
 
 Route::post('/dashboard/menu/calendars/remove', [MenuCalendarController::class, 'removeCalendar']);
 
@@ -1170,6 +1171,9 @@ Route::post('/dashboard/menu/calendars/schedules/store', [MenuCalendarController
 
 // 10.2: menu - calendars - schedules - meals - update - toggleDefault
 Route::post('/dashboard/menu/calendars/schedules/meals/update', [MenuCalendarController::class, 'updateCalendarScheduleMeal']);
+
+Route::post('/dashboard/menu/calendars/schedules/meals/update-default', [MenuCalendarController::class, 'updateCalendarScheduleMealDefault']);
+
 
 Route::post('/dashboard/menu/calendars/schedules/meals/toggle', [MenuCalendarController::class, 'toggleCalendarScheduleMeal']);
 

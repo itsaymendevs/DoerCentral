@@ -42,11 +42,36 @@ class Calendars extends Component
 
 
 
+    // -----------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function clone($id)
+    {
+
+
+        // 1: dispatchId
+        $this->dispatch('cloneCalendar', $id);
+
+
+    } // end function
+
+
+
+
 
 
 
 
     // -----------------------------------------------------------------
+
+
+
 
 
 

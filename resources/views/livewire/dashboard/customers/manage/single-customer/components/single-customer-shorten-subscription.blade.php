@@ -105,7 +105,7 @@
                                 <div class="col-5">
 
                                     <label class="form-label form--label">Shorten Until
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                             fill="currentColor" class="bi bi-info-circle fs-5 ms-2" viewBox="0 0 16 16"
                                             data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="right"
                                             title='This date will be included in shortened days'

@@ -129,6 +129,10 @@ fieldset:disabled .btn {
     color: var(--color-theme);
 }
 
+.hr--title svg {
+    fill: var(--color-theme-heading) !important;
+}
+
 ::-webkit-scrollbar {
     height: 4px;
     background: inherit;
@@ -456,8 +460,9 @@ fieldset:disabled .btn {
 
 /* calendar */
 .tr--ingredient {
-    background-color: #009f4d1f !important;
+    background-color: transparent !important;
     padding: 10px;
+    border: 1px dashed var(--color-theme-alternative) !important;
 }
 
 .underline-gold {

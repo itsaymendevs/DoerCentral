@@ -106,7 +106,7 @@
                     {{-- loop - calendars --}}
                     @foreach ($calendars as $calendar)
 
-                    <div class="col-4 col-xl-4 col-xxl-3">
+                    <div class="col-4 col-xl-4 col-xxl-3" key='single-calendar-{{ $calendar->id }}'>
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">
 
@@ -250,11 +250,11 @@
 
 
 
-                                        {{-- 4: clone - resetToScheme-1 --}}
+                                        {{-- 4: clone --}}
                                         <button
-                                            class="btn btn--scheme btn--scheme-2 fs-12 px-2 mx-2 scale--self-05 h-32 disabled"
-                                            data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom"
-                                            type="button" title="Clone">
+                                            class="btn btn--scheme btn--scheme-1 fs-12 px-2 mx-2 scale--self-05 h-32"
+                                            type="button" data-bs-toggle='modal' data-bs-target='#clone-calendar'
+                                            wire:click="clone('{{ $calendar->id }}')">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-front fs-5">
                                                 <path
@@ -262,6 +262,8 @@
                                                 </path>
                                             </svg>
                                         </button>
+
+
                                     </div>
                                     {{-- endCol --}}
 
@@ -313,6 +315,11 @@
 
     {{-- 1.2: editCalendar --}}
     <livewire:dashboard.menu.calendars.components.calendars-edit key='edit-calendar-modal' />
+
+
+    {{-- 1.3: cloneCalendar --}}
+    <livewire:dashboard.menu.calendars.components.calendars-clone key='clone-calendar-modal' />
+
 
 
     @endsection

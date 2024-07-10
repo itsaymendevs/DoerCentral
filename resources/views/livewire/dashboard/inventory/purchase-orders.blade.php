@@ -382,7 +382,7 @@
                                         <button type='button' wire:loading.class='disabled'
                                             wire:click="remove('{{ $ingredient->id }}', '{{ $commonSupplier }}')"
                                             class='btn btn--raw-icon hover--icon-danger w-auto d-inline-block px-1 py-0 fs-10 scalemix--3'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" class="bi bi-dash-circle-dotted  fs-5 ms-1"
                                                 viewBox="0 0 16 16">
                                                 <path
@@ -473,7 +473,7 @@
                                         <button type='button' wire:loading.class='disabled'
                                             wire:click="remove('{{ $ingredient->id }}', '{{ $commonSupplier }}')"
                                             class='btn btn--raw-icon hover--icon-danger w-auto d-inline-block px-1 py-0 fs-10 scalemix--3'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" class="bi bi-dash-circle-dotted  fs-5 ms-1"
                                                 viewBox="0 0 16 16">
                                                 <path

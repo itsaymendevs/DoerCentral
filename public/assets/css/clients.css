@@ -190,6 +190,11 @@
     box-shadow: 1px 1px 1px var(--bs-yellow) !important;
 }
 
+.client--floating-button.left {
+    left: 18%;
+    right: unset;
+}
+
 .client--floating-button:hover,
 .client--floating-button:focus {
     box-shadow: 0px 2px 2px var(--bs-yellow) !important;

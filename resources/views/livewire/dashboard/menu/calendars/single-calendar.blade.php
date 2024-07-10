@@ -94,13 +94,8 @@
                                 key='{{ $id }}' :$id />
 
 
-
                         </div>
                         {{-- endTab 2 --}}
-
-
-
-
 
 
 
@@ -108,12 +103,58 @@
                 </div>
             </div>
         </div>
-        {{-- endRow --}}
-
-
-
-
-
     </div>
+    {{-- endContainer --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+    @section('modals')
+
+
+    {{-- 1: cloneCalendar --}}
+    <livewire:dashboard.menu.calendars.single-calendar.components.single-calendar-clone key='clone-calendar-modal'
+        id='{{ $id }}' />
+
+
+    @endsection
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
 </section>
 {{-- endSection --}}

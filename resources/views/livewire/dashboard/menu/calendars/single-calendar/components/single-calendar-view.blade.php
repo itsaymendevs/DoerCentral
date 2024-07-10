@@ -2,7 +2,7 @@
 <div class="row align-items-end pt-2">
 
 
-    {{-- filter --}}
+    {{-- 1: filter --}}
     <div class="col-4 mb-5">
         <div class="d-flex align-items-center justify-content-between mb-1 hr--title">
             <hr style="width: 65%" />
@@ -41,10 +41,13 @@
 
 
 
+    {{-- rightCol --}}
+    <div class="col-8 mb-5">
 
-    {{-- left-right actions --}}
-    <div class="col-4 mb-5">
-        <div class="btn-group btn--swtich-group mb-0" role="group" style="margin-bottom: 10px">
+
+
+        {{-- 1.2: moveButtons --}}
+        <div class="btn-group btn--swtich-group mb-0 d-none" role="group" style="margin-bottom: 10px">
 
             {{-- left --}}
             <button class="btn btn--switch-view fw-bold" type="button" disabled>
@@ -67,7 +70,34 @@
                 </svg>
             </button>
         </div>
+
+
+
+
+
+
+
+        {{-- 1.3: cloneButton --}}
+        <button class="btn btn--scheme btn--scheme-1 fs-12 px-2 mx-2 scale--self-05 h-32 mb-1" type="button"
+            data-bs-toggle='modal' data-bs-target='#clone-calendar'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
+                class="bi bi-front fs-5">
+                <path
+                    d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm5 10v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2v5a2 2 0 0 1-2 2H5z">
+                </path>
+            </svg>
+        </button>
+
+
     </div>
+    {{-- endCol --}}
+
+
+
+
+
+
+
 
 
 
@@ -77,6 +107,10 @@
 
     {{-- ---------------------------------------------------- --}}
     {{-- ---------------------------------------------------- --}}
+    {{-- ---------------------------------------------------- --}}
+    {{-- ---------------------------------------------------- --}}
+
+
 
 
 
@@ -155,14 +189,16 @@
                         <td>
 
 
-                            {{-- :: loop - scheduleMeals by weekDate --}}
+                            {{-- 2.1: loop - scheduleMeals by weekDate --}}
                             @foreach ($scheduleMealsByMealType->where('scheduleDate', $weekDate) as $scheduleMeal)
 
-                            <p class="calendar--table-meal @if ($scheduleMeal->isDefault) tr--ingredient @endif"
-                                @if($scheduleMeal->isDefault) data-bs-toggle="tooltip" data-bss-tooltip=""
-                                title="Default" @endif>
+
+                            <a href="javascript:void(0);" wire:click="changeDefault('{{ $scheduleMeal->id }}')" class="init-link text-dark d-flex calendar--table-meal pointer
+                            @if ($scheduleMeal->isDefault) tr--ingredient @endif" data-bs-toggle="tooltip"
+                                data-bss-tooltip="" @if($scheduleMeal->isDefault)
+                                title="Default" @else title='Make Default' @endif>
                                 {{ $scheduleMeal->meal->name }}
-                            </p>
+                            </a>
 
                             @endforeach
                             {{-- end loop --}}

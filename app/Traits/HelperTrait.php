@@ -23,7 +23,7 @@ trait HelperTrait
 
 
     // :: globalVariables
-    public $removeId, $removeType;
+    public $removeId, $removeType, $temporaryId;
 
 
 

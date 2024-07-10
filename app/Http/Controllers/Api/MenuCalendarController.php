@@ -11,6 +11,7 @@ use App\Models\MenuCalendarDiet;
 use App\Models\MenuCalendarPlan;
 use App\Models\MenuCalendarSchedule;
 use App\Models\MenuCalendarScheduleMeal;
+use App\Traits\HelperTrait;
 use App\Traits\MenuCalendarTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -19,8 +20,8 @@ class MenuCalendarController extends Controller
 {
 
 
+    use HelperTrait;
     use MenuCalendarTrait;
-
 
 
 
@@ -125,8 +126,11 @@ class MenuCalendarController extends Controller
 
 
 
-    // --------------------------------------------------------------------------------------------
 
+
+
+
+    // --------------------------------------------------------------------------------------------
 
 
 
@@ -263,6 +267,270 @@ class MenuCalendarController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function cloneCalendar(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get source
+        $sourceSchedules = MenuCalendarSchedule::where('menuCalendarId', $request->menuCalendarId)
+            ->where('scheduleDate', '>=', $request->cloneFromDate)
+            ->where('scheduleDate', '<=', $request->cloneUntilDate)
+            ->get();
+
+
+
+
+
+
+
+
+        // 2: loop - schedules
+        $dateCounter = 0;
+        $numberOfDays = $this->differentInDays($request->cloneFromDate, $request->cloneUntilDate);
+
+        foreach ($sourceSchedules ?? [] as $key => $sourceSchedule) {
+
+
+
+            // 2.1: getScheduleDate
+            $scheduleDate = date('Y-m-d', strtotime("{$request->fromDate} +{$dateCounter} days"));
+
+
+
+
+
+            // 2.2: checkSchedule
+            $schedule = MenuCalendarSchedule::where('scheduleDate', $scheduleDate)
+                ->where('menuCalendarId', $sourceSchedule->menuCalendarId)
+                ->first();
+
+
+
+            if (! $schedule) {
+
+
+
+                // 2.3.5: create instance
+                $schedule = new MenuCalendarSchedule();
+
+                $schedule->scheduleDate = $scheduleDate;
+                $schedule->menuCalendarId = $sourceSchedule->menuCalendarId;
+
+
+                $schedule->save();
+
+
+
+
+
+
+
+
+
+                // ----------------------------------------------
+                // ----------------------------------------------
+
+
+
+
+
+
+                // 2.5: assignCalendarSchedule for subscription
+
+
+
+
+
+
+                // 2.5.1: getDefaultPlans
+                $defaultPlans = $schedule->calendar->defaultPlans()
+                        ?->get()?->pluck('planId')?->toArray() ?? [];
+
+
+
+
+
+
+                // 2.5.2: getSubscription - updateCalendarSchedule
+                $subscriptions = CustomerSubscription::whereIn('planId', $defaultPlans)
+                    ->get()?->pluck('id')?->toArray() ?? [];
+
+
+
+
+                CustomerSubscriptionSchedule::whereIn('customerSubscriptionId', $subscriptions)
+                    ->where('scheduleDate', $schedule->scheduleDate)
+                    ->whereNull('menuCalendarScheduleId')
+                    ->update([
+                        'menuCalendarScheduleId' => $schedule->id,
+                    ]);
+
+
+            } // end if - exists
+
+
+
+
+
+
+
+
+            // ------------------------------------------------
+            // ------------------------------------------------
+
+
+
+
+
+
+
+
+            // 3: scheduleMeals
+
+
+
+
+            // 3.1: removePrevious
+            MenuCalendarScheduleMeal::where('menuCalendarScheduleId', $schedule->id)->delete();
+
+
+
+
+            // 3.2: getSourceMeals
+            foreach ($sourceSchedule?->meals ?? [] as $key => $sourceScheduleMeal) {
+
+
+
+
+                // 3.2.1: create instance
+                $scheduleMeal = new MenuCalendarScheduleMeal();
+
+
+
+                // :: general
+                $scheduleMeal->scheduleDate = $scheduleDate;
+                $scheduleMeal->isDefault = boolval($sourceScheduleMeal?->isDefault);
+                $scheduleMeal->isDefaultSecond = boolval($sourceScheduleMeal?->isDefaultSecond);
+                $scheduleMeal->isDefaultThird = boolval($sourceScheduleMeal?->isDefaultThird);
+
+
+
+                // :: meal - mealType - calendarSchedule
+                $scheduleMeal->mealId = $sourceScheduleMeal->mealId;
+                $scheduleMeal->mealTypeId = $sourceScheduleMeal->mealTypeId;
+                $scheduleMeal->menuCalendarId = $schedule->menuCalendarId;
+                $scheduleMeal->menuCalendarScheduleId = $schedule->id;
+
+                $scheduleMeal->save();
+
+
+
+
+
+            } // end loop - scheduleMeals
+
+
+
+
+
+
+
+
+
+
+            // ----------------------------------------------
+            // ----------------------------------------------
+
+
+
+
+
+
+
+            // 4: re-assign schedule [Job] - runQueue
+            $calendarSchedule = MenuCalendarSchedule::find($schedule->id);
+
+            ReAssignScheduleJob::dispatch($calendarSchedule);
+
+
+
+
+
+
+            // 5: inc. counter
+            $dateCounter++;
+
+
+
+
+
+        } // end loop - sourceSchedules
+
+
+
+
+
+
+        // ---------------------------------------------------------
+        // ---------------------------------------------------------
+
+
+
+
+
+        // :: queue - run
+        Artisan::call('queue:work --stop-when-empty');
+
+
+
+
+
+
+        return response()->json(['message' => 'Calendar has been cloned'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
 
 
 
@@ -540,6 +808,80 @@ class MenuCalendarController extends Controller
 
 
     // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateCalendarScheduleMealDefault(Request $request)
+    {
+
+
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $scheduleMeal = MenuCalendarScheduleMeal::find($request->id);
+
+
+
+
+        // 1.2: removeCurrentDefault
+        MenuCalendarScheduleMeal::where('menuCalendarScheduleId', $scheduleMeal->menuCalendarScheduleId)
+            ->where('mealTypeId', $scheduleMeal->mealTypeId)
+            ->update([
+                "isDefault" => false
+            ]);
+
+
+
+
+        // 1.3: updateDefault
+        $scheduleMeal->isDefault = true;
+        $scheduleMeal->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Default has been updated'], 200);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 

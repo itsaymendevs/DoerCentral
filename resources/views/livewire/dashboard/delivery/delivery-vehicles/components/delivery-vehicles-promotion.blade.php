@@ -1,6 +1,6 @@
 {{-- editVehicle --}}
 <div class="modal fade modal--shadow" id="vehicle-promotion" role="dialog" tabindex="-1" wire:ignore.self>
-    <div class="modal-dialog modal modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body py-0 px-0">
 

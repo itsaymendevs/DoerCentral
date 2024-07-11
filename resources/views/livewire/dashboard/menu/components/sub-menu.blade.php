@@ -102,7 +102,7 @@
 
 
             <a class="btn @if (Request::is('dashboard/menu/addons')) active @endif"
-                href="{{ route('dashboard.menuAddons') }}" wire:navigate>Add-ons</a>
+                href="{{ route('dashboard.menuAddons') }}" wire:navigate>Menu</a>
 
 
 

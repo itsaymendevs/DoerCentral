@@ -78,6 +78,11 @@
 
 
         {{-- 1.3: cloneButton --}}
+
+        {{-- :: permission - hasCloneCalendar --}}
+        @if ($versionPermission->menuModuleHasCloneCalendar || session('hasTechAccess'))
+
+
         <button class="btn btn--scheme btn--scheme-1 fs-12 px-2 mx-2 scale--self-05 h-32 mb-1" type="button"
             data-bs-toggle='modal' data-bs-target='#clone-calendar'>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
@@ -87,6 +92,12 @@
                 </path>
             </svg>
         </button>
+
+
+
+        @endif
+        {{-- end if - permission --}}
+
 
 
     </div>

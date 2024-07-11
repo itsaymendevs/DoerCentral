@@ -251,6 +251,13 @@
 
 
                                         {{-- 4: clone --}}
+
+                                        {{-- :: permission - hasCloneCalendar --}}
+                                        @if ($versionPermission->menuModuleHasCloneCalendar
+                                        || session('hasTechAccess'))
+
+
+
                                         <button
                                             class="btn btn--scheme btn--scheme-1 fs-12 px-2 mx-2 scale--self-05 h-32"
                                             type="button" data-bs-toggle='modal' data-bs-target='#clone-calendar'
@@ -264,8 +271,15 @@
                                         </button>
 
 
+                                        @endif
+                                        {{-- end if - permission --}}
+
+
+
+
                                     </div>
                                     {{-- endCol --}}
+
 
                                 </div>
                             </div>

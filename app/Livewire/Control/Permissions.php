@@ -118,6 +118,9 @@ class Permissions extends Component
 
             // 1.3: calendar - settings
             'menuModuleHasCreateCalendar' => 'Create Calendar',
+            'menuModuleHasCloneCalendar' => 'Clone Calendar',
+
+
             'menuModuleHasDietTypes' => 'Manage Diets',
             'menuModuleHasTags' => 'Manage Tags',
 
@@ -337,7 +340,7 @@ class Permissions extends Component
 
 
         // 2.3: calendarSettings
-        $calendarSettingPermissions = VersionPermission::get(['menuModuleHasCreateCalendar', 'menuModuleHasDietTypes', 'menuModuleHasTags'])->first()->toArray();
+        $calendarSettingPermissions = VersionPermission::get(['menuModuleHasCreateCalendar', 'menuModuleHasCloneCalendar', 'menuModuleHasDietTypes', 'menuModuleHasTags'])->first()->toArray();
 
 
 

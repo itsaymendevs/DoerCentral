@@ -63,6 +63,9 @@ class ExistingCustomerSubscriptionController extends Controller
         // :: createCustomer
         $customer = Customer::where('email', $request->email)->latest()->first();
 
+        $customer->reToken = null;
+        $customer->save();
+
 
 
 

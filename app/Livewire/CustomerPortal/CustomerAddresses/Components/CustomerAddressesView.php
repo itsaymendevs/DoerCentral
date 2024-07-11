@@ -6,6 +6,7 @@ use App\Livewire\Forms\CustomerAddressForm;
 use App\Models\City;
 use App\Models\CustomerAddress;
 use App\Models\CustomerDeliveryDay;
+use App\Traits\ActivityTrait;
 use App\Traits\DeliveryTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
@@ -18,7 +19,7 @@ class CustomerAddressesView extends Component
 
     use HelperTrait;
     use DeliveryTrait;
-
+    use ActivityTrait;
 
 
     // :: variables
@@ -295,6 +296,15 @@ class CustomerAddressesView extends Component
 
         // --------------------------------------
         // --------------------------------------
+
+
+
+
+
+
+        // ## log - activity ##
+        $this->storeCustomerActivity('Address', "Customer {$this->address->customer->fullName()} updated his address");
+
 
 
 

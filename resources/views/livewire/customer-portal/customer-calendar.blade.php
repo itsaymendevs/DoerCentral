@@ -114,7 +114,7 @@
 
             {{-- calendarView --}}
             <div class="col-12 mb-4">
-                <div class="table-responsive memoir--table w-100 calendar--table mobile">
+                <div class="table-responsive memoir--table w-100 vertical calendar--table mobile">
                     <table class="table table-bordered pb-3 " id="memoir--table">
 
 
@@ -345,7 +345,7 @@
 
             {{-- calendarView --}}
             <div class="col-12 mb-5">
-                <div class="table-responsive memoir--table w-100 calendar--table mobile">
+                <div class="table-responsive memoir--table w-100 vertical calendar--table mobile">
                     <table class="table table-bordered pb-3 " id="memoir--table">
 
 

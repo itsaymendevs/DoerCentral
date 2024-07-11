@@ -170,6 +170,7 @@ return new class extends Migration {
 
             // 2.5: menuCalendar
             $table->boolean('menuModuleHasCreateCalendar')->nullable()->default(1);
+            $table->boolean('menuModuleHasCloneCalendar')->nullable()->default(1);
 
 
 

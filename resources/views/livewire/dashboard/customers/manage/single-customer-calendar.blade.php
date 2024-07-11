@@ -196,7 +196,7 @@
 
 
 
-                                    <p class="calendar--table-meal semi-dark mb-0">
+                                    <p class="calendar--table-meal tr--ingredient mb-0">
                                         {{ $scheduleMeal->meal->name }}
                                     </p>
 

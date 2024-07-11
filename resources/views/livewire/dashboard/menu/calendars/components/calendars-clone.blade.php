@@ -6,7 +6,7 @@
 
                 {{-- header --}}
                 <header class="modal--header px-4">
-                    <h5 class="mb-0 fw-bold text-white">Duplicate Schedule</h5>
+                    <h5 class="mb-0 fw-bold text-white">Duplicate</h5>
                     <button class="btn btn--raw-icon w-auto btn--close" data-bs-toggle="tooltip" data-bss-tooltip=""
                         data-bs-placement="right" type="button" data-bs-dismiss="modal" title="Close Modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
@@ -77,7 +77,7 @@
                             <div class="d-flex align-items-center justify-content-between mb-1">
                                 <hr style="width: 70%" />
                                 <label class="form-label form--label px-3 w-50 justify-content-center mb-0">
-                                    To Period</label>
+                                    Starting From</label>
                             </div>
                         </div>
 

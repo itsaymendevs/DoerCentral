@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Meal;
+use App\Models\MealMenu;
 use Illuminate\Http\Request;
 
 class MenuMealController extends Controller
@@ -27,27 +28,37 @@ class MenuMealController extends Controller
 
 
 
-        // 1: get instance
-        $meal = Meal::find($request->id);
+        // 1: checkValue
+        $mealMenu = MealMenu::where('mealId', $request->mealId)?->where('menuId', $request->menuId)?->first();
 
 
-        // 1.2: general
-        $meal->isForVIP = boolval($request->isForVIP);
-        $meal->isForMenu = boolval($request->isForMenu);
-        $meal->isForAddons = boolval($request->isForAddons);
-        $meal->isForCatering = boolval($request->isForCatering);
+
+        // 1.2: create - remove
+        if ($mealMenu) {
+
+            MealMenu::where('mealId', $request->mealId)->where('menuId', $request->menuId)->delete();
 
 
-        $meal->save();
+        } else {
+
+
+
+            // 1.3: create instance
+            $mealMenu = new MealMenu();
+
+            $mealMenu->mealId = $request->mealId;
+            $mealMenu->menuId = $request->menuId;
+
+            $mealMenu->save();
+
+
+        } // end if
 
 
 
 
 
         return response()->json(['message' => 'Lists has been updated'], 200);
-
-
-
 
 
 
@@ -61,7 +72,11 @@ class MenuMealController extends Controller
 
 
 
+
+
     // --------------------------------------------------------------------------------------------
+
+
 
 
 

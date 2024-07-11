@@ -62,6 +62,7 @@ use App\Livewire\Dashboard\Menu\Items\Sauces;
 use App\Livewire\Dashboard\Menu\Items\Sides;
 use App\Livewire\Dashboard\Menu\Items\Snacks;
 use App\Livewire\Dashboard\Menu\Items\SubRecipes;
+use App\Livewire\Dashboard\Menu\Lists;
 use App\Livewire\Dashboard\Menu\Plans;
 use App\Livewire\Dashboard\Menu\Plans\Manage\Bundles;
 use App\Livewire\Dashboard\Menu\Plans\Manage\RangeSizes;
@@ -699,8 +700,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-        // 6.9.5: addons - menu
-        Route::get('dashboard/menu/addons', Addons::class)->name('dashboard.menuAddons');
+        // 6.9.5: lists
+        Route::get('dashboard/menu/lists/{name}', Lists::class)->name('dashboard.menuLists');
 
 
 

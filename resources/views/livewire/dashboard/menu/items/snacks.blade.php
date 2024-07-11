@@ -200,8 +200,7 @@
 
 
                                             {{-- A: inList --}}
-                                            @if ($snack->isForMenu || $snack->isForAddons || $snack->isForVIP
-                                            || $snack->isForCatering)
+                                            @if ($snack?->menus?->count() > 0)
 
 
 

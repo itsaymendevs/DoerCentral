@@ -53,13 +53,6 @@ return new class extends Migration {
 
 
 
-            // 1.3.5: isForMenu - isForAddons - isForCatering - isForVIP
-            $table->boolean('isForVIP')->nullable()->default(0);
-            $table->boolean('isForMenu')->nullable()->default(0);
-            $table->boolean('isForAddons')->nullable()->default(0);
-            $table->boolean('isForCatering')->nullable()->default(0);
-
-
 
 
 

@@ -31,6 +31,15 @@ class Meal extends Model
 
 
 
+    public function menus()
+    {
+
+        return $this->hasMany(MealMenu::class, 'mealId');
+
+    } // end function
+
+
+
 
     public function servingInstructions()
     {
@@ -218,6 +227,36 @@ class Meal extends Model
 
 
 
+
+
+
+
+
+
+    public function inMenu($id)
+    {
+
+
+        // 1: dependencies
+        $isIncluded = $this->menus()?->where('menuId', $id)?->count() ?? 0;
+
+
+        return $isIncluded > 0 ? true : false;
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------
+    // ------------------------------------------
 
 
 

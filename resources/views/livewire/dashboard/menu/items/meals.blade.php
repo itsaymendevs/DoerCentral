@@ -164,8 +164,7 @@
 
 
                                             {{-- A: inList --}}
-                                            @if ($meal->isForMenu || $meal->isForAddons || $meal->isForVIP
-                                            || $meal->isForCatering)
+                                            @if ($meal?->menus?->count() > 0)
 
 
 

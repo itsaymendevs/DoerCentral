@@ -335,7 +335,8 @@
 
                     {{-- loop - ingredients --}}
                     @foreach ($ingredients as $ingredient)
-                    <div class="col-4 col-xl-3 col-xxl-2">
+
+                    <div class="col-4 col-xl-3 col-xxl-2" key='single-ingredient-card-{{ $ingredient->id }}'>
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">
 
@@ -446,6 +447,7 @@
                             </div>
                         </div>
                     </div>
+
                     @endforeach
                     {{-- end loop --}}
 
@@ -455,6 +457,9 @@
 
 
 
+
+                    {{-- --------------------------------- --}}
+                    {{-- --------------------------------- --}}
 
 
 
@@ -493,6 +498,17 @@
 
             {{-- 2: tableView --}}
             <div class="col-12 ingredients-column mt-4 pt-3 " data-view="table" wire:ignore.self>
+
+
+
+
+                {{-- header --}}
+                <div class="d-flex justify-content-end">
+                    <h6 class="fw-normal text-gold fs-14 mb-2">Macros Per 100 (G)</h6>
+                </div>
+
+
+
 
 
 
@@ -552,7 +568,7 @@
 
 
 
-                            <tr>
+                            <tr key='single-ingredient-table-{{ $ingredient->id }}'>
                                 <td class="fw-bold">{{ $globalSNCounter++ }}</td>
                                 <td class="fw-bold">{{ $ingredient->name }}</td>
                                 <td>{{ $ingredient->freshMacro()->calories * 100 }}</td>
@@ -779,6 +795,8 @@
 
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
+
+
 
 
 

@@ -192,8 +192,7 @@
 
 
                                             {{-- A: inList --}}
-                                            @if ($sauce->isForMenu || $sauce->isForAddons || $sauce->isForVIP
-                                            || $sauce->isForCatering)
+                                            @if ($sauce?->menus?->count() > 0)
 
 
 

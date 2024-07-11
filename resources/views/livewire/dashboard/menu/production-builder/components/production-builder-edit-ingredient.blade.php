@@ -36,8 +36,8 @@
 
 
     {{-- type --}}
-    <td class="fw-bold" wire:ignore>
-        <div class="select--single-wrapper xxs" wire:loading.class='no-events'
+    <td class="fw-bold">
+        <div class="select--single-wrapper xxs" wire:loading.class='no-events' wire:ignore
             style="width: 85px !important; max-width: 85px !important">
             <select class="form-select ingredient--type-select"
                 id='ingredient--type-select-{{ strtolower($instance->typeId) }}-{{ $instance->id }}'

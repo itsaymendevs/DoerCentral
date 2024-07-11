@@ -4,10 +4,12 @@ namespace App\Livewire\Dashboard\Menu\Recipes\Components;
 
 use App\Livewire\Forms\MealForm;
 use App\Models\Meal;
+use App\Models\Menu;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class RecipesMenuList extends Component
 {
@@ -19,7 +21,7 @@ class RecipesMenuList extends Component
 
 
     // :: variables
-    public MealForm $instance;
+    public $id;
 
 
 
@@ -33,19 +35,8 @@ class RecipesMenuList extends Component
 
 
         // 1: get instance
-        $meal = Meal::find($id);
+        $this->id = $id;
 
-        foreach ($meal->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
-
-
-
-
-        // 1.2: convertBoolean
-        $this->instance->isForVIP = boolval($this->instance->isForVIP);
-        $this->instance->isForMenu = boolval($this->instance->isForMenu);
-        $this->instance->isForAddons = boolval($this->instance->isForAddons);
-        $this->instance->isForCatering = boolval($this->instance->isForCatering);
 
 
     } // end function
@@ -66,15 +57,27 @@ class RecipesMenuList extends Component
 
 
 
-    public function update()
+    public function update($menu)
     {
 
 
 
         // 1: makeRequest
-        if ($this->instance) {
+        if ($menu && $this->id) {
 
-            $response = $this->makeRequest('dashboard/menu/meals/lists/update', $this->instance);
+
+            // 1.2: create instance
+            $instance = new stdClass();
+
+            $instance->menuId = $menu;
+            $instance->mealId = $this->id;
+
+
+
+
+
+            // 1.3: makeRequest
+            $response = $this->makeRequest('dashboard/menu/meals/lists/update', $instance);
 
             $this->dispatch('refreshViews');
 
@@ -83,7 +86,6 @@ class RecipesMenuList extends Component
 
 
 
-
     } // end function
 
 
@@ -96,6 +98,7 @@ class RecipesMenuList extends Component
 
 
     // ----------------------------------------------------------------
+
 
 
 
@@ -106,7 +109,17 @@ class RecipesMenuList extends Component
     public function render()
     {
 
-        return view('livewire.dashboard.menu.recipes.components.recipes-menu-list');
+
+        // 1: dependencies
+        $menus = Menu::all();
+        $meal = $this->id ? Meal::find($this->id) : null;
+
+
+
+
+        return view('livewire.dashboard.menu.recipes.components.recipes-menu-list', compact('menus', 'meal'));
+
+
 
     } // end function
 
@@ -114,5 +127,3 @@ class RecipesMenuList extends Component
 
 
 } // end function
-
-

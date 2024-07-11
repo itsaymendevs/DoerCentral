@@ -196,8 +196,7 @@
 
 
                                             {{-- A: inList --}}
-                                            @if ($drink->isForMenu || $drink->isForAddons || $drink->isForVIP
-                                            || $drink->isForCatering)
+                                            @if ($drink?->menus?->count() > 0)
 
 
 

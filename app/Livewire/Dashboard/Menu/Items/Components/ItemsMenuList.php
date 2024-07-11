@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Dashboard\Menu\Items\Components;
 
-use App\Livewire\Forms\MealForm;
 use App\Models\Meal;
+use App\Models\MealMenu;
+use App\Models\Menu;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class ItemsMenuList extends Component
 {
@@ -19,7 +21,7 @@ class ItemsMenuList extends Component
 
 
     // :: variables
-    public MealForm $instance;
+    public $id;
 
 
 
@@ -33,19 +35,7 @@ class ItemsMenuList extends Component
 
 
         // 1: get instance
-        $meal = Meal::find($id);
-
-        foreach ($meal->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
-
-
-
-
-        // 1.2: convertBoolean
-        $this->instance->isForVIP = boolval($this->instance->isForVIP);
-        $this->instance->isForMenu = boolval($this->instance->isForMenu);
-        $this->instance->isForAddons = boolval($this->instance->isForAddons);
-        $this->instance->isForCatering = boolval($this->instance->isForCatering);
+        $this->id = $id;
 
 
 
@@ -67,15 +57,29 @@ class ItemsMenuList extends Component
 
 
 
-    public function update()
+    public function update($menu)
     {
 
 
 
         // 1: makeRequest
-        if ($this->instance) {
+        if ($menu && $this->id) {
 
-            $response = $this->makeRequest('dashboard/menu/meals/lists/update', $this->instance);
+
+            // 1.2: create instance
+            $instance = new stdClass();
+
+            $instance->menuId = $menu;
+            $instance->mealId = $this->id;
+
+
+
+
+
+
+            // 1.3: makeRequest
+            $response = $this->makeRequest('dashboard/menu/meals/lists/update', $instance);
+
 
             $this->dispatch('refreshViews');
 
@@ -104,10 +108,21 @@ class ItemsMenuList extends Component
 
 
 
+
     public function render()
     {
 
-        return view('livewire.dashboard.menu.items.components.items-menu-list');
+
+        // 1: dependencies
+        $menus = Menu::all();
+        $meal = $this->id ? Meal::find($this->id) : null;
+
+
+
+
+        return view('livewire.dashboard.menu.items.components.items-menu-list', compact('menus', 'meal'));
+
+
 
     } // end function
 

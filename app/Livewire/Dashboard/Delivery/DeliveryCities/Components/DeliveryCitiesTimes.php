@@ -22,7 +22,6 @@ class DeliveryCitiesTimes extends Component
     // :: variable
     public $city;
     public $searchTiming = '';
-    public $removeId;
 
 
 

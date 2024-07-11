@@ -26,7 +26,6 @@ class Customers extends Component
     // :: variable
     public $searchCustomer = '';
     public $searchPlan, $searchStatus;
-    public $removeId;
 
 
 

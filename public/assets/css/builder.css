@@ -1,0 +1,13 @@
+.builder--header {
+    display: flex;
+    background-color: var(--bg-tabs);
+    padding: 16px 0px;
+    border-radius: var(--card-radius);
+    border-color: transparent;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.builder--header h4 {
+    text-align: center;
+}

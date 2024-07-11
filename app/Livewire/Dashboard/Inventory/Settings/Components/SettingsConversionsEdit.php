@@ -22,7 +22,6 @@ class SettingsConversionsEdit extends Component
     // :: variables
     public ConversionForm $instance;
 
-    public $removeId;
 
 
 

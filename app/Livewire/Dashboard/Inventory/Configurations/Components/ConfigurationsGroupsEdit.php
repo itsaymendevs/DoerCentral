@@ -20,7 +20,6 @@ class ConfigurationsGroupsEdit extends Component
     // :: variables
     public IngredientGroupForm $instance;
 
-    public $removeId;
 
 
 

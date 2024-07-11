@@ -20,7 +20,6 @@ class SettingsViewDiet extends Component
     // :: variables
     public DietForm $instance;
 
-    public $removeId;
 
 
 

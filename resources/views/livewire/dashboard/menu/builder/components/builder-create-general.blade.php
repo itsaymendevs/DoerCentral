@@ -9,10 +9,13 @@
 
 
             {{-- name --}}
-            <div class="col-8">
+            <div class="col-12">
                 <label class="form-label form--label">Name</label>
                 <input class="form-control form--input mb-4" type="text" wire:model='instance.name' required />
             </div>
+
+
+
 
 
 
@@ -35,11 +38,31 @@
 
 
 
+
+            {{-- dietType --}}
+            <div class="col-4" wire:ignore>
+                <label class="form-label form--label">Diet</label>
+                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                    <select class="form-select form--select" data-instance='instance.dietId' required>
+                        <option value=""></option>
+
+                        @foreach ($diets as $diet)
+                        <option value="{{ $diet->id }}">{{ $diet->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+
+
+
+
+
             {{-- cuisine --}}
             <div class="col-4" wire:ignore>
                 <label class="form-label form--label">Cuisine</label>
                 <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select" data-instance='instance.cuisineId'>
+                    <select class="form-select form--select" data-instance='instance.cuisineId' data-clear='true'>
                         <option value=""></option>
 
                         @foreach ($cuisines as $cuisine)
@@ -48,6 +71,28 @@
                     </select>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+            {{-- ------------------------------- --}}
+            {{-- ------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -69,30 +114,7 @@
 
 
 
-            {{-- dietType --}}
-            <div class="col-4" wire:ignore>
-                <label class="form-label form--label">Diet Type</label>
-                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select" data-instance='instance.dietId' required>
-                        <option value=""></option>
 
-                        @foreach ($diets as $diet)
-                        <option value="{{ $diet->id }}">{{ $diet->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-
-
-
-            {{-- price --}}
-            <div class="col-4">
-                <label class="form-label form--label">Price<small
-                        class="ms-1 fw-semibold text-gold fs-10">(AED)</small></label>
-                <input class="form-control form--input mb-4" type="number" wire:model='instance.servingPrice'
-                    step="0.01" required />
-            </div>
 
 
 
@@ -107,13 +129,45 @@
 
 
 
+
+
+
+            {{-- price (Hidden) --}}
+            <div class="col-4">
+                <label class="form-label form--label">Price<small
+                        class="ms-1 fw-semibold text-gold fs-9">(AED)</small></label>
+                <input class="form-control form--input mb-4" type="number" wire:model='instance.servingPrice'
+                    step="0.01" />
+            </div>
+
+
+
+
+
+
+
+
+
+
+            {{-- ---------------------------------------------- --}}
+            {{-- ---------------------------------------------- --}}
+
+
+
+
+
+
+
             {{-- HR --}}
             <div class="col-12">
                 <div class="d-flex align-items-center justify-content-between hr--title">
                     <hr class="w-100" />
-                    <label class="form-label form--label px-3 mb-0">Additional</label>
+                    <label class="form-label form--label px-5 mb-0">Extra</label>
                 </div>
             </div>
+
+
+
 
 
 
@@ -134,11 +188,14 @@
 
 
 
+
+
             {{-- Description --}}
             <div class="col-8">
                 <label class="form-label form--label">Description</label>
                 <textarea class="form-control form--input form--textarea" wire:model='instance.desc'></textarea>
             </div>
+
 
 
 
@@ -151,6 +208,10 @@
                     Create
                 </button>
             </div>
+
+
+
+
         </div>
     </div>
     {{-- end leftCol --}}

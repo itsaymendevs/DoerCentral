@@ -11,14 +11,12 @@ use stdClass;
 class ProductionBuilderEditContainer extends Component
 {
 
-
     use HelperTrait;
 
 
 
     // :: variables
-    public $meal;
-    public $container;
+    public $meal, $container;
 
 
 
@@ -75,7 +73,7 @@ class ProductionBuilderEditContainer extends Component
 
 
 
-        // :: create instance
+        // 1: create instance
         $instance = new stdClass();
         $instance->id = $this->meal->id;
         $instance->container = $this->container;
@@ -83,23 +81,19 @@ class ProductionBuilderEditContainer extends Component
 
 
 
-        // :: notEmpty
-        if ($this->container) {
 
-
-            // 1: makeRequest
-            $response = $this->makeRequest('dashboard/menu/builder/containers/update', $instance);
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/menu/builder/containers/update', $instance);
 
 
 
-            // :: resetSelect - updateInstance - render
-            $this->meal = Meal::find($this->meal->id);
-
-            $this->dispatch('refreshSizeViews');
-            $this->render();
+        // 1.3: quickRefresh
+        $this->meal = Meal::find($this->meal->id);
+        $this->render();
 
 
-        } // end if
+
+
 
 
 
@@ -131,15 +125,9 @@ class ProductionBuilderEditContainer extends Component
 
 
 
-        // 1: get Sizes -> notAssigned
+        // 1: dependencies
         $containers = Container::all();
         $currentContainer = $this->meal?->containerId ? Container::find($this->meal->containerId) : null;
-
-
-
-        // :: initTooltips
-        $this->dispatch('initTooltips');
-
 
 
 
@@ -151,5 +139,7 @@ class ProductionBuilderEditContainer extends Component
     } // end function
 
 
-} // end class
 
+
+
+} // end class

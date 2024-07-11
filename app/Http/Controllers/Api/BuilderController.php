@@ -5,25 +5,24 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Meal;
 use App\Models\MealAvailableType;
-use App\Models\MealDrink;
 use App\Models\MealIngredient;
 use App\Models\MealInstruction;
-use App\Models\MealInstructionTag;
 use App\Models\MealPacking;
 use App\Models\MealPart;
-use App\Models\MealSauce;
 use App\Models\MealServing;
 use App\Models\MealServingInstruction;
-use App\Models\MealSide;
 use App\Models\MealSize;
-use App\Models\MealSnack;
-use App\Models\MealSubRecipe;
 use App\Models\MealTag;
 use App\Models\ServingInstruction;
+use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
 class BuilderController extends Controller
 {
+
+
+
+    use HelperTrait;
 
 
 
@@ -44,7 +43,8 @@ class BuilderController extends Controller
 
         $meal->typeId = $request->typeId;
         $meal->name = $request->name;
-        $meal->servingPrice = doubleval($request->servingPrice);
+        $meal->nameURL = $this->getNameURL($request->name);
+        $meal->servingPrice = doubleval($request->servingPrice ?? 0);
         $meal->validity = intval($request->validity);
         $meal->desc = $request->desc;
 
@@ -59,8 +59,8 @@ class BuilderController extends Controller
 
 
         // 1.3: imageFiles
-        $meal->imageFile = $request->imageFileName;
-        $meal->secondImageFile = $request->secondImageFileName;
+        $meal->imageFile = $request->imageFileName ?? null;
+        $meal->secondImageFile = $request->secondImageFileName ?? null;
         $meal->thirdImageFile = $request->thirdImageFileName ?? null;
         $meal->fourthImageFile = $request->fourthImageFileName ?? null;
 
@@ -198,7 +198,8 @@ class BuilderController extends Controller
         // 1.2: general
         $meal->typeId = $request->typeId;
         $meal->name = $request->name;
-        $meal->servingPrice = doubleval($request->servingPrice);
+        $meal->nameURL = $this->getNameURL($request->name);
+        $meal->servingPrice = doubleval($request->servingPrice ?? 0);
         $meal->validity = intval($request->validity);
         $meal->desc = $request->desc;
 
@@ -213,15 +214,17 @@ class BuilderController extends Controller
 
 
         // 1.3: imageFiles
-        $meal->imageFile = $request->imageFileName;
-        $meal->secondImageFile = $request->secondImageFileName;
+        $meal->imageFile = $request->imageFileName ?? null;
+        $meal->secondImageFile = $request->secondImageFileName ?? null;
         $meal->thirdImageFile = $request->thirdImageFileName ?? null;
         $meal->fourthImageFile = $request->fourthImageFileName ?? null;
 
 
-
-
         $meal->save();
+
+
+
+
 
 
 
@@ -256,8 +259,9 @@ class BuilderController extends Controller
 
 
 
-        // ------------------------------
-        // ------------------------------
+        // --------------------------------------------
+        // --------------------------------------------
+
 
 
 
@@ -282,7 +286,6 @@ class BuilderController extends Controller
 
 
         } // end if
-
 
 
 
@@ -705,7 +708,7 @@ class BuilderController extends Controller
         // 1: get instance
         $meal = Meal::find($request->id);
 
-        $meal->containerId = $request->container;
+        $meal->containerId = $request->container ?? null;
 
         $meal->save();
 

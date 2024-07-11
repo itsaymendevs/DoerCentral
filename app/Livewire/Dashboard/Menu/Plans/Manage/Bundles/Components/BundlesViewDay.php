@@ -19,7 +19,7 @@ class BundlesViewDay extends Component
 
     // :: variables
     public PlanBundleDayForm $instance;
-    public $removeId, $id;
+    public $id;
 
 
 

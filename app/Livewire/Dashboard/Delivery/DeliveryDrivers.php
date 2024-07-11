@@ -19,7 +19,6 @@ class DeliveryDrivers extends Component
 
     // :: variables
     public $searchDriver = '';
-    public $removeId;
 
 
 

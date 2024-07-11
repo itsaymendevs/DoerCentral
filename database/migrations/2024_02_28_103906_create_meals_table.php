@@ -32,6 +32,7 @@ return new class extends Migration {
 
             // 1.2: name - generalName - servingPrice - validity
             $table->text('name')->nullable();
+            $table->text('nameURL')->nullable();
 
             $table->text('generalName')->nullable();
             $table->double('servingPrice', 15)->nullable()->default(0);

@@ -22,7 +22,6 @@ class SettingsViewSize extends Component
     // :: variables
     public SizeForm $instance;
 
-    public $removeId;
 
 
 

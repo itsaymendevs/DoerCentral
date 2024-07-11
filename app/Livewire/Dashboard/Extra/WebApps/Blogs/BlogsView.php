@@ -22,7 +22,6 @@ class BlogsView extends Component
     // :: variables
     public BlogForm $instance;
     public $blog;
-    public $removeId;
 
 
 

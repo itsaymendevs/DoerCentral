@@ -22,7 +22,6 @@ class ConfigurationsAllergiesEdit extends Component
     // :: variables
     public AllergyForm $instance;
 
-    public $removeId;
 
 
 

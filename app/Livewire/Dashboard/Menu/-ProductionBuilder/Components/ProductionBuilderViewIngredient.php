@@ -27,10 +27,6 @@ class ProductionBuilderViewIngredient extends Component
     // :: variables
     public MealPartDetailForm $instance;
     public $mealPart;
-
-
-    // :: helpers
-    public $removeId;
     public $id, $typeId;
 
 

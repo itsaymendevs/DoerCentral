@@ -21,7 +21,6 @@ class SuppliersIngredientsEdit extends Component
 
     // :: variable
     public SupplierIngredientForm $instance;
-    public $removeId;
 
 
 

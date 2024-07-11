@@ -22,7 +22,6 @@ class Recipes extends Component
 
     // :: variables
     public $searchRecipe = '', $searchMealType;
-    public $removeId;
 
 
 

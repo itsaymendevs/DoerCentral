@@ -3,16 +3,14 @@
 
 
     {{-- container --}}
-    <label class="form-label form--label justify-content-center">Container</label>
-
-
-    <div class="select--single-wrapper mb-4 mx-auto" wire:loading.class='no-events' wire:ignore>
-        <select class="form-select form--select container--select" id='container-select-1' data-instance='container'
-            data-trigger='true' @if ($currentContainer) value='{{ $currentContainer->id }}' @endif>
+    <div class="select--single-wrapper mb-4 mx-auto text-center" wire:loading.class='no-events' wire:ignore>
+        <select class="form-select form--select container--select " id='container-select-1' data-instance='container'
+            data-trigger='true' data-placeholder='Select Container' data-clear='true' @if ($currentContainer)
+            value='{{ $currentContainer->id }}' @endif>
 
             <option value=""></option>
 
-            @foreach ($containers as $container)
+            @foreach ($containers ?? [] as $container)
             <option value="{{ $container->id }}">{{ $container->name }}</option>
             @endforeach
 
@@ -24,10 +22,9 @@
 
 
 
-    {{-- containerCost - lidCharge --}}
-    <input type="hidden" id='containerCost' value='{{ $currentContainer ? $currentContainer?->charge ?? 0 : 0 }}'>
-    <input type="hidden" id='lidCharge' value='{{ $currentContainer ? $currentContainer?->lidCharge ?? 0 : 0 }}'>
 
+    {{-- -------------------------------------------- --}}
+    {{-- -------------------------------------------- --}}
 
 
 
@@ -45,7 +42,7 @@
 
     <div>
         <img class="w-100 of-contain" id='container-preview' style="height: 170px" @if ($currentContainer)
-            src="{{ asset('storage/kitchen/containers/' . $currentContainer->imageFile) }}" @else
+            src="{{ asset('storage/stock/items/containers/' . $currentContainer->imageFile) }}" @else
             src="{{ asset('assets/img/placeholder.png') }}" @endif />
     </div>
 

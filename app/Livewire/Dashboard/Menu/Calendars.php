@@ -16,7 +16,6 @@ class Calendars extends Component
 
     // ::variables
     public $searchCalendar = '';
-    public $removeId;
 
 
 

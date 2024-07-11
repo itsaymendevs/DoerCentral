@@ -4,12 +4,12 @@
 
 
 
-    {{-- prepTitleRow --}}
+    {{-- subtitle --}}
     <div class="row align-items-center mt-5">
         <div class="col-12">
             <div class="d-flex align-items-center justify-content-between mb-3 hr--title">
-                <hr style="width: 80%" />
-                <label class="form-label form--label px-3 justify-content-center mb-0" style="width: 20%">Preparation
+                <hr style="width: 60%" />
+                <label class="form-label form--label px-3 justify-content-center mb-0" style="width: 40%">Preparation
                     Details</label>
             </div>
         </div>
@@ -19,22 +19,37 @@
 
 
 
-    {{-- instructionsForm --}}
-    <form class="row align-items-center" wire:submit='store'>
+
+    {{-- ---------------------------------------- --}}
+    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+
+
+    {{-- form --}}
+    <form class="row align-items-end" wire:submit='store'>
 
 
 
         {{-- input --}}
-        <div class="col-9">
+        <div class="col-12">
             <label class="form-label form--label">Instruction</label>
-            <input class="form-control form--input mb-4" type="text" wire:model='instruction' required />
+            <textarea class="form-control form--input mb-4 form--textarea" wire:model="instruction" required></textarea>
         </div>
 
 
 
+
+
+
         {{-- submitButton --}}
-        <div class="col-3 text-center">
-            <button class="btn btn--scheme btn--scheme-2 px-4 scalemix--3 py-1 d-inline-flex align-items-center fs-13"
+        <div class="col-12 text-center">
+            <button
+                class="btn btn--scheme btn--scheme-2 px-4 scalemix--3 py-1 mb-4 d-inline-flex align-items-center fs-13"
                 wire:loading.attr='disabled'>
                 <svg class="bi bi-plus-circle-dotted fs-6 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
                     height="1em" fill="currentColor" viewBox="0 0 16 16">
@@ -61,6 +76,9 @@
 
 
 
+
+
+
     {{-- tableView --}}
     <div class='row align-content-center'>
         <div class="col-12">
@@ -80,16 +98,27 @@
 
 
 
+
+
+                    {{-- --------------------------- --}}
+                    {{-- --------------------------- --}}
+
+
+
+
+
                     {{-- tbody --}}
                     <tbody>
 
 
 
                         {{-- loop - instructions --}}
-                        @foreach ($meal->instructions as $key => $instruction)
-                        <livewire:dashboard.menu.production-builder.components.production-builder-view-instruction
-                            :id='$instruction->id' key="single-instruction-{{ $instruction->id }}"
+                        @foreach ($meal?->instructions ?? [] as $key => $instruction)
+
+                        <livewire:dashboard.menu.production-builder.components.production-builder-manage-instructions.components.production-builder-manage-instructions-edit
+                            id='{{ $instruction->id }}' key="single-instruction-{{ $instruction->id }}"
                             counter='{{ $key }}' />
+
                         @endforeach
                         {{-- end loop --}}
 
@@ -106,5 +135,9 @@
     {{-- end tableView --}}
 
 
+
+
+
+
 </div>
-{{-- end instructionsWrapper --}}
+{{-- endWrapper --}}

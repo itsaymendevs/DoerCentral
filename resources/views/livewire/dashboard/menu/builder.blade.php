@@ -1,86 +1,54 @@
 {{-- contentSection --}}
 <section class="content--section" id="content--section">
+
+
+
+
+
+    {{-- subMenu --}}
+    <div class="container">
+
+        <livewire:dashboard.menu.components.sub-menu key='submenu' />
+
+    </div>
+
+
+
+
+
+    {{-- ----------------------------------------- --}}
+    {{-- ----------------------------------------- --}}
+
+
+
+
+
+
+
+
+    {{-- contentContainer --}}
     <div class="container-fluid">
 
 
-
-
-
-        {{-- :: SubMenu --}}
-        <livewire:dashboard.menu.components.sub-menu key='submenu' />
-
-
-
-
-        {{-- ----------------------------------------- --}}
-        {{-- ----------------------------------------- --}}
-
-
-
-
-
-
-        {{-- contentRow --}}
-        <div class="row row pt-2 align-items-center mb-5">
+        {{-- 1: general --}}
+        <div class="row pt-2 align-items-center mb-5">
             <div class="col-12 plans-column" data-view="standard" data-instance="1">
 
 
-                {{-- tabWrap --}}
-                <div class="tabs--wrap">
-
-
-                    {{-- navLinks --}}
-                    <ul class="nav nav-tabs inner" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#tab-1" role="tab">General</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link disabled" data-bs-toggle="tab" href="#tab-2" role="tab">Ingredients</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link disabled" data-bs-toggle="tab" href="#tab-3" role="tab">Packings</a>
-                        </li>
-                    </ul>
-                    {{-- end navLinks --}}
-
-
-
-
-
-
-
-                    {{-- -------------------------------------------- --}}
-                    {{-- -------------------------------------------- --}}
-
-
-
-
-
-
-                    {{-- tabContetn --}}
-                    <div class="tab-content">
-
-
-
-
-                        {{-- 1: generalTab --}}
-                        <div class="tab-pane active no--card" id="tab-1" role="tabpanel">
-
-                            <livewire:dashboard.menu.builder.components.builder-create-general />
-
-                        </div>
-                        {{-- endTab --}}
-
-
-
-                    </div>
-                    {{-- end tabContent --}}
-
-
+                {{-- header --}}
+                <div class="builder--header">
+                    <h4 class='mb-0 fs-5'>General Informations</h4>
                 </div>
+
+
+                <livewire:dashboard.menu.builder.components.builder-create-general key='meal-general-informations' />
+
+
             </div>
         </div>
         {{-- end tabRow --}}
+
+
 
 
     </div>

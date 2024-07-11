@@ -15,8 +15,6 @@ class KitchenLabels extends Component
     use HelperTrait;
 
 
-    // :: variables
-    public $removeId;
 
 
 

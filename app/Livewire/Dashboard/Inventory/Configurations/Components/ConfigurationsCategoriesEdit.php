@@ -20,7 +20,6 @@ class ConfigurationsCategoriesEdit extends Component
     // :: variables
     public IngredientCategoryForm $instance;
 
-    public $removeId;
 
 
 

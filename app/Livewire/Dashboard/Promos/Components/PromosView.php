@@ -18,7 +18,6 @@ class PromosView extends Component
 
     // :: filter - remove
     public $searchPromoCode = '';
-    public $removeId;
 
 
 

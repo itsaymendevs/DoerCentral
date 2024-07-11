@@ -14,30 +14,29 @@ class SingleCustomerResumeSubscription extends Component
 {
 
 
-   use HelperTrait;
-   use ActivityTrait;
+    use HelperTrait;
+    use ActivityTrait;
 
 
 
-   // :: variables
-   public $subscription;
-   public $removeId;
+    // :: variables
+    public $subscription;
 
 
 
 
 
 
-   public function mount($id)
-   {
+    public function mount($id)
+    {
 
 
-      // :: getSubscription - customer
-      $this->subscription = CustomerSubscription::find($id);
+        // :: getSubscription - customer
+        $this->subscription = CustomerSubscription::find($id);
 
 
 
-   } // end function
+    } // end function
 
 
 
@@ -45,7 +44,7 @@ class SingleCustomerResumeSubscription extends Component
 
 
 
-   // -----------------------------------------------------------
+    // -----------------------------------------------------------
 
 
 
@@ -53,21 +52,21 @@ class SingleCustomerResumeSubscription extends Component
 
 
 
-   public function unPause($id)
-   {
+    public function unPause($id)
+    {
 
 
 
-      // 1: params - confirmationBox
-      $this->removeId = $id;
+        // 1: params - confirmationBox
+        $this->removeId = $id;
 
-      $this->makeAlert('question', 'Canceling pause will deduct balance from customer wallet', 'confirmUnPause');
+        $this->makeAlert('question', 'Canceling pause will deduct balance from customer wallet', 'confirmUnPause');
 
 
 
 
 
-   } // end function
+    } // end function
 
 
 
@@ -78,7 +77,7 @@ class SingleCustomerResumeSubscription extends Component
 
 
 
-   // -----------------------------------------------------------
+    // -----------------------------------------------------------
 
 
 
@@ -86,30 +85,30 @@ class SingleCustomerResumeSubscription extends Component
 
 
 
-   #[On('confirmUnPause')]
-   public function confirmUnPause()
-   {
+    #[On('confirmUnPause')]
+    public function confirmUnPause()
+    {
 
 
 
-      // 1: create instance
-      $instance = new stdClass();
+        // 1: create instance
+        $instance = new stdClass();
 
-      $instance->id = $this->removeId;
-      $instance->customerSubscriptionId = $this->subscription->id;
+        $instance->id = $this->removeId;
+        $instance->customerSubscriptionId = $this->subscription->id;
 
 
 
 
 
-      // 1.2: remove
-      if ($this->removeId) {
+        // 1.2: remove
+        if ($this->removeId) {
 
 
 
 
-         // ## log - activity ##
-         $this->storeActivity('Customers', "Resumed subscription for {$this->subscription->customer->fullName()}");
+            // ## log - activity ##
+            $this->storeActivity('Customers', "Resumed subscription for {$this->subscription->customer->fullName()}");
 
 
 
@@ -117,29 +116,29 @@ class SingleCustomerResumeSubscription extends Component
 
 
 
-         // 1.3: makeRequest
-         $response = $this->makeRequest('dashboard/customers/subscription/un-pause', $instance);
+            // 1.3: makeRequest
+            $response = $this->makeRequest('dashboard/customers/subscription/un-pause', $instance);
 
 
 
-         // :: refreshPage
-         $this->dispatch('refreshViews');
-         $this->dispatch('refreshWalletViews');
+            // :: refreshPage
+            $this->dispatch('refreshViews');
+            $this->dispatch('refreshWalletViews');
 
-         $this->makeAlert('success', $response->message);
+            $this->makeAlert('success', $response->message);
 
-         $this->render();
+            $this->render();
 
 
 
 
-      } // end if
+        } // end if
 
 
 
 
 
-   } // end function
+    } // end function
 
 
 
@@ -150,7 +149,7 @@ class SingleCustomerResumeSubscription extends Component
 
 
 
-   // -----------------------------------------------------------
+    // -----------------------------------------------------------
 
 
 
@@ -159,29 +158,29 @@ class SingleCustomerResumeSubscription extends Component
 
 
 
-   #[On('refreshPauseViews')]
-   public function render()
-   {
+    #[On('refreshPauseViews')]
+    public function render()
+    {
 
 
 
-      // 1: dependencies
-      $pauses = CustomerSubscriptionPause::orderBy('created_at', 'desc')
-         ->where('customerSubscriptionId', $this->subscription->id)->get();
+        // 1: dependencies
+        $pauses = CustomerSubscriptionPause::orderBy('created_at', 'desc')
+            ->where('customerSubscriptionId', $this->subscription->id)->get();
 
 
 
 
-      // :: initTooltips
-      $this->dispatch('initTooltips');
+        // :: initTooltips
+        $this->dispatch('initTooltips');
 
 
 
-      return view('livewire.dashboard.customers.manage.single-customer.components.single-customer-resume-subscription', compact('pauses'));
+        return view('livewire.dashboard.customers.manage.single-customer.components.single-customer-resume-subscription', compact('pauses'));
 
 
 
-   } // end function
+    } // end function
 
 
 

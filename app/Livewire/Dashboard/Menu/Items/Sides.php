@@ -20,7 +20,6 @@ class Sides extends Component
 
     // :: variables
     public $searchSide = '';
-    public $removeId;
 
 
 

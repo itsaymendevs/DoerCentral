@@ -18,7 +18,6 @@ class Suppliers extends Component
 
     // :: variable
     public $searchSupplier = '';
-    public $removeId;
 
 
 

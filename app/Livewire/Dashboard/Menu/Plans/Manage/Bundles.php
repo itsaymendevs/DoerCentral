@@ -18,7 +18,6 @@ class Bundles extends Component
 
     // :: variables
     public $id;
-    public $removeId;
 
 
 

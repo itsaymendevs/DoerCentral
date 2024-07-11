@@ -15,9 +15,6 @@ class KitchenContainers extends Component
     use HelperTrait;
 
 
-    // :: variables
-    public $removeId;
-
 
 
 

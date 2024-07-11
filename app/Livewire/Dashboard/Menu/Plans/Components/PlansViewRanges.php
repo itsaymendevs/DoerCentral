@@ -19,7 +19,6 @@ class PlansViewRanges extends Component
 
     // :: variables
     public PlanRangeForm $instance;
-    public $removeId;
 
 
 

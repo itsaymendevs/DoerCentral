@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
+namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components\ProductionBuilderManageInstructions\Components;
 
-use App\Models\Meal;
 use App\Models\MealInstruction;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
@@ -10,17 +9,16 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use stdClass;
 
-class ProductionBuilderViewInstruction extends Component
+class ProductionBuilderManageInstructionsEdit extends Component
 {
+
 
     use HelperTrait;
     use ActivityTrait;
 
 
     // :: variables
-    public $instruction, $counter;
-    public $mealInstruction;
-    public $removeId;
+    public $instruction, $counter, $mealInstruction;
 
 
 
@@ -30,10 +28,13 @@ class ProductionBuilderViewInstruction extends Component
     public function mount($id, $counter)
     {
 
+
         // 1: get instance
         $this->mealInstruction = MealInstruction::find($id);
         $this->instruction = $this->mealInstruction->content;
         $this->counter = $counter;
+
+
 
     } // end function
 
@@ -70,6 +71,7 @@ class ProductionBuilderViewInstruction extends Component
 
 
 
+
         // --------------------------------------
         // --------------------------------------
 
@@ -77,7 +79,9 @@ class ProductionBuilderViewInstruction extends Component
 
 
 
-        // :: create instance
+
+
+        // 1: create instance
         $instance = new stdClass();
         $instance->id = $this->mealInstruction->id;
         $instance->instruction = $this->instruction;
@@ -85,7 +89,7 @@ class ProductionBuilderViewInstruction extends Component
 
 
 
-        // :: notEmpty
+
         if ($this->instruction) {
 
 
@@ -96,13 +100,12 @@ class ProductionBuilderViewInstruction extends Component
 
 
 
-            // 1: makeRequest
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/builder/instructions/update', $instance);
 
-
-
-            // :: alert
             $this->makeAlert('success', $response->message);
+
+
 
 
         } // end if
@@ -122,6 +125,7 @@ class ProductionBuilderViewInstruction extends Component
 
 
     // -----------------------------------------------------
+
 
 
 
@@ -154,13 +158,15 @@ class ProductionBuilderViewInstruction extends Component
 
 
 
+
+
+
     #[On('confirmInstructionRemove')]
     public function confirmRemove()
     {
 
 
 
-        // 1: remove
         if ($this->removeId) {
 
 
@@ -170,9 +176,11 @@ class ProductionBuilderViewInstruction extends Component
 
 
 
-            // 1.2: makeInstruction
+
+            // 1.2: makeRequest
             $response = $this->makeRequest('dashboard/menu/builder/instructions/remove', $this->removeId);
-            $this->makeAlert('info', $response->message);
+
+
 
         } // end if
 
@@ -180,11 +188,16 @@ class ProductionBuilderViewInstruction extends Component
 
 
 
-        // 1.2: renderParent
+
+        // 1.3: renderParent
         $this->dispatch('refreshInstructions');
 
 
+
+
     } // end function
+
+
 
 
 
@@ -212,19 +225,14 @@ class ProductionBuilderViewInstruction extends Component
     {
 
 
+        return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-instructions.components.production-builder-manage-instructions-edit');
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
-
-
-
-
-
-        return view('livewire.dashboard.menu.production-builder.components.production-builder-view-instruction');
 
 
     } // end function
 
 
-} // end class
 
+
+
+} // end class

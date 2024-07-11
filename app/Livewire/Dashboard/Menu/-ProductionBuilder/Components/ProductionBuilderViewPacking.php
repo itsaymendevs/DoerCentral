@@ -17,7 +17,6 @@ class ProductionBuilderViewPacking extends Component
 
     // :: variables
     public MealPackingForm $instance;
-    public $removeId;
 
 
 

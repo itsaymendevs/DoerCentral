@@ -19,8 +19,6 @@ class Ingredients extends Component
 
 
 
-
-
     use HelperTrait;
     use WithPagination;
 
@@ -31,7 +29,6 @@ class Ingredients extends Component
     public $searchIngredient = '';
     public $searchCategory, $searchGroup, $searchAllergy, $searchExclude;
 
-    public $removeId;
 
 
 

@@ -17,7 +17,6 @@ class PurchasesIngredientsEdit extends Component
 
 
 
-
     use HelperTrait;
     use ActivityTrait;
 
@@ -27,7 +26,6 @@ class PurchasesIngredientsEdit extends Component
     // :: variable
     public StockPurchaseIngredientForm $instance;
     public $purchaseIngredient;
-    public $removeId;
 
 
 

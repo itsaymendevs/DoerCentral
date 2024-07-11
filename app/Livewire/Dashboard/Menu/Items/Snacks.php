@@ -21,7 +21,6 @@ class Snacks extends Component
 
     // :: variables
     public $searchSnack = '', $searchPartType;
-    public $removeId;
 
 
 

@@ -12,6 +12,8 @@ use Livewire\WithPagination;
 
 class Drinks extends Component
 {
+
+
     use HelperTrait;
     use ActivityTrait;
     use WithPagination;
@@ -21,7 +23,6 @@ class Drinks extends Component
 
     // :: variables
     public $searchDrink = '', $searchPartType;
-    public $removeId;
 
 
 

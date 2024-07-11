@@ -23,7 +23,6 @@ class SubRecipes extends Component
 
     // :: variables
     public $searchSubRecipe = '', $searchPartType;
-    public $removeId;
 
 
 

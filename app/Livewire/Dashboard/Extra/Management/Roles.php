@@ -17,7 +17,6 @@ class Roles extends Component
 
     // :: variables
     public $searchRole = '';
-    public $removeId;
 
 
 

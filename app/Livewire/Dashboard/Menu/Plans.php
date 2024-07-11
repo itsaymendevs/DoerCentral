@@ -17,9 +17,6 @@ class Plans extends Component
     use ActivityTrait;
 
 
-    // ::variables
-    public $removeId;
-
 
 
 

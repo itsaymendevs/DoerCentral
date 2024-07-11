@@ -19,7 +19,6 @@ class CustomerGeneralResumeSubscription extends Component
 
     // :: variables
     public $subscription;
-    public $removeId;
 
 
 

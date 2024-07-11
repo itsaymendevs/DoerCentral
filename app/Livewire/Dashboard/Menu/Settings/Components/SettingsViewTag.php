@@ -18,7 +18,6 @@ class SettingsViewTag extends Component
     // :: variables
     public TagForm $instance;
 
-    public $removeId;
 
 
 

@@ -20,7 +20,6 @@ class Sauces extends Component
 
     // :: variables
     public $searchSauce = '', $searchPartType;
-    public $removeId;
 
 
 

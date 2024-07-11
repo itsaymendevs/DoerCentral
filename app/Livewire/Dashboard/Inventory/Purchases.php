@@ -22,7 +22,7 @@ class Purchases extends Component
     // :: variable
     public $searchPONumber = '';
 
-    public $removeId, $confirmId;
+    public $confirmId;
 
 
 

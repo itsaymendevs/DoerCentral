@@ -18,7 +18,6 @@ class DeliveryVehicles extends Component
 
     // :: variables
     public $searchVehicle = '';
-    public $removeId;
 
 
 

@@ -14,9 +14,6 @@ class DeliveryZones extends Component
 
 
 
-
-
-
     use HelperTrait;
     use WithPagination;
 
@@ -24,7 +21,6 @@ class DeliveryZones extends Component
 
     // ::variables
     public $searchZone = '';
-    public $removeId;
 
 
 

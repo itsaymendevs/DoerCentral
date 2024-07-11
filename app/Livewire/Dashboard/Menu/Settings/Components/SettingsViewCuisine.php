@@ -18,7 +18,6 @@ class SettingsViewCuisine extends Component
     // :: variables
     public CuisineForm $instance;
 
-    public $removeId;
 
 
 

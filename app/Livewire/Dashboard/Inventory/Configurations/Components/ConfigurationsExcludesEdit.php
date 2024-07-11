@@ -20,7 +20,6 @@ class ConfigurationsExcludesEdit extends Component
     // :: variables
     public ExcludeForm $instance;
 
-    public $removeId;
 
 
 

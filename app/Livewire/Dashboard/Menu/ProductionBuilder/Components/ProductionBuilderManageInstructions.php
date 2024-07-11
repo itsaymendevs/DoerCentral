@@ -18,8 +18,7 @@ class ProductionBuilderManageInstructions extends Component
 
 
     // :: variables
-    public $meal;
-    public $instruction;
+    public $meal, $instruction;
 
 
 
@@ -28,12 +27,15 @@ class ProductionBuilderManageInstructions extends Component
     public function mount($id)
     {
 
+
         // 1: get instance
         $this->meal = Meal::find($id);
 
 
 
     } // end function
+
+
 
 
 
@@ -76,23 +78,19 @@ class ProductionBuilderManageInstructions extends Component
 
 
 
-        // :: create instance
+        // 1: create instance
         $instance = new stdClass();
         $instance->id = $this->meal->id;
         $instance->instruction = $this->instruction;
 
 
 
-
-        // :: notEmpty
         if ($this->instruction) {
-
 
 
 
             // ## log - activity ##
             $this->storeActivity('Menu', "Created instruction for {$this->meal->name}");
-
 
 
 
@@ -103,7 +101,7 @@ class ProductionBuilderManageInstructions extends Component
 
 
 
-            // :: reset - render - alert
+            // 1.2: reset
             $this->instruction = null;
 
             $this->makeAlert('success', $response->message);
@@ -112,6 +110,7 @@ class ProductionBuilderManageInstructions extends Component
 
 
         } // end if
+
 
 
 
@@ -144,18 +143,15 @@ class ProductionBuilderManageInstructions extends Component
     {
 
 
-
-        // :: initTooltips
-        $this->dispatch('initTooltips');
-
-
-
-
-
         return view('livewire.dashboard.menu.production-builder.components.production-builder-manage-instructions');
 
 
     } // end function
+
+
+
+
+
 
 
 } // end class

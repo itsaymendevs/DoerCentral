@@ -21,7 +21,6 @@ class Meals extends Component
 
     // :: variables
     public $searchMeal = '';
-    public $removeId;
 
 
 

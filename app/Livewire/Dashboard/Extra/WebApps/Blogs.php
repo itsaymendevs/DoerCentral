@@ -12,13 +12,11 @@ class Blogs extends Component
 
 
 
-
     use HelperTrait;
 
 
     // :: filter - remove
     public $searchBlog = '';
-    public $removeId;
 
 
 

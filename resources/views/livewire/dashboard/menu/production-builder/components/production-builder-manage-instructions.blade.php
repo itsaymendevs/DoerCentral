@@ -37,8 +37,8 @@
 
         {{-- input --}}
         <div class="col-12">
-            <label class="form-label form--label">Instruction</label>
-            <textarea class="form-control form--input mb-4 form--textarea" wire:model="instruction" required></textarea>
+            <textarea class="form-control form--input mb-4 form--textarea" wire:model="instruction"
+                placeholder='Write Instruction' required></textarea>
         </div>
 
 

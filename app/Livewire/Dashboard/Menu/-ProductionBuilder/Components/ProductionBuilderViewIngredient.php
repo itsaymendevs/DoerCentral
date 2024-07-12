@@ -92,7 +92,7 @@ class ProductionBuilderViewIngredient extends Component
 
 
 
-        // 1: get id - meal - typeId - partType - amount - remarks - isRemovable - isReplacement
+        // 1: get id - meal - typeId - partType - amount - remarks - isRemovable - isDefault
         $this->instance->id = $id;
         $this->instance->typeId = $typeId;
 
@@ -100,7 +100,7 @@ class ProductionBuilderViewIngredient extends Component
         $this->instance->remarks = $this->mealPart->remarks;
         $this->instance->partType = $this->mealPart->partType;
         $this->instance->isRemovable = $this->mealPart->isRemovable;
-        $this->instance->isReplacement = $this->mealPart->isReplacement;
+        $this->instance->isDefault = $this->mealPart->isDefault;
         $this->instance->groupToken = $this->mealPart->groupToken;
         $this->instance->mealId = $this->mealPart->mealId;
         $this->instance->mealSizeId = $this->mealPart->mealSizeId;

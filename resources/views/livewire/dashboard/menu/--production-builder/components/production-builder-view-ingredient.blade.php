@@ -312,7 +312,7 @@
 
 
 
-    {{-- isReplacement --}}
+    {{-- isDefault --}}
 
 
 
@@ -328,9 +328,9 @@
 
             <input class="form-check-input pointer replacement--checkbox ingredient--default-input"
                 data-group='{{ $instance->groupToken }}' type="checkbox" data-size='{{ $instance->mealSizeId }}'
-                @if($this->instance->isReplacement) checked @endif
+                @if($this->instance->isDefault) checked @endif
             id="formCheck-replacement-{{ strtolower($instance->typeId) }}-{{ $instance->id }}"
-            wire:model='instance.isReplacement'
+            wire:model='instance.isDefault'
             wire:change='update' wire:loading.attr='disabled' wire:target='update, remove, init' />
 
 

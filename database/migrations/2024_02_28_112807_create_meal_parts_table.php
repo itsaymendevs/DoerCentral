@@ -42,7 +42,7 @@ return new class extends Migration {
             // 1.2: groupToken - isRemovable
             $table->string('groupToken', 100)->nullable();
             $table->boolean('isRemovable')->nullable()->default(0);
-            $table->boolean('isReplacement')->nullable()->default(0);
+            $table->boolean('isDefault')->nullable()->default(0);
 
 
 

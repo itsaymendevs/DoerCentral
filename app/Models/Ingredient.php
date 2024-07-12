@@ -169,7 +169,6 @@ class Ingredient extends Model
 
 
 
-        dd($totalQuantity);
 
         return $totalQuantity ?? 0;
 

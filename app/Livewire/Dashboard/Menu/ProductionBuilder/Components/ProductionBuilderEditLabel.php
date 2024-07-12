@@ -4,6 +4,8 @@ namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Models\Label;
 use App\Models\Meal;
+use App\Models\MealServingInstruction;
+use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use stdClass;
@@ -13,11 +15,14 @@ class ProductionBuilderEditLabel extends Component
 
 
     use HelperTrait;
+    use ActivityTrait;
+
 
 
 
     // :: variables
     public $meal, $label;
+    public $servingInstructions;
 
 
 
@@ -27,8 +32,11 @@ class ProductionBuilderEditLabel extends Component
     {
 
 
+
         // 1: get instance
         $this->meal = Meal::find($id);
+        $this->servingInstructions = MealServingInstruction::where('mealId', $id)->get();
+
 
 
 
@@ -97,6 +105,79 @@ class ProductionBuilderEditLabel extends Component
 
 
         } // end if
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function toggleTag($id)
+    {
+
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+        // ## log - activity ##
+        $this->storeActivity('Menu', "Toggled tag for {$this->meal->name}");
+
+
+
+
+
+
+        // 1: create instance
+        $instance = new stdClass();
+        $instance->id = $id;
+
+
+
+
+
+
+        // 1.2: makeRequest
+        $response = $this->makeRequest('dashboard/menu/builder/serving-instructions/toggle', $instance);
+
 
 
 

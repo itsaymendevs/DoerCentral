@@ -1,4 +1,4 @@
-<div class="d-block">
+<div class="d-block text-center">
 
 
 
@@ -52,8 +52,75 @@
 
 
 
+
+    {{-- ------------------------------------------- --}}
+    {{-- ------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+    {{-- servingTags --}}
+    <div class="w-auto d-inline-block mx-auto mt-4">
+
+
+
+        {{-- loop - servingInstructions --}}
+        @foreach ($servingInstructions ?? [] as $servingInstruction)
+
+
+
+        {{-- Tag --}}
+        <div class="form-check form-switch mb-2 mealType--checkbox"
+            key='serving-instruction-{{ $servingInstruction->id }}'>
+
+
+            {{-- input --}}
+            <input class="form-check-input pointer" style="height: 13px" type="checkbox"
+                wire:change='toggleTag({{ $servingInstruction->id }})' wire:loading.attr='disabled'
+                id="serving-instruction-{{ $servingInstruction->id }}" @if ($servingInstruction?->isActive)
+            checked
+            @endif />
+
+
+            {{-- label --}}
+            <label class="form-check-label fs-13" for="serving-instruction-{{ $servingInstruction?->id }}">
+                {{ $servingInstruction?->instruction?->name }}</label>
+
+
+
+        </div>
+        {{-- endTag --}}
+
+
+
+        @endforeach
+        {{-- end loop --}}
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
+
 
 
 

@@ -574,7 +574,7 @@ class RecipeSeeder extends Seeder
 
                             'remarks' => $mealIngredients[$y]['remarks'] ?? null,
                             'groupToken' => $groupToken,
-                            'isReplacement' => boolval($mealIngredients[$y]['isReplacement']) ?? false,
+                            'isDefault' => boolval($mealIngredients[$y]['isDefault']) ?? false,
                             'isRemovable' => boolval($mealIngredients[$y]['isRemovable']) ?? false,
 
                             'mealId' => $meal->id ?? null,
@@ -778,7 +778,7 @@ class RecipeSeeder extends Seeder
 
                                     'remarks' => $mealParts[$y]['remarks'] ?? null,
                                     'groupToken' => $groupToken,
-                                    'isReplacement' => boolval($mealParts[$y]['isReplacement']) ?? false,
+                                    'isDefault' => boolval($mealParts[$y]['isDefault']) ?? false,
                                     'isRemovable' => boolval($mealParts[$y]['isRemovable']) ?? false,
 
                                     'mealId' => $meal->id ?? null,

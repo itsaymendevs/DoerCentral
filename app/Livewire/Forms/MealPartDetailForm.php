@@ -14,7 +14,7 @@ class MealPartDetailForm extends Form
 
 
 
-    public $remarks, $calories, $afterCookCalories, $proteins, $afterCookProteins, $carbs, $cost, $afterCookCarbs, $fats, $afterCookFats, $grams, $afterCookGrams, $isRemovable, $isReplacement, $groupToken, $mealSizeId;
+    public $remarks, $calories, $afterCookCalories, $proteins, $afterCookProteins, $carbs, $cost, $afterCookCarbs, $fats, $afterCookFats, $grams, $afterCookGrams, $isRemovable, $isDefault, $groupToken, $mealSizeId;
 
 
 

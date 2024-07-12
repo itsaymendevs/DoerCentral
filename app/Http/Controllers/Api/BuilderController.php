@@ -1306,7 +1306,7 @@ class BuilderController extends Controller
 
         // :: getMeal - mealSizes - groupToken
         $meal = Meal::find($request->mealId);
-        $groupToken = date('dmYhisA');
+        $groupToken = $this->makeGroupToken();
 
 
 
@@ -1504,10 +1504,10 @@ class BuilderController extends Controller
         $request->typeId == 'Ingredient' ?
             MealIngredient::where('groupToken', $part->groupToken)->update([
                 'isRemovable' => boolval($request->isRemovable) === true ? true : false,
-                'isReplacement' => boolval($request->isReplacement) === true ? true : false
+                'isDefault' => boolval($request->isDefault) === true ? true : false
             ]) : MealPart::where('groupToken', $part->groupToken)->update([
                         'isRemovable' => boolval($request->isRemovable) === true ? true : false,
-                        'isReplacement' => boolval($request->isReplacement) === true ? true : false
+                        'isDefault' => boolval($request->isDefault) === true ? true : false
                     ]);
 
 

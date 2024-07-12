@@ -4,23 +4,86 @@
 
 
 
-
-
         {{-- topRow --}}
         <div class="row align-items-center">
 
 
             {{-- empty --}}
-            <div class="col-4"></div>
+            <div class="col-3" wire:ignore>
+                <div class="select--single-wrapper" wire:loading.class='no-events'>
+                    <select class="form-select form--select" data-instance='searchUser' data-clear='true'
+                        data-placeholder='Select User'>
+                        <option value=""></option>
+
+                        @foreach ($users ?? [] as $user)
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+            </div>
+
+
 
 
 
 
             {{-- search --}}
-            <div class="col-4 text-center">
+            <div class="col-3 text-center">
                 <input type="text" class="form--input" placeholder="Search for Description"
-                    wire:model.live='searchUser' />
+                    wire:model.live='searchDescription' />
             </div>
+
+
+
+
+
+
+
+            {{-- ----------------------------------- --}}
+            {{-- ----------------------------------- --}}
+
+
+
+
+
+            {{-- actions --}}
+            <div class="col-2">
+
+
+                {{-- :: permission - hasPrintExcel --}}
+                @if ($versionPermission->kitchenModuleHasPrintExcel || session('hasTechAccess'))
+
+
+
+
+                {{-- 1: exportExcel --}}
+                <button wire:click='export' wire:loading.class='disabled'
+                    class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex px-3 fs-13 justify-content-center fw-semibold ms-2"
+                    type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                        viewBox="0 0 16 16" class="bi bi-file-text fs-6 me-2">
+                        <path
+                            d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z">
+                        </path>
+                        <path
+                            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z">
+                        </path>
+                    </svg>Excel
+                </button>
+
+
+
+                @endif
+                {{-- end if - permission --}}
+
+
+
+
+            </div>
+            {{-- endCol --}}
+
+
 
 
 
@@ -29,12 +92,10 @@
 
             {{-- sub-menu --}}
             <div class="col-4 text-end">
-
-
                 <livewire:dashboard.extra.management.components.sub-menu key='submenu' />
-
-
             </div>
+
+
         </div>
         {{-- end topRow --}}
 
@@ -45,10 +106,10 @@
 
 
 
-
-
         {{-- ---------------------------------------------- --}}
         {{-- ---------------------------------------------- --}}
+
+
 
 
 
@@ -171,6 +232,59 @@
     {{-- endContainer --}}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- selectHandle --}}
+    <script>
+        $(".form--select").on("change", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+
+         @this.set(instance, selectValue);
+
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
 
 
 

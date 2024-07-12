@@ -132,15 +132,17 @@
 
 
 
-            {{-- 1: editContainer --}}
+
+
+
+
+            {{-- 1: editLabel --}}
             <div class="col-3">
 
-                <livewire:dashboard.menu.production-builder.components.production-builder-edit-container
-                    id='{{ $meal->id }}' key='builder-edit-container' />
+                <livewire:dashboard.menu.production-builder.components.production-builder-edit-label
+                    id='{{ $meal->id }}' key='builder-edit-label' />
 
             </div>
-
-
 
 
 
@@ -202,13 +204,11 @@
 
 
 
-
-
-            {{-- 3: editLabel --}}
+            {{-- 3: editContainer --}}
             <div class="col-3">
 
-                <livewire:dashboard.menu.production-builder.components.production-builder-edit-label
-                    id='{{ $meal->id }}' key='builder-edit-label' />
+                <livewire:dashboard.menu.production-builder.components.production-builder-edit-container
+                    id='{{ $meal->id }}' key='builder-edit-container' />
 
             </div>
 
@@ -219,6 +219,7 @@
 
 
 
+
             {{-- --------------------------------- --}}
             {{-- --------------------------------- --}}
             {{-- --------------------------------- --}}
@@ -230,7 +231,84 @@
 
 
 
-            {{-- 7: instructions --}}
+
+
+            {{-- 4: content --}}
+            <div class="col-12">
+
+
+                <livewire:dashboard.menu.production-builder.components.production-builder-manage-content
+                    id='{{ $meal->id }}' key='builder-manage-content' />
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            {{-- --------------------------------- --}}
+            {{-- --------------------------------- --}}
+            {{-- --------------------------------- --}}
+            {{-- --------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+            {{-- 8: servings --}}
+            <div class="col-7">
+
+
+
+
+                {{-- 8.1: servings --}}
+                <livewire:dashboard.menu.production-builder.components.production-builder-manage-servings
+                    id='{{ $meal->id }}' key='builder-manage-servings' />
+
+
+
+
+
+
+
+                {{-- 8.2: details --}}
+                <livewire:dashboard.menu.production-builder.components.production-builder-manage-servings-details
+                    id='{{ $meal->id }}' key='builder-manage-servings-details' />
+
+
+
+            </div>
+            {{-- endCol --}}
+
+
+
+
+
+
+
+
+            {{-- --------------------------------- --}}
+            {{-- --------------------------------- --}}
+
+
+
+
+
+
+
+            {{-- 9: instructions --}}
             <div class="col-5">
 
                 <livewire:dashboard.menu.production-builder.components.production-builder-manage-instructions
@@ -243,10 +321,6 @@
 
 
 
-            {{-- --------------------------------- --}}
-            {{-- --------------------------------- --}}
-
-
 
 
 
@@ -262,9 +336,6 @@
 
 
 
-        {{--
-        <livewire:dashboard.menu.production-builder.components.production-builder-manage-recipe :id='$meal->id'
-            key='meal-sizes-and-ingredients' /> --}}
 
 
     </div>
@@ -273,63 +344,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-    {{-- ------------------------------------------ --}}
-    {{-- ------------------------------------------ --}}
-
-
-
-
-
-
-
-    {{-- 3: packings --}}
-    <div class="container-fluid">
-
-        {{-- header --}}
-        <div class="builder--header" style="margin-top: 120px">
-            <h4 class='mb-0 fs-5'>Serving Information</h4>
-        </div>
-
-
-
-
-        {{-- row --}}
-        <div class="row align-items-start pt-2 mb-5 pb-4">
-
-
-            {{--
-            <livewire:dashboard.menu.production-builder.components.production-builder-manage-packings :id='$meal->id'
-                key='meal-packing-and-servings-1' /> --}}
-
-
-
-
-            {{--
-            <livewire:dashboard.menu.production-builder.components.production-builder-manage-labels :id='$meal->id'
-                key='meal-packing-and-servings-2' /> --}}
-
-
-
-
-
-        </div>
-        {{-- endRow --}}
-
-
-
-
-
-    </div>
-    {{-- endContainer --}}
 
 
 
@@ -459,9 +473,7 @@
 
 
     {{-- 1: viewCost --}}
-    {{--
-    <livewire:dashboard.menu.production-builder.components.production-builder-view-cost-details
-        key='cost-details-modal' /> --}}
+    <livewire:dashboard.menu.production-builder.components.production-builder-cost-details key='cost-details-modal' />
 
 
 

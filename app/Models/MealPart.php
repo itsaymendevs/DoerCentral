@@ -77,7 +77,7 @@ class MealPart extends Model
 
 
 
-    public function totalMacro($currentAmount = 0)
+    public function totalMacro($currentAmount = 0, $brandId = null, $partId = null)
     {
 
 
@@ -89,12 +89,13 @@ class MealPart extends Model
 
 
         // 1: getPart
-        $part = $this->part()->first();
+        $part = $partId ? Meal::find($partId) : $this->part()->first();
+
 
 
 
         // 1.2: MacroHelper
-        $partMacro = $part ? $this->getMacro($part, $currentAmount) : [];
+        $partMacro = $part ? $this->getMacro($part, $currentAmount, $brandId) : [];
 
 
 

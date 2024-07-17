@@ -328,6 +328,7 @@ class Meal extends Model
 
 
 
+
         return $totalGrams;
 
 

@@ -1,7 +1,13 @@
 {{-- itemsCol --}}
-<div class="col-5">
-    <div class="table memoir--table w-100 h-100">
-        <table class=" table table-bordered" id="memoir--table">
+<div class="col-6 pe-0">
+
+
+
+
+
+    {{-- upperTable --}}
+    <div class="table memoir--table w-100 mb-0">
+        <table class="table builder--table mb-0" id="memoir--table">
 
 
 
@@ -39,7 +45,7 @@
 
                 {{-- 1: afterCookManual --}}
                 <tr>
-                    <td class="fw-bold" style="height: 62px" colspan="3">
+                    <td class="fw-bold" style="height: 62px">
                         After Cook <small class="fw-semibold text-gold fs-10 ms-1">(Manual)</small>
                     </td>
                 </tr>
@@ -49,14 +55,14 @@
 
 
 
-                {{-- 1.2: afterCookAuto --}}
+                {{-- 2: afterCookAuto --}}
 
 
                 {{-- :: permission - hasConversion --}}
                 @if ($versionPermission->menuModuleHasBuilderConversion)
 
                 <tr>
-                    <td class="fw-bold" style="height: 62px" colspan="3">
+                    <td class="fw-bold" style="height: 62px">
                         After Cook
                     </td>
                 </tr>
@@ -71,13 +77,17 @@
 
 
 
-                {{-- 1.3: rawAuto --}}
+                {{-- 3: rawAuto --}}
                 <tr>
-                    <td class="fw-bold" style="height: 62px" colspan="3">
+                    <td class="fw-bold" style="height: 62px">
                         Raw
                     </td>
                 </tr>
 
+            </tbody>
+        </table>
+    </div>
+    {{-- endTable --}}
 
 
 
@@ -85,11 +95,59 @@
 
 
 
-                {{-- 1.4: type - cookType --}}
-                <tr class="subheader">
 
 
-                    <td class="fw-bold fs-11"></td>
+    {{-- ------------------------------------- --}}
+    {{-- ------------------------------------- --}}
+    {{-- ------------------------------------- --}}
+    {{-- ------------------------------------- --}}
+    {{-- ------------------------------------- --}}
+    {{-- ------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+    {{-- contentTable --}}
+    <div class="table memoir--table w-100 h-100">
+        <table class=" table table-responsive table-bordered" id="memoir--table">
+
+
+
+
+            {{-- tbody --}}
+            <tbody>
+
+
+
+
+                {{-- subHeader --}}
+                <tr class='subheader border-top-0'>
+
+
+
+
+                    <td @if(!$versionPermission->menuModuleHasBuilderConversion) colspan='2' @endif class="fw-bold
+                        fs-11"></td>
+
+
+
+
+                    {{-- :: permission - hasBrand --}}
+                    @if ($versionPermission->menuModuleHasBuilderConversion)
+
+                    <td class="fw-bold th--sm fs-11">Brand</td>
+
+                    @endif
+                    {{-- end if - permission --}}
+
+
+
                     <td class="fw-bold th--sm fs-11">Type</td>
 
 
@@ -103,8 +161,8 @@
                     @endif
                     {{-- end if - permission --}}
 
-
                 </tr>
+                {{-- endHeaders --}}
 
 
 
@@ -113,12 +171,12 @@
 
 
 
-                {{-- ---------------------------------------- --}}
-                {{-- ---------------------------------------- --}}
-                {{-- ---------------------------------------- --}}
-                {{-- ---------------------------------------- --}}
-                {{-- ---------------------------------------- --}}
-                {{-- ---------------------------------------- --}}
+
+
+                {{-- ------------------------------------------- --}}
+                {{-- ------------------------------------------- --}}
+                {{-- ------------------------------------------- --}}
+                {{-- ------------------------------------------- --}}
 
 
 
@@ -127,16 +185,15 @@
 
 
 
-                {{-- 2: loop - items --}}
+                {{-- 1: loop - items --}}
                 @for ($i = 0; count($instance->typeId ?? []) > $i; $i++)
 
 
 
 
 
-                {{-- 2.1: ingredients --}}
-                @if ($instance->type[$i] == 'Ingredient')
-
+                {{-- 1.2: ingredients --}}
+                @if ($instance->type[$i] == 'Ingredient' && $instance->isRemoved[$i] == false)
 
 
 
@@ -150,18 +207,8 @@
 
 
 
-                {{-- ---------------------------------------- --}}
-                {{-- ---------------------------------------- --}}
-
-
-
-
-
-
-
-
                 {{-- 2.5: parts --}}
-                @elseif ($instance->type[$i] == 'Part')
+                @elseif ($instance->type[$i] == 'Part' && $instance->isRemoved[$i] == false)
 
 
 
@@ -184,9 +231,14 @@
 
 
 
-
             </tbody>
         </table>
     </div>
+    {{-- endTable --}}
+
+
+
+
+
 </div>
 {{-- endCol --}}

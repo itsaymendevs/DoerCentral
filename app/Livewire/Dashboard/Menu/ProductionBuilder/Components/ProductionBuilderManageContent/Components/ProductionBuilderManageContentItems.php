@@ -10,7 +10,10 @@ class ProductionBuilderManageContentItems extends Component
 {
 
 
+    // :: variables
     public $instance;
+
+
 
 
 
@@ -47,6 +50,7 @@ class ProductionBuilderManageContentItems extends Component
 
         // 2: initSelect
         $this->dispatch('initCertainSelect', class: '.part--select');
+        $this->dispatch('initCertainSelect', class: '.part--brand-select');
         $this->dispatch('initCertainSelect', class: '.part--type-select');
         $this->dispatch('initCertainSelect', class: '.part--cooking-type-select');
 

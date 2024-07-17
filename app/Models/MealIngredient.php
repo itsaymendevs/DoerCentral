@@ -53,7 +53,7 @@ class MealIngredient extends Model
 
 
 
-    public function totalMacro($currentAmount = 0)
+    public function totalMacro($currentAmount = 0, $brandId = null, $ingredientId = null)
     {
 
 
@@ -64,18 +64,16 @@ class MealIngredient extends Model
 
 
 
-
         // 1: ingredients
-        $ingredient = $this->ingredient()->first();
-
+        $ingredient = $ingredientId ? Ingredient::find($ingredientId) : $this->ingredient()->first();
 
 
 
         // 1.2: ingredientMacro
-        $totalCalories += ($ingredient?->freshMacro()?->calories ?? 0) * $currentAmount;
-        $totalProteins += ($ingredient?->freshMacro()?->proteins ?? 0) * $currentAmount;
-        $totalCarbs += ($ingredient?->freshMacro()?->carbs ?? 0) * $currentAmount;
-        $totalFats += ($ingredient?->freshMacro()?->fats ?? 0) * $currentAmount;
+        $totalCalories += ($ingredient?->freshMacro($brandId)?->calories ?? 0) * $currentAmount;
+        $totalProteins += ($ingredient?->freshMacro($brandId)?->proteins ?? 0) * $currentAmount;
+        $totalCarbs += ($ingredient?->freshMacro($brandId)?->carbs ?? 0) * $currentAmount;
+        $totalFats += ($ingredient?->freshMacro($brandId)?->fats ?? 0) * $currentAmount;
         $totalCost += ($ingredient?->latestPricePerGram() ?? 0) * $currentAmount;
 
 

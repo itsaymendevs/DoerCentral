@@ -1294,7 +1294,13 @@ class BuilderController extends Controller
 
 
 
-    public function storeBuilderIngredient(Request $request)
+
+
+
+
+
+
+    public function updateBuilderIngredients(Request $request)
     {
 
 
@@ -1304,39 +1310,16 @@ class BuilderController extends Controller
 
 
 
-        // :: getMeal - mealSizes - groupToken
-        $meal = Meal::find($request->mealId);
-        $groupToken = $this->makeGroupToken();
+
+
+        // 1: dependencies
+        $meal = Meal::find($request->mealId[0]);
 
 
 
-
-
-        // 1: loop - mealSizes
-        foreach ($meal->sizes as $mealSize) {
-
-
-
-            // 1.2: create
-            $part = null;
-
-
-
-
-
-            // 1.3: typeId
-            if ($request->typeId == 'Ingredient') {
-
-
-                $part = new MealIngredient();
-
-
-            } else {
-
-                $part = new MealPart();
-                $part->typeId = $request->typeId;
-
-            } // end if
+        // 1.2: removePrevious
+        MealIngredient::where('mealId', $meal->id)->delete();
+        MealPart::where('mealId', $meal->id)->delete();
 
 
 
@@ -1345,15 +1328,95 @@ class BuilderController extends Controller
 
 
 
-            // 1.4: meal - mealSize - groupToken
-            $part->mealId = $meal->id;
-            $part->mealSizeId = $mealSize->id;
-            $part->groupToken = $groupToken;
+        // -----------------------------------------
+        // -----------------------------------------
 
 
-            $part->save();
 
 
+
+
+        // 2: loop - items
+        for ($i = 0; $i < count($request?->type ?? []); $i++) {
+
+
+
+
+
+            if ($request->isRemoved[$i] == false) {
+
+
+
+
+                // 2.1: create instance
+                if ($request->type[$i] == 'Ingredient') {
+
+
+                    $part = new MealIngredient();
+                    $part->ingredientId = $request->partId[$i];
+                    $part->ingredientBrandId = $request->partBrandId[$i] ?? null;
+
+
+
+
+                } else {
+
+                    $part = new MealPart();
+                    $part->partId = $request->partId[$i];
+                    $part->typeId = $request->typeId[$i];
+
+
+                } // end if
+
+
+
+
+
+                // 2.2: partType - cookingType
+                $part->partType = $request->partType[$i] ?? null;
+                $request->partType[$i] == 'Main' ? $part->cookingTypeId = $request->cookingTypeId[$i] ?? null : null;
+
+
+
+
+
+
+                // 2.3: brand - meal - mealSize - groupToken
+                $part->mealId = $request->mealId[$i];
+                $part->mealSizeId = $request->mealSizeId[$i];
+                $part->groupToken = $request->groupToken[$i];
+
+
+
+
+
+
+
+
+                // 2.4: amount
+                $part->amount = $request->grams[$i] ?? null;
+                $part->remarks = $request->remarks[$i] ?? null;
+
+
+
+
+
+                // 2.5: default - removable
+                $part->isDefault = $request->isDefault[$i] ?? null;
+                $part->isRemovable = $request->isRemovable[$i] ?? null;
+
+
+
+
+
+
+
+                $part->save();
+
+
+
+
+            } // end if - isRemoved
 
         } // end loop
 
@@ -1371,6 +1434,9 @@ class BuilderController extends Controller
 
 
     } // end function
+
+
+
 
 
 
@@ -1413,11 +1479,12 @@ class BuilderController extends Controller
         $mealSize = MealSize::find($request->mealSizeId);
 
 
-
+        $request->macroType == 'Grams' ? $mealSize->afterCookGrams = $request->value : null;
         $request->macroType == 'Calories' ? $mealSize->afterCookCalories = $request->value : null;
         $request->macroType == 'Proteins' ? $mealSize->afterCookProteins = $request->value : null;
         $request->macroType == 'Carbs' ? $mealSize->afterCookCarbs = $request->value : null;
         $request->macroType == 'Fats' ? $mealSize->afterCookFats = $request->value : null;
+        $request->macroType == 'Cost' ? $mealSize->afterCookCost = $request->value : null;
 
 
         $mealSize->save();
@@ -1432,290 +1499,6 @@ class BuilderController extends Controller
 
 
     } // end function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // -------------------------------------------------------------
-
-
-
-
-
-
-
-
-    public function updateBuilderIngredientDetails(Request $request)
-    {
-
-
-        // :: root
-        $request = json_decode(json_encode($request->all()));
-        $request = $request->instance;
-
-
-
-        // 1: get instance
-        $part = [];
-
-
-
-
-        // 1.2: Ingredient / Part
-        $part = $request->typeId == 'Ingredient' ?
-            MealIngredient::find($request->id) : MealPart::find($request->id);
-
-
-
-
-
-
-        // 1.3: amount - remarks
-        $part->amount = $request->amount ?? null;
-        $part->remarks = $request->remarks ?? null;
-
-
-        $part->save();
-
-
-
-
-
-
-
-        // ---------------------------------------------
-        // ---------------------------------------------
-
-
-
-
-
-        // 2: updateRemovable - Replacement in allSizes
-        $request->typeId == 'Ingredient' ?
-            MealIngredient::where('groupToken', $part->groupToken)->update([
-                'isRemovable' => boolval($request->isRemovable) === true ? true : false,
-                'isDefault' => boolval($request->isDefault) === true ? true : false
-            ]) : MealPart::where('groupToken', $part->groupToken)->update([
-                        'isRemovable' => boolval($request->isRemovable) === true ? true : false,
-                        'isDefault' => boolval($request->isDefault) === true ? true : false
-                    ]);
-
-
-
-
-
-
-
-
-        return response()->json(['message' => 'Part has been updated'], 200);
-
-
-
-
-    } // end function
-
-
-
-
-
-
-
-
-
-
-
-
-    // -------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-    public function updateBuilderIngredient(Request $request)
-    {
-
-
-        // :: root
-        $request = json_decode(json_encode($request->all()));
-        $request = $request->instance;
-
-
-
-
-
-
-        // 1: Ingredient / Part
-        if ($request->typeId == 'Ingredient') {
-
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealIngredient::find($request->id)->groupToken;
-
-
-            $parts = MealIngredient::where('groupToken', $groupToken)->get();
-
-
-            foreach ($parts as $part) {
-
-                $part->ingredientId = $request->partId;
-                $part->partType = $request->partType ?? null;
-                $part->cookingTypeId = $request->cookingTypeId ?? null;
-
-                $part->save();
-
-            } // end loop
-
-
-
-
-
-
-
-
-        } else {
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealPart::find($request->id)->groupToken;
-
-
-            $parts = MealPart::where('groupToken', $groupToken)->get();
-
-            foreach ($parts as $part) {
-
-                $part->partId = $request->partId;
-                $part->partType = $request->partType ?? null;
-
-                $part->save();
-
-            } // end loop
-
-
-        } // end if
-
-
-
-
-
-
-
-
-
-
-        return response()->json(['message' => 'Part has been updated'], 200);
-
-
-
-
-    } // end function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // -------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-    public function removeBuilderIngredient(Request $request)
-    {
-
-
-        // :: root
-        $request = json_decode(json_encode($request->all()));
-        $request = $request->instance;
-
-
-
-
-
-
-        // 1: Ingredient / Part
-        if ($request->typeId == 'Ingredient') {
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealIngredient::find($request->id)->groupToken;
-
-
-            MealIngredient::where('groupToken', $groupToken)->delete();
-
-
-
-        } else {
-
-
-            // :: groupToken otherSizeIngredients
-            $groupToken = MealPart::find($request->id)->groupToken;
-
-            MealPart::where('groupToken', $groupToken)->delete();
-
-
-
-        } // end if
-
-
-
-
-
-
-
-
-
-
-        return response()->json(['message' => 'Part has been remove'], 200);
-
-
-
-    } // end function
-
-
-
-
-
 
 
 

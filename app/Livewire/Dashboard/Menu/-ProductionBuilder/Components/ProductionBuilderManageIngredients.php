@@ -588,8 +588,8 @@ class ProductionBuilderManageIngredients extends Component
 
         // 1: dependencies
         $ingredients = Ingredient::all();
-        $versionPermission = VersionPermission::first();
         $mealSize = MealSize::where('mealId', $this->meal->id)->first();
+        $versionPermission = VersionPermission::first();
 
 
 

@@ -12,7 +12,7 @@ trait MacroTrait
 
 
 
-    public function getMacro($part, $currentAmount, $isRecursion = false, $totalGrams = 0, $totalCalories = 0, $totalProteins = 0, $totalCarbs = 0, $totalFats = 0, $totalCost = 0)
+    public function getMacro($part, $currentAmount, $brandId = null, $isRecursion = false, $totalGrams = 0, $totalCalories = 0, $totalProteins = 0, $totalCarbs = 0, $totalFats = 0, $totalCost = 0)
     {
 
 
@@ -23,9 +23,8 @@ trait MacroTrait
 
 
 
-
             // :: part-ingredientMacro
-            $totalSubMacros = $partIngredient?->totalMacro($partIngredient->amount);
+            $totalSubMacros = $partIngredient?->totalMacro($partIngredient->amount, $brandId);
 
 
 
@@ -34,6 +33,8 @@ trait MacroTrait
             $totalCarbs += ($totalSubMacros->carbs / $part->totalGrams()) * $currentAmount;
             $totalFats += ($totalSubMacros->fats / $part->totalGrams()) * $currentAmount;
             $totalCost += ($totalSubMacros->cost / $part->totalGrams()) * $currentAmount;
+
+
 
 
         } // end loop
@@ -62,7 +63,7 @@ trait MacroTrait
 
 
             // :: MacroHelper - recursion
-            $partMacro = $this->getMacro($mealPart->part, $currentAmount, true);
+            $partMacro = $this->getMacro($mealPart->part, $currentAmount, null, true);
 
 
 

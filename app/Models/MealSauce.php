@@ -65,7 +65,7 @@ class MealSauce extends Model
 
 
         // 1.2: MacroHelper - getMacro - RECURSION
-        $sauceMacros = $sauce ? $this->getMacro($sauce->id, $sauce->type, $amount, $sauce->$totalCalories, $totalProteins, $totalCarbs, $totalFats) : [];
+        $sauceMacros = $sauce ? $this->getMacro($sauce->id, $sauce->type, null, false, $amount, $sauce->$totalCalories, $totalProteins, $totalCarbs, $totalFats) : [];
 
 
 

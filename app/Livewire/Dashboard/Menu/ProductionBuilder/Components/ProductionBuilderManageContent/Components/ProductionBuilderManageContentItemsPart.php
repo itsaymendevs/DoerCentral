@@ -11,8 +11,13 @@ class ProductionBuilderManageContentItemsPart extends Component
 {
 
 
-
+    // :: variables
     public $instance, $i;
+
+
+
+
+
 
 
     public function mount($instance, $i)

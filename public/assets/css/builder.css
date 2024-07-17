@@ -8,6 +8,34 @@
     margin-bottom: 25px;
 }
 
+.h-62 {
+    height: 62px !important;
+}
+
 .builder--header h4 {
     text-align: center;
+}
+
+.recipe--builder-wrapper .select--single-wrapper * {
+    font-size: 12px !important;
+}
+
+.recipe--builder-wrapper input {
+    font-size: 12px !important;
+}
+
+/* tables */
+.builder--table .cell--empty {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.builder--table.right tr {
+    border: none;
+    border-left: none;
+    border-right: 1px solid var(--table-border-color);
+}
+
+.builder--table tr td {
+    border-left: 2px solid var(--bs-gray-500);
 }

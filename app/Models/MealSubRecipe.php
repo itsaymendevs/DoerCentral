@@ -67,7 +67,7 @@ class MealSubRecipe extends Model
 
 
         // 1.2: MacroHelper - getMacro - RECURSION
-        $subRecipeMacros = $subRecipe ? $this->getMacro($subRecipe->id, $subRecipe->type, $amount, $totalCalories, $totalProteins, $totalCarbs, $totalFats) : [];
+        $subRecipeMacros = $subRecipe ? $this->getMacro($subRecipe->id, $subRecipe->type, null, false, $amount, $totalCalories, $totalProteins, $totalCarbs, $totalFats) : [];
 
 
 

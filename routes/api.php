@@ -951,9 +951,26 @@ Route::post('/dashboard/menu/builder/general/update', [BuilderController::class,
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
 // 9.3: menu - builder - ingredients - itemTypes / mealTypes update
 Route::post('/dashboard/menu/builder/meal-types/update', [BuilderController::class, 'updateBuilderMealTypes']);
 
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
 
 
 
@@ -973,6 +990,14 @@ Route::post('/dashboard/menu/builder/sizes/servings/update', [BuilderController:
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
 
 
 // 9.5: menu - builder - containers - updateContainer
@@ -984,23 +1009,20 @@ Route::post('/dashboard/menu/builder/containers/update', [BuilderController::cla
 
 
 
+// ---------------------------------
+// ---------------------------------
 
 
 
 
 
-// 9.6: menu - builder - ingredients - storeIngredient - update - remove
-Route::post('/dashboard/menu/builder/ingredients/store', [BuilderController::class, 'storeBuilderIngredient']);
-Route::post('/dashboard/menu/builder/ingredients/update', [BuilderController::class, 'updateBuilderIngredient']);
-
-Route::post('/dashboard/menu/builder/ingredients/remove', [BuilderController::class, 'removeBuilderIngredient']);
 
 
 
+// 9.6: menu - builder - ingredients - updateIngredient
+Route::post('/dashboard/menu/builder/ingredients/update', [BuilderController::class, 'updateBuilderIngredients']);
 
 
-// :: updateDetails
-Route::post('/dashboard/menu/builder/ingredients/details/update', [BuilderController::class, 'updateBuilderIngredientDetails']);
 
 
 
@@ -1008,6 +1030,8 @@ Route::post('/dashboard/menu/builder/ingredients/details/update', [BuilderContro
 
 // 9.6.2: afterCookMacros - update
 Route::post('/dashboard/menu/builder/ingredients/macros/update', [BuilderController::class, 'updateBuilderAfterCookMacros']);
+
+
 
 
 

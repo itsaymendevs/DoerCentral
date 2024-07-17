@@ -3,12 +3,13 @@
 
 
 
-    {{-- select --}}
-    <td class="fw-bold tr--{{ $instance->typeName[$i] }} td--overflow" style="max-width: 270px;" wire:ignore>
-        <div class="select--single-wrapper builder mx-auto" wire:loading.class='no-events'
-            style="width: 100% !important;">
+    {{-- 1: select --}}
+    <td class="fw-bold tr--{{ $instance->typeName[$i] }} td--overflow" style="max-width: 250px;"
+        @if(!$versionPermission->menuModuleHasBuilderConversion) colspan='2' @endif wire:ignore>
+        <div class="select--single-wrapper builder mx-auto" style="width: 100% !important;">
             <select class="form-select part--select" id='part--select-{{ $i }}' data-instance='instance.partId.{{ $i }}'
-                data-instanceIndex='{{ $i }}' value="{{ $instance->partId[$i] }}" required>
+                data-numberOfSizes='{{ $instance->numberOfSizes }}' data-i='{{ $i }}'
+                value="{{ $instance->partId[$i] }}" required>
                 <option value=""></option>
 
                 @foreach ($ingredients as $ingredient)
@@ -25,13 +26,48 @@
 
 
 
-    {{-- type --}}
+
+
+    {{-- 2: brand --}}
+
+    {{-- :: permission - hasBrand --}}
+    @if ($versionPermission->menuModuleHasBuilderConversion)
+
+
     <td class="fw-bold" wire:ignore>
-        <div class="select--single-wrapper xxs" wire:loading.class='no-events'
-            style="width: 85px !important; max-width: 85px !important">
+        <div class="select--single-wrapper xxs" style="width: 95px !important; max-width: 95px !important">
+            <select class="form-select part--brand-select" id='part--brand-select-{{ $i }}'
+                data-instance='instance.partBrandId.{{ $i }}' data-numberOfSizes='{{ $instance->numberOfSizes }}'
+                data-i='{{ $i }}' value='{{ $instance?->partBrandId[$i] }}'>
+                <option value=""></option>
+            </select>
+        </div>
+    </td>
+
+
+    @endif
+    {{-- end if - permission --}}
+
+
+
+
+
+
+    {{-- ------------------------------------------------- --}}
+    {{-- ------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- 3: type --}}
+    <td class="fw-bold" wire:ignore>
+        <div class="select--single-wrapper xxs" style="width: 85px !important; max-width: 85px !important">
             <select class="form-select part--type-select" id='part--type-select-{{ $i }}'
-                data-instance='instance.partType.{{ $i }}' data-instanceIndex='{{ $i }}' required
-                value="{{ $instance->partType[$i] }}">
+                data-instance='instance.partType.{{ $i }}' data-numberOfSizes='{{ $instance->numberOfSizes }}'
+                data-i='{{ $i }}' value="{{ $instance->partType[$i] }}">
                 <option value=""></option>
                 <option value="Main">Main</option>
                 <option value="Side">Side</option>
@@ -48,20 +84,18 @@
 
 
 
-    {{-- cookingType --}}
+    {{-- 4: cookingType --}}
 
 
     {{-- :: permission inline - hasConversion --}}
-    <td
-        class="fw-bold px-0 @if (!$versionPermission->menuModuleHasBuilderConversion || $instance?->partType[$i] != 'Main') d-none @endif">
-
-
-
-        <div class="select--single-wrapper builder mx-auto" wire:loading.class='no-events' wire:ignore
+    <td class="fw-bold px-0
+        @if (!$versionPermission->menuModuleHasBuilderConversion || $instance?->partType[$i] != 'Main') d-none @endif">
+        <div class="select--single-wrapper builder mx-auto" wire:ignore
             style="width: 155px !important; max-width: 155px !important">
             <select class="form-select part--cooking-type-select" id='part--cooking-type-select-{{ $i }}'
-                data-instance='instance.cookingTypeId.{{ $i }}' data-instanceIndex='{{ $i }}'
-                value="{{ $instance->cookingTypeId[$i] }}" required>
+                data-instance='instance.cookingTypeId.{{ $i }}' data-withValue='true'
+                data-numberOfSizes='{{ $instance->numberOfSizes }}' data-i='{{ $i }}'
+                value="{{ $instance->cookingTypeId[$i] }}">
                 <option value=""></option>
 
 
@@ -85,6 +119,10 @@
 
     @endif
     {{-- end if --}}
+
+
+
+
 
 
 

@@ -65,7 +65,7 @@ class ProductionBuilderManageContentTypes extends Component
 
         // 1: dispatchEvent
         $this->dispatch('createBuilderItem', $id);
-
+        $this->dispatch('no-events', class: '.item--append', delay: 2000);
 
 
 

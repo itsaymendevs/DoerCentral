@@ -64,7 +64,7 @@ class MealSide extends Model
 
 
         // 1.2: MacroHelper - getMacro - RECURSION
-        $sideMacros = $side ? $this->getMacro($side->id, $side->type, $amount, $totalCalories, $totalProteins, $totalCarbs, $totalFats) : [];
+        $sideMacros = $side ? $this->getMacro($side->id, $side->type, null, false, $amount, $totalCalories, $totalProteins, $totalCarbs, $totalFats) : [];
 
 
 

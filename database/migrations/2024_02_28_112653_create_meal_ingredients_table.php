@@ -20,20 +20,25 @@ return new class extends Migration {
 
 
 
-            // :: cookingType
+
+            // 1.2: brand - cookingType
+            $table->bigInteger('ingredientBrandId')->unsigned()->nullable();
+            $table->foreign('ingredientBrandId')->references('id')->on('ingredient_macros')->onDelete('set null');
+
+
             $table->bigInteger('cookingTypeId')->unsigned()->nullable();
             $table->foreign('cookingTypeId')->references('id')->on('cooking_types')->onDelete('set null');
 
 
 
+
+
+
+            // 1.3: partType - amount - remarks
             $table->string('partType', 100)->nullable();
             $table->double('amount', 15)->nullable()->default(0);
             $table->string('remarks', 255)->nullable();
 
-
-
-
-            // 1.2: groupToken - isRemovable
             $table->string('groupToken', 100)->nullable();
             $table->boolean('isRemovable')->nullable()->default(0);
             $table->boolean('isDefault')->nullable()->default(0);
@@ -41,7 +46,7 @@ return new class extends Migration {
 
 
 
-            // 1.3: meal - size
+            // 1.4: meal - size
             $table->bigInteger('mealId')->unsigned()->nullable();
             $table->foreign('mealId')->references('id')->on('meals')->onDelete('cascade');
 

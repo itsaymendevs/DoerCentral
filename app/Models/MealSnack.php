@@ -68,7 +68,7 @@ class MealSnack extends Model
 
 
         // 1.2: MacroHelper - getMacro - RECURSION
-        $snackMacros = $snack ? $this->getMacro($snack->id, $snack->type, $amount, $totalCalories, $totalProteins, $totalCarbs, $totalFats) : [];
+        $snackMacros = $snack ? $this->getMacro($snack->id, $snack->type, null, false, $amount, $totalCalories, $totalProteins, $totalCarbs, $totalFats) : [];
 
 
 

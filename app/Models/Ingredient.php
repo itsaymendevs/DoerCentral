@@ -93,12 +93,25 @@ class Ingredient extends Model
 
 
 
-    public function freshMacro()
+    public function freshMacro($brandId = null)
     {
 
-        return $this->macros?->where('ingredientType', 'Fresh')->first();
+
+        // 1: brandOrDefault
+        if ($brandId) {
+
+            return $this->macros?->where('id', $brandId)->first();
+
+        } else {
+
+            return $this->macros?->where('brand', 'Regular')->first();
+
+        } // end if
+
 
     } // end function
+
+
 
 
 
@@ -143,6 +156,10 @@ class Ingredient extends Model
 
 
 
+
+
+
+
     public function getWastage()
     {
 
@@ -159,6 +176,10 @@ class Ingredient extends Model
 
 
 
+
+
+
+
     public function availableQuantity()
     {
 
@@ -167,11 +188,7 @@ class Ingredient extends Model
         // 1: get stocks
         $totalQuantity = $this->stocks()->sum('availableQuantity');
 
-
-
-
         return $totalQuantity ?? 0;
-
 
 
 

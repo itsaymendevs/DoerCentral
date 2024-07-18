@@ -3,9 +3,13 @@
 namespace App\Livewire\Dashboard\Extra\WebApps;
 
 use App\Livewire\Forms\BlogSettingsForm;
+use App\Livewire\Forms\ProfileForm;
 use App\Livewire\Forms\SocialForm;
+use App\Livewire\Forms\SubscriptionSettingsForm;
 use App\Models\BlogSetting;
+use App\Models\Profile;
 use App\Models\Social;
+use App\Models\SubscriptionSetting;
 use App\Traits\HelperTrait;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -22,6 +26,8 @@ class Settings extends Component
     // :: variable
     public SocialForm $instance;
     public BlogSettingsForm $instanceBlog;
+    public ProfileForm $instanceProfile;
+    public SubscriptionSettingsForm $instanceSubscription;
 
 
 
@@ -48,6 +54,9 @@ class Settings extends Component
 
 
 
+
+
+
         // --------------------------------------------
         // --------------------------------------------
         // --------------------------------------------
@@ -57,7 +66,63 @@ class Settings extends Component
 
 
 
-        // 2: settings
+        // 1.5: profile
+        $profile = Profile::first();
+
+
+        foreach ($profile->toArray() as $key => $value)
+            $this->instanceProfile->{$key} = $value;
+
+
+
+
+        // 1.6: imageFiles
+        $this->instanceProfile->imageFileName = $this->instanceProfile?->imageFile ?? null;
+        $this->instanceProfile->imageFileDarkName = $this->instanceProfile?->imageFileDark ?? null;
+
+
+
+
+
+
+        // 1.7: previews
+        if ($this->instanceProfile->imageFile) {
+
+            $preview = asset('storage/profile/' . $this->instanceProfile->imageFile);
+            $this->dispatch('setFilePreview', filePreview: 'profile--preview-1', defaultPreview: $preview);
+
+        } // end if
+
+
+
+        if ($this->instanceProfile->imageFileDark) {
+
+            $preview = asset('storage/profile/' . $this->instanceProfile->imageFileDark);
+            $this->dispatch('setFilePreview', filePreview: 'profile--preview-2', defaultPreview: $preview);
+
+        } // end if
+
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+
+
+
+        // 2: blogs
         $settings = BlogSetting::first();
 
 
@@ -71,8 +136,6 @@ class Settings extends Component
 
 
         // 2.2: imageFiles
-        $this->instanceBlog->logoImageFileName = $this->instanceBlog?->logoImageFile ?? null;
-
         $this->instanceBlog->heroImageFileName = $this->instanceBlog?->heroImageFile ?? null;
         $this->instanceBlog->heroSecondImageFileName = $this->instanceBlog?->heroSecondImageFile ?? null;
         $this->instanceBlog->heroThirdImageFileName = $this->instanceBlog?->heroThirdImageFile ?? null;
@@ -94,16 +157,6 @@ class Settings extends Component
 
 
         // 2.3: previews
-        if ($this->instanceBlog->logoImageFile) {
-
-            $preview = asset('storage/extra/blogs/settings/' . $this->instanceBlog->logoImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'logo--preview-1', defaultPreview: $preview);
-
-        } // end if
-
-
-
-
         if ($this->instanceBlog->heroImageFile) {
 
             $preview = asset('storage/extra/blogs/settings/' . $this->instanceBlog->heroImageFile);
@@ -151,6 +204,38 @@ class Settings extends Component
             $this->dispatch('setFilePreview', filePreview: 'footer--preview-1', defaultPreview: $preview);
 
         } // end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+
+
+
+        // 3: subscription
+        $settings = SubscriptionSetting::first();
+
+
+        foreach ($settings->toArray() as $key => $value)
+            $this->instanceSubscription->{$key} = $value;
+
 
 
 
@@ -335,12 +420,6 @@ class Settings extends Component
 
 
         // 1: replaceFiles
-        if ($this->instanceBlog->logoImageFile != $this->instanceBlog->logoImageFileName)
-            $this->instanceBlog->logoImageFileName = $this->replaceFile($this->instanceBlog->logoImageFile, 'extra/blogs/settings', $this->instanceBlog->logoImageFileName, 'LG');
-
-
-
-
         if ($this->instanceBlog->heroImageFile != $this->instanceBlog->heroImageFileName)
             $this->instanceBlog->heroImageFileName = $this->replaceFile($this->instanceBlog->heroImageFile, 'extra/blogs/settings', $this->instanceBlog->heroImageFileName, 'SFI');
 
@@ -390,6 +469,170 @@ class Settings extends Component
 
         // 2: makeRequest
         $response = $this->makeRequest('dashboard/extra/settings/blogs/attachments/update', $this->instanceBlog);
+
+
+
+
+        // 2.1: alert
+        $this->makeAlert('success', $response?->message);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function updateSubscriptionSettings()
+    {
+
+
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+        // 1: makeRequest
+        $response = $this->makeRequest('dashboard/extra/settings/subscription/update', $this->instanceSubscription);
+
+
+
+
+        // 1.2: alert
+        $this->makeAlert('success', $response?->message);
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function updateProfile()
+    {
+
+
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+        // 1: replaceFiles
+        if ($this->instanceProfile->imageFile != $this->instanceProfile->imageFileName)
+            $this->instanceProfile->imageFileName = $this->replaceFile($this->instanceProfile->imageFile, 'profile', $this->instanceProfile->imageFileName, 'LG');
+
+
+
+
+        if ($this->instanceProfile->imageFileDark != $this->instanceProfile->imageFileDarkName)
+            $this->instanceProfile->imageFileDarkName = $this->replaceFile($this->instanceProfile->imageFileDark, 'profile', $this->instanceProfile->imageFileDarkName, 'LGD');
+
+
+
+
+
+
+
+
+        // ------------------------------------------------
+        // ------------------------------------------------
+
+
+
+
+
+
+
+
+        // 2: makeRequest
+        $response = $this->makeRequest('dashboard/extra/settings/profile/update', $this->instanceProfile);
 
 
 

@@ -15,16 +15,6 @@ return new class extends Migration {
 
 
 
-            // 0.5: fonts
-            $table->longText('fontLinks')->nullable();
-
-            $table->string('textFont', 100)->nullable()->default('Poppins');
-            $table->string('headingFont', 100)->nullable()->default('Courgette');
-
-
-
-
-
 
             // 1: textColors
             $table->string('textColor', 100)->nullable()->default('#000000');
@@ -152,14 +142,6 @@ return new class extends Migration {
 
 
             // 3: content
-
-
-
-
-            // 3.1: logo
-            $table->text('logoImageFile')->nullable();
-
-
 
 
             // 3.2: hero

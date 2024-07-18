@@ -20,17 +20,37 @@ return new class extends Migration {
             $table->string('phone', 100)->nullable();
             $table->string('locationAddress', 255)->nullable();
 
+
+
+            // 1.2: imageFiles
             $table->text('imageFile')->nullable();
+            $table->text('imageFileDark')->nullable();
             $table->text('preloaderImageFile')->nullable();
 
 
-            // 1.2: client - server (DOER)
+
+
+
+
+
+            // 1.3: fonts
+            $table->longText('fontLinks')->nullable();
+
+            $table->string('textFont', 100)->nullable()->default('Poppins');
+            $table->string('headingFont', 100)->nullable()->default('Courgette');
+
+
+
+
+
+
+            // 1.4: client - server (DOER)
             $table->text('clientURL')->nullable();
             $table->text('serverURL')->nullable();
 
 
 
-            // 1.3: website - application - plansURL
+            // 1.5: website - application - plansURL
             $table->text('websiteURL')->nullable();
             $table->text('plansURL')->nullable();
             $table->text('applicationURL')->nullable();
@@ -38,7 +58,7 @@ return new class extends Migration {
 
 
 
-            // 1.4: city - district
+            // 1.6: city - district
             $table->bigInteger('cityId')->unsigned()->nullable();
             $table->foreign('cityId')->references('id')->on('cities')->onDelete('set null');
 

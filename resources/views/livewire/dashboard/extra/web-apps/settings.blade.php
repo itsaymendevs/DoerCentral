@@ -240,9 +240,291 @@
 
 
 
-
-                {{-- 2: blogDesign --}}
+                {{-- 2: fonts & logo --}}
                 <div class="tab-pane-like mt-4" style="border: 1px solid var(--color-theme-secondary)">
+                    <div class="row">
+
+
+
+                        {{-- content --}}
+                        <div class="col-12">
+                            <div>
+
+
+                                {{-- togglerButton --}}
+                                <a class="btn fs-5 collapse--btn fw-semibold" data-bs-toggle="collapse"
+                                    aria-expanded="true" aria-controls="collapse-4" href="#collapse-4"
+                                    role="button">Fonts & Logo<svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                                        height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-expand">
+                                        <path fill-rule="evenodd"
+                                            d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z">
+                                        </path>
+                                    </svg>
+                                </a>
+
+
+
+
+
+                                {{-- ------------------------ --}}
+                                {{-- ------------------------ --}}
+
+
+                                {{-- collapse --}}
+                                <div class="collapse  collapse--content" id="collapse-4" wire:ignore.self>
+                                    <form wire:submit='updateProfile' class="row align-items-end pt-2">
+
+
+
+
+
+
+
+                                        {{-- textFont --}}
+                                        <div class="col-6">
+
+                                            <label class="form-label form--label">Body</label>
+                                            <input class="form-control form--input mb-4" type="text"
+                                                wire:model='instanceProfile.textFont' placeholder='"Poppins"' />
+
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- headingFont --}}
+                                        <div class="col-6">
+
+                                            <label class="form-label form--label">Headers</label>
+                                            <input class="form-control form--input mb-4" type="text"
+                                                wire:model='instanceProfile.headingFont' placeholder='"Courgette"' />
+
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- fontLinks --}}
+                                        <div class="col-12">
+                                            <label class="form-label form--label">Embed Links<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(Google
+                                                    Fonts)</small></label>
+                                            <textarea class="form-control form--input form--textarea mb-4"
+                                                wire:model='instanceProfile.fontLinks' style="height: 190px"></textarea>
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- ------------------------------------ --}}
+                                        {{-- ------------------------------------ --}}
+
+
+
+
+
+
+
+                                        {{-- 2.1: logo --}}
+                                        <div class="col-6">
+
+
+
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <hr class="w-75" />
+                                                <label
+                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Light
+                                                    Logo
+                                                </label>
+                                            </div>
+
+
+
+
+
+                                            {{-- imageFile --}}
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Click To Upload"
+                                                        for="profile--file-1">
+
+
+                                                        {{-- size --}}
+                                                        <span class="upload--caption badge">250 x 150</span>
+
+
+
+                                                        {{-- input --}}
+                                                        <input class="form-control d-none file--input" type="file"
+                                                            id="profile--file-1" data-preview="profile--preview-1"
+                                                            wire:model='instanceProfile.imageFile' readonly required />
+
+
+
+                                                        {{-- image --}}
+                                                        <img id="profile--preview-1" class="inventory--image-frame"
+                                                            src="{{ asset('assets/img/placeholder.png') }}"
+                                                            style="aspect-ratio: 1/2;" width="512" height="250"
+                                                            wire:ignore />
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- endCol --}}
+
+
+
+
+
+
+                                        {{-- ---------------------------- --}}
+                                        {{-- ---------------------------- --}}
+
+
+
+
+
+
+
+                                        {{-- 2.1: logoDark --}}
+                                        <div class="col-6">
+
+
+
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <hr class="w-75" />
+                                                <label
+                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Dark
+                                                    Logo
+                                                </label>
+                                            </div>
+
+
+
+
+
+                                            {{-- imageFile --}}
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Click To Upload"
+                                                        for="profile--file-2">
+
+
+                                                        {{-- size --}}
+                                                        <span class="upload--caption badge">250 x 150</span>
+
+
+
+                                                        {{-- input --}}
+                                                        <input class="form-control d-none file--input" type="file"
+                                                            id="profile--file-2" data-preview="profile--preview-2"
+                                                            wire:model='instanceProfile.imageFileDark' readonly
+                                                            required />
+
+
+
+                                                        {{-- image --}}
+                                                        <img id="profile--preview-2" class="inventory--image-frame"
+                                                            src="{{ asset('assets/img/placeholder.png') }}"
+                                                            style="aspect-ratio: 1/2;" width="512" height="250"
+                                                            wire:ignore />
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- endCol --}}
+
+
+
+
+
+
+                                        {{-- ---------------------------- --}}
+                                        {{-- ---------------------------- --}}
+
+
+
+
+
+
+
+
+                                        {{-- :: submitButton --}}
+                                        <div class="col-12 text-center mt-3">
+                                            <button wire:loading.attr='disabled'
+                                                wire:target='instanceProfile.imageFile, instanceProfile.imageFileDark, updateProfile'
+                                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center">
+                                                Save
+                                            </button>
+                                        </div>
+
+
+
+                                    </form>
+                                    {{-- endForm --}}
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                {{-- endTab --}}
+
+
+
+
+
+
+
+
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+
+
+
+
+
+
+
+                {{-- title --}}
+                <div class="d-block text-end mt-5">
+                    <h6 class="text-center mb-0 fw-500 fs-6 pb-2 d-inline-block"
+                        style="border-bottom: 1px solid var(--bs-warning);">Blogs Page</h6>
+                </div>
+
+
+
+
+
+
+
+
+                {{-- 3: blogDesign --}}
+                <div class="tab-pane-like mt-3" style="border: 1px solid var(--color-theme-secondary)">
                     <div class="row">
                         <div class="col-12">
                             <div>
@@ -271,8 +553,8 @@
 
 
                                 {{-- collapse --}}
-                                <div class="collapse collapse--content" style="border-top: 1px solid transparent"
-                                    id="collapse-2" wire:ignore.self>
+                                <div class="collapse collapsed show collapse--content"
+                                    style="border-top: 1px solid transparent" id="collapse-2" wire:ignore.self>
                                     <form wire:submit='updateBlogSettings' class="row align-items-end pt-2">
 
 
@@ -761,92 +1043,6 @@
 
 
 
-
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-
-                                        {{-- 1.5: fontFamily --}}
-                                        <div class="col-12 mt-4">
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <hr class="w-75" />
-                                                <label
-                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Font
-                                                    Family</label>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-                                        {{-- 1: textFont --}}
-                                        <div class="col-4">
-
-                                            <label class="form-label form--label">Body<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(ex.
-                                                    "Poppins")</small></label>
-                                            <input class="form-control form--input mb-4" type="text"
-                                                wire:model='instanceBlog.textFont' />
-
-                                        </div>
-
-
-
-
-
-
-
-
-                                        {{-- headingFont --}}
-                                        <div class="col-4">
-
-                                            <label class="form-label form--label">Headers<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(ex.
-                                                    "Courgette")</small></label>
-                                            <input class="form-control form--input mb-4" type="text"
-                                                wire:model='instanceBlog.headingFont' />
-
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- fontLinks --}}
-                                        <div class="col-12">
-                                            <label class="form-label form--label">Embed Links<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(Google
-                                                    Fonts)</small></label>
-                                            <textarea class="form-control form--input form--textarea mb-4"
-                                                wire:model='instanceBlog.fontLinks' style="height: 190px"></textarea>
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
                                         {{-- --------------------------------------- --}}
                                         {{-- --------------------------------------- --}}
                                         {{-- --------------------------------------- --}}
@@ -917,9 +1113,15 @@
 
 
 
+
+
+
+
                                         {{-- singleBlogHeroAlignment --}}
                                         <div class="col-4" wire:ignore>
-                                            <label class="form-label form--label">Blog Hero</label>
+                                            <label class="form-label form--label">Blog Header<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(Title,
+                                                    Subtitle)</small></label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                                 <select class="form-select form--select"
                                                     data-instance='instanceBlog.singleBlogHeroAlignment'
@@ -1189,7 +1391,7 @@
 
 
 
-                {{-- 3: blogAttachments --}}
+                {{-- 4: blogAttachments --}}
                 <div class="tab-pane-like mt-4" style="border: 1px solid var(--color-theme-secondary)">
                     <div class="row">
                         <div class="col-12">
@@ -1423,64 +1625,7 @@
 
 
 
-                                            {{-- 2.1: logo --}}
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <hr class="w-75" />
-                                                <label
-                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Logo
-                                                </label>
-                                            </div>
-
-
-
-
-
-                                            {{-- imageFile --}}
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
-                                                        data-bss-tooltip="" title="Click To Upload" for="logo--file-1">
-
-
-                                                        {{-- size --}}
-                                                        <span class="upload--caption badge">250 x 150</span>
-
-
-
-                                                        {{-- input --}}
-                                                        <input class="form-control d-none file--input" type="file"
-                                                            id="logo--file-1" data-preview="logo--preview-1"
-                                                            wire:model='instanceBlog.logoImageFile' readonly />
-
-
-
-                                                        {{-- image --}}
-                                                        <img id="logo--preview-1" class="inventory--image-frame"
-                                                            src="{{ asset('assets/img/placeholder.png') }}"
-                                                            style="aspect-ratio: 1/2;" width="512" height="250"
-                                                            wire:ignore />
-
-                                                    </label>
-                                                </div>
-                                            </div>
-
-
-
-
-
-
-
-                                            {{-- ------------------------------------ --}}
-                                            {{-- ------------------------------------ --}}
-
-
-
-
-
-
-
-
-                                            {{-- 2.2: footer --}}
+                                            {{-- 2.1: footer --}}
                                             <div class="d-flex align-items-center justify-content-between mb-4">
                                                 <hr class="w-75" />
                                                 <label
@@ -1533,12 +1678,6 @@
 
 
 
-
-
-
-
-
-
                                         {{-- :: submitButton --}}
                                         <div class="col-12 text-center mt-3">
                                             <button wire:loading.attr='disabled'
@@ -1560,6 +1699,522 @@
                     </div>
                 </div>
                 {{-- endTab --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+
+
+
+
+
+
+
+                {{-- title --}}
+                <div class="d-block text-end mt-5">
+                    <h6 class="text-center mb-0 fw-500 fs-6 pb-2 d-inline-block"
+                        style="border-bottom: 1px solid var(--bs-warning);">Plans Page</h6>
+                </div>
+
+
+
+
+
+
+
+
+                {{-- 5: subscriptionDesign --}}
+                <div class="tab-pane-like mt-3" style="border: 1px solid var(--color-theme-secondary)">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+
+
+                                {{-- togglerButton --}}
+                                <a class="btn fs-5 collapse--btn fw-semibold" data-bs-toggle="collapse"
+                                    aria-expanded="true" aria-controls="collapse-5" href="#collapse-5"
+                                    role="button">Design & Colors<svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                                        height="1em" fill="currentColor" viewBox="0 0 16 16"
+                                        class="bi bi-chevron-expand">
+                                        <path fill-rule="evenodd"
+                                            d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z">
+                                        </path>
+                                    </svg>
+                                </a>
+
+
+
+
+
+                                {{-- ------------------------ --}}
+                                {{-- ------------------------ --}}
+
+
+
+
+                                {{-- collapse --}}
+                                <div class="collapse collapsed show collapse--content"
+                                    style="border-top: 1px solid transparent" id="collapse-5" wire:ignore.self>
+                                    <form wire:submit='updateSubscriptionSettings' class="row align-items-end pt-2">
+
+
+
+
+
+
+                                        {{-- 1: colors & backgrounds --}}
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <hr class="w-75" />
+                                                <label
+                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Colors
+                                                    <i class="bi bi-dash-lg mx-2 text-gold"></i>Backgrounds
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- body - preloader --}}
+
+
+                                        {{-- bodyColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Body
+                                                    BG</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.bodyBackgroundColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- textColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Body
+                                                    Text</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.textColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- preloaderLineColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Preloader
+                                                    Line</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.preloaderLineColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- cursor --}}
+
+
+
+
+                                        {{-- cursorColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0"
+                                                    style="width: 80%">Cursor</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.cursorColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- cursorHoverColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0"
+                                                    style="width: 80%">Cursor<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.cursorHoverColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- navbar --}}
+
+
+
+
+
+                                        {{-- navbarBackgroundColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
+                                                    BG</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.navbarBackgroundColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- navbarMenuColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
+                                                    Icon</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.navbarMenuColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- navbarMenuActiveColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
+                                                    Icon<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Active)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.navbarMenuActiveColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- navbarLinksColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
+                                                    Links</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.navbarLinksColor">
+                                            </div>
+                                        </div>
+
+
+
+                                        {{-- navbarLinksHoverColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
+                                                    Links<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.navbarLinksHoverColor">
+                                            </div>
+                                        </div>
+
+
+
+
+                                        {{-- navbarSocialLinksColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
+                                                    Socials</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.navbarSocialLinksColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- slider --}}
+
+
+                                        {{-- sliderLineColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Slider
+                                                    Line</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.sliderLineColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- sliderBulletsColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Slider
+                                                    Indicators</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.sliderBulletsColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- slider --}}
+
+
+                                        {{-- planCardBackgroundColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
+                                                    BG</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planCardBackgroundColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- planCardTitleColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
+                                                    Title</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planCardTitleColor">
+                                            </div>
+                                        </div>
+
+
+
+                                        {{-- planCardSubtitleColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
+                                                    Subtitle</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planCardSubtitleColor">
+                                            </div>
+                                        </div>
+
+
+                                        {{-- planCardCaptionColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
+                                                    Caption</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planCardCaptionColor">
+                                            </div>
+                                        </div>
+
+
+                                        {{-- planCardHrColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
+                                                    Line</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planCardHrColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+                                        {{-- 2: alignments --}}
+                                        <div class="col-12 mt-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <hr class="w-75" />
+                                                <label
+                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Adjust
+                                                    Alignments</label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- planCardAlignment --}}
+                                        <div class="col-4" wire:ignore>
+                                            <label class="form-label form--label">Plan Card</label>
+                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                                                <select class="form-select form--select"
+                                                    data-instance='instanceSubscription.planCardAlignment'
+                                                    value='{{ $instanceSubscription?->planCardAlignment }}'>
+                                                    <option value=""></option>
+
+                                                    @foreach ($alignments ?? [] as $alignment)
+                                                    <option value="{{ $alignment }}">{{ ucwords($alignment) }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+                                        {{-- 3: features --}}
+                                        <div class="col-12 mt-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <hr class="w-75" />
+                                                <label
+                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Extra
+                                                    Features</label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- planCardRadius --}}
+                                        <div class="col-4">
+                                            <label class="form-label form--label">Plan Card Radius<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(PX)</small></label>
+                                            <input class="form-control form--input mb-4" type="number" step='0.1'
+                                                wire:model='instanceSubscription.planCardRadius' />
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+
+
+
+
+
+
+
+
+                                        {{-- :: submitButton --}}
+                                        <div class="col-12 text-center mt-3">
+                                            <button wire:loading.attr='disabled'
+                                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center">
+                                                Save
+                                            </button>
+                                        </div>
+
+
+
+                                    </form>
+                                    {{-- endForm --}}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- endTab --}}
+
+
+
+
+
 
 
 

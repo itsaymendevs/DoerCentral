@@ -2095,11 +2095,13 @@
 
 
 
-
-
-
                         {{-- --------------------------------- --}}
                         {{-- --------------------------------- --}}
+
+
+
+
+
 
 
 
@@ -2179,6 +2181,26 @@
                         </td>
 
 
+
+
+
+
+
+
+                        {{-- --------------------------------- --}}
+                        {{-- --------------------------------- --}}
+
+
+
+
+
+
+                        {{-- 7: remarks --}}
+                        <td class="fw-bold">
+                            <input class="form-control form--input form--table-input-sm px-2" style="max-width: 100%;"
+                                type="text" wire:model='instance.remarks' wire:change='update'
+                                wire:loading.attr='readonly' wire:target='remove, toggle, init' />
+                        </td>
 
 
 

@@ -8,7 +8,9 @@ use App\Models\BlogReference;
 use App\Models\BlogSection;
 use App\Models\BlogSetting;
 use App\Models\BlogTag;
+use App\Models\Profile;
 use App\Models\Social;
+use App\Models\SubscriptionSetting;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
 
@@ -595,6 +597,84 @@ class ExtraController extends Controller
 
 
 
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateProfile(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $profile = Profile::first();
+
+
+
+
+
+        // 1.2: general
+        $profile->fontLinks = $request->fontLinks ?? null;
+        $profile->textFont = $request->textFont ?? null;
+        $profile->headingFont = $request->headingFont ?? null;
+
+
+
+
+        // 1.3: imageFiles
+        $profile->imageFile = $request->imageFileName ?? null;
+        $profile->imageFileDark = $request->imageFileDarkName ?? null;
+
+
+
+
+        $profile->save();
+
+
+
+        return response()->json(['message' => 'Profile has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
     // --------------------------------------------------------------------------------------------
 
 
@@ -621,15 +701,6 @@ class ExtraController extends Controller
 
         // 1: get instance
         $settings = BlogSetting::first();
-
-
-
-        // 1.1: fonts
-        $settings->fontLinks = $request->fontLinks ?? null;
-        $settings->textFont = $request->textFont ?? null;
-        $settings->headingFont = $request->headingFont ?? null;
-
-
 
 
 
@@ -761,7 +832,6 @@ class ExtraController extends Controller
 
 
         // 1.2: logoFile - heroFiles
-        $settings->logoImageFile = $request->logoImageFileName ?? null;
         $settings->heroImageFile = $request->heroImageFileName ?? null;
         $settings->heroSecondImageFile = $request->heroSecondImageFileName ?? null;
         $settings->heroThirdImageFile = $request->heroThirdImageFileName ?? null;
@@ -789,6 +859,99 @@ class ExtraController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function updateSubscriptionSettings(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $settings = SubscriptionSetting::first();
+
+
+
+        // 1.2: colors
+        $settings->textColor = $request->textColor ?? null;
+        $settings->preloaderLineColor = $request->preloaderLineColor ?? null;
+
+        $settings->cursorColor = $request->cursorColor ?? null;
+        $settings->cursorHoverColor = $request->cursorHoverColor ?? null;
+
+        $settings->planCardTitleColor = $request->planCardTitleColor ?? null;
+        $settings->planCardSubtitleColor = $request->planCardSubtitleColor ?? null;
+        $settings->planCardCaptionColor = $request->planCardCaptionColor ?? null;
+        $settings->planCardHrColor = $request->planCardHrColor ?? null;
+        $settings->navbarMenuColor = $request->navbarMenuColor ?? null;
+        $settings->navbarMenuActiveColor = $request->navbarMenuActiveColor ?? null;
+
+
+        $settings->navbarLinksColor = $request->navbarLinksColor ?? null;
+        $settings->navbarLinksHoverColor = $request->navbarLinksHoverColor ?? null;
+        $settings->navbarSocialLinksColor = $request->navbarSocialLinksColor ?? null;
+
+        $settings->sliderLineColor = $request->sliderLineColor ?? null;
+        $settings->sliderBulletsColor = $request->sliderBulletsColor ?? null;
+
+
+
+        // 2: backgrounds
+        $settings->bodyBackgroundColor = $request->bodyBackgroundColor ?? null;
+        $settings->planCardBackgroundColor = $request->planCardBackgroundColor ?? null;
+        $settings->navbarBackgroundColor = $request->navbarBackgroundColor ?? null;
+
+
+
+
+
+        // 3: radius
+        $settings->planCardRadius = $request->planCardRadius ?? null;
+
+
+
+        // 4: alignments
+        $settings->planCardAlignment = $request->planCardAlignment ?? null;
+
+        $settings->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Settings has been updated'], 200);
+
+
+
+
+    } // end function
 
 
 

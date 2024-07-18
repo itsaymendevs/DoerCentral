@@ -156,9 +156,8 @@ class ProductionBuilderManageContentOptions extends Component
 
 
     #[On('refreshBuilderTotalMacros')]
-    public function recalculateTotal($instance)
+    public function recalculateTotal($instance = null)
     {
-
 
 
         // 1: convert
@@ -171,7 +170,7 @@ class ProductionBuilderManageContentOptions extends Component
         for ($i = 0; $i < count($instance->grams ?? []); $i++) {
 
 
-            if ($instance->isRemoved[$i] == false && $instance->isDefault[$i] == true) {
+            if ($instance->isRemoved[$i] == false) {
 
 
 

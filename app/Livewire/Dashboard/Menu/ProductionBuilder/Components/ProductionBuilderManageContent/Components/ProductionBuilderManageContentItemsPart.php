@@ -36,6 +36,37 @@ class ProductionBuilderManageContentItemsPart extends Component
 
 
 
+
+    // -----------------------------------------------------
+
+
+
+
+
+    #[On('refreshBuilderSingleItem')]
+    public function refreshItem($instance, $groupToken)
+    {
+
+        // 1: update instance
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
+
+            $this->instance->isRemoved[$this->i] = $instance['isRemoved'][$this->i];
+
+        } // end if
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
     // -----------------------------------------------------
 
 

@@ -3,13 +3,21 @@
 namespace App\Livewire\Dashboard\Menu\ProductionBuilder\Components;
 
 use App\Livewire\Forms\BuilderMealForm;
+use App\Livewire\Forms\BuilderMealOptionForm;
+use App\Models\ConversionIngredient;
+use App\Models\CookingType;
+use App\Models\Ingredient;
+use App\Models\IngredientMacro;
 use App\Models\Meal;
 use App\Models\MealIngredient;
+use App\Models\MealPart;
 use App\Models\Type;
+use App\Models\VersionPermission;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use stdClass;
 
 class ProductionBuilderManageContent extends Component
 {
@@ -20,7 +28,10 @@ class ProductionBuilderManageContent extends Component
 
 
     // :: variables
-    public $meal, $appendCounter = 10000;
+    public $mealPart, $mealPartForIngredient;
+    public $versionPermission, $ingredients, $cookingTypes, $mealOptions;
+    public $meal, $itemTypes, $appendCounter = 10000;
+    public BuilderMealOptionForm $instanceOptions;
     public BuilderMealForm $instance;
     public BuilderMealForm $instanceUnique;
 
@@ -38,14 +49,102 @@ class ProductionBuilderManageContent extends Component
 
 
 
-        // 1: get instance
+
+        // 1: dependencies
         $this->meal = Meal::find($id);
+        $this->ingredients = Ingredient::all();
+        $this->cookingTypes = CookingType::all();
 
 
 
 
 
-        // 1.1: numberOfSizes
+
+        // 1.2: itemTypes
+        $this->versionPermission = VersionPermission::first();
+
+        if ($this->versionPermission->menuModuleHasBuilderExtraItems) {
+
+            $this->itemTypes = Type::where('name', '!=', 'Recipe')->get();
+
+        } else {
+
+            $this->itemTypes = Type::whereNotIn('name', ['Recipe', 'Snack', 'Side', 'Drink'])->get();
+
+        } // end if - permission
+
+
+
+
+
+
+
+
+
+
+        // 1.3: parts
+        $inPartsOfMeal = MealPart::where('partId', $this->meal->id)->get()
+                ?->pluck('mealId')?->toArray() ?? [];
+
+        $relationInPartsOfMeal = MealPart::whereIn('partId', $inPartsOfMeal)->get()
+                ?->pluck('mealId')?->toArray() ?? [];
+
+
+
+
+        $this->mealOptions = Meal::where('id', '!=', $this->meal->id)
+            ->whereNotIn('id', $inPartsOfMeal)
+            ->whereNotIn('id', $relationInPartsOfMeal)
+            ->get();
+
+
+
+
+
+
+
+
+
+
+
+        // --------------------------------------------
+        // --------------------------------------------
+
+
+
+
+
+
+
+        // 2: calcPart
+        $this->mealPart = new MealPart();
+        $this->mealPart->mealId = $this->meal->id;
+
+
+
+
+
+        // 2.5: forIngredient
+        $this->mealPartForIngredient = new MealIngredient();
+        $this->mealPartForIngredient->mealId = $this->meal->id;
+
+
+
+
+
+
+
+
+        // ----------------------------------------------------
+        // ----------------------------------------------------
+
+
+
+
+
+
+
+        // 3: numberOfSizes
         $this->instance->numberOfSizes = $this->meal->sizes()->count();
         $this->instanceUnique->numberOfSizes = $this->meal->sizes()->count();
 
@@ -85,7 +184,7 @@ class ProductionBuilderManageContent extends Component
             array_push($this->instanceUnique->amount, $mealIngredient?->amount);
             array_push($this->instanceUnique->remarks, $mealIngredient?->remarks);
             array_push($this->instanceUnique->groupToken, $mealIngredient?->groupToken);
-            array_push($this->instanceUnique->isRemovable, $mealIngredient?->isRemovable);
+            array_push($this->instanceUnique->isRemovable, boolval($mealIngredient?->isRemovable));
             array_push($this->instanceUnique->isDefault, $mealIngredient?->isDefault);
             array_push($this->instanceUnique->mealId, $mealIngredient?->mealId);
             array_push($this->instanceUnique->mealSizeId, $mealIngredient?->mealSizeId);
@@ -193,7 +292,7 @@ class ProductionBuilderManageContent extends Component
 
 
         // 2: parts
-        foreach ($this->meal?->parts?->groupBy('groupToken') ?? [] as $mealParts) {
+        foreach ($this->meal?->parts?->groupBy('groupToken') ?? [] as $key => $mealParts) {
 
 
 
@@ -220,7 +319,7 @@ class ProductionBuilderManageContent extends Component
             array_push($this->instanceUnique->amount, $mealPart?->amount);
             array_push($this->instanceUnique->remarks, $mealPart?->remarks);
             array_push($this->instanceUnique->groupToken, $mealPart?->groupToken);
-            array_push($this->instanceUnique->isRemovable, $mealPart?->isRemovable);
+            array_push($this->instanceUnique->isRemovable, boolval($mealPart?->isRemovable));
             array_push($this->instanceUnique->isDefault, $mealPart?->isDefault);
             array_push($this->instanceUnique->mealId, $mealPart?->mealId);
             array_push($this->instanceUnique->mealSizeId, $mealPart?->mealSizeId);
@@ -251,7 +350,7 @@ class ProductionBuilderManageContent extends Component
 
 
             // B: withDuplicates
-            foreach ($mealParts as $key => $mealPart) {
+            foreach ($mealParts as $innerKey => $mealPart) {
 
 
 
@@ -295,6 +394,8 @@ class ProductionBuilderManageContent extends Component
                 array_push($this->instance->afterCookFats, 0);
                 array_push($this->instance->afterCookCost, 0);
 
+
+
             } // end if
 
 
@@ -312,6 +413,8 @@ class ProductionBuilderManageContent extends Component
         $this->dispatch('initCertainSelect', class: '.part--brand-select');
         $this->dispatch('initCertainSelect', class: '.part--type-select');
         $this->dispatch('initCertainSelect', class: '.part--cooking-type-select');
+
+
 
 
 
@@ -571,11 +674,10 @@ class ProductionBuilderManageContent extends Component
 
 
 
-        // 2: initialize instance
-        $this->dispatch('refreshBuilderItems', $this->instanceUnique);
-        $this->dispatch('refreshBuilderOptions', $this->instance);
-
-
+        $this->dispatch('initCertainSelect', class: '.part--select');
+        $this->dispatch('initCertainSelect', class: '.part--brand-select');
+        $this->dispatch('initCertainSelect', class: '.part--type-select');
+        $this->dispatch('initCertainSelect', class: '.part--cooking-type-select');
 
 
 
@@ -740,8 +842,8 @@ class ProductionBuilderManageContent extends Component
 
 
         // 2: initialize instance
-        $this->dispatch('refreshBuilderItems', $this->instanceUnique);
-        $this->dispatch('refreshBuilderOptions', $this->instance);
+        $this->dispatch('refreshBuilderSingleItem', $this->instanceUnique, $groupToken);
+        $this->dispatch('refreshBuilderSingleOption', $this->instance, $groupToken);
 
 
     } // end function
@@ -770,183 +872,8 @@ class ProductionBuilderManageContent extends Component
 
 
 
-    public function checkPart($index, $value)
-    {
 
 
-        // 1: resetBrand - dispatchEvent
-        $this->dispatch("refreshBuilderPart", $this->instance);
-
-
-
-    } // end function
-
-
-
-
-
-
-
-
-    // -----------------------------------------------------
-
-
-
-
-
-
-
-    public function checkPartUnique($index, $value)
-    {
-
-
-        // 1: resetBrand - dispatchEvent
-        $this->dispatch("refreshBuilderPartUnique", $this->instanceUnique);
-
-
-
-    } // end function
-
-
-
-
-
-
-
-
-    // -----------------------------------------------------
-
-
-
-
-
-
-    public function checkPartBrand($index, $value)
-    {
-
-
-
-        // 1: dispatchEvent
-        $this->dispatch("refreshBuilderPartBrand", $this->instance);
-
-
-    } // end function
-
-
-
-
-
-
-    // -----------------------------------------------------
-
-
-
-
-
-
-
-    public function checkPartBrandUnique($index, $value)
-    {
-
-
-
-        // 1: dispatchEvent
-        $this->dispatch("refreshBuilderPartBrandUnique", $this->instanceUnique);
-
-
-    } // end function
-
-
-
-
-
-
-
-    // -----------------------------------------------------
-
-
-
-
-
-
-
-
-    public function checkPartType($index, $value)
-    {
-
-        // 1: dispatchEvent
-        $this->dispatch("refreshBuilderPartType", $this->instance);
-
-
-    } // end function
-
-
-
-
-
-
-
-
-    // -----------------------------------------------------
-
-
-
-
-
-
-    public function checkPartTypeUnique($index, $value)
-    {
-
-        // 1: dispatchEvent
-        $this->dispatch("refreshBuilderPartTypeUnique", $this->instanceUnique);
-
-
-    } // end function
-
-
-
-
-
-
-
-
-    // -----------------------------------------------------
-
-
-
-
-
-
-    public function checkPartCookingType($index, $value)
-    {
-
-
-        // 1: dispatchEvent
-        $this->dispatch("refreshBuilderPartCookingType", $this->instance);
-
-
-    } // end function
-
-
-
-
-
-
-
-
-
-
-
-    // -----------------------------------------------------
-
-
-
-
-
-
-
-
-    #[On('refreshBuilderPartMacros')]
     public function refreshPartMacros($instance, $index)
     {
 
@@ -978,8 +905,6 @@ class ProductionBuilderManageContent extends Component
 
 
 
-        $this->dispatch("refreshBuilderTotalMacros", $this->instance);
-
 
 
     } // end function
@@ -996,9 +921,6 @@ class ProductionBuilderManageContent extends Component
 
 
 
-
-
-
     // -----------------------------------------------------
     // -----------------------------------------------------
     // -----------------------------------------------------
@@ -1013,8 +935,159 @@ class ProductionBuilderManageContent extends Component
 
 
 
-    #[On('toggleBuilderPart')]
-    public function toggleBuilderPart($targetKey, $groupToken, $targetValue)
+    public function remove($groupToken)
+    {
+
+
+
+
+
+        // :: index
+        $index = null;
+
+
+
+
+        // 1: loop - instance
+        foreach ($this->instance as $key => $values) {
+
+
+
+            if ($index >= 0 && $key == 'groupToken') {
+
+                foreach ($values as $innerKey => $value) {
+
+                    if ($value == $groupToken) {
+
+                        $index = $innerKey;
+                        break;
+
+                    } // end if
+
+                } // end loop
+
+            } // end if
+
+
+
+
+
+
+            // -----------------------------------
+            // -----------------------------------
+
+
+
+
+
+
+
+            // 1.3: toggleByKey
+            if ($index >= 0 && $key == 'isRemoved') {
+
+
+                for ($i = 0; $i < $this->instance->numberOfSizes; $i++) {
+
+                    $this->instance->isRemoved[$index + $i] = true;
+
+                } // end loop
+
+            } // end if
+
+
+
+        } // end loop
+
+
+
+
+
+
+        // -------------------------------
+        // -------------------------------
+
+
+
+
+
+
+
+        // 2: loop - instanceUnique
+        $index = null;
+
+        foreach ($this->instanceUnique as $key => $values) {
+
+
+
+            if ($index >= 0 && $key == 'groupToken') {
+
+                foreach ($values as $innerKey => $value) {
+
+                    if ($value == $groupToken) {
+
+                        $index = $innerKey;
+                        break;
+
+                    } // end if
+
+                } // end loop
+
+            } // end if
+
+
+
+
+
+
+            // -----------------------------------
+            // -----------------------------------
+
+
+
+
+
+
+
+            // 1.3: toggleByKey
+            if ($index >= 0 && $key == 'isRemoved') {
+
+                $this->instanceUnique->isRemoved[$index] = true;
+
+            } // end if
+
+
+
+        } // end loop
+
+
+
+
+
+
+
+        $this->recalculateTotal();
+
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+    public function toggleRemovable($groupToken, $targetIndex)
     {
 
 
@@ -1061,12 +1134,13 @@ class ProductionBuilderManageContent extends Component
 
 
             // 1.3: toggleByKey
-            if ($index >= 0 && $key == $targetKey) {
+            if ($index >= 0 && $key == 'isRemovable') {
 
 
                 for ($i = 0; $i < $this->instance->numberOfSizes; $i++) {
 
-                    $this->instance->{$targetKey}[$index + $i] = $targetValue;
+
+                    $this->instance->isRemovable[$index + $i] = $this->instance->isRemovable[$targetIndex];
 
 
                 } // end loop
@@ -1082,13 +1156,8 @@ class ProductionBuilderManageContent extends Component
 
 
 
-
-
-
-
-
-        // -----------------------------------------------------
-        // -----------------------------------------------------
+        // -------------------------------
+        // -------------------------------
 
 
 
@@ -1096,25 +1165,265 @@ class ProductionBuilderManageContent extends Component
 
 
 
-        // 2: initialize instance
-        if ($targetKey == 'isDefault') {
+        // 2: loop - instanceUnique
+        $index = null;
 
-            $this->dispatch('refreshBuilderTotalMacros', $this->instance);
-
-        } // end if
+        foreach ($this->instanceUnique as $key => $values) {
 
 
 
+            if ($index >= 0 && $key == 'groupToken') {
 
-        // 2.1: refreshTogglers
-        $this->dispatch('refreshBuilderPartTogglers', $this->instance, $groupToken);
+                foreach ($values as $innerKey => $value) {
+
+                    if ($value == $groupToken) {
+
+                        $index = $innerKey;
+                        break;
+
+                    } // end if
+
+                } // end loop
+
+            } // end if
 
 
+
+
+
+
+            // -----------------------------------
+            // -----------------------------------
+
+
+
+
+
+
+
+            // 1.3: toggleByKey
+            if ($index >= 0 && $key == 'isRemovable') {
+
+                $this->instanceUnique->isRemovable[$index + $i] = $this->instance->isRemovable[$targetIndex];
+
+
+            } // end if
+
+
+
+        } // end loop
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+    public function toggleDefault($groupToken, $targetIndex)
+    {
+
+
+
+
+        // :: index
+        $index = null;
+
+
+
+
+        // 1: loop - instance
+        foreach ($this->instance as $key => $values) {
+
+
+
+            if ($index >= 0 && $key == 'groupToken') {
+
+                foreach ($values as $innerKey => $value) {
+
+                    if ($value == $groupToken) {
+
+                        $index = $innerKey;
+                        break;
+
+                    } // end if
+
+                } // end loop
+
+            } // end if
+
+
+
+
+
+
+            // -----------------------------------
+            // -----------------------------------
+
+
+
+
+
+
+
+            // 1.3: toggleByKey
+            if ($index >= 0 && $key == 'isDefault') {
+
+
+                for ($i = 0; $i < $this->instance->numberOfSizes; $i++) {
+
+
+                    $this->instance->isDefault[$index + $i] = $this->instance->isDefault[$targetIndex];
+
+
+                } // end loop
+
+            } // end if
+
+
+
+        } // end loop
+
+
+
+
+
+
+        // -------------------------------
+        // -------------------------------
+
+
+
+
+
+
+
+        // 2: loop - instanceUnique
+        $index = null;
+
+        foreach ($this->instanceUnique as $key => $values) {
+
+
+
+            if ($index >= 0 && $key == 'groupToken') {
+
+                foreach ($values as $innerKey => $value) {
+
+                    if ($value == $groupToken) {
+
+                        $index = $innerKey;
+                        break;
+
+                    } // end if
+
+                } // end loop
+
+            } // end if
+
+
+
+
+
+
+            // -----------------------------------
+            // -----------------------------------
+
+
+
+
+
+
+
+            // 1.3: toggleByKey
+            if ($index >= 0 && $key == 'isDefault') {
+
+                $this->instanceUnique->isDefault[$index + $i] = $this->instance->isDefault[$targetIndex];
+
+
+            } // end if
+
+
+
+        } // end loop
+
+
+
+
+
+
+
+        $this->recalculateTotal();
 
 
 
     } // end function
 
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function getPartBrands($index, $value = null)
+    {
+
+
+        // 1: getBrands
+        if ($this->instanceUnique?->type[$index] == 'Ingredient') {
+
+
+
+            $brands = IngredientMacro::where('ingredientId', $value)
+                    ?->get(['id', 'brand as text'])?->toArray() ?? [];
+
+
+            // 1.2: pre-option
+            count($brands ?? []) ? array_unshift($brands, ['id' => '', 'text' => '']) : null;
+
+            $this->dispatch('refreshSelect', id: "#part--brand-select-{$index}", data: $brands);
+            $this->dispatch('setSelect', id: "#part--brand-select-{$index}", value: $this->instanceUnique->partBrandId[$index] ?? null);
+
+
+
+        } // end if
+
+
+    } // end function
 
 
 
@@ -1146,10 +1455,8 @@ class ProductionBuilderManageContent extends Component
 
 
 
-
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/menu/builder/ingredients/update', $this->instance);
-
 
         $this->makeAlert('success', $response->message);
 
@@ -1163,6 +1470,15 @@ class ProductionBuilderManageContent extends Component
 
 
 
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+    // -----------------------------------------------------
     // -----------------------------------------------------
     // -----------------------------------------------------
     // -----------------------------------------------------
@@ -1171,6 +1487,304 @@ class ProductionBuilderManageContent extends Component
 
 
 
+
+
+
+
+
+
+    public function updateAfterCookMacros($macroType, $value, $mealSizeId)
+    {
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+
+        // 1: create instance
+        $instance = new stdClass();
+        $instance->value = $value;
+        $instance->macroType = $macroType;
+        $instance->mealSizeId = $mealSizeId;
+
+
+
+        if ($macroType && $value && $mealSizeId) {
+
+            $response = $this->makeRequest('dashboard/menu/builder/ingredients/macros/update', $instance);
+
+        } // end if
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+    public function recalculate($i)
+    {
+
+
+
+        if ($this->instance->partId[$i]) {
+
+
+
+            // 1: getMacro
+            if ($this->instance->type[$i] == 'Ingredient') {
+
+
+                // dd($this->instance, $this->instanceUnique);
+
+                $totalMacros = $this->mealPartForIngredient->totalMacro($this->instance->amount[$i] ?? 0, $this->instance->partBrandId[$i], $this->instance->partId[$i]);
+
+            } else {
+
+                $totalMacros = $this->mealPart->totalMacro($this->instance->amount[$i] ?? 0, $this->instance->partBrandId[$i], $this->instance->partId[$i]);
+
+            } // end if
+
+
+
+
+
+
+
+
+            $this->instance->calories[$i] = $this->instance->afterCookCalories[$i] = $totalMacros->calories;
+            $this->instance->proteins[$i] = $this->instance->afterCookProteins[$i] = $totalMacros->proteins;
+            $this->instance->carbs[$i] = $this->instance->afterCookCarbs[$i] = $totalMacros->carbs;
+            $this->instance->fats[$i] = $this->instance->afterCookFats[$i] = $totalMacros->fats;
+            $this->instance->cost[$i] = $this->instance->afterCookCost[$i] = $totalMacros->cost;
+            $this->instance->grams[$i] = $this->instance->afterCookGrams[$i] = $this->instance->amount[$i] ?? 0;
+
+
+
+
+
+
+
+
+            // -----------------------------------------------
+            // -----------------------------------------------
+
+
+
+
+
+
+
+            // 2: getAfterCookGrams
+            if ($this->instance->typeId[$i] == 'Ingredient' && ! empty($this->instance->partId[$i]) && ! empty($this->instance->cookingTypeId[$i])) {
+
+
+
+
+
+                // 2.1: get conversionValue
+                $conversion = ConversionIngredient::where('ingredientId', $this->instance->partId[$i])
+                    ->where('cookingTypeId', $this->instance->cookingTypeId[$i])?->first();
+
+
+
+
+                if ($conversion) {
+
+
+                    // 2.3: updateAfterCook Macros
+                    $this->instance->afterCookGrams[$i] = round($this->instance->afterCookGrams[$i] * $conversion->conversionValue, 2);
+
+
+                    $this->instance->afterCookCalories[$i] = (($totalMacros->calories / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)) * $this->instance->afterCookGrams[$i];
+
+
+                    $this->instance->afterCookProteins[$i] = (($totalMacros->proteins / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)) * $this->instance->afterCookGrams[$i];
+
+
+                    $this->instance->afterCookCarbs[$i] = (($totalMacros->carbs / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)) * $this->instance->afterCookGrams[$i];
+
+
+                    $this->instance->afterCookFats[$i] = (($totalMacros->fats / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)) * $this->instance->afterCookGrams[$i];
+
+
+
+
+                } // end if - exists
+
+
+            } // end if - checkConversion
+
+
+
+
+
+
+
+
+
+            // 3: refreshMacros
+            $this->recalculateTotal();
+
+
+
+
+        } // end if
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+    public function recalculateTotal()
+    {
+
+
+
+
+        // 1: convert
+        $this->instanceOptions->reset();
+
+
+        // 1.2: loop - instance
+        for ($i = 0; $i < count($this->instance->grams ?? []); $i++) {
+
+
+            if ($this->instance->isRemoved[$i] == false && $this->instance->isDefault[$i] == true) {
+
+
+
+                // A: raw
+                $this->instanceOptions->totalGrams[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalGrams[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->grams[$i], 1);
+
+                $this->instanceOptions->totalCalories[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalCalories[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->calories[$i], 1);
+
+
+                $this->instanceOptions->totalProteins[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalProteins[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->proteins[$i], 1);
+
+
+                $this->instanceOptions->totalCarbs[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalCarbs[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->carbs[$i], 1);
+
+                $this->instanceOptions->totalFats[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalFats[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->fats[$i], 1);
+
+
+                $this->instanceOptions->totalCost[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalCost[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->cost[$i], 1);
+
+
+
+
+
+                // B: afterCook
+                $this->instanceOptions->totalAfterCookGrams[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalAfterCookGrams[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->afterCookGrams[$i], 1);
+
+
+                $this->instanceOptions->totalAfterCookCalories[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalAfterCookCalories[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->afterCookCalories[$i], 1);
+
+
+                $this->instanceOptions->totalAfterCookProteins[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalAfterCookProteins[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->afterCookProteins[$i], 1);
+
+
+                $this->instanceOptions->totalAfterCookCarbs[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalAfterCookCarbs[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->afterCookCarbs[$i], 1);
+
+
+
+                $this->instanceOptions->totalAfterCookFats[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalAfterCookFats[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->afterCookFats[$i], 1);
+
+
+
+                $this->instanceOptions->totalAfterCookCost[$this->instance->mealSizeId[$i]] =
+                    round(($this->instanceOptions->totalAfterCookCost[$this->instance->mealSizeId[$i]] ?? 0) + $this->instance->afterCookCost[$i], 1);
+
+
+
+            } // end if
+
+        } // end loop
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
 
 
 
@@ -1180,7 +1794,6 @@ class ProductionBuilderManageContent extends Component
 
     public function render()
     {
-
 
 
 

@@ -92,31 +92,25 @@ class ProductionBuilderManageContentOptionsIngredients extends Component
 
 
 
+
+
+
     // -----------------------------------------------------
 
 
 
 
 
-
-
-    #[On('refreshBuilderPart')]
-    public function refreshPart($instance)
+    #[On('refreshBuilderSingleOption')]
+    public function refreshOption($instance, $groupToken)
     {
 
-
         // 1: update instance
-        $this->instance->partId[$this->i] = $instance['partId'][$this->i];
-        $this->instance->partBrandId[$this->i] = $instance['partBrandId'][$this->i];
-        $this->instance->isRemovable[$this->i] = $instance['isRemovable'][$this->i];
-        $this->instance->isDefault[$this->i] = $instance['isDefault'][$this->i];
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
 
+            $this->instance->isRemoved[$this->i] = $instance['isRemoved'][$this->i];
 
-
-
-        // 1.2: sync
-        $this->mealPart->ingredientId = $this->instance->partId[$this->i];
-        $this->recalculate();
+        } // end if
 
 
 
@@ -135,16 +129,66 @@ class ProductionBuilderManageContentOptionsIngredients extends Component
 
 
 
+
+
+    #[On('refreshBuilderPart')]
+    public function refreshPart($instance, $groupToken)
+    {
+
+
+        // 1: update instance
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
+
+
+            $this->instance->partId[$this->i] = $instance['partId'][$this->i];
+            $this->instance->partBrandId[$this->i] = $instance['partBrandId'][$this->i];
+            $this->instance->isRemovable[$this->i] = $instance['isRemovable'][$this->i];
+
+
+
+
+            // 1.2: sync
+            $this->mealPart->ingredientId = $this->instance->partId[$this->i];
+            $this->recalculate();
+
+
+
+        } // end if
+
+
+    } // end function
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
     #[On('refreshBuilderPartBrand')]
-    public function refreshPartBrand($instance)
+    public function refreshPartBrand($instance, $groupToken)
     {
 
 
 
         // 1: update instance
-        $this->instance->partBrandId[$this->i] = $instance['partBrandId'][$this->i];
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
 
-        $this->recalculate();
+            $this->instance->partBrandId[$this->i] = $instance['partBrandId'][$this->i];
+
+            $this->recalculate();
+
+        } // end if
+
 
 
     } // end function
@@ -168,14 +212,22 @@ class ProductionBuilderManageContentOptionsIngredients extends Component
 
 
     #[On('refreshBuilderPartType')]
-    public function refreshPartType($instance)
+    public function refreshPartType($instance, $groupToken)
     {
 
-        // 1: update instance
-        $this->instance->partType[$this->i] = $instance['partType'][$this->i];
-        $this->instance->cookingTypeId[$this->i] = $instance['cookingTypeId'][$this->i];
 
-        $this->recalculate();
+        // 1: update instance
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
+
+            $this->instance->partType[$this->i] = $instance['partType'][$this->i];
+            $this->instance->cookingTypeId[$this->i] = $instance['cookingTypeId'][$this->i];
+
+            $this->recalculate();
+
+        } // end if
+
+
+
 
 
     } // end function
@@ -195,14 +247,19 @@ class ProductionBuilderManageContentOptionsIngredients extends Component
 
 
     #[On('refreshBuilderPartCookingType')]
-    public function refreshPartCookingType($instance)
+    public function refreshPartCookingType($instance, $groupToken)
     {
 
 
         // 1: update instance
-        $this->instance->cookingTypeId[$this->i] = $instance['cookingTypeId'][$this->i];
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
 
-        $this->recalculate();
+            $this->instance->cookingTypeId[$this->i] = $instance['cookingTypeId'][$this->i];
+
+            $this->recalculate();
+
+        } // end if
+
 
 
     } // end function
@@ -233,7 +290,6 @@ class ProductionBuilderManageContentOptionsIngredients extends Component
         if ($groupToken == $this->instance->groupToken[$this->i]) {
 
             $this->instance->isRemovable[$this->i] = $instance['isRemovable'][$this->i];
-            $this->instance->isDefault[$this->i] = $instance['isDefault'][$this->i];
 
         } // end if
 
@@ -263,38 +319,14 @@ class ProductionBuilderManageContentOptionsIngredients extends Component
 
 
         // 1: dispatchEvent
+        $this->dispatch('no-events', class: '.togglers--checkbox', delay: 3000);
         $this->dispatch('removeBuilderPart', $this->instance->groupToken[$this->i]);
-        $this->dispatch('no-events', class: '.togglers--checkbox', delay: 2000);
-
-
-
-    } // end function
-
-
-
-
-
-
-    // -----------------------------------------------------
-
-
-
-
-
-
-    public function toggleDefault()
-    {
-
-
-
-        // 1: dispatchEvent
-        $this->dispatch('toggleBuilderPart', 'isDefault', $this->instance->groupToken[$this->i], $this->instance->isDefault[$this->i]);
-        $this->dispatch('no-events', class: '.togglers--checkbox', delay: 2000);
 
 
 
 
     } // end function
+
 
 
 
@@ -318,13 +350,9 @@ class ProductionBuilderManageContentOptionsIngredients extends Component
     {
 
 
-
-
         // 1: dispatchEvent
+        $this->dispatch('no-events', class: '.togglers--checkbox', delay: 2000);
         $this->dispatch('toggleBuilderPart', 'isRemovable', $this->instance->groupToken[$this->i], $this->instance->isRemovable[$this->i]);
-        $this->dispatch('no-events', class: '.togglers--checkbox', delay: 1000);
-
-
 
 
 

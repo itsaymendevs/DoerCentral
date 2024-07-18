@@ -1,4 +1,4 @@
-<tr key='single-part-{{ $i }}' wire:ignore.self>
+<tr key='single-part-{{ $i }}' class='@if ($instance?->isRemoved[$i] == true) d-none @endif'>
 
 
 
@@ -8,8 +8,8 @@
         @if(!$versionPermission->menuModuleHasBuilderConversion) colspan='2' @endif wire:ignore>
         <div class="select--single-wrapper builder s mx-auto" style="width: 100%">
             <select class="form-select part--select" id='part--select-{{ $i }}' data-instance='instance.partId.{{ $i }}'
-                data-numberOfSizes='{{ $instance->numberOfSizes }}' data-i='{{ $i }}'
-                value='{{ $instance?->partId[$i] }}' required>
+                data-numberOfSizes='{{ $instance->numberOfSizes }}' data-group='{{ $instance->groupToken[$i] }}'
+                data-i='{{ $i }}' value='{{ $instance?->partId[$i] }}' required>
                 <option value=""></option>
 
 
@@ -67,7 +67,7 @@
         <div class="select--single-wrapper xxs" style="width: 85px !important; max-width: 85px !important">
             <select class="form-select part--type-select " id='part--type-select-{{ $i }}'
                 data-instance='instance.partType.{{ $i }}' data-numberOfSizes='{{ $instance->numberOfSizes }}'
-                data-i='{{ $i }}' value='{{ $instance?->partType[$i] }}'>
+                data-group='{{ $instance->groupToken[$i] }}' data-i='{{ $i }}' value='{{ $instance?->partType[$i] }}'>
                 <option value=""></option>
                 <option value="Main">Main</option>
                 <option value="Side">Side</option>

@@ -657,18 +657,21 @@ input[type="color"]::-webkit-color-swatch {
     cursor: not-allowed !important;
 }
 
+/* loadings */
 .no-events-loading {
     pointer-events: none !important;
     cursor: not-allowed !important;
-    opacity: 0.7 !important;
+    opacity: 0.5 !important;
 }
 
 .no-events-loading * {
     pointer-events: none !important;
     cursor: not-allowed !important;
-    opacity: 0.7 !important;
+    opacity: 0.5 !important;
 }
 
+.input-loading {
+}
 /* pointer */
 
 .pointer {

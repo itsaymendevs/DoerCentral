@@ -1,3 +1,9 @@
+$(document).ready(function () {
+    setTimeout(function () {
+        $(".recipe--builder-wrapper").removeClass("no-events-loading");
+    }, 5000);
+});
+
 // 1: initCertainSelect
 window.addEventListener("initCertainSelect", (event) => {
     $(document).ready(function () {

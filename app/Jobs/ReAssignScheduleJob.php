@@ -91,7 +91,7 @@ class ReAssignScheduleJob implements ShouldQueue
 
 
         // 1: logInfo
-        info('Re-assign schedule Job has failed');
+        info('Re-assign schedule Job has failed' . $event->getMessage());
 
 
     } // end function

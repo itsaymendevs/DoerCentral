@@ -1402,8 +1402,9 @@ class BuilderController extends Controller
 
 
                 // 2.5: default - removable
-                $part->isDefault = $request->isDefault[$i] ?? null;
+                $part->isDefault = true;
                 $part->isRemovable = $request->isRemovable[$i] ?? null;
+                $part->isDefault = $request->isDefault[$i] ?? null;
 
 
 

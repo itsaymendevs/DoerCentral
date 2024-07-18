@@ -1,5 +1,5 @@
 <div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="clone-calendar" wire:ignore.self>
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body py-0 px-0">
 
@@ -30,34 +30,35 @@
 
                 {{-- form --}}
                 <form wire:submit='clone' class="px-4">
-                    <div class="row pt-2 mb-4">
+                    <div class="row pt-2 mb-4 align-items-end">
 
 
 
 
                         {{-- fromPeriod --}}
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="d-flex align-items-center justify-content-between mb-1">
-                                <hr style="width: 70%" />
+                                <hr style="width: 50%" />
                                 <label class="form-label form--label px-3 w-50 justify-content-center mb-0">
-                                    Period</label>
+                                    Source Period</label>
                             </div>
-                        </div>
 
 
 
+                            {{-- from --}}
+                            <div class="d-flex">
+                                <input class="form-control form--input mb-4" min="{{ $globalCurrentDate }}" type="date"
+                                    wire:model='instance.cloneFromDate' required />
+                            </div>
 
 
-                        {{-- cloneDates --}}
-                        <div class="col-12">
-                            <input class="form-control form--input mb-4" min="{{ $globalCurrentDate }}" type="date"
-                                wire:model='instance.cloneFromDate' required />
-                        </div>
 
+                            {{-- until --}}
+                            <div class="d-flex">
+                                <input class="form-control form--input mb-4" min="{{ $globalCurrentDate }}" type="date"
+                                    wire:model='instance.cloneUntilDate' required />
+                            </div>
 
-                        <div class="col-12">
-                            <input class="form-control form--input mb-4" min="{{ $globalCurrentDate }}" type="date"
-                                wire:model='instance.cloneUntilDate' required />
                         </div>
 
 
@@ -73,23 +74,20 @@
 
 
                         {{-- toPeriod --}}
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="d-flex align-items-center justify-content-between mb-1">
-                                <hr style="width: 70%" />
+                                <hr style="width: 50%" />
                                 <label class="form-label form--label px-3 w-50 justify-content-center mb-0">
-                                    Starting From</label>
+                                    Target Period</label>
+                            </div>
+
+
+                            <div class="d-flex">
+                                <input class="form-control form--input mb-4" min="{{ $globalCurrentDate }}" type="date"
+                                    wire:model='instance.fromDate' required />
                             </div>
                         </div>
 
-
-
-
-
-                        {{-- paseDates --}}
-                        <div class="col-12">
-                            <input class="form-control form--input mb-4" min="{{ $globalCurrentDate }}" type="date"
-                                wire:model='instance.fromDate' required />
-                        </div>
 
 
 

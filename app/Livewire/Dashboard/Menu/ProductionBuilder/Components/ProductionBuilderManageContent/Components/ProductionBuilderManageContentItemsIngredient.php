@@ -42,6 +42,33 @@ class ProductionBuilderManageContentItemsIngredient extends Component
 
 
 
+    // -----------------------------------------------------
+
+
+
+
+
+    #[On('refreshBuilderSingleItem')]
+    public function refreshItem($instance, $groupToken)
+    {
+
+        // 1: update instance
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
+
+            $this->instance->isRemoved[$this->i] = $instance['isRemoved'][$this->i];
+
+        } // end if
+
+
+
+
+    } // end function
+
+
+
+
+
+
 
 
 
@@ -53,18 +80,26 @@ class ProductionBuilderManageContentItemsIngredient extends Component
 
 
     #[On('refreshBuilderPartUnique')]
-    public function refreshPart($instance)
+    public function refreshPart($instance, $groupToken)
     {
 
 
         // 1: update instance
-        $this->instance->partId[$this->i] = $instance['partId'][$this->i];
-        $this->instance->partBrandId[$this->i] = $instance['partBrandId'][$this->i];
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
+
+
+            $this->instance->partId[$this->i] = $instance['partId'][$this->i];
+            $this->instance->partBrandId[$this->i] = $instance['partBrandId'][$this->i];
 
 
 
-        // 1.2: getBrands
-        $this->getPartBrands();
+            // 1.2: getBrands
+            $this->getPartBrands();
+
+
+
+        } // end if
+
 
 
 
@@ -86,14 +121,16 @@ class ProductionBuilderManageContentItemsIngredient extends Component
 
 
     #[On('refreshBuilderPartBrandUnique')]
-    public function refreshPartBrand($instance)
+    public function refreshPartBrand($instance, $groupToken)
     {
 
 
         // 1: update instance
-        $this->instance->partBrandId[$this->i] = $instance['partBrandId'][$this->i];
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
 
+            $this->instance->partBrandId[$this->i] = $instance['partBrandId'][$this->i];
 
+        } // end if
 
     } // end function
 
@@ -117,12 +154,18 @@ class ProductionBuilderManageContentItemsIngredient extends Component
 
 
     #[On('refreshBuilderPartTypeUnique')]
-    public function refreshPartType($instance)
+    public function refreshPartType($instance, $groupToken)
     {
 
         // 1: update instance
-        $this->instance->partType[$this->i] = $instance['partType'][$this->i];
-        $this->instance->cookingTypeId[$this->i] = $instance['cookingTypeId'][$this->i];
+        if ($groupToken == $this->instance->groupToken[$this->i]) {
+
+
+            $this->instance->partType[$this->i] = $instance['partType'][$this->i];
+            $this->instance->cookingTypeId[$this->i] = $instance['cookingTypeId'][$this->i];
+
+        } // end if
+
 
 
 
@@ -163,7 +206,6 @@ class ProductionBuilderManageContentItemsIngredient extends Component
 
         $this->dispatch('refreshSelect', id: "#part--brand-select-{$this->i}", data: $brands);
         $this->dispatch('setSelect', id: "#part--brand-select-{$this->i}", value: $this->instance->partBrandId[$this->i] ?? null);
-
 
 
 

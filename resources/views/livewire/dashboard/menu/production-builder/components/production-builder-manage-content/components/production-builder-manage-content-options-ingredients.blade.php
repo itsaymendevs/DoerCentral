@@ -1,4 +1,4 @@
-<tr>
+<tr class='@if ($instance?->isRemoved[$i] == true) d-none @endif'>
 
 
     {{-- 1: grams --}}
@@ -248,7 +248,7 @@
             id="formCheck-{{ strtolower($instance->type[$i]) }}-{{ $instance->id[$i] }}"
             wire:model='instance.isRemovable.{{ $i }}'
             wire:change='toggleRemovable' wire:loading.attr='disabled'
-            wire:target='toggleDefault, toggleRemovable, refreshTogglers, remove' />
+            wire:target='toggleRemovable, refreshTogglers, remove' />
 
 
             <label class="form-check-label d-none"
@@ -257,57 +257,6 @@
     </td>
 
 
-
-
-
-
-
-
-
-
-
-    {{-- --------------------------------- --}}
-    {{-- --------------------------------- --}}
-
-
-
-
-
-
-
-    {{-- 5: isDefault --}}
-
-
-
-    {{-- :: permission - hasReplacements --}}
-    @if ($versionPermission->menuModuleHasBuilderReplacements)
-
-
-
-    <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderMacros) colspan='2' @endif>
-        <div class="form-check form-switch mealType--checkbox justify-content-center" wire:ignore>
-
-
-            <input class="form-check-input pointer togglers--checkbox replacement--checkbox ingredient--default-input"
-                data-group='{{ $instance->groupToken[$i] }}' type="checkbox" data-size='{{ $instance->mealSizeId[$i] }}'
-                style="width: 30px;" @if($instance->isDefault[$i]) checked @endif
-            id="formCheck-replacement-{{ strtolower($instance->type[$i]) }}-{{ $instance->id[$i] }}"
-            wire:model='instance.isDefault.{{ $i }}'
-            wire:change='toggleDefault' wire:loading.attr='disabled'
-            wire:target='toggleDefault, toggleRemovable, refreshTogglers, render, remove' />
-
-
-            <label class="form-check-label d-none"
-                for="formCheck-replacement-{{ strtolower($instance->type[$i]) }}-{{ $instance->id[$i] }}">placeholder</label>
-        </div>
-    </td>
-
-
-
-
-
-    @endif
-    {{-- end if - permission --}}
 
 
 
@@ -330,10 +279,10 @@
 
 
     {{-- 6: delete --}}
-    <td class="fw-bold">
+    <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderReplacements) colspan='2' @endif>
         <div class="d-flex align-items-center justify-content-center">
-            <button class="btn btn--raw-icon inline remove scale--3 px-0 " type="button" wire:loading.attr='disabled'
-                wire:target='remove, update, init' wire:click='remove'>
+            <button class="btn btn--raw-icon inline remove togglers--checkbox scale--3 px-0 " type="button"
+                wire:loading.attr='disabled' wire:target="toggleRemovable, refreshTogglers, remove" wire:click='remove'>
                 <svg class="bi bi-trash-fill" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                     fill="currentColor" viewBox="0 0 16 16">
                     <path

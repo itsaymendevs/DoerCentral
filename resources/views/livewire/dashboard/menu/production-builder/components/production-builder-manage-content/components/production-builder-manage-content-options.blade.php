@@ -47,7 +47,7 @@
 
 
 
-                    {{-- 1.5: removable - default - delete --}}
+                    {{-- 1.5: removable - delete --}}
                     <th class="th--xs" colspan="3">Actions</th>
 
 
@@ -615,9 +615,13 @@
 
 
 
+                    {{-- ---------------------- --}}
+                    {{-- ---------------------- --}}
 
 
-                    {{-- 4.4: default --}}
+
+
+
 
                     {{-- :: permission - hasReplacements --}}
                     @if ($versionPermission->menuModuleHasBuilderReplacements)
@@ -627,12 +631,9 @@
                         colspan='2' @endif>DEF.</td>
 
 
+
                     @endif
                     {{-- end if - permission --}}
-
-
-
-
 
 
 
@@ -648,7 +649,7 @@
 
                     {{--4.5: delete --}}
                     <td @if (!$versionPermission->menuModuleHasBuilderReplacements) colspan='2' @endif
-                        class="fw-bold border-top" ></td>
+                        class="fw-bold border-top"></td>
 
 
 

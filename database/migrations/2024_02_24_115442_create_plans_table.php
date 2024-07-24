@@ -17,30 +17,48 @@ return new class extends Migration {
             // 1: general
             $table->string('name', 255)->nullable();
             $table->string('nameURL', 255)->nullable();
+            $table->string('sectionTitle', 255)->nullable();
             $table->string('startingPrice', 100)->nullable();
 
 
 
-
+            // 1.2: caption - desc
+            $table->text('caption')->nullable();
             $table->text('desc')->nullable();
             $table->text('longDesc')->nullable();
 
 
-            // 1.2: isForWebsite
+
+
+
+            // 1.3: isForWebsite
             $table->boolean('isForWebsite')->nullable()->default(1);
 
 
 
-            // 1.3: imageFile
+
+            // 1.4: imageFile
             $table->text('imageFile')->nullable();
             $table->text('secondImageFile')->nullable();
             $table->text('thirdImageFile')->nullable();
+            $table->text('fourthImageFile')->nullable();
+            $table->text('fifthImageFile')->nullable();
+            $table->text('sixthImageFile')->nullable();
 
 
 
 
 
-            // 1.4: color
+
+            // 1.6: video
+            $table->text('videoURL')->nullable();
+            $table->text('videoCoverFile')->nullable();
+
+
+
+
+
+            // 1.7: color
             $table->bigInteger('colorPaletteId')->unsigned()->nullable();
             $table->foreign('colorPaletteId')->references('id')->on('color_palettes')->onDelete('set null');
 

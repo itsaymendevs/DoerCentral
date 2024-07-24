@@ -20,7 +20,7 @@ class PlansEdit extends Component
 
     // :: variables
     public PlanForm $instance;
-
+    public $sectionPoint;
 
 
 
@@ -40,26 +40,49 @@ class PlansEdit extends Component
             $this->instance->{$key} = $value;
 
 
+
+
+        // 1.2: points
+        $this->instance->points = $plan->points?->pluck('content')->toArray() ?? [];
+
+
+
+
+
+
+        // 1.3: imageFiles
         $this->instance->imageFileName = $this->instance->imageFile;
         $this->instance->secondImageFileName = $this->instance->secondImageFile ?? null;
         $this->instance->thirdImageFileName = $this->instance->thirdImageFile ?? null;
+        $this->instance->fourthImageFileName = $this->instance->fourthImageFile ?? null;
+        $this->instance->fifthImageFileName = $this->instance->fifthImageFile ?? null;
 
 
 
 
 
 
-        // 1.2: setFilePreview
+        // 1.4: setFilePreview
         $preview = asset('storage/menu/plans/' . $this->instance->imageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-4', defaultPreview: $preview);
+        $this->dispatch('setFilePreview', filePreview: 'plan--preview-7', defaultPreview: $this->instance->imageFile ? $preview : $this->getDefaultPreview());
 
 
         $preview = asset('storage/menu/plans/' . $this->instance->secondImageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-5', defaultPreview: $preview);
+        $this->dispatch('setFilePreview', filePreview: 'plan--preview-8', defaultPreview: $this->instance->secondImageFile ? $preview : $this->getDefaultPreview());
 
 
         $preview = asset('storage/menu/plans/' . $this->instance->thirdImageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-6', defaultPreview: $preview);
+        $this->dispatch('setFilePreview', filePreview: 'plan--preview-9', defaultPreview: $this->instance->thirdImageFile ? $preview : $this->getDefaultPreview());
+
+
+        $preview = asset('storage/menu/plans/' . $this->instance->fourthImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'plan--preview-10', defaultPreview: $this->instance->fourthImageFile ? $preview : $this->getDefaultPreview());
+
+
+
+        $preview = asset('storage/menu/plans/' . $this->instance->fifthImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'plan--preview-11', defaultPreview: $this->instance->fifthImageFile ? $preview : $this->getDefaultPreview());
+
 
 
 
@@ -134,6 +157,20 @@ class PlansEdit extends Component
 
 
 
+        if ($this->instance->fourthImageFile != $this->instance->fourthImageFileName)
+            $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'menu/plans', $this->instance->fourthImageFileName, 'PLN-T');
+
+
+
+
+
+
+        if ($this->instance->fifthImageFile != $this->instance->fifthImageFileName)
+            $this->instance->fifthImageFileName = $this->replaceFile($this->instance->fifthImageFile, 'menu/plans', $this->instance->fifthImageFileName, 'PLN-T');
+
+
+
+
 
 
 
@@ -155,12 +192,15 @@ class PlansEdit extends Component
 
         // :: refresh / closeModal
         $this->instance->reset();
+        $this->sectionPoint = null;
 
         $this->dispatch('refreshViews');
         $this->dispatch('closeModal', modal: '#edit-plan .btn--close');
-        $this->dispatch('resetFile', file: 'plan--file-4', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'plan--file-5', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'plan--file-6', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-7', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-8', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-9', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-10', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-11', defaultPreview: $this->getDefaultPreview());
 
 
 
@@ -182,8 +222,77 @@ class PlansEdit extends Component
 
 
 
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+    public function append()
+    {
+
+
+
+        // 1: checkPoint
+        if ($this->sectionPoint) {
+
+
+            array_push($this->instance->points, $this->sectionPoint);
+            $this->sectionPoint = null;
+
+
+        } // end if
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+    public function remove($key)
+    {
+
+
+
+        // 1: checkPoints
+        if ($this->instance->points[$key]) {
+
+            unset($this->instance->points[$key]);
+
+        } // end if
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
 
     // -----------------------------------------------------------
+
+
+
 
 
 

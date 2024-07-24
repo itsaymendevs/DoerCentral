@@ -298,3 +298,7 @@ hr {
     justify-content: center;
     width: 100%;
 }
+
+.points--number {
+    min-width: 30px;
+}

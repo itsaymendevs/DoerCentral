@@ -46,6 +46,17 @@ class Plan extends Model
 
 
 
+    public function points()
+    {
+
+        return $this->hasMany(PlanPoint::class, 'planId');
+
+    } // end function
+
+
+
+
+
 
     public function defaultCalendarRelation()
     {

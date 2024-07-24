@@ -911,6 +911,28 @@
 
 
 
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+
+
+
+
+
+                                        {{-- blog --}}
+                                        <div class="col-12 mb-3">
+                                            <hr>
+                                        </div>
+
+
+
+
+
+
+
+
                                         {{-- singleBlogNavbarBackgroundColor --}}
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
@@ -1785,6 +1807,633 @@
 
 
 
+                                        {{-- 0: design --}}
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <hr class="w-75" />
+                                                <label
+                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Layouts
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- ----------------------------- --}}
+                                        {{-- ----------------------------- --}}
+
+
+
+
+
+                                        {{-- 1: option --}}
+                                        <div class="col-4 col-xl-3 mt-5 pt-4">
+                                            <div class="overview--card client-version scale--self-05 mb-5"
+                                                style="box-shadow: 0px 0px 8px var(--color-body)">
+                                                <div class="row">
+
+
+
+                                                    {{-- imageFile --}}
+                                                    <div class="col-12 text-center position-relative">
+                                                        <img class="client--card-logo of-cover"
+                                                            src="{{ asset('storage/extra/plans/option-1.png') }}" />
+                                                    </div>
+
+
+
+                                                    {{-- preview --}}
+                                                    <div class="col-12">
+                                                        <p class="text-center fw-bold text-danger mb-0">
+                                                            <a herf="#"
+                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
+                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
+                                                                Preview
+                                                            </a>
+                                                        </p>
+                                                    </div>
+
+
+
+
+
+                                                    {{-- midCol --}}
+                                                    <div class="col-12">
+                                                        <h6 class="text-center fw-bold mt-3 mb-2">Grid Slider</h6>
+                                                    </div>
+
+
+
+
+
+
+                                                    {{-- confirm --}}
+                                                    <div class="col-12 text-center mt-3">
+
+
+                                                        {{-- selected --}}
+                                                        @if ($instanceSubscription->template == 'Grid Slider')
+
+                                                        <button wire:click="updatePlansTemplate('Grid Slider')" class="btn btn--scheme btn--scheme-2 disabled
+                                                                fs-12 px-4 mx-2 scale--self-05"
+                                                            type="button">Selected</button>
+
+
+
+                                                        {{-- notSelected --}}
+                                                        @else
+
+                                                        <button wire:click="updatePlansTemplate('Grid Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                                            wire:loading.class='disabled' type="button">Choose</button>
+
+                                                        @endif
+                                                        {{-- end if --}}
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- -------------------------------- --}}
+                                        {{-- -------------------------------- --}}
+
+
+
+
+                                        {{-- 2: option --}}
+                                        <div class="col-4 col-xl-3 mt-5 pt-4">
+                                            <div class="overview--card client-version scale--self-05 mb-5"
+                                                style="box-shadow: 0px 0px 8px var(--color-body)">
+                                                <div class="row">
+
+
+
+                                                    {{-- imageFile --}}
+                                                    <div class="col-12 text-center position-relative">
+                                                        <img class="client--card-logo of-contain"
+                                                            src="{{ asset('storage/extra/plans/option-2.png') }}" />
+                                                    </div>
+
+
+
+
+                                                    {{-- preview --}}
+                                                    <div class="col-12">
+                                                        <p class="text-center fw-bold text-danger mb-0">
+                                                            <a herf="#"
+                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
+                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
+                                                                Preview
+                                                            </a>
+                                                        </p>
+                                                    </div>
+
+
+
+
+                                                    {{-- midCol --}}
+                                                    <div class="col-12">
+                                                        <h6 class="text-center fw-bold mt-3 mb-2">Grid Fully Slider</h6>
+                                                    </div>
+
+
+
+                                                    {{-- confirm --}}
+                                                    <div class="col-12 text-center mt-3">
+
+
+                                                        {{-- selected --}}
+                                                        @if ($instanceSubscription->template == 'Grid Fully Slider')
+
+                                                        <button wire:click="updatePlansTemplate('Grid Fully Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
+                                                            type="button">Selected</button>
+
+
+
+                                                        {{-- notSelected --}}
+                                                        @else
+
+                                                        <button wire:click="updatePlansTemplate('Grid Fully Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                                            wire:loading.class='disabled' type="button">Choose</button>
+
+                                                        @endif
+                                                        {{-- end if --}}
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+                                        {{-- -------------------------------- --}}
+                                        {{-- -------------------------------- --}}
+
+
+
+
+                                        {{-- 3: option --}}
+                                        <div class="col-4 col-xl-3 mt-5 pt-4">
+                                            <div class="overview--card client-version scale--self-05 mb-5"
+                                                style="box-shadow: 0px 0px 8px var(--color-body)">
+                                                <div class="row">
+
+
+
+                                                    {{-- imageFile --}}
+                                                    <div class="col-12 text-center position-relative">
+                                                        <img class="client--card-logo of-contain"
+                                                            src="{{ asset('storage/extra/plans/option-3.png') }}" />
+                                                    </div>
+
+
+
+
+                                                    {{-- preview --}}
+                                                    <div class="col-12">
+                                                        <p class="text-center fw-bold text-danger mb-0">
+                                                            <a herf="#"
+                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
+                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
+                                                                Preview
+                                                            </a>
+                                                        </p>
+                                                    </div>
+
+
+
+
+
+                                                    {{-- midCol --}}
+                                                    <div class="col-12">
+                                                        <h6 class="text-center fw-bold mt-3 mb-2">Motion Slider</h6>
+                                                    </div>
+
+
+
+                                                    {{-- confirm --}}
+                                                    <div class="col-12 text-center mt-3">
+
+
+                                                        {{-- selected --}}
+                                                        @if ($instanceSubscription->template == 'Motion Slider')
+
+                                                        <button wire:click="updatePlansTemplate('Motion Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
+                                                            type="button">Selected</button>
+
+
+
+                                                        {{-- notSelected --}}
+                                                        @else
+
+                                                        <button wire:click="updatePlansTemplate('Motion Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                                            wire:loading.class='disabled' type="button">Choose</button>
+
+                                                        @endif
+                                                        {{-- end if --}}
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- -------------------------------- --}}
+                                        {{-- -------------------------------- --}}
+
+
+
+
+                                        {{-- 4: option --}}
+                                        <div class="col-4 col-xl-3 mt-5 pt-4">
+                                            <div class="overview--card client-version scale--self-05 mb-5"
+                                                style="box-shadow: 0px 0px 8px var(--color-body)">
+                                                <div class="row">
+
+
+
+                                                    {{-- imageFile --}}
+                                                    <div class="col-12 text-center position-relative">
+                                                        <img class="client--card-logo of-contain"
+                                                            src="{{ asset('storage/extra/plans/option-4.png') }}" />
+                                                    </div>
+
+
+
+
+                                                    {{-- preview --}}
+                                                    <div class="col-12">
+                                                        <p class="text-center fw-bold text-danger mb-0">
+                                                            <a herf="#"
+                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
+                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
+                                                                Preview
+                                                            </a>
+                                                        </p>
+                                                    </div>
+
+
+
+
+                                                    {{-- midCol --}}
+                                                    <div class="col-12">
+                                                        <h6 class="text-center fw-bold mt-3 mb-2">Half Slider</h6>
+                                                    </div>
+
+
+
+                                                    {{-- confirm --}}
+                                                    <div class="col-12 text-center mt-3">
+
+
+                                                        {{-- selected --}}
+                                                        @if ($instanceSubscription->template == 'Half Slider')
+
+                                                        <button wire:click="updatePlansTemplate('Half Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
+                                                            type="button">Selected</button>
+
+
+
+                                                        {{-- notSelected --}}
+                                                        @else
+
+                                                        <button wire:click="updatePlansTemplate('Half Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                                            wire:loading.class='disabled' type="button">Choose</button>
+
+                                                        @endif
+                                                        {{-- end if --}}
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- -------------------------------- --}}
+                                        {{-- -------------------------------- --}}
+
+
+
+
+
+
+
+
+
+                                        {{-- 5: option --}}
+                                        <div class="col-4 col-xl-3 mt-5 pt-4">
+                                            <div class="overview--card client-version scale--self-05 mb-5"
+                                                style="box-shadow: 0px 0px 8px var(--color-body)">
+                                                <div class="row">
+
+
+
+                                                    {{-- imageFile --}}
+                                                    <div class="col-12 text-center position-relative">
+                                                        <img class="client--card-logo of-contain"
+                                                            src="{{ asset('storage/extra/plans/option-5.png') }}" />
+                                                    </div>
+
+
+
+
+
+                                                    {{-- preview --}}
+                                                    <div class="col-12">
+                                                        <p class="text-center fw-bold text-danger mb-0">
+                                                            <a herf="#"
+                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
+                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
+                                                                Preview
+                                                            </a>
+                                                        </p>
+                                                    </div>
+
+
+
+
+                                                    {{-- midCol --}}
+                                                    <div class="col-12">
+                                                        <h6 class="text-center fw-bold mt-3 mb-2">Parallax Slider</h6>
+                                                    </div>
+
+
+
+                                                    {{-- confirm --}}
+                                                    <div class="col-12 text-center mt-3">
+
+
+                                                        {{-- selected --}}
+                                                        @if ($instanceSubscription->template == 'Parallax Slider')
+
+                                                        <button wire:click="updatePlansTemplate('Parallax Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
+                                                            type="button">Selected</button>
+
+
+
+                                                        {{-- notSelected --}}
+                                                        @else
+
+                                                        <button wire:click="updatePlansTemplate('Parallax Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                                            wire:loading.class='disabled' type="button">Choose</button>
+
+                                                        @endif
+                                                        {{-- end if --}}
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- -------------------------------- --}}
+                                        {{-- -------------------------------- --}}
+
+
+
+
+
+
+
+
+
+                                        {{-- 6: option --}}
+                                        <div class="col-4 col-xl-3 mt-5 pt-4">
+                                            <div class="overview--card client-version scale--self-05 mb-5"
+                                                style="box-shadow: 0px 0px 8px var(--color-body)">
+                                                <div class="row">
+
+
+
+                                                    {{-- imageFile --}}
+                                                    <div class="col-12 text-center position-relative">
+                                                        <img class="client--card-logo of-contain"
+                                                            src="{{ asset('storage/extra/plans/option-6.png') }}" />
+                                                    </div>
+
+
+
+
+
+                                                    {{-- preview --}}
+                                                    <div class="col-12">
+                                                        <p class="text-center fw-bold text-danger mb-0">
+                                                            <a herf="#"
+                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
+                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
+                                                                Preview
+                                                            </a>
+                                                        </p>
+                                                    </div>
+
+
+
+
+                                                    {{-- midCol --}}
+                                                    <div class="col-12">
+                                                        <h6 class="text-center fw-bold mt-3 mb-2">Two Columns Slider
+                                                        </h6>
+                                                    </div>
+
+
+
+                                                    {{-- confirm --}}
+                                                    <div class="col-12 text-center mt-3">
+
+
+                                                        {{-- selected --}}
+                                                        @if ($instanceSubscription->template == 'Two Columns Slider')
+
+                                                        <button wire:click="updatePlansTemplate('Two Columns Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
+                                                            type="button">Selected</button>
+
+
+
+                                                        {{-- notSelected --}}
+                                                        @else
+
+                                                        <button wire:click="updatePlansTemplate('Two Columns Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                                            wire:loading.class='disabled' type="button">Choose</button>
+
+                                                        @endif
+                                                        {{-- end if --}}
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                                        {{-- -------------------------------- --}}
+                                        {{-- -------------------------------- --}}
+
+
+
+
+
+
+
+
+
+                                        {{-- 7: option --}}
+                                        <div class="col-4 col-xl-3 mt-5 pt-4">
+                                            <div class="overview--card client-version scale--self-05 mb-5"
+                                                style="box-shadow: 0px 0px 8px var(--color-body)">
+                                                <div class="row">
+
+
+
+                                                    {{-- imageFile --}}
+                                                    <div class="col-12 text-center position-relative">
+                                                        <img class="client--card-logo of-contain"
+                                                            src="{{ asset('storage/extra/plans/option-7.png') }}" />
+                                                    </div>
+
+
+
+
+
+
+                                                    {{-- preview --}}
+                                                    <div class="col-12">
+                                                        <p class="text-center fw-bold text-danger mb-0">
+                                                            <a herf="#"
+                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
+                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
+                                                                Preview
+                                                            </a>
+                                                        </p>
+                                                    </div>
+
+
+
+                                                    {{-- midCol --}}
+                                                    <div class="col-12">
+                                                        <h6 class="text-center fw-bold mt-3 mb-2">Three Columns Slider
+                                                        </h6>
+                                                    </div>
+
+
+
+                                                    {{-- confirm --}}
+                                                    <div class="col-12 text-center mt-3">
+
+
+                                                        {{-- selected --}}
+                                                        @if ($instanceSubscription->template == 'Three Columns Slider')
+
+                                                        <button wire:click="updatePlansTemplate('Three Columns Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
+                                                            type="button">Selected</button>
+
+
+
+                                                        {{-- notSelected --}}
+                                                        @else
+
+                                                        <button wire:click="updatePlansTemplate('Three Columns Slider')"
+                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                                            wire:loading.class='disabled' type="button">Choose</button>
+
+                                                        @endif
+                                                        {{-- end if --}}
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- -------------------------------- --}}
+                                        {{-- -------------------------------- --}}
+
+
+
+
+
+
+
+
+
+                                        {{-- ------------------------------------- --}}
+                                        {{-- ------------------------------------- --}}
+                                        {{-- ------------------------------------- --}}
+                                        {{-- ------------------------------------- --}}
+                                        {{-- ------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+
                                         {{-- 1: colors & backgrounds --}}
                                         <div class="col-12">
                                             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -2008,8 +2657,21 @@
 
 
 
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
 
-                                        {{-- slider --}}
+
+
+
+
+                                        {{-- plans --}}
+                                        <div class="col-12 mb-3">
+                                            <hr>
+                                        </div>
+
 
 
                                         {{-- planCardBackgroundColor --}}
@@ -2074,6 +2736,196 @@
 
 
 
+                                        {{-- planCardButtonBackgroundColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
+                                                    Button BG</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planCardButtonBackgroundColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- planCardButtonColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
+                                                    Button</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planCardButtonColor">
+                                            </div>
+                                        </div>
+
+
+
+                                        {{-- planCardButtonHoverColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
+                                                    Button<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planCardButtonHoverColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+                                        {{-- ----------------------- --}}
+
+
+
+
+
+
+
+                                        {{-- singlePlan --}}
+                                        <div class="col-12 mb-3">
+                                            <hr>
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- planSideTitleColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Side
+                                                    Titles</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planSideTitleColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- planFilterLinksColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Filter
+                                                    Links</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planFilterLinksColor">
+                                            </div>
+                                        </div>
+
+
+
+                                        {{-- planFilterLinksHoverBorderColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Filter
+                                                    Links Border<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planFilterLinksHoverBorderColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- planListNumbersColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">List
+                                                    Numbers</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planListNumbersColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- planMealDietColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Meal
+                                                    Caption</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planMealDietColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- planMealsBorderColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Meals
+                                                    Border</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planMealsBorderColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- planMealsHoverBorderColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0" style="width: 80%">Meals
+                                                    Border<small
+                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planMealsHoverBorderColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- planReviewsTitleColor --}}
+                                        <div class="col-4">
+                                            <div class="input--with-label mb-3">
+                                                <label class="form-label form--label mb-0"
+                                                    style="width: 80%">Testimonials Title</label>
+                                                <input type="color" class="form--input py-1 pointer" required=""
+                                                    wire:model="instanceSubscription.planReviewsTitleColor">
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -2109,7 +2961,7 @@
 
                                         {{-- planCardAlignment --}}
                                         <div class="col-4" wire:ignore>
-                                            <label class="form-label form--label">Plan Card</label>
+                                            <label class="form-label form--label">Plan Card Content</label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                                 <select class="form-select form--select"
                                                     data-instance='instanceSubscription.planCardAlignment'
@@ -2179,6 +3031,560 @@
 
 
 
+                                        {{-- sliderArrows --}}
+                                        <div class="col-4" wire:ignore>
+                                            <label class="form-label form--label">Plan Slider Arrows<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(V5)</small></label>
+                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                                                <select class="form-select form--select"
+                                                    data-instance='instanceSubscription.planSliderArrows'
+                                                    value='{{ $instanceSubscription?->planSliderArrows }}'>
+                                                    <option value=""></option>
+                                                    <option value="light">Light Color</option>
+                                                    <option value="dark">Dark Color</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        {{-- empty --}}
+                                        <div class="col-12"></div>
+
+
+
+
+
+
+                                        {{-- --------------------------------- --}}
+                                        {{-- --------------------------------- --}}
+                                        {{-- --------------------------------- --}}
+                                        {{-- --------------------------------- --}}
+                                        {{-- --------------------------------- --}}
+
+
+
+
+                                        {{-- singlePlan --}}
+
+
+
+                                        {{-- planSideTitleDisplay --}}
+                                        <div class="col-4" wire:ignore>
+                                            <label class="form-label form--label">Sub-Headings<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(Single
+                                                    Plan)</small></label>
+                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                                                <select class="form-select form--select"
+                                                    data-instance='instanceSubscription.planSideTitleDisplay'
+                                                    value='{{ $instanceSubscription?->planSideTitleDisplay }}' required>
+                                                    <option value=""></option>
+                                                    <option value="inline">Same Line</option>
+                                                    <option value="block">Full Line</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                                        {{-- showPlanCustomSection --}}
+                                        <div class="col-4" wire:ignore>
+                                            <label class="form-label form--label">Custom Section<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(Single
+                                                    Plan)</small></label>
+                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                                                <select class="form-select form--select"
+                                                    data-instance='instanceSubscription.showPlanCustomSection'
+                                                    value='{{ $instanceSubscription?->showPlanCustomSection }}'>
+                                                    <option value=""></option>
+                                                    <option value="1">Show</option>
+                                                    <option value="0">Hide</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                        {{-- showPlanMealsTypeFilter --}}
+                                        <div class="col-4" wire:ignore>
+                                            <label class="form-label form--label">Plan Meals Filters<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(Single
+                                                    Plan)</small></label>
+                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                                                <select class="form-select form--select"
+                                                    data-instance='instanceSubscription.showPlanMealsTypeFilter'
+                                                    value='{{ $instanceSubscription?->showPlanMealsTypeFilter }}'>
+                                                    <option value=""></option>
+                                                    <option value="1">Show</option>
+                                                    <option value="0">Hide</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+                                        {{-- --------------------------------------- --}}
+
+
+
+
+
+                                        {{-- dynamicContent --}}
+
+
+
+
+                                        {{-- title --}}
+                                        <div class="col-12 mt-4">
+                                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                                <hr class="w-75" />
+                                                <label
+                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Custom
+                                                    Section</label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- planCustomSectionTitle --}}
+                                        <div class="col-4">
+                                            <label class="form-label form--label">Section Title</label>
+                                            <input class="form-control form--input mb-4" type="text"
+                                                wire:model='instanceSubscription.planCustomSectionTitle' />
+                                        </div>
+
+
+
+
+
+
+
+                                        {{-- planCustomSectionVideoURL --}}
+                                        <div class="col-8">
+                                            <label class="form-label form--label">Section Video<small
+                                                    class="ms-1 fw-semibold text-gold fs-9">(URL)</small></label>
+                                            <input class="form-control form--input mb-4" type="text"
+                                                wire:model='instanceSubscription.planCustomSectionVideoURL' />
+                                        </div>
+
+
+
+
+
+
+
+
+                                        {{-- ------------------------------------- --}}
+                                        {{-- ------------------------------------- --}}
+
+
+
+
+
+
+                                        {{-- imageFiles --}}
+                                        <div class="col-12">
+                                            <div class="row">
+
+
+
+
+
+                                                {{-- 1: 1st --}}
+                                                <div class="col-4">
+
+
+                                                    {{-- imageFile --}}
+                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Click To Upload"
+                                                        for="custom--file-1">
+
+
+                                                        {{-- size --}}
+                                                        <span class="upload--caption badge">1st</span>
+
+
+
+                                                        {{-- input --}}
+                                                        <input class="form-control d-none file--input" type="file"
+                                                            id="custom--file-1" data-preview="custom--preview-1"
+                                                            wire:model='instanceSubscription.planCustomSectionImageFile' />
+
+
+
+                                                        {{-- image --}}
+                                                        <img id="custom--preview-1" class="inventory--image-frame"
+                                                            src="{{ asset('assets/img/placeholder.png') }}"
+                                                            style="aspect-ratio: 1/2;" width="512" height="250"
+                                                            wire:ignore />
+
+                                                    </label>
+
+
+
+
+                                                    {{-- subtitle --}}
+                                                    <input class="form-control form--input text-center mb-2" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionSubtitle'
+                                                        placeholder="Subtitle" />
+
+
+
+                                                    {{-- caption --}}
+                                                    <input class="form-control form--input text-center mb-4" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionCaption'
+                                                        placeholder="Caption" />
+                                                </div>
+
+
+
+
+
+
+
+
+
+                                                {{-- ------------------------- --}}
+                                                {{-- ------------------------- --}}
+
+
+
+
+
+                                                {{-- 2nd --}}
+                                                <div class="col-4">
+                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Click To Upload"
+                                                        for="custom--file-2">
+
+
+                                                        {{-- size --}}
+                                                        <span class="upload--caption badge">2nd</span>
+
+
+
+                                                        {{-- input --}}
+                                                        <input class="form-control d-none file--input" type="file"
+                                                            id="custom--file-2" data-preview="custom--preview-2"
+                                                            wire:model='instanceSubscription.planCustomSectionSecondImageFile' />
+
+
+
+                                                        {{-- image --}}
+                                                        <img id="custom--preview-2" class="inventory--image-frame"
+                                                            src="{{ asset('assets/img/placeholder.png') }}"
+                                                            style="aspect-ratio: 1/2;" width="512" height="250"
+                                                            wire:ignore />
+
+                                                    </label>
+
+
+
+
+                                                    {{-- subtitle --}}
+                                                    <input class="form-control form--input text-center mb-2" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionSecondSubtitle'
+                                                        placeholder="Subtitle" />
+
+
+
+                                                    {{-- caption --}}
+                                                    <input class="form-control form--input text-center mb-4" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionSecondCaption'
+                                                        placeholder="Caption" />
+
+
+                                                </div>
+
+
+
+
+
+
+
+                                                {{-- ------------------------- --}}
+                                                {{-- ------------------------- --}}
+
+
+
+
+
+
+                                                {{-- 3rd --}}
+                                                <div class="col-4">
+
+                                                    {{-- imageFile --}}
+                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Click To Upload"
+                                                        for="custom--file-3">
+
+
+                                                        {{-- size --}}
+                                                        <span class="upload--caption badge">3rd</span>
+
+
+
+                                                        {{-- input --}}
+                                                        <input class="form-control d-none file--input" type="file"
+                                                            id="custom--file-3" data-preview="custom--preview-3"
+                                                            wire:model='instanceSubscription.planCustomSectionThirdImageFile' />
+
+
+
+                                                        {{-- image --}}
+                                                        <img id="custom--preview-3" class="inventory--image-frame"
+                                                            src="{{ asset('assets/img/placeholder.png') }}"
+                                                            style="aspect-ratio: 1/2;" width="512" height="250"
+                                                            wire:ignore />
+
+                                                    </label>
+
+
+
+
+                                                    {{-- subtitle --}}
+                                                    <input class="form-control form--input text-center mb-2" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionThirdSubtitle'
+                                                        placeholder="Subtitle" />
+
+
+
+                                                    {{-- caption --}}
+                                                    <input class="form-control form--input text-center mb-4" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionThirdCaption'
+                                                        placeholder="Caption" />
+
+                                                </div>
+
+
+
+
+
+
+
+                                                {{-- ------------------------- --}}
+                                                {{-- ------------------------- --}}
+
+
+
+
+                                                {{-- 4th --}}
+                                                <div class="col-4">
+
+
+                                                    {{-- imageFile --}}
+                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Click To Upload"
+                                                        for="custom--file-4">
+
+
+                                                        {{-- size --}}
+                                                        <span class="upload--caption badge">4th</span>
+
+
+
+                                                        {{-- input --}}
+                                                        <input class="form-control d-none file--input" type="file"
+                                                            id="custom--file-4" data-preview="custom--preview-4"
+                                                            wire:model='instanceSubscription.planCustomSectionFourthImageFile' />
+
+
+
+                                                        {{-- image --}}
+                                                        <img id="custom--preview-4" class="inventory--image-frame"
+                                                            src="{{ asset('assets/img/placeholder.png') }}"
+                                                            style="aspect-ratio: 1/2;" width="512" height="250"
+                                                            wire:ignore />
+
+                                                    </label>
+
+
+
+
+                                                    {{-- subtitle --}}
+                                                    <input class="form-control form--input text-center mb-2" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionFourthSubtitle'
+                                                        placeholder="Subtitle" />
+
+
+
+                                                    {{-- caption --}}
+                                                    <input class="form-control form--input text-center mb-4" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionFourthCaption'
+                                                        placeholder="Caption" />
+
+                                                </div>
+
+
+
+
+
+
+                                                {{-- ------------------------- --}}
+                                                {{-- ------------------------- --}}
+
+
+
+
+                                                {{-- 5th --}}
+                                                <div class="col-4">
+
+                                                    {{-- imageFile --}}
+                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Click To Upload"
+                                                        for="custom--file-5">
+
+
+                                                        {{-- size --}}
+                                                        <span class="upload--caption badge">5th</span>
+
+
+
+                                                        {{-- input --}}
+                                                        <input class="form-control d-none file--input" type="file"
+                                                            id="custom--file-5" data-preview="custom--preview-5"
+                                                            wire:model='instanceSubscription.planCustomSectionFifthImageFile' />
+
+
+
+                                                        {{-- image --}}
+                                                        <img id="custom--preview-5" class="inventory--image-frame"
+                                                            src="{{ asset('assets/img/placeholder.png') }}"
+                                                            style="aspect-ratio: 1/2;" width="512" height="250"
+                                                            wire:ignore />
+
+                                                    </label>
+
+
+
+
+                                                    {{-- subtitle --}}
+                                                    <input class="form-control form--input text-center mb-2" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionFifthSubtitle'
+                                                        placeholder="Subtitle" />
+
+
+
+                                                    {{-- caption --}}
+                                                    <input class="form-control form--input text-center mb-4" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionFifthCaption'
+                                                        placeholder="Caption" />
+
+                                                </div>
+
+
+
+
+
+
+
+
+                                                {{-- ------------------------- --}}
+                                                {{-- ------------------------- --}}
+
+
+
+
+
+                                                {{-- 6th --}}
+                                                <div class="col-4">
+
+
+                                                    {{-- imageFile --}}
+                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Click To Upload"
+                                                        for="custom--file-6">
+
+
+                                                        {{-- size --}}
+                                                        <span class="upload--caption badge">6th</span>
+
+
+
+                                                        {{-- input --}}
+                                                        <input class="form-control d-none file--input" type="file"
+                                                            id="custom--file-6" data-preview="custom--preview-6"
+                                                            wire:model='instanceSubscription.planCustomSectionSixthImageFile' />
+
+
+
+                                                        {{-- image --}}
+                                                        <img id="custom--preview-6" class="inventory--image-frame"
+                                                            src="{{ asset('assets/img/placeholder.png') }}"
+                                                            style="aspect-ratio: 1/2;" width="512" height="250"
+                                                            wire:ignore />
+
+                                                    </label>
+
+
+
+                                                    {{-- subtitle --}}
+                                                    <input class="form-control form--input text-center mb-2" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionSixthSubtitle'
+                                                        placeholder="Subtitle" />
+
+
+
+                                                    {{-- caption --}}
+                                                    <input class="form-control form--input text-center mb-4" type="text"
+                                                        wire:model='instanceSubscription.planCustomSectionSixthCaption'
+                                                        placeholder="Caption" />
+
+                                                </div>
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                        {{-- endRow --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         {{-- --------------------------------------- --}}
                                         {{-- --------------------------------------- --}}
                                         {{-- --------------------------------------- --}}
@@ -2193,7 +3599,8 @@
                                         {{-- :: submitButton --}}
                                         <div class="col-12 text-center mt-3">
                                             <button wire:loading.attr='disabled'
-                                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center">
+                                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center"
+                                                wire:target='instanceSubscription.planCustomSectionImageFile, instanceSubscription.planCustomSectionSecondImageFile, instanceSubscription.planCustomSectionThirdImageFile, instanceSubscription.planCustomSectionFourthImageFile, instanceSubscription.planCustomSectionFifthImageFile, instanceSubscription.planCustomSectionSixthImageFile'>
                                                 Save
                                             </button>
                                         </div>
@@ -2210,11 +3617,6 @@
                     </div>
                 </div>
                 {{-- endTab --}}
-
-
-
-
-
 
 
 

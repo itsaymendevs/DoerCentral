@@ -122,8 +122,9 @@
 
 
                     {{-- loop - plans --}}
-                    @foreach ($plans as $plan)
-                    <div class="col-4 col-xl-3 col-xxl-3">
+                    @foreach ($plans ?? [] as $plan)
+
+                    <div class="col-4 col-xl-3 col-xxl-3" key='single-plan-card-{{ $plan->id }}'>
                         <div class="overview--card client-version scale--self-05 mb-floating">
                             <div class="row">
 

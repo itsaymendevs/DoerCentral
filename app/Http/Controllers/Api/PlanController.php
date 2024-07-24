@@ -14,6 +14,7 @@ use App\Models\PlanBundleRange;
 use App\Models\PlanBundleRangePrice;
 use App\Models\PlanBundleRangeType;
 use App\Models\PlanBundleType;
+use App\Models\PlanPoint;
 use App\Models\PlanRange;
 use App\Models\Size;
 use App\Models\Type;
@@ -49,6 +50,8 @@ class PlanController extends Controller
 
         $plan->desc = $request->desc;
         $plan->longDesc = $request->longDesc;
+        $plan->caption = $request->caption ?? null;
+        $plan->videoURL = $request->videoURL ?? null;
         $plan->colorPaletteId = $request->colorPaletteId ?? null;
         $plan->startingPrice = $request->startingPrice;
 
@@ -59,10 +62,54 @@ class PlanController extends Controller
         $plan->imageFile = $request->imageFileName;
         $plan->secondImageFile = $request->secondImageFileName ?? null;
         $plan->thirdImageFile = $request->thirdImageFileName ?? null;
+        $plan->fourthImageFile = $request->fourthImageFileName ?? null;
+        $plan->fifthImageFile = $request->fifthImageFileName ?? null;
+        $plan->sixthImageFile = $request->sixthImageFileName ?? null;
 
 
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
+
+
+
+
+
+        // 1.3: section
+        $plan->sectionTitle = $request->sectionTitle ?? null;
 
         $plan->save();
+
+
+
+
+
+        // 1.4: sectionPoints
+        foreach ($request->points ?? [] as $key => $point) {
+
+
+            // 1: create
+            $planPoint = new PlanPoint();
+
+            $planPoint->planId = $plan->id;
+            $planPoint->content = $point;
+
+
+            $planPoint->save();
+
+
+        } // end loop
+
+
+
+
+
+
 
 
 
@@ -112,6 +159,8 @@ class PlanController extends Controller
 
         $plan->desc = $request->desc;
         $plan->longDesc = $request->longDesc;
+        $plan->caption = $request->caption ?? null;
+        $plan->videoURL = $request->videoURL ?? null;
         $plan->colorPaletteId = $request->colorPaletteId ?? null;
         $plan->startingPrice = $request->startingPrice;
 
@@ -122,9 +171,49 @@ class PlanController extends Controller
         $plan->imageFile = $request->imageFileName ?? null;
         $plan->secondImageFile = $request->secondImageFileName ?? null;
         $plan->thirdImageFile = $request->thirdImageFileName ?? null;
+        $plan->fourthImageFile = $request->fourthImageFileName ?? null;
+        $plan->fifthImageFile = $request->fifthImageFileName ?? null;
+        $plan->sixthImageFile = $request->sixthImageFileName ?? null;
 
+
+
+
+
+        // ----------------------------------------
+        // ----------------------------------------
+
+
+
+
+
+
+        // 1.3: section
+        $plan->sectionTitle = $request->sectionTitle ?? null;
 
         $plan->save();
+
+
+
+
+
+        // 1.4: sectionPoints - removePrevious
+        PlanPoint::where('planId', $plan->id)->delete();
+
+        foreach ($request->points ?? [] as $key => $point) {
+
+
+            // 1: create
+            $planPoint = new PlanPoint();
+
+            $planPoint->planId = $plan->id;
+            $planPoint->content = $point;
+
+            $planPoint->save();
+
+
+        } // end loop
+
+
 
 
 

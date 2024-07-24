@@ -10,7 +10,32 @@ class SubscriptionSettingsForm extends Form
 
 
     // :: variables
-    public $id, $textColor, $preloaderLineColor, $cursorColor, $cursorHoverColor, $planCardTitleColor, $planCardSubtitleColor, $planCardCaptionColor, $planCardHrColor, $plansHrColor, $navbarMenuColor, $navbarMenuActiveColor, $navbarLinksColor, $navbarLinksHoverColor, $navbarSocialLinksColor, $sliderLineColor, $sliderBulletsColor, $bodyBackgroundColor, $planCardBackgroundColor, $navbarBackgroundColor, $planCardRadius, $planCardAlignment;
+    public $id, $template, $textColor, $preloaderLineColor, $cursorColor, $cursorHoverColor, $planCardTitleColor, $planCardSubtitleColor, $planCardCaptionColor, $planCardHrColor, $planCardButtonColor, $planCardButtonHoverColor, $navbarMenuColor, $navbarMenuActiveColor, $navbarLinksColor, $navbarLinksHoverColor, $navbarSocialLinksColor, $sliderLineColor, $sliderBulletsColor, $planSideTitleColor, $planFilterLinksColor, $planFilterLinksHoverBorderColor, $planListNumbersColor, $planMealDietColor, $planReviewsTitleColor, $planMealsBorderColor, $planMealsHoverBorderColor;
+
+
+
+    public $bodyBackgroundColor, $planCardBackgroundColor, $planCardButtonBackgroundColor, $navbarBackgroundColor;
+
+
+    public $planSliderArrows, $planSideTitleDisplay, $planCardRadius, $planCardAlignment;
+
+    public $showPlanCustomSection, $showPlanMealsTypeFilter;
+
+
+
+
+
+
+    // 1.3: custom
+    public $planCustomSectionVideoURL, $planCustomSectionTitle, $planCustomSectionImageFile, $planCustomSectionSecondImageFile, $planCustomSectionThirdImageFile, $planCustomSectionFourthImageFile, $planCustomSectionFifthImageFile, $planCustomSectionSixthImageFile;
+
+
+    public $planCustomSectionImageFileName, $planCustomSectionSecondImageFileName, $planCustomSectionThirdImageFileName, $planCustomSectionFourthImageFileName, $planCustomSectionFifthImageFileName, $planCustomSectionSixthImageFileName;
+
+
+    public $planCustomSectionSubtitle, $planCustomSectionCaption, $planCustomSectionSecondSubtitle, $planCustomSectionSecondCaption, $planCustomSectionThirdSubtitle, $planCustomSectionThirdCaption, $planCustomSectionFourthSubtitle, $planCustomSectionFourthCaption, $planCustomSectionFifthSubtitle, $planCustomSectionFifthCaption, $planCustomSectionSixthSubtitle, $planCustomSectionSixthCaption;
+
+
 
 
 } // end class

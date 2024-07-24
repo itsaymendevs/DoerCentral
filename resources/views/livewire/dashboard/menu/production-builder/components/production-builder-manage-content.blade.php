@@ -111,7 +111,7 @@
                 {{-- header --}}
                 <thead>
                     <tr>
-                        <th class="th--md" style="opacity: 0" colspan="3">
+                        <th class="th--md" style="opacity: 0" colspan="4">
                             Placeholder
                         </th>
                     </tr>
@@ -227,19 +227,25 @@
 
 
 
-                        <td @if(!$versionPermission->menuModuleHasBuilderConversion) colspan='2' @endif class="fw-bold
+                        <td @if(!$versionPermission->menuModuleHasBuilderBrand &&
+                            !$versionPermission->menuModuleHasBuilderBrand) colspan='3'
+                            @elseif(!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
+                            @elseif(!$versionPermission->menuModuleHasBuilderBrand) colspan='2' @endif
+                            class="fw-bold
                             fs-11"></td>
 
 
 
 
                         {{-- :: permission - hasBrand --}}
-                        @if ($versionPermission->menuModuleHasBuilderConversion)
+                        @if ($versionPermission->menuModuleHasBuilderBrand)
 
                         <td class="fw-bold th--sm fs-11">Brand</td>
 
                         @endif
                         {{-- end if - permission --}}
+
+
 
 
 
@@ -254,6 +260,8 @@
 
                         @endif
                         {{-- end if - permission --}}
+
+
 
                     </tr>
                     {{-- endHeaders --}}
@@ -300,8 +308,12 @@
 
                         {{-- 1: select --}}
                         <td class="fw-bold tr--{{ $instanceUnique->typeName[$i] }} td--overflow"
-                            style="max-width: 250px;" @if(!$versionPermission->menuModuleHasBuilderConversion)
-                            colspan='2' @endif wire:ignore>
+                            style="max-width: 250px;" @if(!$versionPermission->menuModuleHasBuilderBrand &&
+                            !$versionPermission->menuModuleHasBuilderBrand) colspan='3'
+                            @elseif(!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
+                            @elseif(!$versionPermission->menuModuleHasBuilderBrand) colspan='2' @endif wire:ignore>
+
+
                             <div class="select--single-wrapper builder mx-auto" style="width: 100% !important;"
                                 wire:loading.class='no-events'>
                                 <select class="form-select part--select" id='part--select-{{ $i }}'
@@ -330,7 +342,7 @@
                         {{-- 2: brand --}}
 
                         {{-- :: permission - hasBrand --}}
-                        @if ($versionPermission->menuModuleHasBuilderConversion)
+                        @if ($versionPermission->menuModuleHasBuilderBrand)
 
 
                         <td class="fw-bold" wire:ignore>
@@ -424,7 +436,8 @@
 
 
                         {{-- fallback --}}
-                        @if ($instanceUnique->partType[$i] != 'Main')
+                        @if ($versionPermission->menuModuleHasBuilderConversion && $instanceUnique->partType[$i] !=
+                        'Main')
 
                         <td></td>
 
@@ -513,7 +526,7 @@
 
 
                         {{-- :: permission - hasBrand --}}
-                        @if ($versionPermission->menuModuleHasBuilderConversion)
+                        @if ($versionPermission->menuModuleHasBuilderBrand)
 
 
 

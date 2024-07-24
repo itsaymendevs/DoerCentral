@@ -303,6 +303,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     @endforeach
                     {{-- end loop - blogs --}}
 

@@ -898,6 +898,13 @@ class ExtraController extends Controller
 
 
 
+
+        // 1.1: template
+        $settings->template = $request->template ?? null;
+
+
+
+
         // 1.2: colors
         $settings->textColor = $request->textColor ?? null;
         $settings->preloaderLineColor = $request->preloaderLineColor ?? null;
@@ -909,6 +916,9 @@ class ExtraController extends Controller
         $settings->planCardSubtitleColor = $request->planCardSubtitleColor ?? null;
         $settings->planCardCaptionColor = $request->planCardCaptionColor ?? null;
         $settings->planCardHrColor = $request->planCardHrColor ?? null;
+        $settings->planCardButtonColor = $request->planCardButtonColor ?? null;
+        $settings->planCardButtonHoverColor = $request->planCardButtonHoverColor ?? null;
+
         $settings->navbarMenuColor = $request->navbarMenuColor ?? null;
         $settings->navbarMenuActiveColor = $request->navbarMenuActiveColor ?? null;
 
@@ -917,6 +927,20 @@ class ExtraController extends Controller
         $settings->navbarLinksHoverColor = $request->navbarLinksHoverColor ?? null;
         $settings->navbarSocialLinksColor = $request->navbarSocialLinksColor ?? null;
 
+
+        $settings->planSideTitleColor = $request->planSideTitleColor ?? null;
+        $settings->planFilterLinksColor = $request->planFilterLinksColor ?? null;
+        $settings->planFilterLinksHoverBorderColor = $request->planFilterLinksHoverBorderColor ?? null;
+        $settings->planListNumbersColor = $request->planListNumbersColor ?? null;
+        $settings->planMealDietColor = $request->planMealDietColor ?? null;
+        $settings->planMealsBorderColor = $request->planMealsBorderColor ?? null;
+        $settings->planMealsHoverBorderColor = $request->planMealsHoverBorderColor ?? null;
+        $settings->planReviewsTitleColor = $request->planReviewsTitleColor ?? null;
+
+
+
+
+
         $settings->sliderLineColor = $request->sliderLineColor ?? null;
         $settings->sliderBulletsColor = $request->sliderBulletsColor ?? null;
 
@@ -924,7 +948,10 @@ class ExtraController extends Controller
 
         // 2: backgrounds
         $settings->bodyBackgroundColor = $request->bodyBackgroundColor ?? null;
+
         $settings->planCardBackgroundColor = $request->planCardBackgroundColor ?? null;
+        $settings->planCardButtonBackgroundColor = $request->planCardButtonBackgroundColor ?? null;
+
         $settings->navbarBackgroundColor = $request->navbarBackgroundColor ?? null;
 
 
@@ -938,6 +965,55 @@ class ExtraController extends Controller
 
         // 4: alignments
         $settings->planCardAlignment = $request->planCardAlignment ?? null;
+
+
+
+        // 5: extra
+        $settings->planSliderArrows = $request->planSliderArrows ?? null;
+        $settings->planSideTitleDisplay = $request->planSideTitleDisplay ?? 'inline';
+
+
+
+        // 6: hide / show
+        $settings->showPlanCustomSection = boolval($request->showPlanCustomSection ?? false);
+        $settings->showPlanMealsTypeFilter = boolval($request->showPlanMealsTypeFilter ?? false);
+
+
+
+
+
+        // 7: custom
+        $settings->planCustomSectionVideoURL = $request->planCustomSectionVideoURL ?? null;
+        $settings->planCustomSectionTitle = $request->planCustomSectionTitle ?? null;
+
+        $settings->planCustomSectionImageFile = $request->planCustomSectionImageFileName ?? null;
+        $settings->planCustomSectionSubtitle = $request->planCustomSectionSubtitle ?? null;
+        $settings->planCustomSectionCaption = $request->planCustomSectionCaption ?? null;
+
+        $settings->planCustomSectionSecondImageFile = $request->planCustomSectionSecondImageFileName ?? null;
+        $settings->planCustomSectionSecondSubtitle = $request->planCustomSectionSecondSubtitle ?? null;
+        $settings->planCustomSectionSecondCaption = $request->planCustomSectionSecondCaption ?? null;
+
+        $settings->planCustomSectionThirdImageFile = $request->planCustomSectionThirdImageFileName ?? null;
+        $settings->planCustomSectionThirdSubtitle = $request->planCustomSectionThirdSubtitle ?? null;
+        $settings->planCustomSectionThirdCaption = $request->planCustomSectionThirdCaption ?? null;
+
+
+        $settings->planCustomSectionFourthImageFile = $request->planCustomSectionFourthImageFileName ?? null;
+        $settings->planCustomSectionFourthSubtitle = $request->planCustomSectionFourthSubtitle ?? null;
+        $settings->planCustomSectionFourthCaption = $request->planCustomSectionFourthCaption ?? null;
+
+
+        $settings->planCustomSectionFifthImageFile = $request->planCustomSectionFifthImageFileName ?? null;
+        $settings->planCustomSectionFifthSubtitle = $request->planCustomSectionFifthSubtitle ?? null;
+        $settings->planCustomSectionFifthCaption = $request->planCustomSectionFifthCaption ?? null;
+
+
+        $settings->planCustomSectionSixthImageFile = $request->planCustomSectionSixthImageFileName ?? null;
+        $settings->planCustomSectionSixthSubtitle = $request->planCustomSectionSixthSubtitle ?? null;
+        $settings->planCustomSectionSixthCaption = $request->planCustomSectionSixthCaption ?? null;
+
+
 
         $settings->save();
 

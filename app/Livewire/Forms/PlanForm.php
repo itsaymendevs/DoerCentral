@@ -14,13 +14,19 @@ class PlanForm extends Form
     #[Validate('required')]
     public $name, $startingPrice, $desc, $longDesc;
 
-    public $id, $nameURL, $colorPaletteId, $imageFile, $secondImageFile, $thirdImageFile;
+    public $id, $nameURL, $sectionTitle, $caption, $videoURL, $colorPaletteId, $imageFile, $secondImageFile, $thirdImageFile, $fourthImageFile, $fifthImageFile, $sixthImageFile;
 
 
 
 
     // :: helpers
-    public $imageFileName, $secondImageFileName, $thirdImageFileName;
+    public $imageFileName, $secondImageFileName, $thirdImageFileName, $fourthImageFileName, $fifthImageFileName, $sixthImageFileName;
+
+
+
+
+    // :: relation
+    public $points = [];
 
 
 } // end form

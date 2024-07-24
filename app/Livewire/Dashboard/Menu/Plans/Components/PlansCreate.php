@@ -19,6 +19,7 @@ class PlansCreate extends Component
 
     // :: variables
     public PlanForm $instance;
+    public $sectionPoint;
 
 
 
@@ -69,6 +70,26 @@ class PlansCreate extends Component
 
 
 
+        if ($this->instance->fourthImageFile)
+            $this->instance->fourthImageFileName = $this->uploadFile($this->instance->fourthImageFile, 'menu/plans', 'PLN-T');
+
+
+
+
+        if ($this->instance->fifthImageFile)
+            $this->instance->fifthImageFileName = $this->uploadFile($this->instance->fifthImageFile, 'menu/plans', 'PLN-T');
+
+
+
+
+        if ($this->instance->sixthImageFile)
+            $this->instance->sixthImageFileName = $this->uploadFile($this->instance->sixthImageFile, 'menu/plans', 'PLN-T');
+
+
+
+
+
+
         // ## log - activity ##
         $this->storeActivity('Menu', "Created plan {$this->instance->name}");
 
@@ -87,11 +108,15 @@ class PlansCreate extends Component
 
         // :: resetForm - resetFilePreview
         $this->instance->reset();
+        $this->sectionPoint = null;
+
         $this->dispatch('refreshViews');
         $this->dispatch('closeModal', modal: '#new-plan .btn--close');
         $this->dispatch('resetFile', file: 'plan--file-1', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'plan--file-2', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'plan--file-3', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-4', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-5', defaultPreview: $this->getDefaultPreview());
 
 
 
@@ -107,6 +132,75 @@ class PlansCreate extends Component
 
 
 
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+    public function append()
+    {
+
+
+
+        // 1: checkPoint
+        if ($this->sectionPoint) {
+
+
+            array_push($this->instance->points, $this->sectionPoint);
+            $this->sectionPoint = null;
+
+
+        } // end if
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------------------------------------
+
+
+
+
+
+
+    public function remove($key)
+    {
+
+
+
+        // 1: checkPoints
+        if ($this->instance->points[$key]) {
+
+            unset($this->instance->points[$key]);
+
+        } // end if
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
     // ------------------------------------------------------------------
 
 
@@ -117,8 +211,6 @@ class PlansCreate extends Component
 
     public function render()
     {
-
-
 
 
         // :: initTooltips

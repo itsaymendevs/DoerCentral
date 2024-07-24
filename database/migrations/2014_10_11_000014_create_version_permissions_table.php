@@ -149,6 +149,7 @@ return new class extends Migration {
             $table->boolean('menuModuleHasBuilderSizeOverview')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderExtraItems')->nullable()->default(1);
 
+            $table->boolean('menuModuleHasBuilderBrand')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderMacros')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderReplacements')->nullable()->default(1);
             $table->boolean('menuModuleHasBuilderPercentage')->nullable()->default(1);

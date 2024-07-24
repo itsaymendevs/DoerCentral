@@ -238,6 +238,50 @@ class Settings extends Component
 
 
 
+        $this->instanceSubscription->planCustomSectionImageFileName = $this->instanceSubscription->planCustomSectionImageFile;
+
+        $this->instanceSubscription->planCustomSectionSecondImageFileName = $this->instanceSubscription->planCustomSectionSecondImageFile ?? null;
+
+        $this->instanceSubscription->planCustomSectionThirdImageFileName = $this->instanceSubscription->planCustomSectionThirdImageFile ?? null;
+
+        $this->instanceSubscription->planCustomSectionFourthImageFileName = $this->instanceSubscription->planCustomSectionFourthImageFile ?? null;
+
+        $this->instanceSubscription->planCustomSectionFifthImageFileName = $this->instanceSubscription->planCustomSectionFifthImageFile ?? null;
+
+        $this->instanceSubscription->planCustomSectionSixthImageFileName = $this->instanceSubscription->planCustomSectionSixthImageFile ?? null;
+
+
+
+
+
+
+        // 1.2: setFilePreview
+        $preview = asset('storage/extra/subscription/custom/' . $this->instanceSubscription->planCustomSectionImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'custom--preview-1', defaultPreview: $this->instanceSubscription->planCustomSectionImageFile ? $preview : $this->getDefaultPreview());
+
+
+        $preview = asset('storage/extra/subscription/custom/' . $this->instanceSubscription->planCustomSectionSecondImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'custom--preview-2', defaultPreview: $this->instanceSubscription->planCustomSectionSecondImageFile ? $preview : $this->getDefaultPreview());
+
+
+        $preview = asset('storage/extra/subscription/custom/' . $this->instanceSubscription->planCustomSectionThirdImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'custom--preview-3', defaultPreview: $this->instanceSubscription->planCustomSectionThirdImageFile ? $preview : $this->getDefaultPreview());
+
+
+        $preview = asset('storage/extra/subscription/custom/' . $this->instanceSubscription->planCustomSectionFourthImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'custom--preview-4', defaultPreview: $this->instanceSubscription->planCustomSectionFourthImageFile ? $preview : $this->getDefaultPreview());
+
+
+
+        $preview = asset('storage/extra/subscription/custom/' . $this->instanceSubscription->planCustomSectionFifthImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'custom--preview-5', defaultPreview: $this->instanceSubscription->planCustomSectionFifthImageFile ? $preview : $this->getDefaultPreview());
+
+
+
+        $preview = asset('storage/extra/subscription/custom/' . $this->instanceSubscription->planCustomSectionSixthImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'custom--preview-6', defaultPreview: $this->instanceSubscription->planCustomSectionSixthImageFile ? $preview : $this->getDefaultPreview());
+
+
 
 
     } // end function
@@ -526,6 +570,8 @@ class Settings extends Component
 
 
 
+
+
         // --------------------------------------
         // --------------------------------------
 
@@ -533,13 +579,68 @@ class Settings extends Component
 
 
 
-        // 1: makeRequest
+
+
+
+        // 1: replaceFiles
+        if ($this->instanceSubscription->planCustomSectionImageFile != $this->instanceSubscription->planCustomSectionImageFileName)
+            $this->instanceSubscription->planCustomSectionImageFileName = $this->replaceFile($this->instanceSubscription->planCustomSectionImageFile, 'extra/subscription/custom', $this->instanceSubscription->planCustomSectionImageFileName, 'SFI');
+
+
+
+
+        if ($this->instanceSubscription->planCustomSectionSecondImageFile != $this->instanceSubscription->planCustomSectionSecondImageFileName)
+            $this->instanceSubscription->planCustomSectionSecondImageFileName = $this->replaceFile($this->instanceSubscription->planCustomSectionSecondImageFile, 'extra/subscription/custom', $this->instanceSubscription->planCustomSectionSecondImageFileName, 'SSE');
+
+
+
+
+        if ($this->instanceSubscription->planCustomSectionThirdImageFile != $this->instanceSubscription->planCustomSectionThirdImageFileName)
+            $this->instanceSubscription->planCustomSectionThirdImageFileName = $this->replaceFile($this->instanceSubscription->planCustomSectionThirdImageFile, 'extra/subscription/custom', $this->instanceSubscription->planCustomSectionThirdImageFileName, 'STH');
+
+
+
+        if ($this->instanceSubscription->planCustomSectionFourthImageFile != $this->instanceSubscription->planCustomSectionFourthImageFileName)
+            $this->instanceSubscription->planCustomSectionFourthImageFileName = $this->replaceFile($this->instanceSubscription->planCustomSectionFourthImageFile, 'extra/subscription/custom', $this->instanceSubscription->planCustomSectionFourthImageFileName, 'SFO');
+
+
+
+
+
+        if ($this->instanceSubscription->planCustomSectionFifthImageFile != $this->instanceSubscription->planCustomSectionFifthImageFileName)
+            $this->instanceSubscription->planCustomSectionFifthImageFileName = $this->replaceFile($this->instanceSubscription->planCustomSectionFifthImageFile, 'extra/subscription/custom', $this->instanceSubscription->planCustomSectionFifthImageFileName, 'SFO');
+
+
+
+
+
+
+        if ($this->instanceSubscription->planCustomSectionSixthImageFile != $this->instanceSubscription->planCustomSectionSixthImageFileName)
+            $this->instanceSubscription->planCustomSectionSixthImageFileName = $this->replaceFile($this->instanceSubscription->planCustomSectionSixthImageFile, 'extra/subscription/custom', $this->instanceSubscription->planCustomSectionSixthImageFileName, 'SFO');
+
+
+
+
+
+
+
+
+        // ------------------------------------------------
+        // ------------------------------------------------
+
+
+
+
+
+
+
+        // 2: makeRequest
         $response = $this->makeRequest('dashboard/extra/settings/subscription/update', $this->instanceSubscription);
 
 
 
 
-        // 1.2: alert
+        // 2.1: alert
         $this->makeAlert('success', $response?->message);
 
 
@@ -651,6 +752,67 @@ class Settings extends Component
 
 
 
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+    public function updatePlansTemplate($name)
+    {
+
+
+
+
+        // :: rolePermission
+        if (! session('globalUser')->checkPermission('Edit Actions')) {
+
+            $this->makeAlert('info', 'Editing is not allowed for this account');
+
+            return false;
+
+        } // end if
+
+
+
+
+
+
+
+
+        // --------------------------------------
+        // --------------------------------------
+
+
+
+
+
+
+
+        // 2: makeRequest
+        $this->instanceSubscription->template = $name;
+
+        $response = $this->makeRequest('dashboard/extra/settings/subscription/update', $this->instanceSubscription);
+
+
+
+
+        // 2.1: alert
+        $this->makeAlert('success', $response?->message);
+
+
+
+
+
+
+
+
+    } // end if
 
 
 

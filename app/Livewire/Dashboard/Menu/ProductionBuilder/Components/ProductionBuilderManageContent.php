@@ -1566,7 +1566,7 @@ class ProductionBuilderManageContent extends Component
 
 
 
-        if ($this->instance->partId[$i]) {
+        if ($this->instance->partId[$i] && $this->instance->amount[$i]) {
 
 
 
@@ -1707,7 +1707,7 @@ class ProductionBuilderManageContent extends Component
         for ($i = 0; $i < count($this->instance->grams ?? []); $i++) {
 
 
-            if ($this->instance->isRemoved[$i] == false && $this->instance->isDefault[$i] == true) {
+            if ($this->instance->isRemoved[$i] == false && $this->instance->isDefault[$i] == true && $this->instance->grams[$i]) {
 
 
 

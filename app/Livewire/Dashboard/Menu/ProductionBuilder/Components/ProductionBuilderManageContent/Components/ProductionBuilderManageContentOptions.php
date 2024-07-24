@@ -170,7 +170,7 @@ class ProductionBuilderManageContentOptions extends Component
         for ($i = 0; $i < count($instance->grams ?? []); $i++) {
 
 
-            if ($instance->isRemoved[$i] == false) {
+            if ($instance->isRemoved[$i] == false && $instance->grams[$i]) {
 
 
 

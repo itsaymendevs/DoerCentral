@@ -58,6 +58,7 @@ class MealIngredient extends Model
 
 
         // :: root
+        $currentAmount ? $currentAmount : $currentAmount = 0;
         $totalCalories = $totalProteins = $totalCarbs = $totalFats = $totalCost = 0;
 
 

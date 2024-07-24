@@ -436,6 +436,7 @@ class ProductionBuilderViewIngredient extends Component
         // 1: dependencies
         if ($this->instance?->amount >= 0) {
 
+
             $this->reCalculateMacros();
             $this->dispatch('reCalculateTotalMacros', id: "#ingredient--grams-input-{$this->instance->typeId}-{$this->instance->id}");
 

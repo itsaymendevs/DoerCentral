@@ -150,7 +150,6 @@ class KitchenTodayPreparations extends Component
 
                     // 3.3.1: getMealSize - customerExcludes
                     $mealSize = $scheduleMeal->mealSize();
-                    // $customerExcludes = $scheduleMeal->customerExcludes();
 
 
 
@@ -159,6 +158,8 @@ class KitchenTodayPreparations extends Component
 
                     // ---------------------------------
                     // ---------------------------------
+
+
 
 
 
@@ -168,12 +169,13 @@ class KitchenTodayPreparations extends Component
                     $mealSizeIngredientsWithGrams = $mealSize?->ingredientsWithGrams() ?? [];
 
 
-                    // 3.3.3: multiplyByMeals
-                    // $mealSizeIngredientsWithGramsMultiplied = array_map(function ($element) use ($scheduleMealsByMeal) {
 
-                    //     return $element * ($scheduleMealsByMeal->count() ?? 0);
 
-                    // }, $mealSizeIngredientsWithGrams);
+
+                    // 3.3.3: get customerExcludes
+                    $combined = $scheduleMeal->customer->checkMealCompatibility($commonMeal);
+                    $excludeIngredients = $combined?->excludeIngredients?->pluck('id')?->toArray() ?? [];
+
 
 
 
@@ -182,7 +184,6 @@ class KitchenTodayPreparations extends Component
 
                     // ---------------------------------
                     // ---------------------------------
-
 
 
 
@@ -195,9 +196,16 @@ class KitchenTodayPreparations extends Component
 
                     foreach (array_keys($this->ingredientsWithGrams + ($mealSizeIngredientsWithGrams ?? [])) as $key) {
 
-                        $sumArray[$key] = (isset($this->ingredientsWithGrams[$key]) ? $this->ingredientsWithGrams[$key] : 0) + (isset($mealSizeIngredientsWithGrams[$key]) ? $mealSizeIngredientsWithGrams[$key] : 0);
+
+                        if (! in_array($key, $excludeIngredients)) {
+
+                            $sumArray[$key] = (isset($this->ingredientsWithGrams[$key]) ? $this->ingredientsWithGrams[$key] : 0) + (isset($mealSizeIngredientsWithGrams[$key]) ? $mealSizeIngredientsWithGrams[$key] : 0);
+
+                        } // end if
+
 
                     } // end loop
+
 
 
                     $this->ingredientsWithGrams = $sumArray;
@@ -208,10 +216,7 @@ class KitchenTodayPreparations extends Component
 
 
 
-
                 } // end loop - scheduleMeals
-
-
 
 
 

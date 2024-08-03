@@ -436,9 +436,9 @@ class Meal extends Model
 
         foreach ($mealIngredients?->where('isDefault', 1) ?? [] as $mealIngredient) {
 
-            if ($mealIngredient->ingredient && $mealIngredient->ingredient->excludeId) {
+            if ($mealIngredient->ingredient && $mealIngredient->ingredient->excludes) {
 
-                array_push($excludes, $mealIngredient->ingredient->excludeId);
+                array_push($excludes, ...$mealIngredient->ingredient->excludesInArray());
                 array_push($excludeIngredients, $mealIngredient->ingredient->id);
 
             } // end if
@@ -446,9 +446,9 @@ class Meal extends Model
 
 
 
-            if ($mealIngredient->ingredient && $mealIngredient->ingredient->allergyId) {
+            if ($mealIngredient->ingredient && $mealIngredient->ingredient->allergies) {
 
-                array_push($allergies, $mealIngredient->ingredient->allergyId);
+                array_push($allergies, ...$mealIngredient->ingredient->allergiesInArray());
                 array_push($allergyIngredients, $mealIngredient->ingredient->id);
 
             } // end if

@@ -172,7 +172,7 @@ class KitchenTodayProductionViewExcludes extends Component
 
                     // 1.4.6: getAmount of ingredient
                     $mealSizeTotalAmount = $mealSizePart->part?->sizes?->first()?->totalGrams() ?? 1;
-                    $amount = ((($partIngredient?->amount ?? 0) / $mealSizeTotalAmount) * 100) * $mealSizePart->amount / 100;
+                    $amount = (($partIngredient?->amount ?? 0) / $mealSizeTotalAmount) * $mealSizePart->amount;
 
 
 
@@ -189,7 +189,7 @@ class KitchenTodayProductionViewExcludes extends Component
 
 
 
-                    $this->partsBySize[$scheduleMeal?->mealSize()?->sizeId][$partIngredient->ingredientId]['amount'] = ($this->partsBySize[$scheduleMeal?->mealSize()?->sizeId][$partIngredient->ingredientId]['amount'] ?? 0) + ($partIngredient?->amount ?? 0);
+                    $this->partsBySize[$scheduleMeal?->mealSize()?->sizeId][$partIngredient->ingredientId]['amount'] = ($this->partsBySize[$scheduleMeal?->mealSize()?->sizeId][$partIngredient->ingredientId]['amount'] ?? 0) + $amount;
 
 
 

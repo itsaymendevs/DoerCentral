@@ -2,10 +2,12 @@
 
 namespace App\Traits;
 
+use App\Models\AllergyIngredient;
 use App\Models\Customer;
 use App\Models\CustomerSubscription;
 use App\Models\CustomerSubscriptionSchedule;
 use App\Models\CustomerSubscriptionScheduleReplacement;
+use App\Models\ExcludeIngredient;
 use App\Models\Ingredient;
 use App\Models\Meal;
 use stdClass;
@@ -269,14 +271,14 @@ trait MenuCalendarTrait
 
 
 
-        $excludeIngredients = Ingredient::whereIn('id', $excludeIngredients)
-            ->whereIn('excludeId', $excludes)?->pluck('id')->toArray();
+        $excludeIngredients = ExcludeIngredient::whereIn('ingredientId', $excludeIngredients)
+            ->whereIn('excludeId', $excludes)?->pluck('ingredientId')->toArray();
 
 
 
 
-        $allergyIngredients = Ingredient::whereIn('id', $allergyIngredients)
-            ->whereIn('allergyId', $allergies)?->pluck('id')->toArray();
+        $allergyIngredients = AllergyIngredient::whereIn('ingredientId', $allergyIngredients)
+            ->whereIn('allergyId', $allergies)?->pluck('ingredientId')->toArray();
 
 
 

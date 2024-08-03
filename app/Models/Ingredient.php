@@ -89,6 +89,30 @@ class Ingredient extends Model
 
 
 
+    public function excludes()
+    {
+
+        return $this->hasMany(ExcludeIngredient::class, 'ingredientId', 'id');
+
+    } // end function
+
+
+
+
+
+
+
+    public function allergies()
+    {
+
+        return $this->hasMany(AllergyIngredient::class, 'ingredientId', 'id');
+
+    } // end function
+
+
+
+
+
 
 
 
@@ -152,6 +176,44 @@ class Ingredient extends Model
     // -------------------------------------------------
     // -------------------------------------------------
     // -------------------------------------------------
+
+
+
+
+
+
+
+    public function excludesInArray()
+    {
+
+
+        // 1: getExcludes
+        $excludes = $this->excludes()?->get()?->pluck('excludeId')?->toArray() ?? [];
+
+        return $excludes;
+
+
+    } // end function
+
+
+
+
+
+
+
+    public function allergiesInArray()
+    {
+
+
+        // 1: getAllergies
+        $allergies = $this->allergies()?->get()?->pluck('allergyId')?->toArray() ?? [];
+
+        return $allergies;
+
+
+    } // end function
+
+
 
 
 

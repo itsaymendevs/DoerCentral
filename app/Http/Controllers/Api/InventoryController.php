@@ -798,8 +798,6 @@ class InventoryController extends Controller
         $ingredient->groupId = $request->groupId;
         $ingredient->categoryId = $request->categoryId;
 
-        $ingredient->excludeId = $request->excludeId ?? null;
-        $ingredient->allergyId = $request->allergyId ?? null;
 
 
 
@@ -907,8 +905,6 @@ class InventoryController extends Controller
         $ingredient->groupId = $request->groupId;
         $ingredient->categoryId = $request->categoryId;
 
-        $ingredient->excludeId = $request->excludeId ?? null;
-        $ingredient->allergyId = $request->allergyId ?? null;
 
 
 

@@ -159,22 +159,6 @@
 
 
 
-                            {{-- exclude --}}
-                            <div wire:ignore>
-                                <label class="form-label form--label">Exclude</label>
-                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select form--modal-edit-ingredient-select"
-                                        data-modal='#edit-ingredient' id='exclude-select-2' data-trigger='true'
-                                        data-instance='instance.excludeId'>
-                                        <option value=""></option>
-
-                                        @foreach ($excludes as $exclude)
-                                        <option value="{{ $exclude->id }}">{{ $exclude->name }}</option>
-                                        @endforeach
-
-                                    </select>
-                                </div>
-                            </div>
 
 
 
@@ -183,7 +167,7 @@
                             <div>
                                 <label class="form-label form--label">Usage</label>
                                 <textarea class="form-control form--input form--textarea mb-4"
-                                    wire:model='instance.usage'></textarea>
+                                    wire:model='instance.usage' style="height:126px"></textarea>
                             </div>
                         </div>
                         {{-- endCol --}}
@@ -237,29 +221,13 @@
 
 
 
-                            {{-- allergy --}}
-                            <div wire:ignore>
-                                <label class="form-label form--label">Alllergy</label>
-                                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                    <select class="form-select form--modal-select form--modal-edit-ingredient-select"
-                                        data-modal='#edit-ingredient' id='allergy-select-2' data-trigger='true'
-                                        data-instance='instance.allergyId'>
-                                        <option value=""></option>
-
-                                        @foreach ($allergies as $allergy)
-                                        <option value="{{ $allergy->id }}">{{ $allergy->name }}</option>
-                                        @endforeach
-
-                                    </select>
-                                </div>
-                            </div>
 
 
                             {{-- breif - Desc --}}
                             <div>
                                 <label class="form-label form--label">Breif</label>
                                 <textarea class="form-control form--input form--textarea mb-4"
-                                    wire:model='instance.desc'></textarea>
+                                    wire:model='instance.desc' style="height:126px"></textarea>
                             </div>
 
 

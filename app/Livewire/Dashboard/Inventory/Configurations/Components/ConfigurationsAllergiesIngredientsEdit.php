@@ -105,7 +105,6 @@ class ConfigurationsAllergiesIngredientsEdit extends Component
 
 
 
-
         // 1: makeRequest
         $response = $this->makeRequest('dashboard/inventory/configurations/allergies/ingredients/update', $this->instance);
 

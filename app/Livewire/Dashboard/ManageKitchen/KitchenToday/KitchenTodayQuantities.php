@@ -146,6 +146,7 @@ class KitchenTodayQuantities extends Component
 
 
 
+
                     // ---------------------------------
                     // ---------------------------------
 
@@ -154,7 +155,15 @@ class KitchenTodayQuantities extends Component
 
 
                     // 3.3.2: contentWithGrams
-                    $contentWithGrams = $mealSize?->contentWithGrams(1) ?? [];
+                    $contentWithGrams = $mealSize?->contentWithGrams() ?? [];
+
+
+
+
+                    // 3.3.3: get customerExcludes
+                    $combined = $scheduleMeal->customer->checkMealCompatibility($commonMeal);
+                    $excludeIngredients = $combined?->excludeIngredients?->pluck('id')?->toArray() ?? [];
+
 
 
 
@@ -197,7 +206,13 @@ class KitchenTodayQuantities extends Component
 
                     foreach (array_keys($this->ingredientsWithGrams + ($contentWithGrams?->ingredientsWithGrams ?? [])) as $key) {
 
-                        $sumArray[$key] = (isset($this->ingredientsWithGrams[$key]) ? $this->ingredientsWithGrams[$key] : 0) + (isset($contentWithGrams?->ingredientsWithGrams[$key]) ? $contentWithGrams?->ingredientsWithGrams[$key] : 0);
+
+                        if (! in_array($key, $excludeIngredients)) {
+
+                            $sumArray[$key] = (isset($this->ingredientsWithGrams[$key]) ? $this->ingredientsWithGrams[$key] : 0) + (isset($contentWithGrams?->ingredientsWithGrams[$key]) ? $contentWithGrams?->ingredientsWithGrams[$key] : 0);
+
+                        } // end if
+
 
                     } // end loop
 

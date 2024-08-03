@@ -169,6 +169,15 @@ class PurchaseOrders extends Component
 
 
 
+                    // 3.3.3: get customerExcludes
+                    $combined = $scheduleMeal->customer->checkMealCompatibility($commonMeal);
+                    $excludeIngredients = $combined?->excludeIngredients?->pluck('id')?->toArray() ?? [];
+
+
+
+
+
+
 
                     // 3.3.3: multiplyByMeals
                     // $mealSizeIngredientsWithGramsMultiplied = array_map(function ($element) use ($scheduleMealsByMeal) {
@@ -190,14 +199,23 @@ class PurchaseOrders extends Component
 
 
 
-                    // 3.3.4: merge
+                    // 3.3.4: merge - checkExclusion
                     $sumArray = [];
+
 
                     foreach (array_keys($this->ingredientsWithGrams + ($mealSizeIngredientsWithGrams ?? [])) as $key) {
 
-                        $sumArray[$key] = (isset($this->ingredientsWithGrams[$key]) ? $this->ingredientsWithGrams[$key] : 0) + (isset($mealSizeIngredientsWithGrams[$key]) ? $mealSizeIngredientsWithGrams[$key] : 0);
+
+                        if (! in_array($key, $excludeIngredients)) {
+
+                            $sumArray[$key] = (isset($this->ingredientsWithGrams[$key]) ? $this->ingredientsWithGrams[$key] : 0) + (isset($mealSizeIngredientsWithGrams[$key]) ? $mealSizeIngredientsWithGrams[$key] : 0);
+
+                        } // end if
+
 
                     } // end loop
+
+
 
 
                     $this->ingredientsWithGrams = $sumArray;

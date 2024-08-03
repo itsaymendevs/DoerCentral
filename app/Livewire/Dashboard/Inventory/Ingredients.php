@@ -202,10 +202,9 @@ class Ingredients extends Component
 
             $this->searchGroup ? $item->groupId != $this->searchGroup ? $toReturn = false : null : null;
 
-            $this->searchExclude ? $item->excludeId != $this->searchExclude ? $toReturn = false : null : null;
+            $this->searchExclude ? ! in_array($this->searchExclude, $item->excludesInArray()) ? $toReturn = false : null : null;
 
-            $this->searchAllergy ? $item->allergyId != $this->searchAllergy ? $toReturn = false : null : null;
-
+            $this->searchAllergy ? ! in_array($this->searchAllergy, $item->allergiesInArray()) ? $toReturn = false : null : null;
 
             return $toReturn;
 

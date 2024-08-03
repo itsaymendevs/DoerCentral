@@ -314,7 +314,7 @@ class CustomerSubscriptionScheduleMeal extends Model
         // 2.1: loop - excludeCustomers
         foreach ($excludeCustomers ?? [] as $excludeCustomer) {
 
-            $customerExcludes[$excludeCustomer->customerId] = array_merge($customerExcludes[$excludeCustomer->customerId] ?? [], $excludeCustomer?->exclude?->ingredients?->whereIn('id', $combine['excludeIngredients'])?->pluck('id')?->toArray() ?? []);
+            $customerExcludes[$excludeCustomer->customerId] = array_merge($customerExcludes[$excludeCustomer->customerId] ?? [], $excludeCustomer?->exclude?->ingredientsList?->whereIn('ingredientId', $combine['excludeIngredients'])?->pluck('ingredientId')?->toArray() ?? []);
 
 
         } // end loop

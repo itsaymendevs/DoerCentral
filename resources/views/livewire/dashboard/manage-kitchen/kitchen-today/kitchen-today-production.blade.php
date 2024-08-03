@@ -762,7 +762,9 @@
                                             {{-- name - grams --}}
                                             {{-- previous: * $scheduleMealsBySize->count() --}}
                                             <small class="fw-semibold text-gold fs-13 me-1">
-                                                {{ ($mealSizePart?->amount ?? 0) / $unit }}</small>
+                                                {{ ($mealSizePart?->amount ?? 0) / $unit }}
+                                                <small class='fs-10'>{{ $unit == 1 ? '(G)' : '(KG)' }}</small>
+                                            </small>
                                             {{ $mealSizePart?->part?->name }}
 
 

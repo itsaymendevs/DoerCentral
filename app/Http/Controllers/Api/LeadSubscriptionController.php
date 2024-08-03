@@ -133,9 +133,16 @@ class LeadSubscriptionController extends Controller
         $lead->lastName = $request->lastName;
 
         $lead->email = $request->email;
+        $lead->emailProvider = $request->emailProvider;
+
         $lead->gender = $request?->gender ?? 'Male';
+
         $lead->phone = $request->phone ?? null;
+        $lead->phoneKey = $request->phoneKey ?? null;
+
         $lead->whatsapp = $request->whatsapp ?? null;
+        $lead->whatsappKey = $request->whatsappKey ?? null;
+
 
 
 
@@ -336,7 +343,7 @@ class LeadSubscriptionController extends Controller
         // 1.3: planInformation
         $lead->planId = $request->planId;
         $lead->planBundleId = $request->planBundleId;
-        $lead->planRangeId = $request->bundleRangeId; // :: rangeId / planRangeId
+        $lead->planRangeId = $request->planRangeId;
 
 
 
@@ -370,8 +377,8 @@ class LeadSubscriptionController extends Controller
 
 
         // 1.6: CheckoutPrices
-        $lead->totalBundleRangePrice = round(doubleval($request->totalBundleRangePrice), 2);
-        $lead->planPrice = round(doubleval($request->totalBundleRangePrice), 2);
+        $lead->totalBundleRangePrice = round(doubleval($request->totalPlanBundleRangePrice), 2);
+        $lead->planPrice = round(doubleval($request->totalPlanBundleRangePrice), 2);
         $lead->totalPrice = round(doubleval($request->totalPrice), 2);
         $lead->totalCheckoutPrice = round(doubleval($request->totalCheckoutPrice), 2);
 
@@ -462,7 +469,7 @@ class LeadSubscriptionController extends Controller
 
 
         // 1: bundleTypes
-        $lead->bundleTypes = $request->bundleTypes ? serialize($request->bundleTypes) : null;
+        $lead->bundleTypes = $request->planBundleTypes ? serialize($request->planBundleTypes) : null;
 
 
         $lead->save();

@@ -6,6 +6,7 @@ use App\Livewire\Forms\MenuCalendarCloneForm;
 use App\Models\MenuCalendar;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Artisan;
 use Livewire\Component;
 
 class SingleCalendarClone extends Component
@@ -100,9 +101,6 @@ class SingleCalendarClone extends Component
 
 
 
-
-
-
         // :: resetForm - resetFilePreview
         $this->instance->reset();
         $this->instance->menuCalendarId = $calendar->id;
@@ -112,6 +110,17 @@ class SingleCalendarClone extends Component
         $this->makeAlert('success', $response->message);
 
 
+
+
+
+
+        // 1.3: runQUeue
+        $this->dispatch('runQueue');
+
+
+
+
+        return $this->redirect(route('dashboard.menuSingleCalendar', [$this->instance->menuCalendarId]) . '#tab-2', navigate: false);
 
 
     } // end function

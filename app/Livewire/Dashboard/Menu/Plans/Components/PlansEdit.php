@@ -142,23 +142,23 @@ class PlansEdit extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/plans', $this->instance->imageFileName, 'PLN');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/plans', $this->instance->imageFileName, 'PLN', 800, 800);
 
 
 
         if ($this->instance->secondImageFile != $this->instance->secondImageFileName)
-            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'menu/plans', $this->instance->secondImageFileName, 'PLN-S');
+            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'menu/plans', $this->instance->secondImageFileName, 'PLN-S', 400, 800);
 
 
 
         if ($this->instance->thirdImageFile != $this->instance->thirdImageFileName)
-            $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'menu/plans', $this->instance->thirdImageFileName, 'PLN-T');
+            $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'menu/plans', $this->instance->thirdImageFileName, 'PLN-T', 900, 1170);
 
 
 
 
         if ($this->instance->fourthImageFile != $this->instance->fourthImageFileName)
-            $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'menu/plans', $this->instance->fourthImageFileName, 'PLN-T');
+            $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'menu/plans', $this->instance->fourthImageFileName, 'PLN-T', 900, 900);
 
 
 
@@ -166,7 +166,7 @@ class PlansEdit extends Component
 
 
         if ($this->instance->fifthImageFile != $this->instance->fifthImageFileName)
-            $this->instance->fifthImageFileName = $this->replaceFile($this->instance->fifthImageFile, 'menu/plans', $this->instance->fifthImageFileName, 'PLN-T');
+            $this->instance->fifthImageFileName = $this->replaceFile($this->instance->fifthImageFile, 'menu/plans', $this->instance->fifthImageFileName, 'PLN-T', 1920, 1080);
 
 
 

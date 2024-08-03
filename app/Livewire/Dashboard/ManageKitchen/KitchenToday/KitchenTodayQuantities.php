@@ -119,6 +119,8 @@ class KitchenTodayQuantities extends Component
         $this->ingredientsWithGrams = [];
 
 
+        $i = 0;
+
 
 
         // 3.1: loop - groupByMeal
@@ -128,14 +130,13 @@ class KitchenTodayQuantities extends Component
 
 
             // 3.2: loop - mealSize
-            foreach ($scheduleMealsByMeal->groupBy('sizeId') as $commonSize => $scheduleMealsBySize) {
-
+            foreach ($scheduleMealsByMeal?->whereNotNull('sizeId')?->groupBy('sizeId') as $commonSize => $scheduleMealsBySize) {
 
 
 
 
                 // 3.3: loop - scheduleMeals
-                foreach ($scheduleMealsByMeal as $scheduleMeal) {
+                foreach ($scheduleMealsBySize as $scheduleMeal) {
 
 
 
@@ -153,7 +154,7 @@ class KitchenTodayQuantities extends Component
 
 
                     // 3.3.2: contentWithGrams
-                    $contentWithGrams = $mealSize?->contentWithGrams($scheduleMealsByMeal?->count() ?? 0) ?? [];
+                    $contentWithGrams = $mealSize?->contentWithGrams(1) ?? [];
 
 
 
@@ -166,12 +167,45 @@ class KitchenTodayQuantities extends Component
 
 
 
+                    // 3.4: sumArray
+                    $sumArray = [];
 
 
-                    // 3.3.4: merge
-                    $this->partsWithGrams = $this->partsWithGrams + ($contentWithGrams?->partsWithGrams ?? []);
 
-                    $this->ingredientsWithGrams = $this->ingredientsWithGrams + ($contentWithGrams->ingredientsWithGrams ?? []);
+
+
+                    // 1: parts
+                    foreach (array_keys($this->partsWithGrams + ($contentWithGrams?->partsWithGrams ?? [])) as $key) {
+
+                        $sumArray[$key] = (isset($this->partsWithGrams[$key]) ? $this->partsWithGrams[$key] : 0) + (isset($contentWithGrams?->partsWithGrams[$key]) ? $contentWithGrams?->partsWithGrams[$key] : 0);
+
+                    } // end loop
+
+
+                    $this->partsWithGrams = $sumArray;
+
+
+
+
+
+
+
+
+
+                    // 2: ingredients
+                    $sumArray = [];
+
+                    foreach (array_keys($this->ingredientsWithGrams + ($contentWithGrams?->ingredientsWithGrams ?? [])) as $key) {
+
+                        $sumArray[$key] = (isset($this->ingredientsWithGrams[$key]) ? $this->ingredientsWithGrams[$key] : 0) + (isset($contentWithGrams?->ingredientsWithGrams[$key]) ? $contentWithGrams?->ingredientsWithGrams[$key] : 0);
+
+                    } // end loop
+
+
+                    $this->ingredientsWithGrams = $sumArray;
+
+
+
 
 
 
@@ -182,12 +216,11 @@ class KitchenTodayQuantities extends Component
 
 
 
-
             } // end loop - groupBySize
 
 
-
         } // end loop - groupByMeal
+
 
 
 

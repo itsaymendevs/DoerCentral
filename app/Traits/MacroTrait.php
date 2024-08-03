@@ -19,20 +19,20 @@ trait MacroTrait
 
 
         // 1: check part-ingredients
-        foreach ($part->ingredients ?? [] as $partIngredient) {
+        foreach ($part?->ingredients?->where('isDefault', 1) ?? [] as $partIngredient) {
 
 
 
-            // :: part-ingredientMacro
+            // 1.2: getMacro
             $totalSubMacros = $partIngredient?->totalMacro($partIngredient->amount, $brandId);
-
-
 
             $totalCalories += ($totalSubMacros->calories / $part->totalGrams()) * $currentAmount;
             $totalProteins += ($totalSubMacros->proteins / $part->totalGrams()) * $currentAmount;
             $totalCarbs += ($totalSubMacros->carbs / $part->totalGrams()) * $currentAmount;
             $totalFats += ($totalSubMacros->fats / $part->totalGrams()) * $currentAmount;
             $totalCost += ($totalSubMacros->cost / $part->totalGrams()) * $currentAmount;
+
+
 
 
 
@@ -58,16 +58,16 @@ trait MacroTrait
 
 
         // 1.2: check part-otherParts => send original-part
-        foreach ($part->parts ?? [] as $mealPart) {
+        foreach ($part->parts?->where('isDefault', 1) ?? [] as $mealPart) {
 
 
 
-            // :: MacroHelper - recursion
+            // 1: getMacro - recursion
             $partMacro = $this->getMacro($mealPart->part, $currentAmount, null, true);
 
 
 
-            // 1.3: appendToTotal
+            // 2: appendToTotal
             $totalCalories += round($partMacro[1] ?? 0, 2);
             $totalProteins += round($partMacro[2] ?? 0, 2);
             $totalCarbs += round($partMacro[3] ?? 0, 2);
@@ -129,12 +129,12 @@ trait MacroTrait
 
 
         // 1: check part-ingredients
-        foreach ($part->ingredients ?? [] as $partIngredient) {
-
+        foreach ($part->ingredients?->where('isDefault', 1) ?? [] as $partIngredient) {
 
 
             // 1.2: getGrams
-            $ingredientsWithGrams[$partIngredient->ingredientId] = ($ingredientsWithGrams[$partIngredient->ingredientId] ?? 0) + (($partIngredient?->amount ?? 0) * $currentAmount);
+            $ingredientsWithGrams[$partIngredient->ingredientId] = ($ingredientsWithGrams[$partIngredient->ingredientId] ?? 0) + ($partIngredient->amount / $part->totalGrams()) * $currentAmount;
+
 
 
 
@@ -159,7 +159,7 @@ trait MacroTrait
 
 
         // 1.2: check part-otherParts => send original-part
-        foreach ($part->parts ?? [] as $mealPart) {
+        foreach ($part->parts?->where('isDefault', 1) ?? [] as $mealPart) {
 
 
 

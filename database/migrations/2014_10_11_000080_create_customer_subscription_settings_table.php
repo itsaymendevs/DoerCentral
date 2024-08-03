@@ -51,6 +51,15 @@ return new class extends Migration {
 
 
 
+
+
+            // 1.5: mapsKey
+            $table->text('mapsKey')->nullable();
+
+
+
+
+
             $table->timestamps();
         });
     }

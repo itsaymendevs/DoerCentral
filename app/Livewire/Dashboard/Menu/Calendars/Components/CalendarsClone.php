@@ -6,6 +6,7 @@ use App\Livewire\Forms\MenuCalendarCloneForm;
 use App\Models\MenuCalendar;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Artisan;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -96,7 +97,7 @@ class CalendarsClone extends Component
 
 
 
-        // 1.2: makeRequest
+        // 1.2: makeRequest - runQueue
         $response = $this->makeRequest('dashboard/menu/calendars/clone', $this->instance);
 
 
@@ -116,7 +117,22 @@ class CalendarsClone extends Component
 
 
 
+
+
+
+        // 1.3: runQUeue
+        $this->dispatch('runQueue');
+
+
+
+
+
+
+
     } // end function
+
+
+
 
 
 

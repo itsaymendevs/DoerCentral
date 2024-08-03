@@ -1527,8 +1527,45 @@ Route::post('/dashboard/extra/settings/socials/update', [ExtraController::class,
 
 
 
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+// 18.1: extra - settings - mail - update
+Route::post('/dashboard/extra/settings/mail-configurations/update', [ExtraController::class, 'updateMailConfiguration']);
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+
+
+
 // 18.2: extra - settings - profile - update
 Route::post('/dashboard/extra/settings/profile/update', [ExtraController::class, 'updateProfile']);
+
+
+
+
+
+
+
+// ---------------------------------
+// ---------------------------------
+
 
 
 
@@ -1540,6 +1577,12 @@ Route::post('/dashboard/extra/settings/blogs/update', [ExtraController::class, '
 Route::post('/dashboard/extra/settings/blogs/attachments/update', [ExtraController::class, 'updateBlogAttachments']);
 
 
+
+
+
+
+// ---------------------------------
+// ---------------------------------
 
 
 

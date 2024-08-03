@@ -56,7 +56,7 @@
 
 
                                     {{-- brief --}}
-                                    <p class="text-center fs-12 mb-2 truncate-text-4l h-4l">{{ $plan->desc }}</p>
+                                    <p class="text-center fs-12 mb-2 px-3 truncate-text-3l h-3l">{{ $plan->desc }}</p>
 
                                 </div>
                                 {{-- end midCol --}}
@@ -75,7 +75,8 @@
                                         @if (empty($renewEmail))
 
 
-                                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                        <button
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05 disabled"
                                             wire:click="determine({{ $plan->id }})" type="button"
                                             data-bs-target="#determine-customer" data-bs-toggle="modal">
                                             Select Plan</button>
@@ -86,7 +87,8 @@
                                         {{-- B: renewCustomer --}}
                                         @else
 
-                                        <button class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
+                                        <button
+                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05 disabled"
                                             wire:click="prepExistingCustomer({{ $plan->id }})"
                                             wire:loading.attr='disabled'>
                                             Select Plan</button>

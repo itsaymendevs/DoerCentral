@@ -151,6 +151,55 @@ class CustomerSubscriptionScheduleMeal extends Model
 
 
 
+    public function customerExcludes()
+    {
+
+
+        // 1: getMealExcludes
+        $combine = $this->meal?->allergiesAndExcludesInArray();
+
+
+
+        // 1: getCustomerExcludes
+        $customerExcludes = $this->customer()?->first()?->excludes?->pluck('excludeId')?->toArray() ?? [];
+
+
+
+
+
+        // TODO: --
+        // to be continue ..
+
+
+
+        return $customerExcludes;
+
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 
     public function mealCheckExcludeCustomers($scheduleMealsByMeal)
@@ -258,7 +307,6 @@ class CustomerSubscriptionScheduleMeal extends Model
 
         // 2: customerExcludes
         $customerExcludes = [];
-
 
 
 

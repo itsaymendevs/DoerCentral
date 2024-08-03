@@ -10,7 +10,7 @@
 
         {{-- cover --}}
         <div class="col-5 text-center">
-            <img class="w-100 inventory--image-frame" src="{{ asset('assets/img/Allergies/allergy.png') }}" />
+            <img class="w-100 inventory--image-frame" src="{{ asset('assets/img/Allergies/allergy.jpg') }}" />
         </div>
 
 

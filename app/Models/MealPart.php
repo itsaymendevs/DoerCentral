@@ -158,6 +158,7 @@ class MealPart extends Model
 
 
 
+
         // 1.2: MacroHelper
         $ingredientsWithGrams = $part ? $this->getIngredientsWithGrams($part, $currentAmount, $ingredientsWithGrams) : [];
 

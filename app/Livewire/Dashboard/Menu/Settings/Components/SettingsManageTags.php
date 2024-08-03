@@ -60,7 +60,7 @@ class SettingsManageTags extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/tags', 'TAG');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/tags', 'TAG', 150, 300);
 
 
 

@@ -8,6 +8,7 @@ use App\Models\BlogReference;
 use App\Models\BlogSection;
 use App\Models\BlogSetting;
 use App\Models\BlogTag;
+use App\Models\MailConfiguration;
 use App\Models\Profile;
 use App\Models\Social;
 use App\Models\SubscriptionSetting;
@@ -602,6 +603,92 @@ class ExtraController extends Controller
 
 
 
+
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+    public function updateMailConfiguration(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $configuration = MailConfiguration::first();
+
+
+
+
+
+        // 1.2: general
+        $configuration->username = $request->username ?? null;
+        $configuration->password = $request->password ?? null;
+
+        $configuration->port = $request->port ?? null;
+        $configuration->mailer = $request->mailer ?? null;
+        $configuration->host = $request->host ?? null;
+        $configuration->encryption = $request->encryption ?? null;
+
+
+
+
+        // 1.3: sender
+        $configuration->senderName = $request->senderName ?? null;
+        $configuration->senderEmail = $request->senderEmail ?? null;
+
+
+
+
+        // 1.4: broadcast
+        $configuration->broadcastEmail = $request->broadcastEmail ?? null;
+        $configuration->broadcastSecondEmail = $request->broadcastSecondEmail ?? null;
+        $configuration->broadcastThirdEmail = $request->broadcastThirdEmail ?? null;
+
+
+
+
+        $configuration->save();
+
+
+
+
+
+
+        return response()->json(['message' => 'Configuration has been updated'], 200);
+
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // --------------------------------------------------------------------------------------------
 
 
@@ -936,7 +1023,7 @@ class ExtraController extends Controller
         $settings->planMealsBorderColor = $request->planMealsBorderColor ?? null;
         $settings->planMealsHoverBorderColor = $request->planMealsHoverBorderColor ?? null;
         $settings->planReviewsTitleColor = $request->planReviewsTitleColor ?? null;
-
+        $settings->planActionButtonColor = $request->planActionButtonColor ?? null;
 
 
 
@@ -953,6 +1040,8 @@ class ExtraController extends Controller
         $settings->planCardButtonBackgroundColor = $request->planCardButtonBackgroundColor ?? null;
 
         $settings->navbarBackgroundColor = $request->navbarBackgroundColor ?? null;
+
+        $settings->planActionButtonBackgroundColor = $request->planActionButtonBackgroundColor ?? null;
 
 
 

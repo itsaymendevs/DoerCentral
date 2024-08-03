@@ -82,9 +82,10 @@
 
 
             {{-- kitchen --}}
-            <a wire:navigate class="btn
-            @if (Request::is('dashboard/kitchen/today/*')) active @endif" role="button"
-                href="{{ route('dashboard.kitchenTodayProduction') }}">Kitchen</a>
+            <a wire:navigate
+                class="btn
+            @if (Request::is('dashboard/kitchen/today/*') && !Request::is('dashboard/kitchen/today/labels')) active @endif"
+                role="button" href="{{ route('dashboard.kitchenTodayProduction') }}">Kitchen</a>
 
 
 
@@ -96,10 +97,6 @@
 
 
 
-            {{-- settings --}}
-            @if (!$versionPermission->isProcessing || session('hasTechAccess'))
-            <a class="btn" role="button" href="#!">Setting</a>
-            @endif
 
         </div>
     </div>

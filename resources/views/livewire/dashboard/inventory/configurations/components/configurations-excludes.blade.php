@@ -10,7 +10,7 @@
 
         {{-- cover --}}
         <div class="col-5 text-center">
-            <img class="w-100 inventory--image-frame" src="{{ asset('assets/img/Allergies/allergy.png') }}" />
+            <img class="w-100 inventory--image-frame" src="{{ asset('assets/img/Allergies/allergy.jpg') }}" />
         </div>
 
 
@@ -82,7 +82,7 @@
 
 
                         {{-- loop - excludes --}}
-                        @foreach ($excludes as $exclude)
+                        @foreach ($excludes ?? [] as $exclude)
 
                         <livewire:dashboard.inventory.configurations.components.configurations-excludes-edit
                             key='single-exclude-{{ $exclude->id }}' :id='$exclude->id' />

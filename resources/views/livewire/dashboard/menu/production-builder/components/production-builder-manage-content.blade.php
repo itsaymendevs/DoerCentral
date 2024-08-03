@@ -491,8 +491,10 @@
 
                         {{-- 1: select --}}
                         <td class="fw-bold tr--{{ $instanceUnique->typeName[$i] }} td--overflow"
-                            style="max-width: 250px;" @if(!$versionPermission->menuModuleHasBuilderConversion)
-                            colspan='2' @endif wire:ignore>
+                            style="max-width: 250px;" @if(!$versionPermission->menuModuleHasBuilderBrand &&
+                            !$versionPermission->menuModuleHasBuilderBrand) colspan='3'
+                            @elseif(!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
+                            @elseif(!$versionPermission->menuModuleHasBuilderBrand) colspan='2' @endif wire:ignore>
                             <div class="select--single-wrapper builder s mx-auto" style="width: 100%"
                                 wire:loading.class='no-events'>
                                 <select class="form-select part--select" id='part--select-{{ $i }}'
@@ -2217,15 +2219,8 @@
 
 
 
-
-
-
-
-
-
                     @endif
                     {{-- end if --}}
-
 
 
 

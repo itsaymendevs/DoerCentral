@@ -86,7 +86,7 @@
                                     <thead>
                                         <tr>
                                             <th class="th--xs"></th>
-                                            <th class="th--lg"></th>
+                                            <th class="th--md"></th>
                                             <th class="th--md text-start ps-3">Size</th>
                                             <th class="th--xl text-start ps-3">Exclude</th>
                                             <th class="th--xl text-start ps-3">Amount</th>
@@ -107,28 +107,21 @@
 
 
 
-                                        {{-- loop - scheduleMeals --}}
-                                        @foreach ($scheduleMeals ?? [] as $scheduleMeal)
-
-
-
-                                        {{-- ** GET SINGLE CUSTOMEREXCLUDES ** --}}
-                                        @php $singleCustomerExcludes = $customerExcludes[$scheduleMeal->customerId]
-                                        @endphp
-
-
-
+                                        {{-- loop - mealSizes --}}
+                                        @foreach ($mealSizes ?? [] as $mealSize)
 
 
 
 
 
                                         {{-- 1: ingredients --}}
-                                        @foreach ($scheduleMeal?->mealSize()?->ingredients?->whereIn('ingredientId',
-                                        $singleCustomerExcludes ?? []) ?? [] as $mealSizeIngredient)
+                                        @foreach ($mealSize?->ingredients?->where('isDefault',
+                                        1) ?? [] as $mealSizeIngredient)
 
 
 
+
+                                        @if(!empty($ingredientsBySize[$mealSize?->sizeId][$mealSizeIngredient?->ingredientId]))
 
 
 
@@ -137,11 +130,13 @@
 
                                             {{-- SN - name --}}
                                             <td class="fw-bold text-center">{{ $globalSNCounter++ }}</td>
-                                            <td class="fw-bold text-start ps-3">
-                                                <span class="d-block fs-14 fw-normal text-gold">{{
-                                                    $scheduleMeal->customer->fullName() }}</span>
+                                            <td class="fw-semibold text-center">
+                                                <span
+                                                    class="badge fs-10 scale--self-05 badge--warning-outline pointer fw-500"
+                                                    data-bs-toggle="tooltip" data-bss-tooltip=""
+                                                    data-bs-placement="right" data-bs-html='true'
+                                                    title="{{ $ingredientsBySize[$mealSize?->sizeId][$mealSizeIngredient->ingredientId]['customers'] }}">Customers</span>
                                             </td>
-
 
 
 
@@ -150,7 +145,8 @@
                                             {{-- size --}}
                                             <td class="fw-bold text-start ps-3">
                                                 <span class="d-block fs-14 fw-normal">{{
-                                                    $scheduleMeal?->mealSize()?->size?->name }}</span>
+                                                    $ingredientsBySize[$mealSize?->sizeId][$mealSizeIngredient->ingredientId]['size']
+                                                    }}</span>
                                             </td>
 
 
@@ -163,7 +159,8 @@
                                             {{-- exclude - ingredient --}}
                                             <td class="fw-bold text-start ps-3">
                                                 <span class="d-block fs-14 fw-normal">{{
-                                                    $mealSizeIngredient?->ingredient?->name}}</span>
+                                                    $ingredientsBySize[$mealSize?->sizeId][$mealSizeIngredient->ingredientId]['ingredient']
+                                                    }}</span>
                                             </td>
 
 
@@ -171,12 +168,19 @@
                                             {{-- amount --}}
                                             <td class="fw-bold text-start ps-3">
                                                 <span class="text-start d-block fs-15 fw-semibold text-gold">{{
-                                                    ($mealSizeIngredient?->amount ?? 0) / $unit }}
+                                                    round($ingredientsBySize[$mealSize?->sizeId][$mealSizeIngredient->ingredientId]['amount'],
+                                                    1)
+                                                    / $unit }}
                                                     <small class='fs-10'>{{ $unit == 1 ? '(G)' : '(KG)'}}</small>
                                                 </span>
                                             </td>
 
                                         </tr>
+
+
+
+                                        @endif
+                                        {{-- end if --}}
 
 
 
@@ -189,8 +193,10 @@
 
 
 
-                                        {{-- -------------------- --}}
-                                        {{-- -------------------- --}}
+
+
+                                        {{-- ------------------------------------ --}}
+                                        {{-- ------------------------------------ --}}
 
 
 
@@ -203,44 +209,34 @@
 
 
                                         {{-- 2: loop - parts --}}
-                                        @foreach ($scheduleMeal?->mealSize()?->parts ?? [] as $mealSizePart)
+                                        @foreach ($mealSize?->parts?->where('isDefault', 1) ?? []
+                                        as $mealSizePart)
 
 
 
-                                        {{-- loop - partIngredients - firstLayer - --}}
-                                        @foreach ($mealSizePart->part->ingredients?->whereIn('ingredientId',
-                                        $singleCustomerExcludes ?? []) ?? [] as $partIngredient)
-
-
-
-
-
-
-                                        {{-- ** GET AMOUNT - AMOUNT PERCENTAGE OF PART --}}
-                                        @php
-
-                                        $mealSizeTotalAmount = $mealSizePart->part?->sizes?->first()?->totalGrams() ??
-                                        1;
-
-                                        $amount = ((($partIngredient?->amount ?? 0) /
-                                        $mealSizeTotalAmount) * 100) * $mealSizePart->amount / 100;
-
-                                        @endphp
+                                        {{-- loop - partIngredients [LayerOne] - --}}
+                                        @foreach ($mealSizePart->part->ingredients?->where('isDefault',
+                                        1) ?? [] as $partIngredient)
 
 
 
 
+
+                                        @if (!empty($partsBySize[$mealSize?->sizeId][$partIngredient?->ingredientId]))
 
 
 
                                         <tr key='meal-customer-part-exclude-{{ $partIngredient->id }}'>
 
 
-                                            {{-- SN - name --}}
+                                            {{-- SN - customers --}}
                                             <td class="fw-bold text-center">{{ $globalSNCounter++ }}</td>
-                                            <td class="fw-bold text-start ps-3">
-                                                <span class="d-block fs-14 fw-normal text-gold">{{
-                                                    $scheduleMeal->customer->fullName() }}</span>
+                                            <td class="fw-semibold text-center">
+                                                <span
+                                                    class="badge fs-10 scale--self-05 badge--warning-outline pointer fw-500"
+                                                    data-bs-toggle="tooltip" data-bss-tooltip=""
+                                                    data-bs-placement="right" data-bs-html='true'
+                                                    title="{{ $partsBySize[$mealSize?->sizeId][$partIngredient->ingredientId]['customers'] }}">Customers</span>
                                             </td>
 
 
@@ -251,7 +247,8 @@
                                             {{-- size --}}
                                             <td class="fw-bold text-start ps-3">
                                                 <span class="d-block fs-14 fw-normal">{{
-                                                    $mealSizePart->part?->sizes?->first()?->size?->name}}</span>
+                                                    $partsBySize[$mealSize?->sizeId][$partIngredient->ingredientId]['size']
+                                                    }}</span>
                                             </td>
 
 
@@ -262,7 +259,8 @@
                                             {{-- exclude - ingredient --}}
                                             <td class="fw-bold text-start ps-3">
                                                 <span class="d-block fs-14 fw-normal">{{
-                                                    $partIngredient?->ingredient?->name}}</span>
+                                                    $partsBySize[$mealSize?->sizeId][$partIngredient->ingredientId]['ingredient']
+                                                    }}</span>
                                             </td>
 
 
@@ -270,7 +268,8 @@
                                             {{-- amount --}}
                                             <td class="fw-bold text-start ps-3">
                                                 <span class="text-start d-block fs-15 fw-semibold text-gold">{{
-                                                    round($amount ?? 0, 1) / $unit }}
+                                                    round($partsBySize[$mealSize?->sizeId][$partIngredient->ingredientId]['amount'],
+                                                    1) / $unit }}
                                                     <small class='fs-10'>{{ $unit == 1 ? '(G)' : '(KG)'}}</small>
                                                 </span>
                                             </td>
@@ -279,7 +278,8 @@
 
 
 
-
+                                        @endif
+                                        {{-- end if --}}
 
 
 

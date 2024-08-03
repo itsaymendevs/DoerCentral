@@ -642,6 +642,33 @@
 
 
 
+
+
+    {{-- runQueue --}}
+    <script>
+        window.addEventListener("runQueue", (event) => {
+
+            @this.runQueue();
+
+        });
+    </script>
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+
     @section('scripts')
 
     <script src="{{ asset('assets/js/menu-calendar.js') }}"></script>

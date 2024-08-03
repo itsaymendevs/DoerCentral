@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\CustomerSubscriptionEvent;
+use App\Http\Controllers\MailController;
 use App\Livewire\Control\Permissions;
 use App\Livewire\CustomerPortal\CustomerAddresses;
 use App\Livewire\CustomerPortal\CustomerCalendar;
@@ -95,6 +96,7 @@ use App\Livewire\DriverPortal\DriverProfileEdit;
 use App\Livewire\Login;
 use App\Livewire\LoginCustomerPortal;
 use App\Livewire\LoginDriverPortal;
+use App\Livewire\Mails\MailsSubscriptionInvoice;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFive;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFiveExisting;
 use App\Livewire\Subscription\Customer\CustomerSubscriptionStepFour;
@@ -1402,6 +1404,38 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** ----------------------------- EMAIL -------------------------------- **
+
+
+
+// 1: Email - invoice
+Route::get('mails/invoice/{id}', [MailController::class, 'invoice'])->name('mails.invoice');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // --------------------------------------------------------------------------
@@ -1796,17 +1830,6 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
     }); // end Authentication
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -442,7 +442,8 @@
 
 
                                     {{-- A: loop - ingredients - sumGrams --}}
-                                    @foreach ($mealSize?->ingredients ?? [] as $mealSizeIngredient)
+                                    @foreach ($mealSize?->ingredients?->where('isDefault', 1) ?? []
+                                    as $mealSizeIngredient)
 
 
 
@@ -471,7 +472,7 @@
 
 
                                     {{-- B: loop - parts - sumGrams --}}
-                                    @foreach ($mealSize?->parts ?? [] as $mealSizePart)
+                                    @foreach ($mealSize?->parts?->where('isDefault', 1) ?? [] as $mealSizePart)
 
 
 
@@ -515,7 +516,7 @@
 
                                     {{-- A: loop - ingredients - totalGrams --}}
                                     @foreach ($scheduleMealsByMeal->first()?->meal?->ingredients
-                                    ?->groupBy('ingredientId') ?? [] as $commonIngredient =>
+                                    ?->where('isDefault', 1)?->groupBy('ingredientId') ?? [] as $commonIngredient =>
                                     $mealIngredientsByIngredient)
 
 
@@ -540,7 +541,7 @@
 
                                     {{-- B: loop - parts - totalGrams --}}
                                     @foreach ($scheduleMealsByMeal->first()?->meal?->parts
-                                    ?->groupBy('partId') ?? [] as $commonPart =>
+                                    ?->where('isDefault', 1)?->groupBy('partId') ?? [] as $commonPart =>
                                     $mealPartsByPart)
 
 
@@ -621,7 +622,7 @@
 
 
                                     {{-- :: loop - scheduleMeals - groupBySize --}}
-                                    @foreach ($scheduleMealsByMeal->groupBy('sizeId') ?? [] as $commonSize =>
+                                    @foreach ($scheduleMealsByMeal?->groupBy('sizeId') ?? [] as $commonSize =>
                                     $scheduleMealsBySize)
 
 
@@ -675,7 +676,7 @@
 
 
                                     {{-- :: loop - scheduleMeals - groupBySize --}}
-                                    @foreach ($scheduleMealsByMeal->groupBy('sizeId') ?? [] as $commonSize =>
+                                    @foreach ($scheduleMealsByMeal?->groupBy('sizeId') ?? [] as $commonSize =>
                                     $scheduleMealsBySize)
 
 
@@ -716,7 +717,8 @@
 
 
                                         {{-- A: loop - ingredients --}}
-                                        @foreach ($mealSize?->ingredients ?? [] as $mealSizeIngredient)
+                                        @foreach ($mealSize?->ingredients?->where('isDefault', 1) ?? []
+                                        as $mealSizeIngredient)
 
 
 
@@ -750,7 +752,7 @@
 
 
                                         {{-- B: loop - parts --}}
-                                        @foreach ($mealSize?->parts ?? [] as $mealSizePart)
+                                        @foreach ($mealSize?->parts?->where('isDefault', 1) ?? [] as $mealSizePart)
 
 
 

@@ -260,6 +260,16 @@ class SingleCalendarEdit extends Component
         $this->makeAlert('success', $response->message);
 
 
+
+
+
+
+        // 1.3: runQUeue
+        $this->dispatch('runQueue');
+
+        return $this->redirect(route('dashboard.menuSingleCalendar', [$this->instance->menuCalendarId]) . '#tab-1', navigate: false);
+
+
     } // end function
 
 

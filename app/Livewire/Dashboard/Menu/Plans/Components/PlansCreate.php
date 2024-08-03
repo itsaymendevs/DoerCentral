@@ -57,27 +57,27 @@ class PlansCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans', 'PLN');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans', 'PLN', 800, 800);
 
 
         if ($this->instance->secondImageFile)
-            $this->instance->secondImageFileName = $this->uploadFile($this->instance->secondImageFile, 'menu/plans', 'PLN-S');
+            $this->instance->secondImageFileName = $this->uploadFile($this->instance->secondImageFile, 'menu/plans', 'PLN-S', 400, 800);
 
 
         if ($this->instance->thirdImageFile)
-            $this->instance->thirdImageFileName = $this->uploadFile($this->instance->thirdImageFile, 'menu/plans', 'PLN-T');
+            $this->instance->thirdImageFileName = $this->uploadFile($this->instance->thirdImageFile, 'menu/plans', 'PLN-T', 900, 1170);
 
 
 
 
         if ($this->instance->fourthImageFile)
-            $this->instance->fourthImageFileName = $this->uploadFile($this->instance->fourthImageFile, 'menu/plans', 'PLN-T');
+            $this->instance->fourthImageFileName = $this->uploadFile($this->instance->fourthImageFile, 'menu/plans', 'PLN-T', 900, 900);
 
 
 
 
         if ($this->instance->fifthImageFile)
-            $this->instance->fifthImageFileName = $this->uploadFile($this->instance->fifthImageFile, 'menu/plans', 'PLN-T');
+            $this->instance->fifthImageFileName = $this->uploadFile($this->instance->fifthImageFile, 'menu/plans', 'PLN-T', 1920, 1080);
 
 
 

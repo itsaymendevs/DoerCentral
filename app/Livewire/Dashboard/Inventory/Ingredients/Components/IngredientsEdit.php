@@ -120,7 +120,7 @@ class IngredientsEdit extends Component
         // 1: uploadFileFiles
         if ($this->instance->imageFile != $this->instance->imageFileName) {
 
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'inventory/ingredients', $this->instance->imageFileName, 'ING');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'inventory/ingredients', $this->instance->imageFileName, 'ING', 300, 300);
 
         } // end if
 

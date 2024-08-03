@@ -63,6 +63,9 @@ return new class extends Migration {
             $table->string('planMealsHoverBorderColor', 100)->nullable()->default('#000000');
             $table->string('planReviewsTitleColor', 100)->nullable()->default('#000000');
 
+            $table->string('planActionButtonColor', 100)->nullable()->default('#000000');
+            $table->string('planActionButtonHoverColor', 100)->nullable()->default('#000000');
+
 
 
 
@@ -77,6 +80,13 @@ return new class extends Migration {
             $table->string('planCardButtonBackgroundColor', 100)->nullable()->default('#000000');
 
             $table->string('navbarBackgroundColor', 100)->nullable()->default('#000000');
+
+
+
+
+
+            // :: forPlans
+            $table->string('planActionButtonBackgroundColor', 100)->nullable()->default('#000000');
 
 
 

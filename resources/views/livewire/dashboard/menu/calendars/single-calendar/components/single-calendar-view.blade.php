@@ -11,7 +11,7 @@
 
 
         {{-- weekSelect --}}
-        <div class="select--single-wrapper" wire:loading.class='no-events' wire:ignore>
+        <div class="select--single-wrapper" wire:loading.class='no-events' wire:target='searchFromDate' wire:ignore>
             <select class="form-select form--select form--view-calendar-select" data-instance='searchFromDate'
                 data-trigger='true' required value='{{ $searchFromDate }}'>
 

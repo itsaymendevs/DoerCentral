@@ -8,11 +8,7 @@
 
         {{-- topRow --}}
         <div class="row align-items-center">
-
-
-            {{-- newButton --}}
             <div class="col-4">
-
 
 
 
@@ -56,9 +52,7 @@
             {{-- sub-menu --}}
             <div class="col-4 text-end">
 
-
                 <livewire:dashboard.extra.web-apps.components.sub-menu key='submenu' />
-
 
             </div>
         </div>

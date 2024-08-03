@@ -4,11 +4,9 @@ namespace App\Providers;
 
 use App\Models\CustomerSubscriptionSetting;
 use App\Models\Profile;
-use App\Models\RolePermission;
 use App\Models\User;
 use App\Models\VersionPermission;
 use App\Traits\HelperTrait;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -141,8 +139,6 @@ class AppServiceProvider extends ServiceProvider
         // :: allowedCalendarMigrationDate - allowedMealSelectionDate
         View::share('allowedCalendarMigrationDate', $this->getDateByDays($subscriptionSettings->changeCalendarRestriction));
         View::share('allowedMealSelectionDate', $this->getDateByDays($subscriptionSettings->mealSelectionRestriction));
-
-
 
 
 

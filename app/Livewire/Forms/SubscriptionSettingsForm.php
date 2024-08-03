@@ -10,11 +10,11 @@ class SubscriptionSettingsForm extends Form
 
 
     // :: variables
-    public $id, $template, $textColor, $preloaderLineColor, $cursorColor, $cursorHoverColor, $planCardTitleColor, $planCardSubtitleColor, $planCardCaptionColor, $planCardHrColor, $planCardButtonColor, $planCardButtonHoverColor, $navbarMenuColor, $navbarMenuActiveColor, $navbarLinksColor, $navbarLinksHoverColor, $navbarSocialLinksColor, $sliderLineColor, $sliderBulletsColor, $planSideTitleColor, $planFilterLinksColor, $planFilterLinksHoverBorderColor, $planListNumbersColor, $planMealDietColor, $planReviewsTitleColor, $planMealsBorderColor, $planMealsHoverBorderColor;
+    public $id, $template, $textColor, $preloaderLineColor, $cursorColor, $cursorHoverColor, $planCardTitleColor, $planCardSubtitleColor, $planCardCaptionColor, $planCardHrColor, $planCardButtonColor, $planCardButtonHoverColor, $navbarMenuColor, $navbarMenuActiveColor, $navbarLinksColor, $navbarLinksHoverColor, $navbarSocialLinksColor, $sliderLineColor, $sliderBulletsColor, $planSideTitleColor, $planFilterLinksColor, $planFilterLinksHoverBorderColor, $planListNumbersColor, $planMealDietColor, $planReviewsTitleColor, $planMealsBorderColor, $planMealsHoverBorderColor, $planActionButtonColor;
 
 
 
-    public $bodyBackgroundColor, $planCardBackgroundColor, $planCardButtonBackgroundColor, $navbarBackgroundColor;
+    public $bodyBackgroundColor, $planCardBackgroundColor, $planCardButtonBackgroundColor, $navbarBackgroundColor, $planActionButtonBackgroundColor;
 
 
     public $planSliderArrows, $planSideTitleDisplay, $planCardRadius, $planCardAlignment;

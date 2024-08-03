@@ -59,7 +59,7 @@ class IngredientsCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'inventory/ingredients', 'ING');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'inventory/ingredients', 'ING', 300, 300);
 
 
 

@@ -382,6 +382,7 @@ class CustomerSubscriptionStepTwo extends Component
 
 
 
+
         // 1.2: existingCustomer
         if ($this->instance->isExistingCustomer) {
 
@@ -410,7 +411,6 @@ class CustomerSubscriptionStepTwo extends Component
 
 
     } // end function
-
 
 
 

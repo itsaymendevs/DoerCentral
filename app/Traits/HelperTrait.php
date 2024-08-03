@@ -6,14 +6,16 @@ use App\Models\CityDeliveryTime;
 use App\Models\CityDistrict;
 use App\Models\Container;
 use App\Models\Item;
+use App\Models\Job;
 use App\Models\Label;
 use App\Models\VendorContainer;
 use App\Models\VendorItem;
 use App\Models\VendorLabel;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-
 
 trait HelperTrait
 {
@@ -85,7 +87,7 @@ trait HelperTrait
     {
 
 
-        // 1: define defaultPreview Picture
+        // 1: getDefaultPreview
         $defaultPreview = asset('assets/img/placeholder.png');
 
         return $defaultPreview;
@@ -617,16 +619,20 @@ trait HelperTrait
 
 
 
-    protected function uploadFile($instanceFile, $path, $key = 'ITM')
+    protected function uploadFile($instanceFile, $path, $key = 'ITM', $width = 600, $height = 600)
     {
 
 
-        // 1: uploadFile - makeFileName
+        // 1: getFileName
         $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
-        $instanceFile->storeAs($path, $fileName, 'public');
 
 
-        // 1.2: return fileName
+
+        // 1.2: resize
+        $file = Image::read($instanceFile);
+        $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
+
+
         return $fileName;
 
 
@@ -655,28 +661,33 @@ trait HelperTrait
 
 
 
-    protected function replaceFile($instanceFile, $path, $fileName, $key = 'ITM')
+    protected function replaceFile($instanceFile, $path, $fileName, $key = 'ITM', $width = 800, $height = 800)
     {
 
 
-        // 1: removeFile
+
+
+        // 1: remove
         if (! empty($fileName)) {
-            Storage::disk('public')->delete($path . '/' . $fileName);
+
+            Storage::disk('public')->delete("{$path}/{$fileName}");
+
         } // end if
 
 
 
 
 
-        // 2: uploadFile - makeFileName
+        // 2: getFileName
         $fileName = $key . '-' . date('h.iA') . rand(10, 10000) . rand(10, 10000) . rand(10, 10000) . '.' . $instanceFile->getClientOriginalExtension();
-        $instanceFile->storeAs($path, $fileName, 'public');
 
 
 
 
+        // 2.1: resize
+        $file = Image::read($instanceFile);
+        $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
 
-        // 1.2: return fileName
         return $fileName;
 
 
@@ -709,9 +720,13 @@ trait HelperTrait
     {
 
 
-        // 1: removeFile
-        if (! empty($fileName))
-            Storage::disk('public')->delete($path . '/' . $fileName);
+        // 1: remove
+        if (! empty($fileName)) {
+
+            Storage::disk('public')->delete("{$path}/{$fileName}");
+
+        } // end if
+
 
 
 
@@ -719,8 +734,6 @@ trait HelperTrait
 
 
     } // end function
-
-
 
 
 
@@ -900,11 +913,7 @@ trait HelperTrait
     {
 
 
-
-        // :: returnToken
         return date('dmYhisA');
-
-
 
 
     } // end function
@@ -928,15 +937,41 @@ trait HelperTrait
     function makeRegularToken()
     {
 
-
-
-        // :: returnToken
         return date('dmYhis');
 
 
+    } // end function
+
+
+
+
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+    function runQueue()
+    {
+
+
+        // 1: getJobs
+        $jobs = Job::all();
+
+
+        foreach ($jobs ?? [] as $job) {
+
+            Artisan::call('queue:work');
+
+        } // end loop
 
 
     } // end function
+
 
 
 

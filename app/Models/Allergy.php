@@ -19,4 +19,17 @@ class Allergy extends Model
     } // end function
 
 
+
+
+
+    public function ingredientsList()
+    {
+
+        return $this->hasMany(AllergyIngredient::class, 'allergyId');
+
+    } // end function
+
+
+
+
 } // end model

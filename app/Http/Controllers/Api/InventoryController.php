@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Allergy;
+use App\Models\AllergyIngredient;
 use App\Models\Exclude;
+use App\Models\ExcludeIngredient;
 use App\Models\Ingredient;
 use App\Models\IngredientCategory;
 use App\Models\IngredientGroup;
@@ -427,15 +429,24 @@ class InventoryController extends Controller
 
 
 
-        // 1.2: resetIngredients - update
-        Ingredient::where('excludeId', $exclude->id)->update([
-            'excludeId' => null,
-        ]);
+
+        // 1.2: loop - ingredients
+        ExcludeIngredient::where('excludeId', $exclude->id)->delete();
+
+        foreach ($request?->ingredients ?? [] as $ingredient) {
 
 
-        Ingredient::whereIn('id', $request->ingredients ?? [])->update([
-            'excludeId' => $exclude->id,
-        ]);
+            // 1.3: create
+            $excludeIngredient = new ExcludeIngredient();
+
+            $excludeIngredient->excludeId = $exclude->id;
+            $excludeIngredient->ingredientId = $ingredient;
+
+            $excludeIngredient->save();
+
+
+        } // end loop
+
 
 
 
@@ -640,15 +651,25 @@ class InventoryController extends Controller
 
 
 
-        // 1.2: resetIngredients - update
-        Ingredient::where('allergyId', $allergy->id)->update([
-            'allergyId' => null,
-        ]);
+
+        // 1.2: loop - ingredients
+        AllergyIngredient::where('allergyId', $allergy->id)->delete();
+
+        foreach ($request?->ingredients ?? [] as $ingredient) {
 
 
-        Ingredient::whereIn('id', $request->ingredients ?? [])->update([
-            'allergyId' => $allergy->id,
-        ]);
+            // 1.3: create
+            $allergyIngredient = new AllergyIngredient();
+
+            $allergyIngredient->allergyId = $allergy->id;
+            $allergyIngredient->ingredientId = $ingredient;
+
+            $allergyIngredient->save();
+
+
+        } // end loop
+
+
 
 
 

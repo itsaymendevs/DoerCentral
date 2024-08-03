@@ -282,6 +282,40 @@ class Customer extends Authenticatable
 
 
 
+    public function fullEmail()
+    {
+
+        return $this->email . $this->emailProvider;
+
+    } // end function
+
+
+
+
+
+
+
+    public function fullPhone()
+    {
+
+        return $this->phoneKey . ' ' . $this->phone;
+
+    } // end function
+
+
+
+
+
+
+    public function fullWhatsapp()
+    {
+
+        return $this->whatsappKey . ' ' . $this->whatsapp;
+
+    } // end function
+
+
+
 
 
 

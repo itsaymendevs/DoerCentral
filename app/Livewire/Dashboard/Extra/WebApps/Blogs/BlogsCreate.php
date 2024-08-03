@@ -61,12 +61,12 @@ class BlogsCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'extra/blogs', 'BLG');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'extra/blogs', 'BLG', 640, 960);
 
 
 
         if ($this->instance->headerImageFile)
-            $this->instance->headerImageFileName = $this->uploadFile($this->instance->headerImageFile, 'extra/blogs', 'BLG-HEADER');
+            $this->instance->headerImageFileName = $this->uploadFile($this->instance->headerImageFile, 'extra/blogs', 'BLG-HEADER', 1920, 1080);
 
 
 

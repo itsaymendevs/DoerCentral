@@ -31,6 +31,7 @@ class ConfigurationsExcludesIngredientsEdit extends Component
     public function remount($id)
     {
 
+
         // 1: clone instance
         $exclude = Exclude::find($id);
 
@@ -40,7 +41,7 @@ class ConfigurationsExcludesIngredientsEdit extends Component
 
 
         // 1.2: getIngredients
-        $this->instance->ingredients = $exclude?->ingredients?->pluck('id')?->toArray() ?? [];
+        $this->instance->ingredients = $exclude?->ingredientsList?->pluck('ingredientId')?->toArray() ?? [];
 
 
 
@@ -95,6 +96,7 @@ class ConfigurationsExcludesIngredientsEdit extends Component
 
         // :: validation
         $this->instance->validate();
+
 
 
 

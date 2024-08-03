@@ -93,7 +93,7 @@ class BundlesCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans/bundles', 'BUN');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans/bundles', 'BUN', 800, 800);
 
 
 

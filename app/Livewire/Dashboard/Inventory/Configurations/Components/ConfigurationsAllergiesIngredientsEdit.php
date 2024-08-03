@@ -31,6 +31,7 @@ class ConfigurationsAllergiesIngredientsEdit extends Component
     public function remount($id)
     {
 
+
         // 1: clone instance
         $allergy = Allergy::find($id);
 
@@ -40,7 +41,9 @@ class ConfigurationsAllergiesIngredientsEdit extends Component
 
 
         // 1.2: getIngredients
-        $this->instance->ingredients = $allergy?->ingredients?->pluck('id')?->toArray() ?? [];
+        $this->instance->ingredients = $allergy?->ingredientsList?->pluck('ingredientId')?->toArray() ?? [];
+
+
 
 
 

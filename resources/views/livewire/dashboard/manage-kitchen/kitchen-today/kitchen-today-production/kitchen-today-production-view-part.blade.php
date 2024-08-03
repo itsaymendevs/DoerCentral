@@ -114,7 +114,7 @@
 
 
                                         {{-- loop - parts --}}
-                                        @foreach ($mealSize?->parts ?? [] as $mealSizePart)
+                                        @foreach ($mealSize?->parts?->where('isDefault', 1) ?? [] as $mealSizePart)
 
 
 
@@ -245,7 +245,8 @@
 
 
                                         {{-- loop - ingredients --}}
-                                        @foreach ($mealSize?->ingredients ?? [] as $mealSizeIngredient)
+                                        @foreach ($mealSize?->ingredients?->where('isDefault', 1) ?? []
+                                        as $mealSizeIngredient)
 
 
 

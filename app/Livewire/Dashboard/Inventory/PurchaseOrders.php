@@ -145,7 +145,7 @@ class PurchaseOrders extends Component
 
 
                 // 3.3: loop - scheduleMeals
-                foreach ($scheduleMealsByMeal as $scheduleMeal) {
+                foreach ($scheduleMealsBySize as $scheduleMeal) {
 
 
 
@@ -168,12 +168,14 @@ class PurchaseOrders extends Component
 
 
 
+
+
                     // 3.3.3: multiplyByMeals
-                    $mealSizeIngredientsWithGramsMultiplied = array_map(function ($element) use ($scheduleMealsByMeal) {
+                    // $mealSizeIngredientsWithGramsMultiplied = array_map(function ($element) use ($scheduleMealsByMeal) {
 
-                        return $element * ($scheduleMealsByMeal->count() ?? 0);
+                    //     return $element * ($scheduleMealsByMeal->count() ?? 0);
 
-                    }, $mealSizeIngredientsWithGrams);
+                    // }, $mealSizeIngredientsWithGrams);
 
 
 
@@ -189,9 +191,16 @@ class PurchaseOrders extends Component
 
 
                     // 3.3.4: merge
-                    $this->ingredientsWithGrams = $this->ingredientsWithGrams + ($mealSizeIngredientsWithGramsMultiplied ?? []);
+                    $sumArray = [];
+
+                    foreach (array_keys($this->ingredientsWithGrams + ($mealSizeIngredientsWithGrams ?? [])) as $key) {
+
+                        $sumArray[$key] = (isset($this->ingredientsWithGrams[$key]) ? $this->ingredientsWithGrams[$key] : 0) + (isset($mealSizeIngredientsWithGrams[$key]) ? $mealSizeIngredientsWithGrams[$key] : 0);
+
+                    } // end loop
 
 
+                    $this->ingredientsWithGrams = $sumArray;
 
 
 

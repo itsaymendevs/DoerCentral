@@ -505,17 +505,6 @@ class MenuCalendarController extends Controller
 
 
 
-        // ---------------------------------------------------------
-        // ---------------------------------------------------------
-
-
-
-
-
-        // :: queue - run
-        Artisan::call('queue:work --stop-when-empty');
-
-
 
 
 
@@ -776,7 +765,7 @@ class MenuCalendarController extends Controller
 
 
         // :: queue - run
-        Artisan::call('queue:work --stop-when-empty');
+        // Artisan::call('queue:work --stop-when-empty');
 
 
 

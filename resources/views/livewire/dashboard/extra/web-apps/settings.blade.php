@@ -62,161 +62,11 @@
 
                 {{-- 1: social Media --}}
                 <div class="tab-pane-like mt-2" style="border: 1px solid var(--color-theme-secondary)">
-                    <div class="row">
 
 
+                    <livewire:dashboard.extra.web-apps.settings.components.settings-socials key='settings-socials' />
 
-                        {{-- content --}}
-                        <div class="col-12">
-                            <div>
 
-
-                                {{-- togglerButton --}}
-                                <a class="btn fs-5 collapse--btn fw-semibold" data-bs-toggle="collapse"
-                                    aria-expanded="true" aria-controls="collapse-1" href="#collapse-1"
-                                    role="button">Social Links<svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                                        height="1em" fill="currentColor" viewBox="0 0 16 16"
-                                        class="bi bi-chevron-expand">
-                                        <path fill-rule="evenodd"
-                                            d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z">
-                                        </path>
-                                    </svg>
-                                </a>
-
-
-
-
-
-                                {{-- ------------------------ --}}
-                                {{-- ------------------------ --}}
-
-
-
-
-                                {{-- collapse --}}
-                                <div class="collapse  collapse--content" id="collapse-1" wire:ignore.self>
-                                    <form wire:submit='updateSocials' class="row align-items-end pt-2">
-
-
-
-
-
-
-
-
-                                        {{-- empty --}}
-                                        <div class="col-12"></div>
-
-
-
-
-
-
-
-                                        {{-- 1: instagram --}}
-                                        <div class="col-4">
-                                            <label class="form-label form--label with-icon">
-                                                <i class="bi bi-link-45deg"></i>Instagram</label>
-                                            <input class="form-control form--input mb-4" type="url"
-                                                wire:model='instance.instagramURL' />
-                                        </div>
-
-
-
-
-
-
-                                        {{-- 2: facebook URL --}}
-                                        <div class="col-4">
-                                            <label class="form-label form--label with-icon">
-                                                <i class="bi bi-link-45deg"></i>Facebook</label>
-                                            <input class="form-control form--input mb-4" type="url"
-                                                wire:model='instance.facebookURL' />
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- 3: twitterURL --}}
-                                        <div class="col-4">
-                                            <label class="form-label form--label with-icon">
-                                                <i class="bi bi-link-45deg"></i>X</label>
-                                            <input class="form-control form--input mb-4" type="url"
-                                                wire:model='instance.twitterURL' />
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- 4: tiktokURL --}}
-                                        <div class="col-4">
-                                            <label class="form-label form--label with-icon">
-                                                <i class="bi bi-link-45deg"></i>TikTok</label>
-                                            <input class="form-control form--input mb-4" type="url"
-                                                wire:model='instance.tiktokURL' />
-                                        </div>
-
-
-
-
-
-                                        {{-- 5: snachchat --}}
-                                        <div class="col-4">
-                                            <label class="form-label form--label with-icon">
-                                                <i class="bi bi-link-45deg"></i>Snapchat</label>
-                                            <input class="form-control form--input mb-4" type="url"
-                                                wire:model='instance.snapchatURL' />
-                                        </div>
-
-
-
-
-
-
-                                        {{-- 6: linkedIn --}}
-                                        <div class="col-4">
-                                            <label class="form-label form--label with-icon">
-                                                <i class="bi bi-link-45deg"></i>LinkedIn</label>
-                                            <input class="form-control form--input mb-4" type="url"
-                                                wire:model='instance.linkedInURL' />
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                                        {{-- :: submitButton --}}
-                                        <div class="col-12 text-center mt-3">
-                                            <button wire:loading.attr='disabled'
-                                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center">
-                                                Save
-                                            </button>
-                                        </div>
-
-
-
-                                    </form>
-                                    {{-- endForm --}}
-
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
                 </div>
                 {{-- endTab --}}
 
@@ -227,6 +77,11 @@
 
 
 
+
+
+
+
+
                 {{-- --------------------------------- --}}
                 {{-- --------------------------------- --}}
 
@@ -237,254 +92,13 @@
 
 
 
-
-
-
-                {{-- 2: fonts & logo --}}
+                {{-- 2: general --}}
                 <div class="tab-pane-like mt-4" style="border: 1px solid var(--color-theme-secondary)">
-                    <div class="row">
 
 
+                    <livewire:dashboard.extra.web-apps.settings.components.settings-general key='settings-general' />
 
-                        {{-- content --}}
-                        <div class="col-12">
-                            <div>
 
-
-                                {{-- togglerButton --}}
-                                <a class="btn fs-5 collapse--btn fw-semibold" data-bs-toggle="collapse"
-                                    aria-expanded="true" aria-controls="collapse-4" href="#collapse-4"
-                                    role="button">Fonts & Logo<svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                                        height="1em" fill="currentColor" viewBox="0 0 16 16"
-                                        class="bi bi-chevron-expand">
-                                        <path fill-rule="evenodd"
-                                            d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z">
-                                        </path>
-                                    </svg>
-                                </a>
-
-
-
-
-
-                                {{-- ------------------------ --}}
-                                {{-- ------------------------ --}}
-
-
-                                {{-- collapse --}}
-                                <div class="collapse  collapse--content" id="collapse-4" wire:ignore.self>
-                                    <form wire:submit='updateProfile' class="row align-items-end pt-2">
-
-
-
-
-
-
-
-                                        {{-- textFont --}}
-                                        <div class="col-6">
-
-                                            <label class="form-label form--label">Body</label>
-                                            <input class="form-control form--input mb-4" type="text"
-                                                wire:model='instanceProfile.textFont' placeholder='"Poppins"' />
-
-                                        </div>
-
-
-
-
-
-
-
-
-                                        {{-- headingFont --}}
-                                        <div class="col-6">
-
-                                            <label class="form-label form--label">Headers</label>
-                                            <input class="form-control form--input mb-4" type="text"
-                                                wire:model='instanceProfile.headingFont' placeholder='"Courgette"' />
-
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- fontLinks --}}
-                                        <div class="col-12">
-                                            <label class="form-label form--label">Embed Links<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(Google
-                                                    Fonts)</small></label>
-                                            <textarea class="form-control form--input form--textarea mb-4"
-                                                wire:model='instanceProfile.fontLinks' style="height: 190px"></textarea>
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- ------------------------------------ --}}
-                                        {{-- ------------------------------------ --}}
-
-
-
-
-
-
-
-                                        {{-- 2.1: logo --}}
-                                        <div class="col-6">
-
-
-
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <hr class="w-75" />
-                                                <label
-                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Light
-                                                    Logo
-                                                </label>
-                                            </div>
-
-
-
-
-
-                                            {{-- imageFile --}}
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
-                                                        data-bss-tooltip="" title="Click To Upload"
-                                                        for="profile--file-1">
-
-
-                                                        {{-- size --}}
-                                                        <span class="upload--caption badge">250 x 150</span>
-
-
-
-                                                        {{-- input --}}
-                                                        <input class="form-control d-none file--input" type="file"
-                                                            id="profile--file-1" data-preview="profile--preview-1"
-                                                            wire:model='instanceProfile.imageFile' readonly required />
-
-
-
-                                                        {{-- image --}}
-                                                        <img id="profile--preview-1" class="inventory--image-frame"
-                                                            src="{{ asset('assets/img/placeholder.png') }}"
-                                                            style="aspect-ratio: 1/2;" width="512" height="250"
-                                                            wire:ignore />
-
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- endCol --}}
-
-
-
-
-
-
-                                        {{-- ---------------------------- --}}
-                                        {{-- ---------------------------- --}}
-
-
-
-
-
-
-
-                                        {{-- 2.1: logoDark --}}
-                                        <div class="col-6">
-
-
-
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <hr class="w-75" />
-                                                <label
-                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Dark
-                                                    Logo
-                                                </label>
-                                            </div>
-
-
-
-
-
-                                            {{-- imageFile --}}
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
-                                                        data-bss-tooltip="" title="Click To Upload"
-                                                        for="profile--file-2">
-
-
-                                                        {{-- size --}}
-                                                        <span class="upload--caption badge">250 x 150</span>
-
-
-
-                                                        {{-- input --}}
-                                                        <input class="form-control d-none file--input" type="file"
-                                                            id="profile--file-2" data-preview="profile--preview-2"
-                                                            wire:model='instanceProfile.imageFileDark' readonly
-                                                            required />
-
-
-
-                                                        {{-- image --}}
-                                                        <img id="profile--preview-2" class="inventory--image-frame"
-                                                            src="{{ asset('assets/img/placeholder.png') }}"
-                                                            style="aspect-ratio: 1/2;" width="512" height="250"
-                                                            wire:ignore />
-
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- endCol --}}
-
-
-
-
-
-
-                                        {{-- ---------------------------- --}}
-                                        {{-- ---------------------------- --}}
-
-
-
-
-
-
-
-
-                                        {{-- :: submitButton --}}
-                                        <div class="col-12 text-center mt-3">
-                                            <button wire:loading.attr='disabled'
-                                                wire:target='instanceProfile.imageFile, instanceProfile.imageFileDark, updateProfile'
-                                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center">
-                                                Save
-                                            </button>
-                                        </div>
-
-
-
-                                    </form>
-                                    {{-- endForm --}}
-
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
                 </div>
                 {{-- endTab --}}
 
@@ -495,6 +109,37 @@
 
 
 
+
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+
+
+
+
+
+
+
+
+                {{-- 3: mailConfiguration --}}
+                <div class="tab-pane-like mt-4" style="border: 1px solid var(--color-theme-secondary)">
+
+
+                    <livewire:dashboard.extra.web-apps.settings.components.settings-mail-configuration
+                        key='settings-mail-configuration' />
+
+                </div>
+                {{-- endTab --}}
+
+
+
+
+
+
+
+
+
+
+
                 {{-- --------------------------------- --}}
                 {{-- --------------------------------- --}}
                 {{-- --------------------------------- --}}
@@ -505,6 +150,11 @@
                 {{-- --------------------------------- --}}
 
 
+
+
+
+
+                {{-- ** BLOG ONLY STAYS IN THIS PAGE ** --}}
 
 
 
@@ -523,7 +173,7 @@
 
 
 
-                {{-- 3: blogDesign --}}
+                {{-- 4: blogDesign --}}
                 <div class="tab-pane-like mt-3" style="border: 1px solid var(--color-theme-secondary)">
                     <div class="row">
                         <div class="col-12">
@@ -553,7 +203,7 @@
 
 
                                 {{-- collapse --}}
-                                <div class="collapse collapsed show collapse--content"
+                                <div class="collapse collapsed collapse--content"
                                     style="border-top: 1px solid transparent" id="collapse-2" wire:ignore.self>
                                     <form wire:submit='updateBlogSettings' class="row align-items-end pt-2">
 
@@ -585,7 +235,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Body
                                                     BG</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.bodyColor">
+                                                    wire:model="instance.bodyColor">
                                             </div>
                                         </div>
 
@@ -599,7 +249,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Body
                                                     Text</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.textColor">
+                                                    wire:model="instance.textColor">
                                             </div>
                                         </div>
 
@@ -616,7 +266,7 @@
                                                 <label class="form-label form--label mb-0"
                                                     style="width: 80%">Separator</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.hrColor">
+                                                    wire:model="instance.hrColor">
                                             </div>
                                         </div>
 
@@ -634,7 +284,7 @@
                                                 <label class="form-label form--label mb-0"
                                                     style="width: 80%">Cursor</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cursorColor">
+                                                    wire:model="instance.cursorColor">
                                             </div>
                                         </div>
 
@@ -648,7 +298,7 @@
                                                     style="width: 80%">Cursor<small
                                                         class="ms-1 fw-semibold text-gold fs-9">(2nd)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cursorSecondaryColor">
+                                                    wire:model="instance.cursorSecondaryColor">
                                             </div>
                                         </div>
 
@@ -669,7 +319,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Mobile
                                                     Menu Text</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.mobileMenuTextColor">
+                                                    wire:model="instance.mobileMenuTextColor">
                                             </div>
                                         </div>
 
@@ -687,7 +337,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Mobile
                                                     Menu BG</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.mobileMenuBackgroundColor">
+                                                    wire:model="instance.mobileMenuBackgroundColor">
                                             </div>
                                         </div>
 
@@ -705,7 +355,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Hero
                                                     BG</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.heroBackgroundColor">
+                                                    wire:model="instance.heroBackgroundColor">
                                             </div>
                                         </div>
 
@@ -724,7 +374,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Hero
                                                     Text</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.heroTextColor">
+                                                    wire:model="instance.heroTextColor">
                                             </div>
                                         </div>
 
@@ -738,7 +388,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Slider
                                                     Indicators</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.sliderIndicatorColor">
+                                                    wire:model="instance.sliderIndicatorColor">
                                             </div>
                                         </div>
 
@@ -755,7 +405,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Card
                                                     Title</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardTitleColor">
+                                                    wire:model="instance.cardTitleColor">
                                             </div>
                                         </div>
 
@@ -770,7 +420,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Card
                                                     Subtitle</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardSubtitleColor">
+                                                    wire:model="instance.cardSubtitleColor">
                                             </div>
                                         </div>
 
@@ -784,7 +434,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Card
                                                     Author</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardAuthorColor">
+                                                    wire:model="instance.cardAuthorColor">
                                             </div>
                                         </div>
 
@@ -798,7 +448,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Card
                                                     Date</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardDateColor">
+                                                    wire:model="instance.cardDateColor">
                                             </div>
                                         </div>
 
@@ -815,7 +465,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Card
                                                     Button Text</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardButtonColor">
+                                                    wire:model="instance.cardButtonColor">
                                             </div>
                                         </div>
 
@@ -832,7 +482,7 @@
                                                     Text<small
                                                         class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardButtonHoverColor">
+                                                    wire:model="instance.cardButtonHoverColor">
                                             </div>
                                         </div>
 
@@ -849,7 +499,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Card
                                                     Button Border</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardButtonBorderColor">
+                                                    wire:model="instance.cardButtonBorderColor">
                                             </div>
                                         </div>
 
@@ -866,7 +516,7 @@
                                                     Border<small
                                                         class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardButtonBorderHoverColor">
+                                                    wire:model="instance.cardButtonBorderHoverColor">
                                             </div>
                                         </div>
 
@@ -884,7 +534,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Card
                                                     Button Shadow</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardButtonShadowColor">
+                                                    wire:model="instance.cardButtonShadowColor">
                                             </div>
                                         </div>
 
@@ -901,7 +551,7 @@
                                                     Shadow<small
                                                         class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.cardButtonShadowHoverColor">
+                                                    wire:model="instance.cardButtonShadowHoverColor">
                                             </div>
                                         </div>
 
@@ -940,7 +590,7 @@
                                                     BG<small
                                                         class="ms-1 fw-semibold text-gold fs-9">(Blog)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.singleBlogNavbarBackgroundColor">
+                                                    wire:model="instance.singleBlogNavbarBackgroundColor">
                                             </div>
                                         </div>
 
@@ -956,7 +606,7 @@
                                                     Text<small
                                                         class="ms-1 fw-semibold text-gold fs-9">(Blog)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.singleBlogNavbarTextColor">
+                                                    wire:model="instance.singleBlogNavbarTextColor">
                                             </div>
                                         </div>
 
@@ -975,7 +625,7 @@
                                                     Text<small
                                                         class="ms-1 fw-semibold text-gold fs-9">(Blog)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.singleBlogAuthorColor">
+                                                    wire:model="instance.singleBlogAuthorColor">
                                             </div>
                                         </div>
 
@@ -996,7 +646,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Tags
                                                     BG</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.singleBlogTagColor">
+                                                    wire:model="instance.singleBlogTagColor">
                                             </div>
                                         </div>
 
@@ -1015,7 +665,7 @@
                                                     BG<small
                                                         class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.singleBlogTagHoverColor">
+                                                    wire:model="instance.singleBlogTagHoverColor">
                                             </div>
                                         </div>
 
@@ -1032,7 +682,7 @@
                                                 <label class="form-label form--label mb-0" style="width: 80%">Tags
                                                     Text</label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.singleBlogTagTextColor">
+                                                    wire:model="instance.singleBlogTagTextColor">
                                             </div>
                                         </div>
 
@@ -1052,7 +702,7 @@
                                                     Text<small
                                                         class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceBlog.singleBlogTagTextHoverColor">
+                                                    wire:model="instance.singleBlogTagTextHoverColor">
                                             </div>
                                         </div>
 
@@ -1099,8 +749,8 @@
                                             <label class="form-label form--label">Blog Card</label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                                 <select class="form-select form--select"
-                                                    data-instance='instanceBlog.cardAlignment'
-                                                    value='{{ $instanceBlog?->cardAlignment }}'>
+                                                    data-instance='instance.cardAlignment'
+                                                    value='{{ $instance?->cardAlignment }}'>
                                                     <option value=""></option>
 
                                                     @foreach ($alignments ?? [] as $alignment)
@@ -1120,8 +770,8 @@
                                             <label class="form-label form--label">Hero Text</label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                                 <select class="form-select form--select"
-                                                    data-instance='instanceBlog.heroTextAlignment'
-                                                    value='{{ $instanceBlog?->heroTextAlignment }}'>
+                                                    data-instance='instance.heroTextAlignment'
+                                                    value='{{ $instance?->heroTextAlignment }}'>
                                                     <option value=""></option>
 
                                                     @foreach ($alignments ?? [] as $alignment)
@@ -1146,8 +796,8 @@
                                                     Subtitle)</small></label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                                 <select class="form-select form--select"
-                                                    data-instance='instanceBlog.singleBlogHeroAlignment'
-                                                    value='{{ $instanceBlog?->singleBlogHeroAlignment }}'>
+                                                    data-instance='instance.singleBlogHeroAlignment'
+                                                    value='{{ $instance?->singleBlogHeroAlignment }}'>
                                                     <option value=""></option>
 
                                                     @foreach ($alignments ?? [] as $alignment)
@@ -1169,8 +819,8 @@
                                             <label class="form-label form--label">Section Title</label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                                 <select class="form-select form--select"
-                                                    data-instance='instanceBlog.singleBlogSectionTitleAlignment'
-                                                    value='{{ $instanceBlog?->singleBlogSectionTitleAlignment }}'>
+                                                    data-instance='instance.singleBlogSectionTitleAlignment'
+                                                    value='{{ $instance?->singleBlogSectionTitleAlignment }}'>
                                                     <option value=""></option>
 
                                                     @foreach ($alignments ?? [] as $alignment)
@@ -1189,8 +839,8 @@
                                             <label class="form-label form--label">Section Content</label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                                 <select class="form-select form--select"
-                                                    data-instance='instanceBlog.singleBlogSectionContentAlignment'
-                                                    value='{{ $instanceBlog?->singleBlogSectionContentAlignment }}'>
+                                                    data-instance='instance.singleBlogSectionContentAlignment'
+                                                    value='{{ $instance?->singleBlogSectionContentAlignment }}'>
                                                     <option value=""></option>
 
                                                     @foreach ($alignments ?? [] as $alignment)
@@ -1246,7 +896,7 @@
                                             <label class="form-label form--label">Hero Picture Radius<small
                                                     class="ms-1 fw-semibold text-gold fs-9">(PX)</small></label>
                                             <input class="form-control form--input mb-4" type="number" step='0.1'
-                                                wire:model='instanceBlog.heroPictureRadius' />
+                                                wire:model='instance.heroPictureRadius' />
                                         </div>
 
 
@@ -1259,7 +909,7 @@
                                             <label class="form-label form--label">Card Columns<small
                                                     class="ms-1 fw-semibold text-gold fs-9">(2-4)</small></label>
                                             <input class="form-control form--input mb-4" type="number" step='1' min='2'
-                                                max='4' wire:model='instanceBlog.numberOfColumns' />
+                                                max='4' wire:model='instance.numberOfColumns' />
                                         </div>
 
 
@@ -1312,8 +962,8 @@
                                                 id='quill-editor-toolbar-1' />
                                             <div id='quill-editor-1' class="quill-editor"
                                                 data-toolbar='#quill-editor-toolbar-1'
-                                                data-value="{{ $instanceBlog->heroText ?? '' }}"
-                                                data-instance='instanceBlog.heroText'></div>
+                                                data-value="{{ $instance->heroText ?? '' }}"
+                                                data-instance='instance.heroText'></div>
 
                                         </div>
 
@@ -1330,7 +980,7 @@
                                                     class="ms-1 fw-semibold text-gold fs-9">(ex. Our
                                                     Blogs)</small></label>
                                             <input class="form-control form--input mb-4" type="text"
-                                                wire:model='instanceBlog.contentTitleText' />
+                                                wire:model='instance.contentTitleText' />
                                         </div>
 
 
@@ -1344,7 +994,7 @@
                                         <div class="col-4">
                                             <label class="form-label form--label">Copyrights</label>
                                             <input class="form-control form--input mb-4" type="text"
-                                                wire:model='instanceBlog.footerCopyrightsText' />
+                                                wire:model='instance.footerCopyrightsText' />
                                         </div>
 
 
@@ -1496,7 +1146,7 @@
                                                         {{-- input --}}
                                                         <input class="form-control d-none file--input" type="file"
                                                             id="hero--file-1" data-preview="hero--preview-1"
-                                                            wire:model='instanceBlog.heroImageFile' />
+                                                            wire:model='instance.heroImageFile' />
 
 
 
@@ -1531,7 +1181,7 @@
                                                         {{-- input --}}
                                                         <input class="form-control d-none file--input" type="file"
                                                             id="hero--file-2" data-preview="hero--preview-2"
-                                                            wire:model='instanceBlog.heroSecondImageFile' />
+                                                            wire:model='instance.heroSecondImageFile' />
 
 
 
@@ -1566,7 +1216,7 @@
                                                         {{-- input --}}
                                                         <input class="form-control d-none file--input" type="file"
                                                             id="hero--file-3" data-preview="hero--preview-3"
-                                                            wire:model='instanceBlog.heroThirdImageFile' />
+                                                            wire:model='instance.heroThirdImageFile' />
 
 
 
@@ -1602,7 +1252,7 @@
                                                         {{-- input --}}
                                                         <input class="form-control d-none file--input" type="file"
                                                             id="hero--file-4" data-preview="hero--preview-4"
-                                                            wire:model='instanceBlog.heroFourthImageFile' />
+                                                            wire:model='instance.heroFourthImageFile' />
 
 
 
@@ -1675,7 +1325,7 @@
                                                         {{-- input --}}
                                                         <input class="form-control d-none file--input" type="file"
                                                             id="footer--file-1" data-preview="footer--preview-1"
-                                                            wire:model='instanceBlog.footerImageFile' readonly />
+                                                            wire:model='instance.footerImageFile' readonly />
 
 
 
@@ -1704,7 +1354,7 @@
                                         <div class="col-12 text-center mt-3">
                                             <button wire:loading.attr='disabled'
                                                 class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center"
-                                                wire:target='instanceBlog.heroImageFile, instanceBlog.logoImageFile, instanceBlog.heroSecondImageFile, instanceBlog.heroThirdImageFile, instanceBlog.heroFourthImageFile, instanceBlog.footerImageFile'>
+                                                wire:target='instance.heroImageFile, instance.logoImageFile, instance.heroSecondImageFile, instance.heroThirdImageFile, instance.heroFourthImageFile, instance.footerImageFile'>
                                                 Save
                                             </button>
                                         </div>
@@ -1755,6 +1405,9 @@
 
 
 
+
+
+
                 {{-- title --}}
                 <div class="d-block text-end mt-5">
                     <h6 class="text-center mb-0 fw-500 fs-6 pb-2 d-inline-block"
@@ -1768,1853 +1421,15 @@
 
 
 
+
+
                 {{-- 5: subscriptionDesign --}}
                 <div class="tab-pane-like mt-3" style="border: 1px solid var(--color-theme-secondary)">
-                    <div class="row">
-                        <div class="col-12">
-                            <div>
 
 
-                                {{-- togglerButton --}}
-                                <a class="btn fs-5 collapse--btn fw-semibold" data-bs-toggle="collapse"
-                                    aria-expanded="true" aria-controls="collapse-5" href="#collapse-5"
-                                    role="button">Design & Colors<svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                                        height="1em" fill="currentColor" viewBox="0 0 16 16"
-                                        class="bi bi-chevron-expand">
-                                        <path fill-rule="evenodd"
-                                            d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z">
-                                        </path>
-                                    </svg>
-                                </a>
+                    <livewire:dashboard.extra.web-apps.settings.components.settings-plans key='settings-plans' />
 
 
-
-
-
-                                {{-- ------------------------ --}}
-                                {{-- ------------------------ --}}
-
-
-
-
-                                {{-- collapse --}}
-                                <div class="collapse collapsed show collapse--content"
-                                    style="border-top: 1px solid transparent" id="collapse-5" wire:ignore.self>
-                                    <form wire:submit='updateSubscriptionSettings' class="row align-items-end pt-2">
-
-
-
-
-
-
-                                        {{-- 0: design --}}
-                                        <div class="col-12">
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <hr class="w-75" />
-                                                <label
-                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Layouts
-                                                </label>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- ----------------------------- --}}
-                                        {{-- ----------------------------- --}}
-
-
-
-
-
-                                        {{-- 1: option --}}
-                                        <div class="col-4 col-xl-3 mt-5 pt-4">
-                                            <div class="overview--card client-version scale--self-05 mb-5"
-                                                style="box-shadow: 0px 0px 8px var(--color-body)">
-                                                <div class="row">
-
-
-
-                                                    {{-- imageFile --}}
-                                                    <div class="col-12 text-center position-relative">
-                                                        <img class="client--card-logo of-cover"
-                                                            src="{{ asset('storage/extra/plans/option-1.png') }}" />
-                                                    </div>
-
-
-
-                                                    {{-- preview --}}
-                                                    <div class="col-12">
-                                                        <p class="text-center fw-bold text-danger mb-0">
-                                                            <a herf="#"
-                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
-                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
-                                                                Preview
-                                                            </a>
-                                                        </p>
-                                                    </div>
-
-
-
-
-
-                                                    {{-- midCol --}}
-                                                    <div class="col-12">
-                                                        <h6 class="text-center fw-bold mt-3 mb-2">Grid Slider</h6>
-                                                    </div>
-
-
-
-
-
-
-                                                    {{-- confirm --}}
-                                                    <div class="col-12 text-center mt-3">
-
-
-                                                        {{-- selected --}}
-                                                        @if ($instanceSubscription->template == 'Grid Slider')
-
-                                                        <button wire:click="updatePlansTemplate('Grid Slider')" class="btn btn--scheme btn--scheme-2 disabled
-                                                                fs-12 px-4 mx-2 scale--self-05"
-                                                            type="button">Selected</button>
-
-
-
-                                                        {{-- notSelected --}}
-                                                        @else
-
-                                                        <button wire:click="updatePlansTemplate('Grid Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                                                            wire:loading.class='disabled' type="button">Choose</button>
-
-                                                        @endif
-                                                        {{-- end if --}}
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- -------------------------------- --}}
-                                        {{-- -------------------------------- --}}
-
-
-
-
-                                        {{-- 2: option --}}
-                                        <div class="col-4 col-xl-3 mt-5 pt-4">
-                                            <div class="overview--card client-version scale--self-05 mb-5"
-                                                style="box-shadow: 0px 0px 8px var(--color-body)">
-                                                <div class="row">
-
-
-
-                                                    {{-- imageFile --}}
-                                                    <div class="col-12 text-center position-relative">
-                                                        <img class="client--card-logo of-contain"
-                                                            src="{{ asset('storage/extra/plans/option-2.png') }}" />
-                                                    </div>
-
-
-
-
-                                                    {{-- preview --}}
-                                                    <div class="col-12">
-                                                        <p class="text-center fw-bold text-danger mb-0">
-                                                            <a herf="#"
-                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
-                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
-                                                                Preview
-                                                            </a>
-                                                        </p>
-                                                    </div>
-
-
-
-
-                                                    {{-- midCol --}}
-                                                    <div class="col-12">
-                                                        <h6 class="text-center fw-bold mt-3 mb-2">Grid Fully Slider</h6>
-                                                    </div>
-
-
-
-                                                    {{-- confirm --}}
-                                                    <div class="col-12 text-center mt-3">
-
-
-                                                        {{-- selected --}}
-                                                        @if ($instanceSubscription->template == 'Grid Fully Slider')
-
-                                                        <button wire:click="updatePlansTemplate('Grid Fully Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
-                                                            type="button">Selected</button>
-
-
-
-                                                        {{-- notSelected --}}
-                                                        @else
-
-                                                        <button wire:click="updatePlansTemplate('Grid Fully Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                                                            wire:loading.class='disabled' type="button">Choose</button>
-
-                                                        @endif
-                                                        {{-- end if --}}
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-                                        {{-- -------------------------------- --}}
-                                        {{-- -------------------------------- --}}
-
-
-
-
-                                        {{-- 3: option --}}
-                                        <div class="col-4 col-xl-3 mt-5 pt-4">
-                                            <div class="overview--card client-version scale--self-05 mb-5"
-                                                style="box-shadow: 0px 0px 8px var(--color-body)">
-                                                <div class="row">
-
-
-
-                                                    {{-- imageFile --}}
-                                                    <div class="col-12 text-center position-relative">
-                                                        <img class="client--card-logo of-contain"
-                                                            src="{{ asset('storage/extra/plans/option-3.png') }}" />
-                                                    </div>
-
-
-
-
-                                                    {{-- preview --}}
-                                                    <div class="col-12">
-                                                        <p class="text-center fw-bold text-danger mb-0">
-                                                            <a herf="#"
-                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
-                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
-                                                                Preview
-                                                            </a>
-                                                        </p>
-                                                    </div>
-
-
-
-
-
-                                                    {{-- midCol --}}
-                                                    <div class="col-12">
-                                                        <h6 class="text-center fw-bold mt-3 mb-2">Motion Slider</h6>
-                                                    </div>
-
-
-
-                                                    {{-- confirm --}}
-                                                    <div class="col-12 text-center mt-3">
-
-
-                                                        {{-- selected --}}
-                                                        @if ($instanceSubscription->template == 'Motion Slider')
-
-                                                        <button wire:click="updatePlansTemplate('Motion Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
-                                                            type="button">Selected</button>
-
-
-
-                                                        {{-- notSelected --}}
-                                                        @else
-
-                                                        <button wire:click="updatePlansTemplate('Motion Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                                                            wire:loading.class='disabled' type="button">Choose</button>
-
-                                                        @endif
-                                                        {{-- end if --}}
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- -------------------------------- --}}
-                                        {{-- -------------------------------- --}}
-
-
-
-
-                                        {{-- 4: option --}}
-                                        <div class="col-4 col-xl-3 mt-5 pt-4">
-                                            <div class="overview--card client-version scale--self-05 mb-5"
-                                                style="box-shadow: 0px 0px 8px var(--color-body)">
-                                                <div class="row">
-
-
-
-                                                    {{-- imageFile --}}
-                                                    <div class="col-12 text-center position-relative">
-                                                        <img class="client--card-logo of-contain"
-                                                            src="{{ asset('storage/extra/plans/option-4.png') }}" />
-                                                    </div>
-
-
-
-
-                                                    {{-- preview --}}
-                                                    <div class="col-12">
-                                                        <p class="text-center fw-bold text-danger mb-0">
-                                                            <a herf="#"
-                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
-                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
-                                                                Preview
-                                                            </a>
-                                                        </p>
-                                                    </div>
-
-
-
-
-                                                    {{-- midCol --}}
-                                                    <div class="col-12">
-                                                        <h6 class="text-center fw-bold mt-3 mb-2">Half Slider</h6>
-                                                    </div>
-
-
-
-                                                    {{-- confirm --}}
-                                                    <div class="col-12 text-center mt-3">
-
-
-                                                        {{-- selected --}}
-                                                        @if ($instanceSubscription->template == 'Half Slider')
-
-                                                        <button wire:click="updatePlansTemplate('Half Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
-                                                            type="button">Selected</button>
-
-
-
-                                                        {{-- notSelected --}}
-                                                        @else
-
-                                                        <button wire:click="updatePlansTemplate('Half Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                                                            wire:loading.class='disabled' type="button">Choose</button>
-
-                                                        @endif
-                                                        {{-- end if --}}
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- -------------------------------- --}}
-                                        {{-- -------------------------------- --}}
-
-
-
-
-
-
-
-
-
-                                        {{-- 5: option --}}
-                                        <div class="col-4 col-xl-3 mt-5 pt-4">
-                                            <div class="overview--card client-version scale--self-05 mb-5"
-                                                style="box-shadow: 0px 0px 8px var(--color-body)">
-                                                <div class="row">
-
-
-
-                                                    {{-- imageFile --}}
-                                                    <div class="col-12 text-center position-relative">
-                                                        <img class="client--card-logo of-contain"
-                                                            src="{{ asset('storage/extra/plans/option-5.png') }}" />
-                                                    </div>
-
-
-
-
-
-                                                    {{-- preview --}}
-                                                    <div class="col-12">
-                                                        <p class="text-center fw-bold text-danger mb-0">
-                                                            <a herf="#"
-                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
-                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
-                                                                Preview
-                                                            </a>
-                                                        </p>
-                                                    </div>
-
-
-
-
-                                                    {{-- midCol --}}
-                                                    <div class="col-12">
-                                                        <h6 class="text-center fw-bold mt-3 mb-2">Parallax Slider</h6>
-                                                    </div>
-
-
-
-                                                    {{-- confirm --}}
-                                                    <div class="col-12 text-center mt-3">
-
-
-                                                        {{-- selected --}}
-                                                        @if ($instanceSubscription->template == 'Parallax Slider')
-
-                                                        <button wire:click="updatePlansTemplate('Parallax Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
-                                                            type="button">Selected</button>
-
-
-
-                                                        {{-- notSelected --}}
-                                                        @else
-
-                                                        <button wire:click="updatePlansTemplate('Parallax Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                                                            wire:loading.class='disabled' type="button">Choose</button>
-
-                                                        @endif
-                                                        {{-- end if --}}
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- -------------------------------- --}}
-                                        {{-- -------------------------------- --}}
-
-
-
-
-
-
-
-
-
-                                        {{-- 6: option --}}
-                                        <div class="col-4 col-xl-3 mt-5 pt-4">
-                                            <div class="overview--card client-version scale--self-05 mb-5"
-                                                style="box-shadow: 0px 0px 8px var(--color-body)">
-                                                <div class="row">
-
-
-
-                                                    {{-- imageFile --}}
-                                                    <div class="col-12 text-center position-relative">
-                                                        <img class="client--card-logo of-contain"
-                                                            src="{{ asset('storage/extra/plans/option-6.png') }}" />
-                                                    </div>
-
-
-
-
-
-                                                    {{-- preview --}}
-                                                    <div class="col-12">
-                                                        <p class="text-center fw-bold text-danger mb-0">
-                                                            <a herf="#"
-                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
-                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
-                                                                Preview
-                                                            </a>
-                                                        </p>
-                                                    </div>
-
-
-
-
-                                                    {{-- midCol --}}
-                                                    <div class="col-12">
-                                                        <h6 class="text-center fw-bold mt-3 mb-2">Two Columns Slider
-                                                        </h6>
-                                                    </div>
-
-
-
-                                                    {{-- confirm --}}
-                                                    <div class="col-12 text-center mt-3">
-
-
-                                                        {{-- selected --}}
-                                                        @if ($instanceSubscription->template == 'Two Columns Slider')
-
-                                                        <button wire:click="updatePlansTemplate('Two Columns Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
-                                                            type="button">Selected</button>
-
-
-
-                                                        {{-- notSelected --}}
-                                                        @else
-
-                                                        <button wire:click="updatePlansTemplate('Two Columns Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                                                            wire:loading.class='disabled' type="button">Choose</button>
-
-                                                        @endif
-                                                        {{-- end if --}}
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                                        {{-- -------------------------------- --}}
-                                        {{-- -------------------------------- --}}
-
-
-
-
-
-
-
-
-
-                                        {{-- 7: option --}}
-                                        <div class="col-4 col-xl-3 mt-5 pt-4">
-                                            <div class="overview--card client-version scale--self-05 mb-5"
-                                                style="box-shadow: 0px 0px 8px var(--color-body)">
-                                                <div class="row">
-
-
-
-                                                    {{-- imageFile --}}
-                                                    <div class="col-12 text-center position-relative">
-                                                        <img class="client--card-logo of-contain"
-                                                            src="{{ asset('storage/extra/plans/option-7.png') }}" />
-                                                    </div>
-
-
-
-
-
-
-                                                    {{-- preview --}}
-                                                    <div class="col-12">
-                                                        <p class="text-center fw-bold text-danger mb-0">
-                                                            <a herf="#"
-                                                                class="btn btn--raw-icon fs-13 text-warning d-inline-flex align-items-center justify-content-center scale--self-05 w-auto rounded-0"
-                                                                style="border-bottom: 2px dashed var(--color-theme-secondary) !important;">
-                                                                Preview
-                                                            </a>
-                                                        </p>
-                                                    </div>
-
-
-
-                                                    {{-- midCol --}}
-                                                    <div class="col-12">
-                                                        <h6 class="text-center fw-bold mt-3 mb-2">Three Columns Slider
-                                                        </h6>
-                                                    </div>
-
-
-
-                                                    {{-- confirm --}}
-                                                    <div class="col-12 text-center mt-3">
-
-
-                                                        {{-- selected --}}
-                                                        @if ($instanceSubscription->template == 'Three Columns Slider')
-
-                                                        <button wire:click="updatePlansTemplate('Three Columns Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 disabled fs-12 px-4 mx-2 scale--self-05"
-                                                            type="button">Selected</button>
-
-
-
-                                                        {{-- notSelected --}}
-                                                        @else
-
-                                                        <button wire:click="updatePlansTemplate('Three Columns Slider')"
-                                                            class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-2 scale--self-05"
-                                                            wire:loading.class='disabled' type="button">Choose</button>
-
-                                                        @endif
-                                                        {{-- end if --}}
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-                                        {{-- -------------------------------- --}}
-                                        {{-- -------------------------------- --}}
-
-
-
-
-
-
-
-
-
-                                        {{-- ------------------------------------- --}}
-                                        {{-- ------------------------------------- --}}
-                                        {{-- ------------------------------------- --}}
-                                        {{-- ------------------------------------- --}}
-                                        {{-- ------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-
-
-                                        {{-- 1: colors & backgrounds --}}
-                                        <div class="col-12">
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <hr class="w-75" />
-                                                <label
-                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Colors
-                                                    <i class="bi bi-dash-lg mx-2 text-gold"></i>Backgrounds
-                                                </label>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- body - preloader --}}
-
-
-                                        {{-- bodyColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Body
-                                                    BG</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.bodyBackgroundColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- textColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Body
-                                                    Text</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.textColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- preloaderLineColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Preloader
-                                                    Line</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.preloaderLineColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- cursor --}}
-
-
-
-
-                                        {{-- cursorColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0"
-                                                    style="width: 80%">Cursor</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.cursorColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- cursorHoverColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0"
-                                                    style="width: 80%">Cursor<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.cursorHoverColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- navbar --}}
-
-
-
-
-
-                                        {{-- navbarBackgroundColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    BG</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.navbarBackgroundColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- navbarMenuColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    Icon</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.navbarMenuColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- navbarMenuActiveColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    Icon<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Active)</small></label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.navbarMenuActiveColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- navbarLinksColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    Links</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.navbarLinksColor">
-                                            </div>
-                                        </div>
-
-
-
-                                        {{-- navbarLinksHoverColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    Links<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.navbarLinksHoverColor">
-                                            </div>
-                                        </div>
-
-
-
-
-                                        {{-- navbarSocialLinksColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    Socials</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.navbarSocialLinksColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- slider --}}
-
-
-                                        {{-- sliderLineColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Slider
-                                                    Line</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.sliderLineColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- sliderBulletsColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Slider
-                                                    Indicators</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.sliderBulletsColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- ----------------------- --}}
-                                        {{-- ----------------------- --}}
-                                        {{-- ----------------------- --}}
-                                        {{-- ----------------------- --}}
-                                        {{-- ----------------------- --}}
-
-
-
-
-
-                                        {{-- plans --}}
-                                        <div class="col-12 mb-3">
-                                            <hr>
-                                        </div>
-
-
-
-                                        {{-- planCardBackgroundColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                                    BG</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planCardBackgroundColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- planCardTitleColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                                    Title</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planCardTitleColor">
-                                            </div>
-                                        </div>
-
-
-
-                                        {{-- planCardSubtitleColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                                    Subtitle</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planCardSubtitleColor">
-                                            </div>
-                                        </div>
-
-
-                                        {{-- planCardCaptionColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                                    Caption</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planCardCaptionColor">
-                                            </div>
-                                        </div>
-
-
-                                        {{-- planCardHrColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                                    Line</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planCardHrColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- planCardButtonBackgroundColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                                    Button BG</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planCardButtonBackgroundColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- planCardButtonColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                                    Button</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planCardButtonColor">
-                                            </div>
-                                        </div>
-
-
-
-                                        {{-- planCardButtonHoverColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                                    Button<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planCardButtonHoverColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-                                        {{-- ----------------------- --}}
-                                        {{-- ----------------------- --}}
-                                        {{-- ----------------------- --}}
-                                        {{-- ----------------------- --}}
-                                        {{-- ----------------------- --}}
-
-
-
-
-
-
-
-                                        {{-- singlePlan --}}
-                                        <div class="col-12 mb-3">
-                                            <hr>
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- planSideTitleColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Side
-                                                    Titles</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planSideTitleColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- planFilterLinksColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Filter
-                                                    Links</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planFilterLinksColor">
-                                            </div>
-                                        </div>
-
-
-
-                                        {{-- planFilterLinksHoverBorderColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Filter
-                                                    Links Border<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planFilterLinksHoverBorderColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-                                        {{-- planListNumbersColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">List
-                                                    Numbers</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planListNumbersColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- planMealDietColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Meal
-                                                    Caption</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planMealDietColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- planMealsBorderColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Meals
-                                                    Border</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planMealsBorderColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- planMealsHoverBorderColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0" style="width: 80%">Meals
-                                                    Border<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planMealsHoverBorderColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        {{-- planReviewsTitleColor --}}
-                                        <div class="col-4">
-                                            <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0"
-                                                    style="width: 80%">Testimonials Title</label>
-                                                <input type="color" class="form--input py-1 pointer" required=""
-                                                    wire:model="instanceSubscription.planReviewsTitleColor">
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-
-                                        {{-- 2: alignments --}}
-                                        <div class="col-12 mt-4">
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <hr class="w-75" />
-                                                <label
-                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Adjust
-                                                    Alignments</label>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- planCardAlignment --}}
-                                        <div class="col-4" wire:ignore>
-                                            <label class="form-label form--label">Plan Card Content</label>
-                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
-                                                    data-instance='instanceSubscription.planCardAlignment'
-                                                    value='{{ $instanceSubscription?->planCardAlignment }}'>
-                                                    <option value=""></option>
-
-                                                    @foreach ($alignments ?? [] as $alignment)
-                                                    <option value="{{ $alignment }}">{{ ucwords($alignment) }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-
-
-
-
-
-
-
-
-
-
-                                        {{-- 3: features --}}
-                                        <div class="col-12 mt-4">
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <hr class="w-75" />
-                                                <label
-                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Extra
-                                                    Features</label>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-                                        {{-- planCardRadius --}}
-                                        <div class="col-4">
-                                            <label class="form-label form--label">Plan Card Radius<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(PX)</small></label>
-                                            <input class="form-control form--input mb-4" type="number" step='0.1'
-                                                wire:model='instanceSubscription.planCardRadius' />
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-                                        {{-- sliderArrows --}}
-                                        <div class="col-4" wire:ignore>
-                                            <label class="form-label form--label">Plan Slider Arrows<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(V5)</small></label>
-                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
-                                                    data-instance='instanceSubscription.planSliderArrows'
-                                                    value='{{ $instanceSubscription?->planSliderArrows }}'>
-                                                    <option value=""></option>
-                                                    <option value="light">Light Color</option>
-                                                    <option value="dark">Dark Color</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        {{-- empty --}}
-                                        <div class="col-12"></div>
-
-
-
-
-
-
-                                        {{-- --------------------------------- --}}
-                                        {{-- --------------------------------- --}}
-                                        {{-- --------------------------------- --}}
-                                        {{-- --------------------------------- --}}
-                                        {{-- --------------------------------- --}}
-
-
-
-
-                                        {{-- singlePlan --}}
-
-
-
-                                        {{-- planSideTitleDisplay --}}
-                                        <div class="col-4" wire:ignore>
-                                            <label class="form-label form--label">Sub-Headings<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(Single
-                                                    Plan)</small></label>
-                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
-                                                    data-instance='instanceSubscription.planSideTitleDisplay'
-                                                    value='{{ $instanceSubscription?->planSideTitleDisplay }}' required>
-                                                    <option value=""></option>
-                                                    <option value="inline">Same Line</option>
-                                                    <option value="block">Full Line</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                                        {{-- showPlanCustomSection --}}
-                                        <div class="col-4" wire:ignore>
-                                            <label class="form-label form--label">Custom Section<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(Single
-                                                    Plan)</small></label>
-                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
-                                                    data-instance='instanceSubscription.showPlanCustomSection'
-                                                    value='{{ $instanceSubscription?->showPlanCustomSection }}'>
-                                                    <option value=""></option>
-                                                    <option value="1">Show</option>
-                                                    <option value="0">Hide</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-                                        {{-- showPlanMealsTypeFilter --}}
-                                        <div class="col-4" wire:ignore>
-                                            <label class="form-label form--label">Plan Meals Filters<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(Single
-                                                    Plan)</small></label>
-                                            <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
-                                                    data-instance='instanceSubscription.showPlanMealsTypeFilter'
-                                                    value='{{ $instanceSubscription?->showPlanMealsTypeFilter }}'>
-                                                    <option value=""></option>
-                                                    <option value="1">Show</option>
-                                                    <option value="0">Hide</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-
-
-
-
-
-                                        {{-- dynamicContent --}}
-
-
-
-
-                                        {{-- title --}}
-                                        <div class="col-12 mt-4">
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <hr class="w-75" />
-                                                <label
-                                                    class="form-label form--label px-3 w-25 justify-content-center mb-0">Custom
-                                                    Section</label>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-                                        {{-- planCustomSectionTitle --}}
-                                        <div class="col-4">
-                                            <label class="form-label form--label">Section Title</label>
-                                            <input class="form-control form--input mb-4" type="text"
-                                                wire:model='instanceSubscription.planCustomSectionTitle' />
-                                        </div>
-
-
-
-
-
-
-
-                                        {{-- planCustomSectionVideoURL --}}
-                                        <div class="col-8">
-                                            <label class="form-label form--label">Section Video<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(URL)</small></label>
-                                            <input class="form-control form--input mb-4" type="text"
-                                                wire:model='instanceSubscription.planCustomSectionVideoURL' />
-                                        </div>
-
-
-
-
-
-
-
-
-                                        {{-- ------------------------------------- --}}
-                                        {{-- ------------------------------------- --}}
-
-
-
-
-
-
-                                        {{-- imageFiles --}}
-                                        <div class="col-12">
-                                            <div class="row">
-
-
-
-
-
-                                                {{-- 1: 1st --}}
-                                                <div class="col-4">
-
-
-                                                    {{-- imageFile --}}
-                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
-                                                        data-bss-tooltip="" title="Click To Upload"
-                                                        for="custom--file-1">
-
-
-                                                        {{-- size --}}
-                                                        <span class="upload--caption badge">1st</span>
-
-
-
-                                                        {{-- input --}}
-                                                        <input class="form-control d-none file--input" type="file"
-                                                            id="custom--file-1" data-preview="custom--preview-1"
-                                                            wire:model='instanceSubscription.planCustomSectionImageFile' />
-
-
-
-                                                        {{-- image --}}
-                                                        <img id="custom--preview-1" class="inventory--image-frame"
-                                                            src="{{ asset('assets/img/placeholder.png') }}"
-                                                            style="aspect-ratio: 1/2;" width="512" height="250"
-                                                            wire:ignore />
-
-                                                    </label>
-
-
-
-
-                                                    {{-- subtitle --}}
-                                                    <input class="form-control form--input text-center mb-2" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionSubtitle'
-                                                        placeholder="Subtitle" />
-
-
-
-                                                    {{-- caption --}}
-                                                    <input class="form-control form--input text-center mb-4" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionCaption'
-                                                        placeholder="Caption" />
-                                                </div>
-
-
-
-
-
-
-
-
-
-                                                {{-- ------------------------- --}}
-                                                {{-- ------------------------- --}}
-
-
-
-
-
-                                                {{-- 2nd --}}
-                                                <div class="col-4">
-                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
-                                                        data-bss-tooltip="" title="Click To Upload"
-                                                        for="custom--file-2">
-
-
-                                                        {{-- size --}}
-                                                        <span class="upload--caption badge">2nd</span>
-
-
-
-                                                        {{-- input --}}
-                                                        <input class="form-control d-none file--input" type="file"
-                                                            id="custom--file-2" data-preview="custom--preview-2"
-                                                            wire:model='instanceSubscription.planCustomSectionSecondImageFile' />
-
-
-
-                                                        {{-- image --}}
-                                                        <img id="custom--preview-2" class="inventory--image-frame"
-                                                            src="{{ asset('assets/img/placeholder.png') }}"
-                                                            style="aspect-ratio: 1/2;" width="512" height="250"
-                                                            wire:ignore />
-
-                                                    </label>
-
-
-
-
-                                                    {{-- subtitle --}}
-                                                    <input class="form-control form--input text-center mb-2" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionSecondSubtitle'
-                                                        placeholder="Subtitle" />
-
-
-
-                                                    {{-- caption --}}
-                                                    <input class="form-control form--input text-center mb-4" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionSecondCaption'
-                                                        placeholder="Caption" />
-
-
-                                                </div>
-
-
-
-
-
-
-
-                                                {{-- ------------------------- --}}
-                                                {{-- ------------------------- --}}
-
-
-
-
-
-
-                                                {{-- 3rd --}}
-                                                <div class="col-4">
-
-                                                    {{-- imageFile --}}
-                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
-                                                        data-bss-tooltip="" title="Click To Upload"
-                                                        for="custom--file-3">
-
-
-                                                        {{-- size --}}
-                                                        <span class="upload--caption badge">3rd</span>
-
-
-
-                                                        {{-- input --}}
-                                                        <input class="form-control d-none file--input" type="file"
-                                                            id="custom--file-3" data-preview="custom--preview-3"
-                                                            wire:model='instanceSubscription.planCustomSectionThirdImageFile' />
-
-
-
-                                                        {{-- image --}}
-                                                        <img id="custom--preview-3" class="inventory--image-frame"
-                                                            src="{{ asset('assets/img/placeholder.png') }}"
-                                                            style="aspect-ratio: 1/2;" width="512" height="250"
-                                                            wire:ignore />
-
-                                                    </label>
-
-
-
-
-                                                    {{-- subtitle --}}
-                                                    <input class="form-control form--input text-center mb-2" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionThirdSubtitle'
-                                                        placeholder="Subtitle" />
-
-
-
-                                                    {{-- caption --}}
-                                                    <input class="form-control form--input text-center mb-4" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionThirdCaption'
-                                                        placeholder="Caption" />
-
-                                                </div>
-
-
-
-
-
-
-
-                                                {{-- ------------------------- --}}
-                                                {{-- ------------------------- --}}
-
-
-
-
-                                                {{-- 4th --}}
-                                                <div class="col-4">
-
-
-                                                    {{-- imageFile --}}
-                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
-                                                        data-bss-tooltip="" title="Click To Upload"
-                                                        for="custom--file-4">
-
-
-                                                        {{-- size --}}
-                                                        <span class="upload--caption badge">4th</span>
-
-
-
-                                                        {{-- input --}}
-                                                        <input class="form-control d-none file--input" type="file"
-                                                            id="custom--file-4" data-preview="custom--preview-4"
-                                                            wire:model='instanceSubscription.planCustomSectionFourthImageFile' />
-
-
-
-                                                        {{-- image --}}
-                                                        <img id="custom--preview-4" class="inventory--image-frame"
-                                                            src="{{ asset('assets/img/placeholder.png') }}"
-                                                            style="aspect-ratio: 1/2;" width="512" height="250"
-                                                            wire:ignore />
-
-                                                    </label>
-
-
-
-
-                                                    {{-- subtitle --}}
-                                                    <input class="form-control form--input text-center mb-2" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionFourthSubtitle'
-                                                        placeholder="Subtitle" />
-
-
-
-                                                    {{-- caption --}}
-                                                    <input class="form-control form--input text-center mb-4" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionFourthCaption'
-                                                        placeholder="Caption" />
-
-                                                </div>
-
-
-
-
-
-
-                                                {{-- ------------------------- --}}
-                                                {{-- ------------------------- --}}
-
-
-
-
-                                                {{-- 5th --}}
-                                                <div class="col-4">
-
-                                                    {{-- imageFile --}}
-                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
-                                                        data-bss-tooltip="" title="Click To Upload"
-                                                        for="custom--file-5">
-
-
-                                                        {{-- size --}}
-                                                        <span class="upload--caption badge">5th</span>
-
-
-
-                                                        {{-- input --}}
-                                                        <input class="form-control d-none file--input" type="file"
-                                                            id="custom--file-5" data-preview="custom--preview-5"
-                                                            wire:model='instanceSubscription.planCustomSectionFifthImageFile' />
-
-
-
-                                                        {{-- image --}}
-                                                        <img id="custom--preview-5" class="inventory--image-frame"
-                                                            src="{{ asset('assets/img/placeholder.png') }}"
-                                                            style="aspect-ratio: 1/2;" width="512" height="250"
-                                                            wire:ignore />
-
-                                                    </label>
-
-
-
-
-                                                    {{-- subtitle --}}
-                                                    <input class="form-control form--input text-center mb-2" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionFifthSubtitle'
-                                                        placeholder="Subtitle" />
-
-
-
-                                                    {{-- caption --}}
-                                                    <input class="form-control form--input text-center mb-4" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionFifthCaption'
-                                                        placeholder="Caption" />
-
-                                                </div>
-
-
-
-
-
-
-
-
-                                                {{-- ------------------------- --}}
-                                                {{-- ------------------------- --}}
-
-
-
-
-
-                                                {{-- 6th --}}
-                                                <div class="col-4">
-
-
-                                                    {{-- imageFile --}}
-                                                    <label class="form-label upload--wrap mb-3" data-bs-toggle="tooltip"
-                                                        data-bss-tooltip="" title="Click To Upload"
-                                                        for="custom--file-6">
-
-
-                                                        {{-- size --}}
-                                                        <span class="upload--caption badge">6th</span>
-
-
-
-                                                        {{-- input --}}
-                                                        <input class="form-control d-none file--input" type="file"
-                                                            id="custom--file-6" data-preview="custom--preview-6"
-                                                            wire:model='instanceSubscription.planCustomSectionSixthImageFile' />
-
-
-
-                                                        {{-- image --}}
-                                                        <img id="custom--preview-6" class="inventory--image-frame"
-                                                            src="{{ asset('assets/img/placeholder.png') }}"
-                                                            style="aspect-ratio: 1/2;" width="512" height="250"
-                                                            wire:ignore />
-
-                                                    </label>
-
-
-
-                                                    {{-- subtitle --}}
-                                                    <input class="form-control form--input text-center mb-2" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionSixthSubtitle'
-                                                        placeholder="Subtitle" />
-
-
-
-                                                    {{-- caption --}}
-                                                    <input class="form-control form--input text-center mb-4" type="text"
-                                                        wire:model='instanceSubscription.planCustomSectionSixthCaption'
-                                                        placeholder="Caption" />
-
-                                                </div>
-
-
-
-
-
-                                            </div>
-                                        </div>
-                                        {{-- endRow --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-                                        {{-- --------------------------------------- --}}
-
-
-
-
-
-
-
-
-                                        {{-- :: submitButton --}}
-                                        <div class="col-12 text-center mt-3">
-                                            <button wire:loading.attr='disabled'
-                                                class="btn btn--scheme btn--scheme-2 px-5 py-1 d-inline-flex align-items-center mx-1 scale--self-05 justify-content-center"
-                                                wire:target='instanceSubscription.planCustomSectionImageFile, instanceSubscription.planCustomSectionSecondImageFile, instanceSubscription.planCustomSectionThirdImageFile, instanceSubscription.planCustomSectionFourthImageFile, instanceSubscription.planCustomSectionFifthImageFile, instanceSubscription.planCustomSectionSixthImageFile'>
-                                                Save
-                                            </button>
-                                        </div>
-
-
-
-                                    </form>
-                                    {{-- endForm --}}
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 {{-- endTab --}}
 
@@ -3647,6 +1462,9 @@
 
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
+
+
+
 
 
 
@@ -3706,8 +1524,13 @@
 
 
 
+
     {{-- ------------------------------------------ --}}
     {{-- ------------------------------------------ --}}
+
+
+
+
 
 
 
@@ -3719,12 +1542,8 @@
     <script>
         $(".form--select").on("change", function(event) {
 
-
-
-         // 1.1: getValue - instance
          selectValue = $(this).select2('val');
          instance = $(this).attr('data-instance');
-
 
          @this.set(instance, selectValue);
 
@@ -3735,15 +1554,17 @@
 
 
 
-
-
     @endsection
 
 
 
 
+
+
     {{-- -------------------------------------------------- --}}
     {{-- -------------------------------------------------- --}}
+
+
 
 
 

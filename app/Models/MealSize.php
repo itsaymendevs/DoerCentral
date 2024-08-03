@@ -89,7 +89,7 @@ class MealSize extends Model
 
 
         // 1: ingredients
-        foreach ($ingredients ?? [] as $mealIngredient) {
+        foreach ($ingredients?->where('isDefault', 1) ?? [] as $mealIngredient) {
 
 
             $totalGrams += $mealIngredient?->amount ?? 0;
@@ -101,7 +101,7 @@ class MealSize extends Model
 
 
         // 2: parts
-        foreach ($parts ?? [] as $mealPart) {
+        foreach ($parts?->where('isDefault', 1) ?? [] as $mealPart) {
 
 
             $totalGrams += $mealPart?->amount ?? 0;
@@ -153,7 +153,7 @@ class MealSize extends Model
 
 
         // 1: ingredients
-        foreach ($ingredients ?? [] as $mealIngredient) {
+        foreach ($ingredients?->where('isDefault', 1) ?? [] as $mealIngredient) {
 
 
             $ingredientsWithGrams[$mealIngredient->ingredientId] = ($ingredientsWithGrams[$mealIngredient->ingredientId] ?? 0) + $mealIngredient?->amount ?? 0;
@@ -169,13 +169,12 @@ class MealSize extends Model
 
 
         // 2: parts
-        foreach ($parts ?? [] as $mealPart) {
+        foreach ($parts?->where('isDefault', 1) ?? [] as $mealPart) {
 
 
 
             // 2.1: recursive
             $partIngredientsWithGrams = $mealPart->ingredientsWithGrams($mealPart->amount);
-
 
 
 
@@ -236,9 +235,8 @@ class MealSize extends Model
 
 
 
-
         // 1: ingredients
-        foreach ($ingredients ?? [] as $mealIngredient) {
+        foreach ($ingredients?->where('isDefault', 1) ?? [] as $mealIngredient) {
 
 
             $ingredientsWithGrams[$mealIngredient->ingredientId] = (($ingredientsWithGrams[$mealIngredient->ingredientId] ?? 0) + ($mealIngredient?->amount ?? 0)) * $numberOfMeals;
@@ -254,7 +252,7 @@ class MealSize extends Model
 
 
         // 2: parts
-        foreach ($parts ?? [] as $mealPart) {
+        foreach ($parts?->where('isDefault', 1) ?? [] as $mealPart) {
 
 
             $partsWithGrams[$mealPart->partId] = (($partsWithGrams[$mealPart->partId] ?? 0) + ($mealPart?->amount ?? 0)) * $numberOfMeals;
@@ -318,7 +316,7 @@ class MealSize extends Model
 
 
         // 1: ingredients
-        foreach ($ingredients ?? [] as $mealIngredient) {
+        foreach ($ingredients?->where('isDefault', 1) ?? [] as $mealIngredient) {
 
             $totalCost += ($mealIngredient?->ingredient?->latestPricePerGram() * ($mealIngredient?->amount ?? 0));
 
@@ -332,7 +330,7 @@ class MealSize extends Model
 
 
         // 1.2: parts
-        foreach ($parts ?? [] as $mealPart) {
+        foreach ($parts?->where('isDefault', 1) ?? [] as $mealPart) {
 
             $totalMacros = $mealPart?->totalMacro($mealPart?->amount ?? 0);
             $totalCost += doubleval($totalMacros?->cost ?? 0);
@@ -399,7 +397,7 @@ class MealSize extends Model
         // 1: ingredients
         $combine->foodCost = 0;
 
-        foreach ($ingredients ?? [] as $mealIngredient) {
+        foreach ($ingredients?->where('isDefault', 1) ?? [] as $mealIngredient) {
 
             $combine->foodCost += ($mealIngredient?->ingredient?->latestPricePerGram() * ($mealIngredient?->amount ?? 0));
 
@@ -411,7 +409,7 @@ class MealSize extends Model
 
 
         // 1.2: parts
-        foreach ($parts ?? [] as $mealPart) {
+        foreach ($parts?->where('isDefault', 1) ?? [] as $mealPart) {
 
             $totalMacros = $mealPart?->totalMacro($mealPart?->amount ?? 0);
             $combine->foodCost += doubleval($totalMacros?->cost ?? 0);

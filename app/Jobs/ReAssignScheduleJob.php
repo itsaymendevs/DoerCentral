@@ -25,7 +25,8 @@ class ReAssignScheduleJob implements ShouldQueue
 
 
     // 2: parameters
-    public $tried = 3;
+    public $tries = 3;
+    public $timeout = 360;
     public $calendarSchedule;
 
 

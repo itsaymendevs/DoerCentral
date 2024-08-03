@@ -323,8 +323,8 @@ class Meal extends Model
 
 
         // 1: getTotalPartGrams
-        $totalGrams += $this?->ingredients?->sum('amount') ?? 0;
-        $totalGrams += $this?->parts?->sum('amount') ?? 0;
+        $totalGrams += $this?->ingredients?->where('isDefault', 1)?->sum('amount') ?? 0;
+        $totalGrams += $this?->parts?->where('isDefault', 1)?->sum('amount') ?? 0;
 
 
 
@@ -434,7 +434,7 @@ class Meal extends Model
 
 
 
-        foreach ($mealIngredients as $mealIngredient) {
+        foreach ($mealIngredients?->where('isDefault', 1) ?? [] as $mealIngredient) {
 
             if ($mealIngredient->ingredient && $mealIngredient->ingredient->excludeId) {
 
@@ -475,7 +475,7 @@ class Meal extends Model
         $mealParts = $this->parts()?->get() ?? [];
 
 
-        foreach ($mealParts as $mealPart) {
+        foreach ($mealParts?->where('isDefault', 1) ?? [] as $mealPart) {
 
 
             // :: recursion
@@ -493,8 +493,6 @@ class Meal extends Model
 
 
         } // end loop
-
-
 
 
 

@@ -198,7 +198,7 @@ class BlogsViewEditSection extends Component
         // 1: replaceFiles
         if ($this->instance->imageFile != $this->instance->imageFileName) {
 
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/blogs/sections', $this->instance->imageFileName, 'SEC1');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/blogs/sections', $this->instance->imageFileName, 'SEC1', 700, 700);
 
         } // end if
 
@@ -207,7 +207,7 @@ class BlogsViewEditSection extends Component
 
         if ($this->instance->secondImageFile != $this->instance->secondImageFileName) {
 
-            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'extra/blogs/sections', $this->instance->secondImageFileName, 'SEC2');
+            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'extra/blogs/sections', $this->instance->secondImageFileName, 'SEC2', 700, 700);
 
         } // end if
 
@@ -218,7 +218,7 @@ class BlogsViewEditSection extends Component
 
         if ($this->instance->thirdImageFile != $this->instance->thirdImageFileName) {
 
-            $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'extra/blogs/sections', $this->instance->thirdImageFileName, 'SEC3');
+            $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'extra/blogs/sections', $this->instance->thirdImageFileName, 'SEC3', 700, 700);
 
         } // end if
 
@@ -228,7 +228,7 @@ class BlogsViewEditSection extends Component
 
         if ($this->instance->fourthImageFile != $this->instance->fourthImageFileName) {
 
-            $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'extra/blogs/sections', $this->instance->fourthImageFileName, 'SEC4');
+            $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'extra/blogs/sections', $this->instance->fourthImageFileName, 'SEC4', 700, 700);
 
         } // end if
 

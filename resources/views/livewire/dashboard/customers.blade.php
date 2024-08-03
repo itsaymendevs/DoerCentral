@@ -87,7 +87,7 @@
             {{-- newButton --}}
             <div class="col-3 text-end">
                 <a href="{{ route('subscription.customerStepOne') }}" target="_blank"
-                    class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"><svg
+                    class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center disabled"><svg
                         xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                         viewBox="0 0 16 16" class="bi bi-plus-circle-dotted fs-5 me-2">
                         <path

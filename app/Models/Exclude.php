@@ -20,6 +20,19 @@ class Exclude extends Model
     } // end function
 
 
+
+
+    public function ingredientsList()
+    {
+
+        return $this->hasMany(ExcludeIngredient::class, 'excludeId');
+
+    } // end function
+
+
+
+
+
 } // end model
 
 

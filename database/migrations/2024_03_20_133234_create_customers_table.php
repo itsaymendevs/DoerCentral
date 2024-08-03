@@ -15,15 +15,23 @@ return new class extends Migration {
 
 
             // 1: general
-            $table->text('email')->nullable();
-            $table->date('birthDate')->nullable();
+            $table->string('email', 255)->nullable();
+            $table->string('emailProvider', 255)->nullable();
+
             $table->string('firstName', 255)->nullable();
             $table->string('lastName', 255)->nullable();
             $table->string('gender', 100)->nullable();
+            $table->date('birthDate')->nullable();
+
+
 
 
             $table->string('phone', 100)->nullable();
+            $table->string('phoneKey', 100)->nullable();
+
             $table->string('whatsapp', 100)->nullable();
+            $table->string('whatsappKey', 100)->nullable();
+
             $table->double('weight', 15)->nullable();
             $table->double('height', 15)->nullable();
             $table->text('password')->nullable();
@@ -45,7 +53,8 @@ return new class extends Migration {
 
 
 
-            // 1.4: re-token
+            // 1.4: re-token - referral
+            $table->text('referral')->nullable();
             $table->text('reToken')->nullable();
 
 

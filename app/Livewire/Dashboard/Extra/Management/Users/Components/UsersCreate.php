@@ -62,7 +62,7 @@ class UsersCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'extra/management/users', 'USR');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'extra/management/users', 'USR', 500, 500);
 
 
 

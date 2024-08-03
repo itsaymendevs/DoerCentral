@@ -161,9 +161,16 @@ class CustomerSubscriptionController extends Controller
         $customer->lastName = $request->lastName;
 
         $customer->email = $request->email;
+        $customer->emailProvider = $request->emailProvider;
+
         $customer->gender = $request?->gender ?? 'Male';
+
         $customer->phone = $request->phone ?? null;
+        $customer->phoneKey = $request->phoneKey ?? null;
+
         $customer->whatsapp = $request->whatsapp ?? null;
+        $customer->whatsappKey = $request->whatsappKey ?? null;
+
         $customer->password = Hash::make($request->password ?? '123456');
 
 
@@ -482,11 +489,22 @@ class CustomerSubscriptionController extends Controller
 
 
         // 1.4: bagInformation
-        $bag = Bag::where('name', $request->bag)->first();
+        if ($request?->bag) {
 
-        $subscription->bagId = $bag->id;
-        $subscription->bagPrice = $bag->price;
+            $bag = Bag::where('name', 'Cool Bag')->first();
 
+            $subscription->bagId = $bag->id;
+            $subscription->bagPrice = $bag->price;
+
+
+        } else {
+
+            $bag = Bag::where('name', 'Paper Bag')->first();
+
+            $subscription->bagId = $bag->id;
+            $subscription->bagPrice = $bag->price;
+
+        } // end if
 
 
 

@@ -17,19 +17,41 @@ return new class extends Migration {
 
 
             // 1: colors
+            $table->string('textColor', 100)->nullable()->default('#000000');
+            $table->string('preloaderLineColor', 100)->nullable()->default('#000000');
+
+            $table->string('cursorColor', 100)->nullable()->default('#000000');
+            $table->string('cursorHoverColor', 100)->nullable()->default('#000000');
+
+            $table->string('navbarMenuColor', 100)->nullable()->default('#000000');
+            $table->string('navbarMenuActiveColor', 100)->nullable()->default('#000000');
+            $table->string('navbarLinksColor', 100)->nullable()->default('#000000');
+            $table->string('navbarLinksHoverColor', 100)->nullable()->default('#000000');
+            $table->string('navbarSocialLinksColor', 100)->nullable()->default('#000000');
+
+            $table->string('sliderBulletsColor', 100)->nullable()->default('#000000');
+
+
+
             $table->string('brandColor', 100)->nullable()->default('#000000');
             $table->string('brandActiveColor', 100)->nullable()->default('#000000');
 
-
-            $table->string('titleHrColor', 100)->nullable()->default('#000000');
-
-
-            $table->string('fatsBoxColor', 100)->nullable()->default('#000000');
-            $table->string('carbsBoxColor', 100)->nullable()->default('#000000');
-            $table->string('proteinBoxColor', 100)->nullable()->default('#000000');
+            $table->string('inputBorderColor', 100)->nullable()->default('#000000');
+            $table->string('inputBorderHoverColor', 100)->nullable()->default('#000000');
 
 
+            $table->string('planTitleColor', 100)->nullable()->default('#000000');
+            $table->string('planHrColor', 100)->nullable()->default('#000000');
+            $table->string('planCarbsBoxColor', 100)->nullable()->default('#000000');
+            $table->string('planProteinsBoxColor', 100)->nullable()->default('#000000');
+            $table->string('planFatsBoxColor', 100)->nullable()->default('#000000');
 
+
+
+            $table->string('headingHrColor', 100)->nullable()->default('#000000');
+
+
+            $table->string('bundleBoxColor', 100)->nullable()->default('#000000');
             $table->string('bundleBorderColor', 100)->nullable()->default('#000000');
             $table->string('bundleMotionColor', 100)->nullable()->default('#000000');
 
@@ -39,41 +61,54 @@ return new class extends Migration {
             $table->string('bundlePickShadowActiveColor', 100)->nullable()->default('#000000');
 
 
-            $table->string('summaryBorderColor', 100)->nullable()->default('#000000');
+            $table->string('planDaysBorderColor', 100)->nullable()->default('#000000');
+            $table->string('planDaysBorderActiveColor', 100)->nullable()->default('#000000');
 
-            $table->string('inputBorderColor', 100)->nullable()->default('#000000');
-            $table->string('inputBorderHoverColor', 100)->nullable()->default('#000000');
+
+            $table->string('preferenceLineColor', 100)->nullable()->default('#000000');
+            $table->string('preferenceInfoColor', 100)->nullable()->default('#000000');
+
+
+            $table->string('summaryBundleColor', 100)->nullable()->default('#000000');
+            $table->string('summaryBorderColor', 100)->nullable()->default('#000000');
+            $table->string('summarySpecialBorderColor', 100)->nullable()->default('#000000');
 
 
 
             $table->string('addressMotionColor', 100)->nullable()->default('#000000');
             $table->string('addressActiveMotionColor', 100)->nullable()->default('#000000');
 
-
             $table->string('invoiceMotionColor', 100)->nullable()->default('#000000');
 
 
 
 
+
+
             // 2: background
-            $table->string('planBackgroundFirstColor', 100)->nullable()->default('#000000');
-            $table->string('planBackgroundSecondColor', 100)->nullable()->default('#000000');
-            $table->string('planBackgroundThirdColor', 100)->nullable()->default('#000000');
-            $table->string('planBackgroundFourthColor', 100)->nullable()->default('#000000');
+            $table->string('bodyBackgroundColor', 100)->nullable()->default('#000000');
+
+            $table->string('bodyBackgroundFirstColor', 100)->nullable()->default('#000000');
+            $table->string('bodyBackgroundSecondColor', 100)->nullable()->default('#000000');
+            $table->string('bodyBackgroundThirdColor', 100)->nullable()->default('#000000');
+            $table->string('bodyBackgroundFourthColor', 100)->nullable()->default('#000000');
 
 
-            $table->string('bundleBackgroundColor', 100)->nullable()->default('#000000');
+            $table->string('navbarBackgroundColor', 100)->nullable()->default('#000000');
+
+
+            $table->string('preferenceBackgroundColor', 100)->nullable()->default('#000000');
+            $table->string('preferenceBagBackgroundColor', 100)->nullable()->default('#000000');
+
+            $table->string('pickPreferenceBackgroundColor', 100)->nullable()->default('#000000');
             $table->string('summaryBackgroundColor', 100)->nullable()->default('#000000');
 
 
-            $table->string('bagCaptionBackgroundColor', 100)->nullable()->default('#000000');
-
-            $table->string('preferencesBackgroundColor', 100)->nullable()->default('#000000');
-
-
             $table->string('buttonBackgroundColor', 100)->nullable()->default('#000000');
-            $table->string('buttonActiveBackgroundColor', 100)->nullable()->default('#000000');
+            $table->string('buttonHoverBackgroundColor', 100)->nullable()->default('#000000');
 
+            $table->string('modalBackgroundColor', 100)->nullable()->default('#000000');
+            $table->string('addressBackgroundColor', 100)->nullable()->default('#000000');
 
 
 

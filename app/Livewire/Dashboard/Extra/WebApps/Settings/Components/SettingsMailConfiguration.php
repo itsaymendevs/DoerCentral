@@ -110,6 +110,13 @@ class SettingsMailConfiguration extends Component
     public function render()
     {
 
+
+
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
         return view('livewire.dashboard.extra.web-apps.settings.components.settings-mail-configuration');
 
 

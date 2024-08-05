@@ -163,7 +163,7 @@
                 {{-- title --}}
                 <div class="d-block text-end mt-5">
                     <h6 class="text-center mb-0 fw-500 fs-6 pb-2 d-inline-block"
-                        style="border-bottom: 1px solid var(--bs-warning);">Blogs Page</h6>
+                        style="border-bottom: 1px solid var(--bs-warning);">Blogs</h6>
                 </div>
 
 
@@ -175,7 +175,7 @@
 
                 {{-- 4: blogDesign --}}
                 <div class="tab-pane-like mt-3" style="border: 1px solid var(--color-theme-secondary)">
-                    <div class="row">
+                    <div class="row settings--row">
                         <div class="col-12">
                             <div>
 
@@ -294,9 +294,9 @@
                                         {{-- cursorSecondaryColor --}}
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
-                                                <label class="form-label form--label mb-0"
-                                                    style="width: 80%">Cursor<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(2nd)</small></label>
+                                                <label class="form-label form--label mb-0" style="width: 80%">Cursor<i
+                                                        class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Hover"></i></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instance.cursorSecondaryColor">
                                             </div>
@@ -479,8 +479,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Button
-                                                    Text<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                    Text<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Hover"></i></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instance.cardButtonHoverColor">
                                             </div>
@@ -513,8 +513,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Button
-                                                    Border<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                    Border<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Hover"></i></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instance.cardButtonBorderHoverColor">
                                             </div>
@@ -548,8 +548,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Button
-                                                    Shadow<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                    Shadow<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Hover"></i></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instance.cardButtonShadowHoverColor">
                                             </div>
@@ -587,8 +587,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    BG<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Blog)</small></label>
+                                                    BG<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Visible in Single Blog"></i></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instance.singleBlogNavbarBackgroundColor">
                                             </div>
@@ -603,8 +603,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                                    Text<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Blog)</small></label>
+                                                    Text<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Visible in Single Blog"></i></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instance.singleBlogNavbarTextColor">
                                             </div>
@@ -622,8 +622,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Author
-                                                    Text<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Blog)</small></label>
+                                                    Text<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Visible in Single Blog"></i></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instance.singleBlogAuthorColor">
                                             </div>
@@ -662,8 +662,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Tags
-                                                    BG<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                    BG<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Hover"></i></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instance.singleBlogTagHoverColor">
                                             </div>
@@ -699,8 +699,8 @@
                                         <div class="col-4">
                                             <div class="input--with-label mb-3">
                                                 <label class="form-label form--label mb-0" style="width: 80%">Tags
-                                                    Text<small
-                                                        class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                                    Text<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                        data-bss-tooltip="" title="Hover"></i></label>
                                                 <input type="color" class="form--input py-1 pointer" required=""
                                                     wire:model="instance.singleBlogTagTextHoverColor">
                                             </div>
@@ -791,9 +791,9 @@
 
                                         {{-- singleBlogHeroAlignment --}}
                                         <div class="col-4" wire:ignore>
-                                            <label class="form-label form--label">Blog Header<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(Title,
-                                                    Subtitle)</small></label>
+                                            <label class="form-label form--label">Blog Header<i
+                                                    class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                    data-bss-tooltip="" title="Includes: Title - Subtitle"></i></label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                                                 <select class="form-select form--select"
                                                     data-instance='instance.singleBlogHeroAlignment'
@@ -893,8 +893,9 @@
 
                                         {{-- heroPictureRadius --}}
                                         <div class="col-4">
-                                            <label class="form-label form--label">Hero Picture Radius<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(PX)</small></label>
+                                            <label class="form-label form--label">Hero Picture Radius<i
+                                                    class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                    data-bss-tooltip="" title="Pixels"></i></label>
                                             <input class="form-control form--input mb-4" type="number" step='0.1'
                                                 wire:model='instance.heroPictureRadius' />
                                         </div>
@@ -906,8 +907,9 @@
 
                                         {{-- numberOfColumns --}}
                                         <div class="col-4">
-                                            <label class="form-label form--label">Card Columns<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(2-4)</small></label>
+                                            <label class="form-label form--label">Card Columns<i
+                                                    class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                    data-bss-tooltip="" title="ex. 2 - 3 - 4"></i></label>
                                             <input class="form-control form--input mb-4" type="number" step='1' min='2'
                                                 max='4' wire:model='instance.numberOfColumns' />
                                         </div>
@@ -954,8 +956,9 @@
                                         {{-- heroText--}}
                                         <div class="col-12 mb-4" wire:ignore>
 
-                                            <label class="form-label form--label">Hero Text<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(4-5 Lines)</small></label>
+                                            <label class="form-label form--label">Hero Text<i class="bi bi-info-circle"
+                                                    data-bs-toggle="tooltip" data-bss-tooltip=""
+                                                    title="Between 4-5 Lines"></i></label>
 
 
                                             <livewire:dashboard.components.editor-toolbar key='quill-editor-toolbar-1'
@@ -976,9 +979,9 @@
 
                                         {{-- contentTitleText --}}
                                         <div class="col-8">
-                                            <label class="form-label form--label">Section Header<small
-                                                    class="ms-1 fw-semibold text-gold fs-9">(ex. Our
-                                                    Blogs)</small></label>
+                                            <label class="form-label form--label">Section Header<i
+                                                    class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                                    data-bss-tooltip="" title="ex. Our Blogs"></i></label>
                                             <input class="form-control form--input mb-4" type="text"
                                                 wire:model='instance.contentTitleText' />
                                         </div>
@@ -1411,7 +1414,7 @@
                 {{-- title --}}
                 <div class="d-block text-end mt-5">
                     <h6 class="text-center mb-0 fw-500 fs-6 pb-2 d-inline-block"
-                        style="border-bottom: 1px solid var(--bs-warning);">Plans Page</h6>
+                        style="border-bottom: 1px solid var(--bs-warning);">Plans</h6>
                 </div>
 
 
@@ -1437,18 +1440,67 @@
 
 
 
+
+
+
+
+
+
+
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+                {{-- --------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+                {{-- title --}}
+                <div class="d-block text-end mt-5">
+                    <h6 class="text-center mb-0 fw-500 fs-6 pb-2 d-inline-block"
+                        style="border-bottom: 1px solid var(--bs-warning);">Plan Customization</h6>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                {{-- 6: planFormSettings --}}
+                <div class="tab-pane-like mt-3" style="border: 1px solid var(--color-theme-secondary)">
+
+
+                    <livewire:dashboard.extra.web-apps.settings.components.settings-plan-form
+                        key='settings-plan-form' />
+
+
+                </div>
+                {{-- endTab --}}
+
+
+
+
+
+
+
             </div>
         </div>
     </div>
     {{-- endContainer --}}
-
-
-
-
-
-
-
-
 
 
 

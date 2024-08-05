@@ -1631,20 +1631,26 @@ class ProductionBuilderManageContent extends Component
                 if ($conversion) {
 
 
+
+
                     // 2.3: updateAfterCook Macros
                     $this->instance->afterCookGrams[$i] = round($this->instance->afterCookGrams[$i] * $conversion->conversionValue, 2);
 
 
-                    $this->instance->afterCookCalories[$i] = (($totalMacros->calories / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)) * $this->instance->afterCookGrams[$i];
+                    $this->instance->afterCookCalories[$i] = round($totalMacros->calories * (($this->instance->afterCookGrams[$i] > 0 ? $this->instance->afterCookGrams[$i] : 1) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)), 1);
 
 
-                    $this->instance->afterCookProteins[$i] = (($totalMacros->proteins / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)) * $this->instance->afterCookGrams[$i];
+
+                    $this->instance->afterCookProteins[$i] = round($totalMacros->proteins * (($this->instance->afterCookGrams[$i] > 0 ? $this->instance->afterCookGrams[$i] : 1) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)), 1);
 
 
-                    $this->instance->afterCookCarbs[$i] = (($totalMacros->carbs / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)) * $this->instance->afterCookGrams[$i];
+
+                    $this->instance->afterCookCarbs[$i] = round($totalMacros->carbs * (($this->instance->afterCookGrams[$i] > 0 ? $this->instance->afterCookGrams[$i] : 1) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)), 1);
 
 
-                    $this->instance->afterCookFats[$i] = (($totalMacros->fats / ($conversion->conversionValue > 0 ? $conversion->conversionValue : 1)) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)) * $this->instance->afterCookGrams[$i];
+
+                    $this->instance->afterCookFats[$i] = round($totalMacros->fats * (($this->instance->afterCookGrams[$i] > 0 ? $this->instance->afterCookGrams[$i] : 1) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)), 1);
+
 
 
 

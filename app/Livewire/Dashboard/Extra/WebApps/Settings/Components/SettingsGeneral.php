@@ -197,6 +197,10 @@ class SettingsGeneral extends Component
     {
 
 
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
         return view('livewire.dashboard.extra.web-apps.settings.components.settings-general');
 
 

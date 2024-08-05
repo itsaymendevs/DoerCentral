@@ -1,0 +1,12 @@
+.hr--sub-section {
+    border: 1px dashed var(--color-scheme-3);
+}
+
+.settings--row .input--with-label i,
+.settings--row .form--label i {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 5px;
+    font-size: 13px;
+    color: var(--bs-warning);
+}

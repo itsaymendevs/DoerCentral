@@ -1234,9 +1234,10 @@
 
 
 
+
                         {{-- 4.1: grams - afterCookGrams - % --}}
                         <td class="fw-bold fs-11 th--sm
-                    border-start-0" @if(!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
+                        border-start-0" @if(!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
                             @endif>Raw<small class="fw-semibold text-gold fs-9 ms-1">(G)</small></td>
 
 

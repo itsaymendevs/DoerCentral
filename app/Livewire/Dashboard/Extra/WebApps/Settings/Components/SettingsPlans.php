@@ -307,7 +307,20 @@ class SettingsPlans extends Component
     {
 
 
-        return view('livewire.dashboard.extra.web-apps.settings.components.settings-plans');
+
+        // 1: dependencies
+        $alignments = ['left', 'center', 'right'];
+
+
+
+
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
+
+        return view('livewire.dashboard.extra.web-apps.settings.components.settings-plans', compact('alignments'));
 
 
     } // end function

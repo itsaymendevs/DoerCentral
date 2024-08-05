@@ -31,7 +31,7 @@
 
             {{-- collapse --}}
             <div class="collapse  collapse--content" id="collapse-general" wire:ignore.self>
-                <form wire:submit='update' class="row align-items-end pt-2">
+                <form wire:submit='update' class="row align-items-end pt-2 settings--row">
 
 
 
@@ -72,9 +72,8 @@
 
                     {{-- fontLinks --}}
                     <div class="col-12">
-                        <label class="form-label form--label">Embed Links<small
-                                class="ms-1 fw-semibold text-gold fs-9">(Google
-                                Fonts)</small></label>
+                        <label class="form-label form--label">Embed Links<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Google Fonts (URL)"></i></label>
                         <textarea class="form-control form--input form--textarea mb-4" wire:model='instance.fontLinks'
                             style="height: 190px"></textarea>
                     </div>

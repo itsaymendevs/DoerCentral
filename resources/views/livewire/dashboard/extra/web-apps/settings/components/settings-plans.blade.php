@@ -27,7 +27,7 @@
             {{-- collapse --}}
             <div class="collapse collapsed collapse--content" style="border-top: 1px solid transparent"
                 id="collapse-plans" wire:ignore.self>
-                <form wire:submit='update' class="row align-items-end pt-2">
+                <form wire:submit='update' class="row align-items-end pt-2 settings--row">
 
 
 
@@ -755,8 +755,9 @@
                     {{-- cursorHoverColor --}}
                     <div class="col-4">
                         <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">Cursor<small
-                                    class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                            <label class="form-label form--label mb-0" style="width: 80%">Cursor<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Hover"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.cursorHoverColor">
                         </div>
@@ -806,7 +807,8 @@
                     <div class="col-4">
                         <div class="input--with-label mb-3">
                             <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                Icon<small class="ms-1 fw-semibold text-gold fs-9">(Active)</small></label>
+                                Icon<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Active"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.navbarMenuActiveColor">
                         </div>
@@ -834,7 +836,8 @@
                     <div class="col-4">
                         <div class="input--with-label mb-3">
                             <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                Links<small class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                Links<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Hover"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.navbarLinksHoverColor">
                         </div>
@@ -1001,7 +1004,8 @@
                     <div class="col-4">
                         <div class="input--with-label mb-3">
                             <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                Button<small class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                Button<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Hover"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.planCardButtonHoverColor">
                         </div>
@@ -1075,7 +1079,8 @@
                     <div class="col-4">
                         <div class="input--with-label mb-3">
                             <label class="form-label form--label mb-0" style="width: 80%">Filter
-                                Links Border<small class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                Links Border<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Hover"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.planFilterLinksHoverBorderColor">
                         </div>
@@ -1135,7 +1140,8 @@
                     <div class="col-4">
                         <div class="input--with-label mb-3">
                             <label class="form-label form--label mb-0" style="width: 80%">Meals
-                                Border<small class="ms-1 fw-semibold text-gold fs-9">(Hover)</small></label>
+                                Border<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Hover"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.planMealsHoverBorderColor">
                         </div>
@@ -1276,8 +1282,8 @@
 
                     {{-- planCardRadius --}}
                     <div class="col-4">
-                        <label class="form-label form--label">Plan Card Radius<small
-                                class="ms-1 fw-semibold text-gold fs-9">(PX)</small></label>
+                        <label class="form-label form--label">Plan Card Radius<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Pixels"></i></label>
                         <input class="form-control form--input mb-4" type="number" step='0.1'
                             wire:model='instance.planCardRadius' />
                     </div>
@@ -1293,8 +1299,9 @@
 
                     {{-- sliderArrows --}}
                     <div class="col-4" wire:ignore>
-                        <label class="form-label form--label">Plan Slider Arrows<small
-                                class="ms-1 fw-semibold text-gold fs-9">(V5)</small></label>
+                        <label class="form-label form--label">Plan Slider Arrows<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip=""
+                                title="Colors in Version 5 Template"></i></label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select" data-instance='instance.planSliderArrows'
                                 value='{{ $instance?->planSliderArrows }}'>
@@ -1332,9 +1339,8 @@
 
                     {{-- planSideTitleDisplay --}}
                     <div class="col-4" wire:ignore>
-                        <label class="form-label form--label">Sub-Headings<small
-                                class="ms-1 fw-semibold text-gold fs-9">(Single
-                                Plan)</small></label>
+                        <label class="form-label form--label">Side Headers<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Visible in Single Plan"></i></label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select" data-instance='instance.planSideTitleDisplay'
                                 value='{{ $instance?->planSideTitleDisplay }}' required>
@@ -1357,9 +1363,8 @@
 
                     {{-- showPlanCustomSection --}}
                     <div class="col-4" wire:ignore>
-                        <label class="form-label form--label">Custom Section<small
-                                class="ms-1 fw-semibold text-gold fs-9">(Single
-                                Plan)</small></label>
+                        <label class="form-label form--label">Custom Section<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Visible in Single Plan"></i></label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select" data-instance='instance.showPlanCustomSection'
                                 value='{{ $instance?->showPlanCustomSection }}'>
@@ -1381,9 +1386,9 @@
 
                     {{-- showPlanMealsTypeFilter --}}
                     <div class="col-4" wire:ignore>
-                        <label class="form-label form--label">Plan Meals Filters<small
-                                class="ms-1 fw-semibold text-gold fs-9">(Single
-                                Plan)</small></label>
+                        <label class="form-label form--label">Plan Filters<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip=""
+                                title="Sample Meals Filter in Single Plan"></i></label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select" data-instance='instance.showPlanMealsTypeFilter'
                                 value='{{ $instance?->showPlanMealsTypeFilter }}'>
@@ -1448,8 +1453,8 @@
 
                     {{-- planCustomSectionVideoURL --}}
                     <div class="col-8">
-                        <label class="form-label form--label">Section Video<small
-                                class="ms-1 fw-semibold text-gold fs-9">(URL)</small></label>
+                        <label class="form-label form--label">Section Video<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="URL"></i></label>
                         <input class="form-control form--input mb-4" type="text"
                             wire:model='instance.planCustomSectionVideoURL' />
                     </div>

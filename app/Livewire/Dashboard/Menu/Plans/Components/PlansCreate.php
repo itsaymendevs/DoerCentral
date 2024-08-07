@@ -57,11 +57,11 @@ class PlansCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans', 'PLN', 800, 800);
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'menu/plans', 'PLN', 600, 600);
 
 
         if ($this->instance->secondImageFile)
-            $this->instance->secondImageFileName = $this->uploadFile($this->instance->secondImageFile, 'menu/plans', 'PLN-S', 400, 800);
+            $this->instance->secondImageFileName = $this->uploadFile($this->instance->secondImageFile, 'menu/plans', 'PLN-S', 600, 600);
 
 
         if ($this->instance->thirdImageFile)

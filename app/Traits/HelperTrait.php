@@ -619,7 +619,7 @@ trait HelperTrait
 
 
 
-    protected function uploadFile($instanceFile, $path, $key = 'ITM', $width = 600, $height = 600)
+    protected function uploadFile($instanceFile, $path, $key = 'ITM', $width = 600, $height = 600, $skipResize = false)
     {
 
 
@@ -628,9 +628,21 @@ trait HelperTrait
 
 
 
-        // 1.2: resize
-        $file = Image::read($instanceFile);
-        $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
+        // 2.1: resize or rawFile
+        if ($skipResize == false) {
+
+            $file = Image::read($instanceFile);
+            $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
+
+
+        } elseif ($skipResize == true) {
+
+            $instanceFile->storeAs($path, $fileName, 'public');
+
+        } // end if
+
+
+
 
 
         return $fileName;
@@ -661,7 +673,7 @@ trait HelperTrait
 
 
 
-    protected function replaceFile($instanceFile, $path, $fileName, $key = 'ITM', $width = 800, $height = 800)
+    protected function replaceFile($instanceFile, $path, $fileName, $key = 'ITM', $width = 800, $height = 800, $skipResize = false)
     {
 
 
@@ -684,9 +696,22 @@ trait HelperTrait
 
 
 
-        // 2.1: resize
-        $file = Image::read($instanceFile);
-        $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
+        // 2.1: resize or rawFile
+        if ($skipResize == false) {
+
+            $file = Image::read($instanceFile);
+            $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
+
+
+        } elseif ($skipResize == true) {
+
+            $instanceFile->storeAs($path, $fileName, 'public');
+
+        } // end if
+
+
+
+
 
         return $fileName;
 

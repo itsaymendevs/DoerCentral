@@ -1591,6 +1591,7 @@ Route::post('/dashboard/extra/settings/blogs/attachments/update', [ExtraControll
 // 18.4: extra - settings - subscription - update
 Route::post('/dashboard/extra/settings/subscription/update', [ExtraController::class, 'updateSubscriptionSettings']);
 
+Route::post('/dashboard/extra/settings/subscription/form/update', [ExtraController::class, 'updateSubscriptionFormSettings']);
 
 
 

@@ -11,6 +11,7 @@ use App\Models\BlogTag;
 use App\Models\MailConfiguration;
 use App\Models\Profile;
 use App\Models\Social;
+use App\Models\SubscriptionFormSetting;
 use App\Models\SubscriptionSetting;
 use App\Traits\HelperTrait;
 use Illuminate\Http\Request;
@@ -1117,6 +1118,208 @@ class ExtraController extends Controller
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    public function updateSubscriptionFormSettings(Request $request)
+    {
+
+
+        // :: root
+        $request = json_decode(json_encode($request->all()));
+        $request = $request->instance;
+
+
+
+
+        // 1: get instance
+        $settings = SubscriptionFormSetting::first();
+
+
+
+        // 1.2: colors
+        $settings->textColor = $request->textColor ?? null;
+        $settings->textActiveColor = $request->textActiveColor ?? null;
+
+        $settings->preloaderLineColor = $request->preloaderLineColor ?? null;
+
+        $settings->cursorColor = $request->cursorColor ?? null;
+        $settings->cursorHoverColor = $request->cursorHoverColor ?? null;
+
+        $settings->navbarMenuColor = $request->navbarMenuColor ?? null;
+        $settings->navbarMenuActiveColor = $request->navbarMenuActiveColor ?? null;
+        $settings->navbarLinksColor = $request->navbarLinksColor ?? null;
+        $settings->navbarLinksHoverColor = $request->navbarLinksHoverColor ?? null;
+        $settings->navbarSocialLinksColor = $request->navbarSocialLinksColor ?? null;
+        $settings->sliderBulletsColor = $request->sliderBulletsColor ?? null;
+
+        $settings->brandColor = $request->brandColor ?? null;
+        $settings->brandActiveColor = $request->brandActiveColor ?? null;
+
+        $settings->inputBorderColor = $request->inputBorderColor ?? null;
+        $settings->inputBorderHoverColor = $request->inputBorderHoverColor ?? null;
+
+        $settings->planTitleColor = $request->planTitleColor ?? null;
+        $settings->planHrColor = $request->planHrColor ?? null;
+        $settings->planCarbsBoxColor = $request->planCarbsBoxColor ?? null;
+        $settings->planProteinsBoxColor = $request->planProteinsBoxColor ?? null;
+        $settings->planFatsBoxColor = $request->planFatsBoxColor ?? null;
+
+        $settings->headingHrColor = $request->headingHrColor ?? null;
+
+        $settings->bundleBoxColor = $request->bundleBoxColor ?? null;
+        $settings->bundleBorderColor = $request->bundleBorderColor ?? null;
+        $settings->bundleMotionColor = $request->bundleMotionColor ?? null;
+        $settings->bundlePickColor = $request->bundlePickColor ?? null;
+        $settings->bundlePickActiveColor = $request->bundlePickActiveColor ?? null;
+        $settings->bundlePickShadowColor = $request->bundlePickShadowColor ?? null;
+        $settings->bundlePickShadowActiveColor = $request->bundlePickShadowActiveColor ?? null;
+
+
+        $settings->planRangeBorderColor = $request->planRangeBorderColor ?? null;
+        $settings->planRangeBorderActiveColor = $request->planRangeBorderActiveColor ?? null;
+
+        $settings->planDaysBorderColor = $request->planDaysBorderColor ?? null;
+        $settings->planDaysBorderActiveColor = $request->planDaysBorderActiveColor ?? null;
+
+        $settings->preferenceLineColor = $request->preferenceLineColor ?? null;
+        $settings->preferenceInfoColor = $request->preferenceInfoColor ?? null;
+
+        $settings->pickPreferenceTextColor = $request->pickPreferenceTextColor ?? null;
+
+        $settings->summaryBundleColor = $request->summaryBundleColor ?? null;
+        $settings->summaryBorderColor = $request->summaryBorderColor ?? null;
+        $settings->summarySpecialBorderColor = $request->summarySpecialBorderColor ?? null;
+
+        $settings->addressMotionColor = $request->addressMotionColor ?? null;
+        $settings->addressActiveMotionColor = $request->addressActiveMotionColor ?? null;
+
+        $settings->invoiceMotionColor = $request->invoiceMotionColor ?? null;
+        $settings->invoiceTableBorderColor = $request->invoiceTableBorderColor ?? null;
+
+
+
+
+
+
+
+
+
+
+
+        // 2: backgrounds
+        $settings->bodyBackgroundColor = $request->bodyBackgroundColor ?? null;
+
+        $settings->bodyBackgroundFirstColor = $request->bodyBackgroundFirstColor ?? null;
+        $settings->bodyBackgroundSecondColor = $request->bodyBackgroundSecondColor ?? null;
+        $settings->bodyBackgroundThirdColor = $request->bodyBackgroundThirdColor ?? null;
+        $settings->bodyBackgroundFourthColor = $request->bodyBackgroundFourthColor ?? null;
+
+        $settings->navbarBackgroundColor = $request->navbarBackgroundColor ?? null;
+
+        $settings->planMacroBackgroundColor = $request->planMacroBackgroundColor ?? null;
+        $settings->inputBackgroundColor = $request->inputBackgroundColor ?? null;
+
+        $settings->planDaysDiscountBackgroundColor = $request->planDaysDiscountBackgroundColor ?? null;
+
+
+
+        $settings->preferenceBackgroundColor = $request->preferenceBackgroundColor ?? null;
+        $settings->preferenceBagBackgroundColor = $request->preferenceBagBackgroundColor ?? null;
+
+        $settings->pickPreferenceBackgroundColor = $request->pickPreferenceBackgroundColor ?? null;
+        $settings->pickPreferenceHoverBackgroundColor = $request->pickPreferenceHoverBackgroundColor ?? null;
+
+        $settings->summaryBackgroundColor = $request->summaryBackgroundColor ?? null;
+
+        $settings->buttonBackgroundColor = $request->buttonBackgroundColor ?? null;
+        $settings->buttonHoverBackgroundColor = $request->buttonHoverBackgroundColor ?? null;
+
+        $settings->modalBackgroundColor = $request->modalBackgroundColor ?? null;
+
+        $settings->addressBackgroundColor = $request->addressBackgroundColor ?? null;
+
+        $settings->invoiceBackgroundColor = $request->invoiceBackgroundColor ?? null;
+        $settings->invoiceMidSectionBackgroundColor = $request->invoiceMidSectionBackgroundColor ?? null;
+
+
+
+
+
+
+
+        // ----------------------------------------------------------------
+        // ----------------------------------------------------------------
+
+
+
+
+        // 3: hide / show
+        $settings->showPlanMacros = boolval($request->showPlanMacros ?? false);
+        $settings->showBundlePicture = boolval($request->showBundlePicture ?? false);
+        $settings->showBundleMotion = boolval($request->showBundleMotion ?? false);
+
+        $settings->showPlanDaysDiscount = boolval($request->showPlanDaysDiscount ?? false);
+        $settings->showPreferenceBag = boolval($request->showPreferenceBag ?? false);
+        $settings->showButtonMotion = boolval($request->showButtonMotion ?? false);
+
+        $settings->showPickPreference = boolval($request->showPickPreference ?? false);
+        $settings->showSummaryBundlePicture = boolval($request->showSummaryBundlePicture ?? false);
+
+        $settings->showAddressMotion = boolval($request->showAddressMotion ?? false);
+        $settings->showReferral = boolval($request->showReferral ?? false);
+
+        $settings->showInvoiceText = boolval($request->showInvoiceText ?? false);
+        $settings->showInvoiceMotion = boolval($request->showInvoiceMotion ?? false);
+
+
+
+
+        $settings->save();
+
+
+
+
+
+        return response()->json(['message' => 'Settings has been updated'], 200);
+
+
+
+
+    } // end function
+
+
 
 
 

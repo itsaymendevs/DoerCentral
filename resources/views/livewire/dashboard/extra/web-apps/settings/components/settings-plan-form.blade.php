@@ -63,6 +63,21 @@
 
 
 
+                    {{-- textActiveColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Body
+                                Text<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Active (ex: Bundle, Days, Weekdays)"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.textActiveColor">
+                        </div>
+                    </div>
+
+
+
+
+
 
 
                     {{-- preloaderLineColor --}}
@@ -520,6 +535,48 @@
 
 
 
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+                    {{-- planRanges --}}
+
+
+
+                    {{-- planRangeBorderColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Range Border</label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planRangeBorderColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    {{-- planRangeBorderActiveColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Range Border<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Extended to Background (Active)"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planRangeBorderActiveColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
 
 
                     {{-- ---------------------------------------- --}}
@@ -606,6 +663,9 @@
 
 
 
+
+
+
                     {{-- ----------------------- --}}
                     {{-- ----------------------- --}}
                     {{-- ----------------------- --}}
@@ -619,6 +679,27 @@
                     <div class="col-12 mb-3">
                         <hr>
                     </div>
+
+
+
+                    {{-- pickPreference --}}
+
+
+
+
+                    {{-- pickPreferenceTextColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Switch Plans<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Plan Name"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.pickPreferenceTextColor">
+                        </div>
+                    </div>
+
+
+
 
 
 
@@ -737,6 +818,20 @@
                     </div>
 
 
+
+
+
+
+                    {{-- invoiceTableBorderColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Invoice Table<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Table / Section Border Color"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.invoiceTableBorderColor">
+                        </div>
+                    </div>
 
 
 
@@ -888,11 +983,77 @@
 
 
 
+                    {{-- planMacro --}}
+
+                    {{-- planMacroBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Plan Macro</label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planMacroBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
 
 
 
                     {{-- ---------------------------------------- --}}
                     {{-- ---------------------------------------- --}}
+
+
+
+
+
+                    {{-- daysDiscount --}}
+
+                    {{-- planDaysDiscountBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Discount Box<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Plan Days Discount"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planDaysDiscountBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+                    {{-- input --}}
+
+                    {{-- inputBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Input</label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.inputBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
 
 
 
@@ -1025,6 +1186,7 @@
 
 
 
+
                     {{-- pickPreferenceBackgroundColor --}}
                     <div class="col-4">
                         <div class="input--with-label mb-3">
@@ -1033,6 +1195,25 @@
                                 wire:model="instance.pickPreferenceBackgroundColor">
                         </div>
                     </div>
+
+
+
+
+
+
+
+                    {{-- pickPreferenceHoverBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Pick Preference<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Backrground Shadow on Hover"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.pickPreferenceHoverBackgroundColor">
+                        </div>
+                    </div>
+
+
 
 
 
@@ -1079,8 +1260,6 @@
 
 
 
-
-
                     {{-- addressBackgroundColor --}}
                     <div class="col-4">
                         <div class="input--with-label mb-3">
@@ -1096,6 +1275,422 @@
 
 
 
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+                    {{-- invoice --}}
+
+
+
+                    {{-- invoiceBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Invoice</label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.invoiceBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
+
+                    {{-- invoiceMidSectionBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Invoice Mid-Section</label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.invoiceMidSectionBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- --------------------------------------- --}}
+                    {{-- --------------------------------------- --}}
+                    {{-- --------------------------------------- --}}
+                    {{-- --------------------------------------- --}}
+                    {{-- --------------------------------------- --}}
+                    {{-- --------------------------------------- --}}
+                    {{-- --------------------------------------- --}}
+                    {{-- --------------------------------------- --}}
+
+
+
+
+
+
+
+
+
+
+                    {{-- 3: features --}}
+                    <div class="col-12 mt-5">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <hr class="w-75 hr--sub-section" />
+                            <label class="form-label form--label px-3 w-25 justify-content-center mb-0">Features</label>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- plans --}}
+
+
+
+
+                    {{-- showPlanMacros --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Plan Macros<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Macro Boxes"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showPlanMacros' value='{{ $instance?->showPlanMacros }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+                    {{-- bundle --}}
+
+
+
+
+
+
+                    {{-- showBundlePicture --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Bundle Picture<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Hover or Select"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showBundlePicture' value='{{ $instance?->showBundlePicture }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- showBundleMotion --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Bundle Motion<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Border Animation"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showBundleMotion' value='{{ $instance?->showBundleMotion }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+                    {{-- planDays --}}
+
+
+
+                    {{-- showPlanDaysDiscount --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Discount Box<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Plan Days Discount"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showPlanDaysDiscount'
+                                value='{{ $instance?->showPlanDaysDiscount }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+                    {{-- preference - button --}}
+
+
+
+
+                    {{-- showPreferenceBag --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Preference Bag<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Cooler-Bag Picture"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showPreferenceBag' value='{{ $instance?->showPreferenceBag }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    {{-- showButtonMotion --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Button Motion<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Blob Animation"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showButtonMotion' value='{{ $instance?->showButtonMotion }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+                    {{-- pickPreference - summaryBundle --}}
+
+
+
+
+
+                    {{-- showPickPreference --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Pick Preference<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Switch Plans Section"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showPickPreference'
+                                value='{{ $instance?->showPickPreference }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- showSummaryBundlePicture --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Summary Bundle<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Bundle Picture"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showSummaryBundlePicture'
+                                value='{{ $instance?->showSummaryBundlePicture }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+                    {{-- showAddressMotion - showReferral --}}
+
+
+
+
+
+                    {{-- showAddressMotion --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Address Motion<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Border Animation"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showAddressMotion' value='{{ $instance?->showAddressMotion }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- showSummaryBundlePicture --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Referral Code</label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showSummaryBundlePicture'
+                                value='{{ $instance?->showSummaryBundlePicture }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+                    {{-- showInvoiceText - showInvoiceMotion --}}
+
+
+
+
+
+
+                    {{-- showInvoiceText --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Invoice Caption<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip=""
+                                title="Top Caption Before Invoice"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showInvoiceText' value='{{ $instance?->showInvoiceText }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    {{-- showInvoiceMotion --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Invoice Motion<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Border Animation"></i></label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plan-form-select"
+                                data-instance='instance.showInvoiceMotion' value='{{ $instance?->showInvoiceMotion }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
 
 
 
@@ -1138,5 +1733,75 @@
             </div>
         </div>
     </div>
+    {{-- endCol --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- selectHandle --}}
+    <script>
+        $(".form--plan-form-select").on("change", function(event) {
+
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+         @this.set(instance, selectValue);
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
 </div>
 {{-- endRow --}}

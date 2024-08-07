@@ -130,13 +130,13 @@ class SettingsGeneral extends Component
 
         // 1: replaceFiles
         if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'profile', $this->instance->imageFileName, 'LG');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'profile', $this->instance->imageFileName, 'LG', 300, 300, true);
 
 
 
 
         if ($this->instance->imageFileDark != $this->instance->imageFileDarkName)
-            $this->instance->imageFileDarkName = $this->replaceFile($this->instance->imageFileDark, 'profile', $this->instance->imageFileDarkName, 'LGD');
+            $this->instance->imageFileDarkName = $this->replaceFile($this->instance->imageFileDark, 'profile', $this->instance->imageFileDarkName, 'LGD', 300, 300, true);
 
 
 

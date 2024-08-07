@@ -142,12 +142,12 @@ class PlansEdit extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/plans', $this->instance->imageFileName, 'PLN', 800, 800);
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/plans', $this->instance->imageFileName, 'PLN', 600, 600);
 
 
 
         if ($this->instance->secondImageFile != $this->instance->secondImageFileName)
-            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'menu/plans', $this->instance->secondImageFileName, 'PLN-S', 400, 800);
+            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'menu/plans', $this->instance->secondImageFileName, 'PLN-S', 600, 600);
 
 
 

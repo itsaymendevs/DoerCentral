@@ -748,7 +748,7 @@
                                         <div class="col-4" wire:ignore>
                                             <label class="form-label form--label">Blog Card</label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
+                                                <select class="form-select form--select form--blog-select"
                                                     data-instance='instance.cardAlignment'
                                                     value='{{ $instance?->cardAlignment }}'>
                                                     <option value=""></option>
@@ -769,7 +769,7 @@
                                         <div class="col-4" wire:ignore>
                                             <label class="form-label form--label">Hero Text</label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
+                                                <select class="form-select form--select form--blog-select"
                                                     data-instance='instance.heroTextAlignment'
                                                     value='{{ $instance?->heroTextAlignment }}'>
                                                     <option value=""></option>
@@ -795,7 +795,7 @@
                                                     class="bi bi-info-circle" data-bs-toggle="tooltip"
                                                     data-bss-tooltip="" title="Includes: Title - Subtitle"></i></label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
+                                                <select class="form-select form--select form--blog-select"
                                                     data-instance='instance.singleBlogHeroAlignment'
                                                     value='{{ $instance?->singleBlogHeroAlignment }}'>
                                                     <option value=""></option>
@@ -818,7 +818,7 @@
                                         <div class="col-4" wire:ignore>
                                             <label class="form-label form--label">Section Title</label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
+                                                <select class="form-select form--select form--blog-select"
                                                     data-instance='instance.singleBlogSectionTitleAlignment'
                                                     value='{{ $instance?->singleBlogSectionTitleAlignment }}'>
                                                     <option value=""></option>
@@ -838,7 +838,7 @@
                                         <div class="col-4" wire:ignore>
                                             <label class="form-label form--label">Section Content</label>
                                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                                                <select class="form-select form--select"
+                                                <select class="form-select form--select form--blog-select"
                                                     data-instance='instance.singleBlogSectionContentAlignment'
                                                     value='{{ $instance?->singleBlogSectionContentAlignment }}'>
                                                     <option value=""></option>
@@ -1592,7 +1592,7 @@
 
     {{-- selectHandle --}}
     <script>
-        $(".form--select").on("change", function(event) {
+        $(".form--blog-select").on("change", function(event) {
 
          selectValue = $(this).select2('val');
          instance = $(this).attr('data-instance');

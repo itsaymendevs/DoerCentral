@@ -18,6 +18,8 @@ return new class extends Migration {
 
             // 1: colors
             $table->string('textColor', 100)->nullable()->default('#000000');
+            $table->string('textActiveColor', 100)->nullable()->default('#000000');
+
             $table->string('preloaderLineColor', 100)->nullable()->default('#000000');
 
             $table->string('cursorColor', 100)->nullable()->default('#000000');
@@ -61,12 +63,21 @@ return new class extends Migration {
             $table->string('bundlePickShadowActiveColor', 100)->nullable()->default('#000000');
 
 
+            $table->string('planRangeBorderColor', 100)->nullable()->default('#000000');
+            $table->string('planRangeBorderActiveColor', 100)->nullable()->default('#000000');
+
+
             $table->string('planDaysBorderColor', 100)->nullable()->default('#000000');
             $table->string('planDaysBorderActiveColor', 100)->nullable()->default('#000000');
 
 
             $table->string('preferenceLineColor', 100)->nullable()->default('#000000');
             $table->string('preferenceInfoColor', 100)->nullable()->default('#000000');
+
+            $table->string('pickPreferenceTextColor', 100)->nullable()->default('#000000');
+
+
+
 
 
             $table->string('summaryBundleColor', 100)->nullable()->default('#000000');
@@ -79,6 +90,7 @@ return new class extends Migration {
             $table->string('addressActiveMotionColor', 100)->nullable()->default('#000000');
 
             $table->string('invoiceMotionColor', 100)->nullable()->default('#000000');
+            $table->string('invoiceTableBorderColor', 100)->nullable()->default('#000000');
 
 
 
@@ -96,19 +108,68 @@ return new class extends Migration {
 
             $table->string('navbarBackgroundColor', 100)->nullable()->default('#000000');
 
+            $table->string('planMacroBackgroundColor', 100)->nullable()->default('#000000');
+            $table->string('inputBackgroundColor', 100)->nullable()->default('#000000');
+
+            $table->string('planDaysDiscountBackgroundColor', 100)->nullable()->default('#000000');
 
             $table->string('preferenceBackgroundColor', 100)->nullable()->default('#000000');
             $table->string('preferenceBagBackgroundColor', 100)->nullable()->default('#000000');
 
             $table->string('pickPreferenceBackgroundColor', 100)->nullable()->default('#000000');
-            $table->string('summaryBackgroundColor', 100)->nullable()->default('#000000');
+            $table->string('pickPreferenceHoverBackgroundColor', 100)->nullable()->default('#000000');
 
+            $table->string('summaryBackgroundColor', 100)->nullable()->default('#000000');
 
             $table->string('buttonBackgroundColor', 100)->nullable()->default('#000000');
             $table->string('buttonHoverBackgroundColor', 100)->nullable()->default('#000000');
 
             $table->string('modalBackgroundColor', 100)->nullable()->default('#000000');
             $table->string('addressBackgroundColor', 100)->nullable()->default('#000000');
+
+
+            $table->string('invoiceBackgroundColor', 100)->nullable()->default('#000000');
+            $table->string('invoiceMidSectionBackgroundColor', 100)->nullable()->default('#000000');
+
+
+
+
+
+
+
+
+
+
+
+
+            // -----------------------------------------------------------------
+            // -----------------------------------------------------------------
+            // -----------------------------------------------------------------
+
+
+
+
+
+            // 3: show / hide
+            $table->boolean('showPlanMacros')->nullable()->default(false);
+            $table->boolean('showBundlePicture')->nullable()->default(false);
+            $table->boolean('showBundleMotion')->nullable()->default(false);
+
+            $table->boolean('showPlanDaysDiscount')->nullable()->default(false);
+
+            $table->boolean('showPreferenceBag')->nullable()->default(false);
+            $table->boolean('showButtonMotion')->nullable()->default(false);
+
+            $table->boolean('showPickPreference')->nullable()->default(false);
+            $table->boolean('showSummaryBundlePicture')->nullable()->default(false);
+
+            $table->boolean('showAddressMotion')->nullable()->default(false);
+            $table->boolean('showReferral')->nullable()->default(false);
+
+            $table->boolean('showInvoiceText')->nullable()->default(false);
+            $table->boolean('showInvoiceMotion')->nullable()->default(false);
+
+
 
 
 

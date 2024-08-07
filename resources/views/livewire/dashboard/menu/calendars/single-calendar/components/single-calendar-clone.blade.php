@@ -46,7 +46,7 @@
 
                             {{-- from --}}
                             <div class="d-flex">
-                                <input class="form-control form--input mb-4" min="{{ $globalCurrentDate }}" type="date"
+                                <input class="form-control form--input mb-4" type="date"
                                     wire:model='instance.cloneFromDate' required />
                             </div>
 
@@ -54,7 +54,7 @@
 
                             {{-- until --}}
                             <div class="d-flex">
-                                <input class="form-control form--input mb-4" min="{{ $globalCurrentDate }}" type="date"
+                                <input class="form-control form--input mb-4" type="date"
                                     wire:model='instance.cloneUntilDate' required />
                             </div>
 

@@ -1231,8 +1231,8 @@
                     <div class="col-4" wire:ignore>
                         <label class="form-label form--label">Plan Card Content</label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                            <select class="form-select form--select" data-instance='instance.planCardAlignment'
-                                value='{{ $instance?->planCardAlignment }}'>
+                            <select class="form-select form--select form--select form--plans-select"
+                                data-instance='instance.planCardAlignment' value='{{ $instance?->planCardAlignment }}'>
                                 <option value=""></option>
 
                                 @foreach ($alignments ?? [] as $alignment)
@@ -1303,8 +1303,8 @@
                                 data-bs-toggle="tooltip" data-bss-tooltip=""
                                 title="Colors in Version 5 Template"></i></label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                            <select class="form-select form--select" data-instance='instance.planSliderArrows'
-                                value='{{ $instance?->planSliderArrows }}'>
+                            <select class="form-select form--select form--plans-select"
+                                data-instance='instance.planSliderArrows' value='{{ $instance?->planSliderArrows }}'>
                                 <option value=""></option>
                                 <option value="light">Light Color</option>
                                 <option value="dark">Dark Color</option>
@@ -1342,7 +1342,8 @@
                         <label class="form-label form--label">Side Headers<i class="bi bi-info-circle"
                                 data-bs-toggle="tooltip" data-bss-tooltip="" title="Visible in Single Plan"></i></label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                            <select class="form-select form--select" data-instance='instance.planSideTitleDisplay'
+                            <select class="form-select form--select form--plans-select"
+                                data-instance='instance.planSideTitleDisplay'
                                 value='{{ $instance?->planSideTitleDisplay }}' required>
                                 <option value=""></option>
                                 <option value="inline">Same Line</option>
@@ -1366,7 +1367,8 @@
                         <label class="form-label form--label">Custom Section<i class="bi bi-info-circle"
                                 data-bs-toggle="tooltip" data-bss-tooltip="" title="Visible in Single Plan"></i></label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                            <select class="form-select form--select" data-instance='instance.showPlanCustomSection'
+                            <select class="form-select form--select form--plans-select"
+                                data-instance='instance.showPlanCustomSection'
                                 value='{{ $instance?->showPlanCustomSection }}'>
                                 <option value=""></option>
                                 <option value="1">Show</option>
@@ -1390,7 +1392,8 @@
                                 data-bs-toggle="tooltip" data-bss-tooltip=""
                                 title="Sample Meals Filter in Single Plan"></i></label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                            <select class="form-select form--select" data-instance='instance.showPlanMealsTypeFilter'
+                            <select class="form-select form--select form--plans-select"
+                                data-instance='instance.showPlanMealsTypeFilter'
                                 value='{{ $instance?->showPlanMealsTypeFilter }}'>
                                 <option value=""></option>
                                 <option value="1">Show</option>
@@ -1850,5 +1853,60 @@
             </div>
         </div>
     </div>
+    {{-- endCol --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+    {{-- selectHandle --}}
+    <script>
+        $(".form--plans-select").on("change", function(event) {
+
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+         @this.set(instance, selectValue);
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
 </div>
 {{-- endRow --}}

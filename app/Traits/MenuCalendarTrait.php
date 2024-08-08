@@ -380,7 +380,7 @@ trait MenuCalendarTrait
 
                 /* :: This Was The Condition ! in_array($scheduleMeal->mealId, $calendarScheduleMeals)
                    :: Now => im overriding regardless */
-                if (true) {
+                if (! in_array($scheduleMeal?->mealId ?? 0, $calendarScheduleMeals)) {
 
 
 
@@ -402,21 +402,18 @@ trait MenuCalendarTrait
 
 
 
-
-                    // 2.3: removeReplacement
-                    CustomerSubscriptionScheduleReplacement::where('customerSubscriptionId', $scheduleMeal->subscriptionId)
-                        ->where('scheduleDate', $calendarSchedule->scheduleDate)
-                        ->where('mealTypeId', $scheduleMeal->mealTypeId)
-                        ->delete();
-
-
-
-
                 } // end if
 
 
 
 
+
+
+                // 3: removeReplacement
+                CustomerSubscriptionScheduleReplacement::where('customerSubscriptionId', $scheduleMeal->subscriptionId)
+                    ->where('scheduleDate', $calendarSchedule?->scheduleDate)
+                    ->where('mealTypeId', $scheduleMeal?->mealTypeId)
+                    ->delete();
 
 
 

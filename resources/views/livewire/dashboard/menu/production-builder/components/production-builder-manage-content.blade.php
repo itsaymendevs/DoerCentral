@@ -1235,7 +1235,47 @@
 
 
 
+                        {{-- 1: recipe --}}
+                        @if ($meal->type->name == 'Recipe')
+
+
+
+
                         {{-- 4.1: grams - afterCookGrams - % --}}
+
+                        {{-- :: permission - hasConversion --}}
+                        @if ($versionPermission->menuModuleHasBuilderConversion)
+
+                        <td class="fw-bold fs-11 px-1 th--sm">Cooked<small
+                                class="fw-semibold text-gold fs-9 ms-1">(G)</small></td>
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+                        <td class="fw-bold fs-11 th--sm
+                        border-start-0" @if(!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
+                            @endif>Raw<small class="fw-semibold text-gold fs-9 ms-1">(G)</small></td>
+
+
+
+
+
+
+
+
+                        {{-- 2: otherTypes --}}
+                        @else
+
+
+
+
+
+                        {{-- 4.1: grams - afterCookGrams - % --}}
+
                         <td class="fw-bold fs-11 th--sm
                         border-start-0" @if(!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
                             @endif>Raw<small class="fw-semibold text-gold fs-9 ms-1">(G)</small></td>
@@ -1252,6 +1292,19 @@
 
                         @endif
                         {{-- end if - permission --}}
+
+
+
+
+
+
+                        @endif
+                        {{-- end if --}}
+
+
+
+
+
 
 
 
@@ -1410,10 +1463,67 @@
 
 
 
-
-
                     <tr key='builder-content-options-ingredients-{{ $i }}-{{ $instance->isRemoved[$i] }}'
                         class='@if ($instance?->isRemoved[$i] == true) d-none @endif'>
+
+
+
+
+
+
+                        {{-- A: recipe --}}
+                        @if ($meal->type->name == 'Recipe')
+
+
+
+
+                        {{-- 1: afterCookGrams --}}
+
+
+                        {{-- :: permission - hasConversion --}}
+                        @if ($versionPermission->menuModuleHasBuilderConversion)
+
+                        <td class="fw-bold">
+                            <input
+                                class="form-control form--input form--table-input-xxs px-1 ingredient--afterCookGrams-input"
+                                data-size='{{ $instance->mealSizeId[$i] }}' type="number" step='0.01' required
+                                wire:model='instance.afterCookGrams.{{ $i }}'
+                                wire:change='recalculateAfterCook({{ $i }})' wire:loading.attr='readonly'
+                                wire:target='toggleRemovable, toggleDefault, remove, recalculate' />
+                        </td>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+                        {{-- 2: grams --}}
+                        <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
+                            @endif>
+                            <input id='ingredient--grams-input'
+                                class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input readonly"
+                                wire:loading.attr='readonly' readonly data-size='{{ $instance->mealSizeId[$i] }}'
+                                type="number" step='0.01' required wire:model='instance.amount.{{ $i }}' />
+                        </td>
+
+
+
+
+
+
+
+
+                        {{-- B: otherTypes --}}
+                        @else
+
+
+
+
 
 
                         {{-- 1: grams --}}
@@ -1426,7 +1536,6 @@
                                 wire:change='recalculate({{ $i }})'
                                 wire:target='toggleRemovable, toggleDefault, remove, recalculate' />
                         </td>
-
 
 
 
@@ -1452,6 +1561,26 @@
                         @endif
                         {{-- end if - permission --}}
 
+
+
+
+
+                        @endif
+                        {{-- end if --}}
+
+
+
+
+
+
+
+
+
+
+                        {{-- -------------------------------- --}}
+                        {{-- -------------------------------- --}}
+                        {{-- -------------------------------- --}}
+                        {{-- -------------------------------- --}}
 
 
 
@@ -1827,6 +1956,70 @@
                         class='@if ($instance?->isRemoved[$i] == true) d-none @endif'>
 
 
+
+
+
+
+
+                        {{-- A: recipe --}}
+                        @if ($meal->type->name == 'Recipe')
+
+
+
+
+
+                        {{-- 1: afterCookGrams --}}
+
+
+                        {{-- :: permission - hasConversion --}}
+                        @if ($versionPermission->menuModuleHasBuilderConversion)
+
+                        <td class="fw-bold">
+                            <input
+                                class="form-control form--input form--table-input-xxs px-1 ingredient--afterCookGrams-input"
+                                data-size='{{ $instance->mealSizeId[$i] }}' type="number" step='0.01' required
+                                wire:model='instance.afterCookGrams.{{ $i }}' wire:loading.attr='readonly'
+                                wire:change='recalculateAfterCook({{ $i }})'
+                                wire:target='toggleRemovable, toggleDefault, remove, recalculate' />
+                        </td>
+
+
+                        @endif
+                        {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+                        {{-- 2: grams --}}
+                        <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
+                            @endif>
+                            <input id='ingredient--grams-input' readonly
+                                class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input readonly"
+                                wire:loading.attr='readonly' data-size='{{ $instance->mealSizeId[$i] }}' type="number"
+                                step='0.01' required wire:model='instance.amount.{{ $i }}' />
+                        </td>
+
+
+
+
+
+
+
+
+                        {{-- B: otherType --}}
+                        @else
+
+
+
+
+
+
+
                         {{-- 1: grams --}}
                         <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
                             @endif>
@@ -1862,6 +2055,31 @@
 
                         @endif
                         {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+                        @endif
+                        {{-- end if --}}
+
+
+
+
+
+
+
+
+
+                        {{-- -------------------------------- --}}
+                        {{-- -------------------------------- --}}
+                        {{-- -------------------------------- --}}
+                        {{-- -------------------------------- --}}
+
+
 
 
 

@@ -21,6 +21,7 @@ use App\Models\CustomerSubscriptionType;
 use App\Models\CustomerWallet;
 use App\Models\CustomerWalletDeposit;
 use App\Models\MealType;
+use App\Models\MenuCalendarSchedule;
 use App\Models\PlanBundleRange;
 use App\Traits\CalendarTrait;
 use App\Traits\HelperTrait;
@@ -2392,15 +2393,42 @@ class CustomerController extends Controller
 
 
 
-                    // :: removeSchedule
-                    CustomerSubscriptionSchedule::where('customerSubscriptionDeliveryId', $upcomingDelivery->id)
-                        ->where('customerSubscriptionId', $subscription->id)->delete();
+                    // 1.9.6: fixSchedule
+                    $customerSchedule = CustomerSubscriptionSchedule::where('customerSubscriptionDeliveryId', $upcomingDelivery->id)->where('customerSubscriptionId', $subscription->id)->first();
 
 
 
 
-                    // :: side-phase - storeSchedule - Meals
-                    $this->storeSchedule($subscription, $customer, $upcomingDelivery);
+                    // 1.9.7: getCalendarSchedule
+                    $calendarSchedule = MenuCalendarSchedule::where('menuCalendarId', $customerSchedule?->schedule?->menuCalendarId)?->where('scheduleDate', $deliveryDate)?->first();
+
+
+
+
+                    // 1.9.7.5: updateCustomerSchedule
+                    $customerSchedule->scheduleDate = $deliveryDate;
+                    $customerSchedule->menuCalendarScheduleId = $calendarSchedule?->id ?? null;
+
+
+
+                    $customerSchedule->save();
+
+
+
+
+
+
+                    // **  Or storeSchedule (Previous Solution)
+                    // 1.9.7.5:removePrevious - storeSchedule and meals
+                    // CustomerSubscriptionSchedule::where('customerSubscriptionDeliveryId', $upcomingDelivery->id)?->where('customerSubscriptionId', $subscription->id)?->delete();
+
+                    // $this->storeSchedule($subscription, $customer, $upcomingDelivery);
+
+
+
+
+
+
 
 
 

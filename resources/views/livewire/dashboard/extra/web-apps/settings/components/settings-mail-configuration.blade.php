@@ -29,7 +29,7 @@
 
             {{-- collapse --}}
             <div class="collapse  collapse--content" id="collapse-2-5" wire:ignore.self>
-                <form wire:submit='update' class="row align-items-end pt-2">
+                <form wire:submit='update' class="row align-items-end pt-2 settings--row">
 
 
 
@@ -38,7 +38,8 @@
 
                     {{-- 1: sender --}}
                     <div class="col-5">
-                        <label class="form-label form--label">Sender</label>
+                        <label class="form-label form--label">Sender<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="ex. DOer"></i></label>
                         <input class="form-control form--input mb-4" type="text" wire:model='instance.senderName' />
                     </div>
 
@@ -49,7 +50,8 @@
 
                     {{-- 2: senderEmail --}}
                     <div class="col-5">
-                        <label class="form-label form--label">Email</label>
+                        <label class="form-label form--label">Email<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                data-bss-tooltip="" title="Sender Email"></i></label>
                         <input class="form-control form--input mb-4" type="email" wire:model='instance.senderEmail' />
                     </div>
 
@@ -93,7 +95,8 @@
 
                     {{-- 5: port --}}
                     <div class="col-2">
-                        <label class="form-label form--label">Port</label>
+                        <label class="form-label form--label">Port<i class="bi bi-info-circle" data-bs-toggle="tooltip"
+                                data-bss-tooltip="" title="ex. 465"></i></label>
                         <input class="form-control form--input mb-4" type="text" wire:model='instance.port' />
                     </div>
 
@@ -125,7 +128,8 @@
 
                     {{-- 7: Mailer --}}
                     <div class="col-5">
-                        <label class="form-label form--label">Mailer</label>
+                        <label class="form-label form--label">Mailer<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="ex. smtp"></i></label>
                         <input class="form-control form--input mb-4" type="text" wire:model='instance.mailer' />
                     </div>
 
@@ -139,7 +143,8 @@
 
                     {{-- 8: encryption --}}
                     <div class="col-2">
-                        <label class="form-label form--label">Encryption</label>
+                        <label class="form-label form--label">Encryption<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="ex. tls"></i></label>
                         <input class="form-control form--input mb-4" type="text" wire:model='instance.encryption' />
                     </div>
 

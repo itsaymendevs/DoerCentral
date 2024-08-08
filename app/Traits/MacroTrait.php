@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\ConversionIngredient;
 use App\Models\Meal;
 use stdClass;
 
@@ -23,14 +24,28 @@ trait MacroTrait
 
 
 
-            // 1.2: getMacro
-            $totalSubMacros = $partIngredient?->totalMacro($partIngredient->amount, $brandId);
+            // 1.2: conversionValue
+            $conversionValue = ConversionIngredient::where('ingredientId', $partIngredient?->ingredientId)
+                ->where('cookingTypeId', $partIngredient?->cookingTypeId)?->first()?->conversionValue ?? 1;
 
+
+
+
+
+            // 1.3: getMacro
+            $totalSubMacros = $partIngredient?->totalMacro($partIngredient->amount, $brandId, conversionValue: $conversionValue);
+
+
+
+            // ** note: before processing this step the value is coming correct
+            // ** which is again doing the same / * on this value
             $totalCalories += ($totalSubMacros->calories / $part->totalGrams()) * $currentAmount;
             $totalProteins += ($totalSubMacros->proteins / $part->totalGrams()) * $currentAmount;
             $totalCarbs += ($totalSubMacros->carbs / $part->totalGrams()) * $currentAmount;
             $totalFats += ($totalSubMacros->fats / $part->totalGrams()) * $currentAmount;
             $totalCost += ($totalSubMacros->cost / $part->totalGrams()) * $currentAmount;
+
+
 
 
 

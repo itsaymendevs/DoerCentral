@@ -1566,15 +1566,37 @@ class ProductionBuilderManageContent extends Component
 
 
 
-        if ($this->instance->partId[$i] && $this->instance->amount[$i]) {
+        // 0.5: checkType
+        if ($this->meal?->type?->name == 'Recipe') {
+
+            $this->recalculateAfterCook($i);
+            return false;
+
+        } // end if
+
+
+
+
+
+
+
+
+        // -----------------------------------------------
+        // -----------------------------------------------
+
+
+
+
+
+
+
+        if ($this->instance->partId[$i] && $this->instance?->amount[$i] >= 0) {
 
 
 
             // 1: getMacro
             if ($this->instance->type[$i] == 'Ingredient') {
 
-
-                // dd($this->instance, $this->instanceUnique);
 
                 $totalMacros = $this->mealPartForIngredient->totalMacro($this->instance->amount[$i] ?? 0, $this->instance->partBrandId[$i], $this->instance->partId[$i]);
 
@@ -1680,6 +1702,187 @@ class ProductionBuilderManageContent extends Component
     } // end function
 
 
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // -----------------------------------------------------
+
+
+
+
+
+
+
+
+    public function recalculateAfterCook($i)
+    {
+
+
+
+
+        if ($this->instance->partId[$i] && $this->instance?->afterCookGrams[$i] >= 0) {
+
+
+
+
+            // 1: getRawGrams
+            $this->instance->grams[$i] = $this->instance->afterCookGrams[$i];
+            $this->instance->amount[$i] = $this->instance->afterCookGrams[$i];
+
+
+
+
+            if ($this->instance->typeId[$i] == 'Ingredient' && ! empty($this->instance->partId[$i]) && ! empty($this->instance->cookingTypeId[$i])) {
+
+
+
+                // 1.2: get conversionValue
+                $conversion = ConversionIngredient::where('ingredientId', $this->instance->partId[$i])
+                    ->where('cookingTypeId', $this->instance->cookingTypeId[$i])?->first();
+
+
+
+                if ($conversion) {
+
+
+                    // 1.3: updateRawGrams
+                    $this->instance->grams[$i] = round($this->instance->afterCookGrams[$i] / $conversion->conversionValue, 2);
+
+                    $this->instance->amount[$i] = round($this->instance->afterCookGrams[$i] / $conversion->conversionValue, 2);
+
+                } // end if
+
+
+            } // end if
+
+
+
+
+
+
+
+
+            // -------------------------------------------------
+            // -------------------------------------------------
+            // -------------------------------------------------
+
+
+
+
+            // continue
+
+
+            // 2: getMacro
+            if ($this->instance->type[$i] == 'Ingredient') {
+
+
+                $totalMacros = $this->mealPartForIngredient->totalMacro($this->instance->amount[$i] ?? 0, $this->instance->partBrandId[$i], $this->instance->partId[$i]);
+
+            } else {
+
+                $totalMacros = $this->mealPart->totalMacro($this->instance->amount[$i] ?? 0, $this->instance->partBrandId[$i], $this->instance->partId[$i]);
+
+            } // end if
+
+
+
+
+
+
+
+            $this->instance->calories[$i] = $this->instance->afterCookCalories[$i] = $totalMacros->calories;
+            $this->instance->proteins[$i] = $this->instance->afterCookProteins[$i] = $totalMacros->proteins;
+            $this->instance->carbs[$i] = $this->instance->afterCookCarbs[$i] = $totalMacros->carbs;
+            $this->instance->fats[$i] = $this->instance->afterCookFats[$i] = $totalMacros->fats;
+            $this->instance->cost[$i] = $this->instance->afterCookCost[$i] = $totalMacros->cost;
+
+
+
+
+
+
+
+
+
+
+            // -----------------------------------------------
+            // -----------------------------------------------
+
+
+
+
+
+
+
+            // 3: getAfterCookGrams
+            if ($this->instance->typeId[$i] == 'Ingredient' && ! empty($this->instance->partId[$i]) && ! empty($this->instance->cookingTypeId[$i])) {
+
+
+
+
+
+                // 3.1: get conversionValue
+                $conversion = ConversionIngredient::where('ingredientId', $this->instance->partId[$i])
+                    ->where('cookingTypeId', $this->instance->cookingTypeId[$i])?->first();
+
+
+
+
+                if ($conversion) {
+
+
+
+
+                    // 2.3: updateAfterCook Macros
+                    $this->instance->afterCookCalories[$i] = round($totalMacros->calories * (($this->instance->afterCookGrams[$i] > 0 ? $this->instance->afterCookGrams[$i] : 1) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)), 1);
+
+
+
+                    $this->instance->afterCookProteins[$i] = round($totalMacros->proteins * (($this->instance->afterCookGrams[$i] > 0 ? $this->instance->afterCookGrams[$i] : 1) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)), 1);
+
+
+
+                    $this->instance->afterCookCarbs[$i] = round($totalMacros->carbs * (($this->instance->afterCookGrams[$i] > 0 ? $this->instance->afterCookGrams[$i] : 1) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)), 1);
+
+
+
+                    $this->instance->afterCookFats[$i] = round($totalMacros->fats * (($this->instance->afterCookGrams[$i] > 0 ? $this->instance->afterCookGrams[$i] : 1) / ($this->instance->grams[$i] > 0 ? $this->instance->grams[$i] : 1)), 1);
+
+
+
+
+
+                } // end if - exists
+
+
+            } // end if - checkConversion
+
+
+
+
+
+
+
+
+
+            // 3: refreshMacros
+            $this->recalculateTotal();
+
+
+
+
+        } // end if
+
+
+    } // end function
 
 
 

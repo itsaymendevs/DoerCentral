@@ -408,11 +408,8 @@ class SingleCustomerAddressesView extends Component
             $response = $this->makeRequest('dashboard/customers/addresses/remove', $this->removeId);
 
 
-
             // :: refreshPage
-            return $this->redirect(route('dashboard.singleCustomerAddresses',
-                [$this->instance->customerId]), navigate: false);
-
+            return $this->redirect(route('dashboard.singleCustomerAddresses', [$this->instance->customerId]), navigate: false);
 
 
 

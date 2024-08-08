@@ -53,12 +53,12 @@ class MealIngredient extends Model
 
 
 
-    public function totalMacro($currentAmount = 0, $brandId = null, $ingredientId = null)
+    public function totalMacro($currentAmount = 0, $brandId = null, $ingredientId = null, $conversionValue = 1)
     {
 
 
         // :: root
-        $currentAmount ? $currentAmount : $currentAmount = 0;
+        $currentAmount ? $currentAmount = round($currentAmount * $conversionValue, 1) : $currentAmount = 0;
         $totalCalories = $totalProteins = $totalCarbs = $totalFats = $totalCost = 0;
 
 

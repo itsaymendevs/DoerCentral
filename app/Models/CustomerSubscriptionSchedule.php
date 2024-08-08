@@ -45,13 +45,25 @@ class CustomerSubscriptionSchedule extends Model
 
 
 
+    public function schedule()
+    {
+
+        return $this->belongsTo(MenuCalendarSchedule::class, 'menuCalendarScheduleId', 'id');
+
+    } // end function
+
+
+
+
+
+
+
     public function meals()
     {
 
         return $this->hasMany(CustomerSubscriptionScheduleMeal::class, 'subscriptionScheduleId', 'id');
 
     } // end function
-
 
 
 

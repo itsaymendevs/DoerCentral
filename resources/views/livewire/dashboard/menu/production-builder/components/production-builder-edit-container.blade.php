@@ -41,7 +41,7 @@
 
 
     <div>
-        <img class="w-100 of-contain" id='container-preview' style="height: 170px" @if ($currentContainer)
+        <img class="w-100 of-contain" id='container-preview' style="height: 110px" @if ($currentContainer)
             src="{{ asset('storage/stock/items/containers/' . $currentContainer->imageFile) }}" @else
             src="{{ asset('assets/img/placeholder.png') }}" @endif />
     </div>

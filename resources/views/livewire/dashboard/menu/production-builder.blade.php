@@ -134,15 +134,32 @@
 
 
 
-
-
-            {{-- 1: editLabel --}}
+            {{-- 1: leftCol --}}
             <div class="col-3">
 
-                <livewire:dashboard.menu.production-builder.components.production-builder-edit-label
-                    id='{{ $meal->id }}' key='builder-edit-label' />
+
+
+                {{-- 1.1: container --}}
+                <livewire:dashboard.menu.production-builder.components.production-builder-edit-container
+                    id='{{ $meal->id }}' key='builder-edit-container' />
+
+
+
+                {{-- -------------------------- --}}
+                {{-- -------------------------- --}}
+
+
+
+                {{-- 1.2: mealTypes - itemType --}}
+                <livewire:dashboard.menu.production-builder.components.production-builder-edit-type id='{{ $meal->id }}'
+                    key='builder-edit-item-type' />
+
 
             </div>
+
+
+
+
 
 
 
@@ -162,7 +179,7 @@
 
 
 
-                {{-- 1: manageSizes --}}
+                {{-- 2.1: manageSizes --}}
                 <livewire:dashboard.menu.production-builder.components.production-builder-manage-sizes
                     id='{{ $meal->id }}' key='builder-manage-sizes' />
 
@@ -177,10 +194,9 @@
 
 
 
-                {{-- 2: manageSizesOverview --}}
+                {{-- 2.2: manageSizesOverview --}}
                 <livewire:dashboard.menu.production-builder.components.production-builder-manage-sizes-overview
                     id='{{ $meal->id }}' key='builder-manage-sizes-overview' />
-
 
 
 
@@ -204,11 +220,14 @@
 
 
 
-            {{-- 3: editContainer --}}
+
+
+
+            {{-- 3: editLabel --}}
             <div class="col-3">
 
-                <livewire:dashboard.menu.production-builder.components.production-builder-edit-container
-                    id='{{ $meal->id }}' key='builder-edit-container' />
+                <livewire:dashboard.menu.production-builder.components.production-builder-edit-label
+                    id='{{ $meal->id }}' key='builder-edit-label' />
 
             </div>
 

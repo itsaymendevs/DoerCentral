@@ -39,3 +39,63 @@
 .builder--table tr td {
     border-left: 2px solid var(--bs-gray-500);
 }
+
+/* serving tags */
+.serving--tags-wrapper {
+    background-color: #23262b;
+    padding: 20px 20px 10px;
+    width: 100%;
+    border-radius: var(--input-radius);
+}
+
+/* types */
+.types--tags-wrapper {
+    background-color: #23262b;
+    padding: 20px 20px 5px;
+    width: 100%;
+    border-radius: var(--input-radius);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+/* radio */
+.types--tags-wrapper .itemType--radio {
+    margin-right: 18px;
+}
+
+.types--tags-wrapper .itemType--radio:last-of-type {
+    margin-right: 0px;
+}
+
+.types--tags-wrapper .itemType--radio label {
+    font-size: 13px;
+    margin-left: 7px;
+}
+
+.types--tags-wrapper .itemType--radio input {
+    font-size: 13px;
+}
+
+/* radio */
+.types--tags-wrapper .mealType--checkbox {
+    margin-right: 20px;
+}
+
+.types--tags-wrapper .mealType--checkbox:last-of-type {
+    margin-right: 0px;
+}
+
+.types--tags-wrapper .mealType--checkbox label {
+    font-size: 13px;
+    margin-left: 7px;
+}
+
+.types--tags-wrapper .mealType--checkbox input {
+    width: 40px;
+    height: 13px;
+}
+
+.builder--checkboxes-wrapper input[checked="checked"] {
+    background: var(--bs-warning) !important;
+}

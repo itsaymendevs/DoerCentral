@@ -35,7 +35,7 @@
     <div>
         <img class="w-100 of-contain" id='label-preview' @if ($currentLabel)
             src="{{ asset('storage/stock/items/labels/' . $currentLabel->imageFile) }}" @else
-            src="{{ asset('assets/img/placeholder.png') }}" @endif style="height: 170px" />
+            src="{{ asset('assets/img/placeholder.png') }}" @endif style="height: 110px" />
     </div>
 
 
@@ -65,7 +65,7 @@
 
 
     {{-- servingTags --}}
-    <div class="w-auto d-inline-block mx-auto mt-4">
+    <div class="serving--tags-wrapper d-block mx-auto mt-4">
 
 
 

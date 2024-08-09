@@ -39,12 +39,28 @@ trait MacroTrait
 
             // ** note: before processing this step the value is coming correct
             // ** which is again doing the same / * on this value
-            $totalCalories += ($totalSubMacros->calories / $part->totalGrams()) * $currentAmount;
-            $totalProteins += ($totalSubMacros->proteins / $part->totalGrams()) * $currentAmount;
-            $totalCarbs += ($totalSubMacros->carbs / $part->totalGrams()) * $currentAmount;
-            $totalFats += ($totalSubMacros->fats / $part->totalGrams()) * $currentAmount;
-            $totalCost += ($totalSubMacros->cost / $part->totalGrams()) * $currentAmount;
 
+            if ($conversionValue == 1) {
+
+                $totalCalories += ($totalSubMacros->calories / $part->totalGrams()) * $currentAmount;
+                $totalProteins += ($totalSubMacros->proteins / $part->totalGrams()) * $currentAmount;
+                $totalCarbs += ($totalSubMacros->carbs / $part->totalGrams()) * $currentAmount;
+                $totalFats += ($totalSubMacros->fats / $part->totalGrams()) * $currentAmount;
+                $totalCost += ($totalSubMacros->cost / $part->totalGrams()) * $currentAmount;
+
+
+            } else {
+
+
+
+                $totalCalories += ($totalSubMacros->calories / $part->totalAfterCookGrams()) * $currentAmount;
+                $totalProteins += ($totalSubMacros->proteins / $part->totalAfterCookGrams()) * $currentAmount;
+                $totalCarbs += ($totalSubMacros->carbs / $part->totalAfterCookGrams()) * $currentAmount;
+                $totalFats += ($totalSubMacros->fats / $part->totalAfterCookGrams()) * $currentAmount;
+                $totalCost += ($totalSubMacros->cost / $part->totalAfterCookGrams()) * $currentAmount;
+
+
+            } // end if
 
 
 

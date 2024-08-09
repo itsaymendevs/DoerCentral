@@ -619,8 +619,9 @@ trait HelperTrait
 
 
 
-    protected function uploadFile($instanceFile, $path, $key = 'ITM', $width = 600, $height = 600, $skipResize = false)
+    protected function uploadFile($instanceFile, $path, $key = 'ITM', $width = 600, $height = 600, $skipResize = false, $method = 'contain')
     {
+
 
 
         // 1: getFileName
@@ -628,11 +629,42 @@ trait HelperTrait
 
 
 
+
+
+        // -----------------------------------------------------
+        // -----------------------------------------------------
+        // -----------------------------------------------------
+        // -----------------------------------------------------
+
+
+
+
+
+
         // 2.1: resize or rawFile
         if ($skipResize == false) {
 
+
+
             $file = Image::read($instanceFile);
-            $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
+
+
+
+            // 2.2: method
+            if ($method == 'cover') {
+
+                $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
+
+            } elseif ($method == 'contain') {
+
+                $file->cover($width, $height, position: 'center')->save(storage_path("app/public/{$path}/{$fileName}"));
+
+            } // end if
+
+
+
+
+
 
 
         } elseif ($skipResize == true) {
@@ -673,7 +705,7 @@ trait HelperTrait
 
 
 
-    protected function replaceFile($instanceFile, $path, $fileName, $key = 'ITM', $width = 800, $height = 800, $skipResize = false)
+    protected function replaceFile($instanceFile, $path, $fileName, $key = 'ITM', $width = 600, $height = 600, $skipResize = false, $method = 'contain')
     {
 
 
@@ -696,11 +728,39 @@ trait HelperTrait
 
 
 
+
+
+        // -----------------------------------------------------
+        // -----------------------------------------------------
+        // -----------------------------------------------------
+        // -----------------------------------------------------
+
+
+
+
+
+
+
         // 2.1: resize or rawFile
         if ($skipResize == false) {
 
             $file = Image::read($instanceFile);
-            $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
+
+
+            // 2.2: method
+            if ($method == 'cover') {
+
+                $file->cover($width, $height)->save(storage_path("app/public/{$path}/{$fileName}"));
+
+            } elseif ($method == 'contain') {
+
+                $file->cover($width, $height, position: 'center')->save(storage_path("app/public/{$path}/{$fileName}"));
+
+            } // end if
+
+
+
+
 
 
         } elseif ($skipResize == true) {

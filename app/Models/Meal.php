@@ -361,11 +361,38 @@ class Meal extends Model
 
         // :: root
         $totalGrams = 0;
+        $ingredients = $this->ingredients()?->get();
 
 
 
-        $totalGrams += $this?->ingredients?->where('isDefault', 1)?->sum('amount') ?? 0;
+
+
+        // 1: ingredients - withConversion
+        foreach ($ingredients?->where('isDefault', 1) ?? [] as $mealIngredient) {
+
+
+            $conversionValue = ConversionIngredient::where('ingredientId', $mealIngredient?->ingredientId)
+                ->where('cookingTypeId', $mealIngredient?->cookingTypeId)?->first()?->conversionValue ?? 1;
+
+
+            $totalGrams += ($mealIngredient?->amount ?? 0) * $conversionValue;
+
+
+        } // end loop
+
+
+
+
+
+
+
+
+
+        // 2: parts
         $totalGrams += $this?->parts?->where('isDefault', 1)?->sum('amount') ?? 0;
+
+
+
 
 
 

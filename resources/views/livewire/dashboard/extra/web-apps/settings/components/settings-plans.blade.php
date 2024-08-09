@@ -37,7 +37,7 @@
                     {{-- 0: design --}}
                     <div class="col-12">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <hr class="w-75" />
+                            <hr class="w-75 hr--sub-section" />
                             <label class="form-label form--label px-3 w-25 justify-content-center mb-0">Layouts
                             </label>
                         </div>
@@ -660,13 +660,11 @@
 
 
 
-                    {{-- 1: colors & backgrounds --}}
+                    {{-- 1: colors --}}
                     <div class="col-12">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <hr class="w-75" />
-                            <label class="form-label form--label px-3 w-25 justify-content-center mb-0">Colors
-                                <i class="bi bi-dash-lg mx-2 text-gold"></i>Backgrounds
-                            </label>
+                            <hr class="w-75 hr--sub-section" />
+                            <label class="form-label form--label px-3 w-25 justify-content-center mb-0">Colors</label>
                         </div>
                     </div>
 
@@ -689,19 +687,6 @@
 
 
                     {{-- body - preloader --}}
-
-
-                    {{-- bodyColor --}}
-                    <div class="col-4">
-                        <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">Body
-                                BG</label>
-                            <input type="color" class="form--input py-1 pointer" required=""
-                                wire:model="instance.bodyBackgroundColor">
-                        </div>
-                    </div>
-
-
 
 
 
@@ -731,6 +716,12 @@
                     </div>
 
 
+
+
+
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
 
 
 
@@ -768,22 +759,14 @@
 
 
 
+
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+
+
+
                     {{-- navbar --}}
-
-
-
-
-
-                    {{-- navbarBackgroundColor --}}
-                    <div class="col-4">
-                        <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">Menu
-                                BG</label>
-                            <input type="color" class="form--input py-1 pointer" required=""
-                                wire:model="instance.navbarBackgroundColor">
-                        </div>
-                    </div>
-
 
 
 
@@ -814,6 +797,12 @@
                         </div>
                     </div>
 
+
+
+
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
 
 
 
@@ -861,6 +850,12 @@
 
 
 
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+
+
+
+
                     {{-- slider --}}
 
 
@@ -894,34 +889,34 @@
 
 
 
-                    {{-- ----------------------- --}}
-                    {{-- ----------------------- --}}
-                    {{-- ----------------------- --}}
-                    {{-- ----------------------- --}}
-                    {{-- ----------------------- --}}
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
 
 
 
 
 
-                    {{-- plans --}}
+
+
+                    {{-- 2nd --}}
                     <div class="col-12 mb-3">
                         <hr>
                     </div>
 
 
 
-                    {{-- planCardBackgroundColor --}}
-                    <div class="col-4">
-                        <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                BG</label>
-                            <input type="color" class="form--input py-1 pointer" required=""
-                                wire:model="instance.planCardBackgroundColor">
-                        </div>
-                    </div>
 
 
+                    {{-- planCard --}}
 
 
 
@@ -929,11 +924,14 @@
                     <div class="col-4">
                         <div class="input--with-label mb-3">
                             <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                Title</label>
+                                Title<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="On Plan Card / Slide"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.planCardTitleColor">
                         </div>
                     </div>
+
+
 
 
 
@@ -948,6 +946,9 @@
                     </div>
 
 
+
+
+
                     {{-- planCardCaptionColor --}}
                     <div class="col-4">
                         <div class="input--with-label mb-3">
@@ -957,6 +958,8 @@
                                 wire:model="instance.planCardCaptionColor">
                         </div>
                     </div>
+
+
 
 
                     {{-- planCardHrColor --}}
@@ -973,15 +976,54 @@
 
 
 
-                    {{-- planCardButtonBackgroundColor --}}
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+
+
+
+
+
+
+
+
+                    {{-- planMealsBorderColor --}}
                     <div class="col-4">
                         <div class="input--with-label mb-3">
                             <label class="form-label form--label mb-0" style="width: 80%">Plan
-                                Button BG</label>
+                                Border<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Sixth & Seventh Template + Plan Sample-meals Section"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
-                                wire:model="instance.planCardButtonBackgroundColor">
+                                wire:model="instance.planMealsBorderColor">
                         </div>
                     </div>
+
+
+
+
+
+                    {{-- planMealsHoverBorderColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Plan
+                                Border<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Hover"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planMealsHoverBorderColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+
 
 
 
@@ -997,6 +1039,8 @@
                                 wire:model="instance.planCardButtonColor">
                         </div>
                     </div>
+
+
 
 
 
@@ -1020,16 +1064,27 @@
 
 
 
-                    {{-- ----------------------- --}}
-                    {{-- ----------------------- --}}
-                    {{-- ----------------------- --}}
-                    {{-- ----------------------- --}}
-                    {{-- ----------------------- --}}
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
 
 
 
 
 
+
+
+
+
+                    {{-- singlePlan --}}
 
 
                     {{-- singlePlan --}}
@@ -1053,11 +1108,73 @@
                     <div class="col-4">
                         <div class="input--with-label mb-3">
                             <label class="form-label form--label mb-0" style="width: 80%">Side
-                                Titles</label>
+                                Titles<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Sub-headings"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.planSideTitleColor">
                         </div>
                     </div>
+
+
+
+
+
+
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+
+
+
+
+
+
+                    {{-- planListNumbersColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">List
+                                Numbers<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Visible in Plan Custom Points"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planListNumbersColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+
+
+
+
+
+
+
+                    {{-- planMealDietColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Custom Caption<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Visible in Custom Section"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planMealDietColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
 
 
 
@@ -1072,6 +1189,8 @@
                                 wire:model="instance.planFilterLinksColor">
                         </div>
                     </div>
+
+
 
 
 
@@ -1093,59 +1212,25 @@
 
 
 
-                    {{-- planListNumbersColor --}}
-                    <div class="col-4">
-                        <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">List
-                                Numbers</label>
-                            <input type="color" class="form--input py-1 pointer" required=""
-                                wire:model="instance.planListNumbersColor">
-                        </div>
-                    </div>
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
 
 
 
 
 
 
-                    {{-- planMealDietColor --}}
-                    <div class="col-4">
-                        <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">Meal
-                                Caption</label>
-                            <input type="color" class="form--input py-1 pointer" required=""
-                                wire:model="instance.planMealDietColor">
-                        </div>
-                    </div>
 
 
 
 
 
-                    {{-- planMealsBorderColor --}}
-                    <div class="col-4">
-                        <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">Meals
-                                Border</label>
-                            <input type="color" class="form--input py-1 pointer" required=""
-                                wire:model="instance.planMealsBorderColor">
-                        </div>
-                    </div>
 
 
 
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
 
-
-                    {{-- planMealsHoverBorderColor --}}
-                    <div class="col-4">
-                        <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">Meals
-                                Border<i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
-                                    title="Hover"></i></label>
-                            <input type="color" class="form--input py-1 pointer" required=""
-                                wire:model="instance.planMealsHoverBorderColor">
-                        </div>
-                    </div>
 
 
 
@@ -1166,11 +1251,19 @@
 
 
 
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+
+
+
+
 
                     {{-- planActionButtonColor --}}
                     <div class="col-4">
                         <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">Action Button</label>
+                            <label class="form-label form--label mb-0" style="width: 80%">Action Button<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Other Buttons on Page"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.planActionButtonColor">
                         </div>
@@ -1179,10 +1272,133 @@
 
 
 
+
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+
+                    {{-- 1.5: backgrounds --}}
+
+
+                    <div class="col-12 mt-5">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <hr class="w-75 hr--sub-section" />
+                            <label
+                                class="form-label form--label px-3 w-25 justify-content-center mb-0">Backrgound</label>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    {{-- bodyColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Body</label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.bodyBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
+
+                    {{-- navbar --}}
+
+
+
+
+
+
+
+                    {{-- navbarBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Menu</label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.navbarBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    {{-- planCardBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Plan<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Card or Slide"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planCardBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    {{-- planCardButtonBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Plan Button<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="On Card or Slide"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planCardButtonBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+
                     {{-- planActionButtonBackgroundColor --}}
                     <div class="col-4">
                         <div class="input--with-label mb-3">
-                            <label class="form-label form--label mb-0" style="width: 80%">Action Button BG</label>
+                            <label class="form-label form--label mb-0" style="width: 80%">Action Button<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Visible in Plan Details Page"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.planActionButtonBackgroundColor">
                         </div>
@@ -1195,16 +1411,14 @@
 
 
 
-
-
-
-
-                    {{-- --------------------------------------- --}}
-                    {{-- --------------------------------------- --}}
-                    {{-- --------------------------------------- --}}
-
-
-
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
 
 
 
@@ -1213,9 +1427,11 @@
 
 
                     {{-- 2: alignments --}}
-                    <div class="col-12 mt-4">
+
+
+                    <div class="col-12 mt-5">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <hr class="w-75" />
+                            <hr class="w-75 hr--sub-section" />
                             <label class="form-label form--label px-3 w-25 justify-content-center mb-0">Adjust
                                 Alignments</label>
                         </div>
@@ -1229,7 +1445,8 @@
 
                     {{-- planCardAlignment --}}
                     <div class="col-4" wire:ignore>
-                        <label class="form-label form--label">Plan Card Content</label>
+                        <label class="form-label form--label">Plan Content<i class="bi bi-info-circle"
+                                data-bs-toggle="tooltip" data-bss-tooltip="" title="Card on Slide"></i></label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select form--select form--plans-select"
                                 data-instance='instance.planCardAlignment' value='{{ $instance?->planCardAlignment }}'>
@@ -1251,13 +1468,17 @@
 
 
 
-                    {{-- --------------------------------------- --}}
-                    {{-- --------------------------------------- --}}
-                    {{-- --------------------------------------- --}}
 
 
 
-
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
 
 
 
@@ -1265,9 +1486,11 @@
 
 
                     {{-- 3: features --}}
-                    <div class="col-12 mt-4">
+
+
+                    <div class="col-12 mt-5">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <hr class="w-75" />
+                            <hr class="w-75 hr--sub-section" />
                             <label class="form-label form--label px-3 w-25 justify-content-center mb-0">Extra
                                 Features</label>
                         </div>
@@ -1324,11 +1547,20 @@
 
 
 
-                    {{-- --------------------------------- --}}
-                    {{-- --------------------------------- --}}
-                    {{-- --------------------------------- --}}
-                    {{-- --------------------------------- --}}
-                    {{-- --------------------------------- --}}
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
 
 
 
@@ -1347,7 +1579,7 @@
                                 value='{{ $instance?->planSideTitleDisplay }}' required>
                                 <option value=""></option>
                                 <option value="inline">Same Line</option>
-                                <option value="block">Full Line</option>
+                                <option value="block">Seperate Line</option>
                             </select>
                         </div>
                     </div>
@@ -1412,23 +1644,35 @@
 
 
 
-                    {{-- --------------------------------------- --}}
-                    {{-- --------------------------------------- --}}
-                    {{-- --------------------------------------- --}}
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
 
 
 
 
 
-                    {{-- dynamicContent --}}
+                    {{-- 4: dynamicContent --}}
+
+
+
+
 
 
 
 
                     {{-- title --}}
-                    <div class="col-12 mt-4">
+                    <div class="col-12 mt-5">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <hr class="w-75" />
+                            <hr class="w-75 hr--sub-section" />
                             <label class="form-label form--label px-3 w-25 justify-content-center mb-0">Custom
                                 Section</label>
                         </div>
@@ -1535,8 +1779,11 @@
 
 
 
-                            {{-- ------------------------- --}}
-                            {{-- ------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
 
 
 
@@ -1589,8 +1836,12 @@
 
 
 
-                            {{-- ------------------------- --}}
-                            {{-- ------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+
 
 
 
@@ -1645,8 +1896,11 @@
 
 
 
-                            {{-- ------------------------- --}}
-                            {{-- ------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
 
 
 
@@ -1699,8 +1953,11 @@
 
 
 
-                            {{-- ------------------------- --}}
-                            {{-- ------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
 
 
 
@@ -1754,8 +2011,11 @@
 
 
 
-                            {{-- ------------------------- --}}
-                            {{-- ------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
 
 
 
@@ -1824,9 +2084,14 @@
 
 
 
-                    {{-- --------------------------------------- --}}
-                    {{-- --------------------------------------- --}}
-                    {{-- --------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
+                    {{-- ------------------------------------- --}}
 
 
 

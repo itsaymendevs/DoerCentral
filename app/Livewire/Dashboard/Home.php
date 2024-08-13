@@ -22,6 +22,43 @@ class Home extends Component
     use HelperTrait;
 
 
+    // :: variables
+    public $scheduleDate;
+
+
+
+
+
+
+
+    public function mount()
+    {
+
+
+        // 1: getDate
+        $this->scheduleDate = $this->getNextDate();
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------
+
+
+
+
+
+
+
 
     public function manageUnassigned($id)
     {
@@ -30,7 +67,7 @@ class Home extends Component
 
 
         // 1: makeSession
-        Session::put('customerScheduleDate', $this->getNextDate());
+        Session::put('customerScheduleDate', $this->scheduleDate);
 
 
 
@@ -103,10 +140,14 @@ class Home extends Component
 
 
 
+        // 3: validation
+        $this->scheduleDate == '' ? $this->scheduleDate = $this->getNextDate() : $this->scheduleDate;
 
 
-        // 3: unAssigned scheduleMeals
-        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->getNextDate())?->pluck('id')?->toArray() ?? [];
+
+
+        // 3.1: unAssigned scheduleMeals
+        $schedules = CustomerSubscriptionSchedule::where('scheduleDate', $this->scheduleDate)?->pluck('id')?->toArray() ?? [];
 
         $unAssignedScheduleMeals = CustomerSubscriptionScheduleMeal::whereIn('subscriptionScheduleId', $schedules)?->whereNull('mealId')?->get();
 

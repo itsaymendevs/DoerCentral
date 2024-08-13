@@ -469,8 +469,9 @@
 
 
 
-                                <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600"
-                                    data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
+                                <div class="col-2 text-end mb-4" key='home--total-checkout-{{ $key }}'
+                                    data-aos="fade-up" data-aos-duration="600" data-aos-delay="{{ $key * 100 }}"
+                                    data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class="fs-13" style="">{{ $plan->name }}</h6>
                                         <p>{{
@@ -571,7 +572,8 @@
 
 
                                 <div class="col-2 text-end mb-4" data-aos="fade-up" data-aos-duration="600"
-                                    data-aos-delay="{{ $key * 100 }}" data-aos-once="true" wire:ignore.self>
+                                    key='home--total-active-customers-{{ $key }}' data-aos-delay="{{ $key * 100 }}"
+                                    data-aos-once="true" wire:ignore.self>
                                     <div class="overview--box shrink--self">
                                         <h6 class="fs-13" style="">{{ $plan?->name }}</h6>
                                         <p>{{ number_format($plan?->activeCustomers()?->count() ?? 0) }}</p>
@@ -786,6 +788,49 @@
 
 
 
+
+
+                            {{-- filters --}}
+                            <div class="row justify-content-center">
+                                <div class="col-4">
+
+
+                                    {{-- heading --}}
+                                    <div class="d-flex align-items-center justify-content-between mb-1 hr--title">
+                                        <hr style="width: 55%" />
+                                        <label
+                                            class="form-label form--label px-3 w-50 justify-content-center mb-0">Schedule
+                                            Date</label>
+                                    </div>
+
+
+                                    {{-- input --}}
+                                    <input class="form-control form--input mb-4" type="date"
+                                        min='{{ $globalCurrentDate }}' wire:model.live='scheduleDate'
+                                        wire:loading.attr='readonly' />
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+                            {{-- ------------------------------------- --}}
+
+
+
+
+
+
                             {{-- tableRow --}}
                             <div class="row">
                                 <div class="col-12 " data-view="table">
@@ -839,7 +884,7 @@
 
 
 
-                                                <tr>
+                                                <tr key='unassigned--customer-meals-{{ $commonCustomer }}'>
 
 
                                                     {{-- SN - customer - --}}
@@ -1026,44 +1071,46 @@
                                                 {{-- loop - expiringSoon --}}
                                                 @foreach ($subscriptions?->where('untilDate', '>=', $globalCurrentDate)
                                                 ?->where('untilDate', '<=', date('Y-m-d', strtotime('+3 days +4
-                                                    hours'))) ?? [] as $subscription) <tr>
+                                                    hours'))) ?? [] as $key=> $subscription) <tr
+                                                        key='expiring--customers-{{ $key }}'>
 
 
 
 
 
-                                                    {{-- SN - customer - --}}
-                                                    <td>{{ $globalSNCounter++ }}</td>
-                                                    <td>{{ $subscription?->customer?->fullName() }}</td>
+                                                        {{-- SN - customer - --}}
+                                                        <td>{{ $globalSNCounter++ }}</td>
+                                                        <td>{{ $subscription?->customer?->fullName() }}</td>
 
 
-                                                    {{-- plan - duration - bundle --}}
-                                                    <td>{{ $subscription?->plan?->name }}</td>
-                                                    <td>{{ $subscription?->planDays }}</td>
-                                                    <td>{{ $subscription?->bundle?->name }}</td>
-
-
-
-                                                    {{-- order - start - until - balance --}}
-                                                    <td>{{ date('d / m / Y', strtotime($subscription->created_at)) }}
-                                                    </td>
-                                                    <td>{{ date('d / m / Y', strtotime($subscription->startDate)) }}
-                                                    </td>
-                                                    <td>{{ date('d / m / Y', strtotime($subscription->untilDate)) }}
-                                                    </td>
-                                                    <td></td>
+                                                        {{-- plan - duration - bundle --}}
+                                                        <td>{{ $subscription?->plan?->name }}</td>
+                                                        <td>{{ $subscription?->planDays }}</td>
+                                                        <td>{{ $subscription?->bundle?->name }}</td>
 
 
 
+                                                        {{-- order - start - until - balance --}}
+                                                        <td>{{ date('d / m / Y', strtotime($subscription->created_at))
+                                                            }}
+                                                        </td>
+                                                        <td>{{ date('d / m / Y', strtotime($subscription->startDate)) }}
+                                                        </td>
+                                                        <td>{{ date('d / m / Y', strtotime($subscription->untilDate)) }}
+                                                        </td>
+                                                        <td></td>
 
-                                                    {{-- actions [manage] --}}
-                                                    <td>
-                                                        <a wire:navigate
-                                                            class="btn btn--scheme btn-outline-warning fs-12 px-2 py-1 mx-1 scale--self-05"
-                                                            href="{{ route('dashboard.singleCustomer', [$subscription->customer->id]) }}">
-                                                            Manage
-                                                        </a>
-                                                    </td>
+
+
+
+                                                        {{-- actions [manage] --}}
+                                                        <td>
+                                                            <a wire:navigate
+                                                                class="btn btn--scheme btn-outline-warning fs-12 px-2 py-1 mx-1 scale--self-05"
+                                                                href="{{ route('dashboard.singleCustomer', [$subscription->customer->id]) }}">
+                                                                Manage
+                                                            </a>
+                                                        </td>
 
 
 
@@ -1198,11 +1245,11 @@
 
 
 
-                                                {{-- loop - expiringSoon --}}
-                                                @foreach ($subscriptions?->sortByDesc('created_at')->take(10)
-                                                as $subscription)
+                                                {{-- loop - latestSubscription --}}
+                                                @foreach ($subscriptions?->sortByDesc('created_at')->take(20)
+                                                as $key => $subscription)
 
-                                                <tr>
+                                                <tr key='latest-susbcription-{{ $key }}'>
 
 
 

@@ -50,10 +50,18 @@
 
 
             {{-- 3: recipeBuilder --}}
+
+
+            {{-- :: permission - hasBuilder --}}
+            @if ($versionPermission->menuModuleHasBuilder || session('hasTechAccess'))
+
+
             <a class="btn @if (Request::is('dashboard/menu/builder', 'dashboard/menu/production-builder/*')) active @endif"
                 href="{{ route('dashboard.menuBuilder') }}" wire:navigate>Builder</a>
 
 
+            @endif
+            {{-- end if --}}
 
 
 

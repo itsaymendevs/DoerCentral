@@ -83,7 +83,7 @@ class PlansCreate extends Component
 
 
         if ($this->instance->sixthImageFile)
-            $this->instance->sixthImageFileName = $this->uploadFile($this->instance->sixthImageFile, 'menu/plans', 'PLN-T');
+            $this->instance->sixthImageFileName = $this->uploadFile($this->instance->sixthImageFile, 'menu/plans', 'PLN-T', 1080, 1080);
 
 
 
@@ -117,6 +117,7 @@ class PlansCreate extends Component
         $this->dispatch('resetFile', file: 'plan--file-3', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'plan--file-4', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'plan--file-5', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-6', defaultPreview: $this->getDefaultPreview());
 
 
 

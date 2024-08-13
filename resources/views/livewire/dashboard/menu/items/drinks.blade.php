@@ -412,6 +412,12 @@
 
 
                                         {{-- 1: editButton --}}
+
+
+                                        {{-- :: permission - hasBuilder --}}
+                                        @if ($versionPermission->menuModuleHasBuilder || session('hasTechAccess'))
+
+
                                         <a class="btn btn--scheme btn--theme fs-12 px-2 mx-1 scale--self-05 h-32"
                                             href="{{ route('dashboard.menuProductionBuilder', [$drink->id]) }}">
                                             <svg class="bi bi-pencil fs-5" xmlns="http://www.w3.org/2000/svg"
@@ -422,6 +428,8 @@
                                             </svg>
                                         </a>
 
+                                        @endif
+                                        {{-- end if - permission --}}
 
 
 
@@ -527,6 +535,11 @@
 
 
                                         {{-- 5: remove --}}
+
+                                        {{-- :: permission - hasBuilder --}}
+                                        @if ($versionPermission->menuModuleHasBuilder || session('hasTechAccess'))
+
+
                                         <button class="btn btn--scheme btn--remove fs-12 px-2 mx-1 scale--self-05 h-32"
                                             wire:loading.attr='disabled' type="button"
                                             wire:click='remove({{ $drink->id }})'>
@@ -541,6 +554,9 @@
                                             </svg>
                                         </button>
 
+
+                                        @endif
+                                        {{-- end if - permission --}}
 
 
 

@@ -18,8 +18,9 @@ return new class extends Migration {
             $table->string('name', 255)->nullable();
             $table->double('width', 15)->nullable();
             $table->double('height', 15)->nullable();
-            $table->double('radius', 15)->nullable()->default(0);
             $table->double('charge', 15)->nullable()->default(0);
+            $table->double('radius', 15)->nullable()->default(0);
+            $table->double('macroRadius', 15)->nullable()->default(0);
 
 
 

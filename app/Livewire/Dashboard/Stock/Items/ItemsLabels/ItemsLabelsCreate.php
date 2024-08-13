@@ -115,13 +115,13 @@ class ItemsLabelsCreate extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile)
-            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'stock/items/labels', 'LB');
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'stock/items/labels', 'LB', skipResize: true);
 
 
 
 
         if ($this->instance->footerImageFile)
-            $this->instance->footerImageFileName = $this->uploadFile($this->instance->footerImageFile, 'stock/items/labels/footers', 'LB-FOOTER');
+            $this->instance->footerImageFileName = $this->uploadFile($this->instance->footerImageFile, 'stock/items/labels/footers', 'LB-FOOTER', skipResize: true);
 
 
 

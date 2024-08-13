@@ -1065,8 +1065,17 @@ class ExtraController extends Controller
 
 
         // 6: hide / show
+        $settings->showPlanReviews = boolval($request->showPlanReviews ?? false);
         $settings->showPlanCustomSection = boolval($request->showPlanCustomSection ?? false);
         $settings->showPlanMealsTypeFilter = boolval($request->showPlanMealsTypeFilter ?? false);
+
+
+
+
+
+        // 6.5: reviews
+        $settings->planReviewsKey = $request->planReviewsKey ?? null;
+
 
 
 

@@ -359,6 +359,10 @@ class LeadSubscriptionController extends Controller
 
 
 
+        // 1.4.5: deliveryPrice
+        $lead->deliveryPrice = $request->deliveryPrice ?? 0;
+
+
 
 
 

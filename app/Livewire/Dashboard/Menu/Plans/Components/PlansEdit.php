@@ -51,11 +51,12 @@ class PlansEdit extends Component
 
 
         // 1.3: imageFiles
-        $this->instance->imageFileName = $this->instance->imageFile;
+        $this->instance->imageFileName = $this->instance->imageFile ?? null;
         $this->instance->secondImageFileName = $this->instance->secondImageFile ?? null;
         $this->instance->thirdImageFileName = $this->instance->thirdImageFile ?? null;
         $this->instance->fourthImageFileName = $this->instance->fourthImageFile ?? null;
         $this->instance->fifthImageFileName = $this->instance->fifthImageFile ?? null;
+        $this->instance->sixthImageFileName = $this->instance->sixthImageFile ?? null;
 
 
 
@@ -84,6 +85,9 @@ class PlansEdit extends Component
         $this->dispatch('setFilePreview', filePreview: 'plan--preview-11', defaultPreview: $this->instance->fifthImageFile ? $preview : $this->getDefaultPreview());
 
 
+
+        $preview = asset('storage/menu/plans/' . $this->instance->sixthImageFile);
+        $this->dispatch('setFilePreview', filePreview: 'plan--preview-12', defaultPreview: $this->instance->sixthImageFile ? $preview : $this->getDefaultPreview());
 
 
 
@@ -171,6 +175,11 @@ class PlansEdit extends Component
 
 
 
+        if ($this->instance->sixthImageFile != $this->instance->sixthImageFileName)
+            $this->instance->sixthImageFileName = $this->replaceFile($this->instance->sixthImageFile, 'menu/plans', $this->instance->sixthImageFileName, 'PLN-T', 1080, 1080);
+
+
+
 
 
 
@@ -201,6 +210,7 @@ class PlansEdit extends Component
         $this->dispatch('resetFile', file: 'plan--file-9', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'plan--file-10', defaultPreview: $this->getDefaultPreview());
         $this->dispatch('resetFile', file: 'plan--file-11', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'plan--file-12', defaultPreview: $this->getDefaultPreview());
 
 
 

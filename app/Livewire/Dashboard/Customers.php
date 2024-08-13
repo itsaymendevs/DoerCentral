@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Livewire\Forms\CustomerSubscriptionForm;
 use App\Models\Customer;
 use App\Models\Plan;
+use App\Models\Profile;
 use App\Traits\ActivityTrait;
 use App\Traits\HelperTrait;
 use Illuminate\Support\Facades\Session;
@@ -88,29 +89,28 @@ class Customers extends Component
 
 
 
-        // 1: getCustomer
+        // 1: re-token
         $customer = Customer::find($id);
+        $customer->reToken = $this->makeRegularToken();
+        $customer->save();
 
 
 
 
 
 
-
-        // 1.2: make instance
-        $instance = new stdClass();
-        $instance->email = $customer->email;
-
+        // 1.2: getPlansURL
+        $profile = Profile::first();
+        $renewURL = str_replace("{token}", $customer->reToken, $profile?->renewURL);
 
 
 
 
 
-        // 1.3: makeSession - redirectStepOne
-        Session::flash('renewCustomer', $instance);
+        return $this->redirect($renewURL, navigate: false);
 
 
-        return $this->redirect(route('subscription.customerStepOne'), navigate: true);
+
 
 
 

@@ -480,6 +480,7 @@ class StockController extends Controller
         $label->height = $request->height;
         $label->desc = $request->desc ?? null;
         $label->radius = $request->radius ?? 0;
+        $label->macroRadius = $request->macroRadius ?? 0;
 
 
 
@@ -641,6 +642,8 @@ class StockController extends Controller
         $label->height = $request->height;
         $label->desc = $request->desc ?? null;
         $label->radius = $request->radius ?? 0;
+        $label->macroRadius = $request->macroRadius ?? 0;
+
 
 
         // 1.2.5: isVertical

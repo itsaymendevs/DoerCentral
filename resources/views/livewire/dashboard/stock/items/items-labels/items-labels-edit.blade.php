@@ -293,7 +293,7 @@
 
                                         {{-- :: cals --}}
                                         <h4 class='sticker--label-macro calories'
-                                            style="border-color: {{ $instance->caloriesColor ?? 'revert-layer' }}; color: {{ $instance->caloriesColor ?? 'revert-layer' }}">
+                                            style="border-color: {{ $instance->caloriesColor ?? 'revert-layer' }}; color: {{ $instance->caloriesColor ?? 'revert-layer' }}; border-radius: {{ $instance->macroRadius ?? 10 }}px">
                                             <span class='sticker--label-macro-caption fw-semibold'>KCAL</span>
                                             <span class='sticker--label-macro-value'
                                                 style="color: {{ $instance->fontColor }}">240</span>
@@ -305,7 +305,7 @@
 
                                         {{-- :: carbs --}}
                                         <h4 class='sticker--label-macro carbs'
-                                            style="border-color: {{ $instance->carbsColor ?? 'revert-layer' }}; color: {{ $instance->carbsColor ?? 'revert-layer' }}">
+                                            style="border-color: {{ $instance->carbsColor ?? 'revert-layer' }}; color: {{ $instance->carbsColor ?? 'revert-layer' }}; border-radius: {{ $instance->macroRadius ?? 10 }}px">
                                             <span class='sticker--label-macro-caption fw-semibold'>Carbs</span>
                                             <span class='sticker--label-macro-value'
                                                 style="color: {{ $instance->fontColor }}">70</span>
@@ -318,7 +318,7 @@
 
                                         {{-- :: proteins --}}
                                         <h4 class='sticker--label-macro proteins'
-                                            style="border-color: {{ $instance->proteinsColor ?? 'revert-layer' }}; color: {{ $instance->proteinsColor ?? 'revert-layer' }}">
+                                            style="border-color: {{ $instance->proteinsColor ?? 'revert-layer' }}; color: {{ $instance->proteinsColor ?? 'revert-layer' }}; border-radius: {{ $instance->macroRadius ?? 10 }}px">
                                             <span class='sticker--label-macro-caption fw-semibold'>Prot</span>
                                             <span class='sticker--label-macro-value'
                                                 style="color: {{ $instance->fontColor }}">30</span>
@@ -330,7 +330,7 @@
 
                                         {{-- :: fats --}}
                                         <h4 class='sticker--label-macro fats'
-                                            style="border-color: {{ $instance->fatsColor ?? 'revert-layer' }}; color: {{ $instance->fatsColor ?? 'revert-layer' }}">
+                                            style="border-color: {{ $instance->fatsColor ?? 'revert-layer' }}; color: {{ $instance->fatsColor ?? 'revert-layer' }}; border-radius: {{ $instance->macroRadius ?? 10 }}px">
                                             <span class='sticker--label-macro-caption fw-semibold'>Fat</span>
                                             <span class='sticker--label-macro-value'
                                                 style="color: {{ $instance->fontColor }}">12</span>
@@ -379,7 +379,7 @@
 
                                 <div class='sticker--label-footer d-flex flex-column'>
 
-                                    <img id='footer--preview-2' class='of-cover w-100 h-100'
+                                    <img id='footer--preview-2' class='of-contain w-100 h-100'
                                         src=" {{ asset('assets/img/Labels/placeholder.png') }}" wire:ignore.self>
 
                                 </div>
@@ -440,7 +440,7 @@
 
 
                     {{-- width --}}
-                    <div class=" col-4">
+                    <div class="col-3">
                         <label class="form-label form--label">Width
                             <small class="ms-1 fw-semibold text-gold fs-9">(MM)</small>
                         </label>
@@ -452,7 +452,7 @@
 
 
                     {{-- height --}}
-                    <div class="col-4">
+                    <div class="col-2">
                         <label class="form-label form--label">Height
                             <small class="ms-1 fw-semibold text-gold fs-9">(MM)</small>
                         </label>
@@ -473,6 +473,21 @@
                         </label>
                         <input type="number" step='0.1' class="form--input mb-4" wire:model.live='instance.radius' />
                     </div>
+
+
+
+
+
+                    {{-- radius --}}
+                    <div class="col-3">
+                        <label class="form-label form--label">Macros Radius
+                            <small class="ms-1 fw-semibold text-gold fs-9">(PX)</small>
+                        </label>
+                        <input type="number" step='0.1' class="form--input mb-4" wire:model.live='instance.macroRadius'
+                            required />
+                    </div>
+
+
 
 
 

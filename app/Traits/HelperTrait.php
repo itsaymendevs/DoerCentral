@@ -647,6 +647,8 @@ trait HelperTrait
 
 
             $file = Image::read($instanceFile);
+            Storage::disk('public')->makeDirectory($path);
+
 
 
 
@@ -745,6 +747,7 @@ trait HelperTrait
         if ($skipResize == false) {
 
             $file = Image::read($instanceFile);
+            Storage::disk('public')->makeDirectory($path);
 
 
             // 2.2: method

@@ -297,6 +297,15 @@ class ExistingCustomerSubscriptionController extends Controller
 
 
 
+        // 1.4.5: deliveryPrice
+        $subscription->deliveryPrice = $request->deliveryPrice ?? 0;
+
+
+
+
+
+
+
 
         // 1.5: promoCodeInformation
 

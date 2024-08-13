@@ -23,7 +23,7 @@ class SubscriptionFormSettingsForm extends Form
 
 
     // 1.2: background
-    public $bodyBackgroundColor, $bodyBackgroundFirstColor, $bodyBackgroundSecondColor, $bodyBackgroundThirdColor, $bodyBackgroundFourthColor, $navbarBackgroundColor, $inputBackgroundColor, $planDaysDiscountBackgroundColor, $preferenceBackgroundColor, $preferenceBagBackgroundColor, $pickPreferenceBackgroundColor, $pickPreferenceHoverBackgroundColor, $summaryBackgroundColor, $buttonBackgroundColor, $buttonHoverBackgroundColor, $modalBackgroundColor, $addressBackgroundColor, $invoiceBackgroundColor, $invoiceMidSectionBackgroundColor;
+    public $bodyBackgroundColor, $bodyBackgroundFirstColor, $bodyBackgroundSecondColor, $bodyBackgroundThirdColor, $bodyBackgroundFourthColor, $navbarBackgroundColor, $inputBackgroundColor, $planDaysDiscountBackgroundColor, $preferenceBackgroundColor, $preferenceBagBackgroundColor, $pickPreferenceBackgroundColor, $pickPreferenceHoverBackgroundColor, $summaryBackgroundColor, $buttonBackgroundColor, $buttonHoverBackgroundColor, $modalBackgroundColor, $addressBackgroundColor, $invoiceBackgroundColor, $invoiceMidSectionBackgroundColor, $planMacroBackgroundColor;
 
 
 

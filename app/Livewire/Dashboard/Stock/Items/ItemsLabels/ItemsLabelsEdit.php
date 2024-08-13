@@ -131,12 +131,12 @@ class ItemsLabelsEdit extends Component
 
         // 1: uploadFile
         if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'stock/items/labels', $this->instance->imageFileName, 'LB');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'stock/items/labels', $this->instance->imageFileName, 'LB', skipResize: true);
 
 
 
         if ($this->instance->footerImageFile != $this->instance->footerImageFileName)
-            $this->instance->footerImageFileName = $this->replaceFile($this->instance->footerImageFile, 'stock/items/labels/footers', $this->instance->footerImageFileName, 'LB-FOOTER');
+            $this->instance->footerImageFileName = $this->replaceFile($this->instance->footerImageFile, 'stock/items/labels/footers', $this->instance->footerImageFileName, 'LB-FOOTER', skipResize: true);
 
 
 

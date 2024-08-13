@@ -167,6 +167,100 @@ class CustomerController extends Controller
 
 
 
+
+
+        // ---------------------------------
+        // ---------------------------------
+
+
+
+
+
+
+        // 3: re-checkMeals
+
+
+
+        // 3.1: scheduleMeals
+        $schedules = CustomerSubscriptionSchedule::where('customerId', $customer->id)
+                ?->where('scheduleDate', '>=', $this->getCurrentDate())?->pluck('id')?->toArray();
+
+        $scheduleMeals = CustomerSubscriptionScheduleMeal::whereIn('subscriptionScheduleId', $schedules)->get();
+
+
+
+
+
+
+
+        // 3.2: check & re-assign
+        foreach ($scheduleMeals ?? [] as $scheduleMeal) {
+
+
+
+            // :: isValid
+            $isValid = false;
+
+
+
+
+
+            // 3.3: checkMealValidity
+            if ($scheduleMeal?->mealId) {
+
+
+                $combine = $customer->checkMealCompatibility($scheduleMeal->mealId);
+
+                $isNotAllergy = $combine?->allergies->count() == 0;
+                $isNotExclude = $combine?->excludes->count() == 0;
+
+
+
+                // 3.3.5: isValid
+                if ($isNotAllergy && $isNotExclude)
+                    $isValid = true;
+
+
+
+            } // end if
+
+
+
+
+
+
+
+
+            // ------------------------------------------------
+            // ------------------------------------------------
+
+
+
+
+
+            // 3.4: getScheduleMeal
+            if (! $isValid) {
+
+
+                $subscription = CustomerSubscription::find($scheduleMeal->subscription->id);
+                $calendarSchedule = $scheduleMeal?->subscription?->calendar?->scheduleByDate($scheduleMeal?->schedule?->scheduleDate) ?? null;
+
+                $scheduleMeal->mealId = $calendarSchedule ? $this->getScheduleMeal($subscription, $calendarSchedule, $scheduleMeal->mealTypeId) ?? null : null;
+
+
+                $scheduleMeal->save();
+
+
+            } // end if
+
+        } // end loop
+
+
+
+
+
+
+
         return response()->json(['message' => 'Information has been updated'], 200);
 
 

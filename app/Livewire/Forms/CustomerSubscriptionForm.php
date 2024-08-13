@@ -64,7 +64,7 @@ class CustomerSubscriptionForm extends Form
 
 
     // :: STEP 3
-    public $bag, $bagPrice;
+    public $bag, $bagPrice, $deliveryPrice;
 
 
     public $allergyLists = [], $excludeLists = [];

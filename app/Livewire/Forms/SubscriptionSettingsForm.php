@@ -19,9 +19,14 @@ class SubscriptionSettingsForm extends Form
 
     public $planSliderArrows, $planSideTitleDisplay, $planCardRadius, $planCardAlignment;
 
-    public $showPlanCustomSection, $showPlanMealsTypeFilter;
+    public $showPlanReviews, $showPlanCustomSection, $showPlanMealsTypeFilter;
 
 
+
+
+
+    // 1.2: testimonials
+    public $planReviewsKey;
 
 
 

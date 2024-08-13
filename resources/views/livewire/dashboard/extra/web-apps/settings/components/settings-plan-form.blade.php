@@ -1619,13 +1619,12 @@
 
 
 
-                    {{-- showSummaryBundlePicture --}}
+                    {{-- showReferral --}}
                     <div class="col-4" wire:ignore>
                         <label class="form-label form--label">Referral Code</label>
                         <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
                             <select class="form-select form--select form--plan-form-select"
-                                data-instance='instance.showSummaryBundlePicture'
-                                value='{{ $instance?->showSummaryBundlePicture }}'>
+                                data-instance='instance.showReferral' value='{{ $instance?->showReferral }}'>
                                 <option value=""></option>
                                 <option value="1">Show</option>
                                 <option value="0">Hide</option>

@@ -94,10 +94,21 @@ return new class extends Migration {
 
 
 
-            // 2.1: bag - bagPrice
+            // 2.1: bag - bagPrice -
             $table->string('bag', 100)->nullable();
             $table->double('bagPrice', 15)->nullable()->default(0);
 
+
+
+
+            // ----------------------------------------
+            // ----------------------------------------
+
+
+
+
+            // 2.2: deliveryPrice
+            $table->double('deliveryPrice', 15)->nullable()->default(0);
 
 
 

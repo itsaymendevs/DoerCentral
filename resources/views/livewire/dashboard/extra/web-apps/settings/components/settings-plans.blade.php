@@ -1594,6 +1594,9 @@
 
 
 
+
+
+
                     {{-- showPlanCustomSection --}}
                     <div class="col-4" wire:ignore>
                         <label class="form-label form--label">Custom Section<i class="bi bi-info-circle"
@@ -1646,6 +1649,82 @@
 
 
 
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+                    {{-- 4: reviews --}}
+
+
+
+
+
+
+
+
+                    {{-- title --}}
+                    <div class="col-12 mt-5">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <hr class="w-75 hr--sub-section" />
+                            <label
+                                class="form-label form--label px-3 w-25 justify-content-center mb-0">Testimonials</label>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                    {{-- showPlanReviews --}}
+                    <div class="col-4" wire:ignore>
+                        <label class="form-label form--label">Display</label>
+                        <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
+                            <select class="form-select form--select form--plans-select"
+                                data-instance='instance.showPlanReviews' value='{{ $instance?->showPlanReviews }}'>
+                                <option value=""></option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    {{-- planReviewsKey --}}
+                    <div class="col-8">
+                        <label class="form-label form--label">API Key</label>
+                        <input class="form-control form--input mb-4" type="text" wire:model='instance.planReviewsKey' />
+                    </div>
+
+
+
+
+
+
+
+
 
                     {{-- ---------------------------------------- --}}
                     {{-- ---------------------------------------- --}}
@@ -1660,7 +1739,7 @@
 
 
 
-                    {{-- 4: dynamicContent --}}
+                    {{-- 5: customSection --}}
 
 
 

@@ -30,7 +30,7 @@ class KitchenLabelForm extends Form
     public $caloriesColor, $carbsColor, $fatsColor, $proteinsColor, $backgroundColor, $fontColor, $labelBackgroundColor, $borderColor;
 
     public $paddingLeft, $paddingRight, $paddingTop, $paddingBottom;
-    public $radius;
+    public $radius, $macroRadius;
 
 
 

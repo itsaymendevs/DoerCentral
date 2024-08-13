@@ -157,6 +157,7 @@ return new class extends Migration {
 
 
             // :: forPlans
+            $table->boolean('showPlanReviews')->nullable()->default(false);
             $table->boolean('showPlanCustomSection')->nullable()->default(false);
             $table->boolean('showPlanMealsTypeFilter')->nullable()->default(false);
 
@@ -165,6 +166,22 @@ return new class extends Migration {
 
 
 
+            // ---------------------------------------------
+            // ---------------------------------------------
+
+
+
+
+
+            // 6: reviews / testimonials
+            $table->text('planReviewsKey')->nullable();
+
+
+
+
+
+
+
 
             // ---------------------------------------------
             // ---------------------------------------------
@@ -173,13 +190,13 @@ return new class extends Migration {
 
 
 
-            // 6: customSection
+            // 7: customSection
             $table->text('planCustomSectionVideoURL')->nullable();
             $table->string('planCustomSectionTitle', 255)->nullable();
 
 
 
-            // 6.1: imageFiles
+            // 7.1: imageFiles
             $table->text('planCustomSectionImageFile')->nullable();
             $table->text('planCustomSectionSubtitle')->nullable();
             $table->text('planCustomSectionCaption')->nullable();

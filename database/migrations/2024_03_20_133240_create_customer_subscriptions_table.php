@@ -89,6 +89,19 @@ return new class extends Migration {
 
 
 
+            // ----------------------------------------
+            // ----------------------------------------
+
+
+
+
+            // 3.1: deliveryPrice
+            $table->double('deliveryPrice', 15)->nullable()->default(0);
+
+
+
+
+
 
             // 3.1: promoCode
             $table->string('promoCode', 100)->nullable();

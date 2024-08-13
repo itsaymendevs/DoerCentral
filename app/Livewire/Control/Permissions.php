@@ -228,7 +228,7 @@ class Permissions extends Component
             'menuModuleHasIngredientsList' => 'Ingredient Lists',
 
 
-
+            'menuModuleHasBuilder' => 'Builder',
             'menuModuleHasBuilderExtraPictures' => 'Builder Extra Pictures',
 
             'menuModuleHasBuilderCostOverview' => 'Builder Cost Overview',
@@ -380,7 +380,7 @@ class Permissions extends Component
 
 
         // 2.8: planAndBuilder
-        $planBuilderPermissions = VersionPermission::get(['menuModuleHasHidePlan', 'menuModuleHasHideBundle', 'menuModuleHasDynamicBundles', 'menuModuleHasMealAddons', 'menuModuleHasMealFullView', 'menuModuleHasMealTypeFilters', 'menuModuleHasIngredientsList', 'menuModuleHasBuilderExtraPictures', 'menuModuleHasBuilderCostOverview', 'menuModuleHasBuilderSizeOverview', 'menuModuleHasBuilderExtraItems', 'menuModuleHasBuilderBrand', 'menuModuleHasBuilderMacros', 'menuModuleHasBuilderReplacements', 'menuModuleHasBuilderPercentage', 'menuModuleHasBuilderConversion', 'menuModuleHasBuilderCutlery', 'menuModuleHasBuilderPackings', 'menuModuleHasBuilderLabelPreview', 'menuModuleHasBuilderContainerPreview'])->first()->toArray();
+        $planBuilderPermissions = VersionPermission::get(['menuModuleHasHidePlan', 'menuModuleHasHideBundle', 'menuModuleHasDynamicBundles', 'menuModuleHasMealAddons', 'menuModuleHasMealFullView', 'menuModuleHasMealTypeFilters', 'menuModuleHasIngredientsList', 'menuModuleHasBuilder', 'menuModuleHasBuilderExtraPictures', 'menuModuleHasBuilderCostOverview', 'menuModuleHasBuilderSizeOverview', 'menuModuleHasBuilderExtraItems', 'menuModuleHasBuilderBrand', 'menuModuleHasBuilderMacros', 'menuModuleHasBuilderReplacements', 'menuModuleHasBuilderPercentage', 'menuModuleHasBuilderConversion', 'menuModuleHasBuilderCutlery', 'menuModuleHasBuilderPackings', 'menuModuleHasBuilderLabelPreview', 'menuModuleHasBuilderContainerPreview'])->first()->toArray();
 
 
 

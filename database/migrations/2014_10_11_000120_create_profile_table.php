@@ -53,6 +53,7 @@ return new class extends Migration {
             // 1.5: website - application - plansURL
             $table->text('websiteURL')->nullable();
             $table->text('plansURL')->nullable();
+            $table->text('renewURL')->nullable();
             $table->text('applicationURL')->nullable();
 
 

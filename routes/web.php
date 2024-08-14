@@ -76,6 +76,7 @@ use App\Livewire\Dashboard\Extra\WebApps\Blogs;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsCreate;
 use App\Livewire\Dashboard\Extra\WebApps\Blogs\BlogsView;
 use App\Livewire\Dashboard\Extra\WebApps\Settings as ExtraSettings;
+use App\Livewire\Dashboard\Stock\Items\ItemsBags;
 use App\Livewire\Dashboard\Stock\Items\ItemsContainers;
 use App\Livewire\Dashboard\Stock\Items\ItemsLabels;
 use App\Livewire\Dashboard\Stock\Items\ItemsLabels\ItemsLabelsCreate;
@@ -136,7 +137,7 @@ use Livewire\Livewire;
 // :: linkStorage
 Route::get('/storage-link', function () {
 
-   $return = Artisan::call('storage:link');
+    $return = Artisan::call('storage:link');
 
 });
 
@@ -148,7 +149,7 @@ Route::get('/storage-link', function () {
 // :: clearCache
 Route::get('/clear-cache', function () {
 
-   $return = Artisan::call('cache:clear');
+    $return = Artisan::call('cache:clear');
 
 });
 
@@ -159,7 +160,7 @@ Route::get('/clear-cache', function () {
 // :: scheduleList
 Route::get('/schedule-list', function () {
 
-   $list = Artisan::call('schedule:list');
+    $list = Artisan::call('schedule:list');
 
 });
 
@@ -173,14 +174,14 @@ Route::get('/schedule-list', function () {
 // :: LivewireServerDeployment in subRoute
 if (env('APP_ENV') == 'production') {
 
-   Livewire::setUpdateRoute(function ($handle) {
-      return Route::post(env('LIVEWIRE_UPDATE_PATH'), $handle);
-   });
+    Livewire::setUpdateRoute(function ($handle) {
+        return Route::post(env('LIVEWIRE_UPDATE_PATH'), $handle);
+    });
 
 
-   Livewire::setScriptRoute(function ($handle) {
-      return Route::get(env('LIVEWIRE_JAVASCRIPT_PATH'), $handle);
-   });
+    Livewire::setScriptRoute(function ($handle) {
+        return Route::get(env('LIVEWIRE_JAVASCRIPT_PATH'), $handle);
+    });
 
 } // end if
 
@@ -192,8 +193,8 @@ if (env('APP_ENV') == 'production') {
 
 // :: Broadcast - Event Test
 Route::get('broadcast-link', function () {
-   event(new CustomerSubscriptionEvent('CUSTOMER', 'PLAN'));
-   return "Broadcast - Event Test.";
+    event(new CustomerSubscriptionEvent('CUSTOMER', 'PLAN'));
+    return "Broadcast - Event Test.";
 });
 
 
@@ -254,13 +255,13 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // -------------------------- CLIENT ROUTES ---------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // -------------------------- CLIENT ROUTES ---------------------------------
 
 
 
@@ -269,8 +270,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-   // :: CLIENT ROUTES
-   if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
+    // :: CLIENT ROUTES
+    if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
@@ -279,8 +280,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 1: home
-      Route::get('dashboard', Home::class)->name('dashboard.home');
+        // 1: home
+        Route::get('dashboard', Home::class)->name('dashboard.home');
 
 
 
@@ -288,9 +289,9 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
@@ -299,8 +300,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 2: PromoCodes
-      Route::get('dashboard/promo', Promos::class)->name('dashboard.promos');
+        // 2: PromoCodes
+        Route::get('dashboard/promo', Promos::class)->name('dashboard.promos');
 
 
 
@@ -308,44 +309,44 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
 
-      // 3: Delivery
-      Route::get('dashboard/delivery', DeliveryToday::class)->name('dashboard.delivery');
+        // 3: Delivery
+        Route::get('dashboard/delivery', DeliveryToday::class)->name('dashboard.delivery');
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 3.1: cities
-      Route::get('dashboard/delivery/cities', DeliveryCities::class)->name('dashboard.delivery.cities');
+        // 3.1: cities
+        Route::get('dashboard/delivery/cities', DeliveryCities::class)->name('dashboard.delivery.cities');
 
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 3.2: vehicles
-      Route::get('dashboard/delivery/vehicles', DeliveryVehicles::class)->name('dashboard.delivery.vehicles');
+        // 3.2: vehicles
+        Route::get('dashboard/delivery/vehicles', DeliveryVehicles::class)->name('dashboard.delivery.vehicles');
 
 
 
@@ -353,28 +354,28 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 3.3: zones
-      Route::get('dashboard/delivery/zones', DeliveryZones::class)->name('dashboard.delivery.zones');
+        // 3.3: zones
+        Route::get('dashboard/delivery/zones', DeliveryZones::class)->name('dashboard.delivery.zones');
 
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 3.4: drivers
-      Route::get('dashboard/delivery/drivers', DeliveryDrivers::class)->name('dashboard.delivery.drivers');
+        // 3.4: drivers
+        Route::get('dashboard/delivery/drivers', DeliveryDrivers::class)->name('dashboard.delivery.drivers');
 
 
 
@@ -387,73 +388,73 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
 
-      // 4: inventory - ingredients - store - update - remove
-      Route::get('dashboard/inventory/ingredients', Ingredients::class)->name('dashboard.inventory.ingredients');
+        // 4: inventory - ingredients - store - update - remove
+        Route::get('dashboard/inventory/ingredients', Ingredients::class)->name('dashboard.inventory.ingredients');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 4.2: inventory - suppliers - store - update - remove
-      Route::get('dashboard/inventory/suppliers', Suppliers::class)->name('dashboard.inventory.suppliers');
+        // 4.2: inventory - suppliers - store - update - remove
+        Route::get('dashboard/inventory/suppliers', Suppliers::class)->name('dashboard.inventory.suppliers');
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 4.3: inventory - purchases - store - update - remove
-      Route::get('dashboard/inventory/purchases', Purchases::class)->name('dashboard.inventory.purchases');
+        // 4.3: inventory - purchases - store - update - remove
+        Route::get('dashboard/inventory/purchases', Purchases::class)->name('dashboard.inventory.purchases');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
 
-      // 4.3.5: inventory - purchaseOrder - store - update - remove
-      Route::get('dashboard/inventory/purchase-orders', PurchaseOrders::class)->name('dashboard.inventory.purchaseOrders');
+        // 4.3.5: inventory - purchaseOrder - store - update - remove
+        Route::get('dashboard/inventory/purchase-orders', PurchaseOrders::class)->name('dashboard.inventory.purchaseOrders');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
 
-      // 4.3.6: inventory - comparisons
-      Route::get('dashboard/inventory/comparisons', Comparisons::class)->name('dashboard.inventory.comparisons');
+        // 4.3.6: inventory - comparisons
+        Route::get('dashboard/inventory/comparisons', Comparisons::class)->name('dashboard.inventory.comparisons');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
@@ -461,40 +462,40 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 4.4: inventory - stock - store - update - remove
-      Route::get('dashboard/inventory/stock', Stock::class)->name('dashboard.inventory.stock');
+        // 4.4: inventory - stock - store - update - remove
+        Route::get('dashboard/inventory/stock', Stock::class)->name('dashboard.inventory.stock');
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 4.5: inventory - config - store - update - remove
-      Route::get('dashboard/inventory/configurations', Configurations::class)->name('dashboard.inventory.configurations');
+        // 4.5: inventory - config - store - update - remove
+        Route::get('dashboard/inventory/configurations', Configurations::class)->name('dashboard.inventory.configurations');
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 4.6: inventory - settings - store - update - remove
-      Route::get('dashboard/inventory/settings', InventorySettings::class)->name('dashboard.inventory.settings');
+        // 4.6: inventory - settings - store - update - remove
+        Route::get('dashboard/inventory/settings', InventorySettings::class)->name('dashboard.inventory.settings');
 
 
 
 
 
-      // 4.6.1: inventory - settings - conversions - ingredients
-      Route::get('dashboard/inventory/settings/conversions/{id}', ConversionIngredients::class)->name('dashboard.inventory.settings.conversionIngredients');
+        // 4.6.1: inventory - settings - conversions - ingredients
+        Route::get('dashboard/inventory/settings/conversions/{id}', ConversionIngredients::class)->name('dashboard.inventory.settings.conversionIngredients');
 
 
 
@@ -502,52 +503,52 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
 
-      // 5: Plans
-      Route::get('dashboard/menu/plans', Plans::class)->name('dashboard.menuPlans');
+        // 5: Plans
+        Route::get('dashboard/menu/plans', Plans::class)->name('dashboard.menuPlans');
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 5.1: PlanBundles
-      Route::get('dashboard/menu/plans/{id}/bundles', Bundles::class)->name('dashboard.menuPlanBundles');
+        // 5.1: PlanBundles
+        Route::get('dashboard/menu/plans/{id}/bundles', Bundles::class)->name('dashboard.menuPlanBundles');
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 5.2: planRangeSizes
-      Route::get('dashboard/menu/plans/{id}/range-sizes', RangeSizes::class)->name('dashboard.menuPlanRangeSizes');
+        // 5.2: planRangeSizes
+        Route::get('dashboard/menu/plans/{id}/range-sizes', RangeSizes::class)->name('dashboard.menuPlanRangeSizes');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 5.3: planCalendars
-      Route::get('dashboard/menu/plans/{id}/calendars', PlanCalendars::class)->name('dashboard.menuPlanCalendars');
+        // 5.3: planCalendars
+        Route::get('dashboard/menu/plans/{id}/calendars', PlanCalendars::class)->name('dashboard.menuPlanCalendars');
 
 
 
@@ -556,9 +557,9 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
@@ -568,63 +569,63 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 6: Recipes
-      Route::get('dashboard/menu/recipes', Recipes::class)->name('dashboard.menuRecipes');
+        // 6: Recipes
+        Route::get('dashboard/menu/recipes', Recipes::class)->name('dashboard.menuRecipes');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 6.1: Sub-recipes
-      Route::get('dashboard/menu/sub-recipes', SubRecipes::class)->name('dashboard.menuSubRecipes');
+        // 6.1: Sub-recipes
+        Route::get('dashboard/menu/sub-recipes', SubRecipes::class)->name('dashboard.menuSubRecipes');
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 6.2: Snacks
-      Route::get('dashboard/menu/snacks', Snacks::class)->name('dashboard.menuSnacks');
+        // 6.2: Snacks
+        Route::get('dashboard/menu/snacks', Snacks::class)->name('dashboard.menuSnacks');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 6.3: Sides
-      Route::get('dashboard/menu/sides', Sides::class)->name('dashboard.menuSides');
+        // 6.3: Sides
+        Route::get('dashboard/menu/sides', Sides::class)->name('dashboard.menuSides');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 6.4: Sauces
-      Route::get('dashboard/menu/sauces', Sauces::class)->name('dashboard.menuSauces');
+        // 6.4: Sauces
+        Route::get('dashboard/menu/sauces', Sauces::class)->name('dashboard.menuSauces');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 6.5: Drinks
-      Route::get('dashboard/menu/drinks', Drinks::class)->name('dashboard.menuDrinks');
+        // 6.5: Drinks
+        Route::get('dashboard/menu/drinks', Drinks::class)->name('dashboard.menuDrinks');
 
 
 
@@ -632,19 +633,19 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 6.6: Meals
-      Route::get('dashboard/menu/meals', Meals::class)->name('dashboard.menuMeals');
+        // 6.6: Meals
+        Route::get('dashboard/menu/meals', Meals::class)->name('dashboard.menuMeals');
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
@@ -652,23 +653,23 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 6.6: builder - productionBuilder
-      Route::get('dashboard/menu/builder', Builder::class)->name('dashboard.menuBuilder');
-      Route::get('dashboard/menu/production-builder/{id}', ProductionBuilder::class)->name('dashboard.menuProductionBuilder');
+        // 6.6: builder - productionBuilder
+        Route::get('dashboard/menu/builder', Builder::class)->name('dashboard.menuBuilder');
+        Route::get('dashboard/menu/production-builder/{id}', ProductionBuilder::class)->name('dashboard.menuProductionBuilder');
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 6.7: calendars
-      Route::get('dashboard/menu/calendars', Calendars::class)->name('dashboard.menuCalendars');
-      Route::get('dashboard/menu/calendars/{id}', SingleCalendar::class)->name('dashboard.menuSingleCalendar');
+        // 6.7: calendars
+        Route::get('dashboard/menu/calendars', Calendars::class)->name('dashboard.menuCalendars');
+        Route::get('dashboard/menu/calendars/{id}', SingleCalendar::class)->name('dashboard.menuSingleCalendar');
 
 
 
@@ -678,30 +679,30 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
 
-      // 6.8: ingredientsList
-      Route::get('dashboard/menu/ingredients-list', IngredientsList::class)->name('dashboard.menuIngredientsList');
+        // 6.8: ingredientsList
+        Route::get('dashboard/menu/ingredients-list', IngredientsList::class)->name('dashboard.menuIngredientsList');
 
 
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
 
-      // 6.9: Settings
-      Route::get('dashboard/menu/settings', Settings::class)->name('dashboard.menuSettings');
+        // 6.9: Settings
+        Route::get('dashboard/menu/settings', Settings::class)->name('dashboard.menuSettings');
 
 
 
@@ -709,15 +710,15 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
 
-      // 6.9.5: lists
-      Route::get('dashboard/menu/lists/{name}', Lists::class)->name('dashboard.menuLists');
+        // 6.9.5: lists
+        Route::get('dashboard/menu/lists/{name}', Lists::class)->name('dashboard.menuLists');
 
 
 
@@ -730,9 +731,9 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
@@ -747,15 +748,15 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 7: Customers - SOA
-      Route::get('dashboard/customers/SOA', CustomersStateOfAccount::class)->name('dashboard.customers.SOA');
+        // 7: Customers - SOA
+        Route::get('dashboard/customers/SOA', CustomersStateOfAccount::class)->name('dashboard.customers.SOA');
 
 
 
 
 
-      // 7.2: Customers - subscriptionSettings
-      Route::get('dashboard/customers/settings', CustomersSubscriptionSettings::class)->name('dashboard.customers.settings');
+        // 7.2: Customers - subscriptionSettings
+        Route::get('dashboard/customers/settings', CustomersSubscriptionSettings::class)->name('dashboard.customers.settings');
 
 
 
@@ -767,9 +768,9 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
@@ -778,19 +779,19 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 8: Customers
-      Route::get('dashboard/customers', Customers::class)->name('dashboard.customers');
+        // 8: Customers
+        Route::get('dashboard/customers', Customers::class)->name('dashboard.customers');
 
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 8.1: customers - singleCustomer - general
-      Route::get('dashboard/customers/{id}', SingleCustomer::class)->name('dashboard.singleCustomer');
+        // 8.1: customers - singleCustomer - general
+        Route::get('dashboard/customers/{id}', SingleCustomer::class)->name('dashboard.singleCustomer');
 
 
 
@@ -798,13 +799,13 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 8.2: customers - singleCustomer - addresses
-      Route::get('dashboard/customers/{id}/addresses', SingleCustomerAddresses::class)->name('dashboard.singleCustomerAddresses');
+        // 8.2: customers - singleCustomer - addresses
+        Route::get('dashboard/customers/{id}/addresses', SingleCustomerAddresses::class)->name('dashboard.singleCustomerAddresses');
 
 
 
@@ -812,13 +813,13 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 8.3: customers - singleCustomer - deliveries
-      Route::get('dashboard/customers/{id}/deliveries', SingleCustomerDeliveries::class)->name('dashboard.singleCustomerDeliveries');
+        // 8.3: customers - singleCustomer - deliveries
+        Route::get('dashboard/customers/{id}/deliveries', SingleCustomerDeliveries::class)->name('dashboard.singleCustomerDeliveries');
 
 
 
@@ -829,13 +830,13 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 8.4: customers - singleCustomer - menu
-      Route::get('dashboard/customers/{id}/menu', SingleCustomerMenu::class)->name('dashboard.singleCustomerMenu');
+        // 8.4: customers - singleCustomer - menu
+        Route::get('dashboard/customers/{id}/menu', SingleCustomerMenu::class)->name('dashboard.singleCustomerMenu');
 
 
 
@@ -845,13 +846,13 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 8.5: customers - singleCustomer - calendar
-      Route::get('dashboard/customers/{id}/calendar', SingleCustomerCalendar::class)->name('dashboard.singleCustomerCalendar');
+        // 8.5: customers - singleCustomer - calendar
+        Route::get('dashboard/customers/{id}/calendar', SingleCustomerCalendar::class)->name('dashboard.singleCustomerCalendar');
 
 
 
@@ -861,13 +862,13 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
-      // 8.6: customers - singleCustomer - history
-      Route::get('dashboard/customers/{id}/history', SingleCustomerHistory::class)->name('dashboard.singleCustomerHistory');
+        // 8.6: customers - singleCustomer - history
+        Route::get('dashboard/customers/{id}/history', SingleCustomerHistory::class)->name('dashboard.singleCustomerHistory');
 
 
 
@@ -885,9 +886,9 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
@@ -895,8 +896,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 10: kitchen - kitchenToday - preparations - export
-      Route::get('dashboard/kitchen/today/preparations', KitchenTodayPreparations::class)->name('dashboard.kitchenTodayPreparations');
+        // 10: kitchen - kitchenToday - preparations - export
+        Route::get('dashboard/kitchen/today/preparations', KitchenTodayPreparations::class)->name('dashboard.kitchenTodayPreparations');
 
 
 
@@ -904,15 +905,15 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
 
-      // 10.1: kitchen - kitchenToday - quantity - export
-      Route::get('dashboard/kitchen/today/quantity', KitchenTodayQuantities::class)->name('dashboard.kitchenTodayQuantity');
+        // 10.1: kitchen - kitchenToday - quantity - export
+        Route::get('dashboard/kitchen/today/quantity', KitchenTodayQuantities::class)->name('dashboard.kitchenTodayQuantity');
 
 
 
@@ -920,7 +921,7 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
@@ -929,8 +930,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 10.2: kitchen - kitchenToday - production - export
-      Route::get('dashboard/kitchen/today/production', KitchenTodayProduction::class)->name('dashboard.kitchenTodayProduction');
+        // 10.2: kitchen - kitchenToday - production - export
+        Route::get('dashboard/kitchen/today/production', KitchenTodayProduction::class)->name('dashboard.kitchenTodayProduction');
 
 
 
@@ -940,14 +941,14 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 10.3: kitchen - kitchenToday - packing
-      Route::get('dashboard/kitchen/today/packing', KitchenTodayPacking::class)->name('dashboard.kitchenTodayPacking');
+        // 10.3: kitchen - kitchenToday - packing
+        Route::get('dashboard/kitchen/today/packing', KitchenTodayPacking::class)->name('dashboard.kitchenTodayPacking');
 
 
 
@@ -958,14 +959,14 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 10.4: kitchen - kitchenToday - checkout
-      Route::get('dashboard/kitchen/today/checkout', KitchenTodayCheckout::class)->name('dashboard.kitchenTodayCheckout');
+        // 10.4: kitchen - kitchenToday - checkout
+        Route::get('dashboard/kitchen/today/checkout', KitchenTodayCheckout::class)->name('dashboard.kitchenTodayCheckout');
 
 
 
@@ -976,14 +977,14 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 10.5: kitchen - kitchenToday - delivery
-      Route::get('dashboard/kitchen/today/delivery', KitchenTodayDelivery::class)->name('dashboard.kitchenTodayDelivery');
+        // 10.5: kitchen - kitchenToday - delivery
+        Route::get('dashboard/kitchen/today/delivery', KitchenTodayDelivery::class)->name('dashboard.kitchenTodayDelivery');
 
 
 
@@ -992,14 +993,14 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ---------
+        // ---------
 
 
 
 
 
-      // 10.6: kitchen - kitchenToday - labels
-      Route::get('dashboard/kitchen/today/labels', KitchenTodayLabel::class)->name('dashboard.kitchenTodayLabel');
+        // 10.6: kitchen - kitchenToday - labels
+        Route::get('dashboard/kitchen/today/labels', KitchenTodayLabel::class)->name('dashboard.kitchenTodayLabel');
 
 
 
@@ -1010,22 +1011,24 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
 
 
 
 
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
-      // 11.5: kitchen - items
-      Route::get('dashboard/kitchen/items', KitchenItems::class)->name('dashboard.kitchenItems');
 
 
 
+        // 16: extra - blogs - create - edit
+        Route::get('dashboard/extra/website/blogs', Blogs::class)->name('dashboard.website.blogs');
+        Route::get('dashboard/extra/website/blogs/create', BlogsCreate::class)->name('dashboard.website.createBlog');
+        Route::get('dashboard/extra/website/blogs/{id}', BlogsView::class)->name('dashboard.website.viewBlog');
 
 
 
@@ -1034,21 +1037,19 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
 
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
 
-      // 16: extra - blogs - create - edit
-      Route::get('dashboard/extra/website/blogs', Blogs::class)->name('dashboard.website.blogs');
-      Route::get('dashboard/extra/website/blogs/create', BlogsCreate::class)->name('dashboard.website.createBlog');
-      Route::get('dashboard/extra/website/blogs/{id}', BlogsView::class)->name('dashboard.website.viewBlog');
 
+        // 17: extra - settings
+        Route::get('dashboard/extra/website/settings', ExtraSettings::class)->name('dashboard.website.settings');
 
 
 
@@ -1057,129 +1058,126 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
 
 
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
-      // 17: extra - settings
-      Route::get('dashboard/extra/website/settings', ExtraSettings::class)->name('dashboard.website.settings');
 
 
+        // 17: extra - management - users - create - edit - remove
+        Route::get('dashboard/extra/management/users', Users::class)->name('dashboard.management.users');
 
 
 
 
 
 
+        // ---------
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
 
 
 
 
+        // 17.2: extra - management - roles - create - edit - remove
+        Route::get('dashboard/extra/management/departments', Roles::class)->name('dashboard.management.roles');
 
 
 
-      // 17: extra - management - users - create - edit - remove
-      Route::get('dashboard/extra/management/users', Users::class)->name('dashboard.management.users');
 
 
 
 
+        // ---------
 
 
-      // ---------
 
 
 
+        // 17.3: extra - management - activity
+        Route::get('dashboard/extra/management/activity', ActivityLog::class)->name('dashboard.management.activity');
 
 
 
-      // 17.2: extra - management - roles - create - edit - remove
-      Route::get('dashboard/extra/management/departments', Roles::class)->name('dashboard.management.roles');
 
 
 
 
 
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
-      // ---------
 
 
 
 
 
-      // 17.3: extra - management - activity
-      Route::get('dashboard/extra/management/activity', ActivityLog::class)->name('dashboard.management.activity');
+        // 18: extra - finance - paymentDetails
+        Route::get('dashboard/extra/finance/payment-details', PaymentDetails::class)->name('dashboard.finance.paymentDetails');
 
 
 
 
 
 
+        // ---------
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
 
 
 
 
+        // 18.1: extra - finance - payment-methods
+        Route::get('dashboard/extra/finance/payment-methods', PaymentMethods::class)->name('dashboard.finance.paymentMethods');
 
 
 
-      // 18: extra - finance - paymentDetails
-      Route::get('dashboard/extra/finance/payment-details', PaymentDetails::class)->name('dashboard.finance.paymentDetails');
 
 
 
+        // ---------
 
 
 
-      // ---------
 
+        // 18.2: extra - finance - operationCosts
+        Route::get('dashboard/extra/finance/operation-costs', PaymentDetails::class)->name('dashboard.finance.operationCosts');
 
 
 
 
 
-      // 18.1: extra - finance - payment-methods
-      Route::get('dashboard/extra/finance/payment-methods', PaymentMethods::class)->name('dashboard.finance.paymentMethods');
 
 
 
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
-      // ---------
 
 
 
 
-      // 18.2: extra - finance - operationCosts
-      Route::get('dashboard/extra/finance/operation-costs', PaymentDetails::class)->name('dashboard.finance.operationCosts');
 
 
+        // 19: extra - reports - delivery
+        Route::get('dashboard/extra/reports/delivery', ReportsDelivery::class)->name('dashboard.reports.delivery');
 
 
 
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
 
 
 
@@ -1189,8 +1187,9 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-      // 19: extra - reports - delivery
-      Route::get('dashboard/extra/reports/delivery', ReportsDelivery::class)->name('dashboard.reports.delivery');
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
@@ -1198,99 +1197,99 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+        // 20: stock - items - containers - store - update - remove
+        Route::get('dashboard/stock/items/containers', ItemsContainers::class)->name('dashboard.stock.items.containers');
 
 
 
 
 
+        // ---------
 
 
 
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
-      // ----------------------------------------------------------------------------
 
 
+        // 20.1: stock - items - others - store - update - remove
+        Route::get('dashboard/stock/items/others', ItemsOthers::class)->name('dashboard.stock.items.others');
 
 
 
 
 
-      // 20: stock - items - containers - store - update - remove
-      Route::get('dashboard/stock/items/containers', ItemsContainers::class)->name('dashboard.stock.items.containers');
 
+        // ---------
 
 
 
 
-      // ---------
 
+        // 20.2: stock - items - labels - store - update - remove
+        Route::get('dashboard/stock/items/labels', ItemsLabels::class)->name('dashboard.stock.items.labels');
 
 
+        Route::get('dashboard/stock/items/labels/create', ItemsLabelsCreate::class)->name('dashboard.stock.items.createLabel');
 
 
-      // 20.1: stock - items - others - store - update - remove
-      Route::get('dashboard/stock/items/others', ItemsOthers::class)->name('dashboard.stock.items.others');
+        Route::get('dashboard/stock/items/labels/{id}/edit', ItemsLabelsEdit::class)->name('dashboard.stock.items.editLabel');
 
 
 
 
 
 
-      // ---------
 
+        // ---------
 
 
 
 
-      // 20.2: stock - items - labels - store - update - remove
-      Route::get('dashboard/stock/items/labels', ItemsLabels::class)->name('dashboard.stock.items.labels');
 
+        // 20.3: stock - items - bags
+        Route::get('dashboard/stock/items/bags', ItemsBags::class)->name('dashboard.stock.items.bags');
 
-      Route::get('dashboard/stock/items/labels/create', ItemsLabelsCreate::class)->name('dashboard.stock.items.createLabel');
 
 
-      Route::get('dashboard/stock/items/labels/{id}/edit', ItemsLabelsEdit::class)->name('dashboard.stock.items.editLabel');
 
+        // ---------
 
 
 
 
-      // ---------
 
+        // 20.4: stock - vendors - store - update - remove
+        Route::get('dashboard/stock/vendors', Vendors::class)->name('dashboard.stock.vendors');
 
 
 
 
-      // 20.4: stock - vendors - store - update - remove
-      Route::get('dashboard/stock/vendors', Vendors::class)->name('dashboard.stock.vendors');
 
+        // ---------
 
 
 
 
-      // ---------
+        // 20.5: stock - purchases - store - update - remove
+        Route::get('dashboard/stock/purchases', StockPurchases::class)->name('dashboard.stock.purchases');
 
 
 
 
-      // 20.5: stock - purchases - store - update - remove
-      Route::get('dashboard/stock/purchases', StockPurchases::class)->name('dashboard.stock.purchases');
 
 
+        // ---------
 
 
 
 
-      // ---------
+        // 20.6: stock - stock containers - labels - items
+        Route::get('dashboard/stock/stock-items', StockItems::class)->name('dashboard.stock.stockItems');
+        Route::get('dashboard/stock/stock-labels', StockLabels::class)->name('dashboard.stock.stockLabels');
+        Route::get('dashboard/stock/stock-containers', StockContainers::class)->name('dashboard.stock.stockContainers');
 
 
 
 
-      // 20.6: stock - stock containers - labels - items
-      Route::get('dashboard/stock/stock-items', StockItems::class)->name('dashboard.stock.stockItems');
-      Route::get('dashboard/stock/stock-labels', StockLabels::class)->name('dashboard.stock.stockLabels');
-      Route::get('dashboard/stock/stock-containers', StockContainers::class)->name('dashboard.stock.stockContainers');
 
 
 
@@ -1303,24 +1302,24 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // --------------------------------------------------------------------------
+        // ** ----------------------------- TEMPORARY ---------------------------- **
 
 
 
 
-      // --------------------------------------------------------------------------
-      // --------------------------------------------------------------------------
-      // --------------------------------------------------------------------------
-      // --------------------------------------------------------------------------
-      // --------------------------------------------------------------------------
-      // --------------------------------------------------------------------------
-      // ** ----------------------------- TEMPORARY ---------------------------- **
 
+        // 1: dashboard - temporary - customize-plan
+        Route::get('dashboard/temporary/customize-plan', CustomizePlan::class)->name('dashboard.temporary.customizePlan');
 
 
 
 
-      // 1: dashboard - temporary - customize-plan
-      Route::get('dashboard/temporary/customize-plan', CustomizePlan::class)->name('dashboard.temporary.customizePlan');
 
 
 
@@ -1328,11 +1327,11 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+    } // end if - CLIENT ROUTES
 
 
 
 
-   } // end if - CLIENT ROUTES
 
 
 
@@ -1347,17 +1346,17 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // -------------------------- SERVER ROUTES ---------------------------------
 
 
 
 
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // -------------------------- SERVER ROUTES ---------------------------------
 
 
 
@@ -1367,31 +1366,27 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+    // :: SERVER ROUTES
+    if (env('APP_TYPE') == 'SERVER' || env('APP_TYPE') == 'BOTH') {
 
 
 
 
-   // :: SERVER ROUTES
-   if (env('APP_TYPE') == 'SERVER' || env('APP_TYPE') == 'BOTH') {
 
 
+        // 1: control - permissions
+        Route::get('dashboard/control/permissions', Permissions::class)->name('dashboard.control.permissions');
 
 
 
 
-      // 1: control - permissions
-      Route::get('dashboard/control/permissions', Permissions::class)->name('dashboard.control.permissions');
 
 
 
 
 
 
-
-
-
-
-   } // end if - SERVER APPLICATION
+    } // end if - SERVER APPLICATION
 
 
 
@@ -1479,13 +1474,13 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // ** -------------------- SUBSCRIPTION - CUSTOMER ----------------------- **
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // ** -------------------- SUBSCRIPTION - CUSTOMER ----------------------- **
 
 
 
@@ -1501,42 +1496,42 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   // 1: Subscription - customer - StepOne
-   Route::get('subscription/customer', CustomerSubscriptionStepOne::class)->name('subscription.customerStepOne');
+    // 1: Subscription - customer - StepOne
+    Route::get('subscription/customer', CustomerSubscriptionStepOne::class)->name('subscription.customerStepOne');
 
 
 
 
-   // 1.2: Subscription - customer - stepTwo
-   Route::get('subscription/customer/{id}', CustomerSubscriptionStepTwo::class)->name('subscription.customerStepTwo');
+    // 1.2: Subscription - customer - stepTwo
+    Route::get('subscription/customer/{id}', CustomerSubscriptionStepTwo::class)->name('subscription.customerStepTwo');
 
 
 
 
 
-   // 1.3: Subscription - customer - stepThree (preferences)
-   Route::get('subscription/customer/{id}/preferences', CustomerSubscriptionStepThree::class)->name('subscription.customerStepThree');
+    // 1.3: Subscription - customer - stepThree (preferences)
+    Route::get('subscription/customer/{id}/preferences', CustomerSubscriptionStepThree::class)->name('subscription.customerStepThree');
 
 
 
 
 
 
-   // 1.4: Subscription - customer - stepFour (delivery-information)
-   Route::get('subscription/customer/{id}/delivery-information', CustomerSubscriptionStepFour::class)->name('subscription.customerStepFour');
+    // 1.4: Subscription - customer - stepFour (delivery-information)
+    Route::get('subscription/customer/{id}/delivery-information', CustomerSubscriptionStepFour::class)->name('subscription.customerStepFour');
 
 
 
 
 
-   // 1.5: Subscription - customer - stepFive (checkout-information)
-   Route::get('subscription/customer/{id}/checkout-information', CustomerSubscriptionStepFive::class)->name('subscription.customerStepFive');
+    // 1.5: Subscription - customer - stepFive (checkout-information)
+    Route::get('subscription/customer/{id}/checkout-information', CustomerSubscriptionStepFive::class)->name('subscription.customerStepFive');
 
 
 
 
-   // 1.5.2: Subscription - customer - stepFiveExisting (checkout-information)
-   Route::get('subscription/customer/{id}/checkout-information/existing', CustomerSubscriptionStepFiveExisting::class)->name('subscription.customerStepFiveExisting');
+    // 1.5.2: Subscription - customer - stepFiveExisting (checkout-information)
+    Route::get('subscription/customer/{id}/checkout-information/existing', CustomerSubscriptionStepFiveExisting::class)->name('subscription.customerStepFiveExisting');
 
 
 
@@ -1545,8 +1540,8 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   // 1.6: Subscription - customer - stepSix (Invoice)
-   Route::get('subscription/customer/{id}/invoice', CustomerSubscriptionStepSix::class)->name('subscription.customerStepSix');
+    // 1.6: Subscription - customer - stepSix (Invoice)
+    Route::get('subscription/customer/{id}/invoice', CustomerSubscriptionStepSix::class)->name('subscription.customerStepSix');
 
 
 
@@ -1576,13 +1571,13 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // ** ---------------------- PORTALS - CUSTOMER -------------------------- **
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // ** ---------------------- PORTALS - CUSTOMER -------------------------- **
 
 
 
@@ -1590,9 +1585,9 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   // 1: portal - customer - login
-   Route::get('portals/customer', LoginCustomerPortal::class);
-   Route::get('portals/customer/login', LoginCustomerPortal::class)->name('portals.customer.login');
+    // 1: portal - customer - login
+    Route::get('portals/customer', LoginCustomerPortal::class);
+    Route::get('portals/customer/login', LoginCustomerPortal::class)->name('portals.customer.login');
 
 
 
@@ -1604,8 +1599,8 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   // :: Authenticated
-   Route::middleware(['auth.portals.customer'])->group(function () {
+    // :: Authenticated
+    Route::middleware(['auth.portals.customer'])->group(function () {
 
 
 
@@ -1614,8 +1609,8 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // 1: portal - customer - home
-      Route::get('portals/customer/home', CustomerHome::class)->name('portals.customer.home');
+        // 1: portal - customer - home
+        Route::get('portals/customer/home', CustomerHome::class)->name('portals.customer.home');
 
 
 
@@ -1623,7 +1618,7 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
@@ -1633,8 +1628,8 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // 2: portal - customer - general
-      Route::get('portals/customer/general', CustomerGeneral::class)->name('portals.customer.general');
+        // 2: portal - customer - general
+        Route::get('portals/customer/general', CustomerGeneral::class)->name('portals.customer.general');
 
 
 
@@ -1642,14 +1637,14 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
-      // 3: portal - customer - address
-      Route::get('portals/customer/address', CustomerAddresses::class)->name('portals.customer.address');
+        // 3: portal - customer - address
+        Route::get('portals/customer/address', CustomerAddresses::class)->name('portals.customer.address');
 
 
 
@@ -1658,14 +1653,14 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
-      // 3: portal - customer - delivery
-      Route::get('portals/customer/delivery', CustomerDeliveries::class)->name('portals.customer.delivery');
+        // 3: portal - customer - delivery
+        Route::get('portals/customer/delivery', CustomerDeliveries::class)->name('portals.customer.delivery');
 
 
 
@@ -1675,7 +1670,7 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
@@ -1684,8 +1679,8 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // 4: portal - customer - menu
-      Route::get('portals/customer/menu', CustomerMenu::class)->name('portals.customer.menu');
+        // 4: portal - customer - menu
+        Route::get('portals/customer/menu', CustomerMenu::class)->name('portals.customer.menu');
 
 
 
@@ -1694,14 +1689,14 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
-      // 5: portal - customer - calendar
-      Route::get('portals/customer/calendar', CustomerCalendar::class)->name('portals.customer.calendar');
+        // 5: portal - customer - calendar
+        Route::get('portals/customer/calendar', CustomerCalendar::class)->name('portals.customer.calendar');
 
 
 
@@ -1723,7 +1718,7 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   }); // end Authentication
+    }); // end Authentication
 
 
 
@@ -1755,13 +1750,13 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // --------------------------------------------------------------------------
-   // ** ------------------------ PORTALS - DRIVER -------------------------- **
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
+    // ** ------------------------ PORTALS - DRIVER -------------------------- **
 
 
 
@@ -1769,9 +1764,9 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   // 1: portal - driver - login
-   Route::get('portals/driver', LoginDriverPortal::class);
-   Route::get('portals/driver/login', LoginDriverPortal::class)->name('portals.driver.login');
+    // 1: portal - driver - login
+    Route::get('portals/driver', LoginDriverPortal::class);
+    Route::get('portals/driver/login', LoginDriverPortal::class)->name('portals.driver.login');
 
 
 
@@ -1783,8 +1778,8 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   // :: Authenticated
-   Route::middleware(['auth.portals.driver'])->group(function () {
+    // :: Authenticated
+    Route::middleware(['auth.portals.driver'])->group(function () {
 
 
 
@@ -1793,8 +1788,8 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // 1: portal - driver - home
-      Route::get('portals/driver/home', DriverHome::class)->name('portals.driver.home');
+        // 1: portal - driver - home
+        Route::get('portals/driver/home', DriverHome::class)->name('portals.driver.home');
 
 
 
@@ -1802,14 +1797,14 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
-      // 2: portal - driver - history
-      Route::get('portals/driver/history', DriverHistory::class)->name('portals.driver.history');
+        // 2: portal - driver - history
+        Route::get('portals/driver/history', DriverHistory::class)->name('portals.driver.history');
 
 
 
@@ -1817,21 +1812,21 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-      // ----------------------------------------------------------------------------
+        // ----------------------------------------------------------------------------
 
 
 
 
 
-      // 3: portal - driver - profile
-      Route::get('portals/driver/profile', DriverProfile::class)->name('portals.driver.profile');
+        // 3: portal - driver - profile
+        Route::get('portals/driver/profile', DriverProfile::class)->name('portals.driver.profile');
 
 
 
 
 
-      // 3.2: portal - driver - profile - edit
-      Route::get('portals/driver/profile/edit', DriverProfileEdit::class)->name('portals.driver.editProfile');
+        // 3.2: portal - driver - profile - edit
+        Route::get('portals/driver/profile/edit', DriverProfileEdit::class)->name('portals.driver.editProfile');
 
 
 
@@ -1842,7 +1837,7 @@ if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
 
 
 
-   }); // end Authentication
+    }); // end Authentication
 
 
 

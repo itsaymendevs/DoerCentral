@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.stock.components.sub-menu title='Containers' key='stock-submenu' />
+        <livewire:dashboard.stock.components.sub-menu title='Manage Containers' key='stock-submenu' />
 
 
 

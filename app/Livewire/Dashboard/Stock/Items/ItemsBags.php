@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Livewire\Dashboard\ManageKitchen;
+namespace App\Livewire\Dashboard\Stock\Items;
 
 use App\Livewire\Forms\BagForm;
-use App\Livewire\Forms\MealServingForm;
 use App\Livewire\Forms\ServingItemForm;
 use App\Models\Bag;
 use App\Models\ServingItem;
@@ -12,10 +11,8 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class KitchenItems extends Component
+class ItemsBags extends Component
 {
-
-
 
     use HelperTrait;
     use WithFileUploads;
@@ -24,9 +21,13 @@ class KitchenItems extends Component
 
 
 
+
     // :: variables
     public BagForm $instance;
     public ServingItemForm $instanceServing;
+
+
+
 
 
 
@@ -138,7 +139,7 @@ class KitchenItems extends Component
 
         // 1.2: replaceFile
         if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'bags/', $this->instance->imageFileName, 'BAG');
+            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'bags/', $this->instance->imageFileName, 'BAG', skipResize: true);
 
 
 
@@ -260,7 +261,7 @@ class KitchenItems extends Component
         $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.manage-kitchen.kitchen-items');
+        return view('livewire.dashboard.stock.items.items-bags');
 
 
     } // end function
@@ -270,3 +271,11 @@ class KitchenItems extends Component
 
 
 } // end class
+
+
+
+
+
+
+
+

@@ -5,7 +5,48 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.manage-kitchen.components.sub-menu title='Manage Items' key='kitchen-submenu' />
+        <livewire:dashboard.stock.components.sub-menu title='Manage Bag' key='stock-submenu' />
+
+
+
+
+
+
+
+
+
+
+
+
+        {{-- ----------------------------------------- --}}
+        {{-- ----------------------------------------- --}}
+
+
+
+
+
+
+        {{-- midRow --}}
+        <div class="row align-items-end justify-content-end">
+
+
+
+
+
+
+            {{-- sub-menu --}}
+            <div class="text-end col-4">
+                <livewire:dashboard.stock.items.components.sub-menu key='inner-submenu' />
+            </div>
+
+
+
+
+
+        </div>
+        {{-- end midRow --}}
+
+
 
 
 
@@ -16,7 +57,6 @@
 
         {{-- -------------------------------------------- --}}
         {{-- -------------------------------------------- --}}
-
 
 
 
@@ -24,7 +64,7 @@
 
 
         {{-- contentRow --}}
-        <div class="row row pt-2 mb-5">
+        <div class="row pt-5 mb-5">
 
 
 
@@ -37,7 +77,8 @@
                 {{-- subtitle --}}
                 <div class="d-flex align-items-center justify-content-between mb-2">
                     <hr class="w-50">
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Extra Costs</label>
+                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Extra
+                        Costs</label>
                 </div>
 
 
@@ -178,6 +219,9 @@
 
 
 
+
+    </div>
+    {{-- endContainer --}}
 
 
 

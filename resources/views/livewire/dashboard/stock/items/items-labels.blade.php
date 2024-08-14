@@ -5,7 +5,7 @@
 
 
         {{-- :: SubMenu --}}
-        <livewire:dashboard.stock.components.sub-menu title='Labels' key='stock-submenu' />
+        <livewire:dashboard.stock.components.sub-menu title='Manage Labels' key='stock-submenu' />
 
 
 

@@ -12,26 +12,6 @@
 
 
 
-
-            {{-- :: permission - hasItemsTab --}}
-            @if ($versionPermission->stockModuleHasItemsTab || session('hasTechAccess'))
-
-
-
-            {{-- items --}}
-            <a wire:navigate class="btn d-none
-                    @if (Request::is('dashboard/kitchen/items')) active @endif" role="button"
-                href="{{ route('dashboard.kitchenItems') }}">Items</a>
-
-
-
-            @endif
-            {{-- end if - permission --}}
-
-
-
-
-
         </div>
     </div>
     {{-- endLeftLinks --}}

@@ -41,6 +41,18 @@
 
 
 
+    {{-- 3: bags --}}
+    <a wire:navigate class="btn fs-13 @if (Request::is('dashboard/stock/items/bags')) active @endif"
+        href="{{ route('dashboard.stock.items.bags') }}" role="button">Bag</a>
+
+
+
+
+
+
+
+
+
 
     {{-- :: permission - hasItem --}}
     @if ($versionPermission->stockModuleHasItemsTab || session('hasTechAccess'))
@@ -54,6 +66,16 @@
 
     @endif
     {{-- end if - permission --}}
+
+
+
+
+
+
+
+
+
+
 
 
 

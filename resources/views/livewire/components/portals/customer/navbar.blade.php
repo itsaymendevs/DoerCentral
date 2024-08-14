@@ -12,8 +12,7 @@
 
                     {{-- logoDropdown --}}
                     <button class="btn navbar--profile-button" type="button">
-                        <img src="{{ asset('assets/img/Clients/' . $globalProfile->imageFile) }}" width="73"
-                            height="41">
+                        <img src="{{ asset('storage/profile/' . $globalProfile->imageFile) }}" width="73" height="41">
                     </button>
 
                 </div>

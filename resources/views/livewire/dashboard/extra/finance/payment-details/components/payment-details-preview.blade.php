@@ -163,7 +163,7 @@
                                             {{-- profileLogo --}}
                                             <div class="col-12 col-sm-6 text-center text-sm-end">
                                                 <img class="of-contain"
-                                                    src="{{ asset('assets/img/Clients/' . $globalProfile->imageFile) }}"
+                                                    src="{{ asset('storage/profile/' . $globalProfile->imageFile) }}"
                                                     style="max-height: 80px; width: 200px; object-fit:contain !important;" />
                                             </div>
                                         </div>

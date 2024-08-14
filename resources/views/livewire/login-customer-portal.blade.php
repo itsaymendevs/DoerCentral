@@ -20,7 +20,7 @@
                     <div class='text-center'>
                         <img data-aos="fade-down" data-aos-duration="800" data-aos-delay="600" data-aos-once="true"
                             class="of-contain mb-2 mt-2 mx-auto"
-                            src="{{ asset('assets/img/Clients/' . $globalProfile->imageFile) }}"
+                            src="{{ asset('storage/profile/' . $globalProfile->imageFile) }}"
                             style="height: 80px; width: 200px;" />
                     </div>
 

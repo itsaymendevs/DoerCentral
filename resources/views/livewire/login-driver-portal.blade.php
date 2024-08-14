@@ -18,8 +18,8 @@
 
                     {{-- title --}}
                     <img data-aos="fade-down" data-aos-duration="800" data-aos-delay="600" data-aos-once="true"
-                        class="w-100 of-contain pb-1 mt-2" src="{{ asset('assets/img/Logo/doer.png') }}"
-                        style="height: 80px" />
+                        class="w-100 of-contain pb-1 mt-2"
+                        src="{{ asset('storage/profile/' . $globalProfile->imageFile) }}" style="height: 80px" />
 
 
                     {{-- email / password --}}

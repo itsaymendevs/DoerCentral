@@ -48,6 +48,7 @@ return new class extends Migration {
 
             $table->string('sliderLineColor', 100)->nullable()->default('#000000');
             $table->string('sliderBulletsColor', 100)->nullable()->default('#000000');
+            $table->string('sliderShadowColor', 100)->nullable()->default('#000000');
 
 
 
@@ -86,6 +87,7 @@ return new class extends Migration {
 
 
             // :: forPlans
+            $table->string('planHeaderBackgroundColor', 100)->nullable()->default('#000000');
             $table->string('planActionButtonBackgroundColor', 100)->nullable()->default('#000000');
 
 

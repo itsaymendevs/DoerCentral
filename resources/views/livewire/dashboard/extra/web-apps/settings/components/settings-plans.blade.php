@@ -890,6 +890,20 @@
 
 
 
+                    {{-- sliderShadowColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Slider
+                                Shadow</label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.sliderShadowColor">
+                        </div>
+                    </div>
+
+
+
+
+
 
 
                     {{-- ---------------------------------------- --}}
@@ -1376,6 +1390,34 @@
                                     title="On Card or Slide"></i></label>
                             <input type="color" class="form--input py-1 pointer" required=""
                                 wire:model="instance.planCardButtonBackgroundColor">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    {{-- ---------------------------------------- --}}
+                    {{-- ---------------------------------------- --}}
+
+
+
+
+
+
+
+                    {{-- planHeaderBackgroundColor --}}
+                    <div class="col-4">
+                        <div class="input--with-label mb-3">
+                            <label class="form-label form--label mb-0" style="width: 80%">Plan Header<i
+                                    class="bi bi-info-circle" data-bs-toggle="tooltip" data-bss-tooltip=""
+                                    title="Visible in Plan Details Page"></i></label>
+                            <input type="color" class="form--input py-1 pointer" required=""
+                                wire:model="instance.planHeaderBackgroundColor">
                         </div>
                     </div>
 

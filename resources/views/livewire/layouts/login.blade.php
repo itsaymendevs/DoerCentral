@@ -28,6 +28,9 @@
 
 
 
+
+
+
         {{-- bootstrap - Fonts --}}
         <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Arabic:400,500,600,700,800&amp;display=swap"

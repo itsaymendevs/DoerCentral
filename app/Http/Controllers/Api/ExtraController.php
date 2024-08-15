@@ -1031,6 +1031,7 @@ class ExtraController extends Controller
 
         $settings->sliderLineColor = $request->sliderLineColor ?? null;
         $settings->sliderBulletsColor = $request->sliderBulletsColor ?? null;
+        $settings->sliderShadowColor = $request->sliderShadowColor ?? null;
 
 
 
@@ -1042,6 +1043,8 @@ class ExtraController extends Controller
 
         $settings->navbarBackgroundColor = $request->navbarBackgroundColor ?? null;
 
+
+        $settings->planHeaderBackgroundColor = $request->planHeaderBackgroundColor ?? null;
         $settings->planActionButtonBackgroundColor = $request->planActionButtonBackgroundColor ?? null;
 
 

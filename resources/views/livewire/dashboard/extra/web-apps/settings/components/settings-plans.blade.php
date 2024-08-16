@@ -66,7 +66,7 @@
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo of-cover"
-                                        src="{{ asset('storage/extra/plans/option-1.png') }}" />
+                                        src="{{ url('storage/extra/plans/option-1.png') }}" />
                                 </div>
 
 
@@ -153,7 +153,7 @@
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo of-contain"
-                                        src="{{ asset('storage/extra/plans/option-2.png') }}" />
+                                        src="{{ url('storage/extra/plans/option-2.png') }}" />
                                 </div>
 
 
@@ -237,7 +237,7 @@
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo of-contain"
-                                        src="{{ asset('storage/extra/plans/option-3.png') }}" />
+                                        src="{{ url('storage/extra/plans/option-3.png') }}" />
                                 </div>
 
 
@@ -320,7 +320,7 @@
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo of-contain"
-                                        src="{{ asset('storage/extra/plans/option-4.png') }}" />
+                                        src="{{ url('storage/extra/plans/option-4.png') }}" />
                                 </div>
 
 
@@ -404,7 +404,7 @@
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo of-contain"
-                                        src="{{ asset('storage/extra/plans/option-5.png') }}" />
+                                        src="{{ url('storage/extra/plans/option-5.png') }}" />
                                 </div>
 
 
@@ -489,7 +489,7 @@
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo of-contain"
-                                        src="{{ asset('storage/extra/plans/option-6.png') }}" />
+                                        src="{{ url('storage/extra/plans/option-6.png') }}" />
                                 </div>
 
 
@@ -579,7 +579,7 @@
                                 {{-- imageFile --}}
                                 <div class="col-12 text-center position-relative">
                                     <img class="client--card-logo of-contain"
-                                        src="{{ asset('storage/extra/plans/option-7.png') }}" />
+                                        src="{{ url('storage/extra/plans/option-7.png') }}" />
                                 </div>
 
 
@@ -1873,7 +1873,7 @@
 
                                     {{-- image --}}
                                     <img id="custom--preview-1" class="inventory--image-frame"
-                                        src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                        src="{{ url('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
                                         width="512" height="250" wire:ignore />
 
                                 </label>
@@ -1930,7 +1930,7 @@
 
                                     {{-- image --}}
                                     <img id="custom--preview-2" class="inventory--image-frame"
-                                        src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                        src="{{ url('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
                                         width="512" height="250" wire:ignore />
 
                                 </label>
@@ -1991,7 +1991,7 @@
 
                                     {{-- image --}}
                                     <img id="custom--preview-3" class="inventory--image-frame"
-                                        src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                        src="{{ url('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
                                         width="512" height="250" wire:ignore />
 
                                 </label>
@@ -2049,7 +2049,7 @@
 
                                     {{-- image --}}
                                     <img id="custom--preview-4" class="inventory--image-frame"
-                                        src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                        src="{{ url('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
                                         width="512" height="250" wire:ignore />
 
                                 </label>
@@ -2105,7 +2105,7 @@
 
                                     {{-- image --}}
                                     <img id="custom--preview-5" class="inventory--image-frame"
-                                        src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                        src="{{ url('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
                                         width="512" height="250" wire:ignore />
 
                                 </label>
@@ -2165,7 +2165,7 @@
 
                                     {{-- image --}}
                                     <img id="custom--preview-6" class="inventory--image-frame"
-                                        src="{{ asset('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
+                                        src="{{ url('assets/img/placeholder.png') }}" style="aspect-ratio: 1/2;"
                                         width="512" height="250" wire:ignore />
 
                                 </label>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BuilderController;
+use App\Http\Controllers\Api\ClientSubscriptionController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\CustomerMenuController;
 use App\Http\Controllers\Api\CustomerSettingsController;
@@ -1902,8 +1903,8 @@ Route::post('/portals/driver/profile/update', [PortalDriverController::class, 'u
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
-// ** -------------------- WEBSITE - CUSTOMER ----------------------- **
-
+// ** ------------------------ WEBSITE - CUSTOMER ------------------------ **
+// ***************** DEPRECATED BECAUSE NOW IM USING LEAD ROUTES ************
 
 
 
@@ -1918,6 +1919,26 @@ Route::post('/website/subscription/customer/store', [CustomerSubscriptionControl
 
 
 
+
+
+
+
+
+
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** ------------------------ WEBSITE - CLIENT -------------------------- **
+
+
+
+
+
+// 1: website - subscription - customer - store
+Route::post('/subscription/clients/store', [ClientSubscriptionController::class, 'storeLead']);
 
 
 

@@ -74,18 +74,18 @@ class DeliveryDriversEdit extends Component
 
 
         // 1.2: setFilePreview
-        $preview = asset('storage/delivery/drivers/profiles/' . $this->instance->imageFile);
+        $preview = url('storage/delivery/drivers/profiles/' . $this->instance->imageFile);
         $this->dispatch('setFilePreview', filePreview: 'driver--preview-2', defaultPreview: $preview);
 
 
 
 
         // 1.2.2: license
-        $preview = asset('storage/delivery/drivers/licenses/' . $this->instance->licenseFile);
+        $preview = url('storage/delivery/drivers/licenses/' . $this->instance->licenseFile);
         $this->dispatch('setFilePreview', filePreview: 'license--preview-3', defaultPreview: $preview);
 
 
-        $preview = asset('storage/delivery/drivers/licenses/' . $this->instance->licenseRearFile);
+        $preview = url('storage/delivery/drivers/licenses/' . $this->instance->licenseRearFile);
         $this->dispatch('setFilePreview', filePreview: 'license--preview-4', defaultPreview: $preview);
 
 

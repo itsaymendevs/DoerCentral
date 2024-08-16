@@ -15,32 +15,32 @@ class KitchenLabelsEdit extends Component
 
 
 
-    use HelperTrait;
-    use WithFileUploads;
+   use HelperTrait;
+   use WithFileUploads;
 
 
 
-    // :: variables
-    public KitchenLabelForm $instance;
+   // :: variables
+   public KitchenLabelForm $instance;
 
 
 
 
 
-    public function mount($id)
-    {
+   public function mount($id)
+   {
 
 
 
-        // 1: clone instance
-        $label = Label::find($id);
+      // 1: clone instance
+      $label = Label::find($id);
 
-        foreach ($label->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
+      foreach ($label->toArray() as $key => $value)
+         $this->instance->{$key} = $value;
 
 
-        $this->instance->imageFileName = $this->instance->imageFile ?? null;
-        $this->instance->footerImageFileName = $this->instance->footerImageFile ?? null;
+      $this->instance->imageFileName = $this->instance->imageFile ?? null;
+      $this->instance->footerImageFileName = $this->instance->footerImageFile ?? null;
 
 
 
@@ -49,20 +49,20 @@ class KitchenLabelsEdit extends Component
 
 
 
-        // 1.2: setFilePreview
-        $preview = asset('storage/kitchen/labels/' . $this->instance->imageFile);
-        $this->dispatch('setFilePreview', filePreview: 'poster--preview-1', defaultPreview: $preview);
+      // 1.2: setFilePreview
+      $preview = url('storage/kitchen/labels/' . $this->instance->imageFile);
+      $this->dispatch('setFilePreview', filePreview: 'poster--preview-1', defaultPreview: $preview);
 
 
 
 
-        if ($this->instance->footerImageFile) {
+      if ($this->instance->footerImageFile) {
 
-            $preview = asset('storage/kitchen/labels/footers/' . $this->instance->footerImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'footer--preview-1', defaultPreview: $preview);
-            $this->dispatch('setFilePreview', filePreview: 'footer--preview-2', defaultPreview: $preview);
+         $preview = url('storage/kitchen/labels/footers/' . $this->instance->footerImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'footer--preview-1', defaultPreview: $preview);
+         $this->dispatch('setFilePreview', filePreview: 'footer--preview-2', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
@@ -70,12 +70,12 @@ class KitchenLabelsEdit extends Component
 
 
 
-        // 1.3: setContainers
-        $this->dispatch('setSelect', id: '#container-select-2', value: $label?->containers?->pluck('containerId')->toArray() ?? []);
+      // 1.3: setContainers
+      $this->dispatch('setSelect', id: '#container-select-2', value: $label?->containers?->pluck('containerId')->toArray() ?? []);
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -84,7 +84,7 @@ class KitchenLabelsEdit extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -92,47 +92,47 @@ class KitchenLabelsEdit extends Component
 
 
 
-    public function update()
-    {
+   public function update()
+   {
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
 
 
 
-        // :: validate
-        $this->instance->validate();
+      // :: validate
+      $this->instance->validate();
 
 
 
 
 
-        // 1: uploadFile
-        if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'kitchen/labels', $this->instance->imageFileName, 'LB');
+      // 1: uploadFile
+      if ($this->instance->imageFile != $this->instance->imageFileName)
+         $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'kitchen/labels', $this->instance->imageFileName, 'LB');
 
 
 
-        if ($this->instance->footerImageFile != $this->instance->footerImageFileName)
-            $this->instance->footerImageFileName = $this->replaceFile($this->instance->footerImageFile, 'kitchen/labels/footers', $this->instance->footerImageFileName, 'LB-FOOTER');
+      if ($this->instance->footerImageFile != $this->instance->footerImageFileName)
+         $this->instance->footerImageFileName = $this->replaceFile($this->instance->footerImageFile, 'kitchen/labels/footers', $this->instance->footerImageFileName, 'LB-FOOTER');
 
 
 
@@ -141,8 +141,8 @@ class KitchenLabelsEdit extends Component
 
 
 
-        // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/kitchen/labels/update', $this->instance);
+      // 1.2: makeRequest
+      $response = $this->makeRequest('dashboard/kitchen/labels/update', $this->instance);
 
 
 
@@ -151,12 +151,12 @@ class KitchenLabelsEdit extends Component
 
 
 
-        // :: redirectToLabels
-        return $this->redirect(route('dashboard.kitchenLabels'), navigate: true);
+      // :: redirectToLabels
+      return $this->redirect(route('dashboard.kitchenLabels'), navigate: true);
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -168,7 +168,7 @@ class KitchenLabelsEdit extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -177,29 +177,29 @@ class KitchenLabelsEdit extends Component
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
 
-        // 1: dependencies
-        $containers = Container::all();
-        $servingInstructions = ServingInstruction::all()?->pluck('name')?->toArray() ?? [];
+      // 1: dependencies
+      $containers = Container::all();
+      $servingInstructions = ServingInstruction::all()?->pluck('name')?->toArray() ?? [];
 
 
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
 
-        return view('livewire.dashboard.manage-kitchen.kitchen-labels.kitchen-labels-edit', compact('containers', 'servingInstructions'));
+      return view('livewire.dashboard.manage-kitchen.kitchen-labels.kitchen-labels-edit', compact('containers', 'servingInstructions'));
 
 
 
-    } // end function
+   } // end function
 
 
 } // end class

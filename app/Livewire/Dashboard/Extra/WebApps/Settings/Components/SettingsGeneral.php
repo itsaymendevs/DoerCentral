@@ -12,12 +12,12 @@ class SettingsGeneral extends Component
 {
 
 
-    use HelperTrait;
-    use WithFileUploads;
+   use HelperTrait;
+   use WithFileUploads;
 
 
-    // :: variables
-    public ProfileForm $instance;
+   // :: variables
+   public ProfileForm $instance;
 
 
 
@@ -25,46 +25,46 @@ class SettingsGeneral extends Component
 
 
 
-    public function mount()
-    {
+   public function mount()
+   {
 
 
 
-        // 1.5: profile
-        $profile = Profile::first();
+      // 1.5: profile
+      $profile = Profile::first();
 
 
-        foreach ($profile->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
+      foreach ($profile->toArray() as $key => $value)
+         $this->instance->{$key} = $value;
 
 
 
 
-        // 1.6: imageFiles
-        $this->instance->imageFileName = $this->instance?->imageFile ?? null;
-        $this->instance->imageFileDarkName = $this->instance?->imageFileDark ?? null;
+      // 1.6: imageFiles
+      $this->instance->imageFileName = $this->instance?->imageFile ?? null;
+      $this->instance->imageFileDarkName = $this->instance?->imageFileDark ?? null;
 
 
 
 
 
 
-        // 1.7: previews
-        if ($this->instance->imageFile) {
+      // 1.7: previews
+      if ($this->instance->imageFile) {
 
-            $preview = asset('storage/profile/' . $this->instance->imageFile);
-            $this->dispatch('setFilePreview', filePreview: 'profile--preview-1', defaultPreview: $preview);
+         $preview = url('storage/profile/' . $this->instance->imageFile);
+         $this->dispatch('setFilePreview', filePreview: 'profile--preview-1', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
-        if ($this->instance->imageFileDark) {
+      if ($this->instance->imageFileDark) {
 
-            $preview = asset('storage/profile/' . $this->instance->imageFileDark);
-            $this->dispatch('setFilePreview', filePreview: 'profile--preview-2', defaultPreview: $preview);
+         $preview = url('storage/profile/' . $this->instance->imageFileDark);
+         $this->dispatch('setFilePreview', filePreview: 'profile--preview-2', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
@@ -72,7 +72,7 @@ class SettingsGeneral extends Component
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -86,7 +86,7 @@ class SettingsGeneral extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -97,21 +97,21 @@ class SettingsGeneral extends Component
 
 
 
-    public function update()
-    {
+   public function update()
+   {
 
 
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
@@ -120,23 +120,23 @@ class SettingsGeneral extends Component
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
 
 
 
-        // 1: replaceFiles
-        if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'profile', $this->instance->imageFileName, 'LG', 300, 300, true);
+      // 1: replaceFiles
+      if ($this->instance->imageFile != $this->instance->imageFileName)
+         $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'profile', $this->instance->imageFileName, 'LG', 300, 300, true);
 
 
 
 
-        if ($this->instance->imageFileDark != $this->instance->imageFileDarkName)
-            $this->instance->imageFileDarkName = $this->replaceFile($this->instance->imageFileDark, 'profile', $this->instance->imageFileDarkName, 'LGD', 300, 300, true);
+      if ($this->instance->imageFileDark != $this->instance->imageFileDarkName)
+         $this->instance->imageFileDarkName = $this->replaceFile($this->instance->imageFileDark, 'profile', $this->instance->imageFileDarkName, 'LGD', 300, 300, true);
 
 
 
@@ -146,8 +146,8 @@ class SettingsGeneral extends Component
 
 
 
-        // ------------------------------------------------
-        // ------------------------------------------------
+      // ------------------------------------------------
+      // ------------------------------------------------
 
 
 
@@ -156,21 +156,21 @@ class SettingsGeneral extends Component
 
 
 
-        // 2: makeRequest
-        $response = $this->makeRequest('dashboard/extra/settings/profile/update', $this->instance);
+      // 2: makeRequest
+      $response = $this->makeRequest('dashboard/extra/settings/profile/update', $this->instance);
 
 
 
 
 
-        // 2.1: alert
-        $this->makeAlert('success', $response?->message);
+      // 2.1: alert
+      $this->makeAlert('success', $response?->message);
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -181,7 +181,7 @@ class SettingsGeneral extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -193,18 +193,18 @@ class SettingsGeneral extends Component
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.extra.web-apps.settings.components.settings-general');
+      return view('livewire.dashboard.extra.web-apps.settings.components.settings-general');
 
 
-    } // end function
+   } // end function
 
 
 

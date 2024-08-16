@@ -13,87 +13,87 @@ use Livewire\WithFileUploads;
 class PlansEdit extends Component
 {
 
-    use HelperTrait;
-    use ActivityTrait;
-    use WithFileUploads;
+   use HelperTrait;
+   use ActivityTrait;
+   use WithFileUploads;
 
 
-    // :: variables
-    public PlanForm $instance;
-    public $sectionPoint;
+   // :: variables
+   public PlanForm $instance;
+   public $sectionPoint;
 
 
 
 
 
 
-    #[On('editPlan')]
-    public function remount($id)
-    {
+   #[On('editPlan')]
+   public function remount($id)
+   {
 
 
 
-        // 1: clone instance
-        $plan = Plan::find($id);
+      // 1: clone instance
+      $plan = Plan::find($id);
 
-        foreach ($plan->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
+      foreach ($plan->toArray() as $key => $value)
+         $this->instance->{$key} = $value;
 
 
 
 
-        // 1.2: points
-        $this->instance->points = $plan->points?->pluck('content')->toArray() ?? [];
+      // 1.2: points
+      $this->instance->points = $plan->points?->pluck('content')->toArray() ?? [];
 
 
 
 
 
 
-        // 1.3: imageFiles
-        $this->instance->imageFileName = $this->instance->imageFile ?? null;
-        $this->instance->secondImageFileName = $this->instance->secondImageFile ?? null;
-        $this->instance->thirdImageFileName = $this->instance->thirdImageFile ?? null;
-        $this->instance->fourthImageFileName = $this->instance->fourthImageFile ?? null;
-        $this->instance->fifthImageFileName = $this->instance->fifthImageFile ?? null;
-        $this->instance->sixthImageFileName = $this->instance->sixthImageFile ?? null;
+      // 1.3: imageFiles
+      $this->instance->imageFileName = $this->instance->imageFile ?? null;
+      $this->instance->secondImageFileName = $this->instance->secondImageFile ?? null;
+      $this->instance->thirdImageFileName = $this->instance->thirdImageFile ?? null;
+      $this->instance->fourthImageFileName = $this->instance->fourthImageFile ?? null;
+      $this->instance->fifthImageFileName = $this->instance->fifthImageFile ?? null;
+      $this->instance->sixthImageFileName = $this->instance->sixthImageFile ?? null;
 
 
 
 
 
 
-        // 1.4: setFilePreview
-        $preview = asset('storage/menu/plans/' . $this->instance->imageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-7', defaultPreview: $this->instance->imageFile ? $preview : $this->getDefaultPreview());
+      // 1.4: setFilePreview
+      $preview = url('storage/menu/plans/' . $this->instance->imageFile);
+      $this->dispatch('setFilePreview', filePreview: 'plan--preview-7', defaultPreview: $this->instance->imageFile ? $preview : $this->getDefaultPreview());
 
 
-        $preview = asset('storage/menu/plans/' . $this->instance->secondImageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-8', defaultPreview: $this->instance->secondImageFile ? $preview : $this->getDefaultPreview());
+      $preview = url('storage/menu/plans/' . $this->instance->secondImageFile);
+      $this->dispatch('setFilePreview', filePreview: 'plan--preview-8', defaultPreview: $this->instance->secondImageFile ? $preview : $this->getDefaultPreview());
 
 
-        $preview = asset('storage/menu/plans/' . $this->instance->thirdImageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-9', defaultPreview: $this->instance->thirdImageFile ? $preview : $this->getDefaultPreview());
+      $preview = url('storage/menu/plans/' . $this->instance->thirdImageFile);
+      $this->dispatch('setFilePreview', filePreview: 'plan--preview-9', defaultPreview: $this->instance->thirdImageFile ? $preview : $this->getDefaultPreview());
 
 
-        $preview = asset('storage/menu/plans/' . $this->instance->fourthImageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-10', defaultPreview: $this->instance->fourthImageFile ? $preview : $this->getDefaultPreview());
+      $preview = url('storage/menu/plans/' . $this->instance->fourthImageFile);
+      $this->dispatch('setFilePreview', filePreview: 'plan--preview-10', defaultPreview: $this->instance->fourthImageFile ? $preview : $this->getDefaultPreview());
 
 
 
-        $preview = asset('storage/menu/plans/' . $this->instance->fifthImageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-11', defaultPreview: $this->instance->fifthImageFile ? $preview : $this->getDefaultPreview());
+      $preview = url('storage/menu/plans/' . $this->instance->fifthImageFile);
+      $this->dispatch('setFilePreview', filePreview: 'plan--preview-11', defaultPreview: $this->instance->fifthImageFile ? $preview : $this->getDefaultPreview());
 
 
 
-        $preview = asset('storage/menu/plans/' . $this->instance->sixthImageFile);
-        $this->dispatch('setFilePreview', filePreview: 'plan--preview-12', defaultPreview: $this->instance->sixthImageFile ? $preview : $this->getDefaultPreview());
+      $preview = url('storage/menu/plans/' . $this->instance->sixthImageFile);
+      $this->dispatch('setFilePreview', filePreview: 'plan--preview-12', defaultPreview: $this->instance->sixthImageFile ? $preview : $this->getDefaultPreview());
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -102,7 +102,7 @@ class PlansEdit extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -111,72 +111,72 @@ class PlansEdit extends Component
 
 
 
-    public function update()
-    {
+   public function update()
+   {
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
 
 
-        // :: validate
-        $this->instance->validate();
+      // :: validate
+      $this->instance->validate();
 
 
 
 
 
 
-        // 1: uploadFile
-        if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/plans', $this->instance->imageFileName, 'PLN', 600, 600);
+      // 1: uploadFile
+      if ($this->instance->imageFile != $this->instance->imageFileName)
+         $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/plans', $this->instance->imageFileName, 'PLN', 600, 600);
 
 
 
-        if ($this->instance->secondImageFile != $this->instance->secondImageFileName)
-            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'menu/plans', $this->instance->secondImageFileName, 'PLN-S', 600, 600);
+      if ($this->instance->secondImageFile != $this->instance->secondImageFileName)
+         $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'menu/plans', $this->instance->secondImageFileName, 'PLN-S', 600, 600);
 
 
 
-        if ($this->instance->thirdImageFile != $this->instance->thirdImageFileName)
-            $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'menu/plans', $this->instance->thirdImageFileName, 'PLN-T', 900, 1170);
+      if ($this->instance->thirdImageFile != $this->instance->thirdImageFileName)
+         $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'menu/plans', $this->instance->thirdImageFileName, 'PLN-T', 900, 1170);
 
 
 
 
-        if ($this->instance->fourthImageFile != $this->instance->fourthImageFileName)
-            $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'menu/plans', $this->instance->fourthImageFileName, 'PLN-T', 900, 900);
+      if ($this->instance->fourthImageFile != $this->instance->fourthImageFileName)
+         $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'menu/plans', $this->instance->fourthImageFileName, 'PLN-T', 900, 900);
 
 
 
 
 
 
-        if ($this->instance->fifthImageFile != $this->instance->fifthImageFileName)
-            $this->instance->fifthImageFileName = $this->replaceFile($this->instance->fifthImageFile, 'menu/plans', $this->instance->fifthImageFileName, 'PLN-T', 1920, 1080);
+      if ($this->instance->fifthImageFile != $this->instance->fifthImageFileName)
+         $this->instance->fifthImageFileName = $this->replaceFile($this->instance->fifthImageFile, 'menu/plans', $this->instance->fifthImageFileName, 'PLN-T', 1920, 1080);
 
 
 
 
-        if ($this->instance->sixthImageFile != $this->instance->sixthImageFileName)
-            $this->instance->sixthImageFileName = $this->replaceFile($this->instance->sixthImageFile, 'menu/plans', $this->instance->sixthImageFileName, 'PLN-T', 1080, 1080);
+      if ($this->instance->sixthImageFile != $this->instance->sixthImageFileName)
+         $this->instance->sixthImageFileName = $this->replaceFile($this->instance->sixthImageFile, 'menu/plans', $this->instance->sixthImageFileName, 'PLN-T', 1080, 1080);
 
 
 
@@ -185,13 +185,13 @@ class PlansEdit extends Component
 
 
 
-        // ## log - activity ##
-        $this->storeActivity('Menu', "Updated plan {$this->instance->name}");
+      // ## log - activity ##
+      $this->storeActivity('Menu', "Updated plan {$this->instance->name}");
 
 
 
-        // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/menu/plans/update', $this->instance);
+      // 1.2: makeRequest
+      $response = $this->makeRequest('dashboard/menu/plans/update', $this->instance);
 
 
 
@@ -199,29 +199,29 @@ class PlansEdit extends Component
 
 
 
-        // :: refresh / closeModal
-        $this->instance->reset();
-        $this->sectionPoint = null;
+      // :: refresh / closeModal
+      $this->instance->reset();
+      $this->sectionPoint = null;
 
-        $this->dispatch('refreshViews');
-        $this->dispatch('closeModal', modal: '#edit-plan .btn--close');
-        $this->dispatch('resetFile', file: 'plan--file-7', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'plan--file-8', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'plan--file-9', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'plan--file-10', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'plan--file-11', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'plan--file-12', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('refreshViews');
+      $this->dispatch('closeModal', modal: '#edit-plan .btn--close');
+      $this->dispatch('resetFile', file: 'plan--file-7', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'plan--file-8', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'plan--file-9', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'plan--file-10', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'plan--file-11', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'plan--file-12', defaultPreview: $this->getDefaultPreview());
 
 
 
 
-        // :: alert
-        $this->makeAlert('success', $response->message);
+      // :: alert
+      $this->makeAlert('success', $response->message);
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -232,32 +232,32 @@ class PlansEdit extends Component
 
 
 
-    // ------------------------------------------------------------------
+   // ------------------------------------------------------------------
 
 
 
 
 
 
-    public function append()
-    {
+   public function append()
+   {
 
 
 
-        // 1: checkPoint
-        if ($this->sectionPoint) {
+      // 1: checkPoint
+      if ($this->sectionPoint) {
 
 
-            array_push($this->instance->points, $this->sectionPoint);
-            $this->sectionPoint = null;
+         array_push($this->instance->points, $this->sectionPoint);
+         $this->sectionPoint = null;
 
 
-        } // end if
+      } // end if
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -268,29 +268,29 @@ class PlansEdit extends Component
 
 
 
-    // ------------------------------------------------------------------
+   // ------------------------------------------------------------------
 
 
 
 
 
 
-    public function remove($key)
-    {
+   public function remove($key)
+   {
 
 
 
-        // 1: checkPoints
-        if ($this->instance->points[$key]) {
+      // 1: checkPoints
+      if ($this->instance->points[$key]) {
 
-            unset($this->instance->points[$key]);
+         unset($this->instance->points[$key]);
 
-        } // end if
+      } // end if
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -299,27 +299,27 @@ class PlansEdit extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
 
-        return view('livewire.dashboard.menu.plans.components.plans-edit');
+      return view('livewire.dashboard.menu.plans.components.plans-edit');
 
-    } // end function
+   } // end function
 
 
 } // end class

@@ -4,9 +4,9 @@
 
 
 
-    {{-- :: toggleButton --}}
-    <button class="btn btn--scheme fs-13 sidebar--menu-toggler" role="button" href="#!">
-        <img src="{{asset('assets/img/App/extra.png')}}" /></button>
+   {{-- :: toggleButton --}}
+   <button class="btn btn--scheme fs-13 sidebar--menu-toggler" role="button" href="#!">
+      <img src="{{url('assets/img/App/extra.png')}}" /></button>
 
 
 

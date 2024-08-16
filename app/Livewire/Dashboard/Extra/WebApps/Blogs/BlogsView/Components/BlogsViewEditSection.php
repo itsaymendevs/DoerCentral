@@ -13,14 +13,14 @@ class BlogsViewEditSection extends Component
 {
 
 
-    use HelperTrait;
-    use WithFileUploads;
+   use HelperTrait;
+   use WithFileUploads;
 
 
 
-    // :: variables
-    public BlogSectionForm $instance;
-    public $section;
+   // :: variables
+   public BlogSectionForm $instance;
+   public $section;
 
 
 
@@ -29,29 +29,29 @@ class BlogsViewEditSection extends Component
 
 
 
-    #[On('editSection')]
-    public function remount($id)
-    {
+   #[On('editSection')]
+   public function remount($id)
+   {
 
 
 
-        // 1: resetFiles
-        $this->dispatch('resetFile', file: 'section--file-5', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'section--file-6', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'section--file-7', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'section--file-8', defaultPreview: $this->getDefaultPreview());
+      // 1: resetFiles
+      $this->dispatch('resetFile', file: 'section--file-5', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'section--file-6', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'section--file-7', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'section--file-8', defaultPreview: $this->getDefaultPreview());
 
 
 
 
 
 
-        // 1.1: get instance
-        $this->section = BlogSection::find($id);
+      // 1.1: get instance
+      $this->section = BlogSection::find($id);
 
 
-        foreach ($this->section->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
+      foreach ($this->section->toArray() as $key => $value)
+         $this->instance->{$key} = $value;
 
 
 
@@ -59,19 +59,19 @@ class BlogsViewEditSection extends Component
 
 
 
-        // 1.2: setEditor
-        $this->dispatch("setEditorContent-quill-editor-2", value: $this->instance?->content ?? '');
+      // 1.2: setEditor
+      $this->dispatch("setEditorContent-quill-editor-2", value: $this->instance?->content ?? '');
 
 
 
 
 
 
-        // 1.3: imageFiles
-        $this->instance->imageFileName = $this->instance?->imageFile ?? null;
-        $this->instance->secondImageFileName = $this->instance?->secondImageFile ?? null;
-        $this->instance->thirdImageFileName = $this->instance?->thirdImageFile ?? null;
-        $this->instance->fourthImageFileName = $this->instance?->fourthImageFile ?? null;
+      // 1.3: imageFiles
+      $this->instance->imageFileName = $this->instance?->imageFile ?? null;
+      $this->instance->secondImageFileName = $this->instance?->secondImageFile ?? null;
+      $this->instance->thirdImageFileName = $this->instance?->thirdImageFile ?? null;
+      $this->instance->fourthImageFileName = $this->instance?->fourthImageFile ?? null;
 
 
 
@@ -81,8 +81,8 @@ class BlogsViewEditSection extends Component
 
 
 
-        // -----------------------------------------
-        // -----------------------------------------
+      // -----------------------------------------
+      // -----------------------------------------
 
 
 
@@ -90,43 +90,43 @@ class BlogsViewEditSection extends Component
 
 
 
-        // 1.4: previews
-        if ($this->instance->imageFileName) {
+      // 1.4: previews
+      if ($this->instance->imageFileName) {
 
-            $preview = asset('storage/extra/blogs/sections/' . $this->instance->imageFileName);
-            $this->dispatch('setFilePreview', filePreview: 'section--preview-5', defaultPreview: $preview);
+         $preview = url('storage/extra/blogs/sections/' . $this->instance->imageFileName);
+         $this->dispatch('setFilePreview', filePreview: 'section--preview-5', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
 
-        if ($this->instance->secondImageFile) {
+      if ($this->instance->secondImageFile) {
 
-            $preview = asset('storage/extra/blogs/sections/' . $this->instance->secondImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'section--preview-6', defaultPreview: $preview);
+         $preview = url('storage/extra/blogs/sections/' . $this->instance->secondImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'section--preview-6', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
 
-        if ($this->instance->thirdImageFile) {
+      if ($this->instance->thirdImageFile) {
 
-            $preview = asset('storage/extra/blogs/sections/' . $this->instance->thirdImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'section--preview-7', defaultPreview: $preview);
+         $preview = url('storage/extra/blogs/sections/' . $this->instance->thirdImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'section--preview-7', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
 
-        if ($this->instance->fourthImageFile) {
+      if ($this->instance->fourthImageFile) {
 
-            $preview = asset('storage/extra/blogs/sections/' . $this->instance->fourthImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'section--preview-8', defaultPreview: $preview);
+         $preview = url('storage/extra/blogs/sections/' . $this->instance->fourthImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'section--preview-8', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
@@ -136,7 +136,7 @@ class BlogsViewEditSection extends Component
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -148,7 +148,7 @@ class BlogsViewEditSection extends Component
 
 
 
-    // --------------------------------------------------------------------
+   // --------------------------------------------------------------------
 
 
 
@@ -160,28 +160,28 @@ class BlogsViewEditSection extends Component
 
 
 
-    public function update()
-    {
+   public function update()
+   {
 
 
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
@@ -189,48 +189,48 @@ class BlogsViewEditSection extends Component
 
 
 
-        // :: validate
-        $this->instance->validate();
+      // :: validate
+      $this->instance->validate();
 
 
 
 
-        // 1: replaceFiles
-        if ($this->instance->imageFile != $this->instance->imageFileName) {
+      // 1: replaceFiles
+      if ($this->instance->imageFile != $this->instance->imageFileName) {
 
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/blogs/sections', $this->instance->imageFileName, 'SEC1', 700, 700);
+         $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/blogs/sections', $this->instance->imageFileName, 'SEC1', 700, 700);
 
-        } // end if
+      } // end if
 
 
 
 
-        if ($this->instance->secondImageFile != $this->instance->secondImageFileName) {
+      if ($this->instance->secondImageFile != $this->instance->secondImageFileName) {
 
-            $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'extra/blogs/sections', $this->instance->secondImageFileName, 'SEC2', 700, 700);
+         $this->instance->secondImageFileName = $this->replaceFile($this->instance->secondImageFile, 'extra/blogs/sections', $this->instance->secondImageFileName, 'SEC2', 700, 700);
 
-        } // end if
+      } // end if
 
 
 
 
 
 
-        if ($this->instance->thirdImageFile != $this->instance->thirdImageFileName) {
+      if ($this->instance->thirdImageFile != $this->instance->thirdImageFileName) {
 
-            $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'extra/blogs/sections', $this->instance->thirdImageFileName, 'SEC3', 700, 700);
+         $this->instance->thirdImageFileName = $this->replaceFile($this->instance->thirdImageFile, 'extra/blogs/sections', $this->instance->thirdImageFileName, 'SEC3', 700, 700);
 
-        } // end if
+      } // end if
 
 
 
 
 
-        if ($this->instance->fourthImageFile != $this->instance->fourthImageFileName) {
+      if ($this->instance->fourthImageFile != $this->instance->fourthImageFileName) {
 
-            $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'extra/blogs/sections', $this->instance->fourthImageFileName, 'SEC4', 700, 700);
+         $this->instance->fourthImageFileName = $this->replaceFile($this->instance->fourthImageFile, 'extra/blogs/sections', $this->instance->fourthImageFileName, 'SEC4', 700, 700);
 
-        } // end if
+      } // end if
 
 
 
@@ -241,8 +241,8 @@ class BlogsViewEditSection extends Component
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
@@ -251,46 +251,46 @@ class BlogsViewEditSection extends Component
 
 
 
-        // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/extra/website/blogs/sections/update', $this->instance);
+      // 1.2: makeRequest
+      $response = $this->makeRequest('dashboard/extra/website/blogs/sections/update', $this->instance);
 
 
 
 
 
 
-        // 2: reset
-        $this->instance->reset();
-        $this->dispatch('resetEditorContent');
+      // 2: reset
+      $this->instance->reset();
+      $this->dispatch('resetEditorContent');
 
-        $this->dispatch('resetFile', file: 'section--file-5', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'section--file-6', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'section--file-7', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'section--file-8', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'section--file-5', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'section--file-6', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'section--file-7', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('resetFile', file: 'section--file-8', defaultPreview: $this->getDefaultPreview());
 
 
 
 
 
-        // 2.1: refresh
-        $this->dispatch('refreshViews');
-        $this->dispatch('closeModal', modal: '#edit-section .btn--close');
+      // 2.1: refresh
+      $this->dispatch('refreshViews');
+      $this->dispatch('closeModal', modal: '#edit-section .btn--close');
 
-        $this->makeAlert('success', $response->message);
+      $this->makeAlert('success', $response->message);
 
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
 
 
 
-    // --------------------------------------------------------------------
+   // --------------------------------------------------------------------
 
 
 
@@ -299,12 +299,12 @@ class BlogsViewEditSection extends Component
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
-        // 1: dependencies
-        $types = ['Floating Left', 'Regular', 'Floating Right'];
+      // 1: dependencies
+      $types = ['Floating Left', 'Regular', 'Floating Right'];
 
 
 
@@ -312,13 +312,13 @@ class BlogsViewEditSection extends Component
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.extra.web-apps.blogs.blogs-view.components.blogs-view-edit-section', compact('types'));
+      return view('livewire.dashboard.extra.web-apps.blogs.blogs-view.components.blogs-view-edit-section', compact('types'));
 
-    } // end function
+   } // end function
 
 
 

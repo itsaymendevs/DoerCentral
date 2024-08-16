@@ -18,13 +18,13 @@ class Settings extends Component
 {
 
 
-    use HelperTrait;
-    use WithFileUploads;
+   use HelperTrait;
+   use WithFileUploads;
 
 
 
-    // :: variable
-    public BlogSettingsForm $instance;
+   // :: variable
+   public BlogSettingsForm $instance;
 
 
 
@@ -33,19 +33,19 @@ class Settings extends Component
 
 
 
-    public function mount()
-    {
+   public function mount()
+   {
 
 
 
 
 
-        // 1: blogs
-        $settings = BlogSetting::first();
+      // 1: blogs
+      $settings = BlogSetting::first();
 
 
-        foreach ($settings->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
+      foreach ($settings->toArray() as $key => $value)
+         $this->instance->{$key} = $value;
 
 
 
@@ -53,75 +53,75 @@ class Settings extends Component
 
 
 
-        // 1.2: imageFiles
-        $this->instance->heroImageFileName = $this->instance?->heroImageFile ?? null;
-        $this->instance->heroSecondImageFileName = $this->instance?->heroSecondImageFile ?? null;
-        $this->instance->heroThirdImageFileName = $this->instance?->heroThirdImageFile ?? null;
-        $this->instance->heroFourthImageFileName = $this->instance?->heroFourthImageFile ?? null;
+      // 1.2: imageFiles
+      $this->instance->heroImageFileName = $this->instance?->heroImageFile ?? null;
+      $this->instance->heroSecondImageFileName = $this->instance?->heroSecondImageFile ?? null;
+      $this->instance->heroThirdImageFileName = $this->instance?->heroThirdImageFile ?? null;
+      $this->instance->heroFourthImageFileName = $this->instance?->heroFourthImageFile ?? null;
 
-        $this->instance->footerImageFileName = $this->instance?->footerImageFile ?? null;
+      $this->instance->footerImageFileName = $this->instance?->footerImageFile ?? null;
 
 
 
 
 
 
-        // -----------------------------------------
-        // -----------------------------------------
+      // -----------------------------------------
+      // -----------------------------------------
 
 
 
 
 
 
-        // 1.3: previews
-        if ($this->instance->heroImageFile) {
+      // 1.3: previews
+      if ($this->instance->heroImageFile) {
 
-            $preview = asset('storage/extra/blogs/settings/' . $this->instance->heroImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'hero--preview-1', defaultPreview: $preview);
+         $preview = url('storage/extra/blogs/settings/' . $this->instance->heroImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'hero--preview-1', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
 
-        if ($this->instance->heroSecondImageFile) {
+      if ($this->instance->heroSecondImageFile) {
 
-            $preview = asset('storage/extra/blogs/settings/' . $this->instance->heroSecondImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'hero--preview-2', defaultPreview: $preview);
+         $preview = url('storage/extra/blogs/settings/' . $this->instance->heroSecondImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'hero--preview-2', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
 
-        if ($this->instance->heroThirdImageFile) {
+      if ($this->instance->heroThirdImageFile) {
 
-            $preview = asset('storage/extra/blogs/settings/' . $this->instance->heroThirdImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'hero--preview-3', defaultPreview: $preview);
+         $preview = url('storage/extra/blogs/settings/' . $this->instance->heroThirdImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'hero--preview-3', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
 
-        if ($this->instance->heroFourthImageFile) {
+      if ($this->instance->heroFourthImageFile) {
 
-            $preview = asset('storage/extra/blogs/settings/' . $this->instance->heroFourthImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'hero--preview-4', defaultPreview: $preview);
+         $preview = url('storage/extra/blogs/settings/' . $this->instance->heroFourthImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'hero--preview-4', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
 
 
-        if ($this->instance->footerImageFile) {
+      if ($this->instance->footerImageFile) {
 
-            $preview = asset('storage/extra/blogs/settings/' . $this->instance->footerImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'footer--preview-1', defaultPreview: $preview);
+         $preview = url('storage/extra/blogs/settings/' . $this->instance->footerImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'footer--preview-1', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
@@ -129,7 +129,7 @@ class Settings extends Component
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -146,7 +146,7 @@ class Settings extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -157,21 +157,21 @@ class Settings extends Component
 
 
 
-    public function updateBlogSettings()
-    {
+   public function updateBlogSettings()
+   {
 
 
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
@@ -179,27 +179,27 @@ class Settings extends Component
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
 
 
-        // 1: makeRequest
-        $response = $this->makeRequest('dashboard/extra/settings/blogs/update', $this->instance);
+      // 1: makeRequest
+      $response = $this->makeRequest('dashboard/extra/settings/blogs/update', $this->instance);
 
 
 
 
-        // 1.2: alert
-        $this->makeAlert('success', $response?->message);
+      // 1.2: alert
+      $this->makeAlert('success', $response?->message);
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -214,7 +214,7 @@ class Settings extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -225,21 +225,21 @@ class Settings extends Component
 
 
 
-    public function updateBlogAttachments()
-    {
+   public function updateBlogAttachments()
+   {
 
 
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
@@ -248,8 +248,8 @@ class Settings extends Component
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
@@ -258,26 +258,26 @@ class Settings extends Component
 
 
 
-        // 1: replaceFiles
-        if ($this->instance->heroImageFile != $this->instance->heroImageFileName)
-            $this->instance->heroImageFileName = $this->replaceFile($this->instance->heroImageFile, 'extra/blogs/settings', $this->instance->heroImageFileName, 'SFI');
+      // 1: replaceFiles
+      if ($this->instance->heroImageFile != $this->instance->heroImageFileName)
+         $this->instance->heroImageFileName = $this->replaceFile($this->instance->heroImageFile, 'extra/blogs/settings', $this->instance->heroImageFileName, 'SFI');
 
 
 
 
-        if ($this->instance->heroSecondImageFile != $this->instance->heroSecondImageFileName)
-            $this->instance->heroSecondImageFileName = $this->replaceFile($this->instance->heroSecondImageFile, 'extra/blogs/settings', $this->instance->heroSecondImageFileName, 'SSE');
+      if ($this->instance->heroSecondImageFile != $this->instance->heroSecondImageFileName)
+         $this->instance->heroSecondImageFileName = $this->replaceFile($this->instance->heroSecondImageFile, 'extra/blogs/settings', $this->instance->heroSecondImageFileName, 'SSE');
 
 
 
 
-        if ($this->instance->heroThirdImageFile != $this->instance->heroThirdImageFileName)
-            $this->instance->heroThirdImageFileName = $this->replaceFile($this->instance->heroThirdImageFile, 'extra/blogs/settings', $this->instance->heroThirdImageFileName, 'STH');
+      if ($this->instance->heroThirdImageFile != $this->instance->heroThirdImageFileName)
+         $this->instance->heroThirdImageFileName = $this->replaceFile($this->instance->heroThirdImageFile, 'extra/blogs/settings', $this->instance->heroThirdImageFileName, 'STH');
 
 
 
-        if ($this->instance->heroFourthImageFile != $this->instance->heroFourthImageFileName)
-            $this->instance->heroFourthImageFileName = $this->replaceFile($this->instance->heroFourthImageFile, 'extra/blogs/settings', $this->instance->heroFourthImageFileName, 'SFO');
+      if ($this->instance->heroFourthImageFile != $this->instance->heroFourthImageFileName)
+         $this->instance->heroFourthImageFileName = $this->replaceFile($this->instance->heroFourthImageFile, 'extra/blogs/settings', $this->instance->heroFourthImageFileName, 'SFO');
 
 
 
@@ -285,9 +285,9 @@ class Settings extends Component
 
 
 
-        // 1.2: heroFile
-        if ($this->instance->footerImageFile != $this->instance->footerImageFileName)
-            $this->instance->footerImageFileName = $this->replaceFile($this->instance->footerImageFile, 'extra/blogs/settings', $this->instance->footerImageFileName, 'SFT');
+      // 1.2: heroFile
+      if ($this->instance->footerImageFile != $this->instance->footerImageFileName)
+         $this->instance->footerImageFileName = $this->replaceFile($this->instance->footerImageFile, 'extra/blogs/settings', $this->instance->footerImageFileName, 'SFT');
 
 
 
@@ -296,8 +296,8 @@ class Settings extends Component
 
 
 
-        // ------------------------------------------------
-        // ------------------------------------------------
+      // ------------------------------------------------
+      // ------------------------------------------------
 
 
 
@@ -306,20 +306,20 @@ class Settings extends Component
 
 
 
-        // 2: makeRequest
-        $response = $this->makeRequest('dashboard/extra/settings/blogs/attachments/update', $this->instance);
+      // 2: makeRequest
+      $response = $this->makeRequest('dashboard/extra/settings/blogs/attachments/update', $this->instance);
 
 
 
 
-        // 2.1: alert
-        $this->makeAlert('success', $response?->message);
+      // 2.1: alert
+      $this->makeAlert('success', $response?->message);
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -332,7 +332,7 @@ class Settings extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -351,27 +351,27 @@ class Settings extends Component
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
-        // 1: dependencies
-        $alignments = ['left', 'center', 'right'];
+      // 1: dependencies
+      $alignments = ['left', 'center', 'right'];
 
 
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
 
-        return view('livewire.dashboard.extra.web-apps.settings', compact('alignments'));
+      return view('livewire.dashboard.extra.web-apps.settings', compact('alignments'));
 
 
 
-    } // end function
+   } // end function
 
 
 

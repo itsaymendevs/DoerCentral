@@ -16,14 +16,14 @@ class CalendarsEdit extends Component
 {
 
 
-    use HelperTrait;
-    use ActivityTrait;
-    use WithFileUploads;
+   use HelperTrait;
+   use ActivityTrait;
+   use WithFileUploads;
 
 
 
-    // :: variables
-    public MenuCalendarForm $instance;
+   // :: variables
+   public MenuCalendarForm $instance;
 
 
 
@@ -32,40 +32,40 @@ class CalendarsEdit extends Component
 
 
 
-    #[On('editCalendar')]
-    public function remount($id)
-    {
+   #[On('editCalendar')]
+   public function remount($id)
+   {
 
 
 
-        // 1: clone instance
-        $calendar = MenuCalendar::find($id);
+      // 1: clone instance
+      $calendar = MenuCalendar::find($id);
 
-        foreach ($calendar->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
+      foreach ($calendar->toArray() as $key => $value)
+         $this->instance->{$key} = $value;
 
 
-        $this->instance->imageFileName = $this->instance->imageFile;
+      $this->instance->imageFileName = $this->instance->imageFile;
 
 
 
 
 
-        // 1.2: setFilePreview
-        $preview = asset('storage/menu/calendars/' . $this->instance->imageFile);
-        $this->dispatch('setFilePreview', filePreview: 'calendar--preview-2', defaultPreview: $preview);
+      // 1.2: setFilePreview
+      $preview = url('storage/menu/calendars/' . $this->instance->imageFile);
+      $this->dispatch('setFilePreview', filePreview: 'calendar--preview-2', defaultPreview: $preview);
 
 
 
 
 
-        // 1.3: setSelect
-        $this->dispatch('setSelect', id: '#plan-select-2', value: $calendar?->plans?->pluck('planId')->toArray());
-        $this->dispatch('setSelect', id: '#diet-select-2', value: $calendar?->diets?->pluck('dietId')->toArray());
+      // 1.3: setSelect
+      $this->dispatch('setSelect', id: '#plan-select-2', value: $calendar?->plans?->pluck('planId')->toArray());
+      $this->dispatch('setSelect', id: '#diet-select-2', value: $calendar?->diets?->pluck('dietId')->toArray());
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -74,54 +74,54 @@ class CalendarsEdit extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
 
-    public function update()
-    {
+   public function update()
+   {
 
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
 
 
 
-        // 1: uploadFile
-        if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/calendars', $this->instance->imageFileName, 'CLN');
+      // 1: uploadFile
+      if ($this->instance->imageFile != $this->instance->imageFileName)
+         $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'menu/calendars', $this->instance->imageFileName, 'CLN');
 
 
 
 
 
 
-        // ## log - activity ##
-        $this->storeActivity('Menu', "Updated Calendar {$this->instance->name}");
+      // ## log - activity ##
+      $this->storeActivity('Menu', "Updated Calendar {$this->instance->name}");
 
 
 
-        // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/menu/calendars/update', $this->instance);
+      // 1.2: makeRequest
+      $response = $this->makeRequest('dashboard/menu/calendars/update', $this->instance);
 
 
 
@@ -129,24 +129,24 @@ class CalendarsEdit extends Component
 
 
 
-        // :: refresh / closeModal
-        $this->instance->reset();
-        $this->dispatch('resetSelect');
+      // :: refresh / closeModal
+      $this->instance->reset();
+      $this->dispatch('resetSelect');
 
-        $this->dispatch('refreshViews');
-        $this->dispatch('closeModal', modal: '#edit-calendar .btn--close');
-        $this->dispatch('resetFile', file: 'calendar--file-2', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('refreshViews');
+      $this->dispatch('closeModal', modal: '#edit-calendar .btn--close');
+      $this->dispatch('resetFile', file: 'calendar--file-2', defaultPreview: $this->getDefaultPreview());
 
 
 
 
-        // :: alert
-        $this->makeAlert('success', $response->message);
+      // :: alert
+      $this->makeAlert('success', $response->message);
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -158,30 +158,30 @@ class CalendarsEdit extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
-        // 1: dependencies
-        $diets = Diet::all();
-        $plans = Plan::all();
+      // 1: dependencies
+      $diets = Diet::all();
+      $plans = Plan::all();
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
-        return view('livewire.dashboard.menu.calendars.components.calendars-edit', compact('diets', 'plans'));
+      return view('livewire.dashboard.menu.calendars.components.calendars-edit', compact('diets', 'plans'));
 
 
-    } // end function
+   } // end function
 
 
 } // end class

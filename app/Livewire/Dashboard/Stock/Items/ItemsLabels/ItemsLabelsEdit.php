@@ -19,32 +19,32 @@ class ItemsLabelsEdit extends Component
 
 
 
-    use HelperTrait;
-    use WithFileUploads;
+   use HelperTrait;
+   use WithFileUploads;
 
 
 
-    // :: variables
-    public KitchenLabelForm $instance;
+   // :: variables
+   public KitchenLabelForm $instance;
 
 
 
 
 
-    public function mount($id)
-    {
+   public function mount($id)
+   {
 
 
 
-        // 1: clone instance
-        $label = Label::find($id);
+      // 1: clone instance
+      $label = Label::find($id);
 
-        foreach ($label->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
+      foreach ($label->toArray() as $key => $value)
+         $this->instance->{$key} = $value;
 
 
-        $this->instance->imageFileName = $this->instance->imageFile ?? null;
-        $this->instance->footerImageFileName = $this->instance->footerImageFile ?? null;
+      $this->instance->imageFileName = $this->instance->imageFile ?? null;
+      $this->instance->footerImageFileName = $this->instance->footerImageFile ?? null;
 
 
 
@@ -53,20 +53,20 @@ class ItemsLabelsEdit extends Component
 
 
 
-        // 1.2: setFilePreview
-        $preview = asset('storage/stock/items/labels/' . $this->instance->imageFile);
-        $this->dispatch('setFilePreview', filePreview: 'poster--preview-1', defaultPreview: $preview);
+      // 1.2: setFilePreview
+      $preview = url('storage/stock/items/labels/' . $this->instance->imageFile);
+      $this->dispatch('setFilePreview', filePreview: 'poster--preview-1', defaultPreview: $preview);
 
 
 
 
-        if ($this->instance->footerImageFile) {
+      if ($this->instance->footerImageFile) {
 
-            $preview = asset('storage/stock/items/labels/footers/' . $this->instance->footerImageFile);
-            $this->dispatch('setFilePreview', filePreview: 'footer--preview-1', defaultPreview: $preview);
-            $this->dispatch('setFilePreview', filePreview: 'footer--preview-2', defaultPreview: $preview);
+         $preview = url('storage/stock/items/labels/footers/' . $this->instance->footerImageFile);
+         $this->dispatch('setFilePreview', filePreview: 'footer--preview-1', defaultPreview: $preview);
+         $this->dispatch('setFilePreview', filePreview: 'footer--preview-2', defaultPreview: $preview);
 
-        } // end if
+      } // end if
 
 
 
@@ -74,12 +74,12 @@ class ItemsLabelsEdit extends Component
 
 
 
-        // 1.3: setContainers
-        $this->dispatch('setSelect', id: '#container-select-2', value: $label?->containers?->pluck('containerId')->toArray() ?? []);
+      // 1.3: setContainers
+      $this->dispatch('setSelect', id: '#container-select-2', value: $label?->containers?->pluck('containerId')->toArray() ?? []);
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -88,7 +88,7 @@ class ItemsLabelsEdit extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -96,47 +96,47 @@ class ItemsLabelsEdit extends Component
 
 
 
-    public function update()
-    {
+   public function update()
+   {
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
 
 
 
-        // :: validate
-        $this->instance->validate();
+      // :: validate
+      $this->instance->validate();
 
 
 
 
 
-        // 1: uploadFile
-        if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'stock/items/labels', $this->instance->imageFileName, 'LB', skipResize: true);
+      // 1: uploadFile
+      if ($this->instance->imageFile != $this->instance->imageFileName)
+         $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'stock/items/labels', $this->instance->imageFileName, 'LB', skipResize: true);
 
 
 
-        if ($this->instance->footerImageFile != $this->instance->footerImageFileName)
-            $this->instance->footerImageFileName = $this->replaceFile($this->instance->footerImageFile, 'stock/items/labels/footers', $this->instance->footerImageFileName, 'LB-FOOTER', skipResize: true);
+      if ($this->instance->footerImageFile != $this->instance->footerImageFileName)
+         $this->instance->footerImageFileName = $this->replaceFile($this->instance->footerImageFile, 'stock/items/labels/footers', $this->instance->footerImageFileName, 'LB-FOOTER', skipResize: true);
 
 
 
@@ -145,8 +145,8 @@ class ItemsLabelsEdit extends Component
 
 
 
-        // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/stock/items/labels/update', $this->instance);
+      // 1.2: makeRequest
+      $response = $this->makeRequest('dashboard/stock/items/labels/update', $this->instance);
 
 
 
@@ -155,12 +155,12 @@ class ItemsLabelsEdit extends Component
 
 
 
-        // :: redirectToLabels
-        return $this->redirect(route('dashboard.stock.items.labels'), navigate: true);
+      // :: redirectToLabels
+      return $this->redirect(route('dashboard.stock.items.labels'), navigate: true);
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -172,7 +172,7 @@ class ItemsLabelsEdit extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -181,29 +181,29 @@ class ItemsLabelsEdit extends Component
 
 
 
-    public function render()
-    {
+   public function render()
+   {
 
 
 
-        // 1: dependencies
-        $containers = Container::all();
-        $servingInstructions = ServingInstruction::all()?->pluck('name')?->toArray() ?? [];
+      // 1: dependencies
+      $containers = Container::all();
+      $servingInstructions = ServingInstruction::all()?->pluck('name')?->toArray() ?? [];
 
 
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
 
-        return view('livewire.dashboard.stock.items.items-labels.items-labels-edit', compact('containers', 'servingInstructions'));
+      return view('livewire.dashboard.stock.items.items-labels.items-labels-edit', compact('containers', 'servingInstructions'));
 
 
 
-    } // end function
+   } // end function
 
 
 } // end class

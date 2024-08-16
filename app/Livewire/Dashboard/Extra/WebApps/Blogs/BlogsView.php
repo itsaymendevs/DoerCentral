@@ -14,14 +14,14 @@ class BlogsView extends Component
 {
 
 
-    use HelperTrait;
-    use WithFileUploads;
+   use HelperTrait;
+   use WithFileUploads;
 
 
 
-    // :: variables
-    public BlogForm $instance;
-    public $blog;
+   // :: variables
+   public BlogForm $instance;
+   public $blog;
 
 
 
@@ -31,29 +31,29 @@ class BlogsView extends Component
 
 
 
-    public function mount($id)
-    {
+   public function mount($id)
+   {
 
 
 
-        // 1: clone instance / Files
-        $this->blog = Blog::find($id);
+      // 1: clone instance / Files
+      $this->blog = Blog::find($id);
 
 
-        foreach ($this->blog->toArray() as $key => $value)
-            $this->instance->{$key} = $value;
+      foreach ($this->blog->toArray() as $key => $value)
+         $this->instance->{$key} = $value;
 
 
 
-        // 1.2: convertBoolean - images
-        $this->instance->showTags = boolval($this->instance->showTags);
-        $this->instance->showReferences = boolval($this->instance->showReferences);
-        $this->instance->isHeaderFluid = boolval($this->instance->isHeaderFluid);
-        $this->instance->isSquareCard = boolval($this->instance->isSquareCard);
+      // 1.2: convertBoolean - images
+      $this->instance->showTags = boolval($this->instance->showTags);
+      $this->instance->showReferences = boolval($this->instance->showReferences);
+      $this->instance->isHeaderFluid = boolval($this->instance->isHeaderFluid);
+      $this->instance->isSquareCard = boolval($this->instance->isSquareCard);
 
 
-        $this->instance->imageFileName = $this->instance->imageFile;
-        $this->instance->headerImageFileName = $this->instance->headerImageFile;
+      $this->instance->imageFileName = $this->instance->imageFile;
+      $this->instance->headerImageFileName = $this->instance->headerImageFile;
 
 
 
@@ -62,8 +62,8 @@ class BlogsView extends Component
 
 
 
-        // -----------------------------------------
-        // -----------------------------------------
+      // -----------------------------------------
+      // -----------------------------------------
 
 
 
@@ -71,24 +71,24 @@ class BlogsView extends Component
 
 
 
-        // 1.3: setFilePreview
-        $this->dispatch('setFilePreview', filePreview: 'blog--preview-1', defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('setFilePreview', filePreview: 'blog--preview-2', defaultPreview: $this->getDefaultPreview());
+      // 1.3: setFilePreview
+      $this->dispatch('setFilePreview', filePreview: 'blog--preview-1', defaultPreview: $this->getDefaultPreview());
+      $this->dispatch('setFilePreview', filePreview: 'blog--preview-2', defaultPreview: $this->getDefaultPreview());
 
 
 
 
-        $preview = asset('storage/extra/blogs/' . $this->instance->headerImageFile);
-        $this->dispatch('setFilePreview', filePreview: 'blog--preview-1', defaultPreview: $preview);
+      $preview = url('storage/extra/blogs/' . $this->instance->headerImageFile);
+      $this->dispatch('setFilePreview', filePreview: 'blog--preview-1', defaultPreview: $preview);
 
 
-        $preview = asset('storage/extra/blogs/' . $this->instance->imageFile);
-        $this->dispatch('setFilePreview', filePreview: 'blog--preview-2', defaultPreview: $preview);
+      $preview = url('storage/extra/blogs/' . $this->instance->imageFile);
+      $this->dispatch('setFilePreview', filePreview: 'blog--preview-2', defaultPreview: $preview);
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -99,7 +99,7 @@ class BlogsView extends Component
 
 
 
-    // -----------------------------------------------------------
+   // -----------------------------------------------------------
 
 
 
@@ -110,48 +110,48 @@ class BlogsView extends Component
 
 
 
-    public function update()
-    {
+   public function update()
+   {
 
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Edit Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Edit Actions')) {
 
-            $this->makeAlert('info', 'Editing is not allowed for this account');
+         $this->makeAlert('info', 'Editing is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
 
 
 
-        // :: validate
-        $this->instance->validate();
+      // :: validate
+      $this->instance->validate();
 
 
 
 
-        // 1: replaceFiles
-        if ($this->instance->imageFile != $this->instance->imageFileName)
-            $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/blogs', $this->instance->imageFileName, 'BLG', 640, 960);
+      // 1: replaceFiles
+      if ($this->instance->imageFile != $this->instance->imageFileName)
+         $this->instance->imageFileName = $this->replaceFile($this->instance->imageFile, 'extra/blogs', $this->instance->imageFileName, 'BLG', 640, 960);
 
 
 
 
-        if ($this->instance->headerImageFile != $this->instance->headerImageFileName)
-            $this->instance->headerImageFileName = $this->replaceFile($this->instance->headerImageFile, 'extra/blogs', $this->instance->headerImageFileName, 'BLG-HEADER', 1920, 1080);
+      if ($this->instance->headerImageFile != $this->instance->headerImageFileName)
+         $this->instance->headerImageFileName = $this->replaceFile($this->instance->headerImageFile, 'extra/blogs', $this->instance->headerImageFileName, 'BLG-HEADER', 1920, 1080);
 
 
 
@@ -160,23 +160,23 @@ class BlogsView extends Component
 
 
 
-        // 1.2: makeRequest
-        $response = $this->makeRequest('dashboard/extra/website/blogs/update', $this->instance);
+      // 1.2: makeRequest
+      $response = $this->makeRequest('dashboard/extra/website/blogs/update', $this->instance);
 
 
 
 
 
 
-        // :: alert
-        $this->makeAlert('success', $response->message);
+      // :: alert
+      $this->makeAlert('success', $response->message);
 
 
 
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -189,7 +189,7 @@ class BlogsView extends Component
 
 
 
-    // --------------------------------------------------------------------
+   // --------------------------------------------------------------------
 
 
 
@@ -197,15 +197,15 @@ class BlogsView extends Component
 
 
 
-    public function editSection($id)
-    {
+   public function editSection($id)
+   {
 
 
-        // 1: dispatchId
-        $this->dispatch('editSection', $id);
+      // 1: dispatchId
+      $this->dispatch('editSection', $id);
 
 
-    } // end function
+   } // end function
 
 
 
@@ -217,46 +217,46 @@ class BlogsView extends Component
 
 
 
-    // -----------------------------------------------------------------
+   // -----------------------------------------------------------------
 
 
 
 
 
 
-    public function remove($id)
-    {
+   public function remove($id)
+   {
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Remove Actions')) {
+      // :: rolePermission
+      if (! session('globalUser')->checkPermission('Remove Actions')) {
 
-            $this->makeAlert('info', 'Deletion is not allowed for this account');
+         $this->makeAlert('info', 'Deletion is not allowed for this account');
 
-            return false;
+         return false;
 
-        } // end if
+      } // end if
 
 
 
 
 
-        // --------------------------------------
-        // --------------------------------------
+      // --------------------------------------
+      // --------------------------------------
 
 
 
 
 
 
-        // 1: params - confirmationBox
-        $this->removeId = $id;
+      // 1: params - confirmationBox
+      $this->removeId = $id;
 
-        $this->makeAlert('remove', null, 'confirmSectionRemove');
+      $this->makeAlert('remove', null, 'confirmSectionRemove');
 
 
 
-    } // end function
+   } // end function
 
 
 
@@ -266,36 +266,36 @@ class BlogsView extends Component
 
 
 
-    // -----------------------------------------------------------------------------
+   // -----------------------------------------------------------------------------
 
 
 
 
 
-    #[On('confirmSectionRemove')]
-    public function confirmRemove()
-    {
+   #[On('confirmSectionRemove')]
+   public function confirmRemove()
+   {
 
 
 
 
 
-        // 1: remove
-        if ($this->removeId) {
+      // 1: remove
+      if ($this->removeId) {
 
-            $response = $this->makeRequest('dashboard/extra/website/blogs/sections/remove', $this->removeId);
-            $this->makeAlert('info', $response->message);
+         $response = $this->makeRequest('dashboard/extra/website/blogs/sections/remove', $this->removeId);
+         $this->makeAlert('info', $response->message);
 
 
-        } // end if
+      } // end if
 
 
 
 
-        $this->render();
+      $this->render();
 
 
-    } // end function
+   } // end function
 
 
 
@@ -304,7 +304,7 @@ class BlogsView extends Component
 
 
 
-    // --------------------------------------------------------------------
+   // --------------------------------------------------------------------
 
 
 
@@ -316,29 +316,29 @@ class BlogsView extends Component
 
 
 
-    #[On('refreshViews')]
-    public function render()
-    {
+   #[On('refreshViews')]
+   public function render()
+   {
 
 
-        // 1: dependencies
-        $sections = BlogSection::where('blogId', $this->blog->id)->get();
+      // 1: dependencies
+      $sections = BlogSection::where('blogId', $this->blog->id)->get();
 
 
 
 
 
-        // :: initTooltips
-        $this->dispatch('initTooltips');
+      // :: initTooltips
+      $this->dispatch('initTooltips');
 
 
 
 
-        return view('livewire.dashboard.extra.web-apps.blogs.blogs-view', compact('sections'));
+      return view('livewire.dashboard.extra.web-apps.blogs.blogs-view', compact('sections'));
 
 
 
-    } // end function
+   } // end function
 
 
 

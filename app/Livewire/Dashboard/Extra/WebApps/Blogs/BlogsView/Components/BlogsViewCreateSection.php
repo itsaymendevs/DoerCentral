@@ -133,16 +133,12 @@ class BlogsViewCreateSection extends Component
         $this->instance->reset('title', 'content', 'imageFile', 'secondImageFile', 'thirdImageFile', 'fourthImageFile', 'imageFileName', 'secondImageFileName', 'thirdImageFileName', 'fourthImageFileName');
 
 
-        $this->dispatch('resetFile', file: 'section--file-1',
-            defaultPreview: $this->getDefaultPreview());
-        $this->dispatch('resetFile', file: 'section--file-2',
-            defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-1', defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-2', defaultPreview: $this->getDefaultPreview());
 
-        $this->dispatch('resetFile', file: 'section--file-3',
-            defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-3', defaultPreview: $this->getDefaultPreview());
 
-        $this->dispatch('resetFile', file: 'section--file-4',
-            defaultPreview: $this->getDefaultPreview());
+        $this->dispatch('resetFile', file: 'section--file-4', defaultPreview: $this->getDefaultPreview());
 
 
 

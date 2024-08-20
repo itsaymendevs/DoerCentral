@@ -90,6 +90,7 @@ use App\Livewire\Dashboard\Stock\Purchases as StockPurchases;
 use App\Livewire\Dashboard\Stock\Stock as StockOverview;
 
 use App\Livewire\Dashboard\Temporary\CustomizePlan;
+use App\Livewire\Dashboard\Temporary\RecheckSizes;
 use App\Livewire\DriverPortal\DriverHistory;
 use App\Livewire\DriverPortal\DriverHome;
 use App\Livewire\DriverPortal\DriverProfile;
@@ -1320,6 +1321,9 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+        // 1: dashboard - temporary - customize-plan
+        Route::get('dashboard/temporary/meals/recheck-sizes', RecheckSizes::class)->name('dashboard.temporary.recheckSizes');
 
 
 

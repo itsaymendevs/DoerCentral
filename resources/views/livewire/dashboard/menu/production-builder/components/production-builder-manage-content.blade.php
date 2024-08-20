@@ -1243,22 +1243,15 @@
 
                         {{-- 4.1: grams - afterCookGrams - % --}}
 
-                        {{-- :: permission - hasConversion --}}
-                        @if ($versionPermission->menuModuleHasBuilderConversion)
-
                         <td class="fw-bold fs-11 px-1 th--sm">Cooked<small
                                 class="fw-semibold text-gold fs-9 ms-1">(G)</small></td>
-
-                        @endif
-                        {{-- end if - permission --}}
 
 
 
 
 
                         <td class="fw-bold fs-11 th--sm
-                        border-start-0" @if(!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
-                            @endif>Raw<small class="fw-semibold text-gold fs-9 ms-1">(G)</small></td>
+                        border-start-0">Raw<small class="fw-semibold text-gold fs-9 ms-1">(G)</small></td>
 
 
 
@@ -1478,11 +1471,6 @@
 
 
                         {{-- 1: afterCookGrams --}}
-
-
-                        {{-- :: permission - hasConversion --}}
-                        @if ($versionPermission->menuModuleHasBuilderConversion)
-
                         <td class="fw-bold">
                             <input
                                 class="form-control form--input form--table-input-xxs px-1 ingredient--afterCookGrams-input"
@@ -1493,18 +1481,12 @@
                         </td>
 
 
-                        @endif
-                        {{-- end if - permission --}}
-
-
-
 
 
 
 
                         {{-- 2: grams --}}
-                        <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
-                            @endif>
+                        <td class="fw-bold">
                             <input id='ingredient--grams-input'
                                 class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input readonly"
                                 wire:loading.attr='readonly' readonly data-size='{{ $instance->mealSizeId[$i] }}'
@@ -1967,13 +1949,7 @@
 
 
 
-
                         {{-- 1: afterCookGrams --}}
-
-
-                        {{-- :: permission - hasConversion --}}
-                        @if ($versionPermission->menuModuleHasBuilderConversion)
-
                         <td class="fw-bold">
                             <input
                                 class="form-control form--input form--table-input-xxs px-1 ingredient--afterCookGrams-input"
@@ -1984,20 +1960,12 @@
                         </td>
 
 
-                        @endif
-                        {{-- end if - permission --}}
-
-
-
-
-
 
 
 
 
                         {{-- 2: grams --}}
-                        <td class="fw-bold" @if (!$versionPermission->menuModuleHasBuilderConversion) colspan='2'
-                            @endif>
+                        <td class="fw-bold">
                             <input id='ingredient--grams-input' readonly
                                 class="form-control form--input form--table-input-xxs px-1 ingredient--grams-input readonly"
                                 wire:loading.attr='readonly' data-size='{{ $instance->mealSizeId[$i] }}' type="number"

@@ -52,10 +52,18 @@
     margin-top: 3px;
 }
 
+.input--with-label.reverse label {
+    border-radius: 0px var(--input-radius) var(--input-radius) 0px;
+}
+
 .input--with-label input {
     width: 65%;
     border-radius: 0px var(--input-radius) var(--input-radius) 0px;
     text-align: center;
+}
+
+.input--with-label.reverse input {
+    border-radius: var(--input-radius) 0px 0px var(--input-radius);
 }
 
 /* button checkboxes */

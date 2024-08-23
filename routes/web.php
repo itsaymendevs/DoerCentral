@@ -2,6 +2,10 @@
 
 
 use App\Livewire\Dashboard\Brands;
+use App\Livewire\Dashboard\Brands\BrandsBackup;
+use App\Livewire\Dashboard\Brands\BrandsConfigurations;
+use App\Livewire\Dashboard\Brands\BrandsDetails;
+use App\Livewire\Dashboard\Brands\BrandsLicense;
 use App\Livewire\Dashboard\Inventory\Configurations;
 use App\Livewire\Dashboard\Inventory\Ingredients;
 use App\Livewire\Dashboard\Inventory\Settings\ConversionIngredients;
@@ -110,76 +114,30 @@ Route::get('login', Login::class)->name('dashboard.login');
 
 
 
-Route::middleware(['auth.user'])->group(function () {
+// Route::middleware(['auth.user'])->group(function () {
 
 
 
 
 
 
-    // 1: home
-    Route::get('brands', Brands::class)->name('dashboard.brands');
+// 1: brands
+Route::get('dashboard/brands', Brands::class)->name('dashboard.brands');
+
+
+
+
+// 1.2: brand - profile
+Route::get('dashboard/brands/{id}', BrandsDetails::class)->name('dashboard.singleBrand');
 
 
 
 
 
-
-
-    // ----------------------------------------------------------------------------
-    // ----------------------------------------------------------------------------
-    // ----------------------------------------------------------------------------
-
-
-
-
-
-
-    // 4: inventory - ingredients - store - update - remove
-    Route::get('dashboard/inventory/ingredients', Ingredients::class)->name('dashboard.inventory.ingredients');
-
-
-
-
-
-
-    // ---------
-
-
-
-
-    // 4.5: inventory - config - store - update - remove
-    Route::get('dashboard/inventory/configurations', Configurations::class)->name('dashboard.inventory.configurations');
-
-
-
-
-
-    // ---------
-
-
-
-
-
-    // 4.6: inventory - settings - store - update - remove
-    Route::get('dashboard/inventory/settings', InventorySettings::class)->name('dashboard.inventory.settings');
-
-
-
-
-
-    // 4.6.1: inventory - settings - conversions - ingredients
-    Route::get('dashboard/inventory/settings/conversions/{id}', ConversionIngredients::class)->name('dashboard.inventory.settings.conversionIngredients');
-
-
-
-
-
-
-
-    // ----------------------------------------------------------------------------
-    // ----------------------------------------------------------------------------
-    // ----------------------------------------------------------------------------
+// 1.3: setup - license
+Route::get('dashboard/brands/{id}/setup', BrandsConfigurations::class)->name('dashboard.singleBrandSetup');
+Route::get('dashboard/brands/{id}/license', BrandsLicense::class)->name('dashboard.singleBrandLicense');
+Route::get('dashboard/brands/{id}/backup', BrandsBackup::class)->name('dashboard.singleBrandBackup');
 
 
 
@@ -188,4 +146,72 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-}); // end Authentication
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+// 4: inventory - ingredients - store - update - remove
+Route::get('dashboard/inventory/ingredients', Ingredients::class)->name('dashboard.inventory.ingredients');
+
+
+
+
+
+
+// ---------
+
+
+
+
+// 4.5: inventory - config - store - update - remove
+Route::get('dashboard/inventory/configurations', Configurations::class)->name('dashboard.inventory.configurations');
+
+
+
+
+
+// ---------
+
+
+
+
+
+// 4.6: inventory - settings - store - update - remove
+Route::get('dashboard/inventory/settings', InventorySettings::class)->name('dashboard.inventory.settings');
+
+
+
+
+
+// 4.6.1: inventory - settings - conversions - ingredients
+Route::get('dashboard/inventory/settings/conversions/{id}', ConversionIngredients::class)->name('dashboard.inventory.settings.conversionIngredients');
+
+
+
+
+
+
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// }); // end Authentication

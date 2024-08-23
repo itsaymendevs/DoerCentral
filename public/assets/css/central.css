@@ -1,0 +1,29 @@
+/* brands */
+
+.sideways--title {
+    text-orientation: sideways;
+}
+
+.sideways--left {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+.brands--card h5 {
+    height: 200px;
+    padding-left: 8px;
+    border-left: 1px solid #9c9c9c;
+}
+
+.layout--wrapper {
+    border: 1px solid #23262b;
+    padding: 25px 20px;
+    border-radius: 12px;
+}
+
+/* copy */
+.copy--icon {
+    cursor: pointer;
+}
+.copy--icon {
+    color: var(--bs-warning);
+}

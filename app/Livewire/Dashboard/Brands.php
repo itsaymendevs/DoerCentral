@@ -10,14 +10,11 @@ class Brands extends Component
     public function render()
     {
 
-        // 1: clients
-        $clients = ClientLead::all();
+        // 1: brands / clients
+        $brands = ClientLead::all();
 
 
-
-        dd($clients);
-
-        return view('livewire.dashboard.brands', compact('clients'));
+        return view('livewire.dashboard.brands', compact('brands'));
 
 
     } // end function

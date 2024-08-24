@@ -16,6 +16,7 @@ return new class extends Migration {
 
 
             // 1: general
+            $table->string('serial', 255)->nullable();
             $table->string('name', 255)->nullable();
             $table->string('email', 255)->nullable();
 
@@ -26,10 +27,17 @@ return new class extends Migration {
 
 
 
-            // 1.2: phone - landline
+            // 1.1: serials
+            $table->string('PIN', 100)->nullable();
+            $table->string('licenseNumber', 100)->nullable();
+
+
+
+            // 1.2: websiteURL - phone - landline
+            $table->text('websiteURL')->nullable();
+
             $table->string('phone', 100)->nullable();
             $table->string('phoneKey', 100)->nullable();
-
 
             $table->string('landline', 100)->nullable();
             $table->string('landlineKey', 100)->nullable();
@@ -59,7 +67,6 @@ return new class extends Migration {
 
             // 1.5: isConfirmed
             $table->boolean('isConfirmed')->nullable()->default(false);
-
 
 
 

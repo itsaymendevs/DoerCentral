@@ -12,19 +12,25 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-
 
             // 1: general
             $table->string('name', 255)->nullable();
-            $table->string('route', 255)->nullable();
-
-            $table->string('group', 255)->nullable();
-
-
+            $table->string('phone', 255)->nullable();
+            $table->string('email', 255)->unique();
+            $table->text('password')->nullable();
 
 
+
+            // 1.2: imageFile - isActive
+            $table->text('imageFile')->nullable();
+            $table->boolean('isActive')->nullable()->default(1);
+
+
+
+            // 2: token
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -36,6 +42,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('users');
     }
 };

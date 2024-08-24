@@ -14,12 +14,6 @@ return new class extends Migration {
             $table->id();
 
 
-
-            // :: migrationId
-            $table->bigInteger('migrationId')->nullable();
-
-
-
             // 1: general
             $table->text('name')->nullable();
             $table->text('desc')->nullable();
@@ -33,13 +27,6 @@ return new class extends Migration {
             $table->double('decrement', 15)->nullable();
             $table->double('wastage', 15)->nullable();
 
-
-
-
-
-            // 1.3: defaultSupplier
-            $table->bigInteger('supplierId')->unsigned()->nullable();
-            $table->foreign('supplierId')->references('id')->on('suppliers')->onDelete('set null');
 
 
 
@@ -61,25 +48,6 @@ return new class extends Migration {
 
             // 1.4: imageFile
             $table->text('imageFile')->nullable();
-
-
-
-
-            // 1.5: category - group - exclude - allergy
-            $table->bigInteger('categoryId')->unsigned()->nullable();
-            $table->foreign('categoryId')->references('id')->on('ingredient_categories')->onDelete('set null');
-
-            $table->bigInteger('groupId')->unsigned()->nullable();
-            $table->foreign('groupId')->references('id')->on('ingredient_groups')->onDelete('set null');
-
-
-            $table->bigInteger('excludeId')->unsigned()->nullable();
-            $table->foreign('excludeId')->references('id')->on('excludes')->onDelete('set null');
-
-
-
-            $table->bigInteger('allergyId')->unsigned()->nullable();
-            $table->foreign('allergyId')->references('id')->on('allergies')->onDelete('set null');
 
 
 

@@ -43,7 +43,7 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <hr class="w-50" />
                             <label class="form-label form--label px-3 mb-0"><i class="bi bi-copy me-2 copy--icon"
-                                    onclick="copy('{{ $brand->websiteURL }}/plans/public')" data-bs-toggle="tooltip"
+                                    onclick="copy('{{ $brand->websiteURL }}/plans')" data-bs-toggle="tooltip"
                                     data-bss-tooltip="" data-bs-placement="top" title="Copy"></i>Website</label>
                         </div>
 
@@ -51,7 +51,7 @@
                             <input type="text" class="form--input fs-11" readonly required
                                 value='{{ $brand->websiteURL }}' />
                             <label class="form-label form--label mb-0 fs-11"
-                                style="width: 60%; letter-spacing: 1.2px">plans/public</label>
+                                style="width: 60%; letter-spacing: 1.2px">plans</label>
                         </div>
                     </div>
 

@@ -70,6 +70,20 @@ Route::post('/dashboard/inventory/ingredients/remove', [InventoryController::cla
 
 
 
+// 2.2: inventory - ingredients - storeBrand - update - remove
+Route::post('/dashboard/inventory/ingredients/brands/store', [InventoryExtraController::class, 'storeIngredientBrand']);
+Route::post('/dashboard/inventory/ingredients/brands/update', [InventoryExtraController::class, 'updateIngredientBrand']);
+
+
+Route::post('/dashboard/inventory/ingredients/brands/remove', [InventoryExtraController::class, 'removeIngredientBrand']);
+
+
+
+
+
+
+
+
 
 // ---------------------------------
 // ---------------------------------
@@ -79,7 +93,7 @@ Route::post('/dashboard/inventory/ingredients/remove', [InventoryController::cla
 
 
 
-// 2.1: inventory - settings - storeConversion - update - remove
+// 2.3: inventory - settings - storeConversion - update - remove
 Route::post('/dashboard/inventory/settings/conversions/store', [InventoryExtraController::class, 'storeConversion']);
 Route::post('/dashboard/inventory/settings/conversions/update', [InventoryExtraController::class, 'updateConversion']);
 
@@ -92,7 +106,7 @@ Route::post('/dashboard/inventory/settings/conversions/remove', [InventoryExtraC
 
 
 
-// 2.2: inventory - settings - conversions - ingredients - store - update - remove
+// 2.4: inventory - settings - conversions - ingredients - store - update - remove
 Route::post('/dashboard/inventory/settings/conversions/ingredients/store', [InventoryExtraController::class, 'storeConversionIngredient']);
 
 Route::post('/dashboard/inventory/settings/conversions/ingredients/update', [InventoryExtraController::class, 'updateConversionIngredient']);

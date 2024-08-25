@@ -27,7 +27,6 @@ class Ingredients extends Component
 
     // :: variable
     public $searchIngredient = '';
-    public $searchCategory, $searchGroup, $searchAllergy, $searchExclude;
 
 
 
@@ -79,26 +78,6 @@ class Ingredients extends Component
 
     public function remove($id)
     {
-
-
-
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Remove Actions')) {
-
-            $this->makeAlert('info', 'Deletion is not allowed for this account');
-
-            return false;
-
-        } // end if
-
-
-
-
-
-        // --------------------------------------
-        // --------------------------------------
-
-
 
 
         // 1: params - confirmationBox
@@ -167,61 +146,9 @@ class Ingredients extends Component
 
 
         // 1: dependencies
-        $categories = IngredientCategory::all();
-        $groups = IngredientGroup::all();
-        $excludes = Exclude::all();
-        $allergies = Allergy::all();
-
-
-
-
-
-
-
-        // --------------------------------
-        // --------------------------------
-
-
-
-
-
-
-
-        // 1.2: ingredients - makeFilter
-        $ingredientsRaw = Ingredient::where('name', 'LIKE', '%' . $this->searchIngredient . '%')->get();
-
-
-        $ingredients = $ingredientsRaw->filter(function ($item) {
-
-            // :: applyFilters
-            $toReturn = true;
-
-
-            // 1: category - group - exclude - allergy
-            $this->searchCategory ? $item->categoryId != $this->searchCategory ? $toReturn = false : null : null;
-
-            $this->searchGroup ? $item->groupId != $this->searchGroup ? $toReturn = false : null : null;
-
-            $this->searchExclude ? ! in_array($this->searchExclude, $item->excludesInArray()) ? $toReturn = false : null : null;
-
-            $this->searchAllergy ? ! in_array($this->searchAllergy, $item->allergiesInArray()) ? $toReturn = false : null : null;
-
-            return $toReturn;
-
-        });
-
-
-
-
-
-
-
-
-        // 1.2.2: finalIngredients
         $ingredients = Ingredient::orderBy('created_at', 'desc')
-            ->whereIn('id', $ingredients?->pluck('id')?->toArray() ?? [])
-            ->paginate(env('PAGINATE_LG'));
-
+            ->where('name', 'LIKE', '%' . $this->searchIngredient . '%')
+            ->paginate(env('PAGINATE_XXL'));
 
 
 
@@ -236,8 +163,7 @@ class Ingredients extends Component
         $this->dispatch('initTooltips');
 
 
-
-        return view('livewire.dashboard.inventory.ingredients', compact('ingredients', 'categories', 'groups', 'excludes', 'allergies'));
+        return view('livewire.dashboard.inventory.ingredients', compact('ingredients'));
 
 
     } // end function

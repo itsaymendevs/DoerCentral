@@ -50,6 +50,24 @@ tbody tr {
     border-right: none;
 }
 
+/* startTable */
+.memoir--table-start thead th,
+.memoir--table-start tbody td {
+    text-align: left !important;
+    padding-left: 15px !important;
+}
+
+.memoir--table-start-lg thead th,
+.memoir--table-start-lg tbody td {
+    text-align: left !important;
+    padding-left: 20px !important;
+}
+
+.memoir--table-start .table--counter {
+    text-align: center !important;
+    padding: 0px !important;
+}
+
 /* subheader */
 
 .subheader {

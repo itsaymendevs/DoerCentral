@@ -28,16 +28,6 @@
 
             {{-- newButton --}}
             <div class="col-4">
-
-
-
-
-                {{-- :: permission - hasAdminView --}}
-                @if ($versionPermission->hasAdminView || session('hasTechAccess'))
-
-
-
-
                 <button class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center"
                     data-bs-target="#new-ingredient" data-bs-toggle="modal" type="button">
                     <svg class="bi bi-plus-circle-dotted fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
@@ -47,15 +37,6 @@
                         </path>
                     </svg>New Ingredient
                 </button>
-
-
-
-                @endif
-                {{-- end if - permission --}}
-
-
-
-
             </div>
             {{-- endCol --}}
 
@@ -65,10 +46,19 @@
 
 
 
-            {{-- empty --}}
-            <div class="col-4"></div>
+            {{-- search --}}
+            <div class="col-4">
+                <input class="form-control form--input" type="text" wire:model.live='searchIngredient'
+                    placeholder="Search by Ingredient" />
+            </div>
 
 
+
+
+
+
+            {{-- -------------------------------------- --}}
+            {{-- -------------------------------------- --}}
 
 
 
@@ -79,9 +69,6 @@
 
 
 
-                {{-- :: permission - hasMasterView --}}
-                @if ($versionPermission->hasMasterView || session('hasTechAccess'))
-
 
 
                 {{-- switchGroup --}}
@@ -89,7 +76,7 @@
 
 
                     {{-- cardView --}}
-                    <button class="btn btn--switch-view" data-view="cards" data-target="ingredients-column"
+                    <button class="btn btn--switch-view active" data-view="cards" data-target="ingredients-column"
                         data-instance="1" type="button">
                         <svg class="bi bi-card-text" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                             fill="currentColor" viewBox="0 0 16 16">
@@ -105,7 +92,7 @@
 
 
                     {{-- 2: tableView --}}
-                    <button class="btn btn--switch-view active" data-view="table" data-target="ingredients-column"
+                    <button class="btn btn--switch-view " data-view="table" data-target="ingredients-column"
                         data-instance="1" type="button">
                         <svg class="bi bi-table" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                             fill="currentColor" viewBox="0 0 16 16">
@@ -116,10 +103,6 @@
                     </button>
                 </div>
 
-
-
-                @endif
-                {{-- end if - permission --}}
 
 
 
@@ -177,126 +160,6 @@
 
 
 
-            {{-- 1: ingredientFilter --}}
-            <div class="col-4">
-                <input class="form-control form--input mb-4" type="text" wire:model.live='searchIngredient'
-                    placeholder="Search by Ingredient" />
-            </div>
-
-
-
-
-
-
-
-
-            {{-- 2: categoryFilter --}}
-            <div class="col-2" wire:ignore>
-
-                <div class="d-flex align-items-center justify-content-between mb-1">
-                    <hr style="width: 40%" />
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Category</label>
-                </div>
-
-
-                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select form--search-ingredient-select" data-clear='true'
-                        data-instance='searchCategory'>
-                        <option value=""></option>
-
-                        @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-
-                    </select>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-            {{-- 3: groupsFilter --}}
-            <div class="col-2" wire:ignore>
-
-                <div class="d-flex align-items-center justify-content-between mb-1">
-                    <hr style="width: 40%" />
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Group</label>
-                </div>
-
-                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select form--search-ingredient-select" data-clear='true'
-                        data-instance='searchGroup'>
-                        <option value=""></option>
-
-                        @foreach ($groups as $group)
-                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                        @endforeach
-
-                    </select>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-            {{-- 4: excludeFilter --}}
-            <div class="col-2" wire:ignore>
-
-                <div class="d-flex align-items-center justify-content-between mb-1">
-                    <hr style="width: 40%" />
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Exclude</label>
-                </div>
-
-                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select form--search-ingredient-select" data-clear='true'
-                        data-instance='searchExclude'>
-                        <option value=""></option>
-
-                        @foreach ($excludes as $exclude)
-                        <option value="{{ $exclude->id }}">{{ $exclude->name }}</option>
-                        @endforeach
-
-                    </select>
-                </div>
-            </div>
-
-
-
-
-
-            {{-- 5: allergyFilter --}}
-            <div class="col-2" wire:ignore>
-
-                <div class="d-flex align-items-center justify-content-between mb-1">
-                    <hr style="width: 40%" />
-                    <label class="form-label form--label px-3 w-50 justify-content-center mb-0">Allergy</label>
-                </div>
-
-                <div class="select--single-wrapper mb-4" wire:loading.class='no-events'>
-                    <select class="form-select form--select form--search-ingredient-select" data-clear='true'
-                        data-instance='searchAllergy'>
-                        <option value=""></option>
-
-                        @foreach ($allergies as $allergy)
-                        <option value="{{ $allergy->id }}">{{ $allergy->name }}</option>
-                        @endforeach
-
-                    </select>
-                </div>
-            </div>
-
-
 
 
 
@@ -328,7 +191,7 @@
 
 
             {{-- cardColumn --}}
-            <div class="col-12 ingredients-column" data-view="cards" style="display: none" wire:ignore.self>
+            <div class="col-12 ingredients-column" data-view="cards" wire:ignore.self>
                 <div class="row mt-cards">
 
 
@@ -363,10 +226,6 @@
                                 <div class="col-12">
 
 
-
-
-                                    {{-- :: permission - hasAdminView --}}
-                                    @if ($versionPermission->hasAdminView || session('hasTechAccess'))
 
 
 
@@ -432,14 +291,6 @@
 
 
 
-
-
-
-                                    @endif
-                                    {{-- end if - permission --}}
-
-
-
                                 </div>
                                 {{-- endActionCol --}}
 
@@ -497,7 +348,7 @@
 
 
             {{-- 2: tableView --}}
-            <div class="col-12 ingredients-column mt-4 pt-3 " data-view="table" wire:ignore.self>
+            <div class="col-12 ingredients-column mt-4 pt-3" data-view="table" style="display: none" wire:ignore.self>
 
 
 
@@ -513,29 +364,19 @@
 
 
                 {{-- table --}}
-                <div class="table-responsive memoir--table w-100 mb-4">
+                <div class="table-responsive memoir--table  w-100 mb-4">
                     <table class="table table-bordered" id="memoir--table">
 
 
                         {{-- tableHead --}}
                         <thead>
                             <tr>
-                                <th class="th--xs"></th>
-                                <th class="th--md">Name</th>
-                                <th class="th--sm">Calories</th>
-                                <th class="th--md th--sm">Proteins</th>
-                                <th class="th--sm">Carbohydrates</th>
-                                <th class="th--md th--sm">Fats</th>
-
-
-                                {{-- :: permission - hasAdminView --}}
-                                @if ($versionPermission->hasAdminView || session('hasTechAccess'))
-
+                                <th class="th--lg">Name</th>
+                                <th class="th--xs">Calories</th>
+                                <th class="th--xs th--sm">Proteins</th>
+                                <th class="th--xs">Carbs</th>
+                                <th class="th--xs th--sm">Fats</th>
                                 <th class="th--sm"></th>
-
-                                @endif
-                                {{-- end if - permission --}}
-
 
                             </tr>
                         </thead>
@@ -569,12 +410,11 @@
 
 
                             <tr key='single-ingredient-table-{{ $ingredient->id }}'>
-                                <td class="fw-bold">{{ $globalSNCounter++ }}</td>
-                                <td class="fw-bold">{{ $ingredient->name }}</td>
-                                <td>{{ $ingredient->freshMacro()->calories * 100 }}</td>
-                                <td>{{ $ingredient->freshMacro()->proteins * 100 }}</td>
-                                <td>{{ $ingredient->freshMacro()->carbs * 100 }}</td>
-                                <td>{{ $ingredient->freshMacro()->fats * 100 }}</td>
+                                <td class="fw-semibold">{{ $ingredient->name }}</td>
+                                <td class='fs-14'>{{ $ingredient->freshMacro()->calories * 100 }}</td>
+                                <td class='fs-14'>{{ $ingredient->freshMacro()->proteins * 100 }}</td>
+                                <td class='fs-14'>{{ $ingredient->freshMacro()->carbs * 100 }}</td>
+                                <td class='fs-14'>{{ $ingredient->freshMacro()->fats * 100 }}</td>
 
 
 
@@ -582,11 +422,6 @@
 
 
                                 {{-- actions --}}
-
-                                {{-- :: permission - hasAdminView --}}
-                                @if ($versionPermission->hasAdminView || session('hasTechAccess'))
-
-
                                 <td>
 
                                     <div class="d-flex align-items-center justify-content-center">
@@ -637,8 +472,7 @@
 
 
                                         {{-- remove --}}
-                                        <button class="btn btn--raw-icon inline remove scale--3 px-2 d-none
-                                    @if ($versionPermission->isProcessing) disabled @endif" type="button"
+                                        <button class="btn btn--raw-icon inline remove scale--3 px-2" type="button"
                                             wire:click="remove({{ $ingredient->id }})" wire:loading.attr='disabled'>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 fill="currentColor" viewBox="0 0 16 16" class="bi bi-trash-fill">
@@ -648,19 +482,9 @@
                                             </svg>
                                         </button>
 
-
-
                                     </div>
-
                                 </td>
-
-
-                                @endif
-                                {{-- end if - permission --}}
-
-
                                 {{-- endActions --}}
-
 
 
 

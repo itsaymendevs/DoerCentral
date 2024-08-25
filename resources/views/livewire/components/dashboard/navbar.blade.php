@@ -66,8 +66,25 @@
 
 
                     {{-- brands --}}
-                    <a href="{{ route('dashboard.brands') }}" class="btn navbar--menu-button
+                    <a href="{{ route('dashboard.brands') }}" class="btn navbar--menu-button me-3
                         @if (Request::is('dashboard/brands', 'dashboard/brands/*')) active @endif">Brands</a>
+
+
+
+
+
+
+
+                    {{-- inventory --}}
+                    <a class="btn navbar--menu-button me-3
+                    @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
+                        href="{{ route('dashboard.inventory.ingredients') }}">Inventory</a>
+
+
+
+
+
+
 
 
 
@@ -79,6 +96,11 @@
 
 
 
+
+
+
+
+            {{-- ----------------------------------------------------------- --}}
             {{-- ----------------------------------------------------------- --}}
 
 

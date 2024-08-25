@@ -35,28 +35,6 @@ class IngredientsCreate extends Component
 
 
 
-        // :: rolePermission
-        if (! session('globalUser')->checkPermission('Add Actions')) {
-
-            $this->makeAlert('info', 'Adding is not allowed for this account');
-
-            return false;
-
-        } // end if
-
-
-
-
-
-        // --------------------------------------
-        // --------------------------------------
-
-
-
-
-
-
-
         // 1: uploadFile
         if ($this->instance->imageFile)
             $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'inventory/ingredients', 'ING', 300, 300);
@@ -111,17 +89,12 @@ class IngredientsCreate extends Component
 
 
         // 1: dependencies
-        $categories = IngredientCategory::all();
-        $groups = IngredientGroup::all();
-        $excludes = Exclude::all();
-        $allergies = Allergy::all();
         $units = Unit::all();
 
 
 
 
-
-        return view('livewire.dashboard.inventory.ingredients.components.ingredients-create', compact('categories', 'groups', 'excludes', 'allergies', 'units'));
+        return view('livewire.dashboard.inventory.ingredients.components.ingredients-create', compact('units'));
 
 
     } // end function

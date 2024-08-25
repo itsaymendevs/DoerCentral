@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Permission;
 use App\Models\User;
 use App\Traits\HelperTrait;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -17,174 +18,109 @@ use stdClass;
 class Login extends Component
 {
 
-    use LivewireAlert;
-    use HelperTrait;
+   use LivewireAlert;
+   use HelperTrait;
 
 
-    // :: variables
-    public $email, $password;
+   // :: variables
+   public $email, $password;
 
 
 
 
-    public function checkUser()
-    {
+   public function checkUser()
+   {
 
 
 
-        // :: create instance
-        $instance = new stdClass();
+      // 1: checkUser
+      $user = User::where('email', $this->email)->first();
 
-        $instance->email = $this->email;
-        $instance->password = $this->password;
 
 
 
+      // 1.2: checkValidity - token
+      if ($user && Hash::check($this->password, $user->password)) {
 
 
-        // 1: makeRequest
-        $response = $this->makeRequest('checkUser', $instance);
 
 
+         // 1.2.5: checkInactive
+         if (! $user->isActive) {
 
+            $this->makeAlert('error', "Account Restricted");
+            return false;
 
-        // :: success
-        if (! empty($response?->token)) {
+         } // end if
 
 
 
-            // 1.3: getGlobalUser
-            $user = User::find($response->userId);
 
 
+         // 1.2.6: makeSessions
+         $token = $user->createToken('user', ['role:user'])->plainTextToken;
 
+         Session::put('token', $token);
+         Session::put('userId', $user->id);
+         Session::put('userName', $user->name);
+         Session::put('globalUser', $user);
 
-            // 1.2: makeSessions
-            Session::put('token', $response->token);
-            Session::put('userId', $response->userId);
-            Session::put('userName', $response->userName);
-            Session::put('globalUser', $user);
 
 
 
+         return $this->redirect(route('dashboard.brands'), navigate: false);
 
 
+      } // end if
 
-            if ($user->email == 'tech@doer.ae') {
 
-                Session::put('hasTechAccess', true);
 
-            } else {
 
-                Session::put('hasTechAccess', false);
 
-            } // end if
 
 
+      // 1.3: un-authorized
+      $this->makeAlert('error', "Incorrect Credentials");
 
 
 
 
 
-            // ----------------------------
-            // ----------------------------
+   } // end function
 
 
 
 
 
-            // 1.4: determine APP_TYPE
 
 
-            // A: Client
-            if (env('APP_TYPE') == 'CLIENT' || env('APP_TYPE') == 'BOTH') {
+   // ------------------------------------------------------
 
 
 
 
 
-                // 1.4.1: getPermissions
-                $permissions = Permission::where('group', 'Modules')->get();
 
 
 
-                // 1.4.2: loop - permissions
-                foreach ($permissions as $permission) {
+   public function render()
+   {
 
 
-                    // :: isFound
-                    if ($user->checkPermission($permission->name)) {
 
+      // :: removeSessions
+      Session::forget(['token', 'userId', 'userName', 'globalUser']);
 
-                        return $this->redirect(route($permission->route), navigate: false);
 
+      $this->dispatch('initTooltips');
 
-                    } // end if
+      return view('livewire.login');
 
+   } // end function
 
 
-                } // end loop
 
 
-
-
-
-
-
-
-                // B: BOTH - Server
-            } else {
-
-
-                return $this->redirect(route('dashboard.control.permissions'), navigate: false);
-
-            } // end if
-
-
-
-        } // end if
-
-
-
-
-
-
-
-        // :: incorrectCredentials
-        $this->makeAlert('error', $response?->error ?? 'Try Again');
-
-
-
-    } // end function
-
-
-
-
-
-
-
-    // ------------------------------------------------------
-
-
-
-
-
-    public function render()
-    {
-
-
-
-        // :: removeSessions
-        Session::forget(['token', 'userId', 'userName', 'globalUser']);
-
-
-        // :: initTooltips
-        $this->dispatch('initTooltips');
-
-
-        return view('livewire.login');
-
-    } // end function
 
 
 

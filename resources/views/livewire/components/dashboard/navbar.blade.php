@@ -85,7 +85,8 @@
 
 
             {{-- notificationCol --}}
-            <livewire:components.dashboard.navbar-notifications key='navbar-notifications-1' />
+            {{--
+            <livewire:components.dashboard.navbar-notifications key='navbar-notifications-1' /> --}}
 
 
 

@@ -64,10 +64,7 @@ class ClientSubscriptionController extends Controller
         // 1.4: tradeFile
         $lead->tradeFile = $request->tradeFileName ?? null;
 
-
         $lead->save();
-
-
 
 
 

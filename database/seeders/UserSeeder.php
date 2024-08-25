@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
 
         // 1: administrator
-        $user = ['Central', 'central@doer.ae', 'central@123', '9715590100'];
+        $user = ['Manager', 'manager@doer.ae', 'manager@123', '9715590100'];
 
 
 

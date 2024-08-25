@@ -6,7 +6,7 @@
 
 
         {{-- submenu --}}
-        <livewire:dashboard.brands.brands-details.components.sub-menu id='{{ $brand->id }}' key='submenu' />
+        <livewire:dashboard.brands.brands-details.components.submenu id='{{ $brand->id }}' key='submenu' />
 
 
 

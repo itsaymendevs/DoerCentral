@@ -42,7 +42,7 @@ class SubMenu extends Component
     public function render()
     {
 
-        return view('livewire.dashboard.inventory.components.sub-menu');
+        return view('livewire.dashboard.inventory.components.submenu');
 
     } // end function
 

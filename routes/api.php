@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\ClientSubscriptionController;
-use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\InventoryExtraController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\SyncController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -93,6 +93,9 @@ Route::post('/dashboard/inventory/ingredients/brands/remove', [InventoryExtraCon
 
 
 
+
+
+
 // 2.3: inventory - settings - storeConversion - update - remove
 Route::post('/dashboard/inventory/settings/conversions/store', [InventoryExtraController::class, 'storeConversion']);
 Route::post('/dashboard/inventory/settings/conversions/update', [InventoryExtraController::class, 'updateConversion']);
@@ -113,6 +116,36 @@ Route::post('/dashboard/inventory/settings/conversions/ingredients/update', [Inv
 
 Route::post('/dashboard/inventory/settings/conversions/ingredients/remove', [InventoryExtraController::class, 'removeConversionIngredient']);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** ---------------------------- DOER - SYNC --------------------------- **
+
+
+
+
+
+
+
+// 1: sync - inventory
+Route::post('/sync/inventory', [SyncController::class, 'syncInventory']);
 
 
 

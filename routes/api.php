@@ -151,6 +151,16 @@ Route::post('/sync/inventory', [SyncController::class, 'syncInventory']);
 
 
 
+// ---------------------------------
+// ---------------------------------
+
+
+
+
+// 2: sync - profile
+Route::post('/sync/profile', [SyncController::class, 'syncProfile']);
+
+
 
 
 

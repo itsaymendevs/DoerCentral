@@ -37,15 +37,22 @@ class AppServiceProvider extends ServiceProvider
     {
 
 
+
         // 1: currentDate - nextDate
         View::share('globalCurrentDate', $this->getCurrentDate());
         View::share('globalNextDate', $this->getNextDate());
+        View::share('defaultIngredient', "ingredient.png");
 
 
 
 
+        // 1.2: defaultPreview
+        View::share('defaultIngredient', "ingredient.png");
 
-        // 1.2: globalCounter
+
+
+
+        // 1.3: globalCounter
         View::share('globalSNCounter', 1);
 
 

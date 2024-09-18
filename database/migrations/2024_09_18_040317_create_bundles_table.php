@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up() : void
     {
-        Schema::create('features', function (Blueprint $table) {
+        Schema::create('bundles', function (Blueprint $table) {
             $table->id();
 
 
@@ -24,6 +24,8 @@ return new class extends Migration {
             $table->foreign('featureModuleId')->references('id')->on('feature_modules')->onDelete('cascade');
 
 
+
+
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ return new class extends Migration {
      */
     public function down() : void
     {
-        Schema::dropIfExists('features');
+        Schema::dropIfExists('bundles');
     }
 };

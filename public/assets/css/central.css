@@ -27,3 +27,18 @@
 .copy--icon {
     color: var(--bs-warning);
 }
+
+/* ----------------------------------- */
+
+/* bundles */
+.table--bundle-feature:after {
+    content: "/";
+    color: var(--bs-warning);
+    font-size: 13px;
+    margin: 0px 3px;
+}
+
+/* bundles */
+.table--bundle-feature:last-of-type:after {
+    content: none;
+}

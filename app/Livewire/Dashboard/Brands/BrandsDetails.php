@@ -62,7 +62,6 @@ class BrandsDetails extends Component
 
 
 
-
     public function update()
     {
 

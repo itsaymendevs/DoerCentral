@@ -102,6 +102,10 @@
     color: var(--bs-warning);
 }
 
+.text-remove {
+    color: #ff6767;
+}
+
 .text-login {
     color: var(--color-login);
 }
@@ -347,6 +351,10 @@ i {
     font-size: 18px !important;
 }
 
+.fs-16 {
+    font-size: 16px !important;
+}
+
 .fs-15 {
     font-size: 15px !important;
 }
@@ -394,8 +402,10 @@ i {
     color: white;
 }
 
-.btn--scheme svg {
+.btn--scheme svg,
+.btn--scheme i {
     fill: white;
+    color: white;
 }
 
 /* scheme 1 */

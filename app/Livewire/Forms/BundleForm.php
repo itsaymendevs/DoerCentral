@@ -10,14 +10,9 @@ class BundleForm extends Form
 
     // :: variables
     #[Validate('required')]
-    public $name, $featureModuleId;
+    public $name, $featureModuleId, $price;
 
     public $id, $nameURL, $features = [];
-
-
-
-
-
 
 
 

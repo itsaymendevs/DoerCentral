@@ -214,7 +214,7 @@
 
                                 {{-- name --}}
                                 <div class="col-12">
-                                    <h6 class="text-center fw-bold mt-4 mb-2 truncate-text-1l fs-13 text-heading">{{
+                                    <h6 class="text-center fw-semibold mt-4 mb-2 truncate-text-1l fs-12">{{
                                         $ingredient->name }}</h6>
                                 </div>
 
@@ -364,7 +364,7 @@
 
 
                 {{-- table --}}
-                <div class="table-responsive memoir--table  w-100 mb-4">
+                <div class="table-responsive memoir--table inline--table   w-100 mb-4">
                     <table class="table table-bordered" id="memoir--table">
 
 
@@ -372,10 +372,10 @@
                         <thead>
                             <tr>
                                 <th class="th--lg">Name</th>
-                                <th class="th--xs">Calories</th>
-                                <th class="th--xs th--sm">Proteins</th>
-                                <th class="th--xs">Carbs</th>
-                                <th class="th--xs th--sm">Fats</th>
+                                <th class="th--xs text-center">Calories</th>
+                                <th class="th--xs th--sm text-center">Proteins</th>
+                                <th class="th--xs text-center">Carbs</th>
+                                <th class="th--xs th--sm text-center">Fats</th>
                                 <th class="th--sm"></th>
 
                             </tr>
@@ -410,11 +410,15 @@
 
 
                             <tr key='single-ingredient-table-{{ $ingredient->id }}'>
-                                <td class="fw-semibold">{{ $ingredient->name }}</td>
-                                <td class='fs-14'>{{ $ingredient->freshMacro()->calories * 100 }}</td>
-                                <td class='fs-14'>{{ $ingredient->freshMacro()->proteins * 100 }}</td>
-                                <td class='fs-14'>{{ $ingredient->freshMacro()->carbs * 100 }}</td>
-                                <td class='fs-14'>{{ $ingredient->freshMacro()->fats * 100 }}</td>
+                                <td class="fw-semibold fs-14">{{ $ingredient->name }}</td>
+                                <td class='fs-14 text-warning text-center'>{{ $ingredient->freshMacro()->calories * 100
+                                    }}</td>
+                                <td class='fs-14 text-warning text-center'>{{ $ingredient->freshMacro()->proteins * 100
+                                    }}</td>
+                                <td class='fs-14 text-warning text-center'>{{ $ingredient->freshMacro()->carbs * 100 }}
+                                </td>
+                                <td class='fs-14 text-warning text-center'>{{ $ingredient->freshMacro()->fats * 100 }}
+                                </td>
 
 
 

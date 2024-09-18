@@ -18,6 +18,9 @@ return new class extends Migration {
             $table->string('name', 255)->nullable();
             $table->string('nameURL', 255)->nullable();
 
+            $table->double('price', 15)->unsigned()->nullable()->default(0);
+
+
 
             // 1.2: module
             $table->bigInteger('featureModuleId')->unsigned()->nullable();

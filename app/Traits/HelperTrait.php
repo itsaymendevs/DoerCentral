@@ -102,6 +102,41 @@ trait HelperTrait
 
 
 
+
+
+    // --------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+    protected function getSecondDefaultPreview()
+    {
+
+
+        // 1: getDefaultPreview
+        $defaultPreview = url('assets/plugins/landing/img/helpers/upload.png');
+
+        return $defaultPreview;
+
+
+
+    } // end function
+
+
+
+
+
+
+
+
+
     // --------------------------------------------------------------
     // --------------------------------------------------------------
     // --------------------------------------------------------------
@@ -121,6 +156,7 @@ trait HelperTrait
 
         // 1: getDate
         return $currentDate = date('Y-m-d', strtotime('+4 hours'));
+
 
 
     } // end function

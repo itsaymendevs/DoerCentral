@@ -124,11 +124,11 @@ class Ingredient extends Model
         // 1: brandOrDefault
         if ($brandId) {
 
-            return $this->macros?->where('id', $brandId)->first();
+            return $this->macros()?->where('id', $brandId)->first();
 
         } else {
 
-            return $this->macros?->where('brand', 'Regular')->first();
+            return $this->macros()?->where('brand', 'Regular')->first();
 
         } // end if
 

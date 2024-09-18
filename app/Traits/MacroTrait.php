@@ -52,7 +52,6 @@ trait MacroTrait
             } else {
 
 
-
                 $totalCalories += ($totalSubMacros->calories / $part->totalAfterCookGrams()) * $currentAmount;
                 $totalProteins += ($totalSubMacros->proteins / $part->totalAfterCookGrams()) * $currentAmount;
                 $totalCarbs += ($totalSubMacros->carbs / $part->totalAfterCookGrams()) * $currentAmount;
@@ -89,7 +88,7 @@ trait MacroTrait
 
 
         // 1.2: check part-otherParts => send original-part
-        foreach ($part->parts?->where('isDefault', 1) ?? [] as $mealPart) {
+        foreach ($part?->parts?->where('isDefault', 1) ?? [] as $mealPart) {
 
 
 
@@ -190,7 +189,7 @@ trait MacroTrait
 
 
         // 1.2: check part-otherParts => send original-part
-        foreach ($part->parts?->where('isDefault', 1) ?? [] as $mealPart) {
+        foreach ($part?->parts?->where('isDefault', 1) ?? [] as $mealPart) {
 
 
 

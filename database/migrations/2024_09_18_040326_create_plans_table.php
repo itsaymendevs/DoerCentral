@@ -12,6 +12,23 @@ return new class extends Migration {
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+
+
+            // 1: general
+            $table->string('name', 255)->nullable();
+            $table->string('nameURL', 255)->nullable();
+
+            $table->double('price', 15)->unsigned()->nullable()->default(0);
+
+
+
+
+            // 1.2: description - imageFile
+            $table->text('desc')->nullable();
+            $table->text('imageFile')->nullable();
+
+
+
             $table->timestamps();
         });
     }

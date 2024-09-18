@@ -1,5 +1,5 @@
 <div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="edit-bundle" wire:ignore.self>
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body py-0 px-0">
 
@@ -41,7 +41,7 @@
 
 
                         {{-- name --}}
-                        <div class="col-7">
+                        <div class="col-12">
                             <label class="form-label form--label">Name</label>
                             <input class="form-control form--input mb-4" type="text" required
                                 wire:model='instance.name' />
@@ -50,10 +50,19 @@
 
 
 
+                        {{-- price --}}
+                        <div class="col-6">
+                            <label class="form-label form--label">Price</label>
+                            <input class="form-control form--input mb-4" type="number" step='0.01' min='0' required
+                                wire:model='instance.price' />
+                        </div>
+
+
+
 
 
                         {{-- group --}}
-                        <div class="col-5" wire:ignore>
+                        <div class="col-6" wire:ignore>
                             <label class="form-label form--label">Module</label>
                             <div class="select--single-wrapper mb-4" wire:loading.class='no-events-loading'>
                                 <select id='bundle--module-select-2'
@@ -90,7 +99,7 @@
                                     <thead>
                                         <tr>
                                             <th class="th--lg"></th>
-                                            <th class="th--sm text-center">Include</th>
+                                            <th class="th--sm text-center">Select</th>
                                         </tr>
                                     </thead>
 
@@ -118,13 +127,13 @@
 
 
                                             {{-- feature --}}
-                                            <td class="fs-6 fw-semibold">{{ $feature->name }}</td>
+                                            <td class="fw-semibold fs-14">{{ $feature->name }}</td>
 
                                             {{-- checkbox --}}
                                             <td class="fw-bold">
                                                 <div class="form-check form-switch form-check-inline input--switch">
                                                     <input class="form-check-input pointer"
-                                                        style='width: 65px; height: 18px'
+                                                        style='width: 55px; height: 18px'
                                                         id="bundle-feature-checkbox-{{ $feature->id }}" type="checkbox"
                                                         wire:model='instance.features.{{ $feature->id }}'>
                                                     <label class="form-check-label d-none"

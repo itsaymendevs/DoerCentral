@@ -85,8 +85,8 @@
 
                     {{-- plans --}}
                     <a class="btn navbar--menu-button me-3
-                         @if (Request::is('dashboard/manage/plans', 'dashboard/manage/features', 'dashboard/manage/bundles')) active @endif"
-                        href="{{ route('dashboard.manage-plans.features') }}">Plans</a>
+                         @if (Request::is('dashboard/manage-plans', 'dashboard/manage-plans/*')) active @endif"
+                        href="{{ route('dashboard.manage-plans.plans') }}">Plans</a>
 
 
 

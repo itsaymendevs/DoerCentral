@@ -104,7 +104,7 @@
 
 
                 {{-- table --}}
-                <div class="table-responsive memoir--table  inline--table w-100 mb-4">
+                <div class="table-responsive memoir--table inline--table w-100 mb-4">
                     <table class="table table-bordered" id="memoir--table">
 
 
@@ -114,7 +114,6 @@
                                 <th class="th--xs"></th>
                                 <th class="th--lg">Feature</th>
                                 <th class="th--lg">Module</th>
-
                                 <th class="th--xs"></th>
                             </tr>
                         </thead>

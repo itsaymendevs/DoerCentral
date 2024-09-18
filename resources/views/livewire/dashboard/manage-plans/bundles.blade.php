@@ -109,7 +109,7 @@
 
 
                 {{-- table --}}
-                <div class="table-responsive memoir--table  inline--table w-100 mb-4">
+                <div class="table-responsive memoir--table  vertical inline--table w-100 mb-4">
                     <table class="table table-bordered" id="memoir--table">
 
 
@@ -119,6 +119,7 @@
                                 <th class="th--xs"></th>
                                 <th class="th--lg">Bundle</th>
                                 <th class="th--lg">Features</th>
+                                <th class="th--sm">Price</th>
                                 <th class="th--xs"></th>
                             </tr>
                         </thead>
@@ -147,13 +148,24 @@
 
 
                             <tr>
+
+                                {{-- name --}}
                                 <td class="fw-bold text-center fs-14">{{ $globalSNCounter++ }}</td>
                                 <td class="fw-bold fs-14">{{ $bundle?->name }}</td>
+
+                                {{-- features --}}
                                 <td class='text-warning fs-14'>
                                     @foreach ($bundle?->features ?? [] as $bundleFeature)
                                     <span class='table--bundle-feature'>{{ $bundleFeature?->feature?->name }}</span>
                                     @endforeach
                                 </td>
+
+
+
+                                {{-- price --}}
+                                <td class="fs-5 fw-semibold">{{ number_format($bundle?->price ?? 0, 2) }}<small
+                                        class="ms-1 fw-semibold text-gold fs-10">(AED)</small></td>
+
 
 
 

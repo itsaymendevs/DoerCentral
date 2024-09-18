@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->string('nameURL', 255)->nullable();
 
 
+
+
             // 1.2: module
             $table->bigInteger('featureModuleId')->unsigned()->nullable();
             $table->foreign('featureModuleId')->references('id')->on('feature_modules')->onDelete('cascade');

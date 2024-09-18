@@ -98,6 +98,7 @@ class BundlesEdit extends Component
         $bundle->name = $this->instance->name;
         $bundle->nameURL = $this->getNameURL($this->instance->name);
 
+        $bundle->price = $this->instance->price ?? 0;
         $bundle->featureModuleId = $this->instance->featureModuleId;
 
         $bundle->save();

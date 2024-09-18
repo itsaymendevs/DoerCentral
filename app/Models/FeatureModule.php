@@ -20,6 +20,18 @@ class FeatureModule extends Model
 
 
 
+
+
+    public function bundles()
+    {
+
+        return $this->hasMany(Bundle::class, 'featureModuleId');
+
+    } // end function
+
+
+
+
 } // end model
 
 

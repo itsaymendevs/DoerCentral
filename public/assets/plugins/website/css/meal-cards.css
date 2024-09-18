@@ -1,0 +1,101 @@
+.meal--card-version-image {
+  height: 100%;
+}
+
+.meal--card-content {
+  padding: 10px 0px;
+}
+
+/* version 1 */
+
+.meal--card-version-1 {
+  background-color: var(--background-meal-card);
+  padding: 0px 5px;
+  border-radius: var(--radius-meal-card);
+}
+
+.meal--card-version-1 img {
+  transform: scale(1);
+  height: 100%;
+  width: 100%;
+  max-height: 100px;
+}
+
+@media (min-width: 1px) and (max-width: 991px) {
+  .meal--card-version-1 img {
+    max-height: 150px;
+  }
+}
+
+.meal--card-version-1 * {
+  color: var(--color-meal-card-text);
+}
+
+.meal--card-version-1 .meal--macros {
+  background-color: #2a2d3b;
+  border-color: #2a2d3b;
+}
+
+.meal--card-version-1 .meal--macros-label {
+  border-color: #73778a;
+}
+
+/* info */
+
+.meal--card-version-1 .meal--card-info {
+  padding: 0px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 32px;
+  background-color: white;
+  border-radius: 2px;
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  bottom: 3px;
+  margin: auto;
+  border-radius: 3px;
+}
+
+.meal--card-version-1 .meal--card-info svg, .meal--card-version-1 .meal--card-info i {
+  fill: black;
+  color: black;
+  width: 85%;
+  height: 100%;
+}
+
+/* version 2 */
+
+.meal--card-version-2 {
+  background-color: var(--background-meal-card);
+  padding: 0px 5px;
+  border-radius: var(--radius-meal-card);
+}
+
+.meal--card-version-2 img {
+  transform: scale(1);
+  height: 100%;
+  width: 100%;
+}
+
+@media (min-width: 1px) and (max-width: 991px) {
+  .meal--card-version-2 img {
+    max-height: 150px;
+  }
+}
+
+.meal--card-version-2 * {
+  color: var(--color-meal-card-text);
+}
+
+.meal--card-version-2 .meal--macros {
+  background-color: #2a2d3b;
+  border-color: #2a2d3b;
+}
+
+.meal--card-version-2 .meal--macros-label {
+  border-color: #73778a;
+}
+

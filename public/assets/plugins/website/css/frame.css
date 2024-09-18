@@ -1,0 +1,77 @@
+/* navmenu */
+
+.navmenu {
+  margin-bottom: 25px;
+  margin-top: 30px;
+}
+
+.navmenu .navmenu--logo {
+  width: 100%;
+  max-width: 170px;
+  height: 80px;
+}
+
+.navmenu--links {
+  color: var(--color-navmenu-links);
+  max-width: 100px;
+  border-radius: 0px;
+  padding: 1px 0px;
+  font-size: 15px;
+}
+
+.navmenu--links:last-of-type {
+  margin-right: 0px;
+}
+
+/* login */
+
+.navmenu--login {
+  border: 3px solid var(--border-login-button);
+  border-radius: var(--radius-button);
+  width: 100px;
+  color: white;
+}
+
+.navmenu--login:hover, .navmenu--login:focus {
+  border: 3px solid var(--border-login-button-hover);
+}
+
+.navmenu--mobile-menu {
+  background-color: var(--background-menu);
+  width: 45px;
+  height: 35px;
+  border-radius: var(--radius-button);
+  padding: 0px;
+}
+
+.navmenu--mobile-menu i, .navmenu--mobile-menu svg {
+  color: black;
+}
+
+/* cart */
+
+.btn--link.navmenu--cart {
+  padding: 0px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn--link.navmenu--cart i {
+  color: white;
+  width: 100%;
+  font-size: 28px;
+}
+
+/* mobile-menu */
+
+.navmenu--mobile-menu svg, .navmenu--mobile-menu i {
+  font-size: 21px;
+}
+
+/* sectionWrapper */
+
+.section--wrapper {
+  position: relative;
+}
+

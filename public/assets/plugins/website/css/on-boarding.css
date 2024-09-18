@@ -1,0 +1,135 @@
+/* wizard */
+
+.wizard--steps-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wizard--steps {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.wizard--steps svg, .wizard-steps i {
+  width: 50px;
+  margin-bottom: 10px;
+  height: 50px;
+  color: var(--color-steps-icon);
+  z-index: 1;
+}
+
+@media (min-width: 1px) and (max-width: 767px) {
+  .wizard--steps svg, .wizard-steps i {
+    width: 60px;
+    height: 35px;
+  }
+}
+
+.wizard--steps.active svg, .wizard-steps.active i {
+  color: var(--color-steps-icon-active);
+}
+
+.wizard--steps span {
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (min-width: 1px) and (max-width: 575px) {
+  .wizard--steps span {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .wizard--steps span {
+    font-size: 12px;
+  }
+}
+
+.wizard--steps-hr {
+  width: 10vw;
+}
+
+@media (min-width: 1px) and (max-width: 575px) {
+  .wizard--steps-hr {
+    width: 1vw;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .wizard--steps-hr {
+    width: 7vw;
+  }
+}
+
+.wizard--steps-hr hr {
+  margin-bottom: 40px;
+  width: 150%;
+  border-color: #373a50;
+  opacity: 1;
+}
+
+@media (min-width: 1px) and (max-width: 575px) {
+  .wizard--steps-hr hr {
+    margin-bottom: 40px;
+    width: 370%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .wizard--steps-hr hr {
+    width: 100%;
+  }
+}
+
+/* layout */
+
+.layout--options {
+  padding: 20px 15px;
+  border-radius: var(--radius-options-card);
+  background-color: var(--background-options-card);
+}
+
+.layout--options .premium--icon {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+.layout--radio {
+  margin: 0px;
+  width: 25px;
+  height: 25px;
+}
+
+/* welcome */
+
+.welcome--card {
+  padding: 20px 15px;
+  min-height: 300px;
+  display: flex;
+  background-color: var(--background-options-card);
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--radius-options-card);
+}
+
+.welcome--card-number {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: var(--background-options-card-number);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 0px 0px 0px 4px;
+}
+

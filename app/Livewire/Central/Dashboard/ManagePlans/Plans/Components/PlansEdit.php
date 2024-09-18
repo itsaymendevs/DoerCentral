@@ -182,16 +182,21 @@ class PlansEdit extends Component
         // 1.5: loop - bundles - removePrevious
         PlanBundle::where('planId', $plan->id)?->delete();
 
+
         foreach ($this->instance?->bundles ?? [] as $key => $bundle) {
 
 
             // 2.6: create instance
-            $planBundle = new PlanBundle();
+            if ($bundle) {
 
-            $planBundle->bundleId = $bundle;
-            $planBundle->planId = $plan->id;
+                $planBundle = new PlanBundle();
 
-            $planBundle->save();
+                $planBundle->bundleId = $bundle;
+                $planBundle->planId = $plan->id;
+
+                $planBundle->save();
+
+            } // end if
 
 
         } // end loop

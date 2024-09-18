@@ -51,6 +51,29 @@ class Plan extends Model
 
 
 
+    public function bundlesInArrayIDs()
+    {
+
+
+        // 1: getBundles - IDs
+        $bundlesIDs = $this->bundles()?->get()?->pluck(value: 'bundleId')?->toArray() ?? [];
+
+
+        // 1.2: bundles
+        $bundles = Bundle::whereIn(column: 'id', values: $bundlesIDs)?->pluck('id')?->toArray() ?? [];
+
+        return $bundles;
+
+
+
+    } // end function
+
+
+
+
+
+
+
 
     public function bundlesInForm()
     {

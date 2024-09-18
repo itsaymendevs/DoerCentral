@@ -28,7 +28,7 @@
 
                         {{-- logout --}}
                         <a class="dropdown-item d-flex align-items-center justify-content-center "
-                            href="{{ route('dashboard.login') }}">
+                            href="{{ route('central.dashboard.login') }}">
                             <svg class="bi bi-door-open me-2" style="font-size: 21px;"
                                 xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16">
@@ -66,8 +66,8 @@
 
 
                     {{-- brands --}}
-                    <a href="{{ route('dashboard.brands') }}" class="btn navbar--menu-button me-3
-                        @if (Request::is('dashboard/brands', 'dashboard/brands/*')) active @endif">Brands</a>
+                    <a href="{{ route('central.dashboard.brands') }}" class="btn navbar--menu-button me-3
+                        @if (Request::is('central/dashboard/brands', 'central/dashboard/brands/*')) active @endif">Brands</a>
 
 
 
@@ -76,8 +76,8 @@
 
                     {{-- inventory --}}
                     <a class="btn navbar--menu-button me-3
-                    @if (Request::is('dashboard/inventory', 'dashboard/inventory/*')) active @endif"
-                        href="{{ route('dashboard.inventory.ingredients') }}">Inventory</a>
+                    @if (Request::is('central/dashboard/inventory', 'central/dashboard/inventory/*')) active @endif"
+                        href="{{ route('central.dashboard.inventory.ingredients') }}">Inventory</a>
 
 
 
@@ -85,8 +85,8 @@
 
                     {{-- plans --}}
                     <a class="btn navbar--menu-button me-3
-                         @if (Request::is('dashboard/manage-plans', 'dashboard/manage-plans/*')) active @endif"
-                        href="{{ route('dashboard.manage-plans.plans') }}">Plans</a>
+                         @if (Request::is('central/dashboard/manage-plans', 'central/dashboard/manage-plans/*')) active @endif"
+                        href="{{ route('central.dashboard.manage-plans.plans') }}">Plans</a>
 
 
 

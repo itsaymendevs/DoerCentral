@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'lazy_placeholder' => 'livewire.loaders.logo-loader',
+    'lazy_placeholder' => 'livewire.central.loaders.logo-loader',
 
     /*
     |---------------------------------------------------------------------------

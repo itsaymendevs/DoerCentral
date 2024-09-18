@@ -157,7 +157,7 @@
 
 
         {{-- loader --}}
-        <livewire:loaders.logo-loader />
+        <livewire:central.loaders.logo-loader />
 
 
 

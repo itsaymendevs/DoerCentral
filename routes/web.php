@@ -1,19 +1,19 @@
 <?php
 
 
-use App\Livewire\Dashboard\Brands;
-use App\Livewire\Dashboard\Brands\BrandsBackup;
-use App\Livewire\Dashboard\Brands\BrandsConfigurations;
-use App\Livewire\Dashboard\Brands\BrandsDetails;
-use App\Livewire\Dashboard\Brands\BrandsLicense;
-use App\Livewire\Dashboard\Inventory\Configurations;
-use App\Livewire\Dashboard\Inventory\Ingredients;
-use App\Livewire\Dashboard\Inventory\Settings\ConversionIngredients;
-use App\Livewire\Dashboard\Inventory\Settings as InventorySettings;
-use App\Livewire\Dashboard\ManagePlans\Bundles;
-use App\Livewire\Dashboard\ManagePlans\Features;
-use App\Livewire\Dashboard\ManagePlans\Plans;
-use App\Livewire\Login;
+use App\Livewire\Central\Dashboard\Brands;
+use App\Livewire\Central\Dashboard\Brands\BrandsBackup;
+use App\Livewire\Central\Dashboard\Brands\BrandsConfigurations;
+use App\Livewire\Central\Dashboard\Brands\BrandsDetails;
+use App\Livewire\Central\Dashboard\Brands\BrandsLicense;
+use App\Livewire\Central\Dashboard\Inventory\Configurations;
+use App\Livewire\Central\Dashboard\Inventory\Ingredients;
+use App\Livewire\Central\Dashboard\Inventory\Settings\ConversionIngredients;
+use App\Livewire\Central\Dashboard\Inventory\Settings as InventorySettings;
+use App\Livewire\Central\Dashboard\ManagePlans\Bundles;
+use App\Livewire\Central\Dashboard\ManagePlans\Features;
+use App\Livewire\Central\Dashboard\ManagePlans\Plans;
+use App\Livewire\Central\Login;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -107,8 +107,8 @@ if (env('APP_ENV') == 'production') {
 
 
 // 1: Login
-Route::get('/', Login::class)->name('dashboard.login');
-Route::get('login', Login::class)->name('dashboard.login');
+Route::get('central', Login::class)->name('central.dashboard.login');
+Route::get('central/login', Login::class)->name('central.dashboard.login');
 
 
 
@@ -123,22 +123,22 @@ Route::middleware(['auth.user'])->group(function () {
 
 
     // 1: brands
-    Route::get('dashboard/brands', Brands::class)->name('dashboard.brands');
+    Route::get('central/dashboard/brands', Brands::class)->name('central.dashboard.brands');
 
 
 
 
     // 1.2: brands - profile
-    Route::get('dashboard/brands/{id}', BrandsDetails::class)->name('dashboard.singleBrand');
+    Route::get('central/dashboard/brands/{id}', BrandsDetails::class)->name('central.dashboard.singleBrand');
 
 
 
 
 
     // 1.3: brands- setup - license
-    Route::get('dashboard/brands/{id}/setup', BrandsConfigurations::class)->name('dashboard.singleBrandSetup');
-    Route::get('dashboard/brands/{id}/license', BrandsLicense::class)->name('dashboard.singleBrandLicense');
-    Route::get('dashboard/brands/{id}/backup', BrandsBackup::class)->name('dashboard.singleBrandBackup');
+    Route::get('central/dashboard/brands/{id}/setup', BrandsConfigurations::class)->name('central.dashboard.singleBrandSetup');
+    Route::get('central/dashboard/brands/{id}/license', BrandsLicense::class)->name('central.dashboard.singleBrandLicense');
+    Route::get('central/dashboard/brands/{id}/backup', BrandsBackup::class)->name('central.dashboard.singleBrandBackup');
 
 
 
@@ -162,7 +162,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
     // 2: inventory - ingredients - store - update - remove
-    Route::get('dashboard/inventory/ingredients', Ingredients::class)->name('dashboard.inventory.ingredients');
+    Route::get('central/dashboard/inventory/ingredients', Ingredients::class)->name('central.dashboard.inventory.ingredients');
+
 
 
 
@@ -172,15 +173,16 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
     // 2.1: inventory - settings - store - update - remove
-    Route::get('dashboard/inventory/settings', InventorySettings::class)->name('dashboard.inventory.settings');
+    Route::get('central/dashboard/inventory/settings', InventorySettings::class)->name('central.dashboard.inventory.settings');
 
 
 
 
 
     // 2.1.2: inventory - settings - conversions - ingredients
-    Route::get('dashboard/inventory/settings/conversions/{id}', ConversionIngredients::class)->name('dashboard.inventory.settings.conversionIngredients');
+    Route::get('central/dashboard/inventory/settings/conversions/{id}', ConversionIngredients::class)->name('central.dashboard.inventory.settings.conversionIngredients');
 
 
 
@@ -207,10 +209,11 @@ Route::middleware(['auth.user'])->group(function () {
 
 
     // 3: manage - plans - bundles - features
-    Route::get('dashboard/manage-plans', action: Plans::class)->name('dashboard.manage-plans.plans');
+    Route::get('central/dashboard/manage-plans', action: Plans::class)->name('central.dashboard.manage-plans.plans');
 
-    Route::get('dashboard/manage-plans/bundles', action: Bundles::class)->name('dashboard.manage-plans.bundles');
-    Route::get('dashboard/manage-plans/features', action: Features::class)->name('dashboard.manage-plans.features');
+    Route::get('central/dashboard/manage-plans/bundles', action: Bundles::class)->name('central.dashboard.manage-plans.bundles');
+
+    Route::get('central/dashboard/manage-plans/features', action: Features::class)->name('central.dashboard.manage-plans.features');
 
 
 

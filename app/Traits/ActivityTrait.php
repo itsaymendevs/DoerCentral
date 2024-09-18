@@ -22,7 +22,7 @@ trait ActivityTrait
         // :: checkSession
         if (empty(session('userId'))) {
 
-            return $this->redirect(route('dashboard.login'));
+            return $this->redirect(route('central.dashboard.login'));
 
         } // end if
 

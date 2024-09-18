@@ -21,7 +21,7 @@ class UserMiddleware
 
 
         // 2: returnLogin
-        return redirect()->route('dashboard.login');
+        return redirect()->route('central.dashboard.login');
 
     } // end function
 

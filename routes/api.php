@@ -37,11 +37,11 @@ use Illuminate\Support\Facades\Route;
 
 
 // 1: inventory - ingredients - storeIngredient - update - remove
-Route::post('/dashboard/inventory/ingredients/store', [InventoryController::class, 'storeIngredient']);
-Route::post('/dashboard/inventory/ingredients/update', [InventoryController::class, 'updateIngredient']);
+Route::post('central/dashboard/inventory/ingredients/store', [InventoryController::class, 'storeIngredient']);
+Route::post('central/dashboard/inventory/ingredients/update', [InventoryController::class, 'updateIngredient']);
 
 
-Route::post('/dashboard/inventory/ingredients/remove', [InventoryController::class, 'removeIngredient']);
+Route::post('central/dashboard/inventory/ingredients/remove', [InventoryController::class, 'removeIngredient']);
 
 
 
@@ -56,11 +56,11 @@ Route::post('/dashboard/inventory/ingredients/remove', [InventoryController::cla
 
 
 // 1.2: inventory - ingredients - storeBrand - update - remove
-Route::post('/dashboard/inventory/ingredients/brands/store', [InventoryExtraController::class, 'storeIngredientBrand']);
-Route::post('/dashboard/inventory/ingredients/brands/update', [InventoryExtraController::class, 'updateIngredientBrand']);
+Route::post('central/dashboard/inventory/ingredients/brands/store', [InventoryExtraController::class, 'storeIngredientBrand']);
+Route::post('central/dashboard/inventory/ingredients/brands/update', [InventoryExtraController::class, 'updateIngredientBrand']);
 
 
-Route::post('/dashboard/inventory/ingredients/brands/remove', [InventoryExtraController::class, 'removeIngredientBrand']);
+Route::post('central/dashboard/inventory/ingredients/brands/remove', [InventoryExtraController::class, 'removeIngredientBrand']);
 
 
 
@@ -79,10 +79,10 @@ Route::post('/dashboard/inventory/ingredients/brands/remove', [InventoryExtraCon
 
 
 // 1.3: inventory - settings - storeConversion - update - remove
-Route::post('/dashboard/inventory/settings/conversions/store', [InventoryExtraController::class, 'storeConversion']);
-Route::post('/dashboard/inventory/settings/conversions/update', [InventoryExtraController::class, 'updateConversion']);
+Route::post('central/dashboard/inventory/settings/conversions/store', [InventoryExtraController::class, 'storeConversion']);
+Route::post('central/dashboard/inventory/settings/conversions/update', [InventoryExtraController::class, 'updateConversion']);
 
-Route::post('/dashboard/inventory/settings/conversions/remove', [InventoryExtraController::class, 'removeConversion']);
+Route::post('central/dashboard/inventory/settings/conversions/remove', [InventoryExtraController::class, 'removeConversion']);
 
 
 
@@ -95,11 +95,11 @@ Route::post('/dashboard/inventory/settings/conversions/remove', [InventoryExtraC
 
 
 // 1.4: inventory - settings - conversions - ingredients - store - update - remove
-Route::post('/dashboard/inventory/settings/conversions/ingredients/store', [InventoryExtraController::class, 'storeConversionIngredient']);
+Route::post('central/dashboard/inventory/settings/conversions/ingredients/store', [InventoryExtraController::class, 'storeConversionIngredient']);
 
-Route::post('/dashboard/inventory/settings/conversions/ingredients/update', [InventoryExtraController::class, 'updateConversionIngredient']);
+Route::post('central/dashboard/inventory/settings/conversions/ingredients/update', [InventoryExtraController::class, 'updateConversionIngredient']);
 
-Route::post('/dashboard/inventory/settings/conversions/ingredients/remove', [InventoryExtraController::class, 'removeConversionIngredient']);
+Route::post('central/dashboard/inventory/settings/conversions/ingredients/remove', [InventoryExtraController::class, 'removeConversionIngredient']);
 
 
 
@@ -130,7 +130,7 @@ Route::post('/dashboard/inventory/settings/conversions/ingredients/remove', [Inv
 
 
 // 1: sync - inventory
-Route::post('/sync/inventory', [SyncController::class, 'syncInventory']);
+Route::post('central/sync/inventory', [SyncController::class, 'syncInventory']);
 
 
 
@@ -146,7 +146,7 @@ Route::post('/sync/inventory', [SyncController::class, 'syncInventory']);
 
 
 // 2: sync - profile
-Route::post('/sync/profile', [SyncController::class, 'syncProfile']);
+Route::post('central/sync/profile', [SyncController::class, 'syncProfile']);
 
 
 
@@ -170,7 +170,7 @@ Route::post('/sync/profile', [SyncController::class, 'syncProfile']);
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
-// ** ------------------------ WEBSITE - CLIENT -------------------------- **
+// ** --------------------- WEBSITE - ON-BOARING -------------------------- **
 
 
 
@@ -179,7 +179,7 @@ Route::post('/sync/profile', [SyncController::class, 'syncProfile']);
 
 
 // 1: website - subscription - customer - store
-Route::post('/subscription/clients/store', [ClientSubscriptionController::class, 'storeLead']);
+Route::post('central/subscription/clients/store', [ClientSubscriptionController::class, 'storeLead']);
 
 
 

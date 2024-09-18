@@ -22,7 +22,7 @@ class NavbarNotifications extends Component
 
 
         // 1: makeRequest
-        $this->makeRequest('dashboard/notifications/update', []);
+        $this->makeRequest('central/dashboard/notifications/update', []);
 
 
 

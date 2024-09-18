@@ -80,7 +80,7 @@ hr {
 .mealType--checkbox input {
     margin: 0px !important;
     font-size: 25px;
-    height: 14px;
+    height: 13px;
     background-color: var(--color-theme-heading) !important;
 }
 
@@ -94,7 +94,7 @@ hr {
 
 .mealType--checkbox label {
     margin-left: 15px;
-    font-size: 17px;
+    font-size: 15px;
     border-bottom: 1px solid var(--bg-golden);
 }
 

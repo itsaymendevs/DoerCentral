@@ -34,7 +34,7 @@ tbody tr {
 }
 
 .memoir--table tr td {
-    font-size: 13px;
+    font-size: 12px;
     text-align: center;
     vertical-align: middle;
     padding-top: 12px;
@@ -51,23 +51,10 @@ tbody tr {
 }
 
 /* startTable */
-.memoir--table-start thead th,
-.memoir--table-start tbody td {
+.memoir--table-start thead th {
     text-align: left !important;
-    padding-left: 15px !important;
+    padding-left: 5px !important;
 }
-
-.memoir--table-start-lg thead th,
-.memoir--table-start-lg tbody td {
-    text-align: left !important;
-    padding-left: 20px !important;
-}
-
-.memoir--table-start .table--counter {
-    text-align: center !important;
-    padding: 0px !important;
-}
-
 /* subheader */
 
 .subheader {
@@ -151,4 +138,13 @@ tbody tr {
     padding: 15px 15px;
     margin-top: 5px;
     border-top: 1px solid #87b2a90d;
+}
+
+.file--input {
+    visibility: hidden;
+    height: 0px !important;
+    width: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    position: absolute;
 }

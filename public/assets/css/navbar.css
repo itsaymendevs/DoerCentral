@@ -29,13 +29,14 @@
 .navbar--menu {
     /*box-shadow: var(--theme-shadow);*/
     background-color: var(--color-card);
-    height: 70px;
+    height: 65px;
     padding: 0px 20px;
     border-radius: var(--menu-radius);
 }
 
 .navbar--menu-button {
     border-radius: 0px;
+    font-size: 15px;
     border-bottom: 2px solid transparent;
 }
 

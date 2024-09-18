@@ -173,3 +173,8 @@ input[type="date"] {
     transform: rotate(45deg);
     margin-right: 12px;
 }
+
+.home--swiper img {
+    padding: 0px !important;
+    object-fit: cover !important;
+}

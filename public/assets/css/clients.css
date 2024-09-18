@@ -85,8 +85,8 @@
 }
 
 .tabs--wrap .nav-tabs a {
-    padding: 8px 20px;
-    font-size: 14px;
+    padding: 8px 15px;
+    font-size: 13px;
     color: var(--color-theme);
     display: inline-block;
     font-weight: 600 !important;

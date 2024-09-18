@@ -1,0 +1,197 @@
+/* colors */
+
+/* root */
+
+:root {
+    --color-body: #fff;
+    --color-card: #f9f9f9;
+    --color-theme-1: #f9a474;
+    --color-theme-2: #c6e6be;
+    --color-theme-3: #8dc1e6;
+    --color-theme-4: #fcc43d;
+
+    --color-theme: #212529;
+    --color-theme-heading: #f7941d;
+    --color-theme-light: #a17a6d;
+
+    --color-doc-desc: #ccb9a6;
+    --color-black: #656565;
+    --color-pitch-black: #14172e;
+    --color-solid-black: #000;
+    --color-login: #362621;
+    --color-login-dark: #2d1f1b;
+    --bg-theme: #23262b;
+    --bg-theme-secondary: #88b3aa;
+    --doc-border-color: #02020222;
+    --bg-theme-dark: #6e6e6e;
+    --bg-alternate: #f8f8f8;
+    --color-border: #c5c5c5;
+    --bg-search: #faf6f4;
+    --radius: 8px;
+    --bs-bg-opacity: 1;
+    --badge-radius: 8px;
+    --searchbar-radius: 12px;
+    --menu-radius: 12px;
+    --card-radius: 12px;
+    --card-logo-radius: 50%;
+    --theme-shadow: 0px 2px 6px #23262b;
+    --login-card-shadow: 0px 5px 12px #2734321a;
+    --login-card-hover-shadow: 0px 15px 20px #3449451a;
+    --home-card-shadow: 0px 5px 12px #96d0c41a;
+    --home-card-hover-shadow: 0px 8px 14px var(--color-body);
+    --tab-content-shadow: 0px 4px 6px #23262b;
+    --btn-height: 48px;
+    --btn-height-sm: 35px;
+    --btn-radius: 8px;
+    --navbar-radius: 6px;
+    --navbar-btn-height: 60px;
+    --input-border-color: #c7c7c7;
+    --input-border-color-hover: #c5c5c5;
+    --input-bg: #fff;
+    --input-radius: 8px;
+    --input-padding: 0px 18px;
+    --select-padding: 15px;
+    --select-padding-extra: 35px;
+    --input-font: 12px;
+    --input-sm-font: 12px;
+    --input-height: 38px;
+    --input-min-height: 34px;
+    --result-bg: #eee;
+    --bg-golden: #ffc1076e;
+    --bg-golden-dark: #ffc107b3;
+    --result-bg-odd: #f8f8f8;
+    --bg-tabs: #23262b;
+    --whitesmoke: whitesmoke;
+    --table-border-color: #eaeaea;
+    --edit-color: var(--color-theme-secondary);
+    --client-logo-shadow: 0px 3px 6px #00000029;
+    --delete-color: #ff3b42;
+    --slow-transition: 0.8s all ease-in-out;
+    --mid-transition: 0.5s all ease-in-out;
+    --ingredient-color: #88b3aa;
+    --meal-color: #ff7065;
+    --subrecipe-color: var(--color-theme);
+    --sauce-color: #e8bdfff2;
+    --snack-color: #ffcacd;
+    --side-color: #afc8de;
+    --drink-color: #ffadd4;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+* {
+    color: var(--color-theme);
+}
+
+.input--with-label label {
+    color: white;
+}
+
+.input--with-label label svg {
+    fill: white;
+}
+
+.form--input.readonly {
+    background-color: #fafafa;
+}
+
+.btn--scheme-1 {
+    background-color: #87b2a9 !important;
+}
+
+.btn--scheme-1:hover,
+.btn--scheme-1:focus,
+.btn--scheme-1:active {
+    background-color: #88b3aa !important;
+}
+
+.text-gold {
+    color: #88b3aa;
+}
+
+.sidebar--menu {
+    background-color: white;
+}
+
+.sidebar--menu .btn--close svg {
+    fill: white;
+}
+
+.sidebar--menu .btn--scheme {
+    color: #111;
+    border-bottom: 2px solid #111;
+}
+
+.button--checkbox.active {
+    background-color: #88b3aa !important;
+    color: white;
+}
+
+.hr--title .form--label {
+    color: #111;
+}
+
+.hr--title .form--label svg {
+    fill: #ff9800 !important;
+}
+
+.tabs--wrap .nav-tabs {
+    background-color: #f3f3f3;
+}
+
+.btn.disabled {
+    background-color: #e3e3e3;
+}
+
+.btn--scheme-outline-1 {
+    border-color: #88b3aa;
+    color: #88b3aa;
+}
+
+.btn--scheme-outline-1:hover,
+.btn--scheme-outline-1:focus {
+    background-color: #88b3aa !important;
+    color: white !important;
+    border-color: #88b3aa !important;
+}
+
+.swal2-popup.swal2-toast h2 {
+    color: #111;
+}
+
+.menu--calendar-days.disabled {
+    background-color: whitesmoke !important;
+}
+
+.btn--scheme.disabled svg {
+    fill: #535353 !important;
+}
+
+.btn.customer--view-meal:hover,
+.btn.customer--view-meal:focus {
+    background-color: #87b2a9;
+}
+
+.consist--wrapper h6 svg {
+    fill: #88b3aa !important;
+}
+
+::-webkit-scrollbar {
+    height: 3px;
+    background: inherit;
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e3e3e3;
+    -webkit-border-radius: 0ex;
+    -webkit-box-shadow: none;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+    height: 2px;
+}

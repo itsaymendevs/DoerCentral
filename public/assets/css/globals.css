@@ -53,7 +53,7 @@
     --input-padding: 0px 18px;
     --select-padding: 15px;
     --select-padding-extra: 35px;
-    --input-font: 13px;
+    --input-font: 12px;
     --input-sm-font: 12px;
     --input-height: 38px;
     --input-min-height: 34px;
@@ -178,8 +178,8 @@
     height: 32px !important;
 }
 
-.h-33 {
-    height: 33px !important;
+.h-34 {
+    height: 34px !important;
 }
 
 .h-48 {

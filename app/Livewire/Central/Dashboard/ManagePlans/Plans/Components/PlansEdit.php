@@ -50,13 +50,10 @@ class PlansEdit extends Component
 
 
 
+        // 1.2: setFilePreview
         $this->instance->imageFileName = $this->instance->imageFile;
 
 
-
-
-
-        // 1.2: setFilePreview
         $preview = url('storage/plans/' . $this->instance->imageFile);
         $this->dispatch('setFilePreview', filePreview: 'plan--preview-2', defaultPreview: $preview);
 
@@ -215,9 +212,10 @@ class PlansEdit extends Component
 
         $this->dispatch('resetSelect');
         $this->dispatch('refreshViews');
-        $this->makeAlert('success', 'Plan has been update');
         $this->dispatch('closeModal', modal: '#edit-plan .btn--close');
+        $this->dispatch('resetFile', file: 'plan--file-2', defaultPreview: $this->getDefaultPreview());
 
+        $this->makeAlert('success', 'Plan has been update');
 
 
     } // end function

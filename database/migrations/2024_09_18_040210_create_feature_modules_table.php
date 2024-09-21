@@ -18,6 +18,9 @@ return new class extends Migration {
             $table->string('name', 100)->nullable();
             $table->string('nameURL', 100)->nullable();
 
+            $table->text('desc')->nullable();
+
+
             $table->timestamps();
         });
     }

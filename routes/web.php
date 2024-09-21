@@ -12,6 +12,7 @@ use App\Livewire\Central\Dashboard\Inventory\Settings\ConversionIngredients;
 use App\Livewire\Central\Dashboard\Inventory\Settings as InventorySettings;
 use App\Livewire\Central\Dashboard\ManagePlans\Bundles;
 use App\Livewire\Central\Dashboard\ManagePlans\Features;
+use App\Livewire\Central\Dashboard\ManagePlans\Modules;
 use App\Livewire\Central\Dashboard\ManagePlans\Plans;
 use App\Livewire\Central\Login;
 use App\Livewire\Home;
@@ -232,14 +233,14 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-    // 3: manage - plans - bundles - features
+    // 3: manage - plans - bundles - features - modules
     Route::get('central/dashboard/manage-plans', action: Plans::class)->name('central.dashboard.manage-plans.plans');
 
     Route::get('central/dashboard/manage-plans/bundles', action: Bundles::class)->name('central.dashboard.manage-plans.bundles');
 
     Route::get('central/dashboard/manage-plans/features', action: Features::class)->name('central.dashboard.manage-plans.features');
 
-
+    Route::get('central/dashboard/manage-plans/modules', action: Modules::class)->name('central.dashboard.manage-plans.modules');
 
 
 

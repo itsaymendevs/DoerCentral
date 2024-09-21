@@ -84,7 +84,7 @@
 
 
         {{-- jquery --}}
-        <script src="{{url('assets/plugins/website/js/jquery.js')}}"></script>
+        <script src="{{url('assets/plugins/website/js/jquery.min.js')}}"></script>
 
 
 

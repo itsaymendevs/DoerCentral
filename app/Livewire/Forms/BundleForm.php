@@ -12,8 +12,12 @@ class BundleForm extends Form
     #[Validate('required')]
     public $name, $featureModuleId, $price;
 
-    public $id, $nameURL, $features = [];
+    public $id, $nameURL, $desc, $imageFile, $features = [], $isDefaults = [];
 
+
+
+    // :: helpers
+    public $imageFileName;
 
 
 } // end class

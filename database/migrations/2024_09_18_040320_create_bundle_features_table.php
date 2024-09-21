@@ -24,6 +24,13 @@ return new class extends Migration {
 
 
 
+            // 1.2: isDefault
+            $table->boolean('isDefault')->unsigned()->nullable()->default(0);
+
+
+
+
+
             $table->timestamps();
         });
     }

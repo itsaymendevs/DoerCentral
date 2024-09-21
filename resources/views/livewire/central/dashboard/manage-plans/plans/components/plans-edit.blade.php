@@ -217,14 +217,14 @@
                                                                 class="form-check form-switch form-check-inline input--switch">
                                                                 <input class="form-check-input pointer"
                                                                     style='width: 55px; height: 18px'
-                                                                    id="module-bundle-radio-{{ $bundle->id }}"
+                                                                    id="module-bundle-radio-edit-{{ $bundle->id }}"
                                                                     type="radio" value='{{ $bundle->id }}'
-                                                                    name='module-bundle-radio-{{ $module->id }}'
+                                                                    name='module-bundle-radio-edit-{{ $module->id }}'
                                                                     wire:loading.attr='disabled'
                                                                     wire:target='resetModule, update, remount'
                                                                     wire:model='instance.bundles.{{ $module->id }}'>
                                                                 <label class="form-check-label d-none"
-                                                                    for="module-bundle-radio-{{ $bundle->id }}">Label</label>
+                                                                    for="module-bundle-radio-edit-{{ $bundle->id }}">Label</label>
                                                             </div>
                                                         </td>
 

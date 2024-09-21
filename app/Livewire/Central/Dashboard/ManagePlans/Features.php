@@ -41,6 +41,33 @@ class Features extends Component
 
 
 
+    // -----------------------------------------------------------
+
+
+
+
+
+
+    public function toggleDefault($id)
+    {
+
+
+        // 1: get instance
+        $feature = Feature::find($id);
+
+        $feature->isDefault = ! $feature->isDefault;
+        $feature->save();
+
+
+    } // end function
+
+
+
+
+
+
+
+
 
     // -----------------------------------------------------------
 

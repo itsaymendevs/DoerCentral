@@ -36,6 +36,12 @@ class Bundle extends Model
 
 
 
+
+
+
+
+
+
     public function featuresInForm()
     {
 
@@ -61,6 +67,44 @@ class Bundle extends Model
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+    public function defaultsInForm()
+    {
+
+
+        // 1: get instance
+        $defaultsInForm = [];
+        $bundleFeatures = $this->features()?->get();
+
+
+
+        // 1.2: loop - bundleFeatures
+        foreach ($bundleFeatures ?? [] as $bundleFeature) {
+
+            $defaultsInForm[$bundleFeature?->featureId] = boolval($bundleFeature?->isDefault ?? false);
+
+        } // end loop
+
+
+
+
+
+        return $defaultsInForm ?? [];
+
+
+    } // end function
+
+
+
 
 
 

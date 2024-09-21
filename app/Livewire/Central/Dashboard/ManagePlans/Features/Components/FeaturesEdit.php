@@ -78,6 +78,7 @@ class FeaturesEdit extends Component
         // 2: get instance
         $feature = Feature::find($this->instance->id);
         $feature->name = $this->instance->name;
+        $feature->price = $this->instance->price ?? 0;
 
         $feature->save();
 

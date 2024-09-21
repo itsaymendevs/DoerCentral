@@ -9,12 +9,15 @@ use App\Models\Feature;
 use App\Models\FeatureModule;
 use App\Traits\HelperTrait;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class BundlesCreate extends Component
 {
 
 
     use HelperTrait;
+    use WithFileUploads;
+
 
 
     // :: variables
@@ -44,14 +47,28 @@ class BundlesCreate extends Component
 
 
 
+        // 1.2: uploadFile
+        if ($this->instance->imageFile)
+            $this->instance->imageFileName = $this->uploadFile($this->instance->imageFile, 'bundles', 'BUN');
+
+
+
+
+
+
+
 
         // 2: create instance
         $bundle = new Bundle();
 
         $bundle->name = $this->instance->name;
         $bundle->nameURL = $this->getNameURL($this->instance->name);
-
         $bundle->price = $this->instance->price ?? 0;
+        $bundle->imageFile = $this->instance->imageFileName ?? null;
+
+
+
+        // 2.1: featureModule
         $bundle->featureModuleId = $this->instance->featureModuleId;
 
         $bundle->save();
@@ -70,7 +87,6 @@ class BundlesCreate extends Component
 
 
 
-
         // 2.5: loop - features
         foreach ($this->instance?->features ?? [] as $feature => $isChecked) {
 
@@ -83,10 +99,26 @@ class BundlesCreate extends Component
                 $bundleFeature->featureId = $feature;
                 $bundleFeature->bundleId = $bundle->id;
 
+
+
+                // 2.7: isDefault
+                if ($this->instance?->isDefaults && ($this->instance?->isDefaults[$feature] ?? false)) {
+
+                    $bundleFeature->isDefault = true;
+
+                } else {
+
+                    $bundleFeature->isDefault = false;
+
+                } // end if
+
+
+
                 $bundleFeature->save();
 
-            } // end if
 
+
+            } // end if
 
         } // end loop
 
@@ -103,10 +135,11 @@ class BundlesCreate extends Component
 
         $this->dispatch('resetSelect');
         $this->dispatch('refreshViews');
-        $this->makeAlert('success', 'Bundle has been created');
         $this->dispatch('closeModal', modal: '#new-bundle .btn--close');
+        $this->dispatch('resetFile', file: 'bundle--file-1', defaultPreview: $this->getDefaultPreview());
 
 
+        $this->makeAlert('success', 'Bundle has been created');
 
     } // end function
 
@@ -137,6 +170,11 @@ class BundlesCreate extends Component
         $featureModules = FeatureModule::all();
         $features = Feature::where('featureModuleId', $this->instance?->featureModuleId)?->get();
 
+
+
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
 
 
 

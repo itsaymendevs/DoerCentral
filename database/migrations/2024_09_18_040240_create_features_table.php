@@ -18,10 +18,16 @@ return new class extends Migration {
             $table->string('name', 255)->nullable();
             $table->string('nameURL', 255)->nullable();
 
+            $table->double('price', 15)->unsigned()->nullable()->default(0);
 
 
 
-            // 1.2: module
+            // 1.2: isDefault
+            $table->boolean('isDefault')->unsigned()->nullable()->default(0);
+
+
+
+            // 1.3: module
             $table->bigInteger('featureModuleId')->unsigned()->nullable();
             $table->foreign('featureModuleId')->references('id')->on('feature_modules')->onDelete('cascade');
 

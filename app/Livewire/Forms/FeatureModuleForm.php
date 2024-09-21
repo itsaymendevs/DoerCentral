@@ -5,20 +5,15 @@ namespace App\Livewire\Forms;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class FeatureForm extends Form
+class FeatureModuleForm extends Form
 {
 
 
     // :: variables
     #[Validate('required')]
-    public $name, $nameURL, $price, $featureModuleId;
+    public $name, $nameURL;
 
-    public $id;
-
-
-
-    // :: helpers
-    public $featureModuleName;
+    public $id, $desc;
 
 
 } // end class

@@ -31,5 +31,16 @@
 
 
 
+
+
+    {{-- 4: modules --}}
+    <a wire:navigate class="btn fs-13 @if (Request::is('central/dashboard/manage-plans/modules')) active @endif"
+        href="{{ route('central.dashboard.manage-plans.modules') }}" role="button">Modules</a>
+
+
+
+
+
+
 </div>
 {{-- end div --}}

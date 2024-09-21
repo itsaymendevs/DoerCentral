@@ -1,144 +1,160 @@
 .services--tab .nav-tabs {
-  border-bottom: none;
-  margin-bottom: 20px;
+    border-bottom: none;
+    margin-bottom: 20px;
 }
 
 /* services tab */
 
 .services--tab .nav-link {
-  border-radius: 0px;
-  background-color: whitesmoke;
-  background-color: var(--background-tab-links);
-  border-color: var(--background-tab-links);
-  color: white;
+    border-radius: 0px;
+    background-color: whitesmoke;
+    background-color: var(--background-tab-links);
+    border-color: var(--background-tab-links);
+    color: white;
 }
 
-.services--tab .nav-link.active, .services--tab .nav-link:hover {
-  background-color: var(--background-tab-links-active);
-  color: white;
-  border-color: var(--background-tab-links-active);
-  /*box-shadow: 0px 2px 0px 0px #ffffff;*/
+.services--tab .nav-link.active,
+.services--tab .nav-link:hover {
+    background-color: var(--background-tab-links-active);
+    color: white;
+    border-color: var(--background-tab-links-active);
+    /*box-shadow: 0px 2px 0px 0px #ffffff;*/
 }
 
 /* side heading */
 
 .services--side-heading {
-  padding-bottom: 80px;
+    padding-bottom: 80px;
 }
 
 /* card */
 
 .service--card {
-  background-color: var(--background-plan-meal-card);
-  border-radius: var(--radius-meal-plan-card);
-  padding: 15px;
-  margin-bottom: 0px;
-  height: 100%;
+    background-color: var(--background-plan-meal-card);
+    border-radius: var(--radius-service-card);
+    padding: 15px;
+    margin-bottom: 0px;
+    height: 100%;
 }
 
 .service--card *:not(a, button) {
-  color: var(--color-meal-plan-card-text);
+    color: var(--color-meal-plan-card-text);
 }
 
 .service--card .service--subtitle {
-  color: var(--color-meal-plan-card-subtitle);
+    color: var(--color-meal-plan-card-subtitle);
 }
 
 @media (max-width: 991px) {
-  .service--card .service--subtitle {
-    height: auto;
-  }
+    .service--card .service--subtitle {
+        height: auto;
+    }
 }
 
 .service--card .service--image {
-  height: 200px;
-  border-radius: var(--radius-meal-plan-card-image);
-  width: 100%;
-  object-fit: cover;
-  margin-bottom: 20px;
+    height: 200px;
+    border-radius: var(--radius-meal-plan-card-image);
+    width: 100%;
+    object-fit: contain;
+    margin-bottom: 20px;
 }
 
 /* bundles */
 
 .service--option {
-  background-color: var(--background-plan-meal-card-bundle);
-  border: 1px solid var(--border-plan-meal-card-bundle);
-  border-radius: 30px;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  padding: 3px 10px;
-  margin-right: 10px;
-  font-weight: 500;
+    background-color: var(--background-plan-meal-card-bundle);
+    border: 1px solid var(--border-plan-meal-card-bundle);
+    border-radius: 30px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    padding: 3px 10px;
+    margin-right: 10px;
+    font-weight: 500;
 }
 
 .service--option:last-of-type {
-  margin-right: 0px;
+    margin-right: 0px;
 }
 
 @media (max-width: 575px) {
-  .service--option {
-    margin-right: 5px;
-  }
+    .service--option {
+        margin-right: 5px;
+    }
 }
 
 .meal-plan--options-wrapper span:first-of-type {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 
 /* service wrapper */
 
 .service--checkbox-wrapper {
-  background-color: #edfefb;
-  padding: 6px 10px;
-  border: 1px solid #96d0c4;
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-  margin-bottom: 10px;
+    background-color: #edfefb;
+    padding: 6px 10px;
+    border: 1px solid #96d0c4;
+    display: flex;
+    align-items: center;
+    border-radius: 12px 25px 25px 12px;
+    margin-bottom: 10px;
 }
 
 .service--checkbox-wrapper label {
-  font-size: 14px;
-  font-weight: 500;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 @media (max-width: 575px) {
-  .service--checkbox-wrapper label {
-    font-size: 13px;
-  }
+    .service--checkbox-wrapper label {
+        font-size: 13px;
+    }
 }
 
 .service--checkbox-wrapper input {
-  margin-right: 10px;
-  width: 19px;
-  height: 19px;
-  border: 3px solid #b3e2d9 !important;
+    margin-right: 10px;
+    width: 19px;
+    height: 19px;
+    border: 3px solid #b3e2d9 !important;
 }
 
 @media (max-width: 575px) {
-  .service--checkbox-wrapper input {
-    margin-right: 10px;
-    width: 16px;
-    height: 16px;
-    border: 3px solid #b3e2d9 !important;
-  }
+    .service--checkbox-wrapper input {
+        margin-right: 10px;
+        width: 16px;
+        height: 16px;
+        border: 3px solid #b3e2d9 !important;
+    }
 }
 
 .service--checkbox-wrapper input.inactive {
-  border: 3px solid var(--border-checkbox-choosen) !important;
-  background-color: var(--background-checkbox-choosen);
-  pointer-events: none;
+    border: 3px solid var(--border-checkbox-choosen) !important;
+    background-color: var(--background-checkbox-choosen);
+    pointer-events: none;
 }
 
 .service--checkbox-wrapper label.inactive {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .service--checkbox-wrapper input.inactive {
-  border: 3px solid var(--border-checkbox-choosen) !important;
-  background-color: var(--background-checkbox-choosen);
-  pointer-events: none !important;
+    border: 3px solid var(--border-checkbox-choosen) !important;
+    background-color: var(--background-checkbox-choosen);
+    pointer-events: none !important;
 }
 
+.autoplay-progress.colored {
+    background-color: var(--background-swiper-counter);
+    border-radius: 50%;
+}
+
+/* services wrapper */
+.service--checkbox-wrapper .currency--span span {
+    color: var(--color-service-currency-span);
+    margin-left: 2px;
+}
+
+.customise--feature-wrapper {
+    height: 500px;
+    overflow: auto;
+}

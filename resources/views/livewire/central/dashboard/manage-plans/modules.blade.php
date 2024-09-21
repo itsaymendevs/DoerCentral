@@ -7,28 +7,20 @@
 
 
 
-            <div class="col-4 d-flex align-items-center">
-                <button class="btn btn--scheme btn--scheme-2  px-3 scalemix--3 py-2 d-inline-flex align-items-center"
-                    type="button" data-bs-target="#new-bundle" data-bs-toggle="modal">
-                    <i class='bi bi-plus-circle-dotted fs-5 me-2'></i>New Bundle
-                </button>
 
-
-
-
-                {{-- ----------------------------- --}}
-                {{-- ----------------------------- --}}
-
+            {{-- 1: counter --}}
+            <div class="col-4 text-start d-flex align-items-center justify-content-start">
 
 
                 {{-- counter --}}
                 <h3 class="fw-bold text-white scale--self-05 d-inline-block badge--scheme-2 ms-3 px-3 rounded-1 mb-0 py-1"
-                    data-bs-toggle="tooltip" data-bss-tooltip="" title="Number of Bundles">
-                    {{ $bundles?->count() ?? 0 }}
-                </h3>
+                    data-bs-toggle="tooltip" data-bss-tooltip="" title="Number of Modules">{{ $modules?->count() ?? 0
+                    }}</h3>
+
 
 
             </div>
+            {{-- endCol --}}
 
 
 
@@ -44,13 +36,15 @@
 
 
 
-
-
-            {{-- 2: featureFilter --}}
+            {{-- 2: moduleFilter --}}
             <div class="col-4">
-                <input wire:model.live='searchBundle' class="form-control form--input main-version mx-auto"
+                <input wire:model.live='searchModule' class="form-control form--input main-version mx-auto"
                     type="search" placeholder="Search by Name" />
             </div>
+
+
+
+
 
 
 
@@ -109,7 +103,7 @@
 
 
                 {{-- table --}}
-                <div class="table-responsive memoir--table  vertical inline--table w-100 mb-4">
+                <div class="table-responsive memoir--table inline--table vertical w-100 mb-4">
                     <table class="table table-bordered" id="memoir--table">
 
 
@@ -117,10 +111,9 @@
                         <thead>
                             <tr>
                                 <th class="th--xs"></th>
-                                <th class="th--lg">Bundle</th>
+                                <th class="th--md">Module</th>
+                                <th class="th--md">Short Brief</th>
                                 <th class="th--lg">Features</th>
-                                <th class="th--sm">Price</th>
-
                                 <th class="th--xs"></th>
                             </tr>
                         </thead>
@@ -144,43 +137,32 @@
 
 
 
-                            {{-- loop - bundles --}}
-                            @foreach ($bundles ?? [] as $bundle)
+                            {{-- loop - modules --}}
+                            @foreach ($modules ?? [] as $module)
 
 
-                            <tr key='single-bundle-tr-{{ $bundle->id }}'>
+                            <tr key='single-module-tr-{{ $module->id }}'>
 
                                 {{-- name --}}
                                 <td class="fw-bold text-center fs-14">{{ $globalSNCounter++ }}</td>
-                                <td class="fw-bold fs-14">{{ $bundle?->name }}</td>
+                                <td class="fw-bold fs-14 text-warning">{{ $module?->name }}</td>
 
-
+                                <td class="fs-14">{{ $module?->desc ?? '' }}</td>
 
 
                                 {{-- features --}}
                                 <td class='text-warning fs-14'>
-                                    @foreach ($bundle?->features ?? [] as $bundleFeature)
-                                    <span class='table--bundle-feature'>{{ $bundleFeature?->feature?->name }}</span>
+                                    @foreach ($module?->features ?? [] as $moduleFeature)
+                                    <span class='table--bundle-feature'>{{ $moduleFeature?->name }}</span>
                                     @endforeach
                                 </td>
 
 
 
 
-                                {{-- price --}}
-                                <td class="fs-5 fw-semibold">{{ number_format($bundle?->price ?? 0, 2) }}<small
-                                        class="ms-1 fw-semibold text-gold fs-10">($)</small></td>
 
-
-
-
-
-
-
-                                {{-- ----------------------------------------- --}}
-                                {{-- ----------------------------------------- --}}
-
-
+                                {{-- ---------------------------------- --}}
+                                {{-- ---------------------------------- --}}
 
 
 
@@ -192,21 +174,10 @@
 
                                         {{-- 1: edit --}}
                                         <button class="btn btn--raw-icon inline scale--3" type="button"
-                                            wire:click="edit('{{ $bundle?->id }}')" data-bs-toggle="modal"
-                                            data-bs-target="#edit-bundle">
+                                            wire:click="edit('{{ $module?->id }}')" data-bs-toggle="modal"
+                                            data-bs-target="#edit-module">
                                             <i class='bi bi-pencil'></i>
                                         </button>
-
-
-
-
-                                        {{-- remove --}}
-                                        <button class="btn btn--raw-icon remove inline scale--3" type="button"
-                                            wire:click="remove('{{ $bundle->id }}')" wire:loading.attr='disabled'
-                                            wire:target='remove'>
-                                            <i class='bi bi-trash'></i>
-                                        </button>
-
 
                                     </div>
                                 </td>
@@ -267,12 +238,11 @@
 
 
 
-    {{-- 1: create --}}
-    <livewire:central.dashboard.manage-plans.bundles.components.bundles-create key='create-bundle-modal' />
+
+    {{-- 1: edit --}}
+    <livewire:central.dashboard.manage-plans.modules.components.modules-edit key='edit-module-modal' />
 
 
-    {{-- 2: edit --}}
-    <livewire:central.dashboard.manage-plans.bundles.components.bundles-edit key='edit-bundle-modal' />
 
 
     @endsection

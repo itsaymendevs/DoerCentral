@@ -113,7 +113,12 @@
                             <tr>
                                 <th class="th--xs"></th>
                                 <th class="th--lg">Feature</th>
-                                <th class="th--lg">Module</th>
+                                <th class="th--md">Price</th>
+                                <th class="th--md">Module</th>
+                                <th class="th--xs">Default
+                                    <i class="bi bi-info-circle ms-1 text-black" data-bs-toggle="tooltip"
+                                        data-bss-tooltip="" title="Mark as selected in customized-plan builder"></i>
+                                </th>
                                 <th class="th--xs"></th>
                             </tr>
                         </thead>
@@ -141,10 +146,45 @@
                             @foreach ($features ?? [] as $feature)
 
 
-                            <tr>
+                            <tr key='single-feature-tr-{{ $feature->id }}'>
+
+                                {{-- name --}}
                                 <td class="fw-bold text-center fs-14">{{ $globalSNCounter++ }}</td>
                                 <td class="fw-bold fs-14">{{ $feature?->name }}</td>
+
+                                {{-- price --}}
+                                <td class="fs-5 fw-semibold">{{ number_format($feature?->price ?? 0, 2) }}<small
+                                        class="ms-1 fw-semibold text-gold fs-10">($)</small></td>
+
+
+                                {{-- module --}}
                                 <td class='text-warning fs-14'>{{ $feature?->module?->name }}</td>
+
+
+
+
+                                {{-- ---------------------------------- --}}
+                                {{-- ---------------------------------- --}}
+
+
+
+
+
+                                {{-- isDefaults --}}
+                                <td class="fw-bold">
+                                    <div
+                                        class="form-check form-switch form-check-inline input--switch justify-content-start">
+                                        <input class="form-check-input pointer" style='width: 55px; height: 18px'
+                                            id="feature-checkbox-default-{{ $feature->id }}" type="checkbox"
+                                            wire:loading.attr='disabled' @if($feature?->isDefault) checked @endif
+                                        wire:change="toggleDefault('{{ $feature->id }}')">
+                                        <label class="form-check-label d-none"
+                                            for="feature-checkbox-default-{{ $feature->id }}">Label</label>
+                                    </div>
+                                </td>
+
+
+
 
 
 

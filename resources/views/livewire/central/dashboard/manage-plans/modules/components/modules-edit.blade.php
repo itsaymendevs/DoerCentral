@@ -1,4 +1,4 @@
-<div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="edit-feature" wire:ignore.self>
+<div class="modal fade modal--shadow" role="dialog" tabindex="-1" id="edit-module" wire:ignore.self>
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body py-0 px-0">
@@ -7,7 +7,7 @@
 
                 {{-- header --}}
                 <header class="modal--header px-4">
-                    <h5 class="mb-0 fw-bold text-white">Edit Feature</h5>
+                    <h5 class="mb-0 fw-bold text-white">Edit Module</h5>
                     <button class="btn btn--raw-icon w-auto btn--close" data-bs-toggle="tooltip" data-bss-tooltip=""
                         data-bs-placement="right" type="button" data-bs-dismiss="modal" title="Close Modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
@@ -50,29 +50,12 @@
 
 
 
-
-                        {{-- price --}}
-                        <div class="col-6">
-                            <label class="form-label form--label">Price<small
-                                    class="ms-1 fw-semibold text-gold fs-9">($)</small></label>
-                            <input class="form-control form--input mb-4" type="number" step='0.01' min='0' required
-                                wire:model='instance.price' />
+                        {{-- description --}}
+                        <div class="col-12">
+                            <label class="form-label form--label">Short Brief</label>
+                            <textarea class="form-control form--input form--textarea mb-4" style="height: 86px"
+                                wire:model='instance.desc' required></textarea>
                         </div>
-
-
-
-
-                        {{-- nameURL --}}
-                        <div class="col-6">
-                            <label class="form-label form--label">Module</label>
-
-                            <input class="form-control form--input mb-4" type="text"
-                                wire:model='instance.featureModuleName' readonly />
-                        </div>
-
-
-
-
 
 
 

@@ -1,0 +1,436 @@
+body {
+    min-height: 100vh;
+}
+.color--theme {
+    color: var(--textColor);
+}
+
+.color--carbs {
+    color: var(--planCarbsBoxColor);
+}
+
+.color--proteins {
+    color: var(--planProteinsBoxColor);
+}
+
+.color--fats {
+    color: var(--planFatsBoxColor);
+}
+
+.form--input {
+    border-radius: 6px !important;
+    height: 48px !important;
+    padding: 0px 20px !important;
+    font-size: 13px !important;
+    width: 100% !important;
+    color: var(--textColor) !important;
+    border: 1px solid var(--inputBorderColor) !important;
+    background-color: var(--inputBackgroundColor);
+}
+
+.form--input.disabled {
+    cursor: not-allowed !important;
+    background-color: var(--inputBackgroundColor) !important;
+}
+
+/* processing */
+.processing--card {
+    opacity: 0.6 !important;
+    cursor: wait !important;
+}
+
+.processing--button {
+    opacity: 0.6 !important;
+    cursor: wait !important;
+}
+
+.processing--button-wrap {
+    opacity: 0.6 !important;
+    cursor: wait !important;
+}
+
+.no-events {
+    pointer-events: none !important;
+}
+.motion--slow,
+.motion--slow * {
+    transition: 0.4s all ease-in-out;
+}
+
+.motion--slow:hover,
+.motion--slow:hover *,
+.motion--slow:focus,
+.motion--slow:focus * {
+    transition: 0.4s all ease-in-out;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--textColor);
+}
+
+/* font sizes */
+.fs-17 {
+    font-size: 17px !important;
+}
+
+.fs-16 {
+    font-size: 16px !important;
+}
+
+.fs-15 {
+    font-size: 15px !important;
+}
+.fs-14 {
+    font-size: 14px !important;
+}
+
+.fs-13 {
+    font-size: 13px !important;
+}
+
+.fs-12 {
+    font-size: 12px !important;
+}
+
+.fs-11 {
+    font-size: 11px !important;
+}
+
+.fs-10 {
+    font-size: 10px !important;
+}
+
+.fs-9 {
+    font-size: 9px !important;
+}
+
+/* price */
+.span--price {
+    font-size: 10px;
+    color: var(--brandColor);
+}
+
+/* navbar */
+.menu-full-overlay::before {
+    background: var(--navbarBackgroundColor) !important;
+}
+
+/* input */
+
+.form--input-wrapper label {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0px;
+    margin-bottom: 5px;
+    color: var(--textColor);
+    position: relative;
+    padding-left: 2px;
+}
+
+.form--input-wrapper label.sm {
+    font-size: 12px;
+    color: var(--textColor);
+    opacity: 0.8;
+}
+
+.form--input-wrapper label.md {
+    font-size: 13px;
+    color: var(--textColor);
+    opacity: 0.8;
+}
+
+.form--input-wrapper label i.icon--right {
+    position: absolute;
+    right: 5px;
+    bottom: 0px;
+    top: 0px;
+}
+
+.form--input {
+    border-radius: 6px !important;
+    height: 48px !important;
+    padding: 0px 20px !important;
+    font-size: 13px !important;
+    width: 100% !important;
+    color: var(--textColor) !important;
+    border: var(--inputBorder) !important;
+    background-color: var(--inputBackgroundColor) !important;
+}
+
+.form--input:focus,
+.form--input:hover,
+.form--input.active {
+    border: 1px solid var(--inputBorderHoverColor) !important;
+}
+
+.form--promo.active {
+    border: 1px solid var(--planFatsBoxColor) !important;
+}
+
+.form--datepicker {
+    letter-spacing: 2px;
+}
+
+/* cursor */
+.pointer {
+    cursor: pointer;
+}
+
+/* btn */
+.btn--regular {
+    height: var(--buttonHeight);
+    display: inline-flex;
+    justify-content: center;
+    padding: 0px;
+    color: var(--textColor);
+    width: 150px;
+    line-height: unset;
+    align-items: center;
+    border-radius: var(--buttonRadius);
+    border: 1px solid var(--brandColor);
+}
+
+.btn--regular.sm {
+    height: var(--buttonHeightSM);
+}
+
+.btn--regular:before {
+    background: var(--brandColor);
+}
+
+.btn--regular.border--bottom {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid var(--brandColor);
+}
+
+.btn--with-hr {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn--with-hr span {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.5s all ease-out;
+    color: var(--textColor);
+}
+
+.btn--with-hr hr {
+    width: 80px;
+    opacity: 1;
+    border-color: var(--planHrColor);
+    transition: 0.5s all ease-out;
+}
+
+.btn--with-hr:hover hr,
+.btn--with-hr:focus hr,
+.btn--with-hr.active hr {
+    width: 120px;
+    transition: 0.5s all ease-out;
+}
+
+.btn--with-hr:hover span,
+.btn--with-hr:focus span {
+    transition: 0.5s all ease-out;
+    color: var(--textColor);
+}
+
+/* collapseButton */
+.btn--collapse,
+.btn--collapse.collapsed:hover {
+    background: var(--brandActiveColor) !important;
+    color: var(--textActiveColor);
+}
+
+.btn--collapse.collapsed {
+    background: unset !important;
+    color: var(--textColor);
+}
+
+/* objectFit */
+.of-contain {
+    object-fit: contain;
+}
+
+.of-cover {
+    object-fit: cover;
+}
+
+/* title with hr */
+.title--with-hr hr {
+    width: 40px;
+    border-color: var(--headingHrColor);
+    animation: titleHrAnimation 1s ease-out 0s 1 normal;
+}
+
+/* modal */
+.izi--modal {
+    background-color: var(--modalBackgroundColor) !important;
+    padding: 35px 10px;
+}
+
+@media (max-width: 767px) {
+    .iziModal {
+        overflow: hidden !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .izi--title {
+        font-size: 17px !important;
+    }
+}
+
+.iziModal {
+    box-shadow: 0 0 8px rgb(24 24 24 / 30%) !important;
+}
+
+.iziModal-overlay {
+    background-color: #0e0e0ef5 !important;
+}
+.modal--close {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    color: var(--bs-danger);
+    height: 30px;
+    width: 30px;
+    font-size: 30px;
+    padding: 0px;
+    border: none;
+    border-bottom: 2px solid var(--bs-danger);
+}
+
+/* preloader */
+.preloader::before {
+    background: var(--bodyBackgroundColor) !important;
+}
+
+/* zoom */
+.zoom--wrapper:hover .zoom--target,
+.zoom--wrapper:focus .zoom--target {
+    transform: scale(1.1);
+}
+
+.animation--floating {
+    animation-name: floatingAnimation;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.animation--shaking {
+    animation-name: shakingAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.animation--scale {
+    animation-name: scaleAnimation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
+}
+
+.animation--plus {
+    animation-name: plusAnimation;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
+}
+
+.animation--icon-color {
+    animation-name: iconColorAnimation;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes titleHrAnimation {
+    0% {
+        width: 0%;
+        visibility: hidden;
+    }
+
+    30% {
+        visibility: visible;
+    }
+    100% {
+        width: 40px;
+    }
+}
+
+@keyframes floatingAnimation {
+    0% {
+        transform: translate(0, 0px);
+    }
+    50% {
+        transform: translate(0, 8px);
+    }
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+
+@keyframes shakingAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: transform(-20deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(20deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes plusAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes iconColorAnimation {
+    0% {
+        color: var(--iconsColor);
+    }
+    100% {
+        color: var(--textColor);
+    }
+}

@@ -1,0 +1,405 @@
+/* preloader */
+.preloader .spinner.spinner-line {
+    background: var(--preloaderLineColor);
+}
+
+/* general */
+.of-contain {
+    object-fit: contain !important;
+}
+
+/* swiper */
+
+.plans--swiper
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active,
+.plans--swiper
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active,
+.plans--swiper
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: var(--sliderBulletsColor) !important;
+}
+
+/* home */
+.plan--slide .plan--slide-title {
+    color: var(--planCardTitleColor) !important;
+}
+
+.plan--custom-title {
+    color: var(--planCardTitleColor) !important;
+}
+
+.plan--custom-title * {
+    color: var(--planCardTitleColor) !important;
+}
+
+.plan--custom-subtitle {
+    color: var(--planCardSubtitleColor) !important;
+}
+
+.plan--custom-caption {
+    color: var(--planCardCaptionColor) !important;
+}
+
+.plan--slide .plan--slide-subtitle {
+    color: var(--planCardSubtitleColor) !important;
+}
+
+.plan--slide .plan--slide-caption {
+    color: var(--planCardCaptionColor) !important;
+}
+
+.plan--slide .plan--slide-title:before {
+    content: none !important;
+}
+
+.plan--slide .plan--slide-hr hr {
+    border-color: var(--planCardHrColor);
+    width: 50px;
+    opacity: 1;
+    border-radius: 2px;
+    border-width: 2px;
+    display: inline-block;
+    margin: 0px;
+}
+
+.plan--slide .slide-titles .title::after {
+    background: var(--planCardHrColor) !important;
+}
+
+.plan--slide .plan--slide-button {
+    color: var(--planCardButtonColor) !important;
+}
+
+.plan--slide .plan--slide-button::before,
+.plan--slide .plan--slide-button.btn-link::before,
+.plan--slide .plan--slide-button.btn-link::before,
+.plan--slide .plan--slide-button::before {
+    background: var(--planCardButtonBackgroundColor) !important;
+}
+
+.plan--slide .plan--slide-button:hover,
+.plan--slide .plan--slide-button:focus {
+    color: var(--planCardButtonHoverColor) !important;
+}
+
+.plan--slide .slide-titles .title.hr--center::after {
+    background: var(--planCardHrColor) !important;
+    left: 0px !important;
+    right: 0px !important;
+    margin: auto;
+}
+
+.plan--slide .slide,
+.plan--slide .slide:before {
+    border-radius: var(--planCardRadius);
+}
+
+.plan--slide .desc {
+    text-align: var(--planCardAlignment) !important;
+}
+
+.section.m-works-carousel .works-slide .image .img:before,
+.section.m-works-carousel .works-slide .image .img:after {
+    background: var(--planCardBackgroundColor);
+}
+.section.m-works-carousel .works-slide .image:before,
+.section.m-works-carousel .works-slide .image:after {
+    background: var(--planCardBackgroundColor);
+}
+
+/* --------------------------------- */
+/* --------------------------------- */
+
+/* navbar */
+.menu-btn span:before,
+.menu-btn span:after {
+    background: var(--navbarMenuColor);
+    background-color: var(--navbarMenuColor);
+}
+
+.menu-btn.active span:before,
+.menu-btn.active span:after {
+    background: var(--navbarMenuActiveColor);
+}
+
+.menu-full-overlay:before {
+    background: #111;
+}
+
+.menu-full ul li a {
+    color: var(--navbarLinksColor);
+}
+
+.menu-full ul li a:hover .char,
+.menu-full ul li a:hover .word {
+    color: var(--navbarLinksHoverColor);
+}
+
+.menu-social-links a {
+    color: var(--navbarSocialLinksColor);
+}
+
+/* --------------------------------- */
+/* --------------------------------- */
+
+/* swiper */
+body .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: var(--sliderLineColor);
+}
+
+.swiper-pagination-progressbar {
+    height: 2px !important;
+}
+
+/* --------------------------------- */
+/* --------------------------------- */
+
+/* third swiper */
+.plan--slide .view-btn a::before,
+.plan--slide .view-btn a::before,
+.plan--slide .view-btn a::before {
+    background: var(--planCardHrColor) !important;
+}
+
+/* general */
+.left-0 {
+    left: 0px !important;
+}
+.right-0 {
+    right: 0px !important;
+}
+.fw-500 {
+    font-weight: 500 !important;
+}
+
+/* --------------------------------------- */
+
+/* single plan */
+
+.plan--single-title {
+    color: var(--planSideTitleColor) !important;
+}
+
+.plan--filter-links a {
+    color: var(--planFilterLinksColor) !important;
+}
+
+.plan--filter-links a::before {
+    background: var(--planFilterLinksHoverBorderColor) !important;
+}
+
+.plan--list .description-list-item .number {
+    color: var(--planListNumbersColor) !important;
+}
+
+.plan--meal-diet {
+    color: var(--planMealDietColor) !important;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* slider */
+.plan--testimonials .title {
+    color: var(--planReviewsTitleColor) !important;
+}
+
+.plan--testimonials
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: var(--sliderLineColor) !important;
+}
+
+/* spacing */
+@media screen and (min-width: 1101px) {
+    .section--spacing {
+        margin: 100px 0px 40px !important;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .section--spacing {
+        margin: 80px 0px 40px !important;
+    }
+}
+
+/* meals */
+.meals--item.v1 .image .img {
+    padding: 20px 15px;
+    background: var(--planMealsBorderColor) !important;
+}
+.meals--item.v1 .image .img::after {
+    background: var(--planMealsBorderColor) !important;
+    border-radius: 12px;
+}
+
+.meals--item.v1 .image .img::before {
+    background: var(--planMealsBorderColor) !important;
+    border-radius: 12px;
+}
+
+.meals--item.v1 .image::before,
+.meals--item.v1 .image::after {
+    background: var(--planMealsBorderColor) !important;
+    border-radius: 12px;
+}
+
+.meals--item .image img {
+    height: 160px;
+    object-fit: contain;
+}
+
+/* hover */
+.meals--item.v1:hover .image .img::after {
+    background: var(--planMealsHoverBorderColor) !important;
+}
+
+.meals--item.v1:hover .image .img::before {
+    background: var(--planMealsHoverBorderColor) !important;
+}
+
+.meals--item.v1:hover .image::before,
+.meals--item.v1:hover .image::after {
+    background: var(--planMealsHoverBorderColor) !important;
+}
+
+/* ----------------------------- */
+/* ----------------------------- */
+
+/* sixth */
+.plan--sixth-col .meals--item.v2 .image img {
+    height: 600px;
+    object-fit: contain;
+    background-color: var(--planMealsBorderColor);
+}
+
+.plan--sixth-col:nth-child(even) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--sixth-col:nth-child(3n) .meals--item.v2 .image img {
+    height: 300px;
+}
+
+.plan--sixth-col:nth-child(4n) .meals--item.v2 .image img {
+    height: 500px;
+}
+
+.plan--sixth-col:nth-child(5n) .meals--item.v2 .image img {
+    height: 600px;
+}
+
+.plan--sixth-col:nth-child(6n) .meals--item.v2 .image img {
+    height: 350px;
+}
+
+.plan--sixth-col:nth-child(7n) .meals--item.v2 .image img {
+    height: 500px;
+}
+
+.plan--sixth-col:nth-child(8n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+/* ----------------------------- */
+/* ----------------------------- */
+
+/* seventh */
+.plan--seventh-col .meals--item.v2 .image img {
+    height: 400px;
+    object-fit: contain;
+    background-color: var(--planMealsBorderColor);
+}
+
+.plan--seventh-col:nth-child(even) .meals--item.v2 .image img {
+    height: 250px;
+}
+
+.plan--seventh-col:nth-child(3n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--seventh-col:nth-child(4n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--seventh-col:nth-child(5n) .meals--item.v2 .image img {
+    height: 250px;
+}
+
+.plan--seventh-col:nth-child(6n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--seventh-col:nth-child(7n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+.plan--seventh-col:nth-child(8n) .meals--item.v2 .image img {
+    height: 250px;
+}
+
+.plan--seventh-col:nth-child(9n) .meals--item.v2 .image img {
+    height: 400px;
+}
+
+/* background */
+.meals--item.v2 .image .img::after {
+    background: var(--planMealsBorderColor) !important;
+}
+
+.meals--item.v2 .image .img::before {
+    background: var(--planMealsBorderColor) !important;
+}
+
+.meals--item.v2 .image::before,
+.meals--item.v2 .image::after {
+    background: var(--planMealsBorderColor) !important;
+}
+
+/* hover */
+.plan--sixth-col:hover .meals--item.v2 .image img {
+    background-color: var(--planMealsHoverBorderColor) !important;
+}
+
+.meals--item.v2:hover .image .img::after {
+    background: var(--planMealsHoverBorderColor) !important;
+}
+
+.meals--item.v2:hover .image .img::before {
+    background: var(--planMealsHoverBorderColor) !important;
+}
+
+.meals--item.v2:hover .image::before,
+.meals--item.v2:hover .image::after {
+    background: var(--planMealsHoverBorderColor) !important;
+}
+
+/* ----------------------------- */
+/* ----------------------------- */
+
+.plan--action-button {
+    height: 40px !important;
+    line-height: 37px !important;
+    border: 2px solid var(--planActionButtonBackgroundColor) !important;
+    color: var(--planActionButtonColor) !important;
+}
+
+.plan--action-button::before,
+.plan--action-button::before,
+.plan--action-button::before,
+.plan--action-button::before,
+.plan--action-button::before {
+    background: var(--planActionButtonBackgroundColor) !important;
+    background: var(--planActionButtonBackgroundColor) !important;
+}
+
+/* ------------------------------------- */
+/* ------------------------------------- */
+
+/* hero */
+.plan--hero-section {
+    background: var(--planHeaderBackgroundColor) !important;
+}

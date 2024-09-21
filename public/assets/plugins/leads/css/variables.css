@@ -1,0 +1,79 @@
+:root {
+    --textFont: "Poppins";
+    --headingFont: "Courgette";
+
+    --textColor: #c0c0c7;
+    --preloaderLineColor: var(--bs-orange);
+
+    --cursorColor: rgba(255, 255, 255, 0.25);
+    --cursorHoverColor: rgba(255, 255, 255, 0.5);
+
+    --planCardTitleColor: #fff;
+    --planCardSubtitleColor: #fff;
+    --planCardCaptionColor: #fff;
+    --planCardHrColor: var(--bs-orange);
+    --planCardButtonColor: #fff;
+    --planCardButtonHoverColor: var(--bs-orange);
+
+    --navbarMenuColor: #fff;
+    --navbarMenuActiveColor: #fff;
+    --navbarLinksColor: #c0c0c7;
+    --navbarLinksHoverColor: var(--bs-orange);
+    --navbarSocialLinksColor: #fff;
+
+    --sliderLineColor: var(--bs-orange);
+    --sliderBulletsColor: var(--bs-orange);
+
+    /* forPlan */
+    --planSideTitleColor: #fff;
+    --planFilterLinksColor: #c0c0c7;
+    --planFilterLinksHoverBorderColor: var(--bs-orange);
+
+    --planListNumbersColor: #fff;
+    --planMealDietColor: var(--bs-orange);
+
+    --planMealsBorderColor: #222;
+    --planMealsHoverBorderColor: var(--bs-orange);
+
+    --planReviewsTitleColor: #fff;
+
+    --planActionButtonColor: #fff;
+    --planActionButtonHoverColor: #fff;
+
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+
+    /* 2: backgrounds */
+    --bodyBackgroundColor: #111;
+    --navbarBackgroundColor: #01010b;
+
+    --planCardBackgroundColor: #111;
+    --planCardButtonBackgroundColor: #fff;
+
+    /* forPlan */
+    --planHeaderBackgroundColor: #111;
+    --planActionButtonBackgroundColor: var(--bs-orange);
+
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+
+    /* 3: radius */
+
+    --planCardRadius: 0px;
+    --planCardButtonRadius: 6px; /* notInDB */
+
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+    /* ---------------------------------------------- */
+
+    /* 4: alignment */
+    --planCardAlignment: center;
+
+    --planSliderArrows: #fff;
+    --planSideTitleDisplay: #fff;
+}

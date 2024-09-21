@@ -1,0 +1,123 @@
+.invoice--final-wrapper {
+    background-color: var(--invoiceBackgroundColor);
+    border-radius: 8px;
+}
+
+.invoice--final-spacer {
+    padding: 25px 30px;
+}
+
+.invoice--final-logo {
+    width: auto;
+    height: 80px;
+    max-width: 120px;
+    width: 100%;
+}
+
+/* ----------------------------------------------- */
+/* ----------------------------------------------- */
+
+/* top */
+.invoice--top p:first-of-type {
+    color: var(--brandColor);
+}
+
+.invoice--top p:last-of-type {
+    color: var(--textColor);
+}
+
+/* mid */
+.invoice--mid-wrapper p {
+    color: var(--textColor);
+}
+
+.invoice--top-wrapper p {
+    color: var(--textColor);
+}
+
+@media (max-width: 767px) {
+    .invoice--mid-wrapper {
+        border-top: 1px dashed var(--invoiceTableBorderColor);
+        padding-top: 30px;
+    }
+}
+
+/* bottom wrapper */
+@media (max-width: 767px) {
+    .invoice--bottom-wrapper {
+        border-top: 1px dashed var(--invoiceTableBorderColor);
+        padding-top: 30px;
+    }
+}
+
+/* ----------------------------------------------- */
+/* ----------------------------------------------- */
+
+/* bottom */
+.invoice--bottom-wrapper p {
+    color: var(--textColor);
+}
+
+/* ----------------------------------------------- */
+/* ----------------------------------------------- */
+
+/* table */
+.invoice--final-table-col {
+    border: 1px solid var(--invoiceTableBorderColor);
+    border-left: 0px solid var(--invoiceTableBorderColor);
+}
+
+.invoice--final-table .invoice--final-table-col:last-of-type {
+    border-right: 0px solid var(--invoiceTableBorderColor);
+}
+
+.invoice--final-table-header h6 {
+    margin: 0px;
+    border-bottom: 1px solid var(--invoiceTableBorderColor);
+    padding: 10px 0px !important;
+    margin-bottom: 15px;
+}
+.invoice--final-table-content p {
+    margin: 0px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: var(--textColor);
+    font-size: 17px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid var(--invoiceTableBorderColor);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.invoice--final-table-content p:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+
+@media (max-width: 767px) {
+    .invoice--final-table-content p {
+        font-size: 14px;
+    }
+}
+
+.invoice--final-table-content p.tr--multi {
+    /* height: 52px; */
+}
+
+.invoice--final-table-quantity p span {
+    margin-right: 5px;
+    color: var(--brandColor);
+}
+
+.invoice--final-table-numbers span {
+    margin-left: 2px;
+    color: var(--textColor);
+}
+
+.table--total-price {
+    display: inline-block;
+    border-bottom: 2px dashed var(--brandColor);
+    color: var(--textColor) !important;
+}

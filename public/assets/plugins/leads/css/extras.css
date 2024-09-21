@@ -1,0 +1,425 @@
+/* blob button */
+
+.btn--blob-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 150px;
+    height: 42px;
+}
+
+.btn--blob {
+    padding: 0px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    min-width: 150px;
+    border-radius: 5px;
+    text-decoration: none;
+
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    color: var(--textColor) !important;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    transition: color 0.5s;
+    cursor: pointer;
+}
+.btn--blob:before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    background: none;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--planCardButtonRadius);
+}
+.btn--blob:after {
+    content: "";
+    z-index: -2;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s 0.2s;
+    border-radius: var(--planCardButtonRadius);
+}
+.btn--blob:hover,
+.btn--blob:focus {
+    color: var(--textActiveColor) !important;
+    border-radius: var(--planCardButtonRadius);
+}
+.btn--blob:hover:after,
+.btn--blob:focus:after {
+    transition: all 0.3s;
+    left: 0;
+    top: 0;
+    border-radius: var(--planCardButtonRadius);
+}
+.btn--blob__inner {
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--planCardButtonRadius);
+    background: var(--buttonBackgroundColor);
+}
+.btn--blob__blobs {
+    position: relative;
+    display: block;
+    height: 100%;
+    filter: url("#goo");
+}
+.btn--blob__blob {
+    position: absolute;
+    top: 2px;
+    width: 25%;
+    height: 100%;
+    background: var(--buttonHoverBackgroundColor);
+    border-radius: 100%;
+    transform: translate3d(0, 150%, 0) scale(1.7);
+    transition: transform 0.45s;
+}
+
+.no--button-motion .btn--blob__blobs {
+    display: none !important;
+}
+
+@supports (filter: url("#goo")) {
+    .btn--blob__blob {
+        transform: translate3d(0, 150%, 0) scale(1.4);
+    }
+}
+.btn--blob__blob:nth-child(1) {
+    left: 0%;
+    transition-delay: 0s;
+}
+.btn--blob__blob:nth-child(2) {
+    left: 30%;
+    transition-delay: 0.08s;
+}
+.btn--blob__blob:nth-child(3) {
+    left: 60%;
+    transition-delay: 0.16s;
+}
+.btn--blob__blob:nth-child(4) {
+    left: 90%;
+    transition-delay: 0.24s;
+}
+.btn--blob:hover .btn--blob__blob,
+.btn--blob:focus .btn--blob__blob {
+    transform: translateZ(0) scale(1.7);
+}
+@supports (filter: url("#goo")) {
+    .btn--blob:hover .btn--blob__blob,
+    .btn--blob:focus .btn--blob__blob {
+        transform: translateZ(0) scale(1.4);
+    }
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* border motion */
+
+.border--motion-1 {
+    background-color: #ddfff7;
+    position: relative;
+    box-shadow: 10px 10px 42px 0 rgba(0, 0, 0, 0.75);
+}
+.border--motion-1:after,
+.border--motion-1:before {
+    mix-blend-mode: multiply;
+    filter: none;
+    z-index: -1;
+    content: "";
+    width: calc(100% + (50px * 2));
+    height: calc(100% + (50px * 2));
+    position: absolute;
+    display: block;
+    animation: border--motion-1 10s ease-in-out infinite;
+    transform: translateX(-50px) translateY(-50px);
+}
+@keyframes border--motion-1 {
+    0%,
+    100% {
+        -webkit-clip-path: polygon(
+            0 0,
+            calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
+            100% 100%,
+            calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px))
+        );
+        clip-path: polygon(
+            0 0,
+            calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
+            100% 100%,
+            calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px))
+        );
+    }
+    50% {
+        -webkit-clip-path: polygon(
+            calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
+            100% 0,
+            calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)),
+            0 100%
+        );
+        clip-path: polygon(
+            calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
+            100% 0,
+            calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)),
+            0 100%
+        );
+    }
+}
+
+.border--motion-1:after {
+    animation-delay: -5s;
+    background-color: #93e1d8;
+    clip-path: polygon(
+        0 0,
+        calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
+        100% 100%,
+        calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px))
+    );
+}
+.border--motion-1:before {
+    background-color: #aa4465;
+    clip-path: polygon(
+        calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
+        100% 0,
+        calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)),
+        0 100%
+    );
+}
+
+.border--motion-1:hover:after {
+    animation-delay: -0.1s;
+}
+.border--motion-1:hover:before,
+.border--motion-1:hover:after {
+    animation-duration: 0.2s;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* border motion */
+
+.bundle--motion {
+    --border-angle: 0turn;
+    --main-bg: conic-gradient(
+        from var(--border-angle),
+        var(--bundleBorderColor),
+        var(--bundleBorderColor) 5%,
+        var(--bundleBorderColor) 60%,
+        var(--bundleBorderColor) 95%
+    );
+    border: solid 2px transparent;
+    --gradient-border: conic-gradient(
+        from var(--border-angle),
+        transparent 55%,
+        var(--brandColor),
+        var(--bundleMotionColor) 92%,
+        transparent
+    );
+    background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+        var(--main-bg) border-box;
+    background-position: center center;
+    -webkit-animation: bundle--motion 4s ease-in-out infinite;
+    animation: bundle--motion 4s ease-in-out infinite;
+}
+@-webkit-keyframes bundle--motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+@keyframes bundle--motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+.bundle--motion:hover {
+    /* -webkit-animation-play-state: paused;
+    animation-play-state: paused; */
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* glow */
+.preference--line {
+    position: relative;
+    padding: 0px 25px;
+}
+.preference--line .line {
+    position: absolute;
+    background-color: var(--preferenceLineColor);
+    box-shadow: 0px 0px 12px var(--preferenceLineColor);
+    width: 2px;
+    height: calc(100% - 20px);
+    top: 0px;
+    left: 3px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.preference--line .line .scanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(229, 229, 229);
+    width: 100%;
+    height: 20px;
+    border-radius: 50%;
+    animation: preference--line 3s ease-in-out infinite;
+}
+
+@keyframes preference--line {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: 100%;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* blobBG */
+.bg--blob {
+    width: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    z-index: 0;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* address motion */
+
+.address--motion {
+    --border-angle: 0turn;
+    --main-bg: conic-gradient(
+        from var(--border-angle),
+        var(--addressBackgroundColor),
+        var(--addressBackgroundColor) 5%,
+        var(--addressBackgroundColor) 60%,
+        var(--addressBackgroundColor) 95%
+    );
+    border: solid 2px transparent;
+    --gradient-border: conic-gradient(
+        from var(--border-angle),
+        transparent 80%,
+        var(--brandColor),
+        var(--addressMotionColor) 95%,
+        transparent
+    );
+    background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+        var(--main-bg) border-box;
+    background-position: center center;
+    -webkit-animation: address--motion 2s linear infinite;
+    animation: address--motion 2s linear infinite;
+}
+
+.address--motion.valid {
+    border: solid 2px transparent;
+    --gradient-border: conic-gradient(
+        from var(--border-angle),
+        transparent 70%,
+        #61c5b1,
+        var(--addressActiveMotionColor) 95%,
+        transparent
+    );
+}
+
+@-webkit-keyframes address--motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+@keyframes address--motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+.address--motion:hover {
+    /* -webkit-animation-play-state: paused;
+    animation-play-state: paused; */
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+/* --------------------------------------------------- */
+/* --------------------------------------------------- */
+
+/* invoice--motion */
+
+.invoice--final-motion {
+    --border-angle: 0turn;
+    --main-bg: conic-gradient(
+        from var(--border-angle),
+        var(--invoiceBackgroundColor),
+        var(--invoiceBackgroundColor) 5%,
+        var(--invoiceBackgroundColor) 60%,
+        var(--invoiceBackgroundColor) 95%
+    );
+    border: solid 2px transparent;
+    --gradient-border: conic-gradient(
+        from var(--border-angle),
+        transparent 50%,
+        var(--brandColor),
+        var(--invoiceMotionColor) 75%,
+        transparent
+    );
+    background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+        var(--main-bg) border-box;
+    background-position: center center;
+    -webkit-animation: invoice--final-motion 3s ease-in infinite;
+    animation: invoice--final-motion 3s ease-in infinite;
+}
+
+@-webkit-keyframes invoice--final-motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+@keyframes invoice--final-motion {
+    to {
+        --border-angle: 1turn;
+    }
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}

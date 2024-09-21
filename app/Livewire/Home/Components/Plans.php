@@ -3,8 +3,10 @@
 namespace App\Livewire\Home\Components;
 
 use App\Models\Bundle;
+use App\Models\Feature;
 use App\Models\FeatureModule;
 use App\Models\Plan;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -14,26 +16,22 @@ class Plans extends Component
 
 
     // :: variables
-    public $showSummary, $modulesPrice = [], $modulesTotalPrice;
+    public $showSummary, $modulePrices = [], $moduleFeatures = [], $moduleTotalPrices, $moduleTotalFeatures = [];
 
 
 
 
-    public function render()
+
+
+    public function mount()
     {
 
 
-        // 1: plans
-        $plans = Plan::all();
-        $bundles = Bundle::all();
-        $modules = FeatureModule::whereHas('features')?->get();
-
-
-        return view('livewire.home.components.plans', compact('plans', 'bundles', 'modules'));
+        // 1: removeSessions
+        Session::forget(['Features', 'totalCheckoutPrice']);
 
 
     } // end function
-
 
 
 
@@ -50,17 +48,99 @@ class Plans extends Component
 
 
     #[On('calculateTotalPrice')]
-    public function calculateTotalPrice($modulesPrice)
+    public function calculateTotalPrice($purchasedModule)
     {
 
 
-        // 1: getTotalPrice
-        $this->modulesPrice[$modulesPrice['featureModuleId']] = $modulesPrice['price'];
 
-        $this->modulesTotalPrice = array_sum($this->modulesPrice ?? []) ?? 0;
+        // 1: getTotalPrice
+        $this->modulePrices[$purchasedModule['featureModuleId']] = $purchasedModule['price'];
+        $this->moduleFeatures[$purchasedModule['featureModuleId']] = $purchasedModule['features'];
+
+
+
+
+        // 1.2: sumTotalPrice
+        $this->moduleTotalPrices = array_sum($this->modulePrices ?? []) ?? 0;
+
+
+
+
+
+
+        // -------------------------------------------------
+        // -------------------------------------------------
+
+
+
+
+
+
+        // 1.3: getFeatures
+        $selectedFeatures = [];
+
+        foreach ($this->moduleFeatures ?? [] as $key => $innerArray) {
+
+            foreach ($innerArray ?? [] as $innerKey => $innerValue) {
+
+                array_push($selectedFeatures, $innerValue);
+
+            } // end loop
+
+        } // end if
+
+
+
+        $this->moduleTotalFeatures = Feature::whereIn('id', $selectedFeatures)?->pluck('name')?->toArray() ?? [];
+
+
 
 
     } // end function
+
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    public function confirmCustomizedPlan()
+    {
+
+
+
+
+        // 1: checkFeatures
+        if (count($this->moduleTotalFeatures ?? []) > 0) {
+
+
+            // 1.2: makeSessions
+            Session::put('features', $this->moduleTotalFeatures ?? []);
+            Session::put('totalCheckoutPrice', $this->moduleTotalPrices);
+
+
+        } // end if
+
+
+
+
+
+
+    } // end function
+
 
 
 
@@ -85,6 +165,40 @@ class Plans extends Component
         $this->showSummary = boolval($status);
 
     } // end function
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    public function render()
+    {
+
+
+        // 1: dependencies
+        $plans = Plan::all();
+        $bundles = Bundle::all();
+        $modules = FeatureModule::whereHas('features')?->get();
+
+
+        return view('livewire.home.components.plans', compact('plans', 'bundles', 'modules'));
+
+
+    } // end function
+
+
 
 
 

@@ -30,12 +30,19 @@ class PlansCustomiseModule extends Component
 
 
         // 1.2: init instance
+        $selectedFeatures = [];
         $this->instance->featureModuleId = $this->module->id;
+
+
 
         foreach ($this->features ?? [] as $feature) {
 
             $this->instance->features[$feature->id] = $feature->isDefault ? true : false;
             $this->instance->prices[$feature->id] = $feature->isDefault ? $feature->price ?? 0 : 0;
+
+
+            // 1.3: getSelectedFeatures
+            $feature->isDefault ? array_push($selectedFeatures, $feature->id) : null;
 
         } // end loop
 
@@ -47,7 +54,11 @@ class PlansCustomiseModule extends Component
 
         // 1.3: getTotalPrice
         $this->instance->totalPrice = array_sum($this->instance->prices ?? []) ?? 0;
-        $this->dispatch('calculateTotalPrice', ['featureModuleId' => $this->instance->featureModuleId, 'price' => $this->instance->totalPrice]);
+
+
+        // 1.4: syncParent
+        $this->dispatch('calculateTotalPrice', ['featureModuleId' => $this->instance->featureModuleId, 'features' => $selectedFeatures, 'price' => $this->instance->totalPrice]);
+
 
 
     } // end function
@@ -119,7 +130,9 @@ class PlansCustomiseModule extends Component
 
         // 2.1: getTotalPrice
         $this->instance->totalPrice = array_sum($this->instance->prices ?? []) ?? 0;
-        $this->dispatch('calculateTotalPrice', ['featureModuleId' => $this->instance->featureModuleId, 'price' => $this->instance->totalPrice]);
+
+        // 1.4: syncParent
+        $this->dispatch('calculateTotalPrice', ['featureModuleId' => $this->instance->featureModuleId, 'features' => $selectedFeatures, 'price' => $this->instance->totalPrice]);
 
 
 

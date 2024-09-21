@@ -458,36 +458,73 @@
 
 
                     {{-- 1: summaryLine --}}
-                    <div class="summary--line mb-0">
-                        <div class="d-flex align-items-end w-50">
+                    <div class="summary--line flex-column flex-md-row mb-0 align-items-end">
+                        <div class="d-flex flex-column justify-content-end service--checkout-left-wrapper w-100">
 
 
-                            {{-- totalHeaing --}}
-                            <h6
-                                class="fs-4 mb-0 text-uppercase ls--price fw-semibold fs-sm-17 d-inline-flex align-items-center">
-                                Total<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                    fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-right-short mx-1">
-                                    <path fill-rule="evenodd"
-                                        d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z">
-                                    </path>
-                                </svg>
-                            </h6>
+                            {{-- top--}}
+                            <div class="d-flex align-items-end">
 
 
-                            {{-- totalPrice --}}
-                            <h6 class="fs-4 ls--price fw-700 mb-0 fs-sm-17">{{ number_format($modulesTotalPrice ?? 0, 2)
-                                }}
-                            </h6>
-                            <span class="currency--span sm ms-1 fs-12 fw-500 fs-sm-11">$</span>
+                                {{-- totalHeaing --}}
+                                <h6
+                                    class="fs-4 mb-0 text-uppercase ls--price fw-semibold fs-sm-17 d-inline-flex align-items-center">
+                                    Total<i class='bi bi-arrow-right-short mx-1'></i>
+                                </h6>
+
+
+
+
+
+                                {{-- totalPrice --}}
+                                <h6 class="fs-4 ls--price fw-700 mb-0 fs-sm-17">
+                                    {{ number_format($moduleTotalPrices ?? 0, 2) }}</h6>
+
+                                <span class="currency--span sm ms-1 fs-12 fw-500 fs-sm-11">$</span>
+                            </div>
+                            {{-- endTop --}}
+
+
+
+
+
+                            {{-- --------------------------------------- --}}
+                            {{-- --------------------------------------- --}}
+
+
+
+
+                            {{-- features --}}
+                            <div class='d-flex align-items-end summary--features mt-1 flex-wrap truncate--2l'>
+
+                                {{-- loop - moduleFeatures --}}
+                                @foreach ($moduleTotalFeatures ?? [] as $moduleTotalFeature)
+
+                                <span>{{ $moduleTotalFeature }}</span>
+
+                                @endforeach
+                                {{-- end loop --}}
+
+                            </div>
+
 
                         </div>
+                        {{-- endWrapper --}}
+
+
+
+
+
+                        {{-- --------------------------------- --}}
+                        {{-- --------------------------------- --}}
 
 
 
 
                         {{-- submitButton --}}
-                        <a class="btn button--continue fs-sm-15 rounded-2 mw--sm-110 mw--200" role="button"
-                            href="plans-checkout.html">Get my plan</a>
+                        <button class="btn button--continue fs-sm-15 rounded-2 mx-auto mt-3 mt-md-0 mx-md-0 mw--200"
+                            role="button" wire:click="confirmCustomizedPlan" wire:loading.attr='disabled'>Get my
+                            plan</button>
                     </div>
                     {{-- endLine --}}
 

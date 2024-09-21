@@ -158,3 +158,29 @@
     height: 500px;
     overflow: auto;
 }
+
+/* ---------------------------------------- */
+
+/* summary features */
+
+.summary--features span {
+    font-size: 13px;
+}
+
+.summary--features span:after {
+    content: "/";
+    color: var(--bs-warning);
+    font-size: 13px;
+    margin: 0px 3px 0px;
+    display: inline-block;
+}
+
+.summary--features span:last-of-type:after {
+    content: "";
+}
+
+@media (min-width: 768px) {
+    .service--checkout-left-wrapper {
+        max-width: 60%;
+    }
+}

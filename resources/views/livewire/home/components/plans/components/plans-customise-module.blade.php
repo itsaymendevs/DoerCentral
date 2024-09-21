@@ -40,7 +40,7 @@
 
 
                 {{-- label --}}
-                <label class="form-check-label @if ($moduleFeature->isDefault) inactive @endif"
+                <label class="form-check-label @if ($moduleFeature->isDefault) inactive @endif w-100"
                     for="customized-plan-service-checkbox-{{ $moduleFeature->id }}">{{
                     $moduleFeature?->name }}
                     <small class="currency--span sm ms-1 fw-semibold fs-15">{{ number_format($moduleFeature?->price, 2)

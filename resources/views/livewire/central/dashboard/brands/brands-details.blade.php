@@ -54,7 +54,7 @@
                         @else
 
 
-                        <img src="{{ url('https://doer.ae/on-boarding/public/storage/clients/trades/' . $brand->tradeFile) }}"
+                        <img src="{{ url('storage/clients/trades/' . $brand->tradeFile) }}"
                             class='of-contain w-100 mb-4' style="height: 200px">
 
                         @endif
@@ -147,7 +147,7 @@
 
 
                             {{-- 1.3: download --}}
-                            <a href="{{ url('https://doer.ae/on-boarding/public/storage/clients/trades/' . $brand->tradeFile) }}"
+                            <a href="{{ url('storage/clients/trades/' . $brand->tradeFile) }}"
                                 class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex w-75 fs-13 justify-content-center fw-semibold mb-2 download--btn"
                                 target='_blank'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"

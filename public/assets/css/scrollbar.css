@@ -9,12 +9,12 @@ body {
 ::-webkit-scrollbar {
     height: 3px;
     background: inherit;
-    width: 6px;
+    width: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #444;
-    -webkit-border-radius: 0ex;
+    background: #efefef;
+    -webkit-border-radius: 30px;
     -webkit-box-shadow: none;
 }
 

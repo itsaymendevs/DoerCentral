@@ -117,7 +117,7 @@
                                     @else
 
                                     <img class="client--card-logo mb-4"
-                                        src="{{ url('https://doer.ae/on-boarding/public/storage/clients/trades/' . $brand->tradeFile) }}" />
+                                        src="{{ url('storage/clients/trades/' . $brand->tradeFile) }}" />
 
                                     @endif
                                     {{-- end if --}}

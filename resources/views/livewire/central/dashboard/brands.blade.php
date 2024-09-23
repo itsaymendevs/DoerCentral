@@ -10,7 +10,7 @@
 
             {{-- newBrand --}}
             <div class="col-3">
-                <a href="https://doer.ae/on-boarding/public" target='_blank'
+                <a href="{{ route('website.home') }}" target='_blank'
                     class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center">
                     <svg class="bi bi-plus-circle-dotted fs-5 me-2" xmlns="http://www.w3.org/2000/svg" width="1em"
                         height="1em" fill="currentColor" viewBox="0 0 16 16">
@@ -147,7 +147,7 @@
                                     @else
 
                                     <img class="client--card-logo mb-4"
-                                        src="{{ url('https://doer.ae/on-boarding/public/storage/clients/trades/' . $brand->tradeFile) }}" />
+                                        src="{{ url('storage/clients/trades/' . $brand->tradeFile) }}" />
 
                                     @endif
                                     {{-- end if --}}

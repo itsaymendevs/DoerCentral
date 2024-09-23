@@ -56,20 +56,26 @@ return new class extends Migration {
 
 
 
+            // 1.4: price - plan - or features
+            $table->double('price', 15)->unsigned()->nullable()->default(0);
+
+            $table->bigInteger('planId')->unsigned()->nullable();
+            $table->foreign('planId')->references('id')->on('plans')->onDelete('set null');
+
+            $table->text('features')->nullable();
 
 
 
-            // 1.4: tardeFile
+
+
+            // 1.5: tardeFile - isConfirmed
             $table->text('tradeFile')->nullable();
-
-
-
-
-            // 1.5: isConfirmed
             $table->boolean('isConfirmed')->nullable()->default(false);
 
 
 
+            // 1.6: status
+            $table->string('status', 100)->nullable()->default('pending');
 
 
             $table->timestamps();

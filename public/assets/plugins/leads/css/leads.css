@@ -11,7 +11,6 @@
     width: 100%;
     margin: auto;
     max-width: 900px;
-    margin-top: 70px;
     margin-bottom: 10px;
     border-radius: 30px;
     padding: 15px 0px 20px;
@@ -53,7 +52,13 @@
 
 .login--regular-logo {
     width: 100%;
-    height: 60px;
+    height: 65px;
+    position: absolute;
+    top: -34px;
+    left: 0px;
+    right: 0px;
+    width: 25%;
+    border-radius: 1px;
 }
 
 @media (max-width: 1399px) {
@@ -273,4 +278,42 @@
     position: absolute;
     bottom: -22px;
     left: 0px;
+}
+
+/* navbar */
+
+.navmenu--links {
+    border: none !important;
+    font-size: 16px !important;
+    height: 40px !important;
+    border-bottom: 1px solid #292929 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500 !important;
+    padding: 0px 30px !important;
+}
+
+@media (min-width: 1200px) {
+    .navmenu--links {
+        padding: 0px 50px !important;
+    }
+}
+
+.navmenu--links:hover,
+.navmenu--links:focus,
+.navmenu--links.active {
+    border-bottom: 1px solid #4c6560 !important;
+}
+
+.navmenu--links:before,
+.navmenu--links:before,
+.navmenu--links:before,
+.navmenu--links:before,
+.navmenu--links:before {
+    background: #4c6560 !important;
+}
+
+.navmenu--links.active {
+    background: #4c6560 !important;
 }

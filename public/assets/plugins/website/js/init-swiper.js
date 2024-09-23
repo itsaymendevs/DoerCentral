@@ -9,7 +9,7 @@ $(document).ready(function () {
     var planOne = new Swiper(".plans--swiper-1", {
         autoplay: {
             delay: 2500,
-            disableOnInteraction: false,
+            disableOnInteraction: true,
         },
         loop: true,
         navigation: {
@@ -68,7 +68,7 @@ $(document).ready(function () {
     var planOne = new Swiper(".bundles--swiper-1", {
         autoplay: {
             delay: 2500,
-            disableOnInteraction: false,
+            disableOnInteraction: true,
         },
         navigation: {
             nextEl: ".bundles--swiper-next",

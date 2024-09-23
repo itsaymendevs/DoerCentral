@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\ClientSubscriptionController;
 use App\Http\Controllers\Api\InventoryController;
 use App\Http\Controllers\Api\InventoryExtraController;
 use App\Http\Controllers\Api\SyncController;
@@ -149,37 +148,6 @@ Route::post('central/sync/inventory', [SyncController::class, 'syncInventory']);
 Route::post('central/sync/profile', [SyncController::class, 'syncProfile']);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// ** --------------------- WEBSITE - ON-BOARING -------------------------- **
-
-
-
-
-
-
-
-// 1: website - subscription - customer - store
-Route::post('central/subscription/clients/store', [ClientSubscriptionController::class, 'storeLead']);
 
 
 

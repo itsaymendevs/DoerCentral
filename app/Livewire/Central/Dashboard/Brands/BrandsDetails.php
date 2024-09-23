@@ -5,6 +5,7 @@ namespace App\Livewire\Central\Dashboard\Brands;
 use App\Livewire\Forms\ClientLeadForm;
 use App\Models\ClientLead;
 use App\Traits\HelperTrait;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class BrandsDetails extends Component
@@ -98,8 +99,6 @@ class BrandsDetails extends Component
 
 
 
-
-
         // 2: alert
         $this->makeAlert('success', 'Information has been updated');
 
@@ -112,9 +111,71 @@ class BrandsDetails extends Component
 
 
 
+
+
+
     // -----------------------------------------------------------
 
 
+
+
+
+
+    public function confirmRequest($id)
+    {
+
+
+
+        // 1: confirmationBox
+        $this->temporaryId = $id;
+        $this->makeAlert('question', 'Confirm request?', 'confirmRequest');
+
+
+
+    } // end function
+
+
+
+
+
+    // -----------------------------------------------------------
+
+
+
+
+
+
+    #[On('confirmRequest')]
+    public function confirm()
+    {
+
+
+
+        // 1: get instance
+        $brand = ClientLead::find($this->temporaryId);
+
+        $brand->status = 'processing';
+        $brand->save();
+
+
+
+
+        // 1.2: refresh - alert
+        $this->makeAlert('success', 'Brand has been confirmed');
+
+        $this->brand = ClientLead::find($brand->id);
+        $this->render();
+
+
+    } // end function
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
 
 
 

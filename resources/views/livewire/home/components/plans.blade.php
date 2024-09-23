@@ -182,8 +182,10 @@
 
 
                                                             {{-- select --}}
-                                                            <a class="btn button--continue mb-3" role="button"
-                                                                href="javascript:void(0);">Choose this plan</a>
+                                                            <button wire:click="confirmPlan('{{ $plan->id }}')"
+                                                                type='button' class="btn button--continue mb-3"
+                                                                role="button" wire:loading.attr='disabled'>Choose
+                                                                this plan</button>
                                                         </div>
                                                         {{-- endBottom --}}
 

@@ -27,11 +27,11 @@ class FeatureSeeder extends Seeder
         for ($i = 0; $i < count($features); $i++) {
 
             // 1.2: getModule
-            $module = FeatureModule::where('name', 'LIKE', '%' . $features[$i]['featureModule'] . '%')->first();
+            $module = FeatureModule::where('nameURL', 'LIKE', '%' . $features[$i]['featureModule'] . '%')->first();
 
             Feature::create([
                 'name' => $features[$i]['name'],
-                'nameURL' => $this->getNameURL($features[$i]['name']),
+                'nameURL' => $features[$i]['nameURL'],
                 'featureModuleId' => $module->id,
             ]);
 

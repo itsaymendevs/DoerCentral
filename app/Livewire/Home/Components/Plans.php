@@ -28,7 +28,7 @@ class Plans extends Component
 
 
         // 1: removeSessions
-        Session::forget(['Features', 'totalCheckoutPrice']);
+        Session::forget(['Features', 'totalCheckoutPrice', 'plan']);
 
 
     } // end function
@@ -132,6 +132,8 @@ class Plans extends Component
             Session::put('totalCheckoutPrice', $this->moduleTotalPrices);
 
 
+            return $this->redirect(route('website.subscribe'));
+
         } // end if
 
 
@@ -141,6 +143,41 @@ class Plans extends Component
 
     } // end function
 
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------
+
+
+
+
+
+
+
+    public function confirmPlan($id)
+    {
+
+
+
+        // 1: makeSessions
+        $plan = Plan::find($id);
+
+        Session::put('plan', $plan->id);
+        Session::put('totalCheckoutPrice', $plan->price);
+
+
+        return $this->redirect(route('website.subscribe'));
+
+
+
+
+
+
+    } // end function
 
 
 

@@ -9,7 +9,26 @@ class ClientLeadForm extends Form
 {
 
 
-    public $id, $name, $address, $phone, $websiteURL, $email, $location, $country, $users, $contactPerson, $contactPersonPhone, $contactPersonWhatsapp, $tradeFile, $landline, $serial, $licenseNumber, $PIN;
+    // :: variables
+    #[Validate('required')]
+    public $name, $email, $address, $phone, $phoneKey, $landline, $landlineKey, $contactPerson, $contactPersonPhone, $contactPersonPhoneKey, $contactPersonWhatsapp, $contactPersonWhatsappKey, $tradeFile, $users, $websiteURL;
+
+
+
+
+    public $id, $country, $isConfirmed;
+
+
+
+    // :: helpers
+    public $tradeFileName;
+
+
+
+
+    // :: checkoutDetails
+    public $checkoutPrice, $checkoutPlan, $checkoutFeatures;
+
 
 
 

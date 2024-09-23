@@ -7,14 +7,28 @@ use Livewire\Component;
 
 class Brands extends Component
 {
+
+
+    // :: variables
+    public $searchStatus = '', $searchBrand = '';
+
+
+
     public function render()
     {
 
-        // 1: brands / clients
-        $brands = ClientLead::all();
+        // 1: dependencies
+        $statuses = ['active', 'rejected', 'pending', 'processing'];
 
 
-        return view('livewire.central.dashboard.brands', compact('brands'));
+        $brands = ClientLead::where('name', 'LIKE', "%{$this->searchBrand}%")
+            ->where('status', 'LIKE', "%{$this->searchStatus}%")
+            ->get();
+
+
+
+
+        return view('livewire.central.dashboard.brands', compact('brands', 'statuses'));
 
 
     } // end function

@@ -40,6 +40,29 @@
     /*box-shadow: var(--client-logo-shadow);*/
 }
 
+.client--card-status {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.client--card-status.pending i {
+    color: var(--bs-warning);
+}
+
+.client--card-status.processing i {
+    color: #03a9f4;
+}
+
+.client--card-status.active i {
+    color: #7ad27a;
+}
+
+.client--card-status.rejected i {
+    color: #f44336;
+}
+
 /* for floating card */
 
 .mb-floating {

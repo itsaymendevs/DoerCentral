@@ -117,7 +117,7 @@
                                 <th class="th--md">Module</th>
                                 <th class="th--xs">Default
                                     <i class="bi bi-info-circle ms-1 text-black" data-bs-toggle="tooltip"
-                                        data-bss-tooltip="" title="Mark as selected in customized-plan builder"></i>
+                                        data-bss-tooltip="" title="Mark as selected in customized-plan"></i>
                                 </th>
                                 <th class="th--xs"></th>
                             </tr>

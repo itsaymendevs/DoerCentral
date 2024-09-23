@@ -6,7 +6,8 @@
 
 
         {{-- submenu --}}
-        <livewire:central.dashboard.brands.brands-details.components.submenu id='{{ $brand->id }}' key='submenu' />
+        <livewire:central.dashboard.brands.brands-details.components.submenu id='{{ $brand->id }}'
+            key='submenu-{{ $brand->status }}' />
 
 
 
@@ -73,9 +74,60 @@
 
 
 
+                            {{-- 1: topWrapper --}}
+                            <div class='client--card-status fs-14 mb-3 {{ $brand->status }}'>
 
 
-                            {{-- 1: print --}}
+
+                                {{-- status --}}
+                                <p class='mb-0'>
+                                    <i class="bi bi-circle-fill me-2"></i>
+                                    <span>{{ ucwords($brand->status) }}</span>
+                                </p>
+
+
+
+
+                                {{-- confirmButton --}}
+                                @if ($brand->status == 'pending')
+
+
+                                {{-- arrow --}}
+                                <small>
+                                    <i class="bi bi-arrow-right fs-13 fw-semibold text-white ms-2 me-3"></i>
+                                </small>
+
+
+
+                                <button wire:click="confirmRequest('{{ $brand->id }}')" type='button'
+                                    class="btn btn--scheme text-uppercase align-items-center btn--confirm d-inline-flex fs-13justify-content-center fw-semibold mb-0 download--btn fs-14">Confirm</button>
+
+                                @endif
+                                {{-- end if --}}
+
+
+                            </div>
+                            {{-- endWrapper --}}
+
+
+
+
+
+
+
+
+
+
+                            {{-- -------------------------------------- --}}
+                            {{-- -------------------------------------- --}}
+                            {{-- -------------------------------------- --}}
+
+
+
+
+
+
+                            {{-- 1.2: print --}}
                             <button
                                 class="btn btn--scheme btn-outline-warning align-items-center d-inline-flex w-75 fs-13 justify-content-center fw-semibold mb-2 print--btn"
                                 data-print="#trade--{{ $brand->id }}" type="button">
@@ -94,7 +146,7 @@
 
 
 
-                            {{-- 1.2: download --}}
+                            {{-- 1.3: download --}}
                             <a href="{{ url('https://doer.ae/on-boarding/public/storage/clients/trades/' . $brand->tradeFile) }}"
                                 class="btn btn--scheme btn--scheme-outline-1 align-items-center d-inline-flex w-75 fs-13 justify-content-center fw-semibold mb-2 download--btn"
                                 target='_blank'>
@@ -108,9 +160,6 @@
                                     </path>
                                 </svg>Download
                             </a>
-
-
-
 
 
 

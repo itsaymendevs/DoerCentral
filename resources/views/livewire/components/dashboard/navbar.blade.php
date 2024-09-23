@@ -66,7 +66,8 @@
 
 
                     {{-- brands --}}
-                    <a href="{{ route('central.dashboard.brands') }}" class="btn navbar--menu-button me-3
+                    <a href="{{ route('central.dashboard.brands') }}"
+                        class="btn navbar--menu-button me-3
                         @if (Request::is('central/dashboard/brands', 'central/dashboard/brands/*')) active @endif">Brands</a>
 
 
@@ -91,6 +92,16 @@
 
 
 
+
+                    {{-- tech --}}
+                    <a class="btn navbar--menu-button me-3
+                    @if (Request::is('central/dashboard/tech', 'central/dashboard/tech/*')) active @endif"
+                        href="{{ route('central.dashboard.tech.brands') }}">Technicals</a>
+
+
+
+
+
                 </div>
             </div>
             {{-- end navLinks --}}
@@ -109,8 +120,7 @@
 
 
             {{-- notificationCol --}}
-            {{--
-            <livewire:components.dashboard.navbar-notifications key='navbar-notifications-1' /> --}}
+            <livewire:components.dashboard.navbar-notifications key='navbar-notifications-1' />
 
 
 

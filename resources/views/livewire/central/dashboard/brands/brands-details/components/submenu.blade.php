@@ -1,5 +1,5 @@
 {{-- subMenu --}}
-<div class="row align-items-end mb-submenu" wire:ignore>
+<div class="row align-items-end mb-submenu">
 
 
 
@@ -7,10 +7,10 @@
 
 
 
-    {{-- customersButton --}}
+    {{-- return --}}
     <div class="col-3">
         <div class="btn-group submenu--group" role="group" data-aos="flip-up" data-aos-duration="600"
-            data-aos-delay="800" data-aos-once="true">
+            data-aos-delay="800" data-aos-once="true" wire:ignore.self>
             <a class="btn submenu--group btn--scheme-2 d-flex align-items-center" role="button"
                 href="{{ route('central.dashboard.brands') }}" wire:navigate>
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
@@ -35,7 +35,7 @@
     {{-- otherLinks --}}
     <div class="col-9 text-end">
         <div class="btn-group submenu--group" role="group" data-aos="flip-up" data-aos-duration="600"
-            data-aos-delay="800" data-aos-once="true">
+            data-aos-delay="800" data-aos-once="true" wire:ignore.self>
 
 
 
@@ -47,16 +47,23 @@
 
 
             {{-- 2: setup --}}
+            @if ($brand->status == 'processing' || $brand->status == 'active')
+
             <a wire:navigate
                 class="btn fs-13 @if (Request::is('central/dashboard/brands/' . $brand->id . '/setup')) active @endif"
                 role="button" href="{{ route('central.dashboard.singleBrandSetup', [$brand->id]) }}">Setup</a>
+
+            @endif
+            {{-- end if --}}
+
+
 
 
 
             {{-- 3: license --}}
             <a wire:navigate
                 class="btn fs-13 @if (Request::is('central/dashboard/brands/' . $brand->id . '/license')) active @endif"
-                role="button" href="{{ route('central.dashboard.singleBrandLicense', [$brand->id]) }}">DOer License</a>
+                role="button" href="{{ route('central.dashboard.singleBrandLicense', [$brand->id]) }}">License</a>
 
 
 

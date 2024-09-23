@@ -489,7 +489,9 @@ label {
     background-color: var(--background-tooltip);
     color: var(--color-tooltip);
     font-weight: 500;
+    padding: 8px 15px !important;
     font-size: var(--font-tooltip);
+    text-align: left !important;
 }
 
 .tooltip .tooltip-arrow::before {

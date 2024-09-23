@@ -41,11 +41,15 @@
 .input--with-label label {
     width: 35%;
     justify-content: center;
-    background-color: var(--color-scheme-2);
+    background-color: #1f2227;
     height: var(--input-height);
     border-radius: var(--input-radius) 0px 0px var(--input-radius);
     font-size: 12px;
     border: 1px solid var(--input-border-color);
+}
+
+.input--with-label.reverse label {
+    border-radius: 0px var(--input-radius) var(--input-radius) 0px;
 }
 
 .input--with-label label small {
@@ -56,6 +60,10 @@
     width: 65%;
     border-radius: 0px var(--input-radius) var(--input-radius) 0px;
     text-align: center;
+}
+
+.input--with-label.reverse input {
+    border-radius: var(--input-radius) 0px 0px var(--input-radius);
 }
 
 /* button checkboxes */

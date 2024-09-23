@@ -14,8 +14,13 @@ use App\Livewire\Central\Dashboard\ManagePlans\Bundles;
 use App\Livewire\Central\Dashboard\ManagePlans\Features;
 use App\Livewire\Central\Dashboard\ManagePlans\Modules;
 use App\Livewire\Central\Dashboard\ManagePlans\Plans;
+use App\Livewire\Central\Dashboard\Tech\Brands as TechBrands;
+use App\Livewire\Central\Dashboard\Tech\Brands\BrandsDetails as TechBrandsDetails;
 use App\Livewire\Central\Login;
 use App\Livewire\Home;
+use App\Livewire\Leads\LeadsContact;
+use App\Livewire\Leads\LeadsSubscribe;
+use App\Livewire\Leads\LeadsSubscribeSuccess;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -36,8 +41,6 @@ use Livewire\Livewire;
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // ** ----------------------------- GENERAL ---------------------------------
-
-
 
 
 
@@ -90,6 +93,15 @@ if (env('APP_ENV') == 'production') {
 
 
 
+
+
+
+
+
+
+
+
+
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
@@ -103,6 +115,53 @@ if (env('APP_ENV') == 'production') {
 
 // 1: home
 Route::get('/', Home::class)->name('website.home');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// --------------------------------------------------------------------------
+// ** -------------------------- ON-BOARDING --------------------------------
+
+
+
+
+
+
+// 1: leads
+Route::get('/subscribe', LeadsSubscribe::class)->name('website.subscribe');
+Route::get('/subscribe/success', LeadsSubscribeSuccess::class)->name('website.success');
+
+
+
+
+// 2: reach-us
+Route::get('/contact-us', LeadsContact::class)->name('website.contact');
+
+
+
+
+
+
 
 
 
@@ -153,9 +212,8 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
-    // 1.2: brands - profile
+    // 1.2: brands - details
     Route::get('central/dashboard/brands/{id}', BrandsDetails::class)->name('central.dashboard.singleBrand');
-
 
 
 
@@ -245,6 +303,31 @@ Route::middleware(['auth.user'])->group(function () {
 
 
 
+
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+    // 4: tech - brands - details
+    Route::get('central/dashboard/tech/brands', action: TechBrands::class)->name('central.dashboard.tech.brands');
+
+    // 4.2: brands - details
+    Route::get('central/dashboard/tech/brands/{id}', TechBrandsDetails::class)->name('central.dashboard.tech.singleBrand');
 
 
 

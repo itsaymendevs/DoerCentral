@@ -8,7 +8,7 @@
         <div class="row">
 
 
-            {{-- newPlan --}}
+            {{-- newBrand --}}
             <div class="col-3">
                 <a href="https://doer.ae/on-boarding/public" target='_blank'
                     class="btn btn--scheme btn--scheme-2 px-3 scalemix--3 py-2 d-inline-flex align-items-center">
@@ -24,10 +24,51 @@
 
 
 
-            {{-- title --}}
+
+            {{-- --------------------------------------- --}}
+            {{-- --------------------------------------- --}}
+
+
+
+            {{-- filters --}}
             <div class="col-6 text-center">
-                <h4 class="mb-0 fw-bold">Brands</h4>
+                <div class="row justify-content-center">
+
+
+
+                    {{-- status --}}
+                    <div class="col-6">
+                        <div class="select--single-wrapper" wire:loading.class='no-events-loading' wire:ignore>
+                            <select class="form--select" data-instance='searchStatus' data-placeholder='Select Status'
+                                data-clear='true'>
+                                <option value=""></option>
+
+                                @foreach ($statuses ?? [] as $status)
+                                <option value="{{ $status }}">{{ ucwords($status) }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    {{-- name --}}
+                    <div class="col-6">
+                        <input wire:model.live='searchBrand' class="form--input text-center" type="text"
+                            placeholder="Search by Name" />
+                    </div>
+
+
+                </div>
             </div>
+            {{-- endFilters --}}
+
+
+
+
+            {{-- --------------------------------------- --}}
+            {{-- --------------------------------------- --}}
 
 
 
@@ -85,21 +126,20 @@
 
 
                                 {{-- image --}}
-                                <div class="col-3">
-                                    <h5 class="text-center sideways--title sideways--left fw-bold m-0 fs-6">{{
-                                        $brand->name }}</h5>
+                                <div class="col-2">
+                                    <h5 class="text-center sideways--title sideways--left
+                                        fw-bold m-0 fs-14">{{ $brand->name }}</h5>
                                 </div>
 
 
 
-                                <div class="col-9 text-center position-relative">
+                                <div class="col-10 text-center position-relative">
 
 
                                     {{-- 1: PDF --}}
                                     @if (str_contains($brand?->tradeFile, '.pdf'))
 
-                                    <img class="client--card-logo mb-4 "
-                                        src="{{ url('assets/img/helpers/PDF.png') }}" />
+                                    <img class="client--card-logo mb-4" src="{{ url('assets/img/helpers/PDF.png') }}" />
 
 
 
@@ -115,9 +155,19 @@
 
 
 
+                                    {{-- 1.3: status --}}
+                                    <p class='client--card-status {{ $brand->status }}'>
+                                        <i class="bi bi-circle-fill me-2"></i>
+                                        <span>{{ ucwords($brand->status) }}</span>
+                                    </p>
+
+
+
+
+
                                     {{-- 2: manage --}}
                                     <a wire:navigate href="{{ route('central.dashboard.singleBrand', [$brand->id]) }}"
-                                        class="btn btn--scheme btn--scheme-2 fs-12 px-3 mx-1 scale--self-05"
+                                        class="btn btn--scheme btn--scheme-2 fs-12 px-4 mx-1 scale--self-05"
                                         type="button">Manage</a>
 
                                 </div>
@@ -152,6 +202,62 @@
         </div>
     </div>
     {{-- endContainer --}}
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
+
+
+
+
+
+    {{-- selectHandle --}}
+    <script>
+        $(document).on('change', ".form--select", function(event) {
+
+
+
+         // 1.1: getValue - instance
+         selectValue = $(this).select2('val');
+         instance = $(this).attr('data-instance');
+
+         @this.set(instance, selectValue);
+
+
+      }); //end function
+    </script>
+
+
+
+
+
+
+
+
+
+
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+    {{-- -------------------------------------------------- --}}
+
+
+
 
 
 

@@ -28,10 +28,11 @@
 
 
 
+
+
         {{-- bootstrap - Fonts --}}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
         <link href="{{ url('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link
             href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Arabic:wght@100..900&display=swap"

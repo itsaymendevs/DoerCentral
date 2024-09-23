@@ -15,88 +15,10 @@ class NavbarNotifications extends Component
 
 
 
-
-    public function markAsPreviewed()
-    {
-
-
-
-        // 1: makeRequest
-        $this->makeRequest('central/dashboard/notifications/update', []);
-
-
-
-
-    } // end function
-
-
-
-
-
-
-
-    // -----------------------------------------------------------
-
-
-
-
-
-
-
-
-    public function rerender()
-    {
-
-
-
-        $this->render();
-
-
-    } // end function
-
-
-
-
-
-
-
-
-
-
-
-    // -----------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
     public function render()
     {
 
-
-
-        // 1: dependencies
-        $notifications = Notification::where('isForDashboard', true)
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-
-        $unPreviewedCount = Notification::where('isPreviewed', false)
-            ->where('isForDashboard', true)
-            ->count();
-
-
-
-
-        return view('livewire.components.dashboard.navbar-notifications', compact('notifications', 'unPreviewedCount'));
-
-
-
+        return view('livewire.components.dashboard.navbar-notifications');
 
     } // end function
 

@@ -39,9 +39,15 @@ class BrandsConfigurations extends Component
     {
 
 
-        // 1: profile
+
+        // :: initTooltips
+        $this->dispatch('initTooltips');
+
+
         return view('livewire.central.dashboard.brands.brands-configurations');
 
     } // end function
+
+
 
 } // end class

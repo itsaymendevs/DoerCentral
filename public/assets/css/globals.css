@@ -190,6 +190,13 @@
     height: 48px !important;
 }
 
+/* tooltips */
+.tooltip-inner {
+    font-weight: 500;
+    padding: 8px 15px !important;
+    text-align: left !important;
+}
+
 /* truncate text */
 
 .truncate-text-1l {
@@ -667,3 +674,21 @@ i {
 .w-40 {
     width: 40%;
 }
+
+.w-60 {
+    width: 60%;
+}
+
+.w-65 {
+    width: 65%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+.w-75 {
+    width: 75%;
+}
+
+/* sideways */

@@ -9,7 +9,7 @@
 
             {{-- slogan --}}
             <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center text-md-start">
-                <img class="mb-3 mb-sm-2 mb-md-0" src="{{url('assets/plugins/website/img/logo/eat-healthy-1.png')}}">
+                <img class="mb-3 mb-sm-2 mb-md-0" src="{{url('assets/plugins/website/img/logo/doer-light.png')}}">
             </div>
 
 

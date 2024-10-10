@@ -1,169 +1,183 @@
 .placeholder--wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 45px;
-  width: 45px;
-  background-color: var(--background-body);
-  border: 2px dashed var(--border-placeholder);
-  border-radius: 50%;
-  position: fixed;
-  top: 13vh;
-  right: 2vw;
-  z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 45px;
+    background-color: var(--background-body);
+    border: 2px dashed var(--border-placeholder);
+    border-radius: 50%;
+    position: fixed;
+    top: 13vh;
+    right: 2vw;
+    z-index: 1000;
 }
 
-.placeholder--wrapper:hover, .placeholder--wrapper:focus {
-  border: 2px dashed var(--border-placeholder-hover);
+.placeholder--wrapper:hover,
+.placeholder--wrapper:focus {
+    border: 2px dashed var(--border-placeholder-hover);
 }
 
-.placeholder--wrapper a svg, .placeholder--wrapper a i {
-  color: #fff;
-  font-size: 22px;
+.placeholder--wrapper a svg,
+.placeholder--wrapper a i {
+    color: #fff;
+    font-size: 22px;
 }
 
 /* for styles */
 
 .placeholder--wrapper.for--style {
-  top: 22vh;
+    top: 22vh;
 }
 
 /* modal */
 
 .section--customization .modal-dialog {
-  max-width: 1200px;
+    max-width: 1200px;
 }
 
 .section--customization.md .modal-dialog {
-  max-width: 600px;
+    max-width: 600px;
 }
 
 .section--customization.lg .modal-dialog {
-  max-width: 1000px;
+    max-width: 1000px;
 }
 
 .section--customization .modal-content {
-  background-color: var(--background-customization);
+    background-color: var(--background-customization);
 }
 
 .section--customization .modal-dialog {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .section--customization.left-side .modal-dialog {
-  margin-left: 0px;
+    margin-left: 0px;
 }
 
 .section--customization .modal-content {
-  border-radius: 0px;
+    border-radius: 0px;
 }
 
 /* template--tabs */
 
 .template--tabs .nav-item a {
-  border-radius: 0px;
-  color: var(--color-text);
-  border: none;
-  font-size: 13px;
+    border-radius: 0px;
+    color: var(--color-text);
+    border: none;
+    font-size: 13px;
 }
 
 .template--tabs .nav-item a.active {
-  border-radius: 0px;
-  color: var(--color-template-tabs-active);
-  background-color: var(--background-template-tabs);
+    border-radius: 0px;
+    color: var(--color-template-tabs-active);
+    background-color: var(--background-template-tabs);
 }
 
 /* option */
 
 .template--option {
-  width: 100%;
-  height: 150px;
-  display: block;
-  margin-bottom: 25px;
-  border-radius: 6px;
-  position: relative;
-  padding: 2px;
-  background-color: var(--background-body);
-  border: 1px solid transparent;
+    width: 100%;
+    height: 150px;
+    display: block;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    position: relative;
+    padding: 2px;
+    background-color: var(--background-body);
+    border: 1px solid transparent;
 }
 
 .template--option.rectangle {
-  height: 250px;
+    height: 250px;
 }
 
 .template--option img {
-  object-fit: contain;
-  border-radius: inherit;
-  width: 100%;
-  height: 100%;
+    object-fit: contain;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
 }
 
-.template--option:hover, .template--option:focus, .template--option.active {
-  border: 1px solid var(--border-template-option-active);
+.template--option:hover,
+.template--option:focus,
+.template--option.active {
+    border: 1px solid var(--border-template-option-active);
 }
 
 /* icon */
 
-.template--option i, .template--option svg {
-  color: #bdfde0;
-  font-size: 16px;
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
+.template--option i,
+.template--option svg {
+    color: #bdfde0;
+    font-size: 16px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 }
 
 /* builder input */
 
 .form--builder-input {
-  background-color: var(--background-builder-input) !important;
-  border: 2px solid var(--background-builder-input);
+    background-color: var(--background-builder-input) !important;
+    border: 2px solid var(--background-builder-input);
 }
 
 .form--builder-label {
-  align-items: end !important;
+    align-items: end !important;
 }
 
 /* textarea */
 
 .form--builder-textarea {
-  background-color: var(--background-builder-input) !important;
-  border: 2px solid var(--background-builder-input);
-  width: 100%;
+    background-color: var(--background-builder-input) !important;
+    border: 2px solid var(--background-builder-input);
+    width: 100%;
 }
 
 /* placeholder */
 
-.form--builder-input::placeholder, .form--builder-textarea::placeholder {
-  color: var(--color-builder-input-placeholder);
-  font-size: 12px;
+.form--builder-input::placeholder,
+.form--builder-textarea::placeholder {
+    color: var(--color-builder-input-placeholder);
+    font-size: 12px;
 }
 
 /* file */
 
 .form--builder-file {
-  background-color: var(--background-builder-input) !important;
+    background-color: var(--background-builder-input) !important;
 }
 
 /* section--group */
 
 .section--group {
-  border: 1px solid #707070;
-  padding: 18px 15px 15px;
-  margin-bottom: 40px;
-  border-radius: 6px;
-  position: relative;
+    border: 1px solid #707070;
+    padding: 18px 15px 15px;
+    margin-bottom: 40px;
+    border-radius: 6px;
+    position: relative;
 }
 
 .section--group-header {
-  position: absolute;
-  right: 10px;
-  top: -10px;
-  font-size: 10px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  border-radius: 100px;
-  text-align: center;
-  padding: 3px 10px;
-  background-color: #4c766f;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 100px;
+    text-align: center;
+    padding: 3px 10px;
+    background-color: #4c766f;
 }
 
+/* on modal */
+
+.section--group.section--modal-group {
+    padding: 10px 15px;
+    border: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

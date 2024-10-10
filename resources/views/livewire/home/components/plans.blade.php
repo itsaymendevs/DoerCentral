@@ -1,34 +1,93 @@
-<section data-aos="fade" data-aos-duration="500" data-aos-delay="200" id="services--section" wire:ignore.self>
-    <div class="container mb-5">
+<section id="services--section" class='mb-0'>
+    <div class="container" data-aos="fade" data-aos-duration="500" data-aos-delay="200" wire:ignore.self>
         <div class="row">
+
+
             <div class="col-12">
 
 
 
+
                 {{-- tabs --}}
-                <div class="services--tab mb-4" wire:ignore>
+                <div class="services--tab mb-4 position-relative" wire:ignore.self>
 
 
                     {{-- 2: tabLinks --}}
-                    <ul class="nav nav-tabs justify-content-center justify-content-sm-end" role="tablist"
-                        data-aos="fade" data-aos-duration="500" data-aos-delay="200">
+                    <ul class="nav nav-tabs justify-content-center justify-content-sm-end mb-5" role="tablist"
+                        data-aos="fade" data-aos-duration="500" data-aos-delay="200" wire:ignore>
 
 
                         {{-- 2.1: plans --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active fs-sm-15" role="tab" data-bs-toggle="tab" href="#our-plans--tab"
-                                wire:click="toggleSummary(false)">Plans</a>
+                            <a class="nav-link active fs-sm-15 fw-600" role="tab" data-bs-toggle="tab"
+                                href="#our-plans--tab" wire:click="toggleSummary(false)">Plans</a>
                         </li>
 
 
 
                         {{-- 2.2: customise --}}
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link fs-sm-15" role="tab" data-bs-toggle="tab" href="#custom-plans--tab"
-                                wire:click="toggleSummary(true)">Build
+                            <a class="nav-link fs-sm-15 fw-600" role="tab" data-bs-toggle="tab"
+                                href="#custom-plans--tab" wire:click="toggleSummary(true)">Build
                                 Your Own</a>
                         </li>
+
+
+
+
+
+
+
+
+
+                        {{-- --------------------------------------------- --}}
+                        {{-- --------------------------------------------- --}}
+
+
+
+
+
+
+
+
+                        {{-- yearly - monthly --}}
+                        <div class="text-center pricing--checkbox-wrapper">
+                            <div class="pricing--checkbox">
+
+                                {{-- 1: monthly --}}
+                                <label class="form-label label-left inactive" for="pricing--checkbox">Monthly</label>
+
+
+                                {{-- checkbox --}}
+                                <div class="form-check form-switch form--checkbox-with-label for-switch mx-3">
+                                    <input class="form-check-input me-0" type="checkbox" id="pricing--checkbox"
+                                        wire:model.live='isYearly'>
+                                </div>
+
+
+                                {{-- 2: yearly --}}
+                                <label class="form-label label-right d-flex align-items-center justify-content-center"
+                                    for="pricing--checkbox">
+                                    <span>Yearly</span>
+                                    <i class='bi bi-info-circle ms-2 cursor--pointer'
+                                        style="border-bottom: 1px solid var(--color-info-icon-hover);"
+                                        data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="right"
+                                        title="50% OFF + Free Consultation"></i>
+                                </label>
+                            </div>
+                        </div>
+
+
+
+
+
                     </ul>
+                    {{-- endList --}}
+
+
+
+
+
 
 
 
@@ -47,14 +106,14 @@
 
 
                         {{-- 1: plansTab --}}
-                        <div class="tab-pane fade show active" role="tabpanel" id="our-plans--tab">
+                        <div class="tab-pane fade show active" role="tabpanel" id="our-plans--tab" wire:ignore.self>
                             <div class="row">
 
 
 
                                 {{-- sideHeading --}}
                                 <div class="col-2 col-md-1 d-flex justify-content-center" data-aos="fade"
-                                    data-aos-duration="500" data-aos-delay="500">
+                                    data-aos-duration="500" data-aos-delay="500" wire:ignore.self>
                                     <h2
                                         class="fs-1 text-end fw-semibold fs-sm-22 text--vertical mx-0 mb-0 services--side-heading">
                                         Pick Your Solution</h2>
@@ -100,12 +159,70 @@
 
 
                                                         {{-- name --}}
-                                                        <h5 class="fw-semibold mb-1 fs-sm-16">{{ $plan?->name }}</h5>
+                                                        <h5 class="fw-bold mb-1 fs-sm-16">{{ $plan?->name }}</h5>
 
 
                                                         {{-- description --}}
-                                                        <p class="service--subtitle mb-2
+                                                        <p class="service--subtitle mb-2 fst-italic
                                                         fs-sm-14 fs-15 truncate--3l h-72">{{$plan?->desc}}</p>
+
+
+
+
+
+
+                                                        {{-- ------------------------------- --}}
+                                                        {{-- ------------------------------- --}}
+                                                        {{-- ------------------------------- --}}
+
+
+
+
+
+
+                                                        {{-- bottom --}}
+                                                        <div class="d-block">
+
+                                                            {{-- price --}}
+                                                            <h3 class="fw-bold mt-2 mb-2 ls--price">
+
+
+
+                                                                {{-- 1: yearly --}}
+                                                                @if ($isYearly)
+
+
+                                                                <span
+                                                                    class="currency--span sm me-1 fw-700 fs-sm-12">$</span>{{
+                                                                number_format($plan?->price * 12, 1) }}<span
+                                                                    class="fs-15 ms-1 text--per fw-600 fst-italic">/
+                                                                    year</span>
+
+
+                                                                {{-- 2: monthly --}}
+                                                                @else
+
+
+                                                                <span
+                                                                    class="currency--span sm me-1 fw-700 fs-sm-12">$</span>{{
+                                                                number_format($plan?->price, 1) }}<span
+                                                                    class="fs-15 ms-1 text--per fw-600 fst-italic">/
+                                                                    month</span>
+
+
+
+                                                                @endif
+                                                                {{-- end if --}}
+                                                            </h3>
+
+
+                                                            {{-- select --}}
+                                                            <button wire:click="confirmPlan('{{ $plan->id }}')"
+                                                                type='button' class="btn button--continue mb-3"
+                                                                role="button" wire:loading.attr='disabled'>Choose
+                                                                this plan</button>
+                                                        </div>
+                                                        {{-- endBottom --}}
 
 
 
@@ -119,12 +236,27 @@
 
 
                                                         {{-- bundlesWrapper --}}
-                                                        <div>
+                                                        @if ($plan->bundles)
+
+
+
+
+                                                        {{-- subheading --}}
+                                                        <div class='fw-500 fs-15 key-features--title mt-4'>
+                                                            <h6>Essentials</h6>
+                                                            <hr>
+                                                        </div>
+
+
+
+
+                                                        {{-- wrapper --}}
+                                                        <div class='key-features--wrapper'>
 
 
                                                             {{-- loop - planBundles --}}
-                                                            @foreach ($plan?->bundles?->sortBy('bundleId') ?? []
-                                                            as $planBundle)
+                                                            @foreach ($plan?->bundles?->sortBy('bundleId')?->take(6) ??
+                                                            [] as $planBundle)
 
 
                                                             <div class="service--checkbox-wrapper"
@@ -149,9 +281,6 @@
                                                             {{-- end loop --}}
 
 
-
-
-
                                                         </div>
                                                         {{-- endWrapper --}}
 
@@ -159,36 +288,46 @@
 
 
 
-                                                        {{-- ------------------------------- --}}
-                                                        {{-- ------------------------------- --}}
-                                                        {{-- ------------------------------- --}}
+
+
+                                                        {{-- -------------------------------- --}}
+                                                        {{-- -------------------------------- --}}
 
 
 
 
 
 
-                                                        {{-- bottom --}}
-                                                        <div class="d-block">
+                                                        {{-- viewFeatures --}}
+                                                        @if ($plan?->bundles?->sortBy('bundleId')->count() > 6)
 
-                                                            {{-- price --}}
-                                                            <h3 class="text-center fw-bold mt-2 mb-2 ls--price">
-                                                                <span class="currency--span sm
-                                                                me-1 fw-700 fs-sm-12">$</span>{{
-                                                                number_format($plan?->price, 1) }}<span
-                                                                    class="fs-15 ms-1 text-secondary fw-600">/
-                                                                    month</span>
-                                                            </h3>
-
-
-                                                            {{-- select --}}
-                                                            <button wire:click="confirmPlan('{{ $plan->id }}')"
-                                                                type='button' class="btn button--continue mb-3"
-                                                                role="button" wire:loading.attr='disabled'>Choose
-                                                                this plan</button>
+                                                        <div class="d-flex justify-content-center mt-3 mb-1">
+                                                            <button type="button" class="btn  btn--features"
+                                                                data-bs-toggle='modal'
+                                                                data-bs-target='#plan--features-modal'
+                                                                wire:click="viewFeatures('{{ $plan->id }}')">See
+                                                                Features</button>
                                                         </div>
-                                                        {{-- endBottom --}}
 
+
+                                                        {{-- else --}}
+                                                        @else
+
+                                                        <div class="d-flex justify-content-center mt-3 mb-1">
+                                                            <button type="button"
+                                                                class="btn btn--features invisible disabled">See
+                                                                Features</button>
+                                                        </div>
+
+
+                                                        @endif
+                                                        {{-- end if --}}
+
+
+
+
+                                                        @endif
+                                                        {{-- endWrapper --}}
 
 
 
@@ -209,6 +348,8 @@
 
 
 
+
+
                                         {{-- ---------------------------------------- --}}
                                         {{-- ---------------------------------------- --}}
 
@@ -219,11 +360,17 @@
                                         <div class="swiper-pagination"></div>
 
 
+
+
+
+
                                         {{-- ---------------------------------------- --}}
                                         {{-- ---------------------------------------- --}}
 
 
-                                        <div class="col-12 d-flex justify-content-center swiper--arrows mt-4">
+
+
+                                        <div class="col-12 d-flex justify-content-center swiper--arrows mt-4 pb-4">
 
                                             <button class="btn btn--link meal--card-arrows plans--swiper-previous me-3"
                                                 type="button">
@@ -238,6 +385,7 @@
 
 
 
+
                                         {{-- ---------------------------------------- --}}
                                         {{-- ---------------------------------------- --}}
 
@@ -245,7 +393,7 @@
 
 
                                         {{-- autoplay --}}
-                                        <div class="autoplay-progress colored">
+                                        <div class="autoplay-progress colored d-none">
                                             <svg viewBox="0 0 45 45">
                                                 <circle cx="23" cy="23" r="18"></circle>
                                             </svg>
@@ -280,6 +428,10 @@
                         {{-- --------------------------------------------------- --}}
                         {{-- --------------------------------------------------- --}}
                         {{-- --------------------------------------------------- --}}
+                        {{-- --------------------------------------------------- --}}
+                        {{-- --------------------------------------------------- --}}
+                        {{-- --------------------------------------------------- --}}
+                        {{-- --------------------------------------------------- --}}
 
 
 
@@ -292,7 +444,7 @@
 
 
                         {{-- 2: customiseTab --}}
-                        <div class="tab-pane fade" role="tabpanel" id="custom-plans--tab">
+                        <div class="tab-pane fade" role="tabpanel" id="custom-plans--tab" wire:ignore>
                             <div class="row">
 
 
@@ -342,7 +494,7 @@
                                                     {{-- features --}}
                                                     <livewire:home.components.plans.components.plans-customise-module
                                                         key="single-module-features-{{ $module->id }}"
-                                                        id='{{ $module->id }}'>
+                                                        id='{{ $module->id }}' parent='swiper'>
 
 
                                                 </div>
@@ -359,8 +511,13 @@
 
 
 
+
+
+
                                         {{-- ---------------------------------------- --}}
                                         {{-- ---------------------------------------- --}}
+
+
 
 
 
@@ -369,12 +526,17 @@
                                         <div class="swiper-pagination bunldes"></div>
 
 
+
+
+
                                         {{-- ---------------------------------------- --}}
                                         {{-- ---------------------------------------- --}}
+
+
+
 
 
                                         <div class="col-12 d-flex justify-content-center swiper--arrows mt-4">
-
                                             <button
                                                 class="btn btn--link meal--card-arrows bundles--swiper-previous bundles--swiper-previous me-3"
                                                 type="button">
@@ -390,6 +552,7 @@
 
 
 
+
                                         {{-- ---------------------------------------- --}}
                                         {{-- ---------------------------------------- --}}
 
@@ -397,7 +560,7 @@
 
 
                                         {{-- autoplay --}}
-                                        <div class="autoplay-progress bundles colored">
+                                        <div class="autoplay-progress bundles colored d-none">
                                             <svg viewBox="0 0 45 45">
                                                 <circle cx="23" cy="23" r="18"></circle>
                                             </svg>

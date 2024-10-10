@@ -15,17 +15,25 @@ class PlansCustomiseModule extends Component
     // :: variables
     public CustomizePlanForm $instance;
 
-    public $module, $features;
+    public $module, $features, $parent, $otherParent;
 
 
 
-    public function mount($id)
+    public function mount($id, $parent)
     {
 
 
         // 1: getModule
         $this->module = FeatureModule::find($id);
         $this->features = Feature::whereIn('id', $this->module?->features?->pluck('id')?->toArray() ?? [])?->get();
+
+
+
+
+        // 1.1: parent
+        $this->parent = $parent;
+        $this->otherParent = $parent == 'modal' ? 'swiper' : 'modal';
+
 
 
 
@@ -41,8 +49,20 @@ class PlansCustomiseModule extends Component
             $this->instance->prices[$feature->id] = $feature->isDefault ? $feature->price ?? 0 : 0;
 
 
+
+
+
+
             // 1.3: getSelectedFeatures
             $feature->isDefault ? array_push($selectedFeatures, $feature->id) : null;
+
+
+
+
+            // TODO: checkIfSelected
+
+
+
 
         } // end loop
 
@@ -139,6 +159,33 @@ class PlansCustomiseModule extends Component
 
     } // end function
 
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------
+
+
+
+
+
+
+
+    public function viewModule($id)
+    {
+
+
+        // 1: dispatch
+        $this->dispatch('viewModule', $id);
+
+
+
+    } // end function
 
 
 

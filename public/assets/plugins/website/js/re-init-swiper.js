@@ -7,11 +7,6 @@ window.addEventListener("initSwiperOne", (event) => {
 
     $(document).ready(function () {
         var planOne = new Swiper(".plans--swiper-1", {
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            loop: true,
             navigation: {
                 nextEl: ".plans--swiper-next",
                 prevEl: ".plans--swiper-previous",
@@ -23,44 +18,29 @@ window.addEventListener("initSwiperOne", (event) => {
                 clickable: true,
             },
 
-            mousewheel: true,
             keyboard: true,
             grabCursor: true,
             keyboard: {
                 enabled: true,
             },
-            on: {
-                autoplayTimeLeft(s, time, progress) {
-                    reProgressCircle.style.setProperty(
-                        "--progress",
-                        1 - progress
-                    );
-                    reProgressContent.textContent = `${Math.ceil(
-                        time / 1000
-                    )}s`;
-                },
-            },
-
             breakpoints: {
                 1: {
-                    slidesPerView: 2,
+                    slidesPerView: 1,
                     spaceBetween: 10,
                 },
                 576: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
+                    slidesPerView: 1,
+                    spaceBetween: 20,
                 },
                 768: {
-                    slidesPerView: 3,
-                    spaceBetween: 10,
+                    slidesPerView: 2,
+                    spaceBetween: 20,
                 },
                 1200: {
-                    slidesPerView: 4,
-                    spaceBetween: 10,
+                    slidesPerView: 3,
+                    spaceBetween: 20,
                 },
             },
         });
     });
 });
-
-// -------------------------------------------------------------

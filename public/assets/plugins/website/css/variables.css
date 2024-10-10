@@ -52,6 +52,7 @@
 
 :root {
     --color-text: white;
+    --color-text-inverse: #111;
     --color-navmenu-links: #b2b9c0;
     --color-remove: #ff5f5f;
     --color-danger: #ff4848;
@@ -132,6 +133,7 @@
     --border-checkout-wrapper: #93cdc2;
     --border-summary-hr: rgba(55, 66, 76, 0.58);
     --border-checkbox-choosen: #ffeaad;
+    --border-modal-header: #e6e6e6;
 }
 
 :root {

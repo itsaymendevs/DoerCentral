@@ -69,6 +69,9 @@
         <link rel="stylesheet" href="{{url('assets/plugins/website/css/responsive.css')}}">
         <link rel="stylesheet" href="{{url('assets/plugins/website/css/plans-checkout.css')}}">
         <link rel="stylesheet" href="{{url('assets/plugins/website/css/services.css') }}">
+        <link rel="stylesheet" href="{{url('assets/plugins/website/css/scrollbar.css') }}">
+        <link rel="stylesheet" href="{{url('assets/plugins/website/css/website.css') }}">
+        <link rel="stylesheet" href="{{url('assets/plugins/website/css/login.css') }}">
 
 
 
@@ -124,11 +127,28 @@
 
 
 
+        {{-- loader --}}
+        <div id="loader--wrapper">
+            <div class="loader"></div>
+        </div>
+
+
+
+
+
+
+
+        {{-- ------------------------------------- --}}
+        {{-- ------------------------------------- --}}
+
+
+
 
 
 
         {{-- content --}}
         {{ $slot }}
+
 
 
 
@@ -199,7 +219,25 @@
 
 
 
+
+        {{-- typed --}}
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+
         @yield('scripts')
+
+
+
+
+
+        <script>
+            $(document).ready(function() {
+                $("#loader--wrapper").delay(2000).fadeOut("slow");
+            })
+        </script>
+
+
+
 
 
     </body>

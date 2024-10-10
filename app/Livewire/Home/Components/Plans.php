@@ -16,7 +16,7 @@ class Plans extends Component
 
 
     // :: variables
-    public $showSummary, $modulePrices = [], $moduleFeatures = [], $moduleTotalPrices, $moduleTotalFeatures = [];
+    public $showSummary, $isYearly, $modulePrices = [], $moduleFeatures = [], $moduleTotalPrices, $moduleTotalFeatures = [];
 
 
 
@@ -27,11 +27,42 @@ class Plans extends Component
     {
 
 
-        // 1: removeSessions
+        // 1: defaultValue - remove
+        $this->isYearly = false;
         Session::forget(['Features', 'totalCheckoutPrice', 'plan']);
 
 
     } // end function
+
+
+
+
+
+
+
+    // --------------------------------------------------------------------
+
+
+
+
+
+    public function viewFeatures($id)
+    {
+
+
+
+        // 1: dispatch
+        $this->dispatch('viewFeatures', $id);
+
+
+
+    } // end function
+
+
+
+
+
+
 
 
 
@@ -167,6 +198,7 @@ class Plans extends Component
         $plan = Plan::find($id);
 
         Session::put('plan', $plan->id);
+        Session::put('isYearly', $this->isYearly);
         Session::put('totalCheckoutPrice', $plan->price);
 
 
@@ -228,6 +260,10 @@ class Plans extends Component
         $plans = Plan::all();
         $bundles = Bundle::all();
         $modules = FeatureModule::whereHas('features')?->get();
+
+
+
+        $this->dispatch('initSwiperOne');
 
 
         return view('livewire.home.components.plans', compact('plans', 'bundles', 'modules'));

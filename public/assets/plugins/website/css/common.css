@@ -279,3 +279,40 @@
     text-orientation: mixed;
     transform: rotate(180deg);
 }
+
+/* checkbox */
+
+.checkbox--vertical {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+}
+
+/* cursor */
+
+.cursor--pointer {
+    cursor: pointer !important;
+}
+
+/* inverse modal */
+
+.modal--inverse * {
+    color: var(--color-text-inverse);
+}
+
+/* modal header */
+
+.modal--header {
+    padding: 0px;
+    border-bottom: 1px dashed var(--border-modal-header);
+    justify-content: end;
+}
+
+.modal--header .btn-close {
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    width: 24px;
+    height: 25px;
+    margin: 0px;
+}
